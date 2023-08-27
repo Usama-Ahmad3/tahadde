@@ -1,0 +1,2583 @@
+{
+  "@@last_modified": "2018-12-16T14:55:33.523591",
+  "locale": "en",
+  "@locale": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "league": "League",
+  "@league": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournament": "Tournament",
+  "@tournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Delete Account",
+    "@deleteAccount": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "bookPitch": "Book Venue",
+  "@bookPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "team": "Team",
+  "@team": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessage": "Invitation Sent",
+    "@sendMessage": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "teamH": "Team",
+    "@teamH": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "needcreateaccountorlogin": "To join the team you need to create an account or login",
+    "@needcreateaccountorlogin": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "ratepitchafteryourgame": "No ratings available",
+    "@ratepitchafteryourgame": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "addpitchtoyourfavorites": "Add venue to your favorites",
+      "@addpitchtoyourfavorites": {
+        "type": "text",
+        "placeholders": {}
+      },
+       "youarefacinganyissuespleaseemailuson": "If you are facing any issues please email us on ",
+        "@youarefacinganyissuespleaseemailuson": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "teamC": "TEAM",
+    "@team": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "game": "Game",
+  "@game": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingpricefortheleague": "Booking price for the league",
+    "@bookingpricefortheleague": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "bookingpricefortheTournament": "Booking price for the Tournament",
+      "@bookingpricefortheTournament": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "gamePlayed": "Game Played",
+        "@gamePlayed": {
+          "type": "text",
+          "placeholders": {}
+        },
+        "hasrequestedyoutojoin": "has requested you to join",
+          "@hasrequestedyoutojoin": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "noplayershavebeenfoundnearyou": "No players have been found near you",
+            "@noplayershavebeenfoundnearyou": {
+              "type": "text",
+              "placeholders": {}
+            },
+            "searchlocationorevent": "Search location or event",
+              "@searchlocationorevent": {
+                "type": "text",
+                "placeholders": {}
+              },
+  "challengeTeam": "Challenge A Team",
+  "@challengeTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewMore": "View More",
+  "@viewMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchDetails": "Venue Details",
+    "@pitchDetails": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "notification": "Notification",
+  "@notification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "more": "More",
+  "@more": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookedSlots": "Booked Slots",
+    "@bookedSlots": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "uploadImage": "Upload Image",
+    "@uploadImage": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "phone": "Phone",
+    "@phone": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "logo": "Logo",
+      "@logo": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "choosefromlibrary": "Choose from library",
+            "@choosefromlibrary": {
+              "type": "text",
+              "placeholders": {}
+            },
+            "takephoto": "Take photo",
+              "@takephoto": {
+                "type": "text",
+                "placeholders": {}
+              },
+              "uploadprofilepicture": "Upload profile picture",
+                           "@uploadprofilepicture": {
+                             "type": "text",
+                             "placeholders": {}
+                           },
+                       "makechoice": "Make choice!",
+                                                  "@makechoice": {
+                                                    "type": "text",
+                                                    "placeholders": {}
+                                                  },
+  "profile": "Profile",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileC": "Profile",
+  "@profileC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationDec": "No notification available.",
+  "@notificationDec": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDec": "Create Your Own Profile",
+  "@profileDec": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDecfirst": "Please login to your account or sign up to create a new account",
+  "@profileDecfirst": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDecsecond": "Don’t have an account?",
+  "@profileDecsecond": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tahaddi": "Tahadde",
+  "@tahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Login",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "refer": "Refer and Earn",
+  "@refer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateApp": "Rate App",
+  "@rateApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contectUs": "Contact Us",
+  "@contectUs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourPolicy": "Our policy",
+  "@ourPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setting": "Setting",
+    "@setting": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "email": "Email",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseLocation": "Choose Location",
+  "@chooseLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "location": "Location",
+  "@location": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getDirection": "Get Direction",
+  "@getDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateTime": "DATE AND TIME",
+  "@dateTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "START",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "end": "END",
+  "@end": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "description": "DESCRIPTION",
+  "@description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "organisedby": "ORGANISED BY",
+  "@organisedby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookNow": "BOOK NOW",
+  "@bookNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onwords": "Onwords",
+  "@onwords": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addto": "Add to",
+  "@addto": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendar": "Calendar",
+  "@calendar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "proceed": "PROCEED",
+  "@proceed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectPaymentMethod": "Select Payment Method",
+  "@selectPaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "credit": "Credit/Debit Card",
+  "@credit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallets": "Wallets",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewCard": "Add New Card",
+  "@addNewCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardNumber": "Card Number",
+  "@cardNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardHolderNumber": "Card Holder Name",
+  "@cardHolderNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expriyDate": "Expriy Date",
+  "@expriyDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securelySave": "Securely save card details ",
+  "@securelySave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameOnCard": "NAME ON CARD",
+  "@nameOnCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "validity": "VALIDITY",
+  "@validity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "REMOVE",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payment": "Payment",
+  "@payment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourDetails": "Enter Your Details",
+  "@enterYourDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captain": "Captain",
+  "@captain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingUser": "BOOKING USER",
+  "@bookingUser": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "applyCoupon": "Apply Coupon",
+  "@applyCoupon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSummary": "Payment Summary",
+  "@paymentSummary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subTotal": "Sub Total",
+  "@subTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tex": "Tax",
+  "@tex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "grandTotal": "Grand Total",
+  "@grandTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iAgree": "I agree to the",
+  "@iAgree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "term": " Term & Conditions ",
+  "@term": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ofCompany": "of the Company",
+  "@ofCompany": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingSummary": "Booking Summary",
+  "@bookingSummary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSuccessful": "PAYMENT SUCCESSFUL !",
+  "@paymentSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "personalDetail": "Personal Detail",
+  "@personalDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myInterest": "My Interests",
+  "@myInterest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myBooking": "My Bookings",
+  "@myBooking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savePaymentMethod": "My Wallets",
+  "@savePaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPassword": "SET PASSWORD",
+  "@setPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationC": "Notification",
+  "@notificationC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "Logout",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateofBirth": "Date of Birth",
+  "@dateofBirth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewsavePaymentMethod": "View your save payment methods.",
+  "@viewsavePaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewbook": "View my bookings.",
+  "@viewbook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewInterest": "View my favorite venues.",
+  "@viewInterest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentpassword": "Current password",
+  "@currentpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentPlayers": "CURRENT PLAYERS",
+    "@currentPlayers": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "newpassword": "New password",
+  "@newpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confermpassword": "Confirm password",
+  "@confermpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changepassword": "CHANGE PASSWORD",
+  "@changepassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changepasswordC": "Change Password",
+    "@changepassword": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "sendEmail": "SEND EMAIL",
+  "@sendEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyMobile": "Verify your mobile",
+  "@verifyMobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter": "Please enter the 6-digit code sent to you on ",
+  "@pleaseEnter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCode": "Enter Code",
+  "@enterCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resendOTP": "Resend OTP",
+  "@resendOTP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyOTP": "Verify OTP",
+  "@verifyOTP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "First Name",
+  "@firstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "Last Name",
+  "@lastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "phoneNumber": "Phone Number",
+  "@phoneNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourAccount": "Create your account",
+  "@createYourAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asidePitch": "aside venue",
+  "@asidePitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filter": "FILTER",
+  "@filter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sports": "Sports",
+  "@sports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerTeam": "Player Team",
+    "@playerTeam": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "playersTeam": "Players Team",
+        "@playerTeam": {
+          "type": "text",
+          "placeholders": {}
+        },
+    "ago": "ago",
+      "@ago": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "oftheTeam": " of the Team",
+        "@oftheTeam": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "pitch": "Venue",
+  "@Pitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "Language",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewProfile": "VIEW PROFILE",
+  "@viewProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facility": "Facility",
+  "@facility": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveChanges": "SAVE CHANGES",
+  "@saveChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePhoto": "Change Photo",
+  "@changePhoto": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Search",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "indoor": "INDOOR",
+  "@indoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "outdoor": "OUTDOOR",
+  "@outdoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterEmail": "Please enter the email address you used to register with us and we’ll send you the link to reset your password",
+  "@pleaseEnterEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toReserve": "To reserve a spot please create an account or login.",
+  "@ToReserve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Yes",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "No",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pinEntered": "Pin entered is",
+  "@pinEntered": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Pin",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveSuccessfully": "You have successfully reset the password for your Tahadde account",
+  "@youHaveSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "canceled": "Canceled",
+    "@canceled": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "createTeam": "Create Your Own Team",
+  "@createTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamName": "Team Name",
+  "@teamName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captainName": "Captain Name",
+  "@captainName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jerseyColor": "Jersey Color",
+  "@jerseyColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "SUBMIT",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactNumber": "Contact Number",
+  "@contactNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+
+  "lastDate": "Last date for booking is",
+  "@lastDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Are you sure?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youGoingLogout": "You are going to logout from your profile!",
+  "@youGoingLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "youGoingDeleteAccount": "You are going to delete your account.",
+    "@youGoingDeleteAccount": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "youGoingExit": "You are going to exit the application!",
+  "@youGoingExit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captainC": "CAPTAIN",
+  "@captainCe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "Players",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invite": "INVITE",
+  "@invite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchC": "SEARCH",
+  "@searchC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPlayers": "Add Players",
+  "@addPlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchOwner": "PITCH OWNER",
+  "@pitchOwner": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bysigningupTahaddi": "By signing up for Tahadde you agree with the",
+  "@bysigningupTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsofUse": "Terms of Use",
+  "@termsofUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "and": "and",
+  "@and": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "Privacy Policy.",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickHereIndicate": "Click here to indicate that you have read and agree to the terms of the",
+    "@clickHereIndicate": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "tahaddeAgreement": "Tahadde Agreement",
+        "@tahaddeAgreement": {
+          "type": "text",
+          "placeholders": {}
+        },
+        "informationText": "Information",
+                "@informationText": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+         "locationText": "1. Location",
+                "@locationText": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+                 "locationDes": "The services shall be available throughout the United Arab Emirates and the company has the authority to provide the services to the public within the specified territory.",
+                        "@locationDes": {
+                          "type": "text",
+                          "placeholders": {}
+                        },
+                         "responsibilities": "2. Responsibilities",
+                                "@responsibilities": {
+                                  "type": "text",
+                                  "placeholders": {}
+                                },
+                                 "responsibilitiesDes": "It is the duty of the venue owners and the players who are willing to take the services from the application has to act with proper diligence, commit appropriate time as well as effort for fulfilling the duties. It is important to maintain practical and technological knowledge in respect to the services. The person taking the services has to maintain proper communication related tothe services.",
+                                        "@responsibilitiesDes": {
+                                          "type": "text",
+                                          "placeholders": {}
+                                        },
+                                         "commissionPayment": "3. Commission and Payment",
+                                                "@commissionPayment": {
+                                                  "type": "text",
+                                                  "placeholders": {}
+                                                },
+                                                 "commissionPaymentDes": "Tahadde will charge 15% per booking as commission for its services from the venue owner. Tahadde’s commission will be deducted automatically from the booking and the remaining amount will be transferred to the venue owner upon the agreed term of 7 days or a maximum period of 30 days depending on the venue owner",
+                                                        "@commissionPaymentDes": {
+                                                          "type": "text",
+                                                          "placeholders": {}
+                                                        },
+                                                         "cancellationPolicy": "5. Cancellation Policy",
+                                                                "@cancellationPolicy": {
+                                                                  "type": "text",
+                                                                  "placeholders": {}
+                                                                },
+                                                                 "cancellationPolicyDes": "Cancellations made 48 hours or more in advance of the booking date will receive a 100% refund.Cancellations made within 24 hours will not receive a refund.",
+                                                                        "@cancellationPolicyDes": {
+                                                                          "type": "text",
+                                                                          "placeholders": {}
+                                                                        },
+                                                                         "termTermination": "4. Term and Termination",
+                                                                                "@termTermination": {
+                                                                                  "type": "text",
+                                                                                  "placeholders": {}
+                                                                                },
+                                                                                 "termTerminationDes": "The venue owners must list their respective grounds with the Tahadde mobile application. No commission will be charged from the venue owner in the first 30 days of signing up. Tahadde will act only as the platform that will provide the services to both the venue owners and the players. The venue owners are solely responsible for the booking of the grounds. Tahadde is not responsible in case of any conflicts with the bookings. The liability is vested upon the owners.",
+                                                                                        "@termTerminationDes": {
+                                                                                          "type": "text",
+                                                                                          "placeholders": {}
+                                                                                        },
+
+  "createYourOwnTeam": "Create Your Own Team",
+  "@createYourOwnTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youhaveSignedup ": "You have successfully Signed up",
+  "@youhaveSignedup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordhasbeenreset": "Password has been reset",
+  "@passwordhasbeenreset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordhasbeenchanged": "Password has been changed",
+  "@passwordhasbeenchanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "to": "To",
+  "@to": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchcontact": "Venue contact",
+    "@pitchcontact": {
+      "type": "text",
+      "placeholders": {}
+    },
+ "pitchnameinArabic": "Venue Name in Arabic",
+  "@pitchnameinArabic": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "descriptioninArabic": "Description in Arabic",
+    "@to": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "youNeedChallenge": "You need to create your team in order to challenge !",
+  "@youneedchallenge": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourOwnChallenge": "Create Your Own Challenge",
+  "@createYourOwnChallenge": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTeamNow": "CREATE A TEAM NOW",
+  "@createTeamNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currency": "AED",
+  "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterNewPassword": "Please enter the new password for your account below.",
+  "@pleaseEnterNewPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeCard": "REMOVE CARD",
+  "@removeCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selected": "Selected",
+  "@Selected": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payNow": "Pay Now",
+  "@payNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingSummaryC": "BOOKING SUMMARY",
+  "@bookingSummaryC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSuccessfully": "Payment has been successfully made. For more details view booking summary",
+  "@PaymentSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+    "youarecaptianoftheteamyoucreate": "you are the captian of the team you create",
+      "@youarecaptianoftheteamyoucreate": {
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "teamLogo": "Team Logo",
+    "@teamLogo": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "Youmaximumplayersyourteam": "You can add a maximum of 16 players in your team",
+      "@Youmaximumplayersyourteam": {
+        "type": "text",
+        "placeholders": {}
+      },
+ "submitS": "Submit",
+  "@submitS": {
+    "type": "text",
+    "placeholders": {}
+  },
+
+
+
+ "yourteamhasbeensuccessfullycreated": "Your team has been successfully created",
+  "@yourteamhasbeensuccessfullycreated": {
+    "type": "text",
+    "placeholders": {}
+  },
+"viewTeam": "View Team",
+  "@viewTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+    "pending": "Pending",
+      "@pending": {
+        "type": "text",
+        "placeholders": {}
+      },
+       "joiningRequests": "Joining Requests",
+            "@joiningRequests": {
+              "type": "text",
+              "placeholders": {}
+            },
+     "leaveTeam": "Leave Team",
+       "@leaveTeam": {
+         "type": "text",
+         "placeholders": {}
+       },
+        "addPlayerC": "ADD PLAYER",
+         "@addPlayerC": {
+           "type": "text",
+           "placeholders": {}
+         },
+        "noplayershavebeenaddedyet": "No players have been added yet",
+         "@noplayershavebeenaddedyet": {
+           "type": "text",
+           "placeholders": {}
+         },
+          "noPlayerRequests": "No Player Requests",
+                  "@noplayershavebeenaddedyet": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+
+        "share": "Share",
+         "@share": {
+           "type": "text",
+           "placeholders": {}
+         },
+"pitchNameEnglish": "Venue Name in English",
+         "@pitchNameEnglish": {
+           "type": "text",
+           "placeholders": {}
+         },
+         "descriptionEnglish": "Description in English",
+                  "@share": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+         "emailhasbeensent": "email has been sent",
+                  "@emailhasbeensent": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+         "youcreateexistingteam": "To join the team you need to create an account or login",
+                  "@youcreateexistingteam": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+          "approve": "Approve",
+                  "@approve": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+                   "reject": "Reject",
+                           "@reject": {
+                             "type": "text",
+                             "placeholders": {}
+                           },
+
+        "searchplayerstahaddi": "Search for the players in tahadde",
+                 "@searchplayerstahaddi": {
+                   "type": "text",
+                   "placeholders": {}
+                 },
+                  "send": "Send",
+                          "@send": {
+                            "type": "text",
+                            "placeholders": {}
+                          },
+                           "sent": "Sent",
+                                   "@sent": {
+                                     "type": "text",
+                                     "placeholders": {}
+                                   },
+               "requestjointeam": "REQUEST TO JOIN TEAM",
+                                        "@requestjointeam": {
+                                          "type": "text",
+                                          "placeholders": {}
+                                        },
+                                         "availablePlayers": "Available Players",
+                                                 "@availablePlayers": {
+                                                   "type": "text",
+                                                   "placeholders": {}
+                                                 },
+
+
+
+
+
+
+
+"newPlayer": "New Player",
+         "@newPlayer": {
+           "type": "text",
+           "placeholders": {}
+         },
+
+"hasrequestedtojointheteam": "has requested to join the team",
+         "@hasrequestedtojointheteam": {
+           "type": "text",
+           "placeholders": {}
+         },
+       "editdatetime": "Edit date and time",
+            "@editdatetime": {
+              "type": "text",
+              "placeholders": {}
+            },
+
+"join": "Join",
+         "@join": {
+           "type": "text",
+           "placeholders": {}
+         },
+         "teamnotTahaddi": "Team not in Tahadde",
+                  "@join": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+                  "teaminTahaddi": "Team in Tahadde",
+                              "@teaminTahaddi": {
+                                "type": "text",
+                             "placeholders": {}
+                                                  },
+        "registeredTeam": "Registered Teams",
+                 "@registeredTeam": {
+                   "type": "text",
+                   "placeholders": {}
+                 },
+                 "registeredTeamC": "REGISTERED TEAMS",
+                                  "@registeredTeamC": {
+                                    "type": "text",
+                                    "placeholders": {}
+                                  },
+
+       "addNewPitch": "Add New Venue",
+                "@addNewPitch": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+                 "newC": "New",
+                          "@newC": {
+                            "type": "text",
+                            "placeholders": {}
+                          },
+                         "viewAll": "View All",
+                                  "@viewAll": {
+                                    "type": "text",
+                                    "placeholders": {}
+                                  },
+                                   "previous": "Previous",
+                                            "@previous": {
+                                              "type": "text",
+                                              "placeholders": {}
+                                            },
+                                             "commentForThisPitch": "COMMENTS FOR THIS VENUE",
+                                                      "@commentForThisPitch": {
+                                                        "type": "text",
+                                                        "placeholders": {}
+                                                      },
+                                                      "select": "Select",
+                                                               "@select": {
+                                                                 "type": "text",
+                                                                 "placeholders": {}
+                                                               },
+                                                               "undo": "Undo",
+                                                                        "@undo": {
+                                                                          "type": "text",
+                                                                          "placeholders": {}
+                                                                        },
+                                                                        "selectyourfield": "Select your field",
+                                                                                 "@selectyourfield": {
+                                                                                   "type": "text",
+                                                                                   "placeholders": {}
+                                                                                 },
+                                                                                 "addreviewspitchyouhaveplayedon": "Add your reviews.",
+                                                                                          "@addreviewspitchyouhaveplayedon": {
+                                                                                            "type": "text",
+                                                                                            "placeholders": {}
+                                                                                          },
+
+
+"cancelRequest": "Cancel Request",
+         "@cancelRequest": {
+           "type": "text",
+           "placeholders": {}
+         },
+"teamplayers": "Team players",
+         "@teamplayers": {
+           "type": "text",
+           "placeholders": {}
+         },
+  "tranjectionId": "TRANSACTION ID",
+  "@tranjectionId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paidTotal": "Paid Total",
+  "@paidTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitePlayers": "INVITE PLAYERS",
+  "@invitePlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourTahaddi": "YOUR TAHADDE'S",
+  "@yourTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveCards": "Save Cards",
+  "@saveCards": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youCanAdd": "You can add and save multiple cards to use.",
+  "@youCanAdd": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savePaymentMethods": "Save Payment Methods",
+  "@savePaymentMethods": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Next",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatsapp": "WhatsApp",
+    "@whatsapp": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "instagram": "Instagram",
+      "@instagram": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "callus": "Call Us",
+        "@callus": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "prev": "Prev",
+  "@prev": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "events": "Championship",
+  "@events": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noBookingsFound": "No Bookings Found",
+  "@noBookingsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveBooked": "You have not booked any events.",
+  "@youHaveBooked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourLeagueHere": "Click to create league",
+  "@createYourLeagueHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourTournamentHere": "Create to create tournament",
+  "@createYourTournamentHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Home",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "booking": "Booking",
+  "@booking": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "withTahaddi": "ENTER WITH YOUR \n TAHADDE TEAM",
+    "@withTahaddi": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "withoutTahaddi": " ENTER WITH \n OTHER TEAM",
+      "@withoutTahaddi": {
+        "type": "text",
+        "placeholders": {}
+      },
+       "chooseYourTeam": "Choose Your Team",
+        "@chooseYourTeam": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "account": "ACCOUNT",
+      "@account": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "bookYourSlot": "Book Slot",
+            "@bookYourSlot": {
+              "type": "text",
+              "placeholders": {}
+            },
+      "addPitch": "Add Venue",
+            "@addPitch": {
+              "type": "text",
+              "placeholders": {}
+            },
+      "changeImage": "Change Image",
+        "@changeImage": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "numberplayerscompleteteam": "Number of players to complete the team",
+    "@numberplayerscompleteteam": {
+      "type": "text",
+      "placeholders": {}
+    },
+   "booked": "Booked",
+    "@booked": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "ratingsReviews": "Ratings & Reviews",
+      "@ratingsReviews": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "facilityProvided": "FACILITIES PROVIDED",
+    "@facilityProvided": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "chooseAccount": "Who are you?",
+  "@chooseAccount ": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectUserType": "Select a user type to proceed and explore venue and games",
+  "@selectUserType": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "player": "Player",
+  "@player": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchOwnerS": "Venue Owner",
+  "@pitchOwnerS": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueW": "CONTINUE",
+  "@continueW": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continu": "Continue",
+    "@continu": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "continueS": "Continue",
+        "@continueS": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "pitchOwnerDetails": "Venue Owner Details",
+  "@pitchOwnerDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPitchImage": "Add Venue \n image",
+  "@addPitchImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchLocation": "Venue location",
+  "@pitchLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "both": "Both",
+  "@both": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseFacilitiesProvided": "Choose Facilities to be provided",
+  "@chooseFacilitiesProvided": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "documents": "Documents",
+  "@documents": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "rebook": "Rebook",
+    "@rebook": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "uploadDocument": "Upload Document",
+  "@uploadDocument": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weNeedAccount": "We need your venue license to verify your account",
+  "@weNeedAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addAsideCamesPitch": "Add the aside venue that cames under this venue",
+  "@addAsideCamesPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPitchDetails": "Add new Venue Details",
+  "@AddPitchDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "name",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+    },
+    "selectPitchType": "Select Venue type",
+    "@selectPitchType": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "price": "Price",
+    "@price": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "bankDetails": "Bank Details",
+    "@bankDetails": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "accountNumber": "Account number",
+    "@accountNumber": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "ibnNumber": "IBAN number",
+    "@ibnNumber": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "skip": "SKIP",
+    "@skip": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "finishSignup": "Finish Sign up",
+    "@finishSignup": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "save": "SAVE",
+  "@save": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountHolderName": "Account holder Name",
+  "@accountHolderName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myPitches": "My Venues",
+  "@myPitches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verified",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseteamlogo": "Choose team logo",
+    "@chooseteamlogo": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "inReview": "In Review ",
+  "@inReview": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewGroundPitch": "Add More Ground",
+  "@addNewGroundPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortBy": "Sort By",
+  "@sortBy": {
+    "type": "text",
+    "placeholders": {}
+  },
+"bookingpriceleague": "Booking price for the league",
+    "@bookingpriceleague": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "pitchBookings": "PITCH BOOKINGS",
+        "@pitchBookings": {
+          "type": "text",
+          "placeholders": {}
+        },
+ "slots": "SLOTS",
+        "@slots": {
+          "type": "text",
+          "placeholders": {}
+        },
+        "chooseyoursport": "Choose your sport",
+                "@chooseyoursport": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+
+"unavailableSlots": "Unavailable Slots",
+        "@unavailableSlots": {
+          "type": "text",
+          "placeholders": {}
+        },
+"available": "Available",
+        "@available": {
+          "type": "text",
+          "placeholders": {}
+        },
+"availableSlots": "Available Slots",
+        "@availableSlots": {
+          "type": "text",
+          "placeholders": {}
+        },
+"closed": "Closed",
+        "@closed": {
+          "type": "text",
+          "placeholders": {}
+        },
+"verifiedPitch": "Verified Venue",
+        "@verifiedPitch": {
+          "type": "text",
+          "placeholders": {}
+        },
+
+
+
+  "latest": "Latest",
+  "@latest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startDateC": "START DATE",
+    "@startDateC": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "endDateC": "END DATE",
+      "@endDateC": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "startDate": "Start Date",
+  "@startDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createLeague": "Create League",
+  "@createLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leagueDetails": "league Details",
+  "@leagueDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leagueName": "League name",
+  "@leagueName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTournament": "Create Tournament",
+  "@createTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentDetails": "Tournament Details",
+  "@tournamentDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentName": "Tournament name",
+  "@tournamentName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingPrice": "Booking Price",
+  "@bookingPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalTeamParticipate": "Maximum number of teams",
+  "@totalTeamParticipate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickStartTime": "Click to fill Start date and Time",
+  "@clickStartTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickEndTime": "Click to fill end date and Time",
+  "@clickEndTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastBooking": "Last day for booking",
+  "@lastBooking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SelectPitchLeague": "Select venue for the league",
+  "@SelectPitchLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+
+  "areCreateleague": "Are you sure you want to create this league ?",
+  "@areCreateleague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "electPitchTournament": "Select venue for the tournament",
+  "@selectPitchTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "selectAsidePitchLeague": "select aside venue for the league",
+    "@selectAsidePitchLeague": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "selectAsidePitchTournament": "select aside venue for the tournament",
+  "@selectAsidePitchTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areCreateTournament": "Are you sure you want to create this tournament ?",
+  "@areCreateTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endDate": "End date",
+  "@endDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "finish": "FINISH",
+  "@finish": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "createTeamC": "Start Now",
+    "@createTeamC": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "manageSlots": "Manage Slots",
+  "@manageSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+ "areYouSureYouWant": "Are you sure you want to delete the sub venue?",
+  "@areYouSureYouWant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingDetails": "Booking Details",
+  "@bookingDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAsidePitchManageSlots": "Select venue to manage slots",
+  "@selectAsidePitchManageSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amongstAvailableSlotUnavailable": "You can book a slot or make it unavailable.",
+  "@amongstAvailableSlotUnavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Unavailable",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "since": "Since",
+  "@since": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "until": "Until",
+  "@until": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Youneedtocreateyourownteam": "You need to create your own team",
+    "@Youneedtocreateyourownteam": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "closedHours": "Closed hours",
+  "@closedHours": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineBooking": "Online Booking",
+    "@onlineBooking": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "createyourteam": "Create your team",
+        "@createyourteam": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "walkBookpitch": "Book a venue, tournament or league with Tahadde",
+    "@walkBookpitch": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "walkHereTahaddi": "Have you ever thought that you could book your football venue, join a tournament or league with just one click? Here at Tahadde you have it all in your pocket.",
+      "@walkHereTahaddi": {
+        "type": "text",
+        "placeholders": {}
+      },
+     "buildTahaddi": "Search for players around you",
+       "@buildTahaddi": {
+        "type": "text",
+         "placeholders": {}
+                  },
+      "walkyouTahaddi": "Build your own team,\nSend friend requests,\nSearch for player around you.",
+       "@walkyouTahaddi": {
+        "type": "text",
+         "placeholders": {}
+                             },
+         "walkcreatePitch": "Create events on your venue",
+           "@walkcreatePitch": {
+             "type": "text",
+            "placeholders": {}
+                          },
+            "pitchTournament": "Venue owner? Don’t worry we got you",
+                      "@pitchTournament": {
+                             "type": "text",
+                    "placeholders": {}
+                                      },
+     "youCanBuild": "We have a dedicated platform just for you, Manage your venue bookings, Create endless events all in just a few steps.",
+        "@youCanBuild": {
+          "type": "text",
+              "placeholders": {}
+                           },
+                   "all": "All",
+                          "@all": {
+                            "type": "text",
+                                "placeholders": {}
+                                             },
+
+"cameraPermission": "Camera Permission",
+    "@cameraPermission": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "deny": "Deny",
+      "@deny": {
+        "type": "text",
+        "placeholders": {}
+      },
+    "thisPicturesUploadImage": "Tahadde app needs permission to access the camera",
+    "@ThisPicturesUploadImage": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "galleryPermission": "Gallery Permission",
+        "@galleryPermission": {
+          "type": "text",
+          "placeholders": {}
+        },
+         "thisGalleryPicturesUploadImage": "Tahadde app needs permission to access the gallery",
+          "@thisGalleryPicturesUploadImage": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "locationPermission": "Location Permission",
+                  "@locationPermission": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+                   "thislocationPicturesUploadImage": "Tahadde app needs access the location",
+                    "@thislocationPicturesUploadImage": {
+                      "type": "text",
+                      "placeholders": {}
+                    },
+                     "calendarPermission": "Calendar Permission",
+                            "@calendarPermission": {
+                              "type": "text",
+                              "placeholders": {}
+                            },
+                             "thisCalendarPicturesUploadImage": "Tahadde app needs permission to access the calendar",
+                              "@thisCalendarPicturesUploadImage": {
+                                "type": "text",
+                                "placeholders": {}
+                              },
+   "slotSelected": "Slot Selected",
+     "@slotSelected": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "slotDetails": "Slot Details",
+       "@slotDetails": {
+         "type": "text",
+         "placeholders": {}
+       },
+       "editcard": "Edit card details",
+         "@editcard": {
+           "type": "text",
+           "placeholders": {}
+         },
+         "cardNumberC": "CARD NUMBER",
+           "@cardNumber": {
+             "type": "text",
+             "placeholders": {}
+           },
+           "gotoHomepage": "GO TO HOMEPAGE",
+             "@gotoHomepage": {
+               "type": "text",
+               "placeholders": {}
+             },
+             "noInternetConnection": "No Internet Connection",
+               "@noInternetConnection": {
+                 "type": "text",
+                 "placeholders": {}
+               },
+               "tryAgain": "Try Again",
+                   "@tryAgain": {
+                     "type": "text",
+                     "placeholders": {}
+                   },
+                   "enteringwithtahadditeam": "Entering with tahadde team",
+                     "@enteringwithtahadditeam": {
+                       "type": "text",
+                       "placeholders": {}
+                     },
+                   "selectonefieldtoenterwithotherteam": "Select your tahadde team available",
+                     "@selectonefieldtoenterwithotherteam": {
+                       "type": "text",
+                       "placeholders": {}
+                     },
+                    "selectonefieldtoenterwithotheryourtahadditeam": "Fill in the fields below to enter with other team",
+                      "@selectonefieldtoenterwithotheryourtahadditeam": {
+                        "type": "text",
+                        "placeholders": {}
+                      },
+                      "orSignUpWith": "Or Sign in With",
+                        "@orSignUpWith": {
+                          "type": "text",
+                          "placeholders": {}
+                        },
+                        "pleaseselectyourfield": "Please select your field",
+                          "@pleaseselectyourfield": {
+                            "type": "text",
+                            "placeholders": {}
+                          },
+                          "slot": "Slot",
+                            "@slot": {
+                              "type": "text",
+                              "placeholders": {}
+                            },
+                            "pleaseenterTeamName": "Please enter Team Name",
+                              "@pleaseenterTeamName": {
+                                "type": "text",
+                                "placeholders": {}
+                              },
+                              "pleaseenterEmail": "Please enter Email",
+                                "@pleaseenterEmail": {
+                                  "type": "text",
+                                  "placeholders": {}
+                                },
+                                "pleaseenterPhoneNumber": "Please enter Phone Number",
+                                  "@pleaseenterPhoneNumber": {
+                                    "type": "text",
+                                    "placeholders": {}
+                                  },
+                                  "tokenhasbeenExpired": "Token has been Expired",
+                                      "@tokenhasbeenExpired": {
+                                        "type": "text",
+                                        "placeholders": {}
+                                      },
+                                      "invalidEmail": "Invalid Email!!",
+                                        "@invalidEmail": {
+                                          "type": "text",
+                                          "placeholders": {}
+                                        },
+                                        "pleaseenterNewPassword": "Please enter New Password",
+                                          "@pleaseenterNewPassword": {
+                                            "type": "text",
+                                            "placeholders": {}
+                                          },
+                                          "passwordMismatch": "Password Mismatch!!!",
+                                            "@passwordMismatch": {
+                                              "type": "text",
+                                              "placeholders": {}
+                                            },
+                                            "pleaseenterPassword": "Please enter Password",
+                                              "@pleaseenterPassword": {
+                                                "type": "text",
+                                                "placeholders": {}
+                                              },
+                                              "logincancelledbytheuser": "Login cancelled by the user.",
+                                                "@logincancelledbytheuser": {
+                                                  "type": "text",
+                                                  "placeholders": {}
+                                                },
+                                                "pleaseenterFirstName": "Please enter First Name",
+                                                  "@pleaseenterFirstName": {
+                                                    "type": "text",
+                                                    "placeholders": {}
+                                                  },
+                                                  "pleaseenterLastName": "Please enter Last Name",
+                                                    "@pleaseenterLastName": {
+                                                      "type": "text",
+                                                      "placeholders": {}
+                                                    },
+                                                    "playerPosition": "Player Position",
+                                                      "@playerPosition": {
+                                                        "type": "text",
+                                                        "placeholders": {}
+                                                      },
+                                                      "selectPlayerPosition": "Select Player Position",
+                                                        "@selectPlayerPosition": {
+                                                          "type": "text",
+                                                          "placeholders": {}
+                                                        },
+                                                        "minimumMaximum14Characters": "Minimum 6 & Maximum 14 Characters",
+                                                          "@minimumMaximum14Characters": {
+                                                            "type": "text",
+                                                            "placeholders": {}
+                                                          },
+                                                          "done": "Done",
+                                                            "@done": {
+                                                              "type": "text",
+                                                              "placeholders": {}
+                                                            },
+
+                                                              "invalidOTPCode": "Invalid OTP Code",
+                                                                "@invalidOTPCode": {
+                                                                  "type": "text",
+                                                                  "placeholders": {}
+                                                                },
+                                                                "invalidCode": "Invalid Code",
+                                                                  "@invalidCode": {
+                                                                    "type": "text",
+                                                                    "placeholders": {}
+                                                                  },
+                                                                  "pin": "Pin",
+                                                                    "@pin": {
+                                                                      "type": "text",
+                                                                      "placeholders": {}
+                                                                    },
+                                                                    "enterthedigitcodewhichsentonregisteredphonenumber": "Enter the 6 digit code that has been sent to the registered number",
+                                                                      "@enterthedigitcodewhichsentonregisteredphonenumber": {
+                                                                        "type": "text",
+                                                                        "placeholders": {}
+                                                                      },
+                                                                      "pleaseentercardholdername": "Please enter card holder name",
+                                                                        "@pleaseentercardholdername": {
+                                                                          "type": "text",
+                                                                          "placeholders": {}
+                                                                        },
+                                                                        "pleaseentercvvnumber": "Please enter cvv number",
+                                                                          "@pleaseentercvvnumber": {
+                                                                            "type": "text",
+                                                                            "placeholders": {}
+                                                                          },
+                                                                          "pleaseentervaliditymonth": "Please enter validity month",
+                                                                            "@pleaseentervaliditymonth": {
+                                                                              "type": "text",
+                                                                              "placeholders": {}
+                                                                            },
+                                                                            "pleaseentervaliditydate": "Please enter expiry date",
+                                                                              "@pleaseentervaliditydate": {
+                                                                                "type": "text",
+                                                                                "placeholders": {}
+                                                                              },
+
+
+ "pleaseentercardnumber": "Please enter card number",
+  "@pleaseentercardnumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "choosedateofbirth": "Select date of birth",
+    "@choosedateofbirth": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "myReviewsRatings": "My Reviews & Ratings",
+      "@myReviewsRatings": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "addyourexperienceforthepitchesyouhaveplayedupon": "Add your experience for the Venues you have played upon.",
+          "@addyourexperienceforthepitchesyouhaveplayedupon": {
+            "type": "text",
+            "placeholders": {}
+          },
+           "review": "review",
+            "@review": {
+              "type": "text",
+              "placeholders": {}
+            },
+            "yourexperience": "Your experience",
+                "@yourexperience": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+                "ratethepitch": "Rate the venue",
+                    "@ratethepitch": {
+                      "type": "text",
+                      "placeholders": {}
+                    },
+                     "pleaseenterReviews": "Please enter Reviews",
+                        "@pleaseenterReviews": {
+                          "type": "text",
+                          "placeholders": {}
+                        },
+                        "reviews": "Reviews",
+                            "@reviews": {
+                              "type": "text",
+                              "placeholders": {}
+                            },
+                            "pleaseenterCurrentPassword": "Please enter Current Password",
+                                "@pleaseenterCurrentPassword": {
+                                  "type": "text",
+                                  "placeholders": {}
+                                },
+                                "gotoLoginPage": "Goto Login Page!",
+                                    "@gotoLoginPage": {
+                                      "type": "text",
+                                      "placeholders": {}
+                                    },
+                                     "toremovethecard": "To remove the card",
+                                      "@toremovethecard": {
+                                        "type": "text",
+                                        "placeholders": {}
+                                      },
+                                       "football": "football",
+                                        "@football": {
+                                          "type": "text",
+                                          "placeholders": {}
+                                        },
+                                         "pleaseenterPitchName": "Please enter Venue Name",
+                                          "@pleaseenterPitchName": {
+                                            "type": "text",
+                                            "placeholders": {}
+                                          },
+                                           "pleaseenterDescription": "Please enter Description",
+                                            "@pleaseenterDescription": {
+                                              "type": "text",
+                                              "placeholders": {}
+                                            },
+                                             "pleaseentername": "Please enter name",
+                                              "@pleaseentername": {
+                                                "type": "text",
+                                                "placeholders": {}
+                                              },
+                                               "pleaseenterprice": "Please enter price",
+                                                "@pleaseenterprice": {
+                                                  "type": "text",
+                                                  "placeholders": {}
+                                                },
+                                                 "pleaseenterIBANCode": "Please enter IBAN number",
+                                                  "@pleaseenterIBANCode": {
+                                                    "type": "text",
+                                                    "placeholders": {}
+                                                  },
+
+"pleaseenterAccountNumber": "Please enter Account Number",
+  "@pleaseenterAccountNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterAccountHolderName": "Please enter Account Holder Name",
+    "@pleaseenterAccountHolderName": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "pleaseentercomment": "Please enter comment",
+      "@pleaseentercomment": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "nameoftheclosedhours": "Name of the closed hours",
+        "@nameoftheclosedhours": {
+          "type": "text",
+          "placeholders": {}
+        },
+        "youcannotcreatea": "You cannot create a",
+          "@youcannotcreatea": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "asyourpitchhasnotbeenverifiedyet": "as your venue has not been verified yet.",
+            "@asyourpitchhasnotbeenverifiedyet": {
+              "type": "text",
+              "placeholders": {}
+            },
+            "ok": "Ok",
+              "@ok": {
+                "type": "text",
+                "placeholders": {}
+              },
+              "am": "AM",
+                   "@am": {
+             "type": "text",
+                "placeholders": {}
+                         },
+                            "pm": "PM",
+                           "@pm": {
+                            "type": "text",
+                            "placeholders": {}
+                                          },
+              "rejected": "Rejected",
+                "@rejected": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+  "yesterday": "Yesterday",
+  "@yesterday": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "daysago": "days ago",
+   "@daysago": {
+     "type": "text",
+     "placeholders": {}
+   },
+    "today": "Today",
+    "@today": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "teamDetail": "Team Detail",
+    "@teamDetail": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "rejectedPitch": "Rejected Venue",
+     "@rejectedPitch": {
+       "type": "text",
+       "placeholders": {}
+     },
+   "pitchName": "Venue Name",
+   "@pitchName": {
+    "type": "text",
+    "placeholders": {}
+     },
+ "addanotherdocument": "Add another document",
+   "@addanotherdocument": {
+     "type": "text",
+     "placeholders": {}
+   },
+   "addnewpitchdetails": "Add new venue details",
+     "@addnewpitchdetails": {
+       "type": "text",
+       "placeholders": {}
+     },
+
+     "noverifiedpitchyet": "Venue not verified yet",
+       "@noverifiedpitchyet": {
+         "type": "text",
+         "placeholders": {}
+       },
+        "youarelongermemberteam": "You are no longer a member of this team",
+              "@youarelongermemberteam": {
+                "type": "text",
+                "placeholders": {}
+              },
+       "uploadpitchimages": "Upload venue images",
+         "@uploadpitchimages": {
+           "type": "text",
+           "placeholders": {}
+         },
+         "uploadPitchDocument": "Upload Venue Document",
+           "@uploadPitchDocument": {
+             "type": "text",
+             "placeholders": {}
+           },
+           "processing": "Processing.....",
+                                 "@processing": {
+                                   "type": "text",
+                                   "placeholders": {}
+                                 },
+                                 "gender": "Gender",
+                                         "@gender": {
+                                           "type": "text",
+                                           "placeholders": {}
+                                         },
+                                         "socialTitle": "Social Title",
+                                                 "@socialTitle": {
+                                                   "type": "text",
+                                                   "placeholders": {}
+                                                 },
+                                                 "pleaseselectDateofBirth": "Please select Date of Birth",
+                                                         "@pleaseselectDateofBirth": {
+                                                           "type": "text",
+                                                           "placeholders": {}
+                                                         },
+                                                         "doyouwanttoleaveteam": "Do you want to leave the team",
+                                                                 "@doyouwanttoleaveteam": {
+                                                                   "type": "text",
+                                                                   "placeholders": {}
+                                                                 },
+                                                                 "pleaseselectnewcaptain": "Please select a new captain",
+                                                                         "@pleaseselectnewcaptain": {
+                                                                           "type": "text",
+                                                                           "placeholders": {}
+                                                                         },
+                                                                          "pleaseselectgender": "Please select gender",
+                                                                                                    "@pleaseselectgender": {
+                                                                                                     "type": "text",
+                                                                                                         "placeholders": {}
+                                                                                                                       },
+
+"filterBy": "Filter by",
+"@filterBy": {
+   "type": "text",
+     "placeholders": {}
+   },
+   "venues": "Venues",
+   "@venues": {
+      "type": "text",
+        "placeholders": {}
+      },
+      "showDirections": "Show directions",
+         "@showDirections": {
+            "type": "text",
+              "placeholders": {}
+            },
+  "about": "About",
+      "@about": {
+       "type": "text",
+      "placeholders": {}
+         },
+         "play": "Play",
+               "@play": {
+                "type": "text",
+               "placeholders": {}
+                  },
+                  "facilitiesProvided": "Facilities Provided",
+                        "@facilitiesProvided": {
+                         "type": "text",
+                        "placeholders": {}
+                           },
+                           "end": "End",
+                                 "@end": {
+                                  "type": "text",
+                                 "placeholders": {}
+                                    },
+                                    "start": "Start",
+                                          "@start": {
+                                           "type": "text",
+                                          "placeholders": {}
+                                             },
+                                             "holiday": "Holiday",
+                                                   "@holiday": {
+                                                    "type": "text",
+                                                   "placeholders": {}
+                                                      },
+  "perVenue": "Per Venue",
+        "@perVenue": {
+         "type": "text",
+        "placeholders": {}
+           },
+           "perPlayer": "Per Player",
+                 "@perPlayer": {
+                  "type": "text",
+                 "placeholders": {}
+                    },
+                    "selectnumberofplayer": "Select number of player",
+                          "@selectnumberofplayer": {
+                           "type": "text",
+                          "placeholders": {}
+                             },
+                             "thisDayHoliday": "This day as Holiday",
+                                   "@thisDayHoliday": {
+                                    "type": "text",
+                                   "placeholders": {}
+                                      },
+                                      "day": "Day",
+                                            "@day": {
+                                             "type": "text",
+                                            "placeholders": {}
+                                               },
+                                               "bookNowS": "Book Now",
+                                                     "@bookNowS": {
+                                                      "type": "text",
+                                                     "placeholders": {}
+                                                        },
+  "sessions": "Sessions",
+          "@sessions": {
+           "type": "text",
+          "placeholders": {}
+             },
+             "slotPrice": "Slot Price",
+                   "@slotPrice": {
+                    "type": "text",
+                   "placeholders": {}
+                      },
+                      "venueName": "Venue Name",
+                            "@venueName": {
+                             "type": "text",
+                            "placeholders": {}
+                               },
+                               "venueNameA": "Venue Name(Arabic)",
+                                     "@venueNameA": {
+                                      "type": "text",
+                                     "placeholders": {}
+                                        },
+                                        "code": "Code",
+                                              "@code": {
+                                               "type": "text",
+                                              "placeholders": {}
+                                                 },
+                                                 "descriptionS": "Description",
+                                                       "@descriptionS": {
+                                                        "type": "text",
+                                                       "placeholders": {}
+                                                          },
+ "descriptionA": "Description(Arabic)",
+           "@descriptionA": {
+            "type": "text",
+           "placeholders": {}
+              },
+              "documentName": "Document Name",
+                    "@documentName": {
+                     "type": "text",
+                    "placeholders": {}
+                       },
+                       "licenceName": "Licence Number",
+                             "@licenceName": {
+                              "type": "text",
+                             "placeholders": {}
+                                },
+                                "expiryDate": "Expiry Date",
+                                      "@expiryDate": {
+                                       "type": "text",
+                                      "placeholders": {}
+                                         },
+                                         "expiryDocumentDate": "Expiry Document Date",
+                                               "@expiryDocumentDate": {
+                                                "type": "text",
+                                               "placeholders": {}
+                                                  },
+                                                  "multipleRates": "Multiple Rates",
+                                                        "@multipleRates": {
+                                                         "type": "text",
+                                                        "placeholders": {}
+                                                           },
+ "document": "Document",
+            "@document": {
+             "type": "text",
+            "placeholders": {}
+               },
+               "slotChart": "Slot Chart",
+                     "@documentName": {
+                      "type": "text",
+                     "placeholders": {}
+                        },
+                        "thankyouforaddingyourvenue": "Thank you for adding your venue. Your application is under review and we will notify you once's it is approved.",
+                          "@thankyouforaddingyourvenue": {
+                            "type": "text",
+                            "placeholders": {}
+                          },
+                        "typeofSports": "Type of sports",
+                              "@typeofSports": {
+                               "type": "text",
+                              "placeholders": {}
+                                 },
+                                 "selecttypeofSport": "Select type of sport",
+                                       "@selecttypeofSport": {
+                                        "type": "text",
+                                       "placeholders": {}
+                                          },
+                                          "subVenueName": "Sub-Venue name",
+                                                "@subVenueName": {
+                                                 "type": "text",
+                                                "placeholders": {}
+                                                   },
+                                                   "pricePerPlayer": "Price per Player",
+                                                         "@pricePerPlayer": {
+                                                          "type": "text",
+                                                         "placeholders": {}
+                                                            },
+  "startTime": "Start time",
+             "@startTime": {
+              "type": "text",
+             "placeholders": {}
+                },
+                "endTime": "End time",
+                      "@endTime": {
+                       "type": "text",
+                      "placeholders": {}
+                         },
+                         "createSession": "Create Session",
+                           "@createSession": {
+                             "type": "text",
+                             "placeholders": {}
+                           },
+                         "venueCreated": "Venue Created",
+                               "@venueCreated": {
+                                "type": "text",
+                               "placeholders": {}
+                                  },
+ "amount": "Amount",
+            "@amount": {
+             "type": "text",
+            "placeholders": {}
+               },
+               "addSession": "Add Session",
+                     "@addSession": {
+                      "type": "text",
+                     "placeholders": {}
+                        },
+                        "markAsHoliday": "Mark as Holiday",
+                              "@markAsHoliday": {
+                               "type": "text",
+                              "placeholders": {}
+                                 },
+                                 "CreateYourSession": "Create Your Session",
+                                       "@CreateYourSession": {
+                                        "type": "text",
+                                       "placeholders": {}
+                                          },
+                                          "name": "Name",
+                                                "@name": {
+                                                 "type": "text",
+                                                "placeholders": {}
+                                                   },
+                                                   "nameA": "Name(Arabic)",
+                                                         "@nameA": {
+                                                          "type": "text",
+                                                         "placeholders": {}
+                                                            },
+
+"createSlotDuration": "Create slot Duration",
+            "@createSlotDuration": {
+             "type": "text",
+            "placeholders": {}
+               },
+               "extraGraceTime": "Extra/Grace Time",
+                     "@extraGraceTime": {
+                      "type": "text",
+                     "placeholders": {}
+                        },
+"monday": "Monday",
+            "@monday": {
+             "type": "text",
+            "placeholders": {}
+               },
+               "tuesday": "Tuesday",
+                     "@tuesday": {
+                      "type": "text",
+                     "placeholders": {}
+                        },
+                        "wednesday": "Wednesday",
+                              "@wednesday": {
+                               "type": "text",
+                              "placeholders": {}
+                                 },
+                                 "thursday": "Thursday",
+                                       "@thursday": {
+                                        "type": "text",
+                                       "placeholders": {}
+                                          },
+                                          "friday": "Friday",
+                                                "@friday": {
+                                                 "type": "text",
+                                                "placeholders": {}
+                                                   },
+                                                   "saturday": "Saturday",
+                                                         "@saturday": {
+                                                          "type": "text",
+                                                         "placeholders": {}
+                                                            },
+ "sunday": "Sunday",
+    "@sunday": {
+        "type": "text",
+       "placeholders": {}
+                     },
+                     "selectLocation": "Select your location",
+                         "@selectLocation": {
+                             "type": "text",
+                            "placeholders": {}
+                                          },
+                                          "noVenuesAvailable": "No Venues Available",
+                                                                   "@noVenuesAvailable": {
+                                                                       "type": "text",
+                                                                      "placeholders": {}
+                                                                                    },
+                                                                                    "cancellationsMadeWithin": "Cancellations made within 24 hours will not receive a refund.",
+                                                                                                                                           "@CancellationsMadeWithin": {
+                                                                                                                                                   "type": "text",
+                                                                                                                                                    "placeholders": {}
+                                                                                                                                                                    },
+  "sessionName": "Session Name:",
+                "@sessionName": {
+                         "type": "text",
+                 "placeholders": {}
+                                 },
+                                 "clear": "Clear",
+                                   "@clear": {
+                                 "type": "text",
+                                "placeholders": {}
+                                                },
+                                                                  "noSlotsAvailable": "No slots available",
+                                                                 "@NoSlotsAvailable": {
+                                                                   "type": "text",
+                                                           "placeholders": {}
+                                                                             },
+                                                                              "sorryYouEditReview": "Sorry, you can’t edit your venue when it's in review.",
+                                                                                  "@sorryYouEditReview": {
+                                                                                    "type": "text",
+                                                                                         "placeholders": {}
+                                                                                                      }
+
+
+}

@@ -1,0 +1,2548 @@
+{
+  "@@last_modified": "2022-12-07T11:16:53.215393",
+  "locale": "en",
+  "@locale": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "league": "league",
+  "@league": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournament": "tournament",
+  "@tournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookPitch": "bookPitch",
+  "@bookPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "team": "team",
+  "@team": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamH": "teamH",
+  "@teamH": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "game": "game",
+  "@game": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessage": "sendMessage",
+  "@sendMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "challengeTeam": "challengeTeam",
+  "@challengeTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTeamC": "createTeamC",
+  "@createTeamC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewMore": "viewMore",
+  "@viewMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notification": "notification",
+  "@notification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "more": "more",
+  "@more": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "profile",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileC": "profileC",
+  "@profileC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationDec": "notificationDec",
+  "@notificationDec": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDec": "profileDec",
+  "@profileDec": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDecfirst": "profileDecfirst",
+  "@profileDecfirst": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDecsecond": "notificationDec",
+  "@profileDecsecond": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signIn": "signIn",
+  "@signIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "signUp",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tahaddi": "tahaddi",
+  "@tahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "login",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "refer": "refer",
+  "@refer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateApp": "rateApp",
+  "@rateApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contectUs": "contectUs",
+  "@contectUs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setting": "setting",
+  "@setting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "email",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "password",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "forgotPassword",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseLocation": "chooseLocation",
+  "@chooseLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "location": "location",
+  "@location": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getDirection": "getDirection",
+  "@getDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateTime": "dateTime",
+  "@dateTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "start",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "end": "end",
+  "@end": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "description": "description",
+  "@description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ratepitchafteryourgame": "ratepitchafteryourgame",
+  "@ratepitchafteryourgame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addpitchtoyourfavorites": "addpitchtoyourfavorites",
+  "@addpitchtoyourfavorites": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youarefacinganyissuespleaseemailuson": "youarefacinganyissuespleaseemailuson",
+  "@youarefacinganyissuespleaseemailuson": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "organisedby": "organisedby",
+  "@organisedby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youarelongermemberteam": "youarelongermemberteam",
+  "@youarelongermemberteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookNow": "bookNow",
+  "@bookNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onwords": "onwords",
+  "@onwords": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addto": "addto",
+  "@addto": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendar": "calendar",
+  "@calendar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "proceed": "proceed",
+  "@proceed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectPaymentMethod": "selectPaymentMethod",
+  "@selectPaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "credit": "credit",
+  "@credit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallets": "wallets",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewCard": "addNewCard",
+  "@addNewCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needcreateaccountorlogin": "needcreateaccountorlogin",
+  "@needcreateaccountorlogin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardNumber": "cardNumber",
+  "@cardNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardHolderNumber": "cardHolderNumber",
+  "@cardHolderNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expriyDate": "expriyDate",
+  "@expriyDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securelySave": "securelySave",
+  "@securelySave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameOnCard": "nameOnCard",
+  "@nameOnCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "validity": "validity",
+  "@validity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "remove",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payment": "payment",
+  "@payment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourDetails": "enterYourDetails",
+  "@enterYourDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captain": "captain",
+  "@captain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingUser": "bookingUser",
+  "@bookingUser": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "applyCoupon": "applyCoupon",
+  "@applyCoupon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSummary": "paymentSummary",
+  "@paymentSummary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subTotal": "subTotal",
+  "@subTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tex": "tex",
+  "@tex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "all",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamC": "teamC",
+  "@teamC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "grandTotal": "grandTotal",
+  "@grandTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iAgree": "iAgree",
+  "@iAgree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "term": "term",
+  "@term": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ofCompany": "ofCompany",
+  "@ofCompany": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingSummary": "bookingSummary",
+  "@bookingSummary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSuccessful": "paymentSuccessful",
+  "@paymentSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "personalDetail": "personalDetail",
+  "@personalDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myInterest": "myInterest",
+  "@myInterest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myBooking": "myBooking",
+  "@myBooking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savePaymentMethod": "savePaymentMethod",
+  "@savePaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetPassword": "resetPassword",
+  "@resetPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "logout",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewsavePaymentMethod": "viewsavePaymentMethod",
+  "@viewsavePaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewbook": "viewbook",
+  "@viewbook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewInterest": "viewInterest",
+  "@viewInterest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateofBirth": "dateofBirth",
+  "@dateofBirth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentpassword": "currentpassword",
+  "@currentpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newpassword": "newpassword",
+  "@newpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confermpassword": "confermpassword",
+  "@confermpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changepassword": "changepassword",
+  "@changepassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendEmail": "sendEmail",
+  "@sendEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourAccount": "createYourAccount",
+  "@createYourAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "phoneNumber": "phoneNumber",
+  "@phoneNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "lastName",
+  "@lastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "firstName",
+  "@firstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "language",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyMobile": "verifyMobile",
+  "@verifyMobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter": "pleaseEnter",
+  "@pleaseEnter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCode": "enterCode",
+  "@enterCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resendOTP": "resendOTP",
+  "@resendOTP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyOTP": "verifyOTP",
+  "@verifyOTP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewProfile": "viewProfile",
+  "@viewProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveChanges": "saveChanges",
+  "@saveChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editProfile": "editProfile",
+  "@editProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePhoto": "changePhoto",
+  "@changePhoto": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "search",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "indoor": "indoor",
+  "@indoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "outdoor": "outdoor",
+  "@outdoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facility": "facility",
+  "@facility": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asidePitch": "asidePitch",
+  "@asidePitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filter": "filter",
+  "@filter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sports": "sports",
+  "@sports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitch": "pitch",
+  "@pitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationC": "notificationC",
+  "@notificationC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPassword": "setPassword",
+  "@setPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterEmail": "pleaseEnterEmail",
+  "@pleaseEnterEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toReserve": "toReserve",
+  "@toReserve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "yes",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "no",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pinEntered": "pinEntered",
+  "@pinEntered": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Pin": "Pin",
+  "@Pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveSuccessfully": "youHaveSuccessfully",
+  "@youHaveSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "cancel",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "canceled": "canceled",
+  "@canceled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastDate": "lastDate",
+  "@lastDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "areYouSure",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youGoingLogout": "youGoingLogout",
+  "@youGoingLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youGoingDeleteAccount": "youGoingDeleteAccount",
+  "@youGoingDeleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youGoingExit": "youGoingExit",
+  "@youGoingExit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTeam": "createTeam",
+  "@createTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamName": "teamName",
+  "@teamName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captainName": "captainName",
+  "@captainName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jerseyColor": "jerseyColor",
+  "@jerseyColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "submit",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactNumber": "contactNumber",
+  "@contactNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captainC": "captainC",
+  "@captainC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "players",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invite": "invite",
+  "@invite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchC": "searchC",
+  "@searchC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchOwner": "pitchOwner",
+  "@pitchOwner": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPlayers": "addPlayers",
+  "@addPlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "to": "to",
+  "@to": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bysigningupTahaddi": "bysigningupTahaddi",
+  "@bysigningupTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsofUse": "termsofUse",
+  "@termsofUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "and": "and",
+  "@and": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "privacyPolicy",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourOwnTeam": "createYourOwnTeam",
+  "@createYourOwnTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youhaveSignedup": "youhaveSignedup",
+  "@youhaveSignedup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordhasbeenreset": "passwordhasbeenreset",
+  "@passwordhasbeenreset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordhasbeenchanged": "passwordhasbeenchanged",
+  "@passwordhasbeenchanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youNeedChallenge": "youNeedChallenge",
+  "@youNeedChallenge": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourOwnChallenge": "createYourOwnChallenge",
+  "@createYourOwnChallenge": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTeamNow": "createTeamNow",
+  "@createTeamNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currency": "currency",
+  "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterNewPassword": "pleaseEnterNewPassword",
+  "@pleaseEnterNewPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeCard": "removeCard",
+  "@removeCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selected": "selected",
+  "@selected": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payNow": "payNow",
+  "@payNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingSummaryC": "bookingSummaryC",
+  "@bookingSummaryC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSuccessfully": "paymentSuccessfully",
+  "@paymentSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tranjectionId": "tranjectionId",
+  "@tranjectionId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paidTotal": "paidTotal",
+  "@paidTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitePlayers": "invitePlayers",
+  "@invitePlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourTahaddi": "yourTahaddi",
+  "@yourTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveCards": "saveCards",
+  "@saveCards": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youCanAdd": "youCanAdd",
+  "@youCanAdd": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savePaymentMethods": "savePaymentMethods",
+  "@savePaymentMethods": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "next",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prev": "prev",
+  "@prev": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "events": "events",
+  "@events": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noBookingsFound": "noBookingsFound",
+  "@noBookingsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveBooked": "youHaveBooked",
+  "@youHaveBooked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourLeagueHere": "createYourLeagueHere",
+  "@createYourLeagueHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourTournamentHere": "createYourTournamentHere",
+  "@createYourTournamentHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "home",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "booking": "booking",
+  "@booking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "account",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bankDetails": "bankDetails",
+  "@bankDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAccount": "chooseAccount",
+  "@chooseAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectUserType": "selectUserType",
+  "@selectUserType": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "player": "player",
+  "@player": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchOwnerS": "pitchOwnerS",
+  "@pitchOwnerS": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueW": "continueW",
+  "@continueW": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchOwnerDetails": "pitchOwnerDetails",
+  "@pitchOwnerDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPitchImage": "addPitchImage",
+  "@addPitchImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchName": "pitchName",
+  "@pitchName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchLocation": "pitchLocation",
+  "@pitchLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "both": "both",
+  "@both": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseFacilitiesProvided": "chooseFacilitiesProvided",
+  "@chooseFacilitiesProvided": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "documents": "documents",
+  "@documents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uploadDocument": "uploadDocument",
+  "@uploadDocument": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weNeedAccount": "weNeedAccount",
+  "@weNeedAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addAsideCamesPitch": "addAsideCamesPitch",
+  "@addAsideCamesPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPitchDetails": "addPitchDetails",
+  "@addPitchDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "name",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectPitchType": "selectPitchType",
+  "@selectPitchType": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "price": "price",
+  "@price": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountNumber": "accountNumber",
+  "@accountNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ibnNumber": "ibnNumber",
+  "@ibnNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "skip",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "finishSignup": "finishSignup",
+  "@finishSignup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "save": "save",
+  "@save": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountHolderName": "accountHolderName",
+  "@accountHolderName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myPitches": "myPitches",
+  "@myPitches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "verified",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inReview": "inReview",
+  "@inReview": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewGroundPitch": "addNewGroundPitch",
+  "@addNewGroundPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortBy": "sortBy",
+  "@sortBy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "latest": "latest",
+  "@latest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startDate": "startDate",
+  "@startDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createLeague": "createLeague",
+  "@createLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leagueDetails": "leagueDetails",
+  "@leagueDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leagueName": "leagueName",
+  "@leagueName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingPrice": "bookingPrice",
+  "@bookingPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTournament": "createTournament",
+  "@createTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentDetails": "tournamentDetails",
+  "@tournamentDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentName": "tournamentName",
+  "@tournamentName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalTeamParticipate": "totalTeamParticipate",
+  "@totalTeamParticipate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickStartTime": "clickStartTime",
+  "@clickStartTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickEndTime": "clickEndTime",
+  "@clickEndTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastBooking": "lastBooking",
+  "@lastBooking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SelectPitchLeague": "SelectPitchLeague",
+  "@SelectPitchLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAsidePitchLeague": "selectAsidePitchLeague",
+  "@selectAsidePitchLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areCreateleague": "areCreateleague",
+  "@areCreateleague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectPitchTournament": "selectPitchTournament",
+  "@selectPitchTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAsidePitchTournament": "selectAsidePitchTournament",
+  "@selectAsidePitchTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areCreateTournament": "areCreateTournament",
+  "@areCreateTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "confirm",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentPlayers": "currentPlayers",
+  "@currentPlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endDate": "endDate",
+  "@endDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "finish": "finish",
+  "@finish": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manageSlots": "manageSlots",
+  "@manageSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingDetails": "bookingDetails",
+  "@bookingDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAsidePitchManageSlots": "selectAsidePitchManageSlots",
+  "@selectAsidePitchManageSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amongstAvailableSlotUnavailable": "amongstAvailableSlotUnavailable",
+  "@amongstAvailableSlotUnavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "unavailable",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "availableSlots": "availableSlots",
+  "@availableSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "since": "since",
+  "@since": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "until": "until",
+  "@until": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "closedHours": "closedHours",
+  "@closedHours": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "walkBookpitch": "walkBookpitch",
+  "@walkBookpitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineBooking": "onlineBooking",
+  "@onlineBooking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "walkHereTahaddi": "walkHereTahaddi",
+  "@walkHereTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "buildTahaddi": "buildTahaddi",
+  "@buildTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "walkyouTahaddi": "walkyouTahaddi",
+  "@walkyouTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "walkcreatePitch": "walkcreatePitch",
+  "@walkcreatePitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchTournament": "pitchTournament",
+  "@pitchTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youCanBuild": "youCanBuild",
+  "@youCanBuild": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changepasswordC": "changepasswordC",
+  "@changepasswordC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createyourteam": "createyourteam",
+  "@createyourteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Youneedtocreateyourownteam": "Youneedtocreateyourownteam",
+  "@Youneedtocreateyourownteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youarecaptianoftheteamyoucreate": "youarecaptianoftheteamyoucreate",
+  "@youarecaptianoftheteamyoucreate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamLogo": "teamLogo",
+  "@teamLogo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Youmaximumplayersyourteam": "Youmaximumplayersyourteam",
+  "@Youmaximumplayersyourteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submitS": "submitS",
+  "@submitS": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourteamhasbeensuccessfullycreated": "yourteamhasbeensuccessfullycreated",
+  "@yourteamhasbeensuccessfullycreated": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewTeam": "viewTeam",
+  "@viewTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pending": "pending",
+  "@pending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joiningRequests": "joiningRequests",
+  "@joiningRequests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leaveTeam": "leaveTeam",
+  "@leaveTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPlayerC": "addPlayerC",
+  "@addPlayerC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noplayershavebeenaddedyet": "noplayershavebeenaddedyet",
+  "@noplayershavebeenaddedyet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPlayerRequests": "noPlayerRequests",
+  "@noPlayerRequests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "share",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPlayer": "newPlayer",
+  "@newPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasrequestedtojointheteam": "hasrequestedtojointheteam",
+  "@hasrequestedtojointheteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "join": "join",
+  "@join": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelRequest": "cancelRequest",
+  "@cancelRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamplayers": "teamplayers",
+  "@teamplayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "approve": "approve",
+  "@approve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reject": "reject",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchplayerstahaddi": "searchplayerstahaddi",
+  "@searchplayerstahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "send",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sent": "sent",
+  "@sent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youcreateexistingteam": "youcreateexistingteam",
+  "@youcreateexistingteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestjointeam": "requestjointeam",
+  "@requestjointeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "availablePlayers": "availablePlayers",
+  "@availablePlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchDetails": "pitchDetails",
+  "@pitchDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingpriceleague": "bookingpriceleague",
+  "@bookingpriceleague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchBookings": "pitchBookings",
+  "@pitchBookings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "slots": "slots",
+  "@slots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailableSlots": "unavailableSlots",
+  "@unavailableSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "available": "available",
+  "@available": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "closed": "closed",
+  "@closed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedPitch": "verifiedPitch",
+  "@verifiedPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewPitch": "addNewPitch",
+  "@addNewPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickfillenddatetime": "clickfillenddatetime",
+  "@clickfillenddatetime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startDateC": "startDateC",
+  "@startDateC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endDateC": "endDateC",
+  "@endDateC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editdatetime": "editdatetime",
+  "@editdatetime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "choosefromlibrary": "choosefromlibrary",
+  "@choosefromlibrary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "takephoto": "takephoto",
+  "@takephoto": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uploadprofilepicture": "uploadprofilepicture",
+  "@uploadprofilepicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makechoice": "makechoice",
+  "@makechoice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "phone": "phone",
+  "@phone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logo": "logo",
+  "@logo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uploadImage": "uploadImage",
+  "@uploadImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookedSlots": "bookedSlots",
+  "@bookedSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseyoursport": "chooseyoursport",
+  "@chooseyoursport": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseteamlogo": "chooseteamlogo",
+  "@chooseteamlogo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTahaddi": "withTahaddi",
+  "@withTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withoutTahaddi": "withoutTahaddi",
+  "@withoutTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseYourTeam": "chooseYourTeam",
+  "@chooseYourTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facilityProvided": "facilityProvided",
+  "@facilityProvided": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ratingsReviews": "ratingsReviews",
+  "@ratingsReviews": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "booked": "booked",
+  "@booked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookYourSlot": "bookYourSlot",
+  "@bookYourSlot": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPitch": "addPitch",
+  "@addPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeImage": "changeImage",
+  "@changeImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberplayerscompleteteam": "numberplayerscompleteteam",
+  "@numberplayerscompleteteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newC": "newC",
+  "@newC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewAll": "viewAll",
+  "@viewAll": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "previous": "previous",
+  "@previous": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commentForThisPitch": "commentForThisPitch",
+  "@commentForThisPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "select": "select",
+  "@select": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "undo": "undo",
+  "@undo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectyourfield": "selectyourfield",
+  "@selectyourfield": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addreviewspitchyouhaveplayedon": "addreviewspitchyouhaveplayedon",
+  "@addreviewspitchyouhaveplayedon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "registeredTeam": "registeredTeam",
+  "@registeredTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "registeredTeamC": "registeredTeamC",
+  "@registeredTeamC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamnotTahaddi": "teamnotTahaddi",
+  "@teamnotTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teaminTahaddi": "teaminTahaddi",
+  "@teaminTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerTeam": "playerTeam",
+  "@playerTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playersTeam": "playersTeam",
+  "@playersTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ago": "ago",
+  "@ago": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oftheTeam": "oftheTeam",
+  "@oftheTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingpricefortheleague": "bookingpricefortheleague",
+  "@bookingpricefortheleague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingpricefortheTournament": "bookingpricefortheTournament",
+  "@bookingpricefortheTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gamePlayed": "gamePlayed",
+  "@gamePlayed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasrequestedyoutojoin": "hasrequestedyoutojoin",
+  "@hasrequestedyoutojoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noplayershavebeenfoundnearyou": "noplayershavebeenfoundnearyou",
+  "@noplayershavebeenfoundnearyou": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchlocationorevent": "searchlocationorevent",
+  "@searchlocationorevent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "slotSelected": "slotSelected",
+  "@slotSelected": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "slotDetails": "slotDetails",
+  "@slotDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editcard": "editcard",
+  "@editcard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardNumberC": "cardNumberC",
+  "@cardNumberC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gotoHomepage": "gotoHomepage",
+  "@gotoHomepage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noInternetConnection": "noInternetConnection",
+  "@noInternetConnection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryAgain": "tryAgain",
+  "@tryAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enteringwithtahadditeam": "enteringwithtahadditeam",
+  "@enteringwithtahadditeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectonefieldtoenterwithotherteam": "selectonefieldtoenterwithotherteam",
+  "@selectonefieldtoenterwithotherteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectonefieldtoenterwithotheryourtahadditeam": "selectonefieldtoenterwithotheryourtahadditeam",
+  "@selectonefieldtoenterwithotheryourtahadditeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "orSignUpWith": "orSignUpWith",
+  "@orSignUpWith": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseselectyourfield": "pleaseselectyourfield",
+  "@pleaseselectyourfield": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "slot": "slot",
+  "@slot": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterTeamName": "pleaseenterTeamName",
+  "@pleaseenterTeamName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterEmail": "pleaseenterEmail",
+  "@pleaseenterEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterPhoneNumber": "pleaseenterPhoneNumber",
+  "@pleaseenterPhoneNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tokenhasbeenExpired": "tokenhasbeenExpired",
+  "@tokenhasbeenExpired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "invalidEmail",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterNewPassword": "pleaseenterNewPassword",
+  "@pleaseenterNewPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordMismatch": "passwordMismatch",
+  "@passwordMismatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterPassword": "pleaseenterPassword",
+  "@pleaseenterPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logincancelledbytheuser": "logincancelledbytheuser",
+  "@logincancelledbytheuser": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterFirstName": "pleaseenterFirstName",
+  "@pleaseenterFirstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterLastName": "pleaseenterLastName",
+  "@pleaseenterLastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerPosition": "playerPosition",
+  "@playerPosition": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectPlayerPosition": "selectPlayerPosition",
+  "@selectPlayerPosition": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minimumMaximum14Characters": "minimumMaximum14Characters",
+  "@minimumMaximum14Characters": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "done": "done",
+  "@done": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidOTPCode": "invalidOTPCode",
+  "@invalidOTPCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidCode": "invalidCode",
+  "@invalidCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "pin",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterthedigitcodewhichsentonregisteredphonenumber": "enterthedigitcodewhichsentonregisteredphonenumber",
+  "@enterthedigitcodewhichsentonregisteredphonenumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseentercardholdername": "pleaseentercardholdername",
+  "@pleaseentercardholdername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseentercvvnumber": "pleaseentercvvnumber",
+  "@pleaseentercvvnumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseentervaliditymonth": "pleaseentervaliditymonth",
+  "@pleaseentervaliditymonth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseentervaliditydate": "pleaseentervaliditydate",
+  "@pleaseentervaliditydate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseentercardnumber": "pleaseentercardnumber",
+  "@pleaseentercardnumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "choosedateofbirth": "choosedateofbirth",
+  "@choosedateofbirth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myReviewsRatings": "myReviewsRatings",
+  "@myReviewsRatings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addyourexperienceforthepitchesyouhaveplayedupon": "addyourexperienceforthepitchesyouhaveplayedupon",
+  "@addyourexperienceforthepitchesyouhaveplayedupon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "review": "review",
+  "@review": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourexperience": "yourexperience",
+  "@yourexperience": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ratethepitch": "ratethepitch",
+  "@ratethepitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterReviews": "pleaseenterReviews",
+  "@pleaseenterReviews": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reviews": "reviews",
+  "@reviews": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterCurrentPassword": "pleaseenterCurrentPassword",
+  "@pleaseenterCurrentPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gotoLoginPage": "gotoLoginPage",
+  "@gotoLoginPage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toremovethecard": "toremovethecard",
+  "@toremovethecard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "football": "football",
+  "@football": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterPitchName": "pleaseenterPitchName",
+  "@pleaseenterPitchName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterDescription": "pleaseenterDescription",
+  "@pleaseenterDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseentername": "pleaseentername",
+  "@pleaseentername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterprice": "pleaseenterprice",
+  "@pleaseenterprice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterIBANCode": "pleaseenterIBANCode",
+  "@pleaseenterIBANCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterAccountNumber": "pleaseenterAccountNumber",
+  "@pleaseenterAccountNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterAccountHolderName": "pleaseenterAccountHolderName",
+  "@pleaseenterAccountHolderName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseentercomment": "pleaseentercomment",
+  "@pleaseentercomment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameoftheclosedhours": "nameoftheclosedhours",
+  "@nameoftheclosedhours": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youcannotcreatea": "youcannotcreatea",
+  "@youcannotcreatea": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asyourpitchhasnotbeenverifiedyet": "asyourpitchhasnotbeenverifiedyet",
+  "@asyourpitchhasnotbeenverifiedyet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "ok",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchNameEnglish": "pitchNameEnglish",
+  "@pitchNameEnglish": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "descriptionEnglish": "descriptionEnglish",
+  "@descriptionEnglish": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "am": "am",
+  "@am": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pm": "pm",
+  "@pm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yesterday": "yesterday",
+  "@yesterday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "daysago": "daysago",
+  "@daysago": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "today": "today",
+  "@today": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamDetail": "teamDetail",
+  "@teamDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejectedPitch": "rejectedPitch",
+  "@rejectedPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addanotherdocument": "addanotherdocument",
+  "@addanotherdocument": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejected": "rejected",
+  "@rejected": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addnewpitchdetails": "addnewpitchdetails",
+  "@addnewpitchdetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noverifiedpitchyet": "noverifiedpitchyet",
+  "@noverifiedpitchyet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uploadpitchimages": "uploadpitchimages",
+  "@uploadpitchimages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uploadPitchDocument": "uploadPitchDocument",
+  "@uploadPitchDocument": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rebook": "rebook",
+  "@rebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "processing": "processing",
+  "@processing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailhasbeensent": "emailhasbeensent",
+  "@emailhasbeensent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchnameinArabic": "pitchnameinArabic",
+  "@pitchnameinArabic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "descriptioninArabic": "descriptioninArabic",
+  "@descriptioninArabic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchcontact": "pitchcontact",
+  "@pitchcontact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatsapp": "whatsapp",
+  "@whatsapp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "instagram": "instagram",
+  "@instagram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "callus": "callus",
+  "@callus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continu": "continu",
+  "@continu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueS": "continueS",
+  "@continueS": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gender": "gender",
+  "@gender": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "socialTitle": "socialTitle",
+  "@socialTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseselectDateofBirth": "pleaseselectDateofBirth",
+  "@pleaseselectDateofBirth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "doyouwanttoleaveteam": "doyouwanttoleaveteam",
+  "@doyouwanttoleaveteam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseselectnewcaptain": "pleaseselectnewcaptain",
+  "@pleaseselectnewcaptain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseselectgender": "pleaseselectgender",
+  "@pleaseselectgender": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickHereIndicate": "clickHereIndicate",
+  "@clickHereIndicate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tahaddeAgreement": "tahaddeAgreement",
+  "@tahaddeAgreement": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "informationText": "informationText",
+  "@informationText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationText": "locationText",
+  "@locationText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDes": "locationDes",
+  "@locationDes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "responsibilities": "responsibilities",
+  "@responsibilities": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "responsibilitiesDes": "responsibilitiesDes",
+  "@responsibilitiesDes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commissionPayment": "commissionPayment",
+  "@commissionPayment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commissionPaymentDes": "commissionPaymentDes",
+  "@commissionPaymentDes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancellationPolicy": "cancellationPolicy",
+  "@cancellationPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancellationPolicyDes": "cancellationPolicyDes",
+  "@cancellationPolicyDes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termTermination": "termTermination",
+  "@termTermination": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termTerminationDes": "termTerminationDes",
+  "@termTerminationDes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWant": "areYouSureYouWant",
+  "@areYouSureYouWant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cameraPermission": "cameraPermission",
+  "@cameraPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deny": "deny",
+  "@deny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thisPicturesUploadImage": "thisPicturesUploadImage",
+  "@thisPicturesUploadImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "galleryPermission": "galleryPermission",
+  "@galleryPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thisGalleryPicturesUploadImage": "thisGalleryPicturesUploadImage",
+  "@thisGalleryPicturesUploadImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermission": "locationPermission",
+  "@locationPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thislocationPicturesUploadImage": "thislocationPicturesUploadImage",
+  "@thislocationPicturesUploadImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourPolicy": "ourPolicy",
+  "@ourPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendarPermission": "calendarPermission",
+  "@calendarPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thisCalendarPicturesUploadImage": "thisCalendarPicturesUploadImage",
+  "@thisCalendarPicturesUploadImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterBy": "filterBy",
+  "@filterBy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "venues": "venues",
+  "@venues": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showDirections": "showDirections",
+  "@showDirections": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "about",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "play",
+  "@play": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facilitiesProvided": "facilitiesProvided",
+  "@facilitiesProvided": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endC": "endC",
+  "@endC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startC": "startC",
+  "@startC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "holiday": "holiday",
+  "@holiday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "perVenue": "perVenue",
+  "@perVenue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "perPlayer": "perPlayer",
+  "@perPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectnumberofplayer": "selectnumberofplayer",
+  "@selectnumberofplayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thisDayHoliday": "thisDayHoliday",
+  "@thisDayHoliday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "day": "day",
+  "@day": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookNowS": "bookNowS",
+  "@bookNowS": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessions": "sessions",
+  "@sessions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "venueName": "venueName",
+  "@venueName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "slotPrice": "slotPrice",
+  "@slotPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "venueNameA": "venueNameA",
+  "@venueNameA": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "code": "code",
+  "@code": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "descriptionS": "descriptionS",
+  "@descriptionS": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "descriptionA": "descriptionA",
+  "@descriptionA": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "documentName": "documentName",
+  "@documentName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "licenceName": "licenceName",
+  "@licenceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expiryDate": "expiryDate",
+  "@expiryDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expiryDocumentDate": "expiryDocumentDate",
+  "@expiryDocumentDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "multipleRates": "multipleRates",
+  "@multipleRates": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "document": "document",
+  "@document": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "slotChart": "slotChart",
+  "@slotChart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thankyouforaddingyourvenue": "thankyouforaddingyourvenue",
+  "@thankyouforaddingyourvenue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typeofSports": "typeofSports",
+  "@typeofSports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selecttypeofSport": "selecttypeofSport",
+  "@selecttypeofSport": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subVenueName": "subVenueName",
+  "@subVenueName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pricePerPlayer": "pricePerPlayer",
+  "@pricePerPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startTime": "startTime",
+  "@startTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endTime": "endTime",
+  "@endTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createSession": "createSession",
+  "@createSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "venueCreated": "venueCreated",
+  "@venueCreated": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "amount",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addSession": "addSession",
+  "@addSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markAsHoliday": "markAsHoliday",
+  "@markAsHoliday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "CreateYourSession": "CreateYourSession",
+  "@CreateYourSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameA": "nameA",
+  "@nameA": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createSlotDuration": "createSlotDuration",
+  "@createSlotDuration": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extraGraceTime": "extraGraceTime",
+  "@extraGraceTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "monday": "monday",
+  "@monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tuesday": "tuesday",
+  "@tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wednesday": "wednesday",
+  "@wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thursday": "thursday",
+  "@thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friday": "friday",
+  "@friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saturday": "saturday",
+  "@saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sunday": "sunday",
+  "@sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectLocation": "selectLocation",
+  "@selectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noVenuesAvailable": "noVenuesAvailable",
+  "@noVenuesAvailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancellationsMadeWithin": "cancellationsMadeWithin",
+  "@cancellationsMadeWithin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionName": "sessionName",
+  "@sessionName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clear": "clear",
+  "@clear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noSlotsAvailable": "noSlotsAvailable",
+  "@noSlotsAvailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "deleteAccount",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sorryYouEditReview": "sorryYouEditReview",
+  "@sorryYouEditReview": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

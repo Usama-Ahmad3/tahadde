@@ -1,0 +1,103 @@
+{
+  "project_info": {
+    "project_number": "518103660124",
+    "project_id": "tahadde-27296",
+    "storage_bucket": "tahadde-27296.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518103660124:android:45b6b8a62837d04a4bd899",
+        "android_client_info": {
+          "package_name": "com.root.tahadde"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518103660124-8e64jtmjtv9okess3ecm8ln7lhc3uskp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "bdd8e8853c911ab3c04f6583445a447f76de47fe"
+          }
+        },
+        {
+          "client_id": "518103660124-c23r6s1bqqtrm2bghbqcetsl7nkk8r5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "1047023e81a564ce240b54e69776ccdf90808455"
+          }
+        },
+        {
+          "client_id": "518103660124-elab8efiuso3fkrke6kpa810iulrfumb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "6da5c8f66f6507f4e2196b4c20d7ffb12f73f9c7"
+          }
+        },
+        {
+          "client_id": "518103660124-kovktpr8mpohrgg7dohbts8josamhlk6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "b395fc2332cab6519100d1e4fc0dbeb807f97314"
+          }
+        },
+        {
+          "client_id": "518103660124-lubktrsutmnejnddqr67so66u5a77m1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "61e4cb0a5f3a5d539a46d6475b01232f8954fb25"
+          }
+        },
+        {
+          "client_id": "518103660124-rpjo40g14laukagl2dsev8ekj7v8jo9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "d23cab8446b0e448212cf1b9ee0913641ad18ba2"
+          }
+        },
+        {
+          "client_id": "518103660124-uigan1qr1bfm0phiu3aeiai3da905m60.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "e367ef31879ae82ad4229058a869e18ea22d54f6"
+          }
+        },
+        {
+          "client_id": "518103660124-845e6niqd9lkfh7i5ijno24bk414d783.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLQx7DMkQ1zyWkL8s_WVecmZDqgLFxXZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518103660124-845e6niqd9lkfh7i5ijno24bk414d783.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "518103660124-5cbof777evebo4704ub6ap2hb26649g5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.root.tahadde",
+                "app_store_id": "1576473251"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

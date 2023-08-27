@@ -1,0 +1,2560 @@
+{
+  "@@last_modified": "2018-12-16T14:55:33.523591",
+  "locale": "ar",
+  "@locale": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "league": "الدوري",
+  "@league": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessage": "تم إرسال الدعوة",
+      "@sendMessage": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "deleteAccount": "حذف الحساب",
+          "@deleteAccount": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "youGoingDeleteAccount": "ستحذف حسابك.",
+              "@youGoingDeleteAccount": {
+                "type": "text",
+                "placeholders": {}
+              },
+  "ratepitchafteryourgame": "لا توجد تقييمات",
+      "@ratepitchafteryourgame": {
+        "type": "text",
+        "placeholders": {}
+      },
+       "addpitchtoyourfavorites": "أضف الملعب إلى مفضلاتك",
+        "@addpitchtoyourfavorites": {
+          "type": "text",
+          "placeholders": {}
+        },
+         "youarefacinganyissuespleaseemailuson": " إذا كنت تواجه أي مشاكل يرجى مراسلتنا عبر البريد الإلكتروني",
+          "@youarefacinganyissuespleaseemailuson": {
+            "type": "text",
+            "placeholders": {}
+          },
+  "tournament": "البطولة",
+  "@tournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "teamnotTahaddi": "فريق ليس في تحدي",
+                    "@join": {
+                      "type": "text",
+                      "placeholders": {}
+                    },
+                    "teaminTahaddi": "فريق في تحدي",
+                                     "@teaminTahaddi": {
+                                       "type": "text",
+                                       "placeholders": {}
+                                     },
+   "registeredTeam": "الفرق المسجلة",
+                     "@registeredTeam": {
+                       "type": "text",
+                       "placeholders": {}
+                     },
+                       "registeredTeamC": "الفرق المسجلة",
+                                          "@registeredTeamC": {
+                                            "type": "text",
+                                            "placeholders": {}
+                                          },
+
+   "addNewPitch": "أضف ملعب جديد",
+                  "@addNewPitch": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+                   "newC": "جديد",
+                            "@newC": {
+                              "type": "text",
+                              "placeholders": {}
+                            },
+                           "viewAll": "مشاهدة الكل",
+                                    "@viewAll": {
+                                      "type": "text",
+                                      "placeholders": {}
+                                    },
+                                     "previous": "السابق",
+                                              "@previous": {
+                                                "type": "text",
+                                                "placeholders": {}
+                                              },
+                                               "commentForThisPitch": "التعليقات على هذا الملعب",
+                                                        "@commentForThisPitch": {
+                                                          "type": "text",
+                                                          "placeholders": {}
+                                                        },
+                                                        "select": "تحديد",
+                                                                 "@select": {
+                                                                   "type": "text",
+                                                                   "placeholders": {}
+                                                                 },
+                                                                 "undo": "الغاء",
+                                                                          "@undo": {
+                                                                            "type": "text",
+                                                                            "placeholders": {}
+                                                                          },
+                                                                          "selectyourfield": "حدد الملعب ",
+                                                                                   "@selectyourfield": {
+                                                                                     "type": "text",
+                                                                                     "placeholders": {}
+                                                                                   },
+                                                                                   "addreviewspitchyouhaveplayedon": "أضف تعليقاتك.",
+                                                                                            "@addreviewspitchyouhaveplayedon": {
+                                                                                              "type": "text",
+                                                                                              "placeholders": {}
+                                                                                            },
+                                                                                             "clickHereIndicate": "انقر هنا للإشارة إلى أنك قد قرأت ووافقت على شروط",
+                                                                                                "@clickHereIndicate": {
+                                                                                                  "type": "text",
+                                                                                                  "placeholders": {}
+                                                                                                },
+                                                                                                 "tahaddeAgreement": "اتفاقية تحدي",
+                                                                                                    "@tahaddeAgreement": {
+                                                                                                      "type": "text",
+                                                                                                      "placeholders": {}
+                                                                                                    },
+                                                                                                    "informationText": "معلومة",
+                                                                                                            "@informationText": {
+                                                                                                              "type": "text",
+                                                                                                              "placeholders": {}
+                                                                                                            },
+                                                                                                     "locationText": "1. الموقع",
+                                                                                                            "@locationText": {
+                                                                                                              "type": "text",
+                                                                                                              "placeholders": {}
+                                                                                                            },
+                                                                                                             "locationDes": "يجب أن تكون الخدمات متاحة في جميع أنحاء دولة الإمارات العربية المتحدة وتتمتع الشركة بصلاحية تقديم الخدمات للجمهور داخل المنطقة المحددة.",
+                                                                                                               "@locationDes": {
+                                                                                                                "type": "text",
+                                                                                                                  "placeholders": {}
+                                                                                                                    },
+                                                                                                                     "responsibilities": "2. المسؤوليات",
+                                                                                                                            "@responsibilities": {
+                                                                                                                              "type": "text",
+                                                                                                                              "placeholders": {}
+                                                                                                                            },
+                                                                                                                             "responsibilitiesDes": "من واجب مالكي الملعب واللاعبين الراغبين في الحصول على الخدمات من التطبيق أن يتصرفوا باجتهاد مناسب ، .وأن يلتزموا بالوقت المناسب بالإضافة إلى الجهد لأداء الواجبات من المهم الحفاظ على المعرفة العملية والتكنولوجية .فيما يتعلق بالخدمات يجب على الشخص الذي يتلقى الخدمات الحفاظ على الاتصالات المناسبة المتعلقة بالخدمات.",
+                                                                                                                                    "@responsibilitiesDes": {
+                                                                                                                                      "type": "text",
+                                                                                                                                      "placeholders": {}
+                                                                                                                                    },
+                                                                                                                                     "commissionPayment": "3. العمولة والدفع",
+                                                                                                                                            "@commissionPayment": {
+                                                                                                                                              "type": "text",
+                                                                                                                                              "placeholders": {}
+                                                                                                                                            },
+                                                                                                                                             "commissionPaymentDes": "سوف تتقاضى شركة تحدي 15٪ لكل حجز كعمولة على خدماتها من مالك الملعب. سيتم خصم عمولة Tahadde تلقائيًا من الحجز وسيتم تحويل المبلغ المتبقي إلى مالك الملعب بناءً على المدة المتفق عليها وهي 7 أيام أو فترة أقصاها 30 يومًا حسب مالك الملعب.",
+                                                                                                                                                    "@commissionPaymentDes": {
+                                                                                                                                                      "type": "text",
+                                                                                                                                                      "placeholders": {}
+                                                                                                                                                    },
+                                                                                                                                                     "cancellationPolicy": "5. سياسة الإلغاء",
+                                                                                                                                                            "@cancellationPolicy": {
+                                                                                                                                                              "type": "text",
+                                                                                                                                                              "placeholders": {}
+                                                                                                                                                            },
+                                                                                                                                                             "cancellationPolicyDes": "في حالة الإلغاء الذي يتم إجراؤه قبل 48 ساعة أو أكثر من تاريخ الحجز ، سيتم استرداد 100٪ من المبلغ المدفوع. الإلغاءات التي تتم في غضون 24 ساعة لن يتم استردادها",
+                                                                                                                                                                    "@cancellationPolicyDes": {
+                                                                                                                                                                      "type": "text",
+                                                                                                                                                                      "placeholders": {}
+                                                                                                                                                                    },
+                                                                                                                                                                     "termTermination": "4. المدة والإنهاء",
+                                                                                                                                                                            "@termTermination": {
+                                                                                                                                                                              "type": "text",
+                                                                                                                                                                              "placeholders": {}
+                                                                                                                                                                            },
+                                                                                                                                                                             "termTerminationDes": "يجب على مالكي الملعب إدراج أراضيهم في تطبيق الهاتف المتحرك تحدي. لن يتم تحصيل أي عمولة من مالك الملعب في أول 30 يومًا من التسجيل. ستعمل تحدي فقط كمنصة تقدم الخدمات لكل من مالكي الملاعب واللاعبين. يتحمل مالكو الملعب وحدهم مسؤولية حجز الملاعب. تحدي ليست مسؤولة في حال وجود أي تعارض مع الحجوزات. تقع المسؤولية على عاتق المالكين.",
+                                                                                                                                                                                    "@termTerminationDes": {
+                                                                                                                                                                                      "type": "text",
+                                                                                                                                                                                      "placeholders": {}
+                                                                                                                                                                                    },
+  "bookYourSlot": "احجز الآن",
+              "@bookYourSlot": {
+                "type": "text",
+                "placeholders": {}
+              },
+        "addPitch": "اضافة ملعب",
+              "@addPitch": {
+                "type": "text",
+                "placeholders": {}
+              },
+        "changeImage": "تغيير الصورة",
+          "@changeImage": {
+            "type": "text",
+            "placeholders": {}
+          },
+    "numberplayerscompleteteam": "عدد اللاعبين لإكمال الفريق",
+      "@numberplayerscompleteteam": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "playersTeam": "فريق اللاعبين",
+              "@playerTeam": {
+                "type": "text",
+                "placeholders": {}
+              },
+   "booked": "محجوز",
+      "@booked": {
+        "type": "text",
+        "placeholders": {}
+      },
+       "ratingsReviews": "التقييمات",
+        "@ratingsReviews": {
+          "type": "text",
+          "placeholders": {}
+        },
+  "bookPitch": "احجز ملعباًً",
+  "@bookPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+ "facilityProvided": "الخدمات المتوفرة",
+    "@facilityProvided": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "pitchDetails": "تفاصيل الملعب",
+      "@pitchDetails": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "bookedSlots": "الآوقات المحجوزة",
+      "@bookedSlots": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "uploadImage": "تحميل الصورة",
+      "@uploadImage": {
+        "type": "text",
+        "placeholders": {}
+      },
+   "choosefromlibrary": "آلبوم الصور",
+      "@choosefromlibrary": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "takephoto": "التقط صورة",
+        "@takephoto": {
+          "type": "text",
+          "placeholders": {}
+        },
+         "uploadprofilepicture": "حمل الصورة الشخصية",
+                                   "@uploadprofilepicture": {
+                                     "type": "text",
+                                     "placeholders": {}
+                                   },
+                               "makechoice": "Make choice!",
+                                                          "@makechoice": {
+                                                            "type": "text",
+                                                            "placeholders": {}
+                                                          },
+                                                          "phone": "هاتف",
+                                                              "@phone": {
+                                                                "type": "text",
+                                                                "placeholders": {}
+                                                              },
+                                                              "logo": "شعار الفريق",
+                                                                "@logo": {
+                                                                  "type": "text",
+                                                                  "placeholders": {}
+                                                                },
+  "team": "فريق",
+  "@team": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamH": "الفرق المشاركة",
+      "@teamH": {
+        "type": "text",
+        "placeholders": {}
+      },
+   "teamC": "فريق",
+      "@team": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "game": "مباراة",
+  "@game": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "challengeTeam": "تحدى فريق",
+  "@challengeTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewMore": "عرض المزيد",
+  "@viewMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notification": "إشعارات",
+  "@notification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "more": "المزيد",
+  "@more": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "الشخصي",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileC": "الملف الشخصي",
+  "@profileC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationDec": "لا توجد إشعارات متاحة.",
+  "@notificationDec": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDec": "إنشاء ملف التعريف الشخصي الخاص بك",
+  "@profileDec": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDecfirst": "يرجى تسجيل الدخول أو إنشاء حساب جديد",
+  "@profileDecfirst": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileDecsecond": "ليس لديك حساب؟",
+  "@profileDecsecond": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signIn": "تسجيل الدخول",
+  "@signIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "سجل معنا",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tahaddi": "تحدي",
+  "@tahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "تسجيل الدخول",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "refer": "ادعوا لاعبا و اكسب",
+  "@refer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateApp": "قيم التطبيق",
+  "@rateApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contectUs": "اتصل بنا",
+  "@contectUs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourPolicy": "سياستنا",
+  "@ourPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setting": "إعدادات",
+    "@setting": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "email": "البريد الإلكتروني",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "كلمه المرور",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatsapp": "واتساب",
+      "@whatsapp": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "instagram": "انستقرام",
+        "@instagram": {
+          "type": "text",
+          "placeholders": {}
+        },
+        "callus": "تواصلوا معنا",
+          "@callus": {
+            "type": "text",
+            "placeholders": {}
+          },
+  "forgotPassword": "نسيت كلمة المرو؟",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseLocation": "اختر موقعك",
+  "@chooseLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+
+  "location": "الموقع",
+  "@location": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "getDirection": "احصل على الاتجاهات",
+  "@getDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateTime": "التاريخ والوقت",
+  "@dateTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "ابدأ",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "end": "انهاء",
+  "@end": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "description": "وصف",
+  "@description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "organisedby": "المنظم",
+  "@organisedby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookNow": "احجز الآن",
+  "@bookNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "Youneedtocreateyourownteam": "تحتاج إلى إنشاء فريقك الخاص",
+      "@Youneedtocreateyourownteam": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "onwords": "فصاعدا",
+  "@onwords": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addto": "أضف إلى",
+  "@addto": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendar": "التقويم",
+  "@calendar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "proceed": "متابعة",
+  "@proceed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectPaymentMethod": "اختر طريقة الدفع",
+  "@selectPaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "credit": "بطاقة الائتمان / الخصم",
+  "@credit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallets": "محافظ",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewCard": "إضافة بطاقة جديدة",
+  "@addNewCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardNumber": "رقم البطاقة",
+  "@cardNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cardHolderNumber": "اسم صاحب البطاقة",
+  "@cardHolderNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expriyDate": "تاريخ الانتهاء",
+  "@expriyDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securelySave": "حفظ تفاصيل البطاقة بشكل آمن",
+  "@securelySave": {
+    "type": "text",
+    "placeholders": {}
+  },"nameOnCard": "الاسم على البطاقة",
+  "@nameOnCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "validity": "تاريخ الصلاحية ",
+  "@validity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "إزالة",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payment": "الدفع",
+  "@payment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourDetails": "أدخل التفاصيل الخاصة بك",
+  "@enterYourDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captain": "قائد الفريق",
+  "@captain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingUser": "حجز اللاعب",
+  "@bookingUser": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "applyCoupon": "استخدم الكوبون",
+  "@applyCoupon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSummary": "ملخص الدفع",
+  "@paymentSummary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subTotal": "المبلغ الاجمالي",
+  "@subTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tex": "ضريبة",
+  "@tex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "grandTotal": "المجموع",
+  "@grandTotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iAgree": "أنا أوافق على",
+  "@iAgree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "term": " الشروط و الأحكام ",
+  "@term": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ofCompany": "للشركة",
+  "@ofCompany": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "needcreateaccountorlogin": "للإنضمام الى الفريق يرجى انشاء حساب او تسجيل الدخول",
+      "@needcreateaccountorlogin": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "bookingSummary": "ملخص الحجز",
+  "@bookingSummary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paymentSuccessful": "تمت عملية الدفع بنجاح!",
+  "@paymentSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "personalDetail": "تفاصيل شخصية",
+  "@personalDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myInterest": "الاهتمامات",
+  "@myInterest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myBooking": "الحجوزات",
+  "@myBooking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savePaymentMethod": "حفظ طرق الدفع",
+  "@savePaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetPassword": "إعادة تعيين كلمة المرور",
+  "@resetPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "تسجيل الخروج",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateofBirth": "تاريخ الميلاد",
+  "@dateofBirth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewsavePaymentMethod": "عرض طرق الدفع المحفوظة الخاصة بك.",
+  "@viewsavePaymentMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewbook": "عرض حجوزاتي.",
+  "@viewbook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewInterest": "عرض الأماكن المفضلة لدي.",
+  "@viewInterest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentpassword": "كلمة المرور الحالية",
+  "@currentpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newpassword": "كلمة مرور جديدة",
+  "@newpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confermpassword": "تأكيد كلمة المرور",
+  "@confermpassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changepassword": "تغيير كلمة السر",
+  "@changepassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "changepasswordC": "تغيير كلمة السر",
+      "@changepassword": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "sendEmail": "راسلنا",
+  "@sendEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "الاسم الاول",
+  "@firstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "الاسم الاخير",
+  "@lastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "phoneNumber": "رقم الهاتف",
+  "@phoneNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourAccount": "انشئ حساب جديد",
+  "@createYourAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "اللغة",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyMobile": "تحقق من رقم هاتفك",
+  "@verifyMobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter": "يرجى إدخال الكود المكون من 6 أرقام المرسل إليك ",
+  "@pleaseEnter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCode": "ادخل الرمز",
+  "@enterCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resendOTP": "إعادة إرسال رمز المرور",
+  "@resendOTP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyOTP": "تحقق من  رمز المرور",
+  "@verifyOTP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "viewProfile": "عرض الصفحة الشخصية",
+  "@viewProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveChanges": "حفظ التغييرات",
+  "@saveChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editProfile": "تعديل الملف الشخصي",
+  "@editProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePhoto": "غير الصورة الشخصية",
+  "@changePhoto": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "بحث",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "indoor": "ملعب داخلي",
+  "@indoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "outdoor": "ملعب خارجي",
+  "@outdoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facility": "موقع",
+  "@facility": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asidePitch": "من جانب كل فريق",
+  "@asidePitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filter": "تصفية",
+  "@filter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sports": "بقع",
+  "@sports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitch": "ملعب",
+  "@Pitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPassword": "ضبط كلمة السر",
+  "@setPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationC": "تنبيهات",
+  "@notificationC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterEmail": "يرجى ادخال عنوان البريد الإلكتروني الذي استخدمته للتسجيل معنا و سنرسل لك الرابط لإعادة تعيين كلمة المرور الخاصة بك",
+  "@pleaseEnterEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toReserve": "لحجز مكان يرجى إنشاء حساب أو تسجيل الدخول",
+  "@toReserve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "نعم",
+  "@Yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "لا",
+  "@No": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pinEntered": "رقم التعريف هو",
+  "@PinEntered": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "رقم التعريف",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveSuccessfully": "لقد تم إعادة تعيين كلمة المرور بنجاح",
+  "@youHaveSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastDate": "اخر موعد للحجز هو",
+  "@lastDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "هل أنت واثق؟",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youGoingLogout": "انت ذاهب الى الخروج من ملف التعريف الخاص بك!",
+  "@youGoingLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youGoingExit": "الخروج من التطبيق!",
+  "@youGoingExit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTeam": "قم بإنشاء فريقك الخاص",
+  "@createTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "teamName": "اسم الفريق",
+  "@teamName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captainName": "اسم الكابتن",
+  "@captainName": {
+    "type": "text",
+    "placeholders": {}
+  },
+
+   "yourteamhasbeensuccessfullycreated": "تم إنشاء فريقك بنجاح",
+    "@yourteamhasbeensuccessfullycreated": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "viewTeam": "مشاهدة الفريق",
+    "@viewTeam": {
+      "type": "text",
+      "placeholders": {}
+    },
+      "pending": "قيد الانتظار",
+        "@pending": {
+          "type": "text",
+          "placeholders": {}
+        },
+         "joiningRequests": "طلب الانضمام",
+                    "@joiningRequests": {
+                      "type": "text",
+                      "placeholders": {}
+                    },
+       "leaveTeam": "غادر الفريق",
+         "@leaveTeam": {
+           "type": "text",
+           "placeholders": {}
+         },
+          "addPlayerC": "إضافة لاعب",
+           "@addPlayerC": {
+             "type": "text",
+             "placeholders": {}
+           },
+          "noplayershavebeenaddedyet": "لم يتم إضافة أي لاعبين حتى الآن",
+           "@noplayershavebeenaddedyet": {
+             "type": "text",
+             "placeholders": {}
+           },
+           "noPlayerRequests": "لا يوجد لاعبين قيد الانتظار",
+                             "@noplayershavebeenaddedyet": {
+                               "type": "text",
+                               "placeholders": {}
+                             },
+          "share": "شارك",
+           "@share": {
+             "type": "text",
+             "placeholders": {}
+           },
+"youarecaptianoftheteamyoucreate": "أنت كابتن الفريق الذي أنشأته",
+        "@youarecaptianoftheteamyoucreate": {
+          "type": "text",
+          "placeholders": {}
+        },
+      "Youmaximumplayersyourteam": "يمكنك إضافة 16 لاعبًا كحد أقصى في فريقك",
+        "@Youmaximumplayersyourteam": {
+          "type": "text",
+          "placeholders": {}
+        },
+   "submitS": "إرسال",
+    "@submitS": {
+      "type": "text",
+      "placeholders": {}
+    },
+"teamLogo": "لوقو الفريق",
+"@teamLogo": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "jerseyColor": "لون جيرسي",
+  "@jerseyColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "إرسال",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactNumber": "رقم الاتصال",
+  "@contactNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "captainC": "كابتن",
+  "@captainCe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "الفريق",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTeamC": "ابدا الان",
+      "@createTeamC": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "invite": "يدعو",
+  "@invite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchC": "بحث",
+  "@searchC": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPlayers": "أضف لاعبين",
+  "@addPlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchOwner": "مالك الملعب",
+  "@pitchOwner": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bysigningupTahaddi": "بالتسجيل في تحدي فإنك توافق على",
+  "@bysigningupTahaddi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsofUse": "شروط الاستخدام",
+  "@termsofUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "and": "و",
+  "@and": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "سياسة خاصة.",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourOwnTeam": "قم بإنشاء فريقك الخاص",
+  "@createYourOwnTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youhaveSignedup ": "لقد سجلت بنجاح",
+  "@youhaveSignedup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordhasbeenreset": "تم إعادة تعيين كلمة السر",
+  "@passwordhasbeenreset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordhasbeenchanged": "تم تغيير كلمة المرور",
+  "@passwordhasbeenchanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "to": "إلى",
+  "@to": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchcontact": "اتصال الملعب",
+      "@pitchcontact": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "pitchnameinArabic": "اسم الملعب بالعربي",
+    "@pitchnameinArabic": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "descriptioninArabic": "وصف الملعب بالعربي",
+      "@descriptioninArabic": {
+        "type": "text",
+        "placeholders": {}
+      },
+  "youNeedChallenge": "تحتاج إلى إنشاء فريقك من أجل التحدي!",
+  "@youneedchallenge": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourOwnChallenge": "اصنع تحديك الخاص",
+  "@createYourOwnChallenge": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTeamNow": "إنشاء فريق الآن",
+  "@createTeamNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currency": "د.إ",
+  "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterNewPassword": "يرجى إدخال كلمة المرور الجديدة لحسابك.",
+  "@pleaseEnterNewPassword": {
+    "type": "text",
+    "placeholders": {}
+    },
+    "removeCard": "قم بإزالة البطاقة",
+    "@removeCard": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "selected": "المحدد",
+    "@Selected": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "payNow": "ادفع الآن",
+    "@payNow": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "bookingSummaryC": "ملخص الكتاب",
+    "@bookingSummaryC": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "paymentSuccessfully": "تم الدفع بنجاح للمزيد من التفاصيل قم بعرض ملخص الحجز.",
+    "@PaymentSuccessfully": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "tranjectionId": "رقم المعاملة",
+    "@tranjectionId": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "pitchNameEnglish": "اسم الملعب بالإنجليزي",
+             "@pitchNameEnglish": {
+               "type": "text",
+               "placeholders": {}
+             },
+             "descriptionEnglish": "وصف الملعب بالإنجليزي",
+                      "@share": {
+                        "type": "text",
+                        "placeholders": {}
+                      },
+    "paidTotal": "مجموع المدفوع",
+    "@paidTotal": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "contacts": "جهات الاتصال",
+    "@contacts": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "invitePlayers": "لاعبين مدعوين",
+    "@invitePlayers": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "yourTahaddi": "تحدياتك",
+    "@yourTahaddi": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "saveCards": "البطاقات المحفوظة",
+    "@saveCards": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "am": "ص",
+       "@am": {
+        "type": "text",
+          "placeholders": {}
+                             },
+       "pm": "م",
+           "@pm": {
+             "type": "text",
+              "placeholders": {}
+                      },
+    "youCanAdd": "يمكنك إضافة وحفظ بطاقات متعددة للاستخدام.",
+    "@youCanAdd": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "savePaymentMethods": "حفظ طرق الدفع",
+    "@savePaymentMethods": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "next": "التالى",
+    "@next": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "prev": "السابق",
+    "@prev": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "events": "بطولات",
+    "@events": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "noBookingsFound": "لم يتم العثور على حجوزات",
+    "@noBookingsFound": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "youHaveBooked": "لم تحجز أي ملعب.",
+    "@youHaveBooked": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "createYourLeagueHere": "اضغط لإنشاء الدوري",
+  "@createYourLeagueHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourTournamentHere": "اضغط لإنشاء البطولة",
+  "@createYourTournamentHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "الصفحة الرئيسية",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "booking": "الحجز",
+  "@booking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "الحساب",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bankDetails": "تفاصيل الحساب البنكي",
+  "@bankDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAccount": "من انت؟",
+  "@chooseAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectUserType": "حدد نوع المستخدم للمتابعة واستكشاف الملعب والألعاب",
+  "@selectUserType": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "player": "لاعب",
+  "@player": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchOwnerS": "صاحب مكان",
+  "@pitchOwnerS": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueW": "استمر",
+  "@continueW": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continu": "استمر",
+    "@continu": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "pitchOwnerDetails": "تفاصيل صاحب الملعب",
+  "@pitchOwnerDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPitchImage": "أضف صورة الملعب",
+  "@addPitchImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchName": "اسم الملعب",
+  "@pitchName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pitchLocation": "موقع الملعب",
+  "@pitchLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "both": "كلاهما",
+  "@both": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseFacilitiesProvided": "اختر المرافق المراد توفيرها",
+  "@chooseFacilitiesProvided": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "documents": "مستندات",
+  "@documents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uploadDocument": "حمل المستند",
+  "@uploadDocument": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weNeedAccount": "نحن بحاجة الي رخصة الملعب للتحقق من حسابك",
+  "@weNeedAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addAsideCamesPitch": "أضف ملعبك",
+  "@addAsideCamesPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+
+  "addPitchDetails": "إضافة تفاصيل الملعب الجديد",
+  "@AddPitchDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "currentPlayers": "اللاعبين الحاليين",
+      "@currentPlayers": {
+        "type": "text",
+        "placeholders": {}
+      },
+       "playerTeam": "فريق اللاعب",
+          "@playerTeam": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "ago": "منذ",
+            "@ago": {
+              "type": "text",
+              "placeholders": {}
+            },
+            "oftheTeam": "من الفريق ",
+              "@oftheTeam": {
+                "type": "text",
+                "placeholders": {}
+              },
+              "bookingpricefortheleague": "سعر الحجز للدوري",
+                  "@bookingpricefortheleague": {
+                    "type": "text",
+                    "placeholders": {}
+                  },
+                  "bookingpricefortheTournament": "سعر الحجز للبطولة",
+                    "@bookingpricefortheTournament": {
+                      "type": "text",
+                      "placeholders": {}
+                    },
+                    "gamePlayed": "لعبت المباراة",
+                      "@gamePlayed": {
+                        "type": "text",
+                        "placeholders": {}
+                      },
+                      "hasrequestedyoutojoin": "لقد طلب منك الانضمام",
+                        "@hasrequestedyoutojoin": {
+                          "type": "text",
+                          "placeholders": {}
+                        },
+                        "noplayershavebeenfoundnearyou": "م يتم العثور على الاعبين",
+                          "@noplayershavebeenfoundnearyou": {
+                            "type": "text",
+                            "placeholders": {}
+                          },
+                          "searchlocationorevent": "البحث عن موقع أو حدث",
+                            "@searchlocationorevent": {
+                              "type": "text",
+                              "placeholders": {}
+                            },
+  "name": "اسم",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+    },
+    "selectPitchType": "حدد نوع الملعب",
+    "@selectPitchType": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "price": "السعر",
+    "@price": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "accountNumber": "رقم الحساب",
+    "@accountNumber": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "ibnNumber": "رقم الآيبان",
+    "@ibnNumber": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "skip": "تخطى",
+    "@skip": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "finishSignup": "إنهاء التسجيل",
+    "@finishSignup": {
+      "type": "text",
+      "placeholders": {}
+    },
+  "save": "حفظ",
+  "@save": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountHolderName": "اسم صاحب الحساب",
+  "@accountHolderName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myPitches": "ملاعبي",
+  "@myPitches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "معتمد",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTahaddi": "انضم مع فريقك \n في تحدي",
+      "@withTahaddi": {
+        "type": "text",
+        "placeholders": {}
+      },
+       "withoutTahaddi": " انضم مع \n فريق اخر",
+        "@withoutTahaddi": {
+          "type": "text",
+          "placeholders": {}
+        },
+         "chooseYourTeam": "اختر فريقك",
+          "@chooseYourTeam": {
+            "type": "text",
+            "placeholders": {}
+          },
+  "inReview": "تحت المراجعة",
+  "@inReview": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewGroundPitch": "أضف الملعب",
+  "@addNewGroundPitch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortBy": "صنف حسب",
+  "@sortBy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "latest": "آخر",
+  "@latest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startDate": "تاريخ البدء",
+  "@startDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createLeague": "أنشئ الدوري",
+  "@createLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leagueDetails": "تفاصيل الدوري",
+  "@leagueDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leagueName": "اسم الدوري",
+  "@leagueName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createTournament": "أنشئ بطولة",
+  "@createTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentDetails": "تفاصيل البطولة",
+  "@tournamentDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentName": "اسم البطولة",
+  "@tournamentName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingPrice": "سعر الحجز",
+  "@bookingPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalTeamParticipate": "مجموع الفرق التي يمكنها المشاركة",
+  "@totalTeamParticipate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickStartTime": "انقر لملء تاريخ البدء والوقت",
+  "@clickStartTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickEndTime": "انقر لملء تاريخ الانتهاء والوقت",
+  "@clickEndTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastBooking": "آخر يوم للحجز",
+  "@lastBooking": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SelectPitchLeague": "حدد الملعب للدوري",
+  "@SelectPitchLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAsidePitchLeague": "حدد الملعب جانبا للدوري",
+  "@selectAsidePitchLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areCreateleague": "هل أنت متأكد أنك تريد إنشاء هذا الدوري؟",
+  "@areCreateleague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectPitchTournament": "حدد الملعب للبطولة",
+  "@selectPitchTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAsidePitchTournament": "حدد جانبا الملعب للبطولة",
+  "@selectAsidePitchTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areCreateTournament": "هل أنت متأكد أنك تريد إنشاء هذه البطولة؟",
+  "@areCreateTournament": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "تآكيد",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPlayer": "لاعب جديد",
+           "@newPlayer": {
+             "type": "text",
+             "placeholders": {}
+           },
+       "hasrequestedtojointheteam": " يدعوك للانضمام الى الفريق",
+                "@hasrequestedtojointheteam": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+                "youarelongermemberteam": "لم تعد لاعبًا في هذا الفريق",
+                              "@youarelongermemberteam": {
+                                "type": "text",
+                                "placeholders": {}
+                              },
+                "searchplayerstahaddi": "ابحث عن لاعبين في تحدي",
+                                 "@searchplayerstahaddi": {
+                                   "type": "text",
+                                   "placeholders": {}
+                                 },
+                                  "send": "إرسال",
+                                          "@send": {
+                                            "type": "text",
+                                            "placeholders": {}
+                                          },
+                                           "sent": "أرسلت",
+                                                   "@sent": {
+                                                     "type": "text",
+                                                     "placeholders": {}
+                                                   },
+                               "requestjointeam": "طلب الانضمام إلى الفريق",
+                                                        "@requestjointeam": {
+                                                          "type": "text",
+                                                          "placeholders": {}
+                                                        },
+                                                         "availablePlayers": "اللاعبين المتاحين",
+                                                                 "@availablePlayers": {
+                                                                   "type": "text",
+                                                                   "placeholders": {}
+                                                                 },
+
+       "join": "انضم",
+                "@join": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+                 "approve": "وافق",
+                                  "@approve": {
+                                    "type": "text",
+                                    "placeholders": {}
+                                  },
+                                   "reject": "رفض",
+                                           "@reject": {
+                                             "type": "text",
+                                             "placeholders": {}
+                                           },
+
+       "cancelRequest": "إلغاء طلب",
+                "@cancelRequest": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+             "youcreateexistingteam": "للإنضمام الى الفريق يرجى انشاء حساب او تسجيل الدخول",
+                              "@youcreateexistingteam": {
+                                "type": "text",
+                                "placeholders": {}
+                              },
+
+       "teamplayers": "اللاعبين في الفريق",
+                "@teamplayers": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+  "endDate": "تاريخ الانتهاء",
+  "@endDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "finish": "إنهاء",
+  "@finish": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "areYouSureYouWant": "هل أنت متأكد أنك تريد حذف الملعب الفرعي؟",
+    "@areYouSureYouWant": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "cameraPermission": "إذن الكاميرا",
+        "@cameraPermission": {
+          "type": "text",
+          "placeholders": {}
+        },
+         "deny": "ينكر",
+          "@deny": {
+            "type": "text",
+            "placeholders": {}
+          },
+        "thisPicturesUploadImage": "يحتاج تطبيق تحدي إلى إذن للوصول إلى الكاميرا",
+        "@ThisPicturesUploadImage": {
+          "type": "text",
+          "placeholders": {}
+        },
+        "galleryPermission": "إذن المعرض",
+            "@galleryPermission": {
+              "type": "text",
+              "placeholders": {}
+            },
+             "thisGalleryPicturesUploadImage": "يحتاج تطبيق تحدي إلى إذن للوصول إلى المعرض",
+              "@thisGalleryPicturesUploadImage": {
+                "type": "text",
+                "placeholders": {}
+              },
+              "locationPermission": "إذن الموقع",
+                                "@locationPermission": {
+                                  "type": "text",
+                                  "placeholders": {}
+                                },
+                                 "thislocationPicturesUploadImage": "يحتاج تطبيق تحدي إلى الوصول إلى الموقع",
+                                  "@thislocationPicturesUploadImage": {
+                                    "type": "text",
+                                    "placeholders": {}
+                                  },
+                                   "calendarPermission": "إذن التقويم",
+                                                              "@calendarPermission": {
+                                                                "type": "text",
+                                                                "placeholders": {}
+                                                              },
+                                                               "thisCalendarPicturesUploadImage": "يحتاج تطبيق تحدي إلى إذن للوصول إلى التقويم",
+                                                                "@thisCalendarPicturesUploadImage": {
+                                                                  "type": "text",
+                                                                  "placeholders": {}
+                                                                },
+  "bookingpriceleague": "سعر الحجز للدوري",
+      "@bookingpriceleague": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "pitchBookings": "حجوزات الملعب",
+          "@pitchBookings": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "chooseteamlogo": "اختر لوقو الفريق",
+              "@chooseteamlogo": {
+                "type": "text",
+                "placeholders": {}
+              },
+   "slots": "الآوقات المتاحة :",
+          "@slots": {
+            "type": "text",
+            "placeholders": {}
+          },
+ "chooseyoursport": "إختر رياضتك",
+                "@chooseyoursport": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+  "unavailableSlots": "فتحات غير متاحة",
+          "@unavailableSlots": {
+            "type": "text",
+            "placeholders": {}
+          },
+  "available": "متاح",
+          "@available": {
+            "type": "text",
+            "placeholders": {}
+          },
+  "closed": "مغلق",
+          "@closed": {
+            "type": "text",
+            "placeholders": {}
+          },
+  "verifiedPitch": "ملعب معتمد",
+          "@verifiedPitch": {
+            "type": "text",
+            "placeholders": {}
+          },
+  "manageSlots": "إدارة حجوزات الملعب",
+  "@manageSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bookingDetails": "تفاصيل الحجز",
+  "@bookingDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAsidePitchManageSlots": "حدد الملعب لإدارة الحجوزات",
+  "@selectAsidePitchManageSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amongstAvailableSlotUnavailable": "يمكنك حجز التوقيت او جعله غير متاح.",
+  "@amongstAvailableSlotUnavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "غير متاح",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "availableSlots": "فتحات متاحة",
+  "@availableSlots": {
+    "type": "text",
+    "placeholders": {}
+  },
+    "editdatetime": "تحرير التاريخ والوقت",
+      "@editdatetime": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "startDateC": "تاريخ البدء",
+          "@startDateC": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "endDateC": "تاريخ الانتهاء",
+            "@endDateC": {
+              "type": "text",
+              "placeholders": {}
+            },
+  "since": "منذ",
+  "@since": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "until": "حتى",
+  "@until": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "closedHours": "ساعات مغلقة",
+  "@closedHours": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineBooking": "الحجز أونلاين",
+      "@onlineBooking": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "createyourteam": "أنشئ فريقك",
+              "@createyourteam": {
+                "type": "text",
+                "placeholders": {}
+              },
+   "walkBookpitch": "احجز ملعب ، بطولة أو دوري مع تحدي" ,
+       "@walkBookpitch": {
+         "type": "text",
+         "placeholders": {}
+       },
+       "walkHereTahaddi": "عمرك فكرت انك تقدر تحجز ملعب،تشارك في بطولة أو دوري بضغطة وحدة بس؟ في تحدّي كل شي موجود في راحة ايدك.",
+         "@walkHereTahaddi": {
+           "type": "text",
+           "placeholders": {}
+         },
+        "buildTahaddi": "ابحث عن لاعبين حولك ",
+          "@buildTahaddi": {
+           "type": "text",
+            "placeholders": {}
+                     },
+         "walkyouTahaddi":"كوّن فريقك، \n ارسل لأصدقاءك طلبات انضمام لفريقك، \n ابحث عن لاعبين في منطقتك.",
+          "@walkyouTahaddi": {
+           "type": "text",
+            "placeholders": {}
+                                },
+            "walkcreatePitch": "أنشئ بطولات على ملعبك",
+              "@walkcreatePitch": {
+                "type": "text",
+               "placeholders": {}
+                             },
+               "pitchTournament": "صاحب ملعب؟ لا تحاتي انت في المكان الصحيح",
+                         "@pitchTournament": {
+                                "type": "text",
+                       "placeholders": {}
+                                         },
+        "youCanBuild": "لدينا منصة مخصصة لأصحاب الملاعب، يمكنك إدارة حجوزات ملاعبك، اقامة بطولات في خطوات بسيطة.",
+           "@youCanBuild": {
+             "type": "text",
+                 "placeholders": {}
+                              },
+          "all": "الكل",
+           "@all": {
+              "type": "text",
+              "placeholders": {}
+                          },
+
+   "slotSelected": "الوقت المحدد",
+     "@slotSelected": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "slotDetails": "تفاصيل الحجز",
+       "@slotDetails": {
+         "type": "text",
+         "placeholders": {}
+       },
+       "editcard": "تعديل تفاصيل البطاقة",
+         "@editcard": {
+           "type": "text",
+           "placeholders": {}
+         },
+         "cardNumberC": "رقم البطاقة",
+           "@cardNumber": {
+             "type": "text",
+             "placeholders": {}
+           },
+           "gotoHomepage": "انتقل إلى الصفحة الرئيسية",
+             "@gotoHomepage": {
+               "type": "text",
+               "placeholders": {}
+             },
+             "noInternetConnection": "لا يوجد اتصال بالإنترنت",
+               "@noInternetConnection": {
+                 "type": "text",
+                 "placeholders": {}
+               },
+               "tryAgain": "حاول مرة أخرى",
+                   "@tryAgain": {
+                     "type": "text",
+                     "placeholders": {}
+                   },
+                   "enteringwithtahadditeam": "اشترك مع فريق تحدي",
+                     "@enteringwithtahadditeam": {
+                       "type": "text",
+                       "placeholders": {}
+                     },
+                   "selectonefieldtoenterwithotherteam": "اختر فريق التحدي الخاص بك",
+                     "@selectonefieldtoenterwithotherteam": {
+                       "type": "text",
+                       "placeholders": {}
+                     },
+                    "selectonefieldtoenterwithotheryourtahadditeam": "املأ الحقول أدناه للدخول مع فريق آخر",
+                      "@selectonefieldtoenterwithotheryourtahadditeam": {
+                        "type": "text",
+                        "placeholders": {}
+                      },
+                      "orSignUpWith": "أو اشترك مع",
+                        "@orSignUpWith": {
+                          "type": "text",
+                          "placeholders": {}
+                        },
+                        "pleaseselectyourfield": "اختر ملعبك",
+                          "@pleaseselectyourfield": {
+                            "type": "text",
+                            "placeholders": {}
+                          },
+                          "slot": "الوقت",
+                            "@slot": {
+                              "type": "text",
+                              "placeholders": {}
+                            },
+                            "pleaseenterTeamName": "ادخل اسم فريقك",
+                              "@pleaseenterTeamName": {
+                                "type": "text",
+                                "placeholders": {}
+                              },
+                              "pleaseenterEmail": "ادخل البريد الاكتروني",
+                                "@pleaseenterEmail": {
+                                  "type": "text",
+                                  "placeholders": {}
+                                },
+                                "pleaseenterPhoneNumber": "ادخل رقم الهاتف",
+                                  "@pleaseenterPhoneNumber": {
+                                    "type": "text",
+                                    "placeholders": {}
+                                  },
+                                  "tokenhasbeenExpired": "انتهت صلاحية الرمز",
+                                      "@tokenhasbeenExpired": {
+                                        "type": "text",
+                                        "placeholders": {}
+                                      },
+                                      "invalidEmail": "البريد الالكتروني غير صحيح!",
+                                        "@invalidEmail": {
+                                          "type": "text",
+                                          "placeholders": {}
+                                        },
+                                        "pleaseenterNewPassword": "ادخل كلمة السر الجديدة",
+                                          "@pleaseenterNewPassword": {
+                                            "type": "text",
+                                            "placeholders": {}
+                                          },
+                                          "passwordMismatch": "كلمة السر غير متطابقة !!!",
+                                            "@passwordMismatch": {
+                                              "type": "text",
+                                              "placeholders": {}
+                                            },
+                                            "pleaseenterPassword": "ادخل كلمة السر",
+                                              "@pleaseenterPassword": {
+                                                "type": "text",
+                                                "placeholders": {}
+                                              },
+                                              "logincancelledbytheuser": "تم إلغاء تسجيل الدخول من قبل المستخدم.",
+                                                "@logincancelledbytheuser": {
+                                                  "type": "text",
+                                                  "placeholders": {}
+                                                },
+                                                "pleaseenterFirstName": "ادخل الاسم الأول",
+                                                  "@pleaseenterFirstName": {
+                                                    "type": "text",
+                                                    "placeholders": {}
+                                                  },
+                                                  "pleaseenterLastName": "ادخل الاسم الأخير",
+                                                    "@pleaseenterLastName": {
+                                                      "type": "text",
+                                                      "placeholders": {}
+                                                    },
+                                                    "playerPosition": "مركز اللاعب",
+                                                      "@playerPosition": {
+                                                        "type": "text",
+                                                        "placeholders": {}
+                                                      },
+                                                      "selectPlayerPosition": "حدد مركز اللاعب",
+                                                        "@selectPlayerPosition": {
+                                                          "type": "text",
+                                                          "placeholders": {}
+                                                        },
+                                                        "minimumMaximum14Characters": "6 أحرف كحد أدنى و 14 حرفًا كحد أقصى",
+                                                          "@minimumMaximum14Characters": {
+                                                            "type": "text",
+                                                            "placeholders": {}
+                                                          },
+                                                          "done": "منجز",
+                                                            "@done": {
+                                                              "type": "text",
+                                                              "placeholders": {}
+                                                            },
+
+                                                              "invalidOTPCode": "الرمز غير صحيح",
+                                                                "@invalidOTPCode": {
+                                                                  "type": "text",
+                                                                  "placeholders": {}
+                                                                },
+                                                                "invalidCode": "الرمز غير صحيح",
+                                                                  "@invalidCode": {
+                                                                    "type": "text",
+                                                                    "placeholders": {}
+                                                                  },
+                                                                  "pin": "رمز",
+                                                                    "@pin": {
+                                                                      "type": "text",
+                                                                      "placeholders": {}
+                                                                    },
+                                                                    "enterthedigitcodewhichsentonregisteredphonenumber": "أدخل الرمز المكون من 6 أرقام الذي تم إرساله إلى الرقم المسجل",
+                                                                      "@enterthedigitcodewhichsentonregisteredphonenumber": {
+                                                                        "type": "text",
+                                                                        "placeholders": {}
+                                                                      },
+                                                                      "pleaseentercardholdername": "ادخل اسم حامل البطاقة",
+                                                                        "@pleaseentercardholdername": {
+                                                                          "type": "text",
+                                                                          "placeholders": {}
+                                                                        },
+                                                                        "pleaseentercvvnumber": "ادخل رقم cvv",
+                                                                          "@pleaseentercvvnumber": {
+                                                                            "type": "text",
+                                                                            "placeholders": {}
+                                                                          },
+                                                                          "pleaseentervaliditymonth": "الرجاء إدخال الشهر",
+                                                                            "@pleaseentervaliditymonth": {
+                                                                              "type": "text",
+                                                                              "placeholders": {}
+                                                                            },
+                                                                            "pleaseentervaliditydate": "ادخل تاريخ انتهاء البطاقة",
+                                                                              "@pleaseentervaliditydate": {
+                                                                                "type": "text",
+                                                                                "placeholders": {}
+                                                                              },
+
+
+ "pleaseentercardnumber": "ادخل رقم البطاقة",
+  "@pleaseentercardnumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "choosedateofbirth": "حدد تاريخ الميلاد",
+    "@choosedateofbirth": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "myReviewsRatings": "تقييمي",
+      "@myReviewsRatings": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "addyourexperienceforthepitchesyouhaveplayedupon": "أضف خبرتك للملاعب التي لعبت عليها.",
+          "@addyourexperienceforthepitchesyouhaveplayedupon": {
+            "type": "text",
+            "placeholders": {}
+          },
+           "review": "مراجعة",
+            "@review": {
+              "type": "text",
+              "placeholders": {}
+            },
+            "yourexperience": "خبرتك",
+                "@yourexperience": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+                "ratethepitch": "قيم الملعب",
+                    "@ratethepitch": {
+                      "type": "text",
+                      "placeholders": {}
+                    },
+                     "pleaseenterReviews": "الرجاء إدخال التقييمات",
+                        "@pleaseenterReviews": {
+                          "type": "text",
+                          "placeholders": {}
+                        },
+                        "reviews": "التقييمات",
+                            "@reviews": {
+                              "type": "text",
+                              "placeholders": {}
+                            },
+                            "pleaseenterCurrentPassword": "ادخل كلمة السر الحالية",
+                                "@pleaseenterCurrentPassword": {
+                                  "type": "text",
+                                  "placeholders": {}
+                                },
+                                "gotoLoginPage": "انتقل إلى صفحة تسجيل الدخول!",
+                                    "@gotoLoginPage": {
+                                      "type": "text",
+                                      "placeholders": {}
+                                    },
+                                     "toremovethecard": "لإزالة البطاقة",
+                                      "@toremovethecard": {
+                                        "type": "text",
+                                        "placeholders": {}
+                                      },
+                                       "football": "كرة القدم",
+                                        "@football": {
+                                          "type": "text",
+                                          "placeholders": {}
+                                        },
+                                         "pleaseenterPitchName": "ادخل اسم الملعب",
+                                          "@pleaseenterPitchName": {
+                                            "type": "text",
+                                            "placeholders": {}
+                                          },
+                                           "pleaseenterDescription": "ادخل مواصفات الملعب",
+                                            "@pleaseenterDescription": {
+                                              "type": "text",
+                                              "placeholders": {}
+                                            },
+                                             "pleaseentername": "ادخل الاسم",
+                                              "@pleaseentername": {
+                                                "type": "text",
+                                                "placeholders": {}
+                                              },
+                                               "pleaseenterprice": "ادخل السعر",
+                                                "@pleaseenterprice": {
+                                                  "type": "text",
+                                                  "placeholders": {}
+                                                },
+                                                 "pleaseenterIBANCode": "ادخل رقم IBAN",
+                                                  "@pleaseenterIBANCode": {
+                                                    "type": "text",
+                                                    "placeholders": {}
+                                                  },
+
+"pleaseenterAccountNumber": "ادخل رقم الحساب",
+  "@pleaseenterAccountNumber": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseenterAccountHolderName": "ادخل رقم صاحب الحساب",
+    "@pleaseenterAccountHolderName": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "pleaseentercomment": "ادخل تعليق",
+      "@pleaseentercomment": {
+        "type": "text",
+        "placeholders": {}
+      },
+      "nameoftheclosedhours": "ساعات العمل ",
+        "@nameoftheclosedhours": {
+          "type": "text",
+          "placeholders": {}
+        },
+        "youcannotcreatea": "لا يمكنك إنشاء ملف",
+          "@youcannotcreatea": {
+            "type": "text",
+            "placeholders": {}
+          },
+          "asyourpitchhasnotbeenverifiedyet": "لأن ملعبك لم يتم التحقق منه بعد.",
+            "@asyourpitchhasnotbeenverifiedyet": {
+              "type": "text",
+              "placeholders": {}
+            },
+            "ok": "اوك",
+              "@ok": {
+                "type": "text",
+                "placeholders": {}
+              },
+              "rejected": "مرفوض",
+                "@rejected": {
+                  "type": "text",
+                  "placeholders": {}
+                },
+  "yesterday": " امس",
+  "@yesterday": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "rebook": "إعادة الحجز",
+      "@rebook": {
+        "type": "text",
+        "placeholders": {}
+      },
+   "daysago": "منذ أيام",
+   "@daysago": {
+     "type": "text",
+     "placeholders": {}
+   },
+    "today": "اليوم",
+    "@today": {
+      "type": "text",
+      "placeholders": {}
+    },
+    "teamDetail": "تفاصيل الفريق",
+    "@teamDetail": {
+      "type": "text",
+      "placeholders": {}
+    },
+     "rejectedPitch": "ملعب مرفوض",
+     "@rejectedPitch": {
+       "type": "text",
+       "placeholders": {}
+     },
+ "addanotherdocument": "أضف مستندًا آخر",
+   "@addanotherdocument": {
+     "type": "text",
+     "placeholders": {}
+   },
+    "emailhasbeensent": "تم ارسال البريد الالكتروني",
+                     "@emailhasbeensent": {
+                       "type": "text",
+                       "placeholders": {}
+                     },
+   "addnewpitchdetails": "أضف تفاصيل ملعب جديد",
+     "@addnewpitchdetails": {
+       "type": "text",
+       "placeholders": {}
+     },
+
+     "noverifiedpitchyet": "لم يتم التحقق من الملعب بعد",
+       "@noverifiedpitchyet": {
+         "type": "text",
+         "placeholders": {}
+       },
+       "uploadpitchimages": "حمل صور الملعب",
+         "@uploadpitchimages": {
+           "type": "text",
+           "placeholders": {}
+         },
+          "continueS": "التالي",
+                 "@continueS": {
+                   "type": "text",
+                   "placeholders": {}
+                 },
+         "uploadPitchDocument": "حمل مستند الملعب",
+           "@uploadPitchDocument": {
+             "type": "text",
+             "placeholders": {}
+           },
+            "processing": "قيد المراجعة",
+                      "@processing": {
+                        "type": "text",
+                        "placeholders": {}
+                      },
+                        "gender": "الجنس",
+                                  "@gender": {
+                                      "type": "text",
+                                       "placeholders": {}
+                                                     },
+                                          "socialTitle": "تفاصيلي",
+                                                         "@socialTitle": {
+                                                          "type": "text",
+                                                         "placeholders": {}
+                                                                       },
+                                                                       "pleaseselectDateofBirth": "الرجاء تحديد تاريخ الميلاد",
+                                                                               "@pleaseselectDateofBirth": {
+                                                                                 "type": "text",
+                                                                                 "placeholders": {}
+                                                                               },
+                                                                               "doyouwanttoleaveteam": "هل تريد مغادرة الفريق",
+                                                                                       "@doyouwanttoleaveteam": {
+                                                                                         "type": "text",
+                                                                                         "placeholders": {}
+                                                                                       },
+                                                                                       "pleaseselectnewcaptain": "الرجاء تحديد كابتن جديد",
+                                                                                               "@pleaseselectnewcaptain": {
+                                                                                                 "type": "text",
+                                                                                                 "placeholders": {}
+                                                                                               },
+                                                                                                "pleaseselectgender": "الرجاء التحديدالجنس",
+                                                                                                                      "@pleaseselectgender": {
+                                                                                                                            "type": "text",
+                                                                                                                                 "placeholders": {}
+                                                                                                                                               },
+    "filterBy": "مصنف بواسطة",
+    "@filterBy": {
+       "type": "text",
+         "placeholders": {}
+       },
+       "venues": "الأماكن",
+       "@venues": {
+          "type": "text",
+            "placeholders": {}
+          },
+          "showDirections": "عرض الاتجاهات",
+             "@showDirections": {
+                "type": "text",
+                  "placeholders": {}
+                },
+      "about": "إحجز",
+          "@about": {
+           "type": "text",
+          "placeholders": {}
+             },
+             "play": "العب",
+                   "@play": {
+                    "type": "text",
+                   "placeholders": {}
+                      },
+                      "facilitiesProvided": "المرافق المتوفرة",
+                            "@facilitiesProvided": {
+                             "type": "text",
+                            "placeholders": {}
+                               },
+                               "end": "نهاية",
+                                     "@end": {
+                                      "type": "text",
+                                     "placeholders": {}
+                                        },
+                                        "start": "بداية",
+                                              "@start": {
+                                               "type": "text",
+                                              "placeholders": {}
+                                                 },
+                                                 "holiday": "إجازة",
+                                                       "@holiday": {
+                                                        "type": "text",
+                                                       "placeholders": {}
+                                                          },
+    "perVenue": "سعر المكان",
+            "@perVenue": {
+             "type": "text",
+            "placeholders": {}
+               },
+               "perPlayer": "سعر اللاعب",
+                     "@perPlayer": {
+                      "type": "text",
+                     "placeholders": {}
+                        },
+                        "selectnumberofplayer": "حدد عدد اللاعبين للحجز",
+                              "@selectnumberofplayer": {
+                               "type": "text",
+                              "placeholders": {}
+                                 },
+                                 "thisDayHoliday": "اليوم إجازة",
+                                       "@thisDayHoliday": {
+                                        "type": "text",
+                                       "placeholders": {}
+                                          },
+                                          "day": "يوم",
+                                                "@day": {
+                                                 "type": "text",
+                                                "placeholders": {}
+                                                   },
+                                                   "bookNowS": "احجز الآن",
+                                                         "@bookNowS": {
+                                                          "type": "text",
+                                                         "placeholders": {}
+                                                            },
+      "sessions": "الجلسات",
+              "@sessions": {
+               "type": "text",
+              "placeholders": {}
+                 },
+                 "slotPrice": "سعر الحجز",
+                       "@slotPrice": {
+                        "type": "text",
+                       "placeholders": {}
+                          },
+                          "venueName": "اسم المكان",
+                                "@venueName": {
+                                 "type": "text",
+                                "placeholders": {}
+                                   },
+                                   "venueNameA": "اسم المكان (عربي)",
+                                         "@venueNameA": {
+                                          "type": "text",
+                                         "placeholders": {}
+                                            },
+                                            "code": "كود",
+                                                  "@code": {
+                                                   "type": "text",
+                                                  "placeholders": {}
+                                                     },
+                                                     "descriptionS": "وصف",
+                                                           "@descriptionS": {
+                                                            "type": "text",
+                                                           "placeholders": {}
+                                                              },
+     "descriptionA": "الوصف (عربي)",
+               "@descriptionA": {
+                "type": "text",
+               "placeholders": {}
+                  },
+                  "documentName": "اسم الملف",
+                        "@documentName": {
+                         "type": "text",
+                        "placeholders": {}
+                           },
+                           "canceled": "ألغيت",
+                               "@canceled": {
+                                 "type": "text",
+                                 "placeholders": {}
+                               },
+                           "licenceName": "اسم الرخصة",
+                                 "@licenceName": {
+                                  "type": "text",
+                                 "placeholders": {}
+                                    },
+                                    "expiryDate": "تاريخ الانتهاء ",
+                                          "@expiryDate": {
+                                           "type": "text",
+                                          "placeholders": {}
+                                             },
+                                             "expiryDocumentDate": "تاريخ انتهاء الوثيقة ",
+                                                   "@expiryDocumentDate": {
+                                                    "type": "text",
+                                                   "placeholders": {}
+                                                      },
+                                                      "multipleRates": "معدلات متعددة",
+                                                            "@multipleRates": {
+                                                             "type": "text",
+                                                            "placeholders": {}
+                                                            },
+    "document": "وثيقة",
+                "@document": {
+                 "type": "text",
+                "placeholders": {}
+                   },
+                   "slotChart": "مخطط الحجز",
+                         "@documentName": {
+                          "type": "text",
+                         "placeholders": {}
+                            },
+                            "thankyouforaddingyourvenue": "شكرا لكم على إضافة مكانكم، طلبكم قيد المراجعة وسيتم ابلاغكم بمجرد الانتهاء من المراجعة.",
+                              "@thankyouforaddingyourvenue": {
+                                "type": "text",
+                                "placeholders": {}
+                              },
+                            "typeofSports": "نوع الرياضة",
+                                  "@typeofSports": {
+                                   "type": "text",
+                                  "placeholders": {}
+                                     },
+                                     "selecttypeofSport": "اختر نوع الرياضة",
+                                           "@selecttypeofSport": {
+                                            "type": "text",
+                                           "placeholders": {}
+                                              },
+                                              "subVenueName": "اسم المكان الفرعي",
+                                                    "@subVenueName": {
+                                                     "type": "text",
+                                                    "placeholders": {}
+                                                       },
+                                                       "pricePerPlayer": "السعر لكل لاعب",
+                                                             "@pricePerPlayer": {
+                                                              "type": "text",
+                                                             "placeholders": {}
+                                                                },
+      "startTime": "وقت البدء",
+                 "@startTime": {
+                  "type": "text",
+                 "placeholders": {}
+                    },
+                    "endTime": "وقت النهاية",
+                          "@endTime": {
+                           "type": "text",
+                          "placeholders": {}
+                             },
+                             "createSession": "إنشاء الجلسة",
+                               "@createSession": {
+                                 "type": "text",
+                                 "placeholders": {}
+                               },
+                             "venueCreated": "إنشاء مكان",
+                                   "@venueCreated": {
+                                    "type": "text",
+                                   "placeholders": {}},
+    "amount": "مقدار",
+                "@amount": {
+                 "type": "text",
+                "placeholders": {}
+                   },
+                   "addSession": "أضف الجلسة",
+                         "@addSession": {
+                          "type": "text",
+                         "placeholders": {}
+                            },
+                            "markAsHoliday": "وضع علامة الاجازة ",
+                                  "@markAsHoliday": {
+                                   "type": "text",
+                                  "placeholders": {}
+                                     },
+                                     "CreateYourSession": "أنشئ جلستك",
+                                           "@CreateYourSession": {
+                                            "type": "text",
+                                           "placeholders": {}
+                                              },
+                                              "name": "الاسم",
+                                                    "@name": {
+                                                     "type": "text",
+                                                    "placeholders": {}
+                                                       },
+                                                       "nameA": "الاسم (عربي)",
+                                                             "@nameA": {
+                                                              "type": "text",
+                                                             "placeholders": {}
+                                                                },
+
+    "createSlotDuration": "إنشاء مدة الحجز",
+                "@createSlotDuration": {
+                 "type": "text",
+                "placeholders": {}
+                   },
+                   "extraGraceTime": "وقت اضافي ",
+                         "@extraGraceTime": {
+                          "type": "text",
+                         "placeholders": {}
+                            },
+   "monday": "الاثنين",
+               "@monday": {
+                "type": "text",
+               "placeholders": {}
+                  },
+                  "tuesday": "الثلاثاء",
+                        "@tuesday": {
+                         "type": "text",
+                        "placeholders": {}
+                           },
+                           "wednesday": "الأربعاء",
+                                 "@wednesday": {
+                                  "type": "text",
+                                 "placeholders": {}
+                                    },
+                                    "thursday": "الخميس",
+                                          "@thursday": {
+                                           "type": "text",
+                                          "placeholders": {}
+                                             },
+                                             "friday": "جمعة",
+                                                   "@friday": {
+                                                    "type": "text",
+                                                   "placeholders": {}
+                                                      },
+                                                      "saturday": "السبت",
+                                                            "@saturday": {
+                                                             "type": "text",
+                                                            "placeholders": {}
+                                                               },
+    "sunday": "الأحد",
+       "@sunday": {
+           "type": "text",
+          "placeholders": {}
+                        },
+                        "selectLocation": "حدد موقعك",
+                                                 "@selectLocation": {
+                                                     "type": "text",
+                                                    "placeholders": {}
+                                                                  },
+    "noVenuesAvailable": "لا توجد اماكن متاحة",
+               "@noVenuesAvailable": {
+                       "type": "text",
+                        "placeholders": {}
+                                        },
+                                        "cancellationsMadeWithin": "الإلغاءات التي تتم في غضون 24 ساعة لن يتم استردادها",
+                                                       "@CancellationsMadeWithin": {
+                                                               "type": "text",
+                                                                "placeholders": {}
+                                                                                },
+                                                                                "sessionName": "اسم الجلسة:",
+                                                                                                        "@sessionName": {
+                                                                                                                            "type": "text",
+                                                                                                                    "placeholders": {}
+                                                                                                                                      },
+                                                                                                                                      "clear": "صافي",
+                                                                                                                                      "@clear": {
+                                                                                                                                        "type": "text",
+                                                                                                                                "placeholders": {}
+                                                                                                                                                 },
+                                                                                                                                   "noSlotsAvailable": "لا توجد فترات زمنية متاحة",
+                                                                                                                                     "@NoSlotsAvailable": {
+                                                                                                                                     "type": "text",
+                                                                                                                                       "placeholders": {}
+                                                                                                                                        },
+                                                                                                                                        "sorryYouEditReview": "عذرًا ، لا يمكنك تعديل المكان عندما يكون قيد المراجعة",
+                                                                                                                                                             "@sorryYouEditReview": {
+                                                                                                                                                                   "type": "text",
+                                                                                                                                                                       "placeholders": {}
+                                                                                                                                                                                           }
+   }
