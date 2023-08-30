@@ -20,6 +20,7 @@ class _SportExperienceState extends State<SportExperience> {
   final NetworkCalls _networkCalls = NetworkCalls();
   final List<String> _sportsListSlug = [];
   final List<SportsList> _sportsList = [];
+
   _onSelected(String slug) {
     if (_sportsListSlug.contains(slug)) {
       setState(() {
@@ -197,6 +198,6 @@ class _SportExperienceState extends State<SportExperience> {
 
   void navigateToDetail() {
     Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteNames.profile, (Route<dynamic> route) => false);
+        RouteNames.profileDetail, (Route<dynamic> route) => false);
   }
 }

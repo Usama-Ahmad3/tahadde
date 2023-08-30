@@ -13,6 +13,7 @@ typedef FormFieldValidator<T> = String Function(T value);
 typedef FormFieldSetter<T> = void Function(T newValue);
 typedef GestureTapCallback = void Function();
 typedef ValueChanged<T> = void Function(T value);
+
 Widget searchbar(
     {required String hintText,
     int color = 0xFFFFFFF,
@@ -182,6 +183,7 @@ on401(BuildContext context) async {
   prefs.remove("role");
   prefs.remove("token");
   prefs.remove("auth");
+  // ignore: use_build_context_synchronously
   Navigator.pushNamedAndRemoveUntil(
       context, RouteNames.playerHome, (r) => false);
 }

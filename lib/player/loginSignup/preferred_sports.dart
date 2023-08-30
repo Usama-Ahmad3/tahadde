@@ -22,6 +22,7 @@ class _PreferredSportsState extends State<PreferredSports> {
   final List<SportsList> _sportsList = [];
   final List<SportsList> _expertList = [];
   String? _expertListSlug;
+
   _onSelected(String slug) {
     if (_sportsListSlug.contains(slug)) {
       setState(() {
@@ -295,7 +296,7 @@ class _PreferredSportsState extends State<PreferredSports> {
 
   void navigateToDetail() {
     Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteNames.profile, (Route<dynamic> route) => false);
+        RouteNames.profileDetail, (Route<dynamic> route) => false);
   }
 }
 

@@ -12,7 +12,9 @@ import '../../network/network_calls.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   String token;
+
   ForgotPasswordScreen({required this.token});
+
   @override
   _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
 }
@@ -367,7 +369,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   void navigateToDetail(String msg) {
-    Navigator.pushReplacementNamed(context, RouteNames.profile, arguments: msg);
+    Navigator.pushReplacementNamed(context, RouteNames.profileDetail);
   }
 
   String validateConfirmPassword(String value) {

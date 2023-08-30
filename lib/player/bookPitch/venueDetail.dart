@@ -99,7 +99,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
   openMapsSheet(context) async {
     try {
       final coords = Coords(_venueDetail.latitude!, _venueDetail.longitude!);
-      final title = 'Dubai';
+      const title = 'Dubai';
       final availableMaps = await MapLauncher.installedMaps;
       showModalBottomSheet(
         context: context,

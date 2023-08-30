@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
 
 import '../homeFile/association_promotion.dart';
 import '../homeFile/routingConstant.dart';
@@ -88,65 +90,76 @@ class RouterPage {
     switch (settings.name) {
       case RouteNames.homeRoute:
         return MaterialPageRoute(
-            builder: (_) => PlayerHome(
+            builder: (_) =>
+                PlayerHome(
                   index: 0,
                 ));
       case RouteNames.playerHome:
         return MaterialPageRoute(
-            builder: (_) => PlayerHome(
+            builder: (_) =>
+                PlayerHome(
                   index: 0,
                 ));
       case RouteNames.league:
         var leageData = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => League(
+            builder: (_) =>
+                League(
                   eventData: leageData as Map,
                 ));
       case RouteNames.enterYourDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EnterDetail(
+            builder: (_) =>
+                EnterDetail(
                   leagueData: detail,
                 ));
       case RouteNames.payment:
         var price = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => Payment(
+            builder: (_) =>
+                Payment(
                   detail: settings.arguments,
                 ));
       case RouteNames.languageSave:
         return MaterialPageRoute(builder: (context) => const LanguageSave());
-      // case addCard:
-      //   var price = settings.arguments;
-      //   return MaterialPageRoute(
-      //       builder: (_) => AddCard(
-      //             price: price,
-      //           ));
-      // case paymentMethod:
-      //   var price = settings.arguments;
-      //   return MaterialPageRoute(
-      //       builder: (_) => PaymentMethod(
-      //             price: price,
-      //           ));
+      case RouteNames.groundDetail:
+        return MaterialPageRoute(builder: (context) =>
+            GroundDetail(detail: settings.arguments as Map),);
+    // case addCard:
+    //   var price = settings.arguments;
+    //   return MaterialPageRoute(
+    //       builder: (_) => AddCard(
+    //             price: price,
+    //           ));
+    // case paymentMethod:
+    //   var price = settings.arguments;
+    //   return MaterialPageRoute(
+    //       builder: (_) => PaymentMethod(
+    //             price: price,
+    //           ));
       case RouteNames.bookingSummary:
         var price = settings.arguments;
         return MaterialPageRoute(builder: (_) => BookingSummary(price: price));
       case RouteNames.bookPitch:
         var pitchData = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => BookPitch(
+            builder: (_) =>
+                BookPitch(
                   pitchDetail: pitchData as int,
                 ));
       case RouteNames.bookPitchSlot:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => BookPitchSlots(
+            builder: (_) =>
+                BookPitchSlots(
                   id: detail,
                 ));
       case RouteNames.editSession:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EditSession(
+            builder: (_) =>
+                EditSession(
                   pitchData: detail as Map,
                 ));
       case RouteNames.signupPage:
@@ -154,7 +167,8 @@ class RouterPage {
       case RouteNames.varification:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => Verification(
+            builder: (_) =>
+                Verification(
                   detail: detail as SignUpDetail,
                 ));
       case RouteNames.passworSuccess:
@@ -164,24 +178,24 @@ class RouterPage {
       case RouteNames.forgotPassword:
         var tokenstatus = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ForgotPassword(
+            builder: (_) =>
+                ForgotPassword(
                   tokenStatus: false,
                 ));
       case RouteNames.forgotPasswordScreen:
         var token = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ForgotPasswordScreen(
+            builder: (_) =>
+                ForgotPasswordScreen(
                   token: token.toString(),
                 ));
-      case RouteNames.profile:
-        var msg = settings.arguments;
+      case RouteNames.profileDetail:
         return MaterialPageRoute(
-            builder: (_) => PlayerHome(
-                  index: 2,
-                ));
+            builder: (BuildContext context) => const ProfileDetailScreen());
       case RouteNames.more:
         return MaterialPageRoute(
-            builder: (_) => PlayerHome(
+            builder: (_) =>
+                PlayerHome(
                   index: 3,
                 ));
       case RouteNames.team:
@@ -190,18 +204,21 @@ class RouterPage {
         return MaterialPageRoute(builder: (_) => const SearchBar());
       case RouteNames.notification:
         return MaterialPageRoute(
-            builder: (_) => PlayerHome(
+            builder: (_) =>
+                PlayerHome(
                   index: 1,
                 ));
       case RouteNames.emptyProfile:
         return MaterialPageRoute(
-            builder: (_) => PlayerHome(
+            builder: (_) =>
+                PlayerHome(
                   index: 2,
                 ));
       case RouteNames.login:
         var msg = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => Loginpage(
+            builder: (_) =>
+                Loginpage(
                   message: msg.toString(),
                 ));
       case RouteNames.resetPassword:
@@ -213,15 +230,16 @@ class RouterPage {
         return MaterialPageRoute(builder: (_) => const ChooseAccount());
       case RouteNames.signUpPitchOwner:
         return MaterialPageRoute(builder: (_) => SignUpScreen());
-      // case editCard:
-      //   var price = settings.arguments;
-      //   return MaterialPageRoute(
-      //       builder: (_) => EditCard(
-      //             detail: price,
-      //           ));
+    // case editCard:
+    //   var price = settings.arguments;
+    //   return MaterialPageRoute(
+    //       builder: (_) => EditCard(
+    //             detail: price,
+    //           ));
       case RouteNames.addPlayer:
         return MaterialPageRoute(
-            builder: (_) => AddPlayer(
+            builder: (_) =>
+                AddPlayer(
                   index: 0,
                 ));
       case RouteNames.createTeam:
@@ -229,31 +247,36 @@ class RouterPage {
       case RouteNames.paymentSuccess:
         var price = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => PaymentSuccess(
+            builder: (_) =>
+                PaymentSuccess(
                   price: price,
                 ));
       case RouteNames.resetPasswordSuccess:
         var msg = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ResetPasswordSuccess(
+            builder: (_) =>
+                ResetPasswordSuccess(
                   msg: msg,
                 ));
       case RouteNames.viewMore:
         var msg = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ViewMoreLeague(
+            builder: (_) =>
+                ViewMoreLeague(
                   leagueType: msg as Map,
                 ));
       case RouteNames.viewMoreTournament:
         var msg = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ViewMoreTournament(
+            builder: (_) =>
+                ViewMoreTournament(
                   tournamentType: msg as Map,
                 ));
       case RouteNames.viewMoreBookPitch:
         var msg = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ViewMoreBookPitch(
+            builder: (_) =>
+                ViewMoreBookPitch(
                   pitchType: msg as Map,
                 ));
       case RouteNames.myBookings:
@@ -271,7 +294,8 @@ class RouterPage {
       case RouteNames.viewMoreowner:
         var event = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ViewMoreowner(
+            builder: (_) =>
+                ViewMoreowner(
                   eventType: event.toString(),
                 ));
       case RouteNames.varifyMoblie:
@@ -297,7 +321,8 @@ class RouterPage {
       case RouteNames.myPitches:
         var index = settings.arguments ?? 1;
         return MaterialPageRoute(
-            builder: (_) => MyPitches(
+            builder: (_) =>
+                MyPitches(
                   index: index as int,
                 ));
       case RouteNames.manageSlotsDetail:
@@ -308,7 +333,8 @@ class RouterPage {
       case RouteNames.eventDetailOwner:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EventDetailOwner(
+            builder: (_) =>
+                EventDetailOwner(
                   id: detail as Map,
                 ));
 
@@ -338,7 +364,8 @@ class RouterPage {
       case RouteNames.addNewGroundSecond:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => AddNewGroundSecond(
+            builder: (_) =>
+                AddNewGroundSecond(
                   detail: detail as Map,
                 ));
 
@@ -357,12 +384,13 @@ class RouterPage {
       case RouteNames.verifiedPitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => VerifiedPitchDetail(
+            builder: (_) =>
+                VerifiedPitchDetail(
                   pitchDetail: detail as Map,
                 ));
 
-      // case savePayment:
-      //   return MaterialPageRoute(builder: (_) => SavePayment());
+    // case savePayment:
+    //   return MaterialPageRoute(builder: (_) => SavePayment());
       case RouteNames.myInterest:
         return MaterialPageRoute(builder: (_) => MyInterest());
       case RouteNames.account:
@@ -372,24 +400,28 @@ class RouterPage {
       case RouteNames.pitchBookingDetails:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => PitchBookingDetails(
-                bookindDetail: detail as BookingModelClass));
+            builder: (_) =>
+                PitchBookingDetails(
+                    bookindDetail: detail as BookingModelClass));
       case RouteNames.leagueTahaddi:
         var leageData = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => LeagueTahaddi(
+            builder: (_) =>
+                LeagueTahaddi(
                   leaguedata: leageData as Map,
                 ));
       case RouteNames.bookPitchTahaddi:
         var bookPitchData = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => BookPitchYourTahaddi(
+            builder: (_) =>
+                BookPitchYourTahaddi(
                   bookpitch: bookPitchData as YourTahaddi,
                 ));
       case RouteNames.selectSport:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => SelectSport(
+            builder: (_) =>
+                SelectSport(
                   isBack: detail as bool,
                 ));
       case RouteNames.priceScreen:
@@ -399,7 +431,8 @@ class RouterPage {
       case RouteNames.createSession:
         var pitchData = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => CreateSession(
+            builder: (_) =>
+                CreateSession(
                   pitchData: pitchData as Map,
                 ));
       case RouteNames.slotChart:
@@ -411,33 +444,37 @@ class RouterPage {
       case RouteNames.editVenues:
         var id = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EditVenues(
+            builder: (_) =>
+                EditVenues(
                   detail: id as Map,
                 ));
       case RouteNames.venueCreated:
-        return MaterialPageRoute(builder: (_) => VenueCreated());
+        return MaterialPageRoute(builder: (_) => const VenueCreated());
       case RouteNames.viewMoreTeam:
         return MaterialPageRoute(builder: (_) => ViewMoreTeam());
       case RouteNames.preferredSports:
-        return MaterialPageRoute(builder: (_) => PreferredSports());
+        return MaterialPageRoute(builder: (_) => const PreferredSports());
       case RouteNames.sportExperience:
-        return MaterialPageRoute(builder: (_) => SportExperience());
+        return MaterialPageRoute(builder: (_) => const SportExperience());
       case RouteNames.editPitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EditPitchDetail(
+            builder: (_) =>
+                EditPitchDetail(
                   detail: detail,
                 ));
       case RouteNames.venueDetailScreen:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => VenueDetailScreen(
+            builder: (_) =>
+                VenueDetailScreen(
                   detail: detail as Map,
                 ));
       case RouteNames.specificSportsScreen:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => SpecificSportsScreen(
+            builder: (_) =>
+                SpecificSportsScreen(
                   detail: detail as Map,
                 ));
       case RouteNames.viewMoreVenue:
@@ -461,7 +498,8 @@ class RouterPage {
 
       default:
         return MaterialPageRoute(
-            builder: (_) => Scaffold(
+            builder: (_) =>
+                Scaffold(
                   body: Center(
                       child: Text('No route defined for ${settings.name}')),
                 ));

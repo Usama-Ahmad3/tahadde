@@ -7,23 +7,28 @@ import '../../../homeFile/routingConstant.dart';
 import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
+import '../../../newStructure/view/player/HomeScreen/profileScreen/emailContactsFields.dart';
+import '../../../newStructure/view/player/HomeScreen/profileScreen/passwordSecurityFields.dart';
 import 'profileEmpty.dart';
 
 class ProfileScreen extends StatefulWidget {
   String msg;
+
   ProfileScreen({required this.msg});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveClientMixin {
-  bool? _internet;
+class _ProfileScreenState extends State<ProfileScreen>
+    with AutomaticKeepAliveClientMixin {
+  bool _internet = true;
   final NetworkCalls _networkCalls = NetworkCalls();
-  final scaffoldkey = GlobalKey<ScaffoldState>();
   bool _isLoading = true;
   late bool _auth;
   Map? profileDetail;
   SharedPreferences? pref;
+
   loadProfile() async {
     _auth = (await checkAuthorizaton())!;
     _auth
@@ -51,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
           };
   }
 
-  Future onWillPop(String description,bool isLogout) {
+  Future onWillPop(String description, bool isLogout) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -70,35 +75,37 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                 onPressed: () {
                   _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
                     if (msg == true) {
-                     if(isLogout) {_networkCalls.logout(
-                       onSuccess: (msg) {
-                         _networkCalls.clearToken(key: 'token');
-                         _networkCalls.clearToken(key: 'role');
-                         _networkCalls.clearToken(key: "auth");
-                         navigateToHome();
-                       },
-                       onFailure: (msg) {
-                         showMessage(msg);
-                       },
-                       tokenExpire: () {
-                         if (mounted) on401(context);
-                       },
-                     );}else{
-                       _networkCalls.deleteAccount(
-                         onSuccess: (msg) {
-                           _networkCalls.clearToken(key: 'token');
-                           _networkCalls.clearToken(key: 'role');
-                           _networkCalls.clearToken(key: "auth");
-                           navigateToHome();
-                         },
-                         onFailure: (msg) {
-                           showMessage(msg);
-                         },
-                         tokenExpire: () {
-                           if (mounted) on401(context);
-                         },
-                       );
-                     }
+                      if (isLogout) {
+                        _networkCalls.logout(
+                          onSuccess: (msg) {
+                            _networkCalls.clearToken(key: 'token');
+                            _networkCalls.clearToken(key: 'role');
+                            _networkCalls.clearToken(key: "auth");
+                            navigateToHome();
+                          },
+                          onFailure: (msg) {
+                            showMessage(msg);
+                          },
+                          tokenExpire: () {
+                            if (mounted) on401(context);
+                          },
+                        );
+                      } else {
+                        _networkCalls.deleteAccount(
+                          onSuccess: (msg) {
+                            _networkCalls.clearToken(key: 'token');
+                            _networkCalls.clearToken(key: 'role');
+                            _networkCalls.clearToken(key: "auth");
+                            navigateToHome();
+                          },
+                          onFailure: (msg) {
+                            showMessage(msg);
+                          },
+                          tokenExpire: () {
+                            if (mounted) on401(context);
+                          },
+                        );
+                      }
                     } else {
                       if (mounted) {
                         showMessage(
@@ -115,6 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
 
   @override
   bool get wantKeepAlive => true;
+
   @override
   void initState() {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
@@ -142,13 +150,13 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
     return Material(
         child: _isLoading
             ? _buildShimmer(sizeWidth, sizeHeight)
-            : _internet!
+            : _internet
                 ? _auth
                     ? Scaffold(
                         appBar: AppBar(
                           title: Text(AppLocalizations.of(context)!.profile),
-                              backgroundColor: const Color(0XFF032040),
-                            ),
+                          backgroundColor: const Color(0XFF032040),
+                        ),
                         body: Container(
                           height: sizeHeight,
                           width: sizeWidth,
@@ -164,7 +172,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                         image: AppLocalizations.of(context)!
                                                     .locale ==
                                                 "en"
-                                            ? const AssetImage('assets/images/header.png')
+                                            ? const AssetImage(
+                                                'assets/images/header.png')
                                             : const AssetImage(
                                                 'assets/images/arabicHeader.png'),
                                         fit: BoxFit.cover)),
@@ -257,7 +266,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                   height: sizeHeight * .65,
                                   color: const Color(0XFFF0F0F0),
                                   child: ListView(
-                                    padding:  const EdgeInsets.symmetric(horizontal: 20),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
                                     children: [
                                       Container(
                                         height: sizeHeight * .02,
@@ -265,7 +275,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       Material(
                                         elevation: 5,
                                         color: const Color(0XFFFFFFFF),
-                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20.0)),
                                         child: SizedBox(
                                           height: sizeHeight * .2,
                                           child: Padding(
@@ -287,12 +298,11 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                                               context)!
                                                           .personalDetail,
                                                       style: const TextStyle(
-                                                          color: Color(
-                                                              0XFF032040),
+                                                          color:
+                                                              Color(0XFF032040),
                                                           fontSize: 14,
                                                           fontWeight:
-                                                          FontWeight
-                                                              .bold),
+                                                              FontWeight.bold),
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
@@ -397,21 +407,26 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       Container(
                                         height: sizeHeight * .02,
                                       ),
-
                                       Material(
                                         color: const Color(0XFFFFFFFF),
-                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20.0)),
                                         elevation: 5,
                                         child: InkWell(
                                           onTap: () {
                                             navigateToMyInterest();
                                           },
                                           splashColor: Colors.black,
-                                          child:cardWidget(sizeWidth: sizeWidth,sizeHeight: sizeHeight,title:AppLocalizations.of(
-                                              context)!
-                                              .myInterest,image: Icons.favorite,description:AppLocalizations.of(
-                                              context)!
-                                              .viewInterest  ),
+                                          child: cardWidget(
+                                              sizeWidth: sizeWidth,
+                                              sizeHeight: sizeHeight,
+                                              title:
+                                                  AppLocalizations.of(context)!
+                                                      .myInterest,
+                                              image: Icons.favorite,
+                                              description:
+                                                  AppLocalizations.of(context)!
+                                                      .viewInterest),
                                         ),
                                       ),
                                       Container(
@@ -419,18 +434,25 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       ),
                                       Material(
                                         color: const Color(0XFFFFFFFF),
-                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20.0)),
                                         elevation: 5,
                                         child: InkWell(
                                           splashColor: Colors.black,
                                           onTap: () {
                                             navigateToMyBooking();
                                           },
-                                          child: cardWidget(sizeWidth: sizeWidth,sizeHeight: sizeHeight,title:AppLocalizations.of(
-                                              context)!
-                                              .myBooking,image: Icons.calendar_today,description:AppLocalizations.of(
-                                              context)!
-                                              .viewbook ,color:Colors.green ),
+                                          child: cardWidget(
+                                              sizeWidth: sizeWidth,
+                                              sizeHeight: sizeHeight,
+                                              title:
+                                                  AppLocalizations.of(context)!
+                                                      .myBooking,
+                                              image: Icons.calendar_today,
+                                              description:
+                                                  AppLocalizations.of(context)!
+                                                      .viewbook,
+                                              color: Colors.green),
                                         ),
                                       ),
                                       Container(
@@ -438,18 +460,25 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       ),
                                       Material(
                                         color: const Color(0XFFFFFFFF),
-                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20.0)),
                                         elevation: 5,
                                         child: InkWell(
                                           splashColor: Colors.black,
                                           onTap: () {
                                             navigateToRate();
                                           },
-                                          child: cardWidget(sizeWidth: sizeWidth,sizeHeight: sizeHeight,title:AppLocalizations.of(
-                                              context)!
-                                              .ratingsReviews,image: Icons.calendar_today,description:AppLocalizations.of(
-                                              context)!
-                                              .addreviewspitchyouhaveplayedon ,color:Colors.green ),
+                                          child: cardWidget(
+                                              sizeWidth: sizeWidth,
+                                              sizeHeight: sizeHeight,
+                                              title:
+                                                  AppLocalizations.of(context)!
+                                                      .ratingsReviews,
+                                              image: Icons.calendar_today,
+                                              description: AppLocalizations.of(
+                                                      context)!
+                                                  .addreviewspitchyouhaveplayedon,
+                                              color: Colors.green),
                                         ),
                                       ),
                                       Container(
@@ -457,10 +486,10 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       ),
                                       SizedBox(
                                         height: sizeHeight * .06,
-
                                         child: Material(
                                           color: const Color(0XFFFFFFFF),
-                                          borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20.0)),
                                           elevation: 5,
                                           child: InkWell(
                                             splashColor: Colors.grey,
@@ -482,7 +511,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       ),
                                       Material(
                                         color: const Color(0XFFFFFFFF),
-                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20.0)),
                                         elevation: 5,
                                         child: InkWell(
                                           splashColor: Colors.grey,
@@ -500,7 +530,10 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                                     color: Color(0XFFD0021B)),
                                               )),
                                           onTap: () {
-                                            onWillPop(AppLocalizations.of(context)!.youGoingLogout,true);
+                                            onWillPop(
+                                                AppLocalizations.of(context)!
+                                                    .youGoingLogout,
+                                                true);
                                           },
                                         ),
                                       ),
@@ -509,24 +542,29 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       ),
                                       Material(
                                         color: const Color(0XFFFFFFFF),
-                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20.0)),
                                         elevation: 5,
                                         child: InkWell(
                                           splashColor: Colors.grey,
                                           child: Container(
-                                            //color: Colors.white,
+                                              //color: Colors.white,
                                               alignment: Alignment.center,
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
                                               height: sizeHeight * .06,
                                               child: Text(
-                                                AppLocalizations.of(context)!.deleteAccount,
+                                                AppLocalizations.of(context)!
+                                                    .deleteAccount,
                                                 style: const TextStyle(
                                                     color: Color(0XFFD0021B)),
                                               )),
                                           onTap: () {
-                                            onWillPop(  AppLocalizations.of(context)!.youGoingDeleteAccount,false);
+                                            onWillPop(
+                                                AppLocalizations.of(context)!
+                                                    .youGoingDeleteAccount,
+                                                false);
                                           },
                                         ),
                                       ),
@@ -662,7 +700,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                       Material(
                         elevation: 5,
                         color: const Color(0XFFFFFFFF),
-                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
                         child: SizedBox(
                           height: sizeHeight * .2,
                           child: Padding(
@@ -677,7 +716,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
-                                      AppLocalizations.of(context)!.personalDetail,
+                                      AppLocalizations.of(context)!
+                                          .personalDetail,
                                       style: const TextStyle(
                                           color: Color(0XFF032040),
                                           fontSize: 12,
@@ -747,7 +787,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                       Material(
                         elevation: 5,
                         color: const Color(0XFFFFFFFF),
-                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
                         child: SizedBox(
                           height: sizeHeight * .13,
                           child: Padding(
@@ -792,7 +833,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                       Material(
                         elevation: 5,
                         color: const Color(0XFFFFFFFF),
-                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
                         child: SizedBox(
                           height: sizeHeight * .13,
                           child: Padding(
@@ -837,7 +879,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                       Material(
                         elevation: 5,
                         color: const Color(0XFFFFFFFF),
-                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
                         child: SizedBox(
                           height: sizeHeight * .13,
                           child: Padding(
@@ -936,7 +979,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                       Material(
                         elevation: 5,
                         color: const Color(0XFFFFFFFF),
-                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
                         child: SizedBox(
                           height: sizeHeight * .06,
                           child: Material(
@@ -955,7 +999,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                       Material(
                         elevation: 5,
                         color: const Color(0XFFFFFFFF),
-                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
                         child: InkWell(
                           splashColor: Colors.grey,
                           child: Container(
@@ -965,7 +1010,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                               height: sizeHeight * .06,
                               child: Text(
                                 AppLocalizations.of(context)!.logout,
-                                style: const TextStyle(color: Color(0XFFD0021B)),
+                                style:
+                                    const TextStyle(color: Color(0XFFD0021B)),
                               )),
                           onTap: () {
                             //onWillPop();
@@ -987,7 +1033,8 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
   }
 
   void navigateToHome() {
-    Navigator.pushNamedAndRemoveUntil(context, RouteNames.playerHome, (r) => false);
+    Navigator.pushNamedAndRemoveUntil(
+        context, RouteNames.playerHome, (r) => false);
   }
 
   void navigateToDetail() {
@@ -1013,52 +1060,49 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
   // void navigateToSavePayment() {
   //   Navigator.pushNamed(context, savePayment);
   // }
-cardWidget({sizeWidth, sizeHeight,String? title,IconData? image,String? description,Color? color,String? imageIcon}){
+  cardWidget(
+      {sizeWidth,
+      sizeHeight,
+      String? title,
+      IconData? image,
+      String? description,
+      Color? color,
+      String? imageIcon}) {
     return SizedBox(
       height: sizeHeight * .13,
       child: Padding(
-        padding: EdgeInsets.only(
-            left: sizeWidth * .06,
-            right: sizeWidth * .06),
+        padding: EdgeInsets.only(left: sizeWidth * .06, right: sizeWidth * .06),
         child: Column(
-          crossAxisAlignment:
-          CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             flaxibleGap(2),
             Row(
-              mainAxisAlignment:
-              MainAxisAlignment
-                  .spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   title!,
                   style: const TextStyle(
-                      color: Color(
-                          0XFF032040),
+                      color: Color(0XFF032040),
                       fontSize: 14,
-                      fontWeight:
-                      FontWeight
-                          .bold),
+                      fontWeight: FontWeight.bold),
                 ),
-                imageIcon !=null?Image.asset(
-                    "assets/images/star.png"):Icon(
-                  image,
-                  color: color??Colors.red,
-                )
+                imageIcon != null
+                    ? Image.asset("assets/images/star.png")
+                    : Icon(
+                        image,
+                        color: color ?? Colors.red,
+                      )
               ],
             ),
             flaxibleGap(2),
             Text(
               description!,
-              style: const TextStyle(
-                  color:
-                  Color(0XFF7A7A7A),
-                  fontSize: 12),
+              style: const TextStyle(color: Color(0XFF7A7A7A), fontSize: 12),
             ),
             flaxibleGap(2),
           ],
         ),
       ),
     );
-}
+  }
 }

@@ -48,6 +48,7 @@ class _EditProfileState extends State<EditProfile> {
   List<String> playerPostion = [];
   List<String> playerPostionSlug = [];
   OverlayEntry? overlayEntry;
+
   showOverlay(BuildContext context) {
     if (overlayEntry != null) return;
     OverlayState overlayState = Overlay.of(context);
@@ -254,6 +255,7 @@ class _EditProfileState extends State<EditProfile> {
           );
         },
       );
+
   @override
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
@@ -849,7 +851,7 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   void navigateToProfile() {
-    Navigator.pushReplacementNamed(context, RouteNames.profile);
+    Navigator.pushReplacementNamed(context, RouteNames.profileDetail);
   }
 
   _openGallery(BuildContext context) async {

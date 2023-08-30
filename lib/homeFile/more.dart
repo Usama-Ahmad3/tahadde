@@ -8,6 +8,9 @@ import '../common_widgets/internet_loss.dart';
 import '../common_widgets/localeHelper.dart';
 import '../localizations.dart';
 import '../network/network_calls.dart';
+import '../newStructure/view/light-design/booking-details.dart';
+import '../newStructure/view/light-design/ground-details.dart';
+import '../newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'routingConstant.dart';
 import 'utility.dart';
 
@@ -21,6 +24,7 @@ class _MoreState extends State<More> {
   late bool _auth;
   String msg =
       'hello,this is my App:https://tahadde.page.link?link=https://www.google.com/&apn=com.root.tahadde';
+
   // String base64Image =
   //     "https://tahadde.page.link?link=https://www.google.com/&apn=com.root.tahadde";
   NetworkCalls _networkCalls = NetworkCalls();
@@ -29,6 +33,7 @@ class _MoreState extends State<More> {
   bool _isLoading = true;
   late Map profileDetail;
   late SharedPreferences pref;
+
   privacyPolicy() async {
     _networkCalls.privacyPolicy(
       onSuccess: (msg) {
@@ -92,437 +97,480 @@ class _MoreState extends State<More> {
           _isLoading
               ? _buildLoadingShimmer(sizeWidth)
               : _internet
-                  ?  Expanded(
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * .5,
-                            width: MediaQuery.of(context).size.width,
-                            color: const Color(0XFFD6D6D6),
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 40,),
-                                _auth
-                                    ? Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                                  child: Container(
-                                    color: const Color(0XFFFFFFFF),
-                                    height:MediaQuery.of(context).size.height * .5,
-                                    child: Column(
-                                      children: <Widget>[
-                                        flaxibleGap(1),
-                                        // Padding(
-                                        //   padding: EdgeInsets.symmetric(
-                                        //     horizontal: 10,
-                                        //   ),
-                                        //   child: Row(
-                                        //     children: <Widget>[
-                                        //       Image.asset(
-                                        //         'images/rate.png',
-                                        //         height: 22,
-                                        //         width: 60,
-                                        //       ),
-                                        //       Container(
-                                        //         width: 5,
-                                        //       ),
-                                        //       Text(
-                                        //         AppLocalizations.of(context)
-                                        //             .rateApp,
-                                        //         style: TextStyle(
-                                        //             fontFamily: 'Poppins',
-                                        //             fontSize: 14,
-                                        //             color: Color(0XFF4A4A4A),
-                                        //             fontWeight: FontWeight.w600),
-                                        //       )
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        // flaxibleGap(2),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              _settingModalBottomSheet(
-                                                  context, sizeHeight);
-                                              // navigateToContectUs();
-                                            },
-                                            child: Row(
-                                              children: <Widget>[
-                                                Image.asset(
-                                                  'assets/images/call.png',
-                                                  height: 22,
-                                                  width: 60,
-                                                ),
-                                                Container(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .contectUs,
-                                                  style: const TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 14,
-                                                      color: Color(0XFF4A4A4A),
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        flaxibleGap(2),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              privacyPolicy();
-                                            },
-                                            child: Row(
-                                              children: <Widget>[
-                                                Image.asset(
-                                                  'assets/images/setting.png',
-                                                  height: 22,
-                                                  width: 60,
-                                                ),
-                                                Container(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .ourPolicy,
-                                                  style: const TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 14,
-                                                      color: Color(0XFF4A4A4A),
-                                                      fontWeight: FontWeight.w600),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        flaxibleGap(1),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Image.asset(
-                                                'assets/images/earth.png',
-                                                height: 22,
-                                                width: 60,
-                                              ),
-                                              Container(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .language,
-                                                style: const TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 14,
-                                                    color: Color(0XFF4A4A4A),
-                                                    fontWeight: FontWeight.w600),
-                                              ),
-                                              flaxibleGap(6),
-                                              isSwitched
-                                                  ? const Text('Ar',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      color: Color(0XFFB7B7B7)))
-                                                  : const Text('Ar',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      color:
-                                                      Color(0xFF032040))),
-                                              Switch(
-                                                value: isSwitched,
-                                                onChanged: (value) {
-                                                  if (mounted) {
-                                                    setState(() {
-                                                      isSwitched = value;
-                                                      isSwitched
-                                                          ? helper.onLocaleChanged(
-                                                          const Locale("en"))
-                                                          : helper.onLocaleChanged(
-                                                          const Locale("ar"));
-                                                    });
-                                                  }
-                                                },
-                                                activeColor: const Color(0xFF032040),
-                                                inactiveThumbColor:
-                                                const Color(0xFF032040),
-                                              ),
-                                              isSwitched
-                                                  ? const Text(
-                                                'En',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    color: Color(0xFF032040)),
-                                              )
-                                                  : const Text('En',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      color:
-                                                      Color(0XFFB7B7B7))),
-                                              flaxibleGap(1),
-                                            ],
-                                          ),
-                                        ),
-                                        flaxibleGap(15),
-                                      ],
-                                    ),
-                                  ),
-                                ):Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                                  child: Container(
-                                    color: const Color(0XFFFFFFFF),
-                                    height:MediaQuery.of(context).size.height * .5,
-                                    child: Column(
-                                      children: <Widget>[
-                                        flaxibleGap(3),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.symmetric(horizontal: 10),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Image.asset(
-                                                'assets/images/login.png',
-                                                height: 22,
-                                                width: 60,
-                                              ),
-                                              Container(
-                                                width: 5,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  navigateToDetail();
-                                                },
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .login,
-                                                  style: const TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 14,
-                                                      color: Color(0XFF4A4A4A),
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        flaxibleGap(2),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Image.asset(
-                                                'assets/images/signup.png',
-                                                height: 22,
-                                                width: 60,
-                                              ),
-                                              Container(
-                                                width: 5,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  navigateToDetail1();
-                                                },
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .signUp,
-                                                  style: const TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 14,
-                                                      color: Color(0XFF4A4A4A),
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        // flaxibleGap(2),
-                                        // Padding(
-                                        //   padding:
-                                        //       EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: Row(
-                                        //     children: <Widget>[
-                                        //       Image.asset(
-                                        //         'images/rate.png',
-                                        //         height: 22,
-                                        //         width: 60,
-                                        //       ),
-                                        //       Container(
-                                        //         width: 5,
-                                        //       ),
-                                        //       Text(
-                                        //         AppLocalizations.of(context)
-                                        //             .rateApp,
-                                        //         style: TextStyle(
-                                        //             fontFamily: 'Poppins',
-                                        //             fontSize: 14,
-                                        //             color: Color(0XFF4A4A4A),
-                                        //             fontWeight: FontWeight.w600),
-                                        //       )
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        flaxibleGap(2),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              _settingModalBottomSheet(
-                                                  context, sizeHeight);
-                                              //  navigateToContectUs();
-                                            },
-                                            child: Row(
-                                              children: <Widget>[
-                                                Image.asset(
-                                                  'assets/images/call.png',
-                                                  height: 22,
-                                                  width: 60,
-                                                ),
-                                                Container(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .contectUs,
-                                                  style: const TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 14,
-                                                      color: Color(0XFF4A4A4A),
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        flaxibleGap(2),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              privacyPolicy();
-                                            },
-                                            child: Row(
-                                              children: <Widget>[
-                                                Image.asset(
-                                                  'assets/images/setting.png',
-                                                  height: 22,
-                                                  width: 60,
-                                                ),
-                                                Container(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .ourPolicy,
-                                                  style: const TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 14,
-                                                      color: Color(0XFF4A4A4A),
-                                                      fontWeight: FontWeight.w600),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        flaxibleGap(1),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Image.asset(
-                                                'assets/images/earth.png',
-                                                height: 22,
-                                                width: 60,
-                                              ),
-                                              Container(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .language,
-                                                style: const TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 14,
-                                                    color: Color(0XFF4A4A4A),
-                                                    fontWeight: FontWeight.w600),
-                                              ),
-                                              flaxibleGap(6),
-                                              isSwitched
-                                                  ? const Text('Ar',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Color(0XFFB7B7B7)))
-                                                  : const Text('Ar',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color:
-                                                              Color(0xFF032040))),
-                                              Switch(
-                                                value: isSwitched,
-                                                onChanged: (value) {
-                                                  if (mounted) {
-                                                    setState(() {
-                                                      isSwitched = value;
-                                                      isSwitched
-                                                          ? helper.onLocaleChanged(
-                                                              const Locale("en"))
-                                                          : helper.onLocaleChanged(
-                                                              const Locale("ar"));
-                                                    });
-                                                  }
-                                                },
-                                                activeColor: const Color(0xFF032040),
-                                                inactiveThumbColor:
-                                                    const Color(0xFF032040),
-                                              ),
-                                              isSwitched
-                                                  ? const Text(
-                                                      'En',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Color(0xFF032040)),
-                                                    )
-                                                  : const Text('En',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color:
-                                                              Color(0XFFB7B7B7))),
-                                              flaxibleGap(1),
-                                            ],
-                                          ),
-                                        ),
-                                        flaxibleGap(10),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                flaxibleGap(4),
-                              ],
+                  ? Expanded(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .5,
+                        width: MediaQuery.of(context).size.width,
+                        color: const Color(0XFFD6D6D6),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 40,
                             ),
-                          ),
-                        )
+                            _auth
+                                ? Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30.0),
+                                    child: Container(
+                                      color: const Color(0XFFFFFFFF),
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .5,
+                                      child: Column(
+                                        children: <Widget>[
+                                          flaxibleGap(1),
+                                          // Padding(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //     horizontal: 10,
+                                          //   ),
+                                          //   child: Row(
+                                          //     children: <Widget>[
+                                          //       Image.asset(
+                                          //         'images/rate.png',
+                                          //         height: 22,
+                                          //         width: 60,
+                                          //       ),
+                                          //       Container(
+                                          //         width: 5,
+                                          //       ),
+                                          //       Text(
+                                          //         AppLocalizations.of(context)
+                                          //             .rateApp,
+                                          //         style: TextStyle(
+                                          //             fontFamily: 'Poppins',
+                                          //             fontSize: 14,
+                                          //             color: Color(0XFF4A4A4A),
+                                          //             fontWeight: FontWeight.w600),
+                                          //       )
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // flaxibleGap(2),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                _settingModalBottomSheet(
+                                                    context, sizeHeight);
+                                                // navigateToContectUs();
+                                              },
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Image.asset(
+                                                    'assets/images/call.png',
+                                                    height: 22,
+                                                    width: 60,
+                                                  ),
+                                                  Container(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .contectUs,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0XFF4A4A4A),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          flaxibleGap(2),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                privacyPolicy();
+                                              },
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Image.asset(
+                                                    'assets/images/setting.png',
+                                                    height: 22,
+                                                    width: 60,
+                                                  ),
+                                                  Container(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .ourPolicy,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0XFF4A4A4A),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          flaxibleGap(1),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Image.asset(
+                                                  'assets/images/earth.png',
+                                                  height: 22,
+                                                  width: 60,
+                                                ),
+                                                Container(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .language,
+                                                  style: const TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 14,
+                                                      color: Color(0XFF4A4A4A),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                flaxibleGap(6),
+                                                isSwitched
+                                                    ? const Text('Ar',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0XFFB7B7B7)))
+                                                    : const Text('Ar',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0xFF032040))),
+                                                Switch(
+                                                  value: isSwitched,
+                                                  onChanged: (value) {
+                                                    if (mounted) {
+                                                      setState(() {
+                                                        isSwitched = value;
+                                                        isSwitched
+                                                            ? helper
+                                                                .onLocaleChanged(
+                                                                    const Locale(
+                                                                        "en"))
+                                                            : helper
+                                                                .onLocaleChanged(
+                                                                    const Locale(
+                                                                        "ar"));
+                                                      });
+                                                    }
+                                                  },
+                                                  activeColor:
+                                                      const Color(0xFF032040),
+                                                  inactiveThumbColor:
+                                                      const Color(0xFF032040),
+                                                ),
+                                                isSwitched
+                                                    ? const Text(
+                                                        'En',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0xFF032040)),
+                                                      )
+                                                    : const Text('En',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0XFFB7B7B7))),
+                                                flaxibleGap(1),
+                                              ],
+                                            ),
+                                          ),
+                                          flaxibleGap(15),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30.0),
+                                    child: Container(
+                                      color: const Color(0XFFFFFFFF),
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .5,
+                                      child: Column(
+                                        children: <Widget>[
+                                          flaxibleGap(3),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Image.asset(
+                                                  'assets/images/login.png',
+                                                  height: 22,
+                                                  width: 60,
+                                                ),
+                                                Container(
+                                                  width: 5,
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    navigateToDetail();
+                                                  },
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .login,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0XFF4A4A4A),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          flaxibleGap(2),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Image.asset(
+                                                  'assets/images/signup.png',
+                                                  height: 22,
+                                                  width: 60,
+                                                ),
+                                                Container(
+                                                  width: 5,
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    navigateToDetail1();
+                                                  },
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .signUp,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0XFF4A4A4A),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          // flaxibleGap(2),
+                                          // Padding(
+                                          //   padding:
+                                          //       EdgeInsets.symmetric(horizontal: 10),
+                                          //   child: Row(
+                                          //     children: <Widget>[
+                                          //       Image.asset(
+                                          //         'images/rate.png',
+                                          //         height: 22,
+                                          //         width: 60,
+                                          //       ),
+                                          //       Container(
+                                          //         width: 5,
+                                          //       ),
+                                          //       Text(
+                                          //         AppLocalizations.of(context)
+                                          //             .rateApp,
+                                          //         style: TextStyle(
+                                          //             fontFamily: 'Poppins',
+                                          //             fontSize: 14,
+                                          //             color: Color(0XFF4A4A4A),
+                                          //             fontWeight: FontWeight.w600),
+                                          //       )
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          flaxibleGap(2),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                _settingModalBottomSheet(
+                                                    context, sizeHeight);
+                                                //  navigateToContectUs();
+                                              },
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Image.asset(
+                                                    'assets/images/call.png',
+                                                    height: 22,
+                                                    width: 60,
+                                                  ),
+                                                  Container(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .contectUs,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0XFF4A4A4A),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          flaxibleGap(2),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                privacyPolicy();
+                                              },
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Image.asset(
+                                                    'assets/images/setting.png',
+                                                    height: 22,
+                                                    width: 60,
+                                                  ),
+                                                  Container(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .ourPolicy,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0XFF4A4A4A),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          flaxibleGap(1),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Image.asset(
+                                                  'assets/images/earth.png',
+                                                  height: 22,
+                                                  width: 60,
+                                                ),
+                                                Container(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .language,
+                                                  style: const TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 14,
+                                                      color: Color(0XFF4A4A4A),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                flaxibleGap(6),
+                                                isSwitched
+                                                    ? const Text('Ar',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0XFFB7B7B7)))
+                                                    : const Text('Ar',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0xFF032040))),
+                                                Switch(
+                                                  value: isSwitched,
+                                                  onChanged: (value) {
+                                                    if (mounted) {
+                                                      setState(() {
+                                                        isSwitched = value;
+                                                        isSwitched
+                                                            ? helper
+                                                                .onLocaleChanged(
+                                                                    const Locale(
+                                                                        "en"))
+                                                            : helper
+                                                                .onLocaleChanged(
+                                                                    const Locale(
+                                                                        "ar"));
+                                                      });
+                                                    }
+                                                  },
+                                                  activeColor:
+                                                      const Color(0xFF032040),
+                                                  inactiveThumbColor:
+                                                      const Color(0xFF032040),
+                                                ),
+                                                isSwitched
+                                                    ? const Text(
+                                                        'En',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0xFF032040)),
+                                                      )
+                                                    : const Text('En',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Color(
+                                                                0XFFB7B7B7))),
+                                                flaxibleGap(1),
+                                              ],
+                                            ),
+                                          ),
+                                          flaxibleGap(10),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                            flaxibleGap(4),
+                          ],
+                        ),
+                      ),
+                    )
                   : Expanded(
                       child: Container(
                         height: sizeHeight * .5,
@@ -571,7 +619,8 @@ class _MoreState extends State<More> {
                                 padding: EdgeInsets.symmetric(vertical: 6.0),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 16, right: 16),
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 16),
                                 child: Container(
                                   width: sizeWidth,
                                   height: 150.0,
@@ -582,7 +631,8 @@ class _MoreState extends State<More> {
                                 padding: EdgeInsets.symmetric(vertical: 6.0),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 16, right: 16),
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 16),
                                 child: Container(
                                   width: sizeWidth,
                                   height: 100.0,
@@ -593,7 +643,8 @@ class _MoreState extends State<More> {
                                 padding: EdgeInsets.symmetric(vertical: 6.0),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 16, right: 16),
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 16),
                                 child: Container(
                                   width: sizeWidth,
                                   height: 100.0,
@@ -604,7 +655,8 @@ class _MoreState extends State<More> {
                                 padding: EdgeInsets.symmetric(vertical: 4.0),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 16, right: 16),
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 16),
                                 child: Container(
                                   width: sizeWidth,
                                   height: 160.0,
@@ -615,7 +667,8 @@ class _MoreState extends State<More> {
                                 padding: EdgeInsets.symmetric(vertical: 6.0),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 16, right: 16),
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 16),
                                 child: Container(
                                   width: sizeWidth,
                                   height: 20.0,
@@ -665,7 +718,8 @@ class _MoreState extends State<More> {
                   ),
                   Text(
                     AppLocalizations.of(context)!.contectUs,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   flaxibleGap(
                     1,

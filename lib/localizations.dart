@@ -111,7 +111,7 @@ class AppLocalizations {
   }
 
   String get morning {
-    return Intl.message('Good Morning', name: 'Good Morning');
+    return Intl.message('Good Morning', name: 'morning');
   }
 
   String get login {
