@@ -20,6 +20,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   double _currentIndexPage = 0;
+
+  // ignore: prefer_typing_uninitialized_variables
   var _tapPosition;
   String? country;
   String? city;
@@ -76,7 +78,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   loadVenues() async {
     await _networkCalls.bookpitch(
-      urldetail: '',
+      urldetail: null,
       onSuccess: (pitchInfo) {
         if (mounted) {
           setState(() {

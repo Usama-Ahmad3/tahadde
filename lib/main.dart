@@ -127,7 +127,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   late SpecificLocalizationDelegate _specificLocalizationDelegate;
   String? _language;
-  static ThemeMode mode = ThemeMode.light;
+  static ThemeMode mode = ThemeMode.system;
 
   @override
   void initState() {
@@ -163,7 +163,7 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(
         brightness: currentSystemBrightness,
         fontFamily: 'Poppins',
-        appBarTheme: const AppBarTheme(backgroundColor: Color(0XFF032040)),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black54),
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouterPage.generateRoute,

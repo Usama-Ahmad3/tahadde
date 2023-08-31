@@ -92,4 +92,5 @@ class RouteNames {
   ///
 
   static const String groundDetail = 'GroundDetail';
+  static const String bookingScreen = 'bookingScreen';
 }

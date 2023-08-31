@@ -108,7 +108,8 @@ class ShimmerWidgets {
                 bottom: 0,
                 left: 0,
                 right: 0,
-                child: VanueList(bookPitchData: []))
+                child: SizedBox(
+                    height: 500 * size, child: VanueList(bookPitchData: [])))
           ],
         ),
       ),
@@ -118,41 +119,36 @@ class ShimmerWidgets {
   Widget gameWidgetShimmer(double sizeWidth) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Material(
-          elevation: 5,
-          child: Shimmer.fromColors(
-            baseColor: Colors.grey.shade300,
-            highlightColor: Colors.grey.shade100,
-            enabled: true,
-            child: Container(
-              height: sizeWidth * 75,
-              width: double.infinity,
-              color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              child: ListView.builder(
-                  itemCount: 10,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: ((context, index) {
-                    return const Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Chip(
-                            avatar: CircleAvatar(
-                              radius: 30,
-                              backgroundColor: Colors.black12,
-                            ),
-                            backgroundColor: Colors.white10,
-                            elevation: 2,
-                            padding: EdgeInsets.all(10),
-                            label: Text('          '),
+        child: Shimmer.fromColors(
+          baseColor: Colors.grey.shade300,
+          highlightColor: Colors.grey.shade100,
+          enabled: true,
+          child: Container(
+            height: sizeWidth * 75,
+            width: double.infinity,
+            child: ListView.builder(
+                itemCount: 10,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: ((context, index) {
+                  return const Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 6.0),
+                        child: Chip(
+                          avatar: CircleAvatar(
+                            radius: 30,
+                            backgroundColor: Colors.black12,
                           ),
+                          backgroundColor: Colors.white10,
+                          elevation: 2,
+                          padding: EdgeInsets.all(10),
+                          label: Text('          '),
                         ),
-                      ],
-                    );
-                  })),
-            ),
+                      ),
+                    ],
+                  );
+                })),
           ),
         ));
   }

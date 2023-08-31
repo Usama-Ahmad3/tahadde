@@ -92,7 +92,6 @@ class _HomeScreenViewState extends State<HomeScreenView> {
           setState(() {
             // _isLoading = false;
             _promotionData = promotionInfo;
-            print(_promotionData);
           });
         }
       },
@@ -133,10 +132,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
-    double fem = MediaQuery
-        .of(context)
-        .size
-        .width / baseWidth;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return RefreshIndicator(
         displacement: 200,
@@ -163,171 +159,167 @@ class _HomeScreenViewState extends State<HomeScreenView> {
           body: _isLoading
               ? ShimmerWidgets().buildShimmer(fem, context, _bookPitchData)
               : _internet!
-              ? ListView(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  ///top widget
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: 20 * fem, bottom: 30 * fem),
-                    child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.spaceEvenly,
+                  ? ListView(
                       children: [
-                        InkWell(
-                          onTap: () {
-                            navigateToProfile();
-                          },
-                          child: CircleAvatar(
-                            radius: 23 * fem,
-                            backgroundColor: Colors.white10,
-                            child: Icon(
-                              Icons.person,
-                              color: Colors.white,
-                              size: 23 * fem,
-                            ),
-                          ),
-                        ),
                         Column(
-                          crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              AppLocalizations.of(context)!.tahaddi,
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 20 * ffem,
-                                fontWeight: FontWeight.w600,
-                                height: 1.25 * ffem / fem,
-                                letterSpacing: -0.2 * fem,
-                                color: const Color(0xffffffff),
+                            ///top widget
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: 20 * fem, bottom: 30 * fem),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      navigateToProfile();
+                                    },
+                                    child: CircleAvatar(
+                                      radius: 23 * fem,
+                                      backgroundColor: Colors.white10,
+                                      child: Icon(
+                                        Icons.person,
+                                        color: Colors.white,
+                                        size: 23 * fem,
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!.tahaddi,
+                                        style: SafeGoogleFont(
+                                          'Inter',
+                                          fontSize: 20 * ffem,
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.25 * ffem / fem,
+                                          letterSpacing: -0.2 * fem,
+                                          color: const Color(0xffffffff),
+                                        ),
+                                      ),
+                                      Text(
+                                        AppLocalizations.of(context)!.morning,
+                                        style: SafeGoogleFont(
+                                          'Inter',
+                                          fontSize: 13 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3846153846 * ffem / fem,
+                                          color: const Color(0xff999999),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  ///location
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, RouteNames.selectLocation);
+                                    },
+                                    child: Container(
+                                      width: 153 * fem,
+                                      height: 45 * fem,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff1e1e1e),
+                                        borderRadius:
+                                            BorderRadius.circular(16 * fem),
+                                      ),
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                          enabled: false,
+                                          label: Text(
+                                            AppLocalizations.of(context)!
+                                                        .locale ==
+                                                    "en"
+                                                ? city.toString()
+                                                : arabicCity.toString(),
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          border: InputBorder.none,
+                                          prefixIcon: Icon(
+                                            Icons.location_on_outlined,
+                                            color: Colors.white,
+                                            size: 20 * fem,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  CircleAvatar(
+                                    radius: 23 * fem,
+                                    backgroundColor: Colors.white10,
+                                    child: Icon(
+                                      Icons.search,
+                                      color: Colors.white,
+                                      size: 23 * fem,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Text(
-                              AppLocalizations.of(context)!.morning,
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 13 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.3846153846 * ffem / fem,
-                                color: const Color(0xff999999),
+                            Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: fem * 22.0),
+                              child: SizedBox(
+                                height: fem * 50,
+                                width: double.infinity,
+                                child: const Placeholder(),
                               ),
                             ),
+                            SizedBox(
+                              height: 15 * fem,
+                            ),
+
+                            ///category
+                            _sportsList.isEmpty
+                                ? const SizedBox.shrink()
+                                : SportList(
+                                    isSelected: isSelected,
+                                    sportsList: _sportsList,
+                                  ),
+                            _bookPitchData != null
+                                ? VanueList(bookPitchData: _bookPitchData)
+                                : const SizedBox.shrink(),
                           ],
                         ),
-
-                        ///location
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RouteNames.selectLocation);
-                          },
-                          child: Container(
-                            width: 153 * fem,
-                            height: 45 * fem,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff1e1e1e),
-                              borderRadius:
-                              BorderRadius.circular(16 * fem),
-                            ),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                enabled: false,
-                                label: Text(
-                                  AppLocalizations.of(context)!
-                                      .locale ==
-                                      "en"
-                                      ? city.toString()
-                                      : arabicCity.toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white),
-                                ),
-                                border: InputBorder.none,
-                                prefixIcon: Icon(
-                                  Icons.location_on_outlined,
-                                  color: Colors.white,
-                                  size: 20 * fem,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        CircleAvatar(
-                          radius: 23 * fem,
-                          backgroundColor: Colors.white10,
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.white,
-                            size: 23 * fem,
-                          ),
-                        ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                    EdgeInsets.symmetric(horizontal: fem * 22.0),
-                    child: SizedBox(
-                      height: fem * 50,
-                      width: double.infinity,
-                      child: const Placeholder(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15 * fem,
-                  ),
-
-                  ///category
-                  _sportsList.isEmpty
-                      ? const SizedBox.shrink()
-                      : SportList(
-                    isSelected: isSelected,
-                    sportsList: _sportsList,
-                  ),
-                  _bookPitchData != null
-                      ? VanueList(bookPitchData: _bookPitchData)
-                      : const SizedBox.shrink(),
-                ],
-              ),
-            ],
-          )
-              : SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height,
-                  child: InternetLoss(
-                    onChange: () {
-                      _networkCalls.checkInternetConnectivity(
-                          onSuccess: (msg) {
-                            _internet = msg;
-                            if (msg == true) {
-                              if (mounted) {
-                                setState(() {
-                                  _isLoading = true;
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            height: MediaQuery.of(context).size.height,
+                            child: InternetLoss(
+                              onChange: () {
+                                _networkCalls.checkInternetConnectivity(
+                                    onSuccess: (msg) {
+                                  _internet = msg;
+                                  if (msg == true) {
+                                    if (mounted) {
+                                      setState(() {
+                                        _isLoading = true;
+                                      });
+                                    }
+                                    loadVenues();
+                                    getAddress();
+                                    getSports();
+                                    getPromotion();
+                                  } else {
+                                    setState(() {});
+                                  }
                                 });
-                              }
-                              loadVenues();
-                              getAddress();
-                              getSports();
-                              getPromotion();
-                            } else {
-                              setState(() {});
-                            }
-                          });
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
         ));
   }
 

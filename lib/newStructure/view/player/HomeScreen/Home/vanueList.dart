@@ -61,16 +61,21 @@ class _VanueListState extends State<VanueList> {
                               : Color(0xffffffff)),
                     ),
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.viewAll,
-                    style: SafeGoogleFont(
-                      'Inter',
-                      fontSize: 13 * ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.3846153846 * ffem / fem,
-                      color: mode == ThemeMode.light
-                          ? Color(0xff686868)
-                          : Colors.white70,
+                  InkWell(
+                    onTap: () {
+                      navigateToViewMorePitch(widget.bookPitchData);
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.viewAll,
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 13 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.3846153846 * ffem / fem,
+                        color: mode == ThemeMode.light
+                            ? Color(0xff686868)
+                            : Colors.white70,
+                      ),
                     ),
                   ),
                 ],
@@ -188,5 +193,9 @@ class _VanueListState extends State<VanueList> {
 
   void navigateToGroundDetail(Map detail) {
     Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
+  }
+
+  void navigateToViewMorePitch(Map detail) {
+    Navigator.pushNamed(context, RouteNames.viewMore, arguments: detail);
   }
 }
