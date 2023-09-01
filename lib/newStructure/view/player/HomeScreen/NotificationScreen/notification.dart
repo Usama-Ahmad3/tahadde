@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/NotificationScreen/notificationShimmer.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
 import '../../../../../homeFile/utility.dart';
@@ -117,7 +117,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   child: ListView.builder(
                     itemBuilder: (_, __) => Padding(
                       padding: const EdgeInsets.only(bottom: 8.0, top: 5),
-                      child: _shimmerCard(),
+                      child: NotificationShimmer.shimmerCard(),
                     ),
                     itemCount: 5,
                   ),
@@ -218,8 +218,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         topLeft: Radius.circular(30 * fem)),
                                     // ignore: prefer_const_constructors
                                     color: mode == ThemeMode.light
-                                        ? Color(0xfff2f2f2)
-                                        : Color(0xff686868),
+                                        ? const Color(0xfff2f2f2)
+                                        : const Color(0xff686868),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.only(top: 8.0 * fem),
@@ -236,7 +236,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                             child: Align(
                                               alignment: Alignment.topLeft,
                                               child: Text(
-                                                'New',
+                                                AppLocalizations.of(context)!
+                                                    .newC,
                                                 textAlign: TextAlign.center,
                                                 style: SafeGoogleFont(
                                                   'Inter',
@@ -245,8 +246,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                   height:
                                                       1.3333333333 * ffem / fem,
                                                   color: mode == ThemeMode.light
-                                                      ? Color(0xff686868)
-                                                      : Color(0xffffffff),
+                                                      ? const Color(0xff686868)
+                                                      : const Color(0xffffffff),
                                                 ),
                                               ),
                                             ),
@@ -283,13 +284,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                           color: mode ==
                                                                   ThemeMode
                                                                       .light
-                                                              ? Color(
+                                                              ? const Color(
                                                                   0xffffffff)
                                                               : Colors.grey),
                                                       color: mode ==
                                                               ThemeMode.light
-                                                          ? Color(0xffffffff)
-                                                          : Color(0xff686868),
+                                                          ? const Color(
+                                                              0xffffffff)
+                                                          : const Color(
+                                                              0xff686868),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15 * fem),
@@ -395,9 +398,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                     color: mode ==
                                                                             ThemeMode
                                                                                 .light
-                                                                        ? Color(
+                                                                        ? const Color(
                                                                             0xff050505)
-                                                                        : Color(
+                                                                        : const Color(
                                                                             0xffffffff),
                                                                   ),
                                                                 ),
@@ -437,9 +440,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                             color: mode ==
                                                                     ThemeMode
                                                                         .light
-                                                                ? Color(
+                                                                ? const Color(
                                                                     0xff050505)
-                                                                : Color(
+                                                                : const Color(
                                                                     0xffffffff),
                                                           ),
                                                         ),
@@ -518,86 +521,5 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ),
                     ),
         ));
-  }
-
-  Widget _shimmerCard() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
-        height: 80,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5.0) //
-
-              ),
-        ),
-        child: Row(
-          children: <Widget>[
-            Shimmer.fromColors(
-              baseColor: Colors.grey.shade300,
-              highlightColor: Colors.grey.shade100,
-              enabled: true,
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  // image: Image.network(profileDetail.profile_pic),
-                ),
-              ),
-            ),
-            flaxibleGap(2),
-            Container(
-              height: 40,
-              width: 1,
-              color: const Color(0XFFD8D8D8),
-            ),
-            flaxibleGap(2),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Shimmer.fromColors(
-                  baseColor: Colors.grey.shade300,
-                  highlightColor: Colors.grey.shade100,
-                  enabled: true,
-                  child: Container(
-                    height: 5,
-                    width: 250,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5.0) //
-
-                          ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Shimmer.fromColors(
-                  baseColor: Colors.grey.shade300,
-                  highlightColor: Colors.grey.shade100,
-                  enabled: true,
-                  child: Container(
-                    height: 5,
-                    width: 80,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5.0) //
-
-                          ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            flaxibleGap(14),
-          ],
-        ),
-      ),
-    );
   }
 }

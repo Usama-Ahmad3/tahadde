@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
 
 import '../../../utils.dart';
@@ -35,7 +36,9 @@ class EmailContactDOB extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: SafeGoogleFont(
                 'Inter',
-                fontSize: height * 0.02,
+                fontSize: AppLocalizations.of(context)!.locale == 'en'
+                    ? height * 0.02
+                    : height * 0.015,
                 fontWeight: FontWeight.w500,
                 color: MyAppState.mode == ThemeMode.light
                     ? Color(0xff050505)

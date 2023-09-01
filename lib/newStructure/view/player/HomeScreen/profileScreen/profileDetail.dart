@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/emailContactsFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/passwordSecurityFields.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileShimmer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,8 +24,6 @@ class ProfileDetailScreen extends StatefulWidget {
 }
 
 class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
-  String msg =
-      'hello,this is my App:https://tahadde.page.link?link=https://www.google.com/&apn=com.root.tahadde';
   bool _internet = true;
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;
@@ -72,205 +72,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
     );
   }
 
-  void _settingModalBottomSheet(context, sizeHeight) {
-    showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        ),
-        builder: (BuildContext bc) {
-          return Container(
-            height: sizeHeight * .35,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  flaxibleGap(
-                    1,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.contectUs,
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      final link = WhatsAppUnilink(
-                        text: msg,
-                      );
-                      await launch("$link");
-                      //FlutterShareMe().shareToWhatsApp(base64Image: base64Image, msg: msg);
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/whatApp.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.whatsapp,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      launchInBrowser("http://instagram.com/tahadde");
-                      //InstagramShare.share('/', 'image');
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/instagram.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.instagram,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      launch("mailto:info@tahadde.com");
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/mailshare.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.email,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      makePhoneCall("tel:");
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/callshare.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.callus,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Flexible(
-                    child: Container(),
-                    flex: 1,
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
-  }
-
-  Future onWillPop(String description, bool isLogout) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(AppLocalizations.of(context)!.areYouSure),
-            content: Text(description),
-            actions: <Widget>[
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.no),
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-              ),
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.yes),
-                onPressed: () {
-                  _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
-                    if (msg == true) {
-                      if (isLogout) {
-                        _networkCalls.logout(
-                          onSuccess: (msg) {
-                            _networkCalls.clearToken(key: 'token');
-                            _networkCalls.clearToken(key: 'role');
-                            _networkCalls.clearToken(key: "auth");
-                            navigateToHome();
-                          },
-                          onFailure: (msg) {
-                            showMessage(msg);
-                          },
-                          tokenExpire: () {
-                            if (mounted) on401(context);
-                          },
-                        );
-                      } else {
-                        _networkCalls.deleteAccount(
-                          onSuccess: (msg) {
-                            _networkCalls.clearToken(key: 'token');
-                            _networkCalls.clearToken(key: 'role');
-                            _networkCalls.clearToken(key: "auth");
-                            navigateToHome();
-                          },
-                          onFailure: (msg) {
-                            showMessage(msg);
-                          },
-                          tokenExpire: () {
-                            if (mounted) on401(context);
-                          },
-                        );
-                      }
-                    } else {
-                      if (mounted) {
-                        showMessage(
-                            AppLocalizations.of(context)!.noInternetConnection);
-                      }
-                    }
-                  });
-                },
-              )
-            ],
-          );
-        });
-  }
-
   @override
   void initState() {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
@@ -299,7 +100,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
       backgroundColor:
           mode == ThemeMode.light ? Color(0xffffffff) : Color(0xff686868),
       body: _isLoading
-          ? _buildShimmer(width, height)
+          ? ProfileShimmer.buildShimmer(width, height, context)
           : _internet
               ? _auth
                   ? SingleChildScrollView(
@@ -360,16 +161,19 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                 height: height * 0.04,
                               ),
                               EmailContactDOB(
-                                constant: 'Email :',
+                                constant:
+                                    '${AppLocalizations.of(context)!.email} :',
                                 constantValue: profileDetail!['email'],
                               ),
                               EmailContactDOB(
-                                  constant: 'DOB :',
+                                  constant:
+                                      '${AppLocalizations.of(context)!.dateofBirth} :',
                                   constantValue: profileDetail!['dob'] ??
                                       AppLocalizations.of(context)!
                                           .dateofBirth),
                               EmailContactDOB(
-                                constant: 'Contact :',
+                                constant:
+                                    '${AppLocalizations.of(context)!.contacts} :',
                                 constantValue: AppLocalizations.of(context)!
                                             .locale ==
                                         "en"
@@ -382,18 +186,28 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                 },
                                 child: PasswordSecurity(
                                   prefixIcon: Icons.key,
-                                  title: 'Change Password',
-                                  suffixIcon: Icons.keyboard_arrow_right,
+                                  title: AppLocalizations.of(context)!
+                                      .changepassword,
+                                  suffixIcon:
+                                      AppLocalizations.of(context)!.locale ==
+                                              'en'
+                                          ? Icons.keyboard_arrow_right
+                                          : Icons.keyboard_arrow_left,
                                 ),
                               ),
                               InkWell(
                                 onTap: () {
-                                  _settingModalBottomSheet(context, height);
+                                  BottomSheett.settingModalBottomSheet(
+                                      context, height);
                                 },
                                 child: PasswordSecurity(
                                   prefixIcon: Icons.support_agent,
-                                  title: 'Support',
-                                  suffixIcon: Icons.keyboard_arrow_right,
+                                  title: AppLocalizations.of(context)!.support,
+                                  suffixIcon:
+                                      AppLocalizations.of(context)!.locale ==
+                                              'en'
+                                          ? Icons.keyboard_arrow_right
+                                          : Icons.keyboard_arrow_left,
                                 ),
                               ),
                               InkWell(
@@ -402,8 +216,12 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                 },
                                 child: PasswordSecurity(
                                   prefixIcon: Icons.security,
-                                  title: 'Security',
-                                  suffixIcon: Icons.keyboard_arrow_right,
+                                  title: AppLocalizations.of(context)!.security,
+                                  suffixIcon:
+                                      AppLocalizations.of(context)!.locale ==
+                                              'en'
+                                          ? Icons.keyboard_arrow_right
+                                          : Icons.keyboard_arrow_left,
                                 ),
                               ),
                             ],
@@ -453,96 +271,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                     ],
                   ),
                 ),
-    );
-  }
-
-  Widget _buildShimmer(sizeWidth, sizeHeight) {
-    return Scaffold(
-      body: Shimmer.fromColors(
-        baseColor: Colors.grey.shade300,
-        highlightColor: Colors.grey.shade100,
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: sizeHeight * 0.25,
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                                'assets/light-design/images/bg-image.png'),
-                            fit: BoxFit.fitWidth)),
-                  ),
-                  SizedBox(
-                    height: sizeHeight * 0.08,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.06),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'User Name',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: sizeHeight * 0.025),
-                        ),
-                        CircleAvatar(
-                          radius: sizeHeight * 0.018,
-                          backgroundColor: Colors.grey.shade200,
-                          child: Icon(
-                            Icons.edit,
-                            size: sizeHeight * 0.02,
-                            color: Colors.black,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizeHeight * 0.04,
-                  ),
-                  EmailContactDOB(
-                    constant: 'Email :',
-                    constantValue: 'Email',
-                  ),
-                  EmailContactDOB(
-                      constant: 'DOB :',
-                      constantValue: AppLocalizations.of(context)!.dateofBirth),
-                  EmailContactDOB(
-                    constant: 'Contact :',
-                    constantValue: '0000-0000-0000',
-                  ),
-                  PasswordSecurity(
-                    prefixIcon: Icons.key,
-                    title: 'Change Password',
-                    suffixIcon: Icons.keyboard_arrow_right,
-                  ),
-                  PasswordSecurity(
-                    prefixIcon: Icons.support_agent,
-                    title: 'Support',
-                    suffixIcon: Icons.keyboard_arrow_right,
-                  ),
-                  PasswordSecurity(
-                    prefixIcon: Icons.security,
-                    title: 'Security',
-                    suffixIcon: Icons.keyboard_arrow_right,
-                  ),
-                ],
-              ),
-              Positioned(
-                  top: sizeHeight * 0.186,
-                  left: 0,
-                  right: sizeWidth * 0.67,
-                  child: CircleAvatar(
-                    radius: sizeHeight * 0.06,
-                  ))
-            ],
-          ),
-        ),
-      ),
     );
   }
 

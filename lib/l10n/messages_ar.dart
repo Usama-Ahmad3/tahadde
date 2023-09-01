@@ -64,7 +64,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "amongstAvailableSlotUnavailable": MessageLookupByLibrary.simpleMessage(
             "يمكنك حجز التوقيت او جعله غير متاح."),
         "amount": MessageLookupByLibrary.simpleMessage("مقدار"),
+        "groundList": MessageLookupByLibrary.simpleMessage("القائمة الأرضية"),
+        "bookGround": MessageLookupByLibrary.simpleMessage("الحجز ارض"),
+        "popular": MessageLookupByLibrary.simpleMessage("ميزاتنا الشعبية"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
+        "support": MessageLookupByLibrary.simpleMessage("يدعم"),
+        "security": MessageLookupByLibrary.simpleMessage("حماية"),
         "applyCoupon": MessageLookupByLibrary.simpleMessage("استخدم الكوبون"),
         "approve": MessageLookupByLibrary.simpleMessage("وافق"),
         "areCreateTournament": MessageLookupByLibrary.simpleMessage(

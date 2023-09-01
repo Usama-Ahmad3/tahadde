@@ -156,9 +156,9 @@ showMessage(
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.TOP,
       //timeInSecForIosWeb: 1,
-      backgroundColor: const Color(0XFFE74C3C),
-      textColor: Colors.white,
-      fontSize: 14.0);
+      backgroundColor: Colors.white70,
+      textColor: Colors.black,
+      fontSize: 15.0);
 }
 
 showSucess(String message, scaffoldKey, {Duration? duration}) {

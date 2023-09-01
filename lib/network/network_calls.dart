@@ -3591,7 +3591,6 @@ class NetworkCalls {
     String url =
         "https://powerhouse.tahadde.ae${RestApis.SLOT_DETAIL}$id/players_see_specific_pitch_slots/?pitchtype_id=$subPitchId&booked_for_date=$date&language=${prefs.get("lang")}$dateTime";
     try {
-      print(url);
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       // print("hhh${response.body}");

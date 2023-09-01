@@ -49,6 +49,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPlayerC": MessageLookupByLibrary.simpleMessage("ADD PLAYER"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("Add Players"),
         "addSession": MessageLookupByLibrary.simpleMessage("Add Session"),
+        "groundList": MessageLookupByLibrary.simpleMessage('Ground List'),
+        "bookGround": MessageLookupByLibrary.simpleMessage('Booking a Ground'),
+        "popular": MessageLookupByLibrary.simpleMessage("Our Popular Features"),
+        "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "security": MessageLookupByLibrary.simpleMessage("Security"),
         "addanotherdocument":
             MessageLookupByLibrary.simpleMessage("Add another document"),
         "addnewpitchdetails":

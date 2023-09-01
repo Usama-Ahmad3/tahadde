@@ -42,6 +42,14 @@ class AppLocalizations {
     return Intl.message('team', name: 'team');
   }
 
+  String get popular {
+    return Intl.message('Our Popular Features', name: 'popular');
+  }
+
+  String get groundList {
+    return Intl.message('Ground List', name: 'groundList');
+  }
+
   String get teamH {
     return Intl.message('teamH', name: 'teamH');
   }
@@ -156,6 +164,10 @@ class AppLocalizations {
 
   String get getDirection {
     return Intl.message('getDirection', name: 'getDirection');
+  }
+
+  String get bookingGround {
+    return Intl.message('Booking a Ground', name: 'bookGround');
   }
 
   String get dateTime {
@@ -373,6 +385,14 @@ class AppLocalizations {
 
   String get currentpassword {
     return Intl.message('currentpassword', name: 'currentpassword');
+  }
+
+  String get support {
+    return Intl.message('Support', name: 'support');
+  }
+
+  String get security {
+    return Intl.message('Security', name: 'security');
   }
 
   String get newpassword {
