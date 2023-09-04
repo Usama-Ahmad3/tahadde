@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart' as fMessaging;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,14 +29,14 @@ class Loginpage extends StatefulWidget {
 class _LoginpageState extends State<Loginpage> {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
   final FacebookAuth facebookSignIn = FacebookAuth.instance;
-  var _signingIntoFirebase = false;
-  var _error;
+  var signingIntoFirebase = false;
+  var error;
   bool _internet = true;
   bool _appLoading = false;
   final scaffoldkey = GlobalKey<ScaffoldState>();
   final NetworkCalls _networkCalls = NetworkCalls();
   final LoginDetail _detail = LoginDetail();
-  var _isAppleSigninAvailable = false;
+  var isAppleSigninAvailable = false;
   bool password_hide = true;
   final fMessaging.FirebaseMessaging _firebaseMessaging =
       fMessaging.FirebaseMessaging.instance;
@@ -47,6 +48,7 @@ class _LoginpageState extends State<Loginpage> {
     version: 'Unknown',
     buildNumber: 'Unknown',
   );
+
   // ignore: non_constant_identifier_names
   void firebaseCloudMessaging_Listeners() {
     if (Platform.isIOS) {
@@ -64,7 +66,7 @@ class _LoginpageState extends State<Loginpage> {
   ////apple login //////
   _getAppleSigninAvailability() {
     SignInWithApple.isAvailable().then((isAvailable) => setState(() {
-          _isAppleSigninAvailable = isAvailable;
+          isAppleSigninAvailable = isAvailable;
         }));
   }
 
@@ -74,20 +76,21 @@ class _LoginpageState extends State<Loginpage> {
         AppleIDAuthorizationScopes.email,
         AppleIDAuthorizationScopes.fullName,
       ],
-      // webAuthenticationOptions: WebAuthenticationOptions(
-      //   clientId: 'com.shopez.root',
-      //   redirectUri: Uri.parse(
-      //     'https://peridot-spectacled-papyrus.glitch.me/callbacks/sign_in_with_apple',
-      //   ),
-      // ),
+      webAuthenticationOptions: WebAuthenticationOptions(
+        clientId: 'com.shopez.root',
+        redirectUri: Uri.parse(
+          'https://peridot-spectacled-papyrus.glitch.me/callbacks/sign_in_with_apple',
+        ),
+      ),
     );
 
     final appleIdCredential = result;
-//        final oAuthProvider = OAuthProvider(providerId: 'apple.com');
-//        final credential = oAuthProvider.getCredential(
-//          idToken: String.fromCharCodes(appleIdCredential.identityToken),
-//          accessToken:
-//              String.fromCharCodes(appleIdCredential.authorizationCode),);
+    final oAuthProvider = OAuthProvider('apple.com');
+    final credential = oAuthProvider.credential(
+        idToken: String.fromCharCodes(
+            appleIdCredential.identityToken as Iterable<int>),
+        accessToken: String.fromCharCodes(
+            appleIdCredential.authorizationCode as Iterable<int>));
     Map detail = {
       "first_name": appleIdCredential.givenName,
       "last_name": appleIdCredential.familyName,
@@ -123,22 +126,22 @@ class _LoginpageState extends State<Loginpage> {
 
   void _startSignIn() {
     setState(() {
-      _error = null;
-      _signingIntoFirebase = false;
+      error = null;
+      signingIntoFirebase = false;
     });
   }
 
   void _finishSignIn() {
     setState(() {
-      _signingIntoFirebase = false;
-      _error = null;
+      signingIntoFirebase = false;
+      error = null;
     });
   }
 
   void _finishSignInWithError(err) {
     setState(() {
-      _signingIntoFirebase = false;
-      _error = err;
+      signingIntoFirebase = false;
+      error = err;
     });
   }
 
@@ -728,5 +731,6 @@ class LoginDetail {
   String? password;
   String? fcmToken;
   String? deviceType;
+
   LoginDetail({this.email, this.password, this.fcmToken, this.deviceType});
 }

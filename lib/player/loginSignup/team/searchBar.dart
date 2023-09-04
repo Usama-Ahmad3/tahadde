@@ -9,12 +9,12 @@ import '../../../modelClass/searchPlayerModelClass.dart';
 import '../../../modelClass/teamModelClass.dart';
 import '../../../network/network_calls.dart';
 
-class SearchBar extends StatefulWidget {
+class SearchBarScreen extends StatefulWidget {
   @override
-  _SearchBarState createState() => _SearchBarState();
+  _SearchBarScreenState createState() => _SearchBarScreenState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _SearchBarScreenState extends State<SearchBarScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TeamModelClass? teamInfoData;
   final NetworkCalls _networkCalls = NetworkCalls();
@@ -25,6 +25,7 @@ class _SearchBarState extends State<SearchBar> {
   final focus = FocusNode();
   bool? _internet;
   bool _ignoring = true;
+
   void setIgnoring(bool newValue) {
     setState(() {
       _ignoring = newValue;
@@ -187,7 +188,7 @@ class _SearchBarState extends State<SearchBar> {
                                             colorText: 0XFFD8D8D8,
                                             size: 12,
                                             textOpacity: .55,
-                                            icon: 'images/Shape.png',
+                                            icon: 'assets/images/Shape.png',
                                             opacity: .28),
                                       ),
                                     ),
@@ -371,7 +372,7 @@ class _SearchBarState extends State<SearchBar> {
                                                     ?.profile_pic
                                                     ?.filePath,
                                                 placeholder:
-                                                    "images/profile.png")),
+                                                    "assets/images/profile.png")),
                                         flaxibleGap(2),
                                         SizedBox(
                                           height: sizeHeight * .1,
@@ -382,8 +383,9 @@ class _SearchBarState extends State<SearchBar> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                teamInfoData!.teamName
-                                                    .toString(),
+                                                'Usama',
+                                                // teamInfoData!.teamName
+                                                //     .toString(),
                                                 style: TextStyle(
                                                     fontSize: appHeaderFont,
                                                     color:
@@ -402,8 +404,8 @@ class _SearchBarState extends State<SearchBar> {
                                                         ? FontWeight.bold
                                                         : FontWeight.normal),
                                               ),
-                                              Text(
-                                                  "${teamInfoData!.captain!.first_name} ${teamInfoData!.captain!.last_name}",
+                                              Text('Ahmad',
+                                                  // "${teamInfoData!.captain!.first_name} ${teamInfoData!.captain!.last_name}",
                                                   style: const TextStyle(
                                                       fontFamily: 'Poppins',
                                                       fontWeight:
@@ -469,7 +471,7 @@ class _SearchBarState extends State<SearchBar> {
                                                 colorText: 0XFFD8D8D8,
                                                 size: 12,
                                                 textOpacity: .55,
-                                                icon: 'images/Shape.png',
+                                                icon: 'assets/images/Shape.png',
                                                 opacity: .28),
                                           ),
                                         ),

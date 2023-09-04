@@ -47,11 +47,8 @@ class _SportListState extends State<SportList> {
                           backgroundColor: widget.isSelected == index
                               ? Colors.white
                               : Colors.grey,
-                          child: Icon(sportIcon[index],
-                              size: 19,
-                              color: widget.isSelected == index
-                                  ? Colors.black
-                                  : const Color(0xff686868))),
+                          child: Image.network(
+                              widget.sportsList[index].image.toString())),
                       backgroundColor: widget.isSelected == index
                           ? const Color(0xff7b61ff)
                           : Colors.black,
@@ -72,11 +69,4 @@ class _SportListState extends State<SportList> {
       ),
     );
   }
-
-  List sportIcon = [
-    Icons.sports_baseball_outlined,
-    Icons.sports_tennis,
-    Icons.sports_cricket_outlined,
-    Icons.sports_hockey
-  ];
 }

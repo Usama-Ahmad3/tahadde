@@ -547,7 +547,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
-      onFailure("Please Check server");
+      onFailure("Please Check server$e");
     }
   }
 

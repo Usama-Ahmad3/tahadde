@@ -12,6 +12,7 @@ import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import '../../../../player/loginSignup/profile/profile.dart';
+import '../../../../player/loginSignup/sportsScreen.dart';
 import '../../light-design/profile.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
@@ -107,9 +108,11 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
   }
 
   final page = [
-    HomeScreenView(),
+    const HomeScreenView(),
     const NotificationScreen(),
-    ProfileScreen(msg: 'msg'),
+    ProfileScreen(
+      msg: 'msg',
+    ),
     More()
   ];
 

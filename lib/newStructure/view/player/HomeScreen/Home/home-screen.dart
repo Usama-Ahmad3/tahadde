@@ -11,6 +11,7 @@ import '../../../../../modelClass/territory_model_class.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../utils.dart';
+import 'SearchScreen.dart';
 import 'shimmerWidgets.dart';
 import 'sportList.dart';
 
@@ -139,11 +140,11 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   @override
   void initState() {
     super.initState();
-    loadTerritories();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
       if (msg == true) {
         getAddress();
+        loadTerritories();
         getSports();
         getPromotion();
         loadVenues();
@@ -243,116 +244,138 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                   ),
 
                                   ///location
+
                                   SizedBox(
                                     width: 130 * fem,
                                     height: 70 * fem,
-                                    child: CupertinoPicker(
-                                        itemExtent: 40,
-                                        backgroundColor: Colors.black,
-                                        looping: true,
-                                        useMagnifier: true,
-                                        magnification: 1,
-                                        onSelectedItemChanged: (e) {
-                                          showMessage('Tap To Select');
-                                        },
-                                        children: List.generate(
-                                            territoryData[0].cities!.length,
-                                            (index) {
-                                          return territoryData[0]
-                                                  .cities![index]!
-                                                  .isDisable as bool
-                                              ? const SizedBox.shrink()
-                                              : InkWell(
-                                                  onTap: () async {
-                                                    await _networkCalls
-                                                        .saveKeys(
-                                                            "country",
-                                                            territoryData[0]
-                                                                .country!
-                                                                .name
-                                                                .toString());
-                                                    await _networkCalls
-                                                        .saveKeys(
-                                                            "arabicCountry",
-                                                            territoryData[0]
-                                                                .country!
-                                                                .nameArabic
-                                                                .toString());
-                                                    await _networkCalls
-                                                        .saveKeys(
-                                                            "city",
-                                                            territoryData[0]
-                                                                .cities![index]!
-                                                                .city!
-                                                                .name
-                                                                .toString());
-                                                    await _networkCalls
-                                                        .saveKeys(
-                                                            "arabicCity",
-                                                            territoryData[0]
-                                                                .cities![index]!
-                                                                .city!
-                                                                .nameArabic
-                                                                .toString());
-                                                    await _networkCalls
-                                                        .saveKeys(
-                                                            "cityId",
-                                                            territoryData[0]
-                                                                .cities![index]!
-                                                                .city!
-                                                                .id
-                                                                .toString());
-                                                    await _networkCalls
-                                                        .saveKeys(
-                                                            "lat",
-                                                            territoryData[0]
-                                                                .cities![index]!
-                                                                .city!
-                                                                .latitude
-                                                                .toString());
-                                                    await _networkCalls
-                                                        .saveKeys(
-                                                            "long",
-                                                            territoryData[0]
-                                                                .cities![index]!
-                                                                .city!
-                                                                .longitude
-                                                                .toString());
-                                                    await getAddress();
-                                                    showMessage(
-                                                        '${territoryData[0].cities![index]!.city!.name.toString()} Selected');
-                                                  },
-                                                  child: Center(
-                                                    child: Text(
-                                                      AppLocalizations.of(
-                                                                      context)!
-                                                                  .locale ==
-                                                              "en"
-                                                          ? territoryData[0]
-                                                              .cities![index]!
-                                                              .city!
-                                                              .name
-                                                              .toString()
-                                                          : territoryData[0]
-                                                              .cities![index]!
-                                                              .city!
-                                                              .nameArabic
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 17 * fem,
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
-                                                );
-                                        })),
+                                    child: territoryData.isNotEmpty
+                                        ? CupertinoPicker(
+                                            itemExtent: 40,
+                                            backgroundColor: Colors.black,
+                                            looping: true,
+                                            useMagnifier: true,
+                                            magnification: 1,
+                                            onSelectedItemChanged: (e) {
+                                              showMessage('Tap To Select');
+                                            },
+                                            children: List.generate(
+                                                territoryData[0].cities!.length,
+                                                (index) {
+                                              return territoryData[0]
+                                                      .cities![index]!
+                                                      .isDisable as bool
+                                                  ? const SizedBox.shrink()
+                                                  : InkWell(
+                                                      onTap: () async {
+                                                        await _networkCalls
+                                                            .saveKeys(
+                                                                "country",
+                                                                territoryData[0]
+                                                                    .country!
+                                                                    .name
+                                                                    .toString());
+                                                        await _networkCalls
+                                                            .saveKeys(
+                                                                "arabicCountry",
+                                                                territoryData[0]
+                                                                    .country!
+                                                                    .nameArabic
+                                                                    .toString());
+                                                        await _networkCalls
+                                                            .saveKeys(
+                                                                "city",
+                                                                territoryData[0]
+                                                                    .cities![
+                                                                        index]!
+                                                                    .city!
+                                                                    .name
+                                                                    .toString());
+                                                        await _networkCalls
+                                                            .saveKeys(
+                                                                "arabicCity",
+                                                                territoryData[0]
+                                                                    .cities![
+                                                                        index]!
+                                                                    .city!
+                                                                    .nameArabic
+                                                                    .toString());
+                                                        await _networkCalls
+                                                            .saveKeys(
+                                                                "cityId",
+                                                                territoryData[0]
+                                                                    .cities![
+                                                                        index]!
+                                                                    .city!
+                                                                    .id
+                                                                    .toString());
+                                                        await _networkCalls
+                                                            .saveKeys(
+                                                                "lat",
+                                                                territoryData[0]
+                                                                    .cities![
+                                                                        index]!
+                                                                    .city!
+                                                                    .latitude
+                                                                    .toString());
+                                                        await _networkCalls
+                                                            .saveKeys(
+                                                                "long",
+                                                                territoryData[0]
+                                                                    .cities![
+                                                                        index]!
+                                                                    .city!
+                                                                    .longitude
+                                                                    .toString());
+                                                        await getAddress();
+                                                        showMessage(
+                                                            '${territoryData[0].cities![index]!.city!.name.toString()} Selected');
+                                                      },
+                                                      child: Center(
+                                                        child: Text(
+                                                          AppLocalizations.of(
+                                                                          context)!
+                                                                      .locale ==
+                                                                  "en"
+                                                              ? territoryData[0]
+                                                                  .cities![
+                                                                      index]!
+                                                                  .city!
+                                                                  .name
+                                                                  .toString()
+                                                              : territoryData[0]
+                                                                  .cities![
+                                                                      index]!
+                                                                  .city!
+                                                                  .nameArabic
+                                                                  .toString(),
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  17 * fem,
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                      ),
+                                                    );
+                                            }))
+                                        : const Center(
+                                            child: CircularProgressIndicator()),
                                   ),
-                                  CircleAvatar(
-                                    radius: 23 * fem,
-                                    backgroundColor: Colors.white10,
-                                    child: Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                      size: 23 * fem,
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Search(),
+                                          ));
+                                    },
+                                    child: CircleAvatar(
+                                      radius: 23 * fem,
+                                      backgroundColor: Colors.white10,
+                                      child: Icon(
+                                        Icons.search,
+                                        color: Colors.white,
+                                        size: 23 * fem,
+                                      ),
                                     ),
                                   ),
                                 ],

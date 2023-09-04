@@ -40,14 +40,14 @@ class _SignupPageState extends State<SignupPage> {
   late OverlayEntry? overlayEntry;
   final NetworkCalls _networkCalls = NetworkCalls();
   bool passwordHide = true;
-  final GlobalKey _textKey = new GlobalKey();
+  final GlobalKey _textKey = GlobalKey();
   bool confermPasswordHide = true;
   bool appbar = false;
   String _initialCountry = '+92';
   final scaffoldkey = GlobalKey<ScaffoldState>();
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   List<String> playerPostion = [];
-   String? _gender;
+  String? _gender;
   List<String> playerPostionSlug = [];
   late String playerSlug;
 
@@ -61,8 +61,8 @@ class _SignupPageState extends State<SignupPage> {
     _firebaseMessaging.getToken().then((token) {
       _detail.fcmToken = token!;
 
-      print(token);
-      print(_detail.deviceType);
+      // print(token);
+      // print(_detail.deviceType);
     });
   }
 
@@ -101,8 +101,6 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-
-
   @override
   void initState() {
     super.initState();
@@ -129,9 +127,12 @@ class _SignupPageState extends State<SignupPage> {
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               child: Scaffold(
                 backgroundColor: const Color(0XFFFFFFFF),
-                appBar:appBar(language: AppLocalizations.of(context)!.locale,title:  AppLocalizations.of(context)!.createYourAccount,onTap: (){
-                  Navigator.of(context).pop();
-                },
+                appBar: appBar(
+                  language: AppLocalizations.of(context)!.locale,
+                  title: AppLocalizations.of(context)!.createYourAccount,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
                 body: SingleChildScrollView(
                   child: Padding(
@@ -145,8 +146,7 @@ class _SignupPageState extends State<SignupPage> {
                           textField(
                               focusAuto: true,
                               submit: (value) {
-                                FocusScope.of(context)
-                                    .requestFocus(focus);
+                                FocusScope.of(context).requestFocus(focus);
                               },
                               controller: _emailController,
                               name: AppLocalizations.of(context)!.email,
@@ -157,12 +157,12 @@ class _SignupPageState extends State<SignupPage> {
                               text: false,
                               text1: false,
                               validator: (value) {
-                                var msg ;
+                                var msg;
                                 if (!isMail(value!.trim())) {
                                   msg = AppLocalizations.of(context)!
                                       .invalidEmail;
                                 }
-                                return msg = '';
+                                return msg;
                               }),
                           textField(
                             node: focus,
@@ -193,8 +193,7 @@ class _SignupPageState extends State<SignupPage> {
                               return '';
                             },
                             submit: (value) {
-                              FocusScope.of(context)
-                                  .requestFocus(focusss);
+                              FocusScope.of(context).requestFocus(focusss);
                             },
                             controller: _lastController,
                             name: AppLocalizations.of(context)!.lastName,
@@ -207,11 +206,10 @@ class _SignupPageState extends State<SignupPage> {
                             focusNode: focusss,
                             textInputAction: TextInputAction.next,
                             onFieldSubmitted: (value) {
-                              FocusScope.of(context)
-                                  .requestFocus(focussss);
+                              FocusScope.of(context).requestFocus(focussss);
                             },
                             controller: _passwordController,
-                            validator: (e){
+                            validator: (e) {
                               return validatePassword(e.toString());
                             },
                             onSaved: (value) {
@@ -229,8 +227,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintStyle: const TextStyle(
                                   color: Color(0XFF032040),
                                   fontWeight: FontWeight.w500),
-                              labelText:
-                                  AppLocalizations.of(context)!.password,
+                              labelText: AppLocalizations.of(context)!.password,
                               //\uD83D\uDD12
                               labelStyle: const TextStyle(
                                   color: Color(0XFFADADAD),
@@ -266,11 +263,10 @@ class _SignupPageState extends State<SignupPage> {
                             focusNode: focussss,
                             textInputAction: TextInputAction.next,
                             onFieldSubmitted: (value) {
-                              FocusScope.of(context)
-                                  .requestFocus(focusssss);
+                              FocusScope.of(context).requestFocus(focusssss);
                             },
                             controller: _password,
-                            validator: (e){
+                            validator: (e) {
                               validateConfirmPassword;
                             },
                             autofocus: false,
@@ -283,8 +279,8 @@ class _SignupPageState extends State<SignupPage> {
                               hintStyle: const TextStyle(
                                   color: Color(0XFF032040),
                                   fontWeight: FontWeight.w500),
-                              labelText: AppLocalizations.of(context)!
-                                  .confermpassword,
+                              labelText:
+                                  AppLocalizations.of(context)!.confermpassword,
                               //\uD83D\uDD12
                               labelStyle: const TextStyle(
                                   color: Color(0XFFADADAD),
@@ -302,8 +298,7 @@ class _SignupPageState extends State<SignupPage> {
                                       ),
                                 onTap: () {
                                   setState(() {
-                                    confermPasswordHide =
-                                        !confermPasswordHide;
+                                    confermPasswordHide = !confermPasswordHide;
                                   });
                                 },
                               ),
@@ -339,13 +334,12 @@ class _SignupPageState extends State<SignupPage> {
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12),
                                       onChanged: (value) {
-                                          setState(() {
-                                            _detail.countryCode =
-                                                value.toString();
-                                            _initialCountry =
-                                                value.toString();
-                                            print(_detail.countryCode);
-                                          });
+                                        setState(() {
+                                          _detail.countryCode =
+                                              value.toString();
+                                          _initialCountry = value.toString();
+                                          print(_detail.countryCode);
+                                        });
                                       },
                                       initialSelection: _initialCountry,
                                       favorite: const [
@@ -364,16 +358,14 @@ class _SignupPageState extends State<SignupPage> {
                                   alignment: Alignment.topCenter,
                                   child: textField(
                                     testAlignment:
-                                        AppLocalizations.of(context)!
-                                                    .locale ==
+                                        AppLocalizations.of(context)!.locale ==
                                                 "en"
                                             ? true
                                             : false,
                                     node: focusssss,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return AppLocalizations.of(
-                                                context)!
+                                        return AppLocalizations.of(context)!
                                             .pleaseenterPhoneNumber;
                                       }
                                       return '';
@@ -383,28 +375,26 @@ class _SignupPageState extends State<SignupPage> {
                                     text1: true,
                                     keybordType: false,
                                     name: "",
-                                    onchange: (value){
+                                    onchange: (value) {
                                       _detail.phoneNumber = value;
                                     },
-                                    onSaved: (value) {
-                                    },
+                                    onSaved: (value) {},
                                   ),
                                 ),
                               ),
                               AppLocalizations.of(context)!.locale == "ar"
                                   ? CountryCodePicker(
                                       padding: const EdgeInsets.only(top: 5),
-                                  textStyle: const TextStyle(
-                                      color: Color(0XFF032040),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12),
+                                      textStyle: const TextStyle(
+                                          color: Color(0XFF032040),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12),
                                       onChanged: (value) {
                                         if (mounted) {
                                           setState(() {
                                             _detail.countryCode =
                                                 value.toString();
-                                            _initialCountry =
-                                                value.toString();
+                                            _initialCountry = value.toString();
                                           });
                                         }
                                       },
@@ -435,27 +425,24 @@ class _SignupPageState extends State<SignupPage> {
                                       isExpanded: true,
                                       value: _gender,
                                       hint: Text(
-                                        AppLocalizations.of(context)!
-                                            .gender,
+                                        AppLocalizations.of(context)!.gender,
                                         style: const TextStyle(
                                             color: Color(0XFFADADAD),
-                                            fontWeight: FontWeight.w500,fontSize: 12),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 12),
                                       ),
                                       items: genderEn
-                                          .map(
-                                              (value) => DropdownMenuItem(
-                                                    value: value,
-                                                    child: Text(
-                                                      value,
-                                                      style: const TextStyle(
-                                                          color: Color(
-                                                              0XFF032040),
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight
-                                                                  .w600),
-                                                    ),
-                                                  ))
+                                          .map((value) => DropdownMenuItem(
+                                                value: value,
+                                                child: Text(
+                                                  value,
+                                                  style: const TextStyle(
+                                                      color: Color(0XFF032040),
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ))
                                           .toList(),
                                       onChanged: (String? value) {
                                         setState(() {
@@ -481,26 +468,24 @@ class _SignupPageState extends State<SignupPage> {
                                       isExpanded: true,
                                       value: _gender,
                                       hint: Text(
-                                        AppLocalizations.of(context)!
-                                            .gender,
+                                        AppLocalizations.of(context)!.gender,
                                         style: const TextStyle(
                                             color: Color(0XFFADADAD),
-                                            fontWeight: FontWeight.w500,fontSize: 12),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 12),
                                       ),
                                       items: genderAr
-                                          .map(
-                                              (value) => DropdownMenuItem(
-                                                    value: value,
-                                                    child: Text(
-                                                      value,
-                                                      style: const TextStyle(
-                                                          color: Color(
-                                                              0XFF032040),
-                                                          fontWeight:
-                                                              FontWeight
-                                                                  .w600,fontSize: 12),
-                                                    ),
-                                                  ))
+                                          .map((value) => DropdownMenuItem(
+                                                value: value,
+                                                child: Text(
+                                                  value,
+                                                  style: const TextStyle(
+                                                      color: Color(0XFF032040),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 12),
+                                                ),
+                                              ))
                                           .toList(),
                                       onChanged: (String? value) {
                                         setState(() {
@@ -524,91 +509,80 @@ class _SignupPageState extends State<SignupPage> {
                               textAlign: TextAlign.right,
                             ),
                             onPressed: () async {
-                                _formKey.currentState!.save();
-                                FocusScope.of(context).unfocus();
-                                  if (_detail.gender != null) {
-                                    _networkCalls.checkInternetConnectivity(
-                                            onSuccess: (msg) {
-                                      if (mounted) _internet = msg;
-                                      if (msg == true) {
-                                        setState(() {
-                                          isLoading = false;
-                                        });
-                                        _networkCalls
-                                            .checkAvailabilityOfEmail(
-                                                email: _detail.email.toString(),
-                                                onSuccess: (msg) async {
-                                                  navigateToDetail(_detail);
-                                                  _networkCalls
-                                                      .checkAvailabilityOfPhoneNumber(
-                                                          phone: _detail
-                                                              .phoneNumber.toString(),
-                                                          onSuccess:
-                                                              (msg) {
-                                                            navigateToDetail(
-                                                                _detail);
-                                                          },
-                                                          onFailure:
-                                                              (msg) {
-                                                            if (mounted) {
-                                                              setState(
-                                                                  () {
-                                                                isLoading =
-                                                                    true;
-                                                              });
-                                                            }
-                                                            showMessage(
-                                                                msg,);
-                                                          },
-                                                          tokenExpire:
-                                                              () {
-                                                            if (mounted) {
-                                                              on401(
-                                                                  context);
-                                                            }
-                                                          });
-                                                },
-                                                onFailure: (msg) {
-                                                  if (mounted) {
-                                                    setState(() {
-                                                      isLoading = true;
-                                                    });
-                                                  }
-                                                  showMessage(
-                                                      msg);
-                                                },
-                                                tokenExpire: () {
-                                                  if (mounted) {
-                                                    on401(context);
-                                                  }
-                                                });
-                                      } else {
-                                        if (mounted) {
-                                          showMessage(
-                                              AppLocalizations.of(context)!
-                                                  .noInternetConnection);
-                                        }
-                                      }
+                              _formKey.currentState!.save();
+                              FocusScope.of(context).unfocus();
+                              if (_detail.gender != null) {
+                                _networkCalls.checkInternetConnectivity(
+                                    onSuccess: (msg) {
+                                  if (mounted) _internet = msg;
+                                  if (msg == true) {
+                                    setState(() {
+                                      isLoading = false;
                                     });
+                                    _networkCalls.checkAvailabilityOfEmail(
+                                        email: _detail.email.toString(),
+                                        onSuccess: (msg) async {
+                                          navigateToDetail(_detail);
+                                          _networkCalls
+                                              .checkAvailabilityOfPhoneNumber(
+                                                  phone: _detail.phoneNumber
+                                                      .toString(),
+                                                  onSuccess: (msg) {
+                                                    navigateToDetail(_detail);
+                                                  },
+                                                  onFailure: (msg) {
+                                                    if (mounted) {
+                                                      setState(() {
+                                                        isLoading = true;
+                                                      });
+                                                    }
+                                                    showMessage(
+                                                      msg,
+                                                    );
+                                                  },
+                                                  tokenExpire: () {
+                                                    if (mounted) {
+                                                      on401(context);
+                                                    }
+                                                  });
+                                        },
+                                        onFailure: (msg) {
+                                          if (mounted) {
+                                            setState(() {
+                                              isLoading = true;
+                                            });
+                                          }
+                                          showMessage(msg);
+                                        },
+                                        tokenExpire: () {
+                                          if (mounted) {
+                                            on401(context);
+                                          }
+                                        });
+                                  } else {
+                                    if (mounted) {
+                                      showMessage(AppLocalizations.of(context)!
+                                          .noInternetConnection);
+                                    }
+                                  }
+                                });
                               }
                             },
                           ),
                           fixedGap(height: 10.0),
                           SizedBox(
-                              width:
-                                  MediaQuery.of(context).size.width / 1.2,
+                              width: MediaQuery.of(context).size.width / 1.2,
                               child: RichText(
                                 key: _textKey,
                                 text: TextSpan(
                                   text:
                                       '${AppLocalizations.of(context)!.bysigningupTahaddi} ',
                                   style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Color(0XFF7A7A7A)),
+                                      fontSize: 12, color: Color(0XFF7A7A7A)),
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text:
-                                          AppLocalizations.of(context)!.termsofUse,
+                                      text: AppLocalizations.of(context)!
+                                          .termsofUse,
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
                                           privacyPolicy(
@@ -626,12 +600,11 @@ class _SignupPageState extends State<SignupPage> {
                                           ' ${AppLocalizations.of(context)!.and} ',
                                     ),
                                     TextSpan(
-                                        text:
-                                            AppLocalizations.of(context)!.privacyPolicy,
+                                        text: AppLocalizations.of(context)!
+                                            .privacyPolicy,
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            privacyPolicy(
-                                                "privacy_policy_url");
+                                            privacyPolicy("privacy_policy_url");
                                           },
                                         style: const TextStyle(
                                           color: Color(0XFF25A163),
@@ -762,6 +735,6 @@ class SignUpDetail {
       this.fcmToken,
       this.dob,
       this.id,
-      this.gender="Male",
+      this.gender = "Male",
       this.countryCode = "+971"});
 }

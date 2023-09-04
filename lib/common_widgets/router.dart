@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
+import 'package:flutter_tahaddi/player/loginSignup/team/searchBar.dart';
 
 import '../homeFile/association_promotion.dart';
 import '../homeFile/routingConstant.dart';
@@ -200,9 +202,16 @@ class RouterPage {
         return MaterialPageRoute(builder: (_) => PlayerHome(index: 1));
       case RouteNames.searchBar:
         return MaterialPageRoute(builder: (_) => const SearchBar());
+      case RouteNames.searchBarScreen:
+        return MaterialPageRoute(builder: (_) => SearchBarScreen());
       case RouteNames.notification:
         return MaterialPageRoute(
             builder: (_) => PlayerHome(
+                  index: 1,
+                ));
+      case RouteNames.notificationScreen:
+        return MaterialPageRoute(
+            builder: (_) => PlayerHomeScreen(
                   index: 1,
                 ));
       case RouteNames.emptyProfile:

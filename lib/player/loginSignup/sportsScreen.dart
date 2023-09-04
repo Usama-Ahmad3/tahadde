@@ -18,13 +18,13 @@ class _SportsScreenState extends State<SportsScreen> {
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _internet = true;
   bool _isLoading = true;
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<SportsList> _sportsType = [];
   final List<String> _sportsTypeSlug = [];
   final List<String> _selectedSportsTypeSlug = [];
   final List<String> _modern = [];
   final List<String> _modernSlug = [];
-  late String _selectedModernSlug;
+  String? _selectedModernSlug;
+
   _onSelected(String slug) {
     if (_selectedSportsTypeSlug.contains(slug)) {
       setState(() {
@@ -110,7 +110,6 @@ class _SportsScreenState extends State<SportsScreen> {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
       body: Container(
           color: const Color(0XFFFFFFFF),
           child: Column(
@@ -159,11 +158,7 @@ class _SportsScreenState extends State<SportsScreen> {
                                       children: List.generate(
                                           _sportsType.length,
                                           (index) => ChipButton(
-                                              bgColor: _selectedSportsTypeSlug
-                                                      .contains(_sportsTypeSlug[
-                                                          index])
-                                                  ? appThemeColor
-                                                  : Colors.green,
+                                              bgColor: Colors.green,
                                               textColor: Colors.white,
                                               title:
                                                   AppLocalizations.of(context)!

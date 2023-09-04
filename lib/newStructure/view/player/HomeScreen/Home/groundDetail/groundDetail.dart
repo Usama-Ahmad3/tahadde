@@ -16,6 +16,7 @@ import '../../../../../../common_widgets/internet_loss.dart';
 import '../../../../../../homeFile/routingConstant.dart';
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
+import '../../../../../../main.dart';
 import '../../../../../../modelClass/venue_detail_model_class.dart';
 import '../../../../../../network/network_calls.dart';
 import 'carousel.dart';
@@ -261,8 +262,10 @@ class GroundDetailState extends State<GroundDetail>
                         child: Column(
                           children: [
                             Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
+                              decoration: BoxDecoration(
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? Colors.white
+                                    : Colors.black45,
                                 // borderRadius: BorderRadius.only(
                                 //     topRight: Radius.circular(20),
                                 //     topLeft: Radius.circular(20))
@@ -312,8 +315,12 @@ class GroundDetailState extends State<GroundDetail>
                                     Text(
                                       AppLocalizations.of(context)!
                                           .descriptionS,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white),
                                     ),
                                     SizedBox(
                                       height: height * 0.02,
@@ -324,14 +331,26 @@ class GroundDetailState extends State<GroundDetail>
                                           "",
                                       trimLength: 2,
                                       trimMode: TrimMode.Line,
-                                      lessStyle: const TextStyle(
-                                          color: Colors.black,
+                                      lessStyle: TextStyle(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.yellowAccent,
                                           fontWeight: FontWeight.bold),
-                                      moreStyle: const TextStyle(
-                                          color: Colors.black,
+                                      moreStyle: TextStyle(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.yellowAccent,
                                           fontWeight: FontWeight.bold),
                                       trimCollapsedText: 'See More',
                                       trimExpandedText: 'See Less',
+                                      style: TextStyle(
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? Colors.black
+                                                : Colors.white,
+                                      ),
                                     ),
                                     SizedBox(
                                       height: height * 0.025,
@@ -341,8 +360,12 @@ class GroundDetailState extends State<GroundDetail>
                                     Text(
                                         AppLocalizations.of(context)!
                                             .groundList,
-                                        style:
-                                            TextStyle(fontSize: height * 0.03)),
+                                        style: TextStyle(
+                                            fontSize: height * 0.03,
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? Colors.black
+                                                : Colors.white)),
                                     ...List.generate(
                                         3,
                                         (index) => Padding(
@@ -389,7 +412,16 @@ class GroundDetailState extends State<GroundDetail>
                                                     SizedBox(
                                                       width: width * 0.03,
                                                     ),
-                                                    Text(ground[index]),
+                                                    Text(
+                                                      ground[index],
+                                                      style: TextStyle(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? Colors.black
+                                                            : Colors.white,
+                                                      ),
+                                                    ),
                                                     SizedBox(
                                                       width: width * 0.3,
                                                     ),
@@ -420,8 +452,12 @@ class GroundDetailState extends State<GroundDetail>
                                           vertical: height * 0.008),
                                       child: Text(
                                         AppLocalizations.of(context)!.location,
-                                        style:
-                                            TextStyle(fontSize: height * 0.03),
+                                        style: TextStyle(
+                                            fontSize: height * 0.03,
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? Colors.black
+                                                : Colors.white),
                                       ),
                                     ),
                                     Card(
@@ -435,11 +471,17 @@ class GroundDetailState extends State<GroundDetail>
                                               fontWeight: FontWeight.bold),
                                           trimLength: 2,
                                           trimMode: TrimMode.Line,
-                                          lessStyle: const TextStyle(
-                                              color: Colors.black38,
+                                          lessStyle: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.black38
+                                                  : Colors.white,
                                               fontWeight: FontWeight.bold),
-                                          moreStyle: const TextStyle(
-                                              color: Colors.black,
+                                          moreStyle: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white,
                                               fontWeight: FontWeight.bold),
                                           trimCollapsedText: 'More',
                                           trimExpandedText: '.Less',
@@ -447,8 +489,13 @@ class GroundDetailState extends State<GroundDetail>
                                         tilePadding: EdgeInsets.symmetric(
                                             vertical: height * 0.02,
                                             horizontal: width * 0.02),
-                                        trailing: const Icon(
-                                            Icons.location_searching),
+                                        trailing: Icon(
+                                          Icons.location_searching,
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                        ),
                                         children: [
                                           Card(
                                             color: Colors.white70,
@@ -473,8 +520,13 @@ class GroundDetailState extends State<GroundDetail>
                                           vertical: height * 0.013),
                                       child: Text(
                                         AppLocalizations.of(context)!.popular,
-                                        style:
-                                            TextStyle(fontSize: height * 0.03),
+                                        style: TextStyle(
+                                          fontSize: height * 0.03,
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                        ),
                                       ),
                                     ),
                                     Wrap(
@@ -507,6 +559,13 @@ class GroundDetailState extends State<GroundDetail>
                                                         child: Text(
                                                           popular[index],
                                                           style: TextStyle(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? Colors.black
+                                                                  : Colors
+                                                                      .white,
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,

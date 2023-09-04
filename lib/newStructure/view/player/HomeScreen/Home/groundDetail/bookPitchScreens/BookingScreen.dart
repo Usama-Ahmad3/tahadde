@@ -8,6 +8,7 @@ import '../../../../../../../drop_down_file.dart';
 import '../../../../../../../homeFile/routingConstant.dart';
 import '../../../../../../../homeFile/utility.dart';
 import '../../../../../../../localizations.dart';
+import '../../../../../../../main.dart';
 import '../../../../../../../modelClass/venue_slot_model_class.dart';
 import '../../../../../../../network/network_calls.dart';
 import '../../../../../../../player/bookPitch/venueDetail.dart';
@@ -158,8 +159,8 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                             ),
                             Text(
                               AppLocalizations.of(context)!.bookingGround,
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.white),
                             )
                           ],
                         ),
@@ -215,6 +216,15 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Text(
+                                              DateTime.now()
+                                                  .add(Duration(days: index))
+                                                  .day
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  color: date == index
+                                                      ? Colors.black
+                                                      : Colors.grey)),
+                                          Text(
                                             DateFormat('E').format(
                                                 DateTime.now().add(
                                                     Duration(days: index))),
@@ -223,15 +233,6 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                     ? Colors.black
                                                     : Colors.grey),
                                           ),
-                                          Text(
-                                              DateTime.now()
-                                                  .add(Duration(days: index))
-                                                  .day
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: date == index
-                                                      ? Colors.black
-                                                      : Colors.grey))
                                         ],
                                       ),
                                     ),
@@ -251,7 +252,9 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                       Container(
                         width: width,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: MyAppState.mode == ThemeMode.light
+                                ? Colors.white
+                                : Colors.white10,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(height * 0.03),
                                 topRight: Radius.circular(height * 0.03))),
@@ -264,7 +267,12 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                             children: [
                               ///ground List
                               Text(AppLocalizations.of(context)!.groundList,
-                                  style: TextStyle(fontSize: height * 0.03)),
+                                  style: TextStyle(
+                                    fontSize: height * 0.03,
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? Colors.black
+                                        : Colors.white,
+                                  )),
                               ...List.generate(
                                   3,
                                   (index) => Padding(
@@ -308,7 +316,14 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                               SizedBox(
                                                 width: width * 0.03,
                                               ),
-                                              Text(ground[index]),
+                                              Text(
+                                                ground[index],
+                                                style: TextStyle(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? Colors.black
+                                                        : Colors.white),
+                                              ),
                                               SizedBox(
                                                 width: width * 0.3,
                                               ),
@@ -367,7 +382,12 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                             10.0),
                                                     decoration: BoxDecoration(
                                                       color: isPerPlayer
-                                                          ? Colors.grey
+                                                          ? MyAppState.mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? Colors.grey
+                                                              : Colors
+                                                                  .indigoAccent
                                                           : Colors.white,
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -381,9 +401,17 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                       ),
                                                     ),
                                                     child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .perPlayer),
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .perPlayer,
+                                                      style: TextStyle(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? Colors.black
+                                                            : Colors.grey,
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -424,7 +452,12 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                     decoration: BoxDecoration(
                                                       color: isPerPlayer
                                                           ? Colors.white
-                                                          : Colors.grey,
+                                                          : MyAppState.mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? Colors.grey
+                                                              : Colors
+                                                                  .indigoAccent,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8),
@@ -437,9 +470,17 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                       ),
                                                     ),
                                                     child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .perVenue),
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .perVenue,
+                                                      style: TextStyle(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? Colors.black
+                                                            : Colors.grey,
+                                                      ),
+                                                    ),
                                                   ),
                                                 )
                                               ],
@@ -633,7 +674,10 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                   AppLocalizations.of(context)!
                                                       .selectnumberofplayer,
                                                   style: TextStyle(
-                                                      color: appThemeColor,
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? appThemeColor
+                                                          : Colors.white,
                                                       fontSize: height * 0.017),
                                                 ),
                                                 SizedBox(
@@ -739,8 +783,14 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                       height: height * 0.28,
                                       child: Center(
                                         child: Text(
-                                            AppLocalizations.of(context)!
-                                                .thisDayHoliday),
+                                          AppLocalizations.of(context)!
+                                              .thisDayHoliday,
+                                          style: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white),
+                                        ),
                                       ),
                                     )
                                   : Column(
@@ -754,9 +804,17 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                   height: 100,
                                                   child: Center(
                                                     child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .noSlotsAvailable),
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .noSlotsAvailable,
+                                                      style: TextStyle(
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? Colors.black
+                                                              : Colors.white),
+                                                    ),
                                                   ),
                                                 )
                                               : Column(
@@ -769,6 +827,12 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                       child: Text(
                                                         "${AppLocalizations.of(context)!.select} ${slotModelClass[index].sessionName} ( ${slotModelClass[index].slotDetail![0]!.sportSlotTime.toString()} mins Slot )",
                                                         style: TextStyle(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? Colors.black
+                                                                : Colors.white,
                                                             fontSize:
                                                                 height * 0.02),
                                                       ),
@@ -882,8 +946,11 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                         width: width *
                                                                             0.43,
                                                                         decoration: BoxDecoration(
-                                                                            color:
-                                                                                Colors.grey.shade100,
+                                                                            color: _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id)
+                                                                                ? Colors.indigoAccent
+                                                                                : MyAppState.mode == ThemeMode.light
+                                                                                    ? Colors.blueGrey
+                                                                                    : Colors.white10,
                                                                             borderRadius: BorderRadius.circular(10)),
                                                                         child:
                                                                             Row(
@@ -892,7 +959,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                           children: [
                                                                             Text(
                                                                               _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id) ? slotModelClass[index].slotDetail![slotIndex]!.startTime!.substring(0, 5) ?? "" : slotModelClass[index].slotDetail![slotIndex]!.startTime!.substring(0, 5) ?? "",
-                                                                              style: TextStyle(fontSize: height * 0.02),
+                                                                              style: TextStyle(fontSize: height * 0.02, color: MyAppState.mode == ThemeMode.light ? Colors.black : Colors.grey),
                                                                             ),
                                                                             Container(
                                                                               height: height * 0.022,

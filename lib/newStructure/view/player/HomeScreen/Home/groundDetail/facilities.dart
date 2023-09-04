@@ -3,6 +3,7 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundD
 
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
+import '../../../../../../main.dart';
 
 class Facilities extends StatelessWidget {
   @override
@@ -14,7 +15,12 @@ class Facilities extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context)!.facilitiesProvided,
-          style: TextStyle(fontSize: height * 0.03),
+          style: TextStyle(
+            fontSize: height * 0.03,
+            color: MyAppState.mode == ThemeMode.light
+                ? Colors.black
+                : Colors.white,
+          ),
         ),
         Wrap(
           children: [
@@ -42,7 +48,10 @@ class Facilities extends StatelessWidget {
                                           ?.facilities![index]
                                           ?.image ??
                                       "",
-                                  imageFit: BoxFit.contain),
+                                  imageFit: BoxFit.contain,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(
@@ -54,7 +63,10 @@ class Facilities extends StatelessWidget {
                                         ?.facilities![index]
                                         ?.name ??
                                     "",
-                                style: const TextStyle(
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? Colors.black
+                                        : Colors.white,
                                     overflow: TextOverflow.ellipsis),
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: true,

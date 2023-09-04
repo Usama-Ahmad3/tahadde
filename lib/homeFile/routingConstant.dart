@@ -19,7 +19,9 @@ class RouteNames {
   static const String more = 'more';
   static const String team = 'team';
   static const String searchBar = 'searchBar';
+  static const String searchBarScreen = 'searchBarScreen';
   static const String notification = 'notification';
+  static const String notificationScreen = 'notificationScreen';
   static const String emptyProfile = 'emptyProfile';
   static const String login = 'login';
   static const String resetPassword = 'resetPassword';
