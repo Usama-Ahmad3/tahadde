@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
 
 class textFieldWidget extends StatefulWidget {
   TextEditingController controller;
@@ -15,12 +16,16 @@ class textFieldWidget extends StatefulWidget {
   IconData? hideIcon;
   Color? suffixIconColor;
   Color? fillColor;
+  Color? textColor;
   FormFieldValidator? onTaped;
+  FormFieldValidator? onChanged;
 
   textFieldWidget(
       {required this.controller,
       required this.hintText,
       this.onTaped,
+      this.textColor,
+      this.onChanged,
       this.border,
       this.obscure = false,
       this.enableBorder,
@@ -44,30 +49,44 @@ class _textFieldWidgetState extends State<textFieldWidget> {
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.obscure,
-      onChanged: (e) {
-        setState(() {});
-      },
+      onChanged: widget.onChanged,
       onFieldSubmitted: widget.onSubmitted,
       focusNode: widget.focus,
       validator: widget.onTaped,
-      style: const TextStyle(color: Colors.black),
-      cursorColor: Colors.black,
+      style: TextStyle(
+          color: MyAppState.mode == ThemeMode.light
+              ? widget.textColor ?? Colors.black
+              : Colors.white),
+      cursorColor: MyAppState.mode == ThemeMode.light
+          ? widget.textColor ?? Colors.black
+          : Colors.white,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       scribbleEnabled: false,
+      textAlign: TextAlign.start,
       decoration: InputDecoration(
+          constraints: BoxConstraints(maxHeight: 55, minHeight: 55),
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(
+              height: 1.33,
+              color: MyAppState.mode == ThemeMode.light
+                  ? Colors.grey
+                  : Colors.white),
           border: widget.border,
-          suffixIcon: InkWell(
-              onTap: () {
-                setState(() {
-                  widget.obscure = !widget.obscure;
-                });
-              },
-              child:
-                  Icon(widget.obscure ? widget.hideIcon : widget.suffixIcon)),
+          suffixIcon: widget.suffixIcon != null
+              ? widget.hideIcon != null
+                  ? InkWell(
+                      onTap: () {
+                        setState(() {
+                          widget.obscure = !widget.obscure;
+                        });
+                      },
+                      child: Icon(
+                          widget.obscure ? widget.hideIcon : widget.suffixIcon))
+                  : Icon(widget.suffixIcon)
+              : null,
           suffixIconColor: widget.suffixIconColor,
-          prefixIcon: Icon(widget.prefixIcon),
+          prefixIcon:
+              widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
           fillColor: widget.fillColor,
           filled: true,
           enabledBorder: widget.enableBorder,

@@ -110,10 +110,9 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
   final page = [
     const HomeScreenView(),
     const NotificationScreen(),
-    ProfileScreen(
-      msg: 'msg',
-    ),
-    More()
+    More(),
+    // ignore: prefer_const_constructors
+    ProfileDetailScreen()
   ];
 
   @override
@@ -172,21 +171,6 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                   ),
                   SalomonBottomBarItem(
                     icon: const Icon(
-                      Icons.person_2_outlined,
-                    ),
-                    title: const Text(
-                      "Profile",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    activeIcon: const Icon(
-                      Icons.person,
-                      color: Colors.black,
-                    ),
-                    selectedColor: const Color(0xffffc300),
-                    unselectedColor: Colors.grey,
-                  ),
-                  SalomonBottomBarItem(
-                    icon: const Icon(
                       Icons.settings_outlined,
                     ),
                     title: const Text(
@@ -195,6 +179,21 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                     ),
                     activeIcon: const Icon(
                       Icons.settings,
+                      color: Colors.black,
+                    ),
+                    selectedColor: const Color(0xffffc300),
+                    unselectedColor: Colors.grey,
+                  ),
+                  SalomonBottomBarItem(
+                    icon: const Icon(
+                      Icons.person_2_outlined,
+                    ),
+                    title: const Text(
+                      "Profile",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    activeIcon: const Icon(
+                      Icons.person,
                       color: Colors.black,
                     ),
                     selectedColor: const Color(0xffffc300),

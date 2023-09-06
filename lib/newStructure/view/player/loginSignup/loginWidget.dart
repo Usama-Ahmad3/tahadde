@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin.dart';
 
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import '../../../../network/network_calls.dart';
-import '../HomeScreen/Home/textFormField.dart';
+import '../HomeScreen/widgets/textFormField.dart';
 import 'login.dart';
 
 class LogInWidget extends StatefulWidget {
@@ -45,7 +47,13 @@ class _LogInWidgetState extends State<LogInWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppLocalizations.of(context)!.login),
+              Text(
+                AppLocalizations.of(context)!.email,
+                style: TextStyle(
+                    color: MyAppState.mode == ThemeMode.light
+                        ? Colors.black
+                        : Colors.white),
+              ),
               SizedBox(
                 height: height * 0.015,
               ),
@@ -58,31 +66,62 @@ class _LogInWidgetState extends State<LogInWidget> {
                 },
                 controller: widget.emailController,
                 hintText: 'tahadde@gmail.com',
+                focusBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(20)),
+                enableBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(20)),
                 border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
                     borderRadius: BorderRadius.circular(20)),
               ),
               SizedBox(
                 height: height * 0.02,
               ),
-              Text(AppLocalizations.of(context)!.password),
+              Text(
+                AppLocalizations.of(context)!.password,
+                style: TextStyle(
+                    color: MyAppState.mode == ThemeMode.light
+                        ? Colors.black
+                        : Colors.white),
+              ),
               SizedBox(
                 height: height * 0.015,
               ),
               textFieldWidget(
-                  focus: focusPassword,
-                  obscure: true,
-                  onTaped: (value) {
-                    return AppLocalizations.of(context)!.pleaseenterPassword;
-                  },
-                  controller: widget.passwordController,
-                  hintText: 'tahadde123456',
-                  suffixIcon: Icons.visibility_off,
-                  hideIcon: Icons.visibility,
-                  suffixIconColor: Colors.grey,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20))),
+                focus: focusPassword,
+                obscure: true,
+                onTaped: (value) {
+                  return AppLocalizations.of(context)!.pleaseenterPassword;
+                },
+                controller: widget.passwordController,
+                hintText: 'tahadde123456',
+                suffixIcon: Icons.visibility_off,
+                hideIcon: Icons.visibility,
+                suffixIconColor: Colors.grey,
+                focusBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(20)),
+                enableBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(20)),
+                border: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(20)),
+              ),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -94,29 +133,21 @@ class _LogInWidgetState extends State<LogInWidget> {
               SizedBox(
                 height: height * 0.02,
               ),
-              InkWell(
-                onTap: widget.onTap,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.01, vertical: height * 0.01),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius: BorderRadius.circular(10)),
-                    height: height * 0.06,
-                    child: Center(
-                        child: LoginScreenState.isLoading
-                            ? const CircularProgressIndicator()
-                            : Text(AppLocalizations.of(context)!.login)),
-                  ),
-                ),
-              ),
+              ButtonWidget(
+                  onTaped: widget.onTap,
+                  title: Text(AppLocalizations.of(context)!.login)),
               SizedBox(
                 height: height * 0.015,
               ),
               Align(
                   alignment: Alignment.center,
-                  child: Text(AppLocalizations.of(context)!.orSignUpWith)),
+                  child: Text(
+                    AppLocalizations.of(context)!.orSignUpWith,
+                    style: TextStyle(
+                        color: MyAppState.mode == ThemeMode.light
+                            ? Colors.black
+                            : Colors.white),
+                  )),
             ],
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/textFormField.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:flutter_tahaddi/walkThrough/walkThrough.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -68,6 +68,13 @@ class _SearchState extends State<Search> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    searchController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -125,6 +132,9 @@ class _SearchState extends State<Search> {
                               hintText: AppLocalizations.of(context)!.search,
                               fillColor: Colors.white24,
                               prefixIcon: Icons.search,
+                              onChanged: (e) {
+                                setState(() {});
+                              },
                               prefixIconColor: Colors.grey,
                               enableBorder: UnderlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),

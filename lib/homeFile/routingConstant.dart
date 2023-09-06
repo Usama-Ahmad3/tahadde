@@ -11,8 +11,10 @@ class RouteNames {
   static const String bookPitchSlot = 'bookPitchSlot';
   static const String signupPage = 'signupPage';
   static const String varification = 'varification';
+  static const String verificationScreen = 'verificationScreen';
   static const String passworSuccess = 'passworSuccess';
   static const String editProfile = 'editProfile';
+  static const String editProfileScreen = 'editProfileScreen';
   static const String forgotPassword = 'forgotPassword';
   static const String forgotPasswordScreen = 'forgotPasswordScreen';
   static const String profileDetail = 'profileDetail';

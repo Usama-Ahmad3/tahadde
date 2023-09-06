@@ -5,10 +5,6 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScree
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/passwordSecurityFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileShimmer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
-
 import '../../../../../common_widgets/internet_loss.dart';
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
@@ -97,8 +93,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor:
-          mode == ThemeMode.light ? Color(0xffffffff) : Color(0xff686868),
       body: _isLoading
           ? ProfileShimmer.buildShimmer(width, height, context)
           : _internet
@@ -117,113 +111,137 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                             'assets/light-design/images/bg-image.png'),
                                         fit: BoxFit.fitWidth)),
                               ),
-                              SizedBox(
-                                height: height * 0.08,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.06),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      '${profileDetail!['first_name']} ${profileDetail!['last_name']}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: height * 0.025,
-                                          color: mode == ThemeMode.light
-                                              ? Colors.black
-                                              : Colors.white),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        navigateToEditProfile();
-                                      },
-                                      child: CircleAvatar(
-                                        radius: height * 0.018,
-                                        backgroundColor: mode == ThemeMode.light
-                                            ? Colors.grey.shade200
-                                            : Colors.yellowAccent,
-                                        child: Icon(
-                                          Icons.edit,
-                                          size: height * 0.02,
-                                          color: mode == ThemeMode.light
-                                              ? Colors.black
-                                              : Colors.grey,
+                              Container(
+                                color: Colors.black,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: mode == ThemeMode.light
+                                          ? const Color(0xffffffff)
+                                          : const Color(0xff686868),
+                                      borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(20),
+                                          topLeft: Radius.circular(20))),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: height * 0.08,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: width * 0.06),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              '${profileDetail!['first_name']} ${profileDetail!['last_name']}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: height * 0.025,
+                                                  color: mode == ThemeMode.light
+                                                      ? Colors.black
+                                                      : Colors.white),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                navigateToEditProfile();
+                                              },
+                                              child: CircleAvatar(
+                                                radius: height * 0.018,
+                                                backgroundColor:
+                                                    mode == ThemeMode.light
+                                                        ? Colors.grey.shade200
+                                                        : Colors.yellowAccent,
+                                                child: Icon(
+                                                  Icons.edit,
+                                                  size: height * 0.02,
+                                                  color: mode == ThemeMode.light
+                                                      ? Colors.black
+                                                      : Colors.grey,
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        height: height * 0.04,
+                                      ),
+                                      EmailContactDOB(
+                                        constant:
+                                            '${AppLocalizations.of(context)!.email} :',
+                                        constantValue: profileDetail!['email'],
+                                      ),
+                                      EmailContactDOB(
+                                          constant:
+                                              '${AppLocalizations.of(context)!.dateofBirth} :',
+                                          constantValue:
+                                              profileDetail!['dob'] ??
+                                                  AppLocalizations.of(context)!
+                                                      .dateofBirth),
+                                      EmailContactDOB(
+                                        constant:
+                                            '${AppLocalizations.of(context)!.contacts} :',
+                                        constantValue: AppLocalizations.of(
+                                                        context)!
+                                                    .locale ==
+                                                "en"
+                                            ? "${profileDetail!['countryCode'] ?? ""}${profileDetail!['contact_number'] ?? ""}"
+                                            : "${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(1)}${profileDetail!['contact_number'] ?? ""}${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(0, 1)}",
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          navigateToChangePassword();
+                                        },
+                                        child: PasswordSecurity(
+                                          prefixIcon: Icons.key,
+                                          title: AppLocalizations.of(context)!
+                                              .changepassword,
+                                          suffixIcon:
+                                              AppLocalizations.of(context)!
+                                                          .locale ==
+                                                      'en'
+                                                  ? Icons.keyboard_arrow_right
+                                                  : Icons.keyboard_arrow_left,
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          BottomSheett.settingModalBottomSheet(
+                                              context, height);
+                                        },
+                                        child: PasswordSecurity(
+                                          prefixIcon: Icons.support_agent,
+                                          title: AppLocalizations.of(context)!
+                                              .support,
+                                          suffixIcon:
+                                              AppLocalizations.of(context)!
+                                                          .locale ==
+                                                      'en'
+                                                  ? Icons.keyboard_arrow_right
+                                                  : Icons.keyboard_arrow_left,
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          privacyPolicy();
+                                        },
+                                        child: PasswordSecurity(
+                                          prefixIcon: Icons.security,
+                                          title: AppLocalizations.of(context)!
+                                              .security,
+                                          suffixIcon:
+                                              AppLocalizations.of(context)!
+                                                          .locale ==
+                                                      'en'
+                                                  ? Icons.keyboard_arrow_right
+                                                  : Icons.keyboard_arrow_left,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: height * 0.04,
-                              ),
-                              EmailContactDOB(
-                                constant:
-                                    '${AppLocalizations.of(context)!.email} :',
-                                constantValue: profileDetail!['email'],
-                              ),
-                              EmailContactDOB(
-                                  constant:
-                                      '${AppLocalizations.of(context)!.dateofBirth} :',
-                                  constantValue: profileDetail!['dob'] ??
-                                      AppLocalizations.of(context)!
-                                          .dateofBirth),
-                              EmailContactDOB(
-                                constant:
-                                    '${AppLocalizations.of(context)!.contacts} :',
-                                constantValue: AppLocalizations.of(context)!
-                                            .locale ==
-                                        "en"
-                                    ? "${profileDetail!['countryCode'] ?? ""}${profileDetail!['contact_number'] ?? ""}"
-                                    : "${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(1)}${profileDetail!['contact_number'] ?? ""}${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(0, 1)}",
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  navigateToChangePassword();
-                                },
-                                child: PasswordSecurity(
-                                  prefixIcon: Icons.key,
-                                  title: AppLocalizations.of(context)!
-                                      .changepassword,
-                                  suffixIcon:
-                                      AppLocalizations.of(context)!.locale ==
-                                              'en'
-                                          ? Icons.keyboard_arrow_right
-                                          : Icons.keyboard_arrow_left,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  BottomSheett.settingModalBottomSheet(
-                                      context, height);
-                                },
-                                child: PasswordSecurity(
-                                  prefixIcon: Icons.support_agent,
-                                  title: AppLocalizations.of(context)!.support,
-                                  suffixIcon:
-                                      AppLocalizations.of(context)!.locale ==
-                                              'en'
-                                          ? Icons.keyboard_arrow_right
-                                          : Icons.keyboard_arrow_left,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  privacyPolicy();
-                                },
-                                child: PasswordSecurity(
-                                  prefixIcon: Icons.security,
-                                  title: AppLocalizations.of(context)!.security,
-                                  suffixIcon:
-                                      AppLocalizations.of(context)!.locale ==
-                                              'en'
-                                          ? Icons.keyboard_arrow_right
-                                          : Icons.keyboard_arrow_left,
-                                ),
-                              ),
+                              )
                             ],
                           ),
                           Positioned(
@@ -280,7 +298,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
   }
 
   void navigateToEditProfile() {
-    Navigator.pushNamed(context, RouteNames.editProfile);
+    Navigator.pushNamed(context, RouteNames.editProfileScreen);
   }
 
   void navigateToChangePassword() {

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetailShimmer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:map_launcher/map_launcher.dart';
+import 'package:map_launcher/map_launcher.dart' hide MapType;
 import 'package:readmore/readmore.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,19 +71,22 @@ class GroundDetailState extends State<GroundDetail>
 
   addMarker() async {
     allMarkers.clear();
-    getBytesFromAsset("assets/images/marker.png", 70)
-        .then((markerIcon) => setState(() {
-              allMarkers.add(Marker(
-                markerId: const MarkerId('myMarker'),
-                icon: BitmapDescriptor.fromBytes(markerIcon),
-                draggable: false,
-                onTap: () {
-                  debugPrint('marker');
-                },
-                position: LatLng(privateVenueDetail.latitude!,
-                    privateVenueDetail.longitude!),
-              ));
-            }));
+    getBytesFromAsset("assets/images/marker.png", 70).then((markerIcon) =>
+        setState(() {
+          allMarkers.add(Marker(
+            markerId: const MarkerId('myMarker'),
+            icon: BitmapDescriptor.defaultMarker,
+            infoWindow:
+                InfoWindow(title: privateVenueDetail.venueDetails?.location),
+            onTap: () {
+              debugPrint('marker');
+            },
+            visible: true,
+            flat: true,
+            position: LatLng(
+                privateVenueDetail.latitude!, privateVenueDetail.longitude!),
+          ));
+        }));
   }
 
   openMapsSheet(context) async {
@@ -183,12 +187,11 @@ class GroundDetailState extends State<GroundDetail>
         ? GroundShimmer.buildShemmer(width, height, context)
         : internet
             ? Scaffold(
-                backgroundColor: Colors.black,
                 body: CustomScrollView(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: const AlwaysScrollableScrollPhysics(),
-                  slivers: <Widget>[
+                  slivers: [
                     SliverAppBar(
                       pinned: true,
                       centerTitle: false,
@@ -262,353 +265,477 @@ class GroundDetailState extends State<GroundDetail>
                         child: Column(
                           children: [
                             Container(
-                              decoration: BoxDecoration(
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? Colors.white
-                                    : Colors.black45,
-                                // borderRadius: BorderRadius.only(
-                                //     topRight: Radius.circular(20),
-                                //     topLeft: Radius.circular(20))
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: height * 0.024,
-                                    vertical: height * 0.033),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ///titleName
-                                    privateVenueDetail.images != null
-                                        ? GradientText(
-                                            privateVenueDetail
-                                                    .venueDetails!.name ??
-                                                "",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: height * 0.026,
-                                                color: Colors.white,
-                                                fontFamily: "Poppins",
-                                                decoration:
-                                                    TextDecoration.none),
-                                            gradient: LinearGradient(colors: [
-                                              Colors.green.shade100,
-                                              Colors.lightGreenAccent.shade200,
-                                              Colors.lightGreenAccent.shade400,
-                                              Colors.lightGreenAccent.shade700,
-                                            ]),
-                                          )
-                                        : SizedBox(
-                                            height: height * 0.028,
-                                            width: width * 0.04,
-                                            child:
-                                                const CircularProgressIndicator(
-                                              color: Colors.greenAccent,
-                                              strokeAlign: 1,
-                                              strokeWidth: 2,
-                                            ),
-                                          ),
-                                    SizedBox(
-                                      height: height * 0.02,
-                                    ),
-
-                                    ///description
-                                    Text(
-                                      AppLocalizations.of(context)!
-                                          .descriptionS,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.02,
-                                    ),
-                                    ReadMoreText(
-                                      privateVenueDetail
-                                              .venueDetails?.description ??
-                                          "",
-                                      trimLength: 2,
-                                      trimMode: TrimMode.Line,
-                                      lessStyle: TextStyle(
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.yellowAccent,
-                                          fontWeight: FontWeight.bold),
-                                      moreStyle: TextStyle(
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.yellowAccent,
-                                          fontWeight: FontWeight.bold),
-                                      trimCollapsedText: 'See More',
-                                      trimExpandedText: 'See Less',
-                                      style: TextStyle(
-                                        color:
-                                            MyAppState.mode == ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.025,
-                                    ),
-
-                                    ///GroundList
-                                    Text(
-                                        AppLocalizations.of(context)!
-                                            .groundList,
-                                        style: TextStyle(
-                                            fontSize: height * 0.03,
-                                            color: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white)),
-                                    ...List.generate(
-                                        3,
-                                        (index) => Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: width * 0.01,
-                                                  vertical: height * 0.01),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white70,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        color: Colors.black12,
-                                                        spreadRadius: 1,
-                                                        offset: Offset(0, 1),
-                                                        blurStyle:
-                                                            BlurStyle.outer,
-                                                      )
-                                                    ]),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: width * 0.01,
-                                                    ),
-                                                    Container(
-                                                      height: height * 0.05,
-                                                      width: width * 0.1,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          image: const DecorationImage(
-                                                              fit: BoxFit.fill,
-                                                              image: NetworkImage(
-                                                                  'https://tse1.mm.bing.net/th?id=OIP.Pi1ySxKBf7DyNStcLdOASwHaEo&pid=Api&rs=1&c=1&qlt=95&w=168&h=105'))),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.03,
-                                                    ),
-                                                    Text(
-                                                      ground[index],
-                                                      style: TextStyle(
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? Colors.black
-                                                            : Colors.white,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.3,
-                                                    ),
-                                                    Checkbox(
-                                                        shape:
-                                                            const CircleBorder(),
-                                                        activeColor:
-                                                            Colors.greenAccent,
-                                                        value: selectedIndex ==
-                                                                index
-                                                            ? true
-                                                            : false,
-                                                        onChanged: (onChanged) {
-                                                          selectedIndex = index;
-                                                          setState(() {});
-                                                        }),
-                                                  ],
-                                                ),
+                              color: Colors.black,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? Colors.white
+                                        : Color(0xff686868),
+                                    borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        topLeft: Radius.circular(20))),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: height * 0.024,
+                                      vertical: height * 0.033),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ///titleName
+                                      privateVenueDetail.images != null
+                                          ? GradientText(
+                                              privateVenueDetail
+                                                      .venueDetails!.name ??
+                                                  "",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: height * 0.026,
+                                                  color: Colors.white,
+                                                  fontFamily: "Poppins",
+                                                  decoration:
+                                                      TextDecoration.none),
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Colors.black38,
+                                                    Colors.black45,
+                                                    Colors.black54
+                                                  ]),
+                                            )
+                                          : SizedBox(
+                                              height: height * 0.028,
+                                              width: width * 0.04,
+                                              child:
+                                                  const CircularProgressIndicator(
+                                                color: Colors.greenAccent,
+                                                strokeAlign: 1,
+                                                strokeWidth: 2,
                                               ),
-                                            )),
+                                            ),
+                                      SizedBox(
+                                        height: height * 0.02,
+                                      ),
 
-                                    ///facilities
-                                    Facilities(),
-
-                                    ///location
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: height * 0.008),
-                                      child: Text(
-                                        AppLocalizations.of(context)!.location,
+                                      ///description
+                                      Text(
+                                        AppLocalizations.of(context)!
+                                            .descriptionS,
                                         style: TextStyle(
-                                            fontSize: height * 0.03,
+                                            fontWeight: FontWeight.bold,
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? Colors.black
                                                 : Colors.white),
                                       ),
-                                    ),
-                                    Card(
-                                      elevation: 3,
-                                      child: ExpansionTile(
-                                        title: ReadMoreText(
-                                          privateVenueDetail
-                                                  .venueDetails?.location ??
-                                              "",
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                          trimLength: 2,
-                                          trimMode: TrimMode.Line,
-                                          lessStyle: TextStyle(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? Colors.black38
-                                                  : Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                          moreStyle: TextStyle(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                          trimCollapsedText: 'More',
-                                          trimExpandedText: '.Less',
-                                        ),
-                                        tilePadding: EdgeInsets.symmetric(
-                                            vertical: height * 0.02,
-                                            horizontal: width * 0.02),
-                                        trailing: Icon(
-                                          Icons.location_searching,
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white,
-                                        ),
-                                        children: [
-                                          Card(
-                                            color: Colors.white70,
-                                            child: ListTile(
-                                              onTap: () {
-                                                openMapsSheet(context);
-                                              },
-                                              title: Center(
-                                                  child: Text(
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .chooseLocation)),
-                                            ),
-                                          )
-                                        ],
+                                      SizedBox(
+                                        height: height * 0.02,
                                       ),
-                                    ),
-
-                                    ///popularFeature
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: height * 0.013),
-                                      child: Text(
-                                        AppLocalizations.of(context)!.popular,
+                                      ReadMoreText(
+                                        privateVenueDetail
+                                                .venueDetails?.description ??
+                                            "",
+                                        trimLength: 2,
+                                        trimMode: TrimMode.Line,
+                                        lessStyle: TextStyle(
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? Colors.black
+                                                : Colors.yellowAccent,
+                                            fontWeight: FontWeight.bold),
+                                        moreStyle: TextStyle(
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? Colors.black
+                                                : Colors.yellowAccent,
+                                            fontWeight: FontWeight.bold),
+                                        trimCollapsedText: 'See More',
+                                        trimExpandedText: 'See Less',
                                         style: TextStyle(
-                                          fontSize: height * 0.03,
                                           color:
                                               MyAppState.mode == ThemeMode.light
                                                   ? Colors.black
                                                   : Colors.white,
                                         ),
                                       ),
-                                    ),
-                                    Wrap(
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.center,
-                                      children: [
-                                        ...List.generate(
-                                            5,
-                                            (index) => Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: height * .008,
-                                                      horizontal:
-                                                          width * 0.008),
-                                                  child: Wrap(
+                                      SizedBox(
+                                        height: height * 0.025,
+                                      ),
+
+                                      ///GroundList
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .groundList,
+                                          style: TextStyle(
+                                              fontSize: height * 0.03,
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white)),
+                                      ...List.generate(
+                                          3,
+                                          (index) => Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: width * 0.01,
+                                                    vertical: height * 0.01),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.white70,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          color: Colors.black12,
+                                                          spreadRadius: 1,
+                                                          offset: Offset(0, 1),
+                                                          blurStyle:
+                                                              BlurStyle.outer,
+                                                        )
+                                                      ]),
+                                                  child: Row(
                                                     crossAxisAlignment:
-                                                        WrapCrossAlignment
+                                                        CrossAxisAlignment
                                                             .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
-                                                      CircleAvatar(
-                                                        radius: height * 0.0065,
-                                                        backgroundColor:
-                                                            Colors.grey,
+                                                      SizedBox(
+                                                        width: width * 0.01,
                                                       ),
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    width *
-                                                                        0.02),
-                                                        child: Text(
-                                                          popular[index],
-                                                          style: TextStyle(
-                                                              color: MyAppState
-                                                                          .mode ==
-                                                                      ThemeMode
-                                                                          .light
-                                                                  ? Colors.black
-                                                                  : Colors
-                                                                      .white,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              fontSize: height *
-                                                                  0.02),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          softWrap: true,
-                                                          textWidthBasis:
-                                                              TextWidthBasis
-                                                                  .parent,
+                                                      Container(
+                                                        height: height * 0.05,
+                                                        width: width * 0.1,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            image: const DecorationImage(
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                image: NetworkImage(
+                                                                    'https://tse1.mm.bing.net/th?id=OIP.Pi1ySxKBf7DyNStcLdOASwHaEo&pid=Api&rs=1&c=1&qlt=95&w=168&h=105'))),
+                                                      ),
+                                                      SizedBox(
+                                                        width: width * 0.03,
+                                                      ),
+                                                      Text(
+                                                        ground[index],
+                                                        style: TextStyle(
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? Colors.black
+                                                              : Colors.white,
                                                         ),
                                                       ),
+                                                      SizedBox(
+                                                        width: width * 0.3,
+                                                      ),
+                                                      Checkbox(
+                                                          shape:
+                                                              const CircleBorder(),
+                                                          activeColor: Colors
+                                                              .greenAccent,
+                                                          value:
+                                                              selectedIndex ==
+                                                                      index
+                                                                  ? true
+                                                                  : false,
+                                                          onChanged:
+                                                              (onChanged) {
+                                                            selectedIndex =
+                                                                index;
+                                                            setState(() {});
+                                                          }),
                                                     ],
                                                   ),
-                                                ))
-                                      ],
-                                    ),
+                                                ),
+                                              )),
 
-                                    ///BookButton
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: width * 0.01,
-                                          vertical: height * 0.01),
-                                      child: InkWell(
-                                        onTap: () {
-                                          navigateToBookingScreen(
-                                              widget.detail);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.yellow,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          height: height * 0.06,
-                                          child: Center(
-                                              child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .bookNowS)),
+                                      ///facilities
+                                      Facilities(),
+
+                                      ///location
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: height * 0.008),
+                                        child: Text(
+                                          AppLocalizations.of(context)!
+                                              .location,
+                                          style: TextStyle(
+                                              fontSize: height * 0.03,
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      GestureDetector(
+                                        onTap: () {
+                                          openMapsSheet(context);
+                                          // makeMap(_getLaunchUrl().toString());
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 5),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                width: width,
+                                                height: height * .3,
+                                                decoration: const BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  20.0),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20.0)),
+                                                ),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  15.0),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  15.0)),
+                                                  child: GoogleMap(
+                                                    zoomControlsEnabled: true,
+                                                    myLocationButtonEnabled:
+                                                        true,
+                                                    onTap: (value) {
+                                                      // openMapsSheet(context);
+                                                      //makeMap(_getLaunchUrl().toString());
+                                                      setState(() {});
+                                                    },
+                                                    indoorViewEnabled: true,
+                                                    compassEnabled: true,
+                                                    mapToolbarEnabled: true,
+                                                    buildingsEnabled: true,
+                                                    mapType: MapType.hybrid,
+                                                    rotateGesturesEnabled: true,
+                                                    liteModeEnabled: false,
+                                                    initialCameraPosition:
+                                                        CameraPosition(
+                                                            target: LatLng(
+                                                                privateVenueDetail
+                                                                    .latitude!,
+                                                                privateVenueDetail
+                                                                    .longitude!),
+                                                            zoom: 14.0),
+                                                    // markers: Set.identity(),
+                                                    markers:
+                                                        Set.from(allMarkers),
+                                                    zoomGesturesEnabled: true,
+                                                  ),
+                                                ),
+                                              ),
+                                              Material(
+                                                elevation: 1,
+                                                color: Colors.white,
+                                                borderRadius: const BorderRadius
+                                                    .only(
+                                                    bottomRight:
+                                                        Radius.circular(20.0),
+                                                    bottomLeft:
+                                                        Radius.circular(20.0)),
+                                                child: SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 7,
+                                                            left: 7,
+                                                            top: 10),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                const Icon(
+                                                                  Icons
+                                                                      .location_on,
+                                                                  size: 20,
+                                                                ),
+                                                                SizedBox(
+                                                                  width: width *
+                                                                      .6,
+                                                                  child: Text(
+                                                                    AppLocalizations.of(
+                                                                            context)!
+                                                                        .location,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                    maxLines: 5,
+                                                                    style: const TextStyle(
+                                                                        fontSize:
+                                                                            14,
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w500,
+                                                                        decoration:
+                                                                            TextDecoration.none),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              width:
+                                                                  width * .75,
+                                                              child: Text(
+                                                                privateVenueDetail
+                                                                        .venueDetails
+                                                                        ?.location ??
+                                                                    "",
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                maxLines: 2,
+                                                                style: const TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: Color(
+                                                                        0XFF8B8B8B),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .none),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+
+                                      ///popularFeature
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: height * 0.013),
+                                        child: Text(
+                                          AppLocalizations.of(context)!.popular,
+                                          style: TextStyle(
+                                            fontSize: height * 0.03,
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? Colors.black
+                                                : Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      Wrap(
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        children: [
+                                          ...List.generate(
+                                              5,
+                                              (index) => Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical:
+                                                                height * .008,
+                                                            horizontal:
+                                                                width * 0.008),
+                                                    child: Wrap(
+                                                      crossAxisAlignment:
+                                                          WrapCrossAlignment
+                                                              .center,
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius:
+                                                              height * 0.0065,
+                                                          backgroundColor:
+                                                              Colors.grey,
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      width *
+                                                                          0.02),
+                                                          child: Text(
+                                                            popular[index],
+                                                            style: TextStyle(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? Colors
+                                                                        .black
+                                                                    : Colors
+                                                                        .white,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                fontSize:
+                                                                    height *
+                                                                        0.02),
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            softWrap: true,
+                                                            textWidthBasis:
+                                                                TextWidthBasis
+                                                                    .parent,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ))
+                                        ],
+                                      ),
+
+                                      ///BookButton
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: width * 0.01,
+                                            vertical: height * 0.01),
+                                        child: InkWell(
+                                          onTap: () {
+                                            navigateToBookingScreen(
+                                                widget.detail);
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.yellow,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            height: height * 0.06,
+                                            child: Center(
+                                                child: Text(AppLocalizations.of(
+                                                        context)!
+                                                    .bookNowS)),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             )

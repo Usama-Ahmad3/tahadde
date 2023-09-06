@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/verification.dart';
 import 'package:flutter_tahaddi/player/loginSignup/team/searchBar.dart';
 
 import '../homeFile/association_promotion.dart';
@@ -133,6 +136,14 @@ class RouterPage {
         return MaterialPageRoute(
           builder: (context) => BookingScreenView(detail: settings.arguments),
         );
+      case RouteNames.verificationScreen:
+        var detail = settings.arguments;
+        return MaterialPageRoute(
+            builder: (_) => VerificationScreen(
+                  detail: detail as SignUpSignInDetail,
+                ));
+      case RouteNames.editProfileScreen:
+        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       // case addCard:
       //   var price = settings.arguments;
       //   return MaterialPageRoute(

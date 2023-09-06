@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../common_widgets/internet_loss.dart';
@@ -43,31 +44,38 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return _isLoading
         ? _internet
             ? Scaffold(
-                backgroundColor: const Color(0XFFF0F0F0),
-                appBar: AppBar(
-                  leading: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Color(0XFFFFFFFF),
+                backgroundColor: MyAppState.mode == ThemeMode.light
+                    ? Color(0XFFF0F0F0)
+                    : Colors.grey.shade300,
+                appBar: PreferredSize(
+                  preferredSize: Size(sizewidth, sizeheight * 0.1),
+                  child: AppBar(
+                    leading: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Color(0XFFFFFFFF),
+                      ),
                     ),
+                    automaticallyImplyLeading: false,
+                    title: Text(
+                      AppLocalizations.of(context)!.forgotPassword,
+                      style: TextStyle(
+                          fontSize: appHeaderFont,
+                          color: const Color(0XFFFFFFFF),
+                          fontFamily:
+                              AppLocalizations.of(context)!.locale == "en"
+                                  ? "Poppins"
+                                  : "VIP",
+                          fontWeight:
+                              AppLocalizations.of(context)!.locale == "en"
+                                  ? FontWeight.w600
+                                  : FontWeight.normal),
+                    ),
+                    backgroundColor: Colors.black,
                   ),
-                  automaticallyImplyLeading: false,
-                  title: Text(
-                    AppLocalizations.of(context)!.forgotPassword,
-                    style: TextStyle(
-                        fontSize: appHeaderFont,
-                        color: const Color(0XFFFFFFFF),
-                        fontFamily: AppLocalizations.of(context)!.locale == "en"
-                            ? "Poppins"
-                            : "VIP",
-                        fontWeight: AppLocalizations.of(context)!.locale == "en"
-                            ? FontWeight.w600
-                            : FontWeight.normal),
-                  ),
-                  backgroundColor: const Color(0XFF032040),
                 ),
                 body: SingleChildScrollView(
                   child: Padding(
@@ -124,7 +132,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                   }),
                               flaxibleGap(3),
                               Ink(
-                                color: const Color(0XFF25A163),
+                                decoration: BoxDecoration(
+                                    color: Colors.yellowAccent,
+                                    borderRadius: BorderRadius.circular(13)),
                                 child: InkWell(
                                   splashColor: Colors.black,
                                   onTap: () {
@@ -179,7 +189,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                       AppLocalizations.of(context)!.sendEmail,
                                       style: const TextStyle(
                                         fontSize: 20,
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       ),
                                       textAlign: TextAlign.right,
                                     ),

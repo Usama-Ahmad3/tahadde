@@ -6,14 +6,14 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueLi
 import '../../../../../common_widgets/internet_loss.dart';
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
-import '../../../../../modelClass/pramotion_model_class.dart';
 import '../../../../../modelClass/territory_model_class.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
+import '../../../../../walkThrough/walkThrough.dart';
 import '../../../utils.dart';
+import '../widgets/textFormField.dart';
 import 'SearchScreen.dart';
 import 'shimmerWidgets.dart';
-import 'sportList.dart';
 
 class HomeScreenView extends StatefulWidget {
   const HomeScreenView({super.key});
@@ -34,7 +34,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   bool _isLoading = true;
   var _bookPitchData;
   final List<SportsList> _sportsList = [];
-  List<PromotionModelClass> _promotionData = [];
+  var searchController = TextEditingController();
+  bool searchFlag = false;
 
   getSports() async {
     _networkCalls.sportsList(onSuccess: (detail) {
@@ -113,30 +114,6 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     );
   }
 
-  getPromotion() async {
-    await _networkCalls.getPromotion(
-      onSuccess: (promotionInfo) {
-        if (mounted) {
-          setState(() {
-            // _isLoading = false;
-            _promotionData = promotionInfo;
-          });
-        }
-      },
-      onFailure: (msg) {
-        if (mounted) {
-          setState(() {
-            // _isLoading = false;
-          });
-        }
-      },
-      tokenExpire: () {},
-      // tokenExpire: () {
-      //   if (mounted) on401(context);
-      // },
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -146,7 +123,6 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         getAddress();
         loadTerritories();
         getSports();
-        getPromotion();
         loadVenues();
       } else {
         if (mounted) {
@@ -163,6 +139,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return RefreshIndicator(
         displacement: 200,
         onRefresh: () async {
@@ -177,7 +155,6 @@ class _HomeScreenViewState extends State<HomeScreenView> {
               loadVenues();
               getAddress();
               getSports();
-              getPromotion();
             } else {
               setState(() {});
             }
@@ -185,6 +162,219 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         },
         child: Scaffold(
           backgroundColor: const Color(0xff050505),
+          appBar: AppBar(
+            elevation: 2,
+            automaticallyImplyLeading: false,
+            title: Row(
+              children: [
+                SizedBox(
+                    height: 40 * fem,
+                    width: 40 * fem,
+                    child: Image.asset(
+                      'assets/images/T.png',
+                      color: Colors.white,
+                    )),
+                Text(
+                  AppLocalizations.of(context)!.tahaddi,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 20 * ffem,
+                    fontWeight: FontWeight.w600,
+                    height: 1.25 * ffem / fem,
+                    letterSpacing: -0.2 * fem,
+                    color: const Color(0xffffffff),
+                  ),
+                ),
+              ],
+            ),
+            bottom: PreferredSize(
+              preferredSize: Size(
+                  width, searchFlag == true ? height * 0.033 : height * 0.01),
+              child: searchFlag
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                            height: height * 0.05,
+                            width: width * 0.7,
+                            child: textFieldWidget(
+                                textColor: Colors.white,
+                                controller: searchController,
+                                hintText: AppLocalizations.of(context)!.search,
+                                fillColor: Colors.white24,
+                                prefixIcon: Icons.search,
+                                onChanged: (e) {
+                                  setState(() {});
+                                },
+                                prefixIconColor: Colors.grey,
+                                enableBorder: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusBorder: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                border: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)))),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => WalkThroughScreen()));
+                          },
+                          child: Container(
+                            height: height * 0.05,
+                            width: width * 0.12,
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Icon(
+                              Icons.list,
+                              color: Colors.white,
+                              size: height * 0.044,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : Container(),
+            ),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ///location
+                  SizedBox(
+                    width: 100 * fem,
+                    height: 40 * fem,
+                    child: territoryData.isNotEmpty
+                        ? CupertinoPicker(
+                            itemExtent: 20,
+                            backgroundColor: Colors.black,
+                            looping: true,
+                            useMagnifier: true,
+                            magnification: 1,
+                            onSelectedItemChanged: (e) {
+                              showMessage('Tap To Select');
+                            },
+                            children: List.generate(
+                                territoryData[0].cities!.length, (index) {
+                              return territoryData[0].cities![index]!.isDisable
+                                      as bool
+                                  ? const SizedBox.shrink()
+                                  : InkWell(
+                                      onTap: () async {
+                                        await _networkCalls.saveKeys(
+                                            "country",
+                                            territoryData[0]
+                                                .country!
+                                                .name
+                                                .toString());
+                                        await _networkCalls.saveKeys(
+                                            "arabicCountry",
+                                            territoryData[0]
+                                                .country!
+                                                .nameArabic
+                                                .toString());
+                                        await _networkCalls.saveKeys(
+                                            "city",
+                                            territoryData[0]
+                                                .cities![index]!
+                                                .city!
+                                                .name
+                                                .toString());
+                                        await _networkCalls.saveKeys(
+                                            "arabicCity",
+                                            territoryData[0]
+                                                .cities![index]!
+                                                .city!
+                                                .nameArabic
+                                                .toString());
+                                        await _networkCalls.saveKeys(
+                                            "cityId",
+                                            territoryData[0]
+                                                .cities![index]!
+                                                .city!
+                                                .id
+                                                .toString());
+                                        await _networkCalls.saveKeys(
+                                            "lat",
+                                            territoryData[0]
+                                                .cities![index]!
+                                                .city!
+                                                .latitude
+                                                .toString());
+                                        await _networkCalls.saveKeys(
+                                            "long",
+                                            territoryData[0]
+                                                .cities![index]!
+                                                .city!
+                                                .longitude
+                                                .toString());
+                                        await getAddress();
+                                        showMessage(
+                                            '${territoryData[0].cities![index]!.city!.name.toString()} Selected');
+                                      },
+                                      child: Center(
+                                        child: Text(
+                                          AppLocalizations.of(context)!
+                                                      .locale ==
+                                                  "en"
+                                              ? territoryData[0]
+                                                  .cities![index]!
+                                                  .city!
+                                                  .name
+                                                  .toString()
+                                              : territoryData[0]
+                                                  .cities![index]!
+                                                  .city!
+                                                  .nameArabic
+                                                  .toString(),
+                                          style: TextStyle(
+                                              fontSize: 17 * fem,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    );
+                            }))
+                        : const Center(child: CircularProgressIndicator()),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      searchFlag = !searchFlag;
+                      setState(() {});
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => Search(),
+                      //     ));
+                    },
+                    child: CircleAvatar(
+                      radius: 23 * fem,
+                      backgroundColor: Colors.white10,
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: 23 * fem,
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      NavigateToNotification();
+                    },
+                    child: const CircleAvatar(
+                      radius: 23,
+                      backgroundColor: Colors.white10,
+                      child: Icon(
+                        Icons.notifications_none,
+                        color: Colors.white,
+                        size: 23,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
           body: _isLoading
               ? ShimmerWidgets().buildShimmer(fem, context, _bookPitchData)
               : _internet!
@@ -194,198 +384,14 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ///top widget
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: 20 * fem, bottom: 30 * fem),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      navigateToProfile();
-                                    },
-                                    child: CircleAvatar(
-                                      radius: 23 * fem,
-                                      backgroundColor: Colors.white10,
-                                      child: Icon(
-                                        Icons.person,
-                                        color: Colors.white,
-                                        size: 23 * fem,
-                                      ),
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.tahaddi,
-                                        style: SafeGoogleFont(
-                                          'Inter',
-                                          fontSize: 20 * ffem,
-                                          fontWeight: FontWeight.w600,
-                                          height: 1.25 * ffem / fem,
-                                          letterSpacing: -0.2 * fem,
-                                          color: const Color(0xffffffff),
-                                        ),
-                                      ),
-                                      Text(
-                                        AppLocalizations.of(context)!.morning,
-                                        style: SafeGoogleFont(
-                                          'Inter',
-                                          fontSize: 13 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.3846153846 * ffem / fem,
-                                          color: const Color(0xff999999),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  ///location
-
-                                  SizedBox(
-                                    width: 130 * fem,
-                                    height: 70 * fem,
-                                    child: territoryData.isNotEmpty
-                                        ? CupertinoPicker(
-                                            itemExtent: 40,
-                                            backgroundColor: Colors.black,
-                                            looping: true,
-                                            useMagnifier: true,
-                                            magnification: 1,
-                                            onSelectedItemChanged: (e) {
-                                              showMessage('Tap To Select');
-                                            },
-                                            children: List.generate(
-                                                territoryData[0].cities!.length,
-                                                (index) {
-                                              return territoryData[0]
-                                                      .cities![index]!
-                                                      .isDisable as bool
-                                                  ? const SizedBox.shrink()
-                                                  : InkWell(
-                                                      onTap: () async {
-                                                        await _networkCalls
-                                                            .saveKeys(
-                                                                "country",
-                                                                territoryData[0]
-                                                                    .country!
-                                                                    .name
-                                                                    .toString());
-                                                        await _networkCalls
-                                                            .saveKeys(
-                                                                "arabicCountry",
-                                                                territoryData[0]
-                                                                    .country!
-                                                                    .nameArabic
-                                                                    .toString());
-                                                        await _networkCalls
-                                                            .saveKeys(
-                                                                "city",
-                                                                territoryData[0]
-                                                                    .cities![
-                                                                        index]!
-                                                                    .city!
-                                                                    .name
-                                                                    .toString());
-                                                        await _networkCalls
-                                                            .saveKeys(
-                                                                "arabicCity",
-                                                                territoryData[0]
-                                                                    .cities![
-                                                                        index]!
-                                                                    .city!
-                                                                    .nameArabic
-                                                                    .toString());
-                                                        await _networkCalls
-                                                            .saveKeys(
-                                                                "cityId",
-                                                                territoryData[0]
-                                                                    .cities![
-                                                                        index]!
-                                                                    .city!
-                                                                    .id
-                                                                    .toString());
-                                                        await _networkCalls
-                                                            .saveKeys(
-                                                                "lat",
-                                                                territoryData[0]
-                                                                    .cities![
-                                                                        index]!
-                                                                    .city!
-                                                                    .latitude
-                                                                    .toString());
-                                                        await _networkCalls
-                                                            .saveKeys(
-                                                                "long",
-                                                                territoryData[0]
-                                                                    .cities![
-                                                                        index]!
-                                                                    .city!
-                                                                    .longitude
-                                                                    .toString());
-                                                        await getAddress();
-                                                        showMessage(
-                                                            '${territoryData[0].cities![index]!.city!.name.toString()} Selected');
-                                                      },
-                                                      child: Center(
-                                                        child: Text(
-                                                          AppLocalizations.of(
-                                                                          context)!
-                                                                      .locale ==
-                                                                  "en"
-                                                              ? territoryData[0]
-                                                                  .cities![
-                                                                      index]!
-                                                                  .city!
-                                                                  .name
-                                                                  .toString()
-                                                              : territoryData[0]
-                                                                  .cities![
-                                                                      index]!
-                                                                  .city!
-                                                                  .nameArabic
-                                                                  .toString(),
-                                                          style: TextStyle(
-                                                              fontSize:
-                                                                  17 * fem,
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                    );
-                                            }))
-                                        : const Center(
-                                            child: CircularProgressIndicator()),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Search(),
-                                          ));
-                                    },
-                                    child: CircleAvatar(
-                                      radius: 23 * fem,
-                                      backgroundColor: Colors.white10,
-                                      child: Icon(
-                                        Icons.search,
-                                        color: Colors.white,
-                                        size: 23 * fem,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            SizedBox(
+                              height: 20 * fem,
                             ),
                             Padding(
                               padding:
                                   EdgeInsets.symmetric(horizontal: fem * 22.0),
                               child: SizedBox(
-                                height: fem * 50,
+                                height: fem * 150,
                                 width: double.infinity,
                                 child: const Placeholder(),
                               ),
@@ -395,12 +401,12 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                             ),
 
                             ///category
-                            _sportsList.isEmpty
-                                ? const SizedBox.shrink()
-                                : SportList(
-                                    isSelected: isSelected,
-                                    sportsList: _sportsList,
-                                  ),
+                            // _sportsList.isEmpty
+                            //     ? const SizedBox.shrink()
+                            //     : SportList(
+                            //         isSelected: isSelected,
+                            //         sportsList: _sportsList,
+                            //       ),
                             _bookPitchData != null
                                 ? VanueList(bookPitchData: _bookPitchData)
                                 : const SizedBox.shrink(),
@@ -428,7 +434,6 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                     loadVenues();
                                     getAddress();
                                     getSports();
-                                    getPromotion();
                                   } else {
                                     setState(() {});
                                   }
@@ -449,5 +454,9 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   void navigateToBookPitchDetail(Map detail) {
     Navigator.pushNamed(context, RouteNames.venueDetailScreen,
         arguments: detail);
+  }
+
+  void NavigateToNotification() {
+    Navigator.pushNamed(context, RouteNames.notificationScreen);
   }
 }

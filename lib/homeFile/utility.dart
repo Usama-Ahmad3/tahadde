@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
@@ -99,8 +100,12 @@ Widget textField({
         : text1
             ? TextInputType.number
             : TextInputType.emailAddress,
-    style: const TextStyle(
-        color: Color(0XFF032040), fontWeight: FontWeight.w600, fontSize: 12),
+    style: TextStyle(
+        color: MyAppState.mode == ThemeMode.light
+            ? Color(0XFF032040)
+            : Colors.white,
+        fontWeight: FontWeight.w600,
+        fontSize: 12),
     decoration: InputDecoration(
       labelText: name,
       hintText: hintText,

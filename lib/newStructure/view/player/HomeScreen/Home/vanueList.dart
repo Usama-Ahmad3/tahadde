@@ -50,7 +50,7 @@ class _VanueListState extends State<VanueList> {
                       setState(() {});
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.venues,
+                      'Academies',
                       style: SafeGoogleFont('Inter',
                           fontSize: 20 * ffem,
                           fontWeight: FontWeight.w600,

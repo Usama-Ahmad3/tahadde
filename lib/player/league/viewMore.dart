@@ -14,8 +14,10 @@ import '../../network/network_calls.dart';
 // import 'league.dart';
 
 class ViewMoreLeague extends StatefulWidget {
-  Map leagueType;
+  var leagueType;
+
   ViewMoreLeague({required this.leagueType});
+
   @override
   _ViewMoreLeagueState createState() => _ViewMoreLeagueState();
 }
@@ -25,6 +27,7 @@ class _ViewMoreLeagueState extends State<ViewMoreLeague> {
   late List<League> leagueData;
   late bool internet;
   bool _isLoading = true;
+
   @override
   loadLeageData() async {
     await _networkCalls.league(
@@ -297,7 +300,9 @@ class _ViewMoreLeagueState extends State<ViewMoreLeague> {
 
 class LeagueListItem extends StatelessWidget {
   final String file;
+
   LeagueListItem({required this.file});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

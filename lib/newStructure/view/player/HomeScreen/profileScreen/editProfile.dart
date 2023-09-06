@@ -1,0 +1,677 @@
+import 'dart:io';
+
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../../../../common_widgets/internet_loss.dart';
+import '../../../../../homeFile/utility.dart';
+import '../../../../../localizations.dart';
+import '../../../../../main.dart';
+import '../../../../../network/network_calls.dart';
+
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  var firstNameController = TextEditingController();
+  final _lastName = TextEditingController(text: '');
+  final _dob = TextEditingController();
+  final emailController = TextEditingController();
+  final _phoneNumber = TextEditingController(text: '');
+  final DateFormat formatter = DateFormat('yyyy-MM-dd', 'en_US');
+  bool isImageLoade = false;
+  var lastBookingDateApi;
+  bool _internet = true;
+  File? image;
+  var profile_Id;
+  String? images;
+  String? countryCode;
+  final NetworkCalls _networkCalls = NetworkCalls();
+  final _formKey = GlobalKey<FormState>();
+  final scaffoldkey = GlobalKey<ScaffoldState>();
+  List<String> playerPostion = [];
+  List<String> playerPostionSlug = [];
+
+  Future<void> _showChoiceDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(AppLocalizations.of(context)!.uploadprofilepicture),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: [
+                  GestureDetector(
+                    child:
+                        Text(AppLocalizations.of(context)!.choosefromlibrary),
+                    onTap: () async {
+                      var status = await Permission.photos.status;
+                      if (status.isGranted) {
+                        _imagePicker(context, ImageSource.gallery);
+                      } else if (status.isDenied) {
+                        _imagePicker(context, ImageSource.gallery);
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                CupertinoAlertDialog(
+                                  title: Text(AppLocalizations.of(context)!
+                                      .galleryPermission),
+                                  content: Text(AppLocalizations.of(context)!
+                                      .thisGalleryPicturesUploadImage),
+                                  actions: <Widget>[
+                                    CupertinoDialogAction(
+                                      child: Text(
+                                          AppLocalizations.of(context)!.deny),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                    CupertinoDialogAction(
+                                      child: Text(AppLocalizations.of(context)!
+                                          .setting),
+                                      onPressed: () => openAppSettings(),
+                                    ),
+                                  ],
+                                ));
+                      }
+                    },
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                  ),
+                  GestureDetector(
+                    child: Text(AppLocalizations.of(context)!.takephoto),
+                    onTap: () async {
+                      var status = await Permission.camera.status;
+                      if (status.isGranted) {
+                        _imagePicker(context, ImageSource.camera);
+                      } else if (status.isDenied) {
+                        // ignore: use_build_context_synchronously
+                        _imagePicker(context, ImageSource.camera);
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                CupertinoAlertDialog(
+                                  title: Text(AppLocalizations.of(context)!
+                                      .cameraPermission),
+                                  content: Text(AppLocalizations.of(context)!
+                                      .thisPicturesUploadImage),
+                                  actions: <Widget>[
+                                    CupertinoDialogAction(
+                                      child: Text(
+                                          AppLocalizations.of(context)!.deny),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                    CupertinoDialogAction(
+                                      child: Text(AppLocalizations.of(context)!
+                                          .setting),
+                                      onPressed: () => openAppSettings(),
+                                    ),
+                                  ],
+                                ));
+                      }
+                    },
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  loadProfile() async {
+    _networkCalls.getProfile(
+      onSuccess: (msg) {
+        if (mounted) {
+          setState(() {
+            firstNameController.text = msg['first_name'];
+            countryCode = msg["countryCode"];
+            _lastName.text = msg['last_name'];
+            _dob.text = msg['dob'];
+            emailController.text = msg['email'];
+            _phoneNumber.text = msg['contact_number'];
+            images = msg['profile_pic'] == null
+                ? ''
+                : msg['profile_pic']['filePath'];
+            _networkCalls.playerPosition(
+              onSuccess: (msg) {
+                if (mounted) {
+                  setState(() {
+                    for (int i = 0; i < msg.length; i++) {
+                      playerPostion.add(msg[i]["name"]);
+                      playerPostionSlug.add(msg[i]["slug"]);
+                    }
+                  });
+                }
+              },
+              onFailure: (msg) {
+                showMessage(msg);
+              },
+              tokenExpire: () {
+                if (mounted) on401(context);
+              },
+            );
+          });
+        }
+      },
+      onFailure: (msg) {
+        showMessage(msg);
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
+      _internet = msg;
+      if (msg == true) {
+        loadProfile();
+      } else {
+        if (mounted) {
+          setState(() {});
+        }
+      }
+    });
+  }
+
+  Future<DateTime?> slecteDtateTime(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: DateTime.now().add(const Duration(seconds: 1)),
+        firstDate: DateTime(1950),
+        lastDate: DateTime.now(),
+        locale: Locale(AppLocalizations.of(context)!.locale),
+        builder: (BuildContext context, Widget? child) {
+          return Theme(
+            data: ThemeData.light().copyWith(
+              colorScheme: const ColorScheme.light(primary: Color(0XFF032040)),
+              buttonTheme:
+                  const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+            ),
+            child: child!,
+          );
+        },
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return _internet
+        ? Scaffold(
+            appBar: PreferredSize(
+              preferredSize: Size(width, height * 0.13),
+              child: AppBar(
+                title: Text(AppLocalizations.of(context)!.editProfile),
+                centerTitle: true,
+                backgroundColor: Colors.black,
+                leadingWidth: width * 0.18,
+                leading: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                        height: height * 0.004,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            shape: BoxShape.circle),
+                        child: Icon(
+                          AppLocalizations.of(context)!.locale == 'en'
+                              ? Icons.keyboard_arrow_left_sharp
+                              : Icons.keyboard_arrow_right,
+                          color: Colors.white,
+                        )),
+                  ),
+                ),
+              ),
+            ),
+            body: DefaultTextStyle(
+                style: TextStyle(
+                    fontSize: height * 0.02,
+                    color: MyAppState.mode == ThemeMode.light
+                        ? Colors.grey
+                        : Colors.white),
+                child: Container(
+                  color: Colors.black,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: MyAppState.mode == ThemeMode.light
+                            ? Colors.white
+                            : Color(0xff686868),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.06, vertical: height * 0.02),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Material(
+                              elevation: 4,
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                width: 85,
+                                height: 85,
+                                decoration: BoxDecoration(
+                                    color:
+                                        Colors.grey.shade400.withOpacity(0.7),
+                                    shape: BoxShape.circle,
+                                    border:
+                                        Border.all(color: Colors.amberAccent)),
+                                child: isImageLoade
+                                    ? Container(
+                                        width: 85,
+                                        height: 85,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey.shade400
+                                                .withOpacity(0.7),
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                                color: Colors.amberAccent)),
+                                        child: Lottie.asset(
+                                          'assets/lottiefiles/image.json',
+                                        ),
+                                      )
+                                    : InkWell(
+                                        onTap: () {
+                                          _showChoiceDialog(context);
+                                        },
+                                        child: Container(
+                                          width: 85,
+                                          height: 85,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey.shade400
+                                                  .withOpacity(0.7),
+                                              shape: BoxShape.circle,
+                                              image: images != null
+                                                  ? DecorationImage(
+                                                      image:
+                                                          NetworkImage(images!),
+                                                      fit: BoxFit.cover)
+                                                  : const DecorationImage(
+                                                      image: AssetImage(
+                                                          "assets/images/profile.png"),
+                                                      fit: BoxFit.cover),
+                                              border: Border.all(
+                                                  color: Colors.amberAccent)),
+                                        ),
+                                      ),
+                              ),
+                            ),
+                            const SizedBox(height: 15),
+
+                            // upload photo text
+                            Text(
+                              AppLocalizations.of(context)!.uploadImage,
+                              style: TextStyle(fontSize: 10),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!.personalDetail,
+                              style: TextStyle(
+                                  fontSize: height * 0.03,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white),
+                            ),
+                            SizedBox(height: height * 0.01),
+                            Text(
+                              AppLocalizations.of(context)!.firstName,
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            textFieldWidget(
+                              controller: firstNameController,
+                              hintText: 'Tahadde',
+                              suffixIcon: Icons.edit_outlined,
+                              fillColor: Colors.transparent,
+                              suffixIconColor:
+                                  MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white,
+                              border: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                              enableBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                              focusBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              AppLocalizations.of(context)!.lastName,
+                              style: TextStyle(),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            textFieldWidget(
+                              controller: _lastName,
+                              hintText: 'MobileApp',
+                              suffixIcon: Icons.edit_outlined,
+                              fillColor: Colors.transparent,
+                              suffixIconColor:
+                                  MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white,
+                              border: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                              enableBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                              focusBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              AppLocalizations.of(context)!.email,
+                              style: TextStyle(),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            textFieldWidget(
+                              controller: emailController,
+                              hintText: 'Tahadde',
+                              suffixIcon: Icons.edit_outlined,
+                              fillColor: Colors.transparent,
+                              suffixIconColor:
+                                  MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white,
+                              border: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                              enableBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                              focusBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            Text(AppLocalizations.of(context)!.dateofBirth),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: height * .015, bottom: height * .01),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    lastBookingDateApi ??
+                                        _dob.text ??
+                                        AppLocalizations.of(context)!
+                                            .choosedateofbirth,
+                                    style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        decoration: TextDecoration.none,
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? Color(0XFF032040)
+                                                : Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14),
+                                  ),
+                                  flaxibleGap(1),
+                                  GestureDetector(
+                                      onTap: () async {
+                                        final selectDate =
+                                            await slecteDtateTime(context);
+                                        if (selectDate != null) {
+                                          setState(() {
+                                            lastBookingDateApi = formatter
+                                                .format((selectDate))
+                                                .toString();
+                                          });
+                                        }
+                                        print(selectDate);
+                                      },
+                                      child: Icon(Icons.calendar_today,
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white))
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            const Text(
+                              'Contact',
+                              style: TextStyle(),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                AppLocalizations.of(context)!.locale == "en"
+                                    ? CountryCodePicker(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        textStyle: TextStyle(
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? const Color(0XFF032040)
+                                                : Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12),
+                                        onChanged: (value) {
+                                          setState(() {
+                                            countryCode = value.toString();
+                                          });
+                                        },
+                                        initialSelection: countryCode,
+                                        favorite: const [
+                                          '+971',
+                                          'ae',
+                                        ],
+                                        showCountryOnly: false,
+                                        showOnlyCountryWhenClosed: false,
+                                        alignLeft: false,
+                                      )
+                                    : Container(),
+                                Expanded(
+                                  child: Container(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    width: width * .5,
+                                    alignment: Alignment.topCenter,
+                                    child: textField(
+                                      testAlignment:
+                                          AppLocalizations.of(context)!
+                                                      .locale ==
+                                                  "en"
+                                              ? true
+                                              : false,
+                                      // node: phoneFocus,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return AppLocalizations.of(context)!
+                                              .pleaseenterPhoneNumber;
+                                        }
+                                        return '';
+                                      },
+                                      controller: _phoneNumber,
+                                      text: false,
+                                      text1: true,
+                                      keybordType: false,
+                                      name: "",
+                                      onchange: (value) {
+                                        setState(() {});
+                                      },
+                                      onSaved: (value) {},
+                                    ),
+                                  ),
+                                ),
+                                AppLocalizations.of(context)!.locale == "ar"
+                                    ? CountryCodePicker(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        textStyle: TextStyle(
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? const Color(0XFF032040)
+                                                : Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12),
+                                        onChanged: (value) {
+                                          setState(() {});
+                                        },
+                                        initialSelection: countryCode,
+                                        favorite: const [
+                                          '+971',
+                                          'ae',
+                                        ],
+                                        showCountryOnly: false,
+                                        showOnlyCountryWhenClosed: false,
+                                        alignLeft: false,
+                                      )
+                                    : Container(),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.03,
+                            ),
+                            ButtonWidget(
+                                onTaped: () {
+                                  _networkCalls.checkInternetConnectivity(
+                                      onSuccess: (msg) {
+                                    _internet = msg;
+                                    if (msg == true) {
+                                      Map detail = {
+                                        "first_name": firstNameController.text,
+                                        "last_name": _lastName.text,
+                                        "countryCode": countryCode,
+                                        "contact_number": _phoneNumber.text,
+                                        "email": emailController.text
+                                      };
+                                      if (lastBookingDateApi != null) {
+                                        detail["dob"] = lastBookingDateApi;
+                                      } else {
+                                        detail['dob'] = formatter.format(
+                                            (DateTime.parse(
+                                                '0000-00-00'.toString())));
+                                      }
+                                      if (profile_Id != null) {
+                                        detail["profile_pic_id"] = profile_Id;
+                                      } else {
+                                        detail["profile_pic_id"] = 0;
+                                      }
+                                      print(detail);
+                                      _networkCalls.editProfileNoPic(
+                                        profileDetail: detail,
+                                        onSuccess: (msg) {
+                                          showMessage(msg);
+                                          Navigator.pop(context);
+                                          // navigateToProfile();
+                                        },
+                                        onFailure: (msg) {
+                                          showMessage(msg);
+                                        },
+                                        tokenExpire: () {
+                                          if (mounted) on401(context);
+                                        },
+                                      );
+                                    } else {
+                                      // ignore: curly_braces_in_flow_control_structures
+                                      if (mounted) if (mounted) {
+                                        showMessage(
+                                            AppLocalizations.of(context)!
+                                                .noInternetConnection);
+                                      }
+                                    }
+                                  });
+                                },
+                                title: const Text(
+                                  'Save Changes',
+                                  style: TextStyle(color: Colors.black),
+                                ))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                )),
+          )
+        : InternetLoss(
+            onChange: () {
+              _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
+                _internet = msg;
+                if (msg == true) {
+                  loadProfile();
+                } else {
+                  if (mounted) {
+                    setState(() {});
+                  }
+                }
+              });
+            },
+          );
+  }
+
+  _imagePicker(BuildContext context, ImageSource source) async {
+    var picture = await ImagePicker()
+        .pickImage(source: source, maxHeight: 100, maxWidth: 100);
+    setState(() {
+      if (picture != null) {
+        isImageLoade = true;
+        image = File(picture.path);
+        var detail = {"profile_image": image, "type": "user"};
+        _networkCalls.helperProfile(
+          profileDetail: detail,
+          onSuccess: (msg) {
+            if (mounted) {
+              setState(() {
+                profile_Id = msg;
+                isImageLoade = false;
+              });
+            }
+          },
+          onFailure: (msg) {
+            showMessage(msg);
+          },
+          tokenExpire: () {
+            if (mounted) on401(context);
+          },
+        );
+      }
+    });
+    Navigator.of(context).pop();
+  }
+}

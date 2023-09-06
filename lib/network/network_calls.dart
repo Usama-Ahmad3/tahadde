@@ -243,7 +243,7 @@ class NetworkCalls {
       } else if (response.statusCode == tokenExpireStatus) {
         tokenExpire();
       } else {
-        onFailure("fail to create tounament");
+        onFailure("fail to create tournament");
       }
     } on SocketException catch (_) {
       onFailure(internetStatus);
