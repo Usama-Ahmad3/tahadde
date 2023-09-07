@@ -57,30 +57,33 @@ class _LogInWidgetState extends State<LogInWidget> {
               SizedBox(
                 height: height * 0.015,
               ),
-              textFieldWidget(
-                onSubmitted: (value) {
-                  UtilsSign.focusChange(focusPassword, context);
-                },
-                onTaped: (value) {
-                  return AppLocalizations.of(context)!.pleaseenterEmail;
-                },
-                controller: widget.emailController,
-                hintText: 'tahadde@gmail.com',
-                focusBorder: OutlineInputBorder(
-                    borderSide: MyAppState.mode == ThemeMode.light
-                        ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
-                    borderRadius: BorderRadius.circular(20)),
-                enableBorder: OutlineInputBorder(
-                    borderSide: MyAppState.mode == ThemeMode.light
-                        ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
-                    borderRadius: BorderRadius.circular(20)),
-                border: OutlineInputBorder(
-                    borderSide: MyAppState.mode == ThemeMode.light
-                        ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
-                    borderRadius: BorderRadius.circular(20)),
+              SizedBox(
+                height: height * 0.07,
+                child: textFieldWidget(
+                  onSubmitted: (value) {
+                    UtilsSign.focusChange(focusPassword, context);
+                  },
+                  onTaped: (value) {
+                    return AppLocalizations.of(context)!.pleaseenterEmail;
+                  },
+                  controller: widget.emailController,
+                  hintText: 'tahadde@gmail.com',
+                  focusBorder: OutlineInputBorder(
+                      borderSide: MyAppState.mode == ThemeMode.light
+                          ? BorderSide.none
+                          : const BorderSide(color: Colors.white, width: 1),
+                      borderRadius: BorderRadius.circular(12)),
+                  enableBorder: OutlineInputBorder(
+                      borderSide: MyAppState.mode == ThemeMode.light
+                          ? BorderSide.none
+                          : const BorderSide(color: Colors.white, width: 1),
+                      borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                      borderSide: MyAppState.mode == ThemeMode.light
+                          ? BorderSide.none
+                          : const BorderSide(color: Colors.white, width: 1),
+                      borderRadius: BorderRadius.circular(12)),
+                ),
               ),
               SizedBox(
                 height: height * 0.02,
@@ -95,32 +98,35 @@ class _LogInWidgetState extends State<LogInWidget> {
               SizedBox(
                 height: height * 0.015,
               ),
-              textFieldWidget(
-                focus: focusPassword,
-                obscure: true,
-                onTaped: (value) {
-                  return AppLocalizations.of(context)!.pleaseenterPassword;
-                },
-                controller: widget.passwordController,
-                hintText: 'tahadde123456',
-                suffixIcon: Icons.visibility_off,
-                hideIcon: Icons.visibility,
-                suffixIconColor: Colors.grey,
-                focusBorder: OutlineInputBorder(
-                    borderSide: MyAppState.mode == ThemeMode.light
-                        ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
-                    borderRadius: BorderRadius.circular(20)),
-                enableBorder: OutlineInputBorder(
-                    borderSide: MyAppState.mode == ThemeMode.light
-                        ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
-                    borderRadius: BorderRadius.circular(20)),
-                border: OutlineInputBorder(
-                    borderSide: MyAppState.mode == ThemeMode.light
-                        ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
-                    borderRadius: BorderRadius.circular(20)),
+              SizedBox(
+                height: height * 0.07,
+                child: textFieldWidget(
+                  focus: focusPassword,
+                  obscure: true,
+                  onTaped: (value) {
+                    return AppLocalizations.of(context)!.pleaseenterPassword;
+                  },
+                  controller: widget.passwordController,
+                  hintText: 'tahadde123456',
+                  suffixIcon: Icons.visibility_off,
+                  hideIcon: Icons.visibility,
+                  suffixIconColor: Colors.grey,
+                  focusBorder: OutlineInputBorder(
+                      borderSide: MyAppState.mode == ThemeMode.light
+                          ? BorderSide.none
+                          : const BorderSide(color: Colors.white, width: 1),
+                      borderRadius: BorderRadius.circular(12)),
+                  enableBorder: OutlineInputBorder(
+                      borderSide: MyAppState.mode == ThemeMode.light
+                          ? BorderSide.none
+                          : const BorderSide(color: Colors.white, width: 1),
+                      borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                      borderSide: MyAppState.mode == ThemeMode.light
+                          ? BorderSide.none
+                          : const BorderSide(color: Colors.white, width: 1),
+                      borderRadius: BorderRadius.circular(12)),
+                ),
               ),
               SizedBox(
                 height: height * 0.02,

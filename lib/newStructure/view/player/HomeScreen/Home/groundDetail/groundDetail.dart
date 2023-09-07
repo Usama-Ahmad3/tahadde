@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetailShimmer.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_launcher/map_launcher.dart' hide MapType;
 import 'package:readmore/readmore.dart';
@@ -712,28 +713,14 @@ class GroundDetailState extends State<GroundDetail>
                                       ),
 
                                       ///BookButton
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: width * 0.01,
-                                            vertical: height * 0.01),
-                                        child: InkWell(
-                                          onTap: () {
+                                      ButtonWidget(
+                                          onTaped: () {
                                             navigateToBookingScreen(
                                                 widget.detail);
                                           },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: Colors.yellow,
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            height: height * 0.06,
-                                            child: Center(
-                                                child: Text(AppLocalizations.of(
-                                                        context)!
-                                                    .bookNowS)),
-                                          ),
-                                        ),
-                                      ),
+                                          title: Text(
+                                              AppLocalizations.of(context)!
+                                                  .bookNowS)),
                                     ],
                                   ),
                                 ),

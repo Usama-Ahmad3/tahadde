@@ -126,22 +126,23 @@ class _SearchState extends State<Search> {
                     children: [
                       SizedBox(
                           height: height * 0.062,
-                          width: width * 0.7,
-                          child: textFieldWidget(
-                              controller: searchController,
-                              hintText: AppLocalizations.of(context)!.search,
-                              fillColor: Colors.white24,
-                              prefixIcon: Icons.search,
-                              onChanged: (e) {
-                                setState(() {});
-                              },
-                              prefixIconColor: Colors.grey,
-                              enableBorder: UnderlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusBorder: UnderlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              border: UnderlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)))),
+                          child: TextFormField(
+                            controller: searchController,
+                            decoration: InputDecoration(
+                                hintText: AppLocalizations.of(context)!.search,
+                                fillColor: Colors.white24,
+                                prefixIcon: Icon(Icons.search),
+                                prefixIconColor: Colors.grey,
+                                enabledBorder: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                border: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            onChanged: (e) {
+                              setState(() {});
+                            },
+                          )),
                       InkWell(
                         onTap: () {
                           Navigator.push(

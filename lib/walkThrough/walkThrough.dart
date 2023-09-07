@@ -91,8 +91,8 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                       curve: Curves.bounceInOut);
                   getChangedPageAndMoveBar(2);
                 },
-                child: const Text(
-                  'Skip',
+                child: Text(
+                  AppLocalizations.of(context)!.skip,
                   style: TextStyle(color: Colors.grey, fontSize: 18),
                 )),
           )

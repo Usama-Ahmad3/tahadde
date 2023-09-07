@@ -394,14 +394,17 @@ class LoginScreenState extends State<LoginScreen> {
                                       borderRadius: BorderRadius.circular(15)),
                                   child: Center(
                                       child: Text(
-                                    AppLocalizations.of(context)!.login,
-                                    style: TextStyle(
-                                        color: clicked == 1
-                                            ? Colors.white
-                                            : MyAppState.mode == ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white),
-                                  )),
+                                          AppLocalizations.of(context)!.login,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  color: clicked == 1
+                                                      ? Colors.white
+                                                      : MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? Colors.black
+                                                          : Colors.white))),
                                 ),
                               ),
                               InkWell(

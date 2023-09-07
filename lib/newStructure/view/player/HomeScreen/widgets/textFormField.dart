@@ -54,6 +54,7 @@ class _textFieldWidgetState extends State<textFieldWidget> {
       focusNode: widget.focus,
       validator: widget.onTaped,
       style: TextStyle(
+          fontSize: widget.controller.text.length > 6 ? 12 : 15,
           color: MyAppState.mode == ThemeMode.light
               ? widget.textColor ?? Colors.black
               : Colors.white),
@@ -64,10 +65,9 @@ class _textFieldWidgetState extends State<textFieldWidget> {
       scribbleEnabled: false,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
-          constraints: BoxConstraints(maxHeight: 55, minHeight: 55),
           hintText: widget.hintText,
           hintStyle: TextStyle(
-              height: 1.33,
+              height: 1,
               color: MyAppState.mode == ThemeMode.light
                   ? Colors.grey
                   : Colors.white),

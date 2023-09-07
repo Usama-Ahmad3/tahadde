@@ -154,6 +154,10 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    double baseWidth = 375;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double ffem = fem * 0.97;
+    var height = MediaQuery.of(context).size.height;
     Brightness currentSystemBrightness =
         MediaQuery.of(context).platformBrightness;
     return MaterialApp(
@@ -163,6 +167,13 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(
         brightness: currentSystemBrightness,
         fontFamily: 'Poppins',
+        textTheme: TextTheme(
+            titleMedium: TextStyle(
+                color: mode == ThemeMode.light ? Colors.black : Colors.white,
+                fontSize: 20 * ffem,
+                fontWeight: FontWeight.w600,
+                height: 1.25 * ffem / fem,
+                letterSpacing: -0.2 * fem)),
         appBarTheme: const AppBarTheme(backgroundColor: Colors.black54),
       ),
       debugShowCheckedModeBanner: false,

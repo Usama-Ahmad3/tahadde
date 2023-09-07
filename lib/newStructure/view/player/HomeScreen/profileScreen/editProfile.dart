@@ -221,7 +221,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             appBar: PreferredSize(
               preferredSize: Size(width, height * 0.13),
               child: AppBar(
-                title: Text(AppLocalizations.of(context)!.editProfile),
+                title: Text(
+                  AppLocalizations.of(context)!.editProfile,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Colors.white),
+                ),
                 centerTitle: true,
                 backgroundColor: Colors.black,
                 leadingWidth: width * 0.18,
@@ -258,8 +264,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     decoration: BoxDecoration(
                         color: MyAppState.mode == ThemeMode.light
                             ? Colors.white
-                            : Color(0xff686868),
-                        borderRadius: BorderRadius.only(
+                            : const Color(0xff686868),
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
                     child: Padding(
@@ -326,18 +332,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             // upload photo text
                             Text(
                               AppLocalizations.of(context)!.uploadImage,
-                              style: TextStyle(fontSize: 10),
                             ),
                             SizedBox(
                               height: height * 0.02,
                             ),
                             Text(
                               AppLocalizations.of(context)!.personalDetail,
-                              style: TextStyle(
-                                  fontSize: height * 0.03,
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white),
                             ),
                             SizedBox(height: height * 0.01),
                             Text(
@@ -346,87 +353,97 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             SizedBox(
                               height: height * 0.02,
                             ),
-                            textFieldWidget(
-                              controller: firstNameController,
-                              hintText: 'Tahadde',
-                              suffixIcon: Icons.edit_outlined,
-                              fillColor: Colors.transparent,
-                              suffixIconColor:
-                                  MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white,
-                              border: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
-                              enableBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
-                              focusBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
+                            SizedBox(
+                              height: height * 0.062,
+                              child: textFieldWidget(
+                                controller: firstNameController,
+                                hintText: AppLocalizations.of(context)!.tahaddi,
+                                suffixIcon: Icons.edit_outlined,
+                                fillColor: Colors.transparent,
+                                suffixIconColor:
+                                    MyAppState.mode == ThemeMode.light
+                                        ? Colors.black
+                                        : Colors.white,
+                                border: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                                enableBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                                focusBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
                             ),
                             SizedBox(height: height * 0.02),
                             Text(
                               AppLocalizations.of(context)!.lastName,
-                              style: TextStyle(),
                             ),
                             SizedBox(
                               height: height * 0.02,
                             ),
-                            textFieldWidget(
-                              controller: _lastName,
-                              hintText: 'MobileApp',
-                              suffixIcon: Icons.edit_outlined,
-                              fillColor: Colors.transparent,
-                              suffixIconColor:
-                                  MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white,
-                              border: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
-                              enableBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
-                              focusBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
+                            SizedBox(
+                              height: height * 0.062,
+                              child: textFieldWidget(
+                                controller: _lastName,
+                                hintText: AppLocalizations.of(context)!
+                                    .pleaseenterLastName,
+                                suffixIcon: Icons.edit_outlined,
+                                fillColor: Colors.transparent,
+                                suffixIconColor:
+                                    MyAppState.mode == ThemeMode.light
+                                        ? Colors.black
+                                        : Colors.white,
+                                border: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                                enableBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                                focusBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
                             ),
                             SizedBox(height: height * 0.02),
                             Text(
                               AppLocalizations.of(context)!.email,
-                              style: TextStyle(),
+                              style: const TextStyle(),
                             ),
                             SizedBox(
                               height: height * 0.02,
                             ),
-                            textFieldWidget(
-                              controller: emailController,
-                              hintText: 'Tahadde',
-                              suffixIcon: Icons.edit_outlined,
-                              fillColor: Colors.transparent,
-                              suffixIconColor:
-                                  MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white,
-                              border: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
-                              enableBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
-                              focusBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(20)),
+                            SizedBox(
+                              height: height * 0.062,
+                              child: textFieldWidget(
+                                controller: emailController,
+                                hintText: AppLocalizations.of(context)!
+                                    .pleaseEnterEmail,
+                                suffixIcon: Icons.edit_outlined,
+                                fillColor: Colors.transparent,
+                                suffixIconColor:
+                                    MyAppState.mode == ThemeMode.light
+                                        ? Colors.black
+                                        : Colors.white,
+                                border: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                                enableBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                                focusBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
                             ),
                             SizedBox(
                               height: height * 0.02,
@@ -447,7 +464,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         decoration: TextDecoration.none,
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? Color(0XFF032040)
+                                                ? const Color(0XFF032040)
                                                 : Colors.white,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 14),
@@ -475,9 +492,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             ),
                             SizedBox(height: height * 0.02),
-                            const Text(
-                              'Contact',
-                              style: TextStyle(),
+                            Text(
+                              AppLocalizations.of(context)!.contacts,
+                              style: const TextStyle(),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -618,9 +635,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     }
                                   });
                                 },
-                                title: const Text(
-                                  'Save Changes',
-                                  style: TextStyle(color: Colors.black),
+                                title: Text(
+                                  AppLocalizations.of(context)!.saveChanges,
+                                  style: const TextStyle(color: Colors.black),
                                 ))
                           ],
                         ),

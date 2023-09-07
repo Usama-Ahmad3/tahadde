@@ -19,65 +19,19 @@ class ShimmerWidgets {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ///top widget
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: 50 * size,
-                      bottom: 36 * size,
-                      left: 34 * size,
-                      right: 63 * size),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.tahaddi,
-                            style: SafeGoogleFont(
-                              'Inter',
-                              fontSize: 20 * size,
-                              fontWeight: FontWeight.w600,
-                              height: 1.25 * size / size,
-                              letterSpacing: -0.2 * size,
-                              color: const Color(0xffffffff),
-                            ),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.morning,
-                            style: SafeGoogleFont(
-                              'Inter',
-                              fontSize: 13 * size,
-                              fontWeight: FontWeight.w400,
-                              height: 1.3846153846 * size / size,
-                              color: const Color(0xff999999),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 36 * size,
-                        height: 36 * size,
-                        child: Image.asset(
-                          'assets/light-design/images/icon-fT7.png',
-                          width: 36 * size,
-                          height: 36 * size,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
                 ///location
                 Container(
                   margin: EdgeInsets.only(
-                      left: 24 * size, right: 67 * size, bottom: 24 * size),
+                      left: 24 * size,
+                      right: 24 * size,
+                      bottom: 24 * size,
+                      top: 24 * size),
                   padding: EdgeInsets.symmetric(
                     horizontal: 12 * size,
                     vertical: 16 * size,
                   ),
                   width: double.infinity,
-                  height: 48 * size,
+                  height: 150 * size,
                   decoration: BoxDecoration(
                     color: const Color(0xff1e1e1e),
                     borderRadius: BorderRadius.circular(16 * size),
@@ -101,7 +55,6 @@ class ShimmerWidgets {
                     ),
                   ),
                 ),
-                gameWidgetShimmer(size)
               ],
             ),
             Positioned(

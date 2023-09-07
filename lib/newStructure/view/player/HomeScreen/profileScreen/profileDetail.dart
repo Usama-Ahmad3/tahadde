@@ -11,6 +11,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../player/loginSignup/profile/profileEmpty.dart';
+import 'drawer.dart';
 
 class ProfileDetailScreen extends StatefulWidget {
   const ProfileDetailScreen({super.key});
@@ -93,6 +94,12 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: Drawer(
+          elevation: 2,
+          child: Container(
+            color: Colors.green,
+          ),
+          backgroundColor: Colors.black),
       body: _isLoading
           ? ProfileShimmer.buildShimmer(width, height, context)
           : _internet
@@ -135,12 +142,14 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                           children: [
                                             Text(
                                               '${profileDetail!['first_name']} ${profileDetail!['last_name']}',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: height * 0.025,
-                                                  color: mode == ThemeMode.light
-                                                      ? Colors.black
-                                                      : Colors.white),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(
+                                                      color: mode ==
+                                                              ThemeMode.light
+                                                          ? Colors.black
+                                                          : Colors.white),
                                             ),
                                             InkWell(
                                               onTap: () {
@@ -196,7 +205,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                         child: PasswordSecurity(
                                           prefixIcon: Icons.key,
                                           title: AppLocalizations.of(context)!
-                                              .changepassword,
+                                              .changepasswordC,
                                           suffixIcon:
                                               AppLocalizations.of(context)!
                                                           .locale ==
@@ -258,7 +267,46 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                       radius: height * 0.06,
                                       backgroundImage: const AssetImage(
                                           "assets/images/profile.png"),
-                                    ))
+                                    )),
+                          Positioned(
+                            top: 35,
+                            right: 20,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ProfileDrawer(),
+                                    ));
+                                // showDialog(
+                                //   context: context,
+                                //   builder: (context) {
+                                //     return Scaffold(
+                                //       appBar: AppBar(title: Text('Title')),
+                                //       body: AnimatedContainer(
+                                //         duration:
+                                //             const Duration(microseconds: 300),
+                                //         curve: Curves.elasticInOut,
+                                //         child: SingleChildScrollView(
+                                //           child: Column(
+                                //             children: [
+                                //               ...List.generate(100,
+                                //                   (index) => Text('hi$index')),
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     );
+                                //   },
+                                // );
+                              },
+                              child: const Icon(
+                                Icons.dehaze,
+                                color: Color(0xffffc300),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     )

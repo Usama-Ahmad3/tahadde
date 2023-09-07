@@ -186,27 +186,16 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                 // SelectYourLocation(),
                                 ));
                       },
-                      child: AppLocalizations.of(context)!.locale == "en"
-                          ? Container(
-                              height: sizeHeight * 0.07,
-                              width: sizeWidth * 0.15,
-                              decoration: const BoxDecoration(
-                                  color: Colors.yellow, shape: BoxShape.circle),
-                              child: const Icon(
-                                Icons.arrow_forward_outlined,
-                                color: Colors.black,
-                              ),
-                            )
-                          : Container(
-                              height: sizeHeight * 0.07,
-                              width: sizeWidth * 0.15,
-                              decoration: const BoxDecoration(
-                                  color: Colors.yellow, shape: BoxShape.circle),
-                              child: const Icon(
-                                Icons.arrow_back_outlined,
-                                color: Colors.black,
-                              ),
-                            )),
+                      child: Container(
+                        height: sizeHeight * 0.07,
+                        width: sizeWidth * 0.15,
+                        decoration: const BoxDecoration(
+                            color: Colors.yellow, shape: BoxShape.circle),
+                        child: const Icon(
+                          Icons.arrow_forward_outlined,
+                          color: Colors.black,
+                        ),
+                      )),
                 ],
               ),
             ),

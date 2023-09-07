@@ -27,7 +27,7 @@ class PasswordSecurity extends StatelessWidget {
         decoration: BoxDecoration(
           color: MyAppState.mode == ThemeMode.light
               ? Color(0xffffffff)
-              : Color(0xff050505),
+              : Colors.black12,
           borderRadius: BorderRadius.circular(height * 0.01),
           border: Border.all(
               color: MyAppState.mode == ThemeMode.light

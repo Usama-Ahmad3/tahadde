@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/bookingShimmer.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../common_widgets/internet_loss.dart';
@@ -1028,103 +1029,68 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                     ),
 
                               ///Book Button
-                              InkWell(
-                                onTap: () {
-                                  if (_auth) {
-                                    if (_slotPrice.pricePerVenue.isEmpty &&
-                                        _slotPrice.pricePerPlayer.isEmpty) {
-                                      showMessage(
-                                          "Please select your slot first");
+                              ButtonWidget(
+                                  onTaped: () {
+                                    if (_auth) {
+                                      if (_slotPrice.pricePerVenue.isEmpty &&
+                                          _slotPrice.pricePerPlayer.isEmpty) {
+                                        showMessage(
+                                            "Please select your slot first");
+                                      } else {
+                                        Map apiDetail = {
+                                          "date": dataTime,
+                                          "id": _slotTime
+                                        };
+                                        var detail = {
+                                          "price": isPerPlayer
+                                              ? slotPriceCalculation(_slotPrice
+                                                      .pricePerPlayer) *
+                                                  indexItem
+                                              : slotPriceCalculation(
+                                                  _slotPrice.pricePerVenue),
+                                          "apiDetail": apiDetail,
+                                          "slotDetail": slotInformation,
+                                          "venueName": GroundDetailState
+                                              .privateVenueDetail
+                                              .venueDetails!
+                                              .name,
+                                          "pitchType": GroundDetailState
+                                              .privateVenueDetail
+                                              .venueDetails!
+                                              .pitchType![0]!
+                                              .area,
+                                          "ids": widget.detail["pitchId"],
+                                          "subPitchId":
+                                              widget.detail["subPitchId"]["id"],
+                                          "player_count": indexItem,
+                                          "slug": isPerPlayer
+                                              ? "price-per-player"
+                                              : "venue-price"
+                                        };
+                                        print('VanueDetail$detail');
+                                        navigateToDetail(detail);
+                                      }
                                     } else {
-                                      Map apiDetail = {
-                                        "date": dataTime,
-                                        "id": _slotTime
-                                      };
-                                      var detail = {
-                                        "price": isPerPlayer
-                                            ? slotPriceCalculation(
-                                                    _slotPrice.pricePerPlayer) *
-                                                indexItem
-                                            : slotPriceCalculation(
-                                                _slotPrice.pricePerVenue),
-                                        "apiDetail": apiDetail,
-                                        "slotDetail": slotInformation,
-                                        "venueName": GroundDetailState
-                                            .privateVenueDetail
-                                            .venueDetails!
-                                            .name,
-                                        "pitchType": GroundDetailState
-                                            .privateVenueDetail
-                                            .venueDetails!
-                                            .pitchType![0]!
-                                            .area,
-                                        "ids": widget.detail["pitchId"],
-                                        "subPitchId":
-                                            widget.detail["subPitchId"]["id"],
-                                        "player_count": indexItem,
-                                        "slug": isPerPlayer
-                                            ? "price-per-player"
-                                            : "venue-price"
-                                      };
-                                      print('VanueDetail$detail');
-                                      navigateToDetail(detail);
+                                      onWillPop();
                                     }
-                                  } else {
-                                    onWillPop();
-                                  }
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.03),
-                                  child: Container(
-                                      height: height * 0.07,
-                                      width: width * 0.9,
-                                      decoration: BoxDecoration(
-                                          color: Colors.yellow,
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      child: isPerPlayer
-                                          ? Center(
-                                              child: Text(
-                                                _slotPrice
-                                                        .pricePerPlayer.isEmpty
-                                                    ? AppLocalizations.of(
-                                                            context)!
-                                                        .bookNowS
-                                                    : "${AppLocalizations.of(context)!.slotPrice}: ${(slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round().toString()} AED",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        AppLocalizations.of(
-                                                                        context)!
-                                                                    .locale ==
-                                                                "en"
-                                                            ? 18
-                                                            : 22,
-                                                    color: Colors.black),
-                                              ),
-                                            )
-                                          : Center(
-                                              child: Text(
-                                                _slotPrice.pricePerVenue.isEmpty
-                                                    ? AppLocalizations.of(
-                                                            context)!
-                                                        .bookNowS
-                                                    : "${AppLocalizations.of(context)!.slotPrice}: ${slotPriceCalculation(_slotPrice.pricePerVenue).round().toString()} AED",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        AppLocalizations.of(
-                                                                        context)!
-                                                                    .locale ==
-                                                                "en"
-                                                            ? 18
-                                                            : 22,
-                                                    color: Colors.black),
-                                              ),
-                                            )),
-                                ),
-                              ),
+                                  },
+                                  title: isPerPlayer
+                                      ? Center(
+                                          child: Text(
+                                            _slotPrice.pricePerPlayer.isEmpty
+                                                ? AppLocalizations.of(context)!
+                                                    .bookNowS
+                                                : "${AppLocalizations.of(context)!.slotPrice}: ${(slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round().toString()} AED",
+                                          ),
+                                        )
+                                      : Center(
+                                          child: Text(
+                                            _slotPrice.pricePerVenue.isEmpty
+                                                ? AppLocalizations.of(context)!
+                                                    .bookNowS
+                                                : "${AppLocalizations.of(context)!.slotPrice}: ${slotPriceCalculation(_slotPrice.pricePerVenue).round().toString()} AED",
+                                          ),
+                                        )),
                             ],
                           ),
                         ),

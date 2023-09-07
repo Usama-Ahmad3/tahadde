@@ -12,7 +12,6 @@ import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../../../walkThrough/walkThrough.dart';
 import '../../../utils.dart';
 import '../widgets/textFormField.dart';
-import 'SearchScreen.dart';
 import 'shimmerWidgets.dart';
 
 class HomeScreenView extends StatefulWidget {
@@ -28,10 +27,11 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   String? city;
   String? arabicCountry;
   String? arabicCity;
-  int isSelected = 0;
   bool? _internet;
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;
+
+  // ignore: prefer_typing_uninitialized_variables
   var _bookPitchData;
   final List<SportsList> _sportsList = [];
   var searchController = TextEditingController();
@@ -82,6 +82,118 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         if (mounted) on401(context);
       },
     );
+  }
+
+  OverlayEntry? overlayEntry;
+
+  showOverlay(BuildContext context, double height, double width) {
+    if (overlayEntry != null) return;
+    OverlayState overlayState = Overlay.of(context);
+    overlayEntry = OverlayEntry(builder: (context) {
+      return Positioned(
+          top: height * 0.17,
+          right: width * 0.25,
+          left: width * 0.06,
+          child: SingleChildScrollView(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Material(
+                        child: Text(
+                          AppLocalizations.of(context)!.search,
+                          style: TextStyle(fontSize: height * 0.025),
+                        ),
+                      ),
+                      CloseButton(
+                        onPressed: () {
+                          removeOverlay();
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.03,
+                  ),
+                  Wrap(
+                    children: [
+                      ...List.generate(
+                        _sportsList.length,
+                        (index) => _sportsList.isEmpty
+                            ? const SizedBox.shrink()
+                            : _sportsList[index]
+                                    .name
+                                    .toString()
+                                    .toLowerCase()
+                                    .contains(
+                                        searchController.text.toLowerCase())
+                                ? InkWell(
+                                    onTap: () {
+                                      Map detail = {
+                                        "slug": _sportsList[index].slug,
+                                        "bannerImage":
+                                            _sportsList[index].bannerImage,
+                                        "sportName":
+                                            AppLocalizations.of(context)!
+                                                        .locale ==
+                                                    "en"
+                                                ? _sportsList[index].name
+                                                : _sportsList[index].nameArabic
+                                      };
+                                      removeOverlay();
+                                      Navigator.pushNamed(context,
+                                          RouteNames.specificSportsScreen,
+                                          arguments: detail);
+                                      setState(() {});
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: width * 0.025,
+                                          vertical: height * 0.01),
+                                      child: Chip(
+                                          avatar: CircleAvatar(
+                                              radius: 30,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              child: Image.network(
+                                                  _sportsList[index]
+                                                      .image
+                                                      .toString())),
+                                          backgroundColor: Colors.transparent,
+                                          elevation: 2,
+                                          padding: const EdgeInsets.all(10),
+                                          label: Text(
+                                            _sportsList[index].name!,
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                          )),
+                                    ),
+                                  )
+                                : Container(),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ));
+    });
+    overlayState.insert(overlayEntry!);
+  }
+
+  removeOverlay() {
+    if (overlayEntry != null) {
+      overlayEntry!.remove();
+      overlayEntry = null;
+    }
   }
 
   getAddress() async {
@@ -189,13 +301,13 @@ class _HomeScreenViewState extends State<HomeScreenView> {
             ),
             bottom: PreferredSize(
               preferredSize: Size(
-                  width, searchFlag == true ? height * 0.033 : height * 0.01),
+                  width, searchFlag == true ? height * 0.037 : height * 0.01),
               child: searchFlag
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
-                            height: height * 0.05,
+                            height: height * 0.057,
                             width: width * 0.7,
                             child: textFieldWidget(
                                 textColor: Colors.white,
@@ -204,7 +316,12 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                 fillColor: Colors.white24,
                                 prefixIcon: Icons.search,
                                 onChanged: (e) {
-                                  setState(() {});
+                                  setState(() {
+                                    searchController.text.isEmpty
+                                        ? removeOverlay()
+                                        : showOverlay(context, height, width);
+                                  });
+                                  return null;
                                 },
                                 prefixIconColor: Colors.grey,
                                 enableBorder: UnderlineInputBorder(
@@ -339,13 +456,10 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                   ),
                   InkWell(
                     onTap: () {
+                      removeOverlay();
                       searchFlag = !searchFlag;
+                      searchController.clear();
                       setState(() {});
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => Search(),
-                      //     ));
                     },
                     child: CircleAvatar(
                       radius: 23 * fem,
@@ -456,6 +570,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         arguments: detail);
   }
 
+  // ignore: non_constant_identifier_names
   void NavigateToNotification() {
     Navigator.pushNamed(context, RouteNames.notificationScreen);
   }

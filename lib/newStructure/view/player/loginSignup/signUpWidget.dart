@@ -51,7 +51,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
   final NetworkCalls _networkCalls = NetworkCalls();
   static String? player;
   List<String> playerEn = ["player", "Owner"];
-  List<String> genderAr = ["ذكر", "أنثى"];
+  List<String> genderAr = ["لاعب", "مالك"];
 
   privacyPolicy(String text) async {
     _networkCalls.privacyPolicy(
@@ -96,27 +96,30 @@ class SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(
               height: height * 0.015,
             ),
-            textFieldWidget(
-              controller: widget.nameController,
-              onSubmitted: (value) {
-                FocusScope.of(context).requestFocus(lastnameFocus);
-              },
-              hintText: 'tahadde',
-              enableBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              focusBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              border: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
+            SizedBox(
+              height: height * 0.07,
+              child: textFieldWidget(
+                controller: widget.nameController,
+                onSubmitted: (value) {
+                  FocusScope.of(context).requestFocus(lastnameFocus);
+                },
+                hintText: 'tahadde',
+                enableBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                focusBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+              ),
             ),
             SizedBox(
               height: height * 0.02,
@@ -131,28 +134,31 @@ class SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(
               height: height * 0.015,
             ),
-            textFieldWidget(
-              onSubmitted: (value) {
-                FocusScope.of(context).requestFocus(emailFocus);
-              },
-              focus: lastnameFocus,
-              controller: widget.lastnameController,
-              hintText: 'MobileApp',
-              focusBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              enableBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              border: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
+            SizedBox(
+              height: height * 0.07,
+              child: textFieldWidget(
+                onSubmitted: (value) {
+                  FocusScope.of(context).requestFocus(emailFocus);
+                },
+                focus: lastnameFocus,
+                controller: widget.lastnameController,
+                hintText: 'MobileApp',
+                focusBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                enableBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+              ),
             ),
             SizedBox(
               height: height * 0.02,
@@ -167,35 +173,38 @@ class SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(
               height: height * 0.015,
             ),
-            textFieldWidget(
-              onSubmitted: (value) {
-                FocusScope.of(context).requestFocus(passwordFocus);
-              },
-              focus: emailFocus,
-              controller: widget.emailController,
-              onTaped: (value) {
-                var msg;
-                if (!isMail(value!.trim())) {
-                  msg = AppLocalizations.of(context)!.invalidEmail;
-                }
-                return msg;
-              },
-              hintText: 'tahadde@gmail.com',
-              enableBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              focusBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              border: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
+            SizedBox(
+              height: height * 0.07,
+              child: textFieldWidget(
+                onSubmitted: (value) {
+                  FocusScope.of(context).requestFocus(passwordFocus);
+                },
+                focus: emailFocus,
+                controller: widget.emailController,
+                onTaped: (value) {
+                  var msg;
+                  if (!isMail(value!.trim())) {
+                    msg = AppLocalizations.of(context)!.invalidEmail;
+                  }
+                  return msg;
+                },
+                hintText: 'tahadde@gmail.com',
+                enableBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                focusBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+              ),
             ),
             SizedBox(
               height: height * 0.02,
@@ -210,35 +219,38 @@ class SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(
               height: height * 0.02,
             ),
-            textFieldWidget(
-              onSubmitted: (value) {
-                UtilsSign.focusChange(confirmFocus, context);
-              },
-              focus: passwordFocus,
-              controller: widget.passwordController,
-              hintText: 'tahadde123456',
-              obscure: true,
-              suffixIcon: Icons.visibility_off,
-              hideIcon: Icons.visibility,
-              suffixIconColor: Colors.grey,
-              onTaped: (e) {
-                validatePassword(e.toString());
-              },
-              enableBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              focusBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              border: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
+            SizedBox(
+              height: height * 0.07,
+              child: textFieldWidget(
+                onSubmitted: (value) {
+                  UtilsSign.focusChange(confirmFocus, context);
+                },
+                focus: passwordFocus,
+                controller: widget.passwordController,
+                hintText: 'tahadde123456',
+                obscure: true,
+                suffixIcon: Icons.visibility_off,
+                hideIcon: Icons.visibility,
+                suffixIconColor: Colors.grey,
+                onTaped: (e) {
+                  validatePassword(e.toString());
+                },
+                enableBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                focusBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+              ),
             ),
             SizedBox(
               height: height * 0.02,
@@ -253,32 +265,35 @@ class SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(
               height: height * 0.02,
             ),
-            textFieldWidget(
-              onSubmitted: (value) {
-                UtilsSign.focusChange(phoneFocus, context);
-              },
-              focus: confirmFocus,
-              obscure: true,
-              controller: widget.confirmController,
-              hintText: 'tahadde123456',
-              suffixIcon: Icons.visibility_off,
-              hideIcon: Icons.visibility,
-              suffixIconColor: Colors.grey,
-              focusBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              enableBorder: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
-              border: OutlineInputBorder(
-                  borderSide: MyAppState.mode == ThemeMode.light
-                      ? BorderSide.none
-                      : const BorderSide(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(20)),
+            SizedBox(
+              height: height * 0.07,
+              child: textFieldWidget(
+                onSubmitted: (value) {
+                  UtilsSign.focusChange(phoneFocus, context);
+                },
+                focus: confirmFocus,
+                obscure: true,
+                controller: widget.confirmController,
+                hintText: 'tahadde123456',
+                suffixIcon: Icons.visibility_off,
+                hideIcon: Icons.visibility,
+                suffixIconColor: Colors.grey,
+                focusBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                enableBorder: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                    borderSide: MyAppState.mode == ThemeMode.light
+                        ? BorderSide.none
+                        : const BorderSide(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(12)),
+              ),
             ),
             SizedBox(
               height: height * 0.02,
@@ -462,8 +477,11 @@ class SignUpWidgetState extends State<SignUpWidget> {
                   text: TextSpan(
                     text:
                         '${AppLocalizations.of(context)!.bysigningupTahaddi} ',
-                    style:
-                        const TextStyle(fontSize: 12, color: Color(0XFF7A7A7A)),
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: MyAppState.mode == ThemeMode.light
+                            ? const Color(0XFF7A7A7A)
+                            : Colors.white),
                     children: <TextSpan>[
                       TextSpan(
                         text: AppLocalizations.of(context)!.termsofUse,
@@ -477,8 +495,11 @@ class SignUpWidgetState extends State<SignUpWidget> {
                         ),
                       ),
                       TextSpan(
-                        text: ' ${AppLocalizations.of(context)!.and} ',
-                      ),
+                          text: ' ${AppLocalizations.of(context)!.and} ',
+                          style: TextStyle(
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? const Color(0XFF7A7A7A)
+                                  : Colors.white)),
                       TextSpan(
                           text: AppLocalizations.of(context)!.privacyPolicy,
                           recognizer: TapGestureRecognizer()
