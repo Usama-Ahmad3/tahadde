@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/player/loginSignup/profile/profileEmpty.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -7,9 +8,6 @@ import '../../../homeFile/routingConstant.dart';
 import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
-import '../../../newStructure/view/player/HomeScreen/profileScreen/emailContactsFields.dart';
-import '../../../newStructure/view/player/HomeScreen/profileScreen/passwordSecurityFields.dart';
-import 'profileEmpty.dart';
 
 class ProfileScreen extends StatefulWidget {
   String msg;

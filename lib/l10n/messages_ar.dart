@@ -59,6 +59,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "أضف خبرتك للملاعب التي لعبت عليها."),
         "ago": MessageLookupByLibrary.simpleMessage("منذ"),
+        "Help": MessageLookupByLibrary.simpleMessage("يساعد"),
+        "language,theme":
+            MessageLookupByLibrary.simpleMessage("اللغة والموضوع والتكوين"),
+        "name,email": MessageLookupByLibrary.simpleMessage(
+            "الاسم، البريد الإلكتروني، الهاتف، الموقع"),
+        "booking,venue":
+            MessageLookupByLibrary.simpleMessage("الحجز والأماكن والبطولات"),
+        "legalInformation":
+            MessageLookupByLibrary.simpleMessage("المعلومات القانونية"),
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "am": MessageLookupByLibrary.simpleMessage("ص"),
         "amongstAvailableSlotUnavailable": MessageLookupByLibrary.simpleMessage(
@@ -80,6 +89,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouSureYouWant": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد أنك تريد حذف الملعب الفرعي؟"),
         "asidePitch": MessageLookupByLibrary.simpleMessage("من جانب كل فريق"),
+        "yourInterest": MessageLookupByLibrary.simpleMessage("اهتمامك"),
+        "yourProfile": MessageLookupByLibrary.simpleMessage("ملفك الشخصي"),
+        "darkMode": MessageLookupByLibrary.simpleMessage("الوضع المظلم"),
         "asyourpitchhasnotbeenverifiedyet":
             MessageLookupByLibrary.simpleMessage(
                 "لأن ملعبك لم يتم التحقق منه بعد."),

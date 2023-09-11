@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart' as fMessaging;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -16,24 +14,23 @@ import '../../../../common_widgets/internet_loss.dart';
 import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import '../../../../network/network_calls.dart';
-import '../../../../player/loginSignup/loginPage.dart';
 import '../../../../player/loginSignup/signup.dart';
-import '../HomeScreen/widgets/textFormField.dart';
 import 'loginWidget.dart';
 import 'signUpWidget.dart';
 
 class LoginScreen extends StatefulWidget {
   String message;
+  int clicked;
 
-  LoginScreen({super.key, required this.message});
+  LoginScreen({super.key, required this.message, this.clicked = 1});
 
   @override
   State<LoginScreen> createState() => LoginScreenState();
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  int? clicked = 1;
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var lastnameController = TextEditingController();
@@ -43,7 +40,7 @@ class LoginScreenState extends State<LoginScreen> {
   var sigupPasswordController = TextEditingController();
   var confirmSignPasswordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
-  final FacebookAuth facebookSignIn = FacebookAuth.instance;
+  FacebookAuth facebookSignIn = FacebookAuth.instance;
   var signingIntoFirebase = false;
   var error;
   late OverlayEntry? overlayEntry;
@@ -56,6 +53,7 @@ class LoginScreenState extends State<LoginScreen> {
   List<String> playerPostion = [];
   List<String> playerPostionSlug = [];
   late String playerSlug;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final fMessaging.FirebaseMessaging _firebaseMessaging =
       fMessaging.FirebaseMessaging.instance;
 
@@ -181,7 +179,7 @@ class LoginScreenState extends State<LoginScreen> {
   _loginFacebook() async {
     FacebookAuth.getInstance();
     facebookSignIn.isWebSdkInitialized;
-    final LoginResult result = await facebookSignIn.login();
+    final result = await FacebookAuth.instance.login();
     switch (result.status) {
       case LoginStatus.success:
         final AccessToken? accessToken = result.accessToken;
@@ -222,6 +220,8 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future _logOut() async {
+    FacebookAuth.getInstance();
+    facebookSignIn.isWebSdkInitialized;
     await facebookSignIn.logOut();
   }
 
@@ -336,6 +336,9 @@ class LoginScreenState extends State<LoginScreen> {
     double width = MediaQuery.of(context).size.width;
     if (_internet) {
       return Scaffold(
+        backgroundColor: MyAppState.mode == ThemeMode.light
+            ? Colors.white
+            : const Color(0xff686868),
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -358,334 +361,361 @@ class LoginScreenState extends State<LoginScreen> {
                   decoration: BoxDecoration(
                       color: MyAppState.mode == ThemeMode.light
                           ? Colors.white
-                          : Color(0xff686868),
-                      borderRadius: BorderRadius.only(
+                          : const Color(0xff686868),
+                      borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ///tab
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.049, vertical: height * 0.02),
-                        child: Container(
-                          height: height * 0.065,
-                          width: width,
-                          decoration: BoxDecoration(
-                              color: Colors.black12,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    clicked = 1;
-                                  });
-                                },
-                                child: Container(
-                                  height: height * 0.065,
-                                  width: width * 0.44,
-                                  decoration: BoxDecoration(
-                                      color: clicked == 1
-                                          ? Colors.indigoAccent
-                                          : Colors.transparent,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Center(
-                                      child: Text(
-                                          AppLocalizations.of(context)!.login,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium!
-                                              .copyWith(
-                                                  color: clicked == 1
-                                                      ? Colors.white
-                                                      : MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? Colors.black
-                                                          : Colors.white))),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ///tab
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: width * 0.049,
+                              vertical: height * 0.02),
+                          child: Container(
+                            height: height * 0.065,
+                            width: width,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      widget.clicked = 1;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: height * 0.065,
+                                    width: width * 0.44,
+                                    decoration: BoxDecoration(
+                                        color: widget.clicked == 1
+                                            ? Colors.indigoAccent
+                                            : Colors.transparent,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Center(
+                                        child: Text(
+                                            AppLocalizations.of(context)!.login,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .copyWith(
+                                                    color: widget.clicked == 1
+                                                        ? Colors.white
+                                                        : MyAppState.mode ==
+                                                                ThemeMode.light
+                                                            ? Colors.black
+                                                            : Colors.white))),
+                                  ),
                                 ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    clicked = 2;
-                                  });
-                                },
-                                child: Container(
-                                  height: height * 0.065,
-                                  width: width * 0.44,
-                                  decoration: BoxDecoration(
-                                      color: clicked == 2
-                                          ? Colors.indigoAccent
-                                          : Colors.transparent,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Center(
-                                      child: Text(
-                                    AppLocalizations.of(context)!
-                                        .createYourAccount,
-                                    style: TextStyle(
-                                        color: clicked == 2
-                                            ? Colors.white
-                                            : MyAppState.mode == ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white),
-                                  )),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      widget.clicked = 2;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: height * 0.065,
+                                    width: width * 0.44,
+                                    decoration: BoxDecoration(
+                                        color: widget.clicked == 2
+                                            ? Colors.indigoAccent
+                                            : Colors.transparent,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Center(
+                                        child: Text(
+                                      AppLocalizations.of(context)!
+                                          .createYourAccount,
+                                      style: TextStyle(
+                                          color: widget.clicked == 2
+                                              ? Colors.white
+                                              : MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.black
+                                                  : Colors.white),
+                                    )),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      clicked == 1
-                          ? LogInWidget(
-                              forgetTap: () {
-                                navigateForgotPassword();
-                              },
-                              onTap: () {
-                                setState(() {
-                                  isLoading = true;
-                                });
-                                _networkCalls.checkInternetConnectivity(
-                                    onSuccess: (msg) {
-                                  if (msg == true) {
-                                    isLoading = false;
-                                    String encoded = base64.encode(
-                                        utf8.encode(passwordController.text));
-                                    var details = {
-                                      "email": emailController.text,
-                                      "password": encoded,
-                                      "deviceType":
-                                          LoginScreenState.logDetail.deviceType,
-                                      "deviceToken":
-                                          LoginScreenState.logDetail.fcmToken
-                                    };
-                                    _networkCalls.login(
-                                        loginDetail: details,
+                        widget.clicked == 1
+                            ? LogInWidget(
+                                loading: isLoading,
+                                forgetTap: () {
+                                  navigateForgotPassword();
+                                },
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    _networkCalls.checkInternetConnectivity(
                                         onSuccess: (msg) {
-                                          if (msg == "pitchowner") {
-                                            navigateToOwnerHome();
-                                          } else {
-                                            navigateToDetail();
-                                          }
-                                        },
-                                        onFailure: (msg) {
-                                          if (mounted) {
-                                            setState(() {
-                                              isLoading = false;
-                                              showMessage(msg);
+                                      if (msg == true) {
+                                        isLoading = false;
+                                        String encoded = base64.encode(utf8
+                                            .encode(passwordController.text));
+                                        var details = {
+                                          "email": emailController.text,
+                                          "password": encoded,
+                                          "deviceType": LoginScreenState
+                                              .logDetail.deviceType,
+                                          "deviceToken": LoginScreenState
+                                              .logDetail.fcmToken
+                                        };
+                                        _networkCalls.login(
+                                            loginDetail: details,
+                                            onSuccess: (msg) {
+                                              if (msg == "pitchowner") {
+                                                navigateToOwnerHome();
+                                              } else {
+                                                navigateToDetail();
+                                              }
+                                            },
+                                            onFailure: (msg) {
+                                              if (mounted) {
+                                                setState(() {
+                                                  isLoading = false;
+                                                  showMessage(msg);
+                                                });
+                                              }
                                             });
+                                      } else {
+                                        if (mounted) {
+                                          isLoading = false;
+                                          showMessage(
+                                              AppLocalizations.of(context)!
+                                                  .noInternetConnection);
+                                        }
+                                      }
+                                    });
+                                  }
+                                },
+                                emailController: emailController,
+                                passwordController: passwordController,
+                              )
+                            : SignUpWidget(
+                                player: (String? value) {
+                                  setState(() {
+                                    SignUpWidgetState.player = value;
+                                    logDetail.player = value;
+                                  });
+                                },
+                                loading: isLoading,
+                                signUp: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    setState(() {
+                                      logDetail.phoneNumber =
+                                          phoneController.text;
+                                      logDetail.firstName = nameController.text;
+                                      logDetail.lastName =
+                                          lastnameController.text;
+                                      logDetail.password =
+                                          sigupPasswordController.text;
+                                      logDetail.email =
+                                          signupEmailController.text;
+                                      isLoading = true;
+                                    });
+                                    if (logDetail.phoneNumber != null) {
+                                      _networkCalls.checkInternetConnectivity(
+                                          onSuccess: (msg) {
+                                        if (mounted) _internet = msg;
+                                        if (msg == true) {
+                                          _networkCalls
+                                              .checkAvailabilityOfEmail(
+                                                  email: logDetail.email
+                                                      .toString(),
+                                                  onSuccess: (msg) async {
+                                                    // navigateToVerification(logDetail);
+                                                    _networkCalls
+                                                        .checkAvailabilityOfPhoneNumber(
+                                                            phone: logDetail
+                                                                .phoneNumber
+                                                                .toString(),
+                                                            onSuccess: (msg) {
+                                                              setState(() {
+                                                                isLoading =
+                                                                    false;
+                                                              });
+                                                              navigateToVerification(
+                                                                  logDetail);
+                                                            },
+                                                            onFailure: (msg) {
+                                                              if (mounted) {
+                                                                setState(() {
+                                                                  isLoading =
+                                                                      false;
+                                                                });
+                                                              }
+                                                              showMessage(
+                                                                msg,
+                                                              );
+                                                            },
+                                                            tokenExpire: () {
+                                                              if (mounted) {
+                                                                on401(context);
+                                                                isLoading =
+                                                                    false;
+                                                              }
+                                                            });
+                                                  },
+                                                  onFailure: (msg) {
+                                                    if (mounted) {
+                                                      setState(() {
+                                                        isLoading = false;
+                                                      });
+                                                    }
+                                                    isLoading = false;
+                                                    showMessage(msg);
+                                                  },
+                                                  tokenExpire: () {
+                                                    if (mounted) {
+                                                      on401(context);
+                                                    }
+                                                  });
+                                        } else {
+                                          if (mounted) {
+                                            showMessage(
+                                                AppLocalizations.of(context)!
+                                                    .noInternetConnection);
+                                            isLoading = false;
                                           }
-                                        });
-                                  } else {
-                                    if (mounted) {
-                                      isLoading = false;
-                                      showMessage(AppLocalizations.of(context)!
-                                          .noInternetConnection);
+                                          isLoading = false;
+                                        }
+                                      });
                                     }
                                   }
-                                });
-                              },
-                              emailController: emailController,
-                              passwordController: passwordController,
-                            )
-                          : SignUpWidget(
-                              player: (String? value) {
-                                setState(() {
-                                  SignUpWidgetState.player = value!;
-                                  logDetail.player = SignUpWidgetState.player;
-                                });
-                              },
-                              signUp: () {
-                                setState(() {
-                                  logDetail.phoneNumber = phoneController.text;
-                                  logDetail.firstName = nameController.text;
-                                  logDetail.lastName = lastnameController.text;
-                                  logDetail.password =
-                                      sigupPasswordController.text;
-                                  logDetail.email = signupEmailController.text;
-                                  // isLoading = true;
-                                  print(logDetail);
-                                });
-                                if (logDetail.phoneNumber != null) {
+                                },
+                                onChanged: (value) {
+                                  if (mounted) {
+                                    setState(() {
+                                      logDetail.countryCode = value.toString();
+                                    });
+                                  }
+                                },
+                                onChangedController: (value) {
+                                  logDetail.phoneNumber = value;
+                                },
+                                confirmController:
+                                    confirmSignPasswordController,
+                                lastnameController: lastnameController,
+                                passwordController: sigupPasswordController,
+                                emailController: signupEmailController,
+                                nameController: nameController,
+                                phoneController: phoneController,
+                              ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: height * 0.02, horizontal: width * 0.2),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                child: Image.asset(
+                                  'assets/images/facebook.png',
+                                  height: height * .05,
+                                  fit: BoxFit.fill,
+                                ),
+                                onTap: () {
                                   _networkCalls.checkInternetConnectivity(
                                       onSuccess: (msg) {
-                                    if (mounted) _internet = msg;
+                                    _internet = msg;
                                     if (msg == true) {
-                                      setState(() {
-                                        isLoading = false;
-                                      });
-                                      _networkCalls.checkAvailabilityOfEmail(
-                                          email: logDetail.email.toString(),
-                                          onSuccess: (msg) async {
-                                            // navigateToVerification(logDetail);
-                                            _networkCalls
-                                                .checkAvailabilityOfPhoneNumber(
-                                                    phone: logDetail.phoneNumber
-                                                        .toString(),
-                                                    onSuccess: (msg) {
-                                                      isLoading = false;
-                                                      navigateToVerification(
-                                                          logDetail);
-                                                    },
-                                                    onFailure: (msg) {
-                                                      if (mounted) {
-                                                        setState(() {
-                                                          isLoading = false;
-                                                        });
-                                                      }
-                                                      showMessage(
-                                                        msg,
-                                                      );
-                                                    },
-                                                    tokenExpire: () {
-                                                      if (mounted) {
-                                                        on401(context);
-                                                        isLoading = false;
-                                                      }
-                                                    });
-                                          },
-                                          onFailure: (msg) {
-                                            if (mounted) {
-                                              setState(() {
-                                                isLoading = false;
-                                              });
-                                            }
-                                            isLoading = false;
-                                            showMessage(msg);
-                                          },
-                                          tokenExpire: () {
-                                            if (mounted) {
-                                              on401(context);
-                                            }
-                                          });
+                                      _loginFacebook();
                                     } else {
                                       if (mounted) {
                                         showMessage(
                                             AppLocalizations.of(context)!
                                                 .noInternetConnection);
-                                        isLoading = false;
                                       }
-                                      isLoading = false;
                                     }
                                   });
-                                }
-                              },
-                              onChanged: (value) {
-                                if (mounted) {
-                                  setState(() {
-                                    logDetail.countryCode = value.toString();
-                                  });
-                                }
-                              },
-                              onChangedController: (value) {
-                                logDetail.phoneNumber = value;
-                              },
-                              confirmController: confirmSignPasswordController,
-                              lastnameController: lastnameController,
-                              passwordController: sigupPasswordController,
-                              emailController: signupEmailController,
-                              nameController: nameController,
-                              phoneController: phoneController,
-                            ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: height * 0.02, horizontal: width * 0.2),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                              child: Image.asset(
-                                'assets/images/facebook.png',
-                                height: height * .05,
-                                fit: BoxFit.fill,
+                                },
                               ),
-                              onTap: () {
-                                _networkCalls.checkInternetConnectivity(
-                                    onSuccess: (msg) {
-                                  _internet = msg;
-                                  if (msg == true) {
-                                    _loginFacebook();
-                                  } else {
-                                    if (mounted) {
-                                      showMessage(AppLocalizations.of(context)!
-                                          .noInternetConnection);
+                              Visibility(
+                                visible: Platform.isIOS ? true : false,
+                                // _isAppleSigninAvailable,
+                                child: GestureDetector(
+                                  onTap: () => _networkCalls
+                                      .checkInternetConnectivity(
+                                          onSuccess: (msg) {
+                                    _internet = msg;
+                                    if (msg == true) {
+                                      _signInWithApple(context);
+                                    } else {
+                                      if (mounted) {
+                                        showMessage(
+                                            AppLocalizations.of(context)!
+                                                .noInternetConnection);
+                                      }
                                     }
-                                  }
-                                });
-                              },
-                            ),
-                            Visibility(
-                              visible: Platform.isIOS ? true : false,
-                              // _isAppleSigninAvailable,
-                              child: GestureDetector(
-                                onTap: () => _networkCalls
-                                    .checkInternetConnectivity(
-                                        onSuccess: (msg) {
-                                  _internet = msg;
-                                  if (msg == true) {
-                                    _signInWithApple(context);
-                                  } else {
-                                    if (mounted) {
-                                      showMessage(AppLocalizations.of(context)!
-                                          .noInternetConnection);
-                                    }
-                                  }
-                                }),
+                                  }),
+                                  child: Image.asset(
+                                    'assets/images/apple.png',
+                                    height: height * .05,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
                                 child: Image.asset(
-                                  'assets/images/apple.png',
+                                  'assets/images/google.png',
                                   height: height * .05,
                                   fit: BoxFit.fill,
                                 ),
-                              ),
-                            ),
-                            GestureDetector(
-                              child: Image.asset(
-                                'assets/images/google.png',
-                                height: height * .05,
-                                fit: BoxFit.fill,
-                              ),
-                              onTap: () {
-                                _networkCalls.checkInternetConnectivity(
-                                    onSuccess: (msg) {
-                                  _internet = msg;
-                                  if (msg == true) {
-                                    _loginGoogle();
-                                  } else {
-                                    if (mounted) {
-                                      showMessage(AppLocalizations.of(context)!
-                                          .noInternetConnection);
+                                onTap: () {
+                                  _networkCalls.checkInternetConnectivity(
+                                      onSuccess: (msg) {
+                                    _internet = msg;
+                                    if (msg == true) {
+                                      _loginGoogle();
+                                    } else {
+                                      if (mounted) {
+                                        showMessage(
+                                            AppLocalizations.of(context)!
+                                                .noInternetConnection);
+                                      }
                                     }
-                                  }
-                                });
-                              },
-                            ),
-                          ],
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: AppLocalizations.of(context)!.locale == "en"
-                            ? EdgeInsets.only(right: width * 0.09)
-                            : EdgeInsets.only(left: width * 0.09),
-                        child: Container(
-                          width: width,
-                          alignment:
-                              AppLocalizations.of(context)!.locale == "en"
-                                  ? Alignment.bottomRight
-                                  : Alignment.bottomLeft,
-                          child: AppLocalizations.of(context)!.locale == "en"
-                              ? Text(
-                                  "${_packageInfo.version}(${_packageInfo.buildNumber})",
-                                  style: const TextStyle(color: Colors.grey),
-                                )
-                              : Text(
-                                  "${_packageInfo.version.split('').reversed.join()}(${_packageInfo.buildNumber})",
-                                  style: const TextStyle(color: Colors.grey),
-                                ),
+                        Padding(
+                          padding: AppLocalizations.of(context)!.locale == "en"
+                              ? EdgeInsets.only(right: width * 0.09)
+                              : EdgeInsets.only(left: width * 0.09),
+                          child: Container(
+                            width: width,
+                            alignment:
+                                AppLocalizations.of(context)!.locale == "en"
+                                    ? Alignment.bottomRight
+                                    : Alignment.bottomLeft,
+                            child: AppLocalizations.of(context)!.locale == "en"
+                                ? Text(
+                                    "${_packageInfo.version}(${_packageInfo.buildNumber})",
+                                    style: const TextStyle(color: Colors.grey),
+                                  )
+                                : Text(
+                                    "${_packageInfo.version.split('').reversed.join()}(${_packageInfo.buildNumber})",
+                                    style: const TextStyle(color: Colors.grey),
+                                  ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

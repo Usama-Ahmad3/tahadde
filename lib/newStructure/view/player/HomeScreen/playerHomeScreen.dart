@@ -1,19 +1,15 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/NotificationScreen/notification.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/events/events.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../constant.dart';
-import '../../../../homeFile/home.dart';
-import '../../../../homeFile/more.dart';
 import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
-import '../../../../player/loginSignup/profile/profile.dart';
-import '../../../../player/loginSignup/sportsScreen.dart';
-import '../../light-design/profile.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
   int index;
@@ -87,21 +83,57 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
         context: context,
         builder: (BuildContext cntext) {
           return AlertDialog(
+            elevation: 2,
+            backgroundColor: Colors.grey.shade200,
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             title: Text(AppLocalizations.of(context)!.areYouSure),
-            content: Text(AppLocalizations.of(context)!.youGoingExit),
+            content: Text(
+              AppLocalizations.of(context)!.youGoingExit,
+              style: const TextStyle(color: Colors.red),
+            ),
             actions: <Widget>[
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.no),
-                onPressed: () {
+              InkWell(
+                onTap: () {
                   Navigator.of(context).pop(false);
                 },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black,
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.no,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.yes),
-                onPressed: () {
+              const SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
                   Navigator.of(context).pop(true);
                 },
-              )
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.transparent,
+                    border: Border.all(width: 1, color: Colors.red),
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.yes,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
+              ),
             ],
           );
         });
@@ -109,8 +141,8 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
 
   final page = [
     const HomeScreenView(),
-    const NotificationScreen(),
-    More(),
+    EventsScreen(),
+    const SettingsScreen(),
     // ignore: prefer_const_constructors
     ProfileDetailScreen()
   ];
@@ -143,9 +175,9 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                     icon: const Icon(
                       Icons.home_outlined,
                     ),
-                    title: const Text(
-                      "Home",
-                      style: TextStyle(color: Colors.black),
+                    title: Text(
+                      AppLocalizations.of(context)!.home,
+                      style: const TextStyle(color: Colors.black),
                     ),
                     activeIcon: const Icon(
                       Icons.home,
@@ -156,14 +188,14 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                   ),
                   SalomonBottomBarItem(
                     icon: const Icon(
-                      Icons.notifications_none,
+                      Icons.event,
                     ),
-                    title: const Text(
-                      "Notification",
-                      style: TextStyle(color: Colors.black),
+                    title: Text(
+                      'events',
+                      style: const TextStyle(color: Colors.black),
                     ),
                     activeIcon: const Icon(
-                      Icons.notifications,
+                      Icons.event_available,
                       color: Colors.black,
                     ),
                     selectedColor: const Color(0xffffc300),
@@ -173,9 +205,9 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                     icon: const Icon(
                       Icons.settings_outlined,
                     ),
-                    title: const Text(
-                      "More",
-                      style: TextStyle(color: Colors.black),
+                    title: Text(
+                      AppLocalizations.of(context)!.more,
+                      style: const TextStyle(color: Colors.black),
                     ),
                     activeIcon: const Icon(
                       Icons.settings,
@@ -188,9 +220,9 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                     icon: const Icon(
                       Icons.person_2_outlined,
                     ),
-                    title: const Text(
-                      "Profile",
-                      style: TextStyle(color: Colors.black),
+                    title: Text(
+                      AppLocalizations.of(context)!.personalDetail,
+                      style: const TextStyle(color: Colors.black),
                     ),
                     activeIcon: const Icon(
                       Icons.person,
@@ -201,134 +233,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                   ),
                 ],
               ),
-              // Container(
-              //   padding: Platform.isIOS
-              //       ? const EdgeInsets.only(bottom: 10)
-              //       : EdgeInsets.zero,
-              //   decoration: const BoxDecoration(
-              //       color: Colors.white,
-              //       border: Border(
-              //           top: BorderSide(color: Colors.grey, width: 0.8))),
-              //   height: 60,
-              //   alignment: Alignment.bottomCenter,
-              //   child: TabBar(
-              //       labelStyle: const TextStyle(
-              //         fontSize: 10,
-              //         fontWeight: FontWeight.w700,
-              //         fontFamily: 'Poppins',
-              //       ),
-              //       controller: _tabController,
-              //       tabs: [
-              //         // Tab(
-              //         //   icon: _tabController.index == 0
-              //         //       ? Padding(
-              //         //           padding: const EdgeInsets.only(top: 5),
-              //         //           child: Image.asset(
-              //         //             'assets/images/team.png',
-              //         //             height: 25,
-              //         //           ),
-              //         //         )
-              //         //       : Padding(
-              //         //           padding: const EdgeInsets.only(top: 5),
-              //         //           child: Image.asset(
-              //         //             'assets/images/teamColor.png',
-              //         //             height: 25,
-              //         //           ),
-              //         //         ),
-              //         //   text: AppLocalizations.of(context)!.team
-              //         // ),
-              //
-              //         Tab(
-              //           child: Padding(
-              //             padding: const EdgeInsets.only(bottom: 0.0),
-              //             child: Image.asset(
-              //               'assets/images/TC.png',
-              //               fit: BoxFit.fill,
-              //               color: _tabController.index == 0
-              //                   ? const Color(0XFF052040)
-              //                   : Colors.grey[500],
-              //               height: 25,
-              //               // height: 40,
-              //               // width: 60,
-              //             ),
-              //           ),
-              //         ),
-              //         Tab(
-              //           icon: _tabController.index == 1
-              //               ? Padding(
-              //                   padding: const EdgeInsets.only(top: 5),
-              //                   child: Image.asset(
-              //                     'assets/images/notificationColor.png',
-              //                     height: 25,
-              //                   ),
-              //                 )
-              //               : Padding(
-              //                   padding: const EdgeInsets.only(top: 5),
-              //                   child: Image.asset(
-              //                     'assets/images/notification.png',
-              //                     height: 25,
-              //                   ),
-              //                 ),
-              //           // text: AppLocalizations.of(context)!.notification
-              //         ),
-              //         Tab(
-              //           icon: _tabController.index == 2
-              //               ? Padding(
-              //                   padding: const EdgeInsets.only(top: 5),
-              //                   child: Image.asset(
-              //                     'assets/images/userColor.png',
-              //                     height: 25,
-              //                   ),
-              //                 )
-              //               : Padding(
-              //                   padding: const EdgeInsets.only(top: 5),
-              //                   child: Image.asset(
-              //                     'assets/images/user.png',
-              //                     height: 25,
-              //                   ),
-              //                 ),
-              //         ),
-              //         Tab(
-              //           icon: _tabController.index == 3
-              //               ? Padding(
-              //                   padding: const EdgeInsets.only(top: 5),
-              //                   child: Image.asset(
-              //                     'assets/images/moreColor.png',
-              //                     height: 21,
-              //                   ),
-              //                 )
-              //               : Padding(
-              //                   padding: const EdgeInsets.only(top: 5),
-              //                   child: Image.asset(
-              //                     'assets/images/more.png',
-              //                     height: 21,
-              //                   ),
-              //                 ),
-              //         ),
-              //       ],
-              //       labelColor: const Color(0XFF032040),
-              //       indicatorWeight: 4,
-              //       unselectedLabelColor: const Color(0XFF7A7A7A),
-              //       indicatorSize: TabBarIndicatorSize.label,
-              //       indicatorPadding: const EdgeInsets.only(bottom: 5),
-              //       indicatorColor: Colors.transparent
-              //       //Color(0XFF032040),
-              //       ),
-              // ),
               body: page[widget.index],
-              // TabBarView(
-              //   controller: _tabController,
-              //   children: [
-              //     // TeamEmpaty(),
-              //     HomeScreen(),
-              //     NotificationEmpty(),
-              //
-              //     ProfileScreen(
-              //       msg: 'msg'.toString(),
-              //     ),
-              //     More()
-              //   ],
-              // )
             )),
       ),
     );

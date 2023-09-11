@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetailShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -11,7 +12,8 @@ import 'package:map_launcher/map_launcher.dart' hide MapType;
 import 'package:readmore/readmore.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:map_launcher/map_launcher.dart' hide MapType;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 import '../../../../../../common_widgets/grediant_text.dart';
 import '../../../../../../common_widgets/internet_loss.dart';
@@ -40,6 +42,7 @@ class GroundDetailState extends State<GroundDetail>
   final NetworkCalls _networkCalls = NetworkCalls();
   late SharedPreferences pref;
   bool isStateLoading = true;
+  var isDialOpen = ValueNotifier<bool>(false);
   bool _auth = false;
   List<int> listMaxPlayer = [];
   int? selectedIndex;
@@ -52,7 +55,7 @@ class GroundDetailState extends State<GroundDetail>
   favorite(bool favoriteState) async {
     var detail = {
       "pitch_id": widget.detail["pitchId"].toString(),
-      "is_favourite": favoriteState ?? 'yes'
+      "is_favourite": favoriteState
     };
     await _networkCalls.favorite(
       detail: detail,
@@ -188,78 +191,119 @@ class GroundDetailState extends State<GroundDetail>
         ? GroundShimmer.buildShemmer(width, height, context)
         : internet
             ? Scaffold(
+                floatingActionButton: SpeedDial(
+                  elevation: 3,
+                  activeChild: Icon(
+                    Icons.close,
+                    color: MyAppState.mode == ThemeMode.light
+                        ? Colors.white
+                        : Colors.black,
+                    size: height * 0.035,
+                  ),
+                  animationCurve: Curves.easeInOutCirc,
+                  spacing: height * 0.02,
+                  animationDuration: const Duration(milliseconds: 300),
+                  openCloseDial: isDialOpen,
+                  mini: false,
+                  closeManually: true,
+                  isOpenOnStart: false,
+                  backgroundColor: MyAppState.mode == ThemeMode.light
+                      ? const Color(0xff686868)
+                      : Colors.tealAccent.shade100,
+                  renderOverlay: false,
+                  onPress: () {
+                    setState(() {
+                      isDialOpen.value = !isDialOpen.value;
+                    });
+                  },
+                  children: [
+                    _auth
+                        ? SpeedDialChild(
+                            visible: true,
+                            backgroundColor: MyAppState.mode == ThemeMode.light
+                                ? const Color(0xff686868)
+                                : Colors.tealAccent.shade100,
+                            child: Icon(
+                              privateVenueDetail.isFavourite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                            onTap: () {
+                              _networkCalls.checkInternetConnectivity(
+                                  onSuccess: (msg) {
+                                if (msg) {
+                                  if (privateVenueDetail.isFavourite == false) {
+                                    privateVenueDetail.isFavourite = true;
+                                    favorite(true);
+                                  } else {
+                                    privateVenueDetail.isFavourite = false;
+                                    favorite(false);
+                                  }
+                                  setState(() {});
+                                } else {
+                                  showMessage(AppLocalizations.of(context)!
+                                      .noInternetConnection);
+                                }
+                              });
+                            })
+                        : SpeedDialChild(),
+                    SpeedDialChild(
+                        visible: true,
+                        backgroundColor: MyAppState.mode == ThemeMode.light
+                            ? const Color(0xff686868)
+                            : Colors.tealAccent.shade100,
+                        child: Icon(
+                          Icons.share,
+                          color: MyAppState.mode == ThemeMode.light
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                        onTap: () {
+                          Share.share(
+                            "pitchDetail.link",
+                          );
+                        }),
+                    SpeedDialChild(
+                        visible: true,
+                        backgroundColor: MyAppState.mode == ThemeMode.light
+                            ? const Color(0xff686868)
+                            : Colors.tealAccent.shade100,
+                        child: Icon(
+                          Icons.email_outlined,
+                          color: MyAppState.mode == ThemeMode.light
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                        onTap: () async {
+                          launch("mailto:info@tahadde.com");
+                        })
+                  ],
+                  child: Icon(
+                    Icons.add,
+                    color: MyAppState.mode == ThemeMode.light
+                        ? Colors.white
+                        : Colors.black,
+                    size: height * 0.04,
+                  ),
+                ),
                 body: CustomScrollView(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: const AlwaysScrollableScrollPhysics(),
                   slivers: [
-                    SliverAppBar(
+                    const SliverAppBar(
                       pinned: true,
                       centerTitle: false,
                       expandedHeight: 200.0,
-                      flexibleSpace: const FlexibleSpaceBar(
+                      flexibleSpace: FlexibleSpaceBar(
                           collapseMode: CollapseMode.pin,
                           centerTitle: false,
                           titlePadding:
                               EdgeInsets.symmetric(vertical: 16, horizontal: 0),
                           background: Carousel()),
-                      actions: [
-                        ///favoriteIcon
-                        _auth
-                            ? IconButton(
-                                onPressed: () {
-                                  _networkCalls.checkInternetConnectivity(
-                                      onSuccess: (msg) {
-                                    if (msg) {
-                                      if (privateVenueDetail.isFavourite ==
-                                          false) {
-                                        privateVenueDetail.isFavourite = true;
-                                        favorite(true);
-                                      } else {
-                                        privateVenueDetail.isFavourite = false;
-                                        favorite(false);
-                                      }
-                                      setState(() {});
-                                    } else {
-                                      showMessage(AppLocalizations.of(context)!
-                                          .noInternetConnection);
-                                    }
-                                  });
-                                },
-                                icon: Icon(
-                                  privateVenueDetail.isFavourite
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
-                                  size: height * 0.05,
-                                ))
-                            : Container(),
-
-                        ///shareIcon
-                        Container(
-                          height: 35,
-                          width: 35,
-                          decoration:
-                              const BoxDecoration(shape: BoxShape.circle),
-                          child: RawMaterialButton(
-                            onPressed: () {
-                              Share.share(
-                                "pitchDetail.link",
-                              );
-                            },
-                            elevation: 2.0,
-                            padding: const EdgeInsets.all(5.0),
-                            shape: const CircleBorder(),
-                            child: Icon(
-                              Icons.share,
-                              color: Colors.white,
-                              size: height * 0.05,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: width * 0.03,
-                        ),
-                      ],
                     ),
                     SliverToBoxAdapter(
                       child: SingleChildScrollView(
@@ -271,7 +315,7 @@ class GroundDetailState extends State<GroundDetail>
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
                                         ? Colors.white
-                                        : Color(0xff686868),
+                                        : const Color(0xff686868),
                                     borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(20),
                                         topLeft: Radius.circular(20))),
@@ -714,6 +758,7 @@ class GroundDetailState extends State<GroundDetail>
 
                                       ///BookButton
                                       ButtonWidget(
+                                          isLoading: false,
                                           onTaped: () {
                                             navigateToBookingScreen(
                                                 widget.detail);

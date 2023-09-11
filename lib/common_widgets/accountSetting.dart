@@ -14,6 +14,7 @@ class AccountSetting extends StatefulWidget {
 class _AccountSettingState extends State<AccountSetting> {
   String baseUrl = RestApis.BASE_URL;
   final NetworkCalls _networkCalls = NetworkCalls();
+
   @override
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
@@ -56,7 +57,7 @@ class _AccountSettingState extends State<AccountSetting> {
             buildAppBar(
                 language: AppLocalizations.of(context)!.locale,
                 title: "Account Setting",
-                 backButton: true,
+                backButton: true,
                 onTap: () {
                   Navigator.of(context).pop();
                 },
@@ -86,7 +87,7 @@ class _AccountSettingState extends State<AccountSetting> {
                       ),
                       baseUrl == "https://powerhouse.tahadde.ae"
                           ? Image.asset(
-                              "images/check.png",
+                              "assets/images/check.png",
                               height: 20,
                             )
                           : Container(),
@@ -125,7 +126,7 @@ class _AccountSettingState extends State<AccountSetting> {
                       ),
                       baseUrl == "https://tahadi.theclientdemos.com"
                           ? Image.asset(
-                              "images/check.png",
+                              "assets/images/check.png",
                               height: 20,
                             )
                           : Container(),
@@ -141,6 +142,7 @@ class _AccountSettingState extends State<AccountSetting> {
   }
 
   void navigateToHome() {
-    Navigator.pushNamedAndRemoveUntil(context, RouteNames.playerHome, (r) => false);
+    Navigator.pushNamedAndRemoveUntil(
+        context, RouteNames.playerHome, (r) => false);
   }
 }

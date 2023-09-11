@@ -12,6 +12,14 @@ class GroundShimmer {
   static buildShemmer(width, height, context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey.shade100,
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+      ),
       body: CustomScrollView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
@@ -24,43 +32,12 @@ class GroundShimmer {
             flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.pin,
                 centerTitle: false,
-                titlePadding: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                titlePadding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
                 background: Shimmer.fromColors(
                     baseColor: Colors.grey.shade100,
                     highlightColor: Colors.grey.shade300,
-                    child: Carousel())),
-            actions: [
-              ///favoriteIcon
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    GroundDetailState.privateVenueDetail.isFavourite
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    size: height * 0.05,
-                  )),
-
-              ///shareIcon
-              Container(
-                height: 35,
-                width: 35,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: RawMaterialButton(
-                  onPressed: () {},
-                  elevation: 2.0,
-                  padding: const EdgeInsets.all(5.0),
-                  shape: const CircleBorder(),
-                  child: Icon(
-                    Icons.share,
-                    color: Colors.white,
-                    size: height * 0.05,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: width * 0.03,
-              ),
-            ],
+                    child: const Carousel())),
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(

@@ -1030,6 +1030,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
 
                               ///Book Button
                               ButtonWidget(
+                                  isLoading: false,
                                   onTaped: () {
                                     if (_auth) {
                                       if (_slotPrice.pricePerVenue.isEmpty &&

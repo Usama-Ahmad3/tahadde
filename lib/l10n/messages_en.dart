@@ -53,7 +53,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookGround": MessageLookupByLibrary.simpleMessage('Booking a Ground'),
         "popular": MessageLookupByLibrary.simpleMessage("Our Popular Features"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "Help": MessageLookupByLibrary.simpleMessage("Help"),
+        "legalInformation":
+            MessageLookupByLibrary.simpleMessage("legal Information"),
         "security": MessageLookupByLibrary.simpleMessage("Security"),
+        "yourInterest": MessageLookupByLibrary.simpleMessage("Your Interest"),
+        "yourProfile": MessageLookupByLibrary.simpleMessage("Your profile"),
+        "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+        "booking,venue":
+            MessageLookupByLibrary.simpleMessage("booking, venue, leagues"),
+        "language,theme": MessageLookupByLibrary.simpleMessage(
+            "language, theme, configuration"),
+        "name,email": MessageLookupByLibrary.simpleMessage(
+            "name, email, phone, location"),
         "addanotherdocument":
             MessageLookupByLibrary.simpleMessage("Add another document"),
         "addnewpitchdetails":

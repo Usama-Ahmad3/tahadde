@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/changePassword.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/emailContactsFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/passwordSecurityFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileShimmer.dart';
@@ -10,7 +11,7 @@ import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
-import '../../../../../player/loginSignup/profile/profileEmpty.dart';
+import 'profileEmpty.dart';
 import 'drawer.dart';
 
 class ProfileDetailScreen extends StatefulWidget {
@@ -94,12 +95,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-          elevation: 2,
-          child: Container(
-            color: Colors.green,
-          ),
-          backgroundColor: Colors.black),
       body: _isLoading
           ? ProfileShimmer.buildShimmer(width, height, context)
           : _internet
@@ -200,7 +195,13 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          navigateToChangePassword();
+                                          // navigateToChangePassword();
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ChangePassword(),
+                                              ));
                                         },
                                         child: PasswordSecurity(
                                           prefixIcon: Icons.key,
@@ -273,33 +274,18 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             right: 20,
                             child: InkWell(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProfileDrawer(),
-                                    ));
-                                // showDialog(
-                                //   context: context,
-                                //   builder: (context) {
-                                //     return Scaffold(
-                                //       appBar: AppBar(title: Text('Title')),
-                                //       body: AnimatedContainer(
-                                //         duration:
-                                //             const Duration(microseconds: 300),
-                                //         curve: Curves.elasticInOut,
-                                //         child: SingleChildScrollView(
-                                //           child: Column(
-                                //             children: [
-                                //               ...List.generate(100,
-                                //                   (index) => Text('hi$index')),
-                                //             ],
-                                //           ),
-                                //         ),
-                                //       ),
-                                //     );
-                                //   },
-                                // );
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return ProfileDrawer(
+                                        name:
+                                            '${profileDetail!['first_name']} ${profileDetail!['last_name']}',
+                                        position: '${profileDetail!['role']}',
+                                        profileImage:
+                                            profileDetail!['profile_pic']
+                                                ['filePath']);
+                                  },
+                                );
                               },
                               child: const Icon(
                                 Icons.dehaze,
@@ -310,7 +296,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         ],
                       ),
                     )
-                  : ProfileEmpty()
+                  : ProfileEmptyScreen()
               : Scaffold(
                   body: Column(
                     children: [
@@ -346,7 +332,8 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
   }
 
   void navigateToEditProfile() {
-    Navigator.pushNamed(context, RouteNames.editProfileScreen);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => ProfileEmptyScreen()));
   }
 
   void navigateToChangePassword() {

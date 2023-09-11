@@ -46,7 +46,7 @@ class _PassworSuccess extends State<PassworSuccess> {
                 flaxibleGap(
                   15,
                 ),
-                Lottie.asset('lottiefiles/success.json',
+                Lottie.asset('assets/lottiefiles/success.json',
                     height: sizeheight * .4, width: sizewidth * .7),
                 Text(
                   AppLocalizations.of(context)!.resetPassword,

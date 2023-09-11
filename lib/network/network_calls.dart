@@ -248,7 +248,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
-      onFailure("fail to create tounament");
+      onFailure("fail to create tournament");
     }
   }
 
@@ -266,7 +266,6 @@ class NetworkCalls {
               "https://powerhouse.tahadde.ae${RestApis.SIGNUP}${prefs.get("lang")}"),
           headers: header(prefs, body, HttpMethod.POST),
           body: body);
-      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp["success"]);
@@ -275,7 +274,8 @@ class NetworkCalls {
         authorizationSave(true);
       } else if (response.statusCode == 400) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
-        onFailure(resp["error"]);
+        onFailure("ErrorNo${resp["error"]}");
+        print('${resp["error"]}');
       } else {
         onFailure("fail to sign up");
       }

@@ -10,7 +10,7 @@ import '../constant.dart';
 import '../modelClass/my_venue_list_model_class.dart';
 import 'routingConstant.dart';
 
-typedef FormFieldValidator<T> = String Function(T value);
+typedef FormFieldValidator<T> = String? Function(T value);
 typedef FormFieldSetter<T> = void Function(T newValue);
 typedef GestureTapCallback = void Function();
 typedef ValueChanged<T> = void Function(T value);
@@ -78,7 +78,7 @@ Widget textField({
   bool testAlignment = true,
   bool text1 = true,
   String hint = 'text',
-  FormFieldValidator<String?>? validator,
+  FormFieldValidator? validator,
   FormFieldSetter<String?>? onSaved,
   GestureTapCallback? onTap,
   ValueChanged<String>? submit,
@@ -101,9 +101,7 @@ Widget textField({
             ? TextInputType.number
             : TextInputType.emailAddress,
     style: TextStyle(
-        color: MyAppState.mode == ThemeMode.light
-            ? Color(0XFF032040)
-            : Colors.white,
+        color: MyAppState.mode == ThemeMode.light ? Colors.black : Colors.white,
         fontWeight: FontWeight.w600,
         fontSize: 12),
     decoration: InputDecoration(

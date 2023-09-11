@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -29,19 +30,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final _dob = TextEditingController();
   final emailController = TextEditingController();
   final _phoneNumber = TextEditingController(text: '');
+  final FocusNode lastFocus = FocusNode();
+  final FocusNode emailFocus = FocusNode();
+  final FocusNode phoneFocus = FocusNode();
   final DateFormat formatter = DateFormat('yyyy-MM-dd', 'en_US');
   bool isImageLoade = false;
   var lastBookingDateApi;
   bool _internet = true;
+  bool isLoading = false;
   File? image;
   var profile_Id;
   String? images;
   String? countryCode;
   final NetworkCalls _networkCalls = NetworkCalls();
-  final _formKey = GlobalKey<FormState>();
   final scaffoldkey = GlobalKey<ScaffoldState>();
   List<String> playerPostion = [];
   List<String> playerPostionSlug = [];
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future<void> _showChoiceDialog(BuildContext context) {
     return showDialog(
@@ -53,8 +58,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               child: ListBody(
                 children: [
                   GestureDetector(
-                    child:
-                        Text(AppLocalizations.of(context)!.choosefromlibrary),
+                    child: Text(
+                      AppLocalizations.of(context)!.choosefromlibrary,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.normal, fontSize: 15),
+                    ),
                     onTap: () async {
                       var status = await Permission.photos.status;
                       if (status.isGranted) {
@@ -67,20 +75,31 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             context: context,
                             builder: (BuildContext context) =>
                                 CupertinoAlertDialog(
-                                  title: Text(AppLocalizations.of(context)!
-                                      .galleryPermission),
+                                  title: Text(
+                                      AppLocalizations.of(context)!
+                                          .galleryPermission,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 15)),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisGalleryPicturesUploadImage),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       child: Text(
-                                          AppLocalizations.of(context)!.deny),
+                                          AppLocalizations.of(context)!.deny,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 15)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
                                     ),
                                     CupertinoDialogAction(
-                                      child: Text(AppLocalizations.of(context)!
-                                          .setting),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.setting,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 15),
+                                      ),
                                       onPressed: () => openAppSettings(),
                                     ),
                                   ],
@@ -92,7 +111,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     padding: EdgeInsets.all(8.0),
                   ),
                   GestureDetector(
-                    child: Text(AppLocalizations.of(context)!.takephoto),
+                    child: Text(AppLocalizations.of(context)!.takephoto,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 15)),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -106,20 +127,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             context: context,
                             builder: (BuildContext context) =>
                                 CupertinoAlertDialog(
-                                  title: Text(AppLocalizations.of(context)!
-                                      .cameraPermission),
+                                  title: Text(
+                                      AppLocalizations.of(context)!
+                                          .cameraPermission,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 15)),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisPicturesUploadImage),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       child: Text(
-                                          AppLocalizations.of(context)!.deny),
+                                          AppLocalizations.of(context)!.deny,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 15)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
                                     ),
                                     CupertinoDialogAction(
-                                      child: Text(AppLocalizations.of(context)!
-                                          .setting),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.setting,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 15)),
                                       onPressed: () => openAppSettings(),
                                     ),
                                   ],
@@ -137,6 +168,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   loadProfile() async {
     _networkCalls.getProfile(
       onSuccess: (msg) {
+        // print('Profile$msg');
         if (mounted) {
           setState(() {
             firstNameController.text = msg['first_name'];
@@ -213,11 +245,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       );
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    firstNameController.dispose();
+    _lastName.dispose();
+    _phoneNumber.dispose();
+    emailController.dispose();
+    _dob.dispose();
+    lastFocus.dispose();
+    emailFocus.dispose();
+    phoneFocus.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return _internet
         ? Scaffold(
+            backgroundColor: MyAppState.mode == ThemeMode.light
+                ? Colors.white
+                : const Color(0xff686868),
             appBar: PreferredSize(
               preferredSize: Size(width, height * 0.13),
               child: AppBar(
@@ -272,374 +321,436 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       padding: EdgeInsets.symmetric(
                           horizontal: width * 0.06, vertical: height * 0.02),
                       child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Material(
-                              elevation: 4,
-                              borderRadius: BorderRadius.circular(50),
-                              child: Container(
-                                width: 85,
-                                height: 85,
-                                decoration: BoxDecoration(
-                                    color:
-                                        Colors.grey.shade400.withOpacity(0.7),
-                                    shape: BoxShape.circle,
-                                    border:
-                                        Border.all(color: Colors.amberAccent)),
-                                child: isImageLoade
-                                    ? Container(
-                                        width: 85,
-                                        height: 85,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey.shade400
-                                                .withOpacity(0.7),
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                                color: Colors.amberAccent)),
-                                        child: Lottie.asset(
-                                          'assets/lottiefiles/image.json',
-                                        ),
-                                      )
-                                    : InkWell(
-                                        onTap: () {
-                                          _showChoiceDialog(context);
-                                        },
-                                        child: Container(
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Material(
+                                elevation: 4,
+                                borderRadius: BorderRadius.circular(50),
+                                child: Container(
+                                  width: 85,
+                                  height: 85,
+                                  decoration: BoxDecoration(
+                                      color:
+                                          Colors.grey.shade400.withOpacity(0.7),
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: Colors.amberAccent)),
+                                  child: isImageLoade
+                                      ? Container(
                                           width: 85,
                                           height: 85,
                                           decoration: BoxDecoration(
                                               color: Colors.grey.shade400
                                                   .withOpacity(0.7),
                                               shape: BoxShape.circle,
-                                              image: images != null
-                                                  ? DecorationImage(
-                                                      image:
-                                                          NetworkImage(images!),
-                                                      fit: BoxFit.cover)
-                                                  : const DecorationImage(
-                                                      image: AssetImage(
-                                                          "assets/images/profile.png"),
-                                                      fit: BoxFit.cover),
                                               border: Border.all(
                                                   color: Colors.amberAccent)),
+                                          child: Lottie.asset(
+                                            'assets/lottiefiles/image.json',
+                                          ),
+                                        )
+                                      : InkWell(
+                                          onTap: () {
+                                            _showChoiceDialog(context);
+                                          },
+                                          child: Container(
+                                            width: 85,
+                                            height: 85,
+                                            decoration: BoxDecoration(
+                                                color: Colors.grey.shade400
+                                                    .withOpacity(0.7),
+                                                shape: BoxShape.circle,
+                                                image: images != null
+                                                    ? DecorationImage(
+                                                        image: NetworkImage(
+                                                            images!),
+                                                        fit: BoxFit.cover)
+                                                    : const DecorationImage(
+                                                        image: AssetImage(
+                                                            "assets/images/profile.png"),
+                                                        fit: BoxFit.cover),
+                                                border: Border.all(
+                                                    color: Colors.amberAccent)),
+                                          ),
                                         ),
-                                      ),
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 15),
+                              const SizedBox(height: 15),
 
-                            // upload photo text
-                            Text(
-                              AppLocalizations.of(context)!.uploadImage,
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.personalDetail,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white),
-                            ),
-                            SizedBox(height: height * 0.01),
-                            Text(
-                              AppLocalizations.of(context)!.firstName,
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            SizedBox(
-                              height: height * 0.062,
-                              child: textFieldWidget(
-                                controller: firstNameController,
-                                hintText: AppLocalizations.of(context)!.tahaddi,
-                                suffixIcon: Icons.edit_outlined,
-                                fillColor: Colors.transparent,
-                                suffixIconColor:
-                                    MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white,
-                                border: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
-                                enableBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
-                                focusBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
+                              // upload photo text
+                              Text(
+                                AppLocalizations.of(context)!.uploadImage,
                               ),
-                            ),
-                            SizedBox(height: height * 0.02),
-                            Text(
-                              AppLocalizations.of(context)!.lastName,
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            SizedBox(
-                              height: height * 0.062,
-                              child: textFieldWidget(
-                                controller: _lastName,
-                                hintText: AppLocalizations.of(context)!
-                                    .pleaseenterLastName,
-                                suffixIcon: Icons.edit_outlined,
-                                fillColor: Colors.transparent,
-                                suffixIconColor:
-                                    MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white,
-                                border: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
-                                enableBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
-                                focusBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
+                              SizedBox(
+                                height: height * 0.02,
                               ),
-                            ),
-                            SizedBox(height: height * 0.02),
-                            Text(
-                              AppLocalizations.of(context)!.email,
-                              style: const TextStyle(),
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            SizedBox(
-                              height: height * 0.062,
-                              child: textFieldWidget(
-                                controller: emailController,
-                                hintText: AppLocalizations.of(context)!
-                                    .pleaseEnterEmail,
-                                suffixIcon: Icons.edit_outlined,
-                                fillColor: Colors.transparent,
-                                suffixIconColor:
-                                    MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white,
-                                border: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
-                                enableBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
-                                focusBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(12)),
-                              ),
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            Text(AppLocalizations.of(context)!.dateofBirth),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: height * .015, bottom: height * .01),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    lastBookingDateApi ??
-                                        _dob.text ??
-                                        AppLocalizations.of(context)!
-                                            .choosedateofbirth,
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        decoration: TextDecoration.none,
+                              Text(
+                                AppLocalizations.of(context)!.personalDetail,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? const Color(0XFF032040)
-                                                : Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 14),
-                                  ),
-                                  flaxibleGap(1),
-                                  GestureDetector(
-                                      onTap: () async {
-                                        final selectDate =
-                                            await slecteDtateTime(context);
-                                        if (selectDate != null) {
-                                          setState(() {
-                                            lastBookingDateApi = formatter
-                                                .format((selectDate))
-                                                .toString();
-                                          });
-                                        }
-                                        print(selectDate);
-                                      },
-                                      child: Icon(Icons.calendar_today,
+                                                ? Colors.black
+                                                : Colors.white),
+                              ),
+                              SizedBox(height: height * 0.01),
+                              Text(
+                                AppLocalizations.of(context)!.firstName,
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              SizedBox(
+                                height: height * 0.062,
+                                child: textFieldWidget(
+                                  controller: firstNameController,
+                                  hintText:
+                                      AppLocalizations.of(context)!.tahaddi,
+                                  suffixIcon: Icons.edit_outlined,
+                                  fillColor: Colors.transparent,
+                                  suffixIconColor:
+                                      MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white,
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  enableBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  focusBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  onSubmitted: (value) {
+                                    UtilsSign.focusChange(lastFocus, context);
+                                    return null;
+                                  },
+                                  onValidate: (value) {
+                                    if (value.isEmpty) {
+                                      return AppLocalizations.of(context)!
+                                          .pleaseenterFirstName;
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Text(
+                                AppLocalizations.of(context)!.lastName,
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              SizedBox(
+                                height: height * 0.062,
+                                child: textFieldWidget(
+                                  controller: _lastName,
+                                  focus: lastFocus,
+                                  hintText: AppLocalizations.of(context)!
+                                      .pleaseenterLastName,
+                                  suffixIcon: Icons.edit_outlined,
+                                  fillColor: Colors.transparent,
+                                  suffixIconColor:
+                                      MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white,
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  enableBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  focusBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  onSubmitted: (value) {
+                                    UtilsSign.focusChange(emailFocus, context);
+                                    return null;
+                                  },
+                                  onValidate: (value) {
+                                    if (value.isEmpty) {
+                                      return AppLocalizations.of(context)!
+                                          .pleaseenterLastName;
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Text(
+                                AppLocalizations.of(context)!.email,
+                                style: const TextStyle(),
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              SizedBox(
+                                height: height * 0.062,
+                                child: textFieldWidget(
+                                  controller: emailController,
+                                  focus: emailFocus,
+                                  hintText: AppLocalizations.of(context)!
+                                      .pleaseEnterEmail,
+                                  suffixIcon: Icons.edit_outlined,
+                                  fillColor: Colors.transparent,
+                                  suffixIconColor:
+                                      MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white,
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  enableBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  focusBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  onSubmitted: (value) {
+                                    UtilsSign.focusChange(phoneFocus, context);
+                                    return null;
+                                  },
+                                  onValidate: (value) {
+                                    if (value.isEmpty) {
+                                      return AppLocalizations.of(context)!
+                                          .pleaseEnterEmail;
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              Text(AppLocalizations.of(context)!.dateofBirth),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: height * .015, bottom: height * .01),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      lastBookingDateApi ??
+                                          _dob.text ??
+                                          AppLocalizations.of(context)!
+                                              .choosedateofbirth,
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          decoration: TextDecoration.none,
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white))
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: height * 0.02),
-                            Text(
-                              AppLocalizations.of(context)!.contacts,
-                              style: const TextStyle(),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                AppLocalizations.of(context)!.locale == "en"
-                                    ? CountryCodePicker(
-                                        padding: const EdgeInsets.only(top: 5),
-                                        textStyle: TextStyle(
-                                            color: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? const Color(0XFF032040)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12),
-                                        onChanged: (value) {
-                                          setState(() {
-                                            countryCode = value.toString();
-                                          });
-                                        },
-                                        initialSelection: countryCode,
-                                        favorite: const [
-                                          '+971',
-                                          'ae',
-                                        ],
-                                        showCountryOnly: false,
-                                        showOnlyCountryWhenClosed: false,
-                                        alignLeft: false,
-                                      )
-                                    : Container(),
-                                Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.only(bottom: 10),
-                                    width: width * .5,
-                                    alignment: Alignment.topCenter,
-                                    child: textField(
-                                      testAlignment:
-                                          AppLocalizations.of(context)!
-                                                      .locale ==
-                                                  "en"
-                                              ? true
-                                              : false,
-                                      // node: phoneFocus,
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return AppLocalizations.of(context)!
-                                              .pleaseenterPhoneNumber;
-                                        }
-                                        return '';
-                                      },
-                                      controller: _phoneNumber,
-                                      text: false,
-                                      text1: true,
-                                      keybordType: false,
-                                      name: "",
-                                      onchange: (value) {
-                                        setState(() {});
-                                      },
-                                      onSaved: (value) {},
+                                                  ? const Color(0XFF032040)
+                                                  : Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14),
                                     ),
-                                  ),
-                                ),
-                                AppLocalizations.of(context)!.locale == "ar"
-                                    ? CountryCodePicker(
-                                        padding: const EdgeInsets.only(top: 5),
-                                        textStyle: TextStyle(
+                                    flaxibleGap(1),
+                                    GestureDetector(
+                                        onTap: () async {
+                                          final selectDate =
+                                              await slecteDtateTime(context);
+                                          if (selectDate != null) {
+                                            setState(() {
+                                              lastBookingDateApi = formatter
+                                                  .format((selectDate))
+                                                  .toString();
+                                            });
+                                          }
+                                          print(selectDate);
+                                        },
+                                        child: Icon(Icons.calendar_today,
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? const Color(0XFF032040)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12),
-                                        onChanged: (value) {
+                                                ? Colors.black
+                                                : Colors.white))
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Text(
+                                AppLocalizations.of(context)!.contacts,
+                                style: const TextStyle(),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  AppLocalizations.of(context)!.locale == "en"
+                                      ? CountryCodePicker(
+                                          padding:
+                                              const EdgeInsets.only(top: 5),
+                                          textStyle: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : Colors.white,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              countryCode = value.toString();
+                                            });
+                                          },
+                                          initialSelection: countryCode,
+                                          favorite: const [
+                                            '+971',
+                                            'ae',
+                                          ],
+                                          showCountryOnly: false,
+                                          showOnlyCountryWhenClosed: false,
+                                          alignLeft: false,
+                                        )
+                                      : Container(),
+                                  Expanded(
+                                    child: Container(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
+                                      width: width * .5,
+                                      alignment: Alignment.topCenter,
+                                      child: textField(
+                                        testAlignment:
+                                            AppLocalizations.of(context)!
+                                                        .locale ==
+                                                    "en"
+                                                ? true
+                                                : false,
+                                        // node: phoneFocus,
+                                        validator: (value) {
+                                          if (value.isEmpty) {
+                                            return AppLocalizations.of(context)!
+                                                .pleaseenterPhoneNumber;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                        controller: _phoneNumber,
+                                        node: phoneFocus,
+                                        text: false,
+                                        text1: true,
+                                        keybordType: false,
+                                        name: "",
+                                        onchange: (value) {
                                           setState(() {});
                                         },
-                                        initialSelection: countryCode,
-                                        favorite: const [
-                                          '+971',
-                                          'ae',
-                                        ],
-                                        showCountryOnly: false,
-                                        showOnlyCountryWhenClosed: false,
-                                        alignLeft: false,
-                                      )
-                                    : Container(),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.03,
-                            ),
-                            ButtonWidget(
-                                onTaped: () {
-                                  _networkCalls.checkInternetConnectivity(
-                                      onSuccess: (msg) {
-                                    _internet = msg;
-                                    if (msg == true) {
-                                      Map detail = {
-                                        "first_name": firstNameController.text,
-                                        "last_name": _lastName.text,
-                                        "countryCode": countryCode,
-                                        "contact_number": _phoneNumber.text,
-                                        "email": emailController.text
-                                      };
-                                      if (lastBookingDateApi != null) {
-                                        detail["dob"] = lastBookingDateApi;
-                                      } else {
-                                        detail['dob'] = formatter.format(
-                                            (DateTime.parse(
-                                                '0000-00-00'.toString())));
-                                      }
-                                      if (profile_Id != null) {
-                                        detail["profile_pic_id"] = profile_Id;
-                                      } else {
-                                        detail["profile_pic_id"] = 0;
-                                      }
-                                      print(detail);
-                                      _networkCalls.editProfileNoPic(
-                                        profileDetail: detail,
-                                        onSuccess: (msg) {
-                                          showMessage(msg);
-                                          Navigator.pop(context);
-                                          // navigateToProfile();
-                                        },
-                                        onFailure: (msg) {
-                                          showMessage(msg);
-                                        },
-                                        tokenExpire: () {
-                                          if (mounted) on401(context);
-                                        },
-                                      );
-                                    } else {
-                                      // ignore: curly_braces_in_flow_control_structures
-                                      if (mounted) if (mounted) {
-                                        showMessage(
-                                            AppLocalizations.of(context)!
-                                                .noInternetConnection);
-                                      }
+                                        onSaved: (value) {},
+                                      ),
+                                    ),
+                                  ),
+                                  AppLocalizations.of(context)!.locale == "ar"
+                                      ? CountryCodePicker(
+                                          padding:
+                                              const EdgeInsets.only(top: 5),
+                                          textStyle: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : Colors.white,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12),
+                                          onChanged: (value) {
+                                            setState(() {});
+                                          },
+                                          initialSelection: countryCode,
+                                          favorite: const [
+                                            '+971',
+                                            'ae',
+                                          ],
+                                          showCountryOnly: false,
+                                          showOnlyCountryWhenClosed: false,
+                                          alignLeft: false,
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                              SizedBox(
+                                height: height * 0.03,
+                              ),
+                              ButtonWidget(
+                                  isLoading: isLoading,
+                                  onTaped: () {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    if (_formKey.currentState!.validate()) {
+                                      _formKey.currentState!.save();
+                                      _networkCalls.checkInternetConnectivity(
+                                          onSuccess: (msg) {
+                                        _internet = msg;
+                                        if (msg == true) {
+                                          Map detail = {
+                                            "first_name":
+                                                firstNameController.text,
+                                            "last_name": _lastName.text,
+                                            "countryCode": countryCode,
+                                            "contact_number": _phoneNumber.text,
+                                            "email": emailController.text
+                                          };
+                                          if (lastBookingDateApi != null) {
+                                            detail["dob"] = lastBookingDateApi;
+                                          } else {
+                                            detail['dob'] = formatter.format(
+                                                (DateTime.parse(
+                                                    '0000-00-00'.toString())));
+                                          }
+                                          if (profile_Id != null) {
+                                            detail["profile_pic_id"] =
+                                                profile_Id;
+                                          } else {
+                                            detail["profile_pic_id"] = 0;
+                                          }
+                                          _networkCalls.editProfileNoPic(
+                                            profileDetail: detail,
+                                            onSuccess: (msg) {
+                                              setState(() {
+                                                isLoading = false;
+                                              });
+                                              showMessage(msg);
+                                              Navigator.pop(context);
+                                              // navigateToProfile();
+                                            },
+                                            onFailure: (msg) {
+                                              showMessage(msg);
+                                              setState(() {
+                                                isLoading = false;
+                                              });
+                                            },
+                                            tokenExpire: () {
+                                              if (mounted) on401(context);
+                                            },
+                                          );
+                                        } else {
+                                          // ignore: curly_braces_in_flow_control_structures
+                                          if (mounted) if (mounted) {
+                                            setState(() {
+                                              isLoading = false;
+                                            });
+                                            showMessage(
+                                                AppLocalizations.of(context)!
+                                                    .noInternetConnection);
+                                          }
+                                        }
+                                      });
                                     }
-                                  });
-                                },
-                                title: Text(
-                                  AppLocalizations.of(context)!.saveChanges,
-                                  style: const TextStyle(color: Colors.black),
-                                ))
-                          ],
+                                  },
+                                  title: Text(
+                                    AppLocalizations.of(context)!.saveChanges,
+                                    style: const TextStyle(color: Colors.black),
+                                  ))
+                            ],
+                          ),
                         ),
                       ),
                     ),

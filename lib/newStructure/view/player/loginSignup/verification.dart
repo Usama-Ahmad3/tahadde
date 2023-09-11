@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
-import 'package:geolocator/geolocator.dart' hide openAppSettings;
+import 'package:geolocator/geolocator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../common_widgets/internet_loss.dart';
@@ -13,6 +15,7 @@ import '../../../../localizations.dart';
 import '../../../../network/network_calls.dart';
 import 'login.dart';
 
+// ignore: must_be_immutable
 class VerificationScreen extends StatefulWidget {
   SignUpSignInDetail detail;
 
@@ -37,33 +40,76 @@ class _VerificationScreenState extends State<VerificationScreen> {
   String? verificationId;
   String errorMessage = '';
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _verificationId = "";
 
   location() async {
     position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
   }
 
-  Future verifyPhone() async {
+  void _signInWithPhoneNumber() async {
     try {
+      verificationCompleted(PhoneAuthCredential phoneAuthCredential) async {
+        await _auth.signInWithCredential(phoneAuthCredential);
+        showMessage(AppLocalizations().verified);
+      }
+
+      verificationFailed(FirebaseAuthException authException) {
+        showMessage("${authException.message}");
+      }
+
+      codeSent(String verificationId, [int? forceResendingToken]) {
+        setState(() {
+          _verificationId = verificationId;
+        });
+      }
+
+      codeAutoRetrievalTimeout(String verificationId) {
+        showMessage(verificationId.toString());
+      }
+
       await _auth.verifyPhoneNumber(
-          phoneNumber: phoneNo.toString(),
-          verificationCompleted: (_) {
-            setState(() {
-              loading = false;
-            });
-          },
-          verificationFailed: (e) {
-            showMessage(e.toString());
-          },
-          codeSent: (String verrification, int? token) {
-            verificationId = verrification;
-          },
-          codeAutoRetrievalTimeout: (e) {
-            showMessage(e.toString());
-          });
+        phoneNumber: phoneNo,
+        verificationCompleted: verificationCompleted,
+        verificationFailed: verificationFailed,
+        codeSent: codeSent,
+        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+      );
     } catch (e) {
-      print('aaaa');
-      print(e.toString());
+      showMessage(e.toString());
+    }
+  }
+
+  void _verifyPhoneNumberWithCode(String code) async {
+    try {
+      final AuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId,
+        smsCode: controllerPin.text,
+      );
+
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      if (kDebugMode) {
+        print(userCredential.additionalUserInfo);
+      }
+      final User? currentUser = userCredential.user;
+      if (currentUser != null) {
+        signup();
+        setState(() {
+          loading = true;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        loading = false;
+        showMessage(AppLocalizations.of(context)!.invalidOTPCode);
+        if (kDebugMode) {
+          print(e.toString());
+        }
+      });
+      if (kDebugMode) {
+        print('fail');
+      }
     }
   }
 
@@ -76,10 +122,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
       "role": widget.detail.player,
       "country": "UAE",
       "countryCode": widget.detail.countryCode,
-      "password": widget.detail.password,
+      "password": base64.encode(utf8.encode(widget.detail.password.toString())),
       "deviceType": widget.detail.deviceType,
       "deviceToken": widget.detail.fcmToken,
-      "gender": "_"
+      "gender": "male"
     };
     if (position != null) {
       details["longitude"] = position!.longitude;
@@ -89,9 +135,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
         signupDetail: details,
         onSuccess: (msg) {
           showSucess(msg, scaffoldkey);
-          widget.detail.player == 'player'
-              ? navigateToDetail()
-              : navigateToSports();
+          widget.detail.player == 'Owner'
+              ? navigateToSports()
+              : navigateToDetail();
+          setState(() {
+            loading = false;
+          });
         },
         onFailure: (msg) {
           setState(() {
@@ -101,36 +150,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
         });
   }
 
-  signin() async {
-    final credentials = PhoneAuthProvider.credential(
-        verificationId: verificationId.toString(),
-        smsCode: controllerPin.text.toString());
-    try {
-      print("Credential$credentials");
-      await _auth.signInWithCredential(credentials);
-      final User? currentUser = _auth.currentUser;
-      if (currentUser != null) {
-        signup();
-      }
-    } catch (e) {
-      setState(() {
-        loading = false;
-        showMessage(AppLocalizations.of(context)!.invalidOTPCode);
-        print("WWWW${e.toString()}");
-      });
-      print('fail');
-    }
-  }
-
   @override
   void initState() {
     phoneNo = "${widget.detail.countryCode}${widget.detail.phoneNumber}";
-    print(phoneNo);
     super.initState();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) async {
       internet = msg;
       if (msg == true) {
-        await verifyPhone();
+        _signInWithPhoneNumber();
         location();
       } else {
         setState(() {
@@ -142,7 +169,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controllerPin.dispose();
   }
@@ -231,7 +257,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                     style: TextStyle(
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? Color(0XFF595959)
+                                                ? const Color(0XFF595959)
                                                 : Colors.white),
                                   )
                                 : Text(
@@ -240,25 +266,18 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                     style: TextStyle(
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? Color(0XFF595959)
+                                                ? const Color(0XFF595959)
                                                 : Colors.white),
                                   ),
                             flaxibleGap(
                               2,
                             ),
-                            InkWell(
-                              onTap: () {
-                                print(phoneNo);
-                                print(controllerPin.text);
-                                print(verificationId);
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.enterCode,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white),
-                              ),
+                            Text(
+                              AppLocalizations.of(context)!.enterCode,
+                              style: TextStyle(
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white),
                             ),
                             flaxibleGap(
                               1,
@@ -286,16 +305,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               obscureText: false,
                               animationType: AnimationType.scale,
                               enablePinAutofill: true,
-                              // shape: PinCodeFieldShape.underline,
                               keyboardType: TextInputType.number,
                               animationDuration:
                                   const Duration(milliseconds: 300),
-                              // borderRadius: BorderRadius.circular(5),
-                              // fieldHeight: 50,
-                              // fieldWidth: 40,
                               onChanged: (value) {
                                 setState(() {
-                                  // currentText = value;
                                   smsOTP = value;
                                   pin = value;
                                   smsOTP!.length < 6
@@ -314,8 +328,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                     onSuccess: (msg) async {
                                   internet = msg;
                                   if (msg == true) {
-                                    await verifyPhone();
-                                    debugPrint('resend');
+                                    _signInWithPhoneNumber();
                                   } else {
                                     if (mounted) {
                                       showMessage(AppLocalizations.of(context)!
@@ -336,11 +349,18 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               3,
                             ),
                             ButtonWidget(
+                                isLoading: loading,
                                 onTaped: () {
+                                  setState(() {
+                                    loading = true;
+                                  });
                                   _networkCalls.checkInternetConnectivity(
                                       onSuccess: (msg) {
                                     if (msg == true) {
                                       if (pin.length < 6) {
+                                        setState(() {
+                                          loading = true;
+                                        });
                                         showDialog(
                                             context: context,
                                             builder: (context) {
@@ -368,8 +388,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                       } else {
                                         setState(() {
                                           loading = true;
-                                          print(controllerPin.text);
-                                          signin();
+                                          _verifyPhoneNumberWithCode(
+                                              controllerPin.text);
                                         });
                                       }
                                     } else {
@@ -377,6 +397,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                         showMessage(
                                             AppLocalizations.of(context)!
                                                 .noInternetConnection);
+                                        setState(() {
+                                          loading = true;
+                                        });
                                       }
                                     }
                                   });

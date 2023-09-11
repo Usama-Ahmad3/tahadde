@@ -54,6 +54,39 @@ class AppLocalizations {
     return Intl.message('teamH', name: 'teamH');
   }
 
+  String get legal {
+    return Intl.message('Legal Information', name: 'legalInformation');
+  }
+
+  String get nameEmail {
+    return Intl.message('name, email, phone, location', name: 'name,email');
+  }
+
+  String get yourInterest {
+    return Intl.message('Your Interest', name: 'yourInterest');
+  }
+
+  String get yourProfile {
+    return Intl.message('Your profile', name: 'yourProfile');
+  }
+
+  String get darkMode {
+    return Intl.message('Dark Mode', name: 'darkMode');
+  }
+
+  String get bookingVenue {
+    return Intl.message('Booking, Venues, leagues', name: 'booking,venue');
+  }
+
+  String get languageTheme {
+    return Intl.message('language, theme, configuration',
+        name: 'language,theme');
+  }
+
+  String get help {
+    return Intl.message('Help', name: 'Help');
+  }
+
   String get game {
     return Intl.message('game', name: 'game');
   }

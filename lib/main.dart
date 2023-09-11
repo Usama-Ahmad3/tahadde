@@ -41,19 +41,16 @@ Future<void> main() async {
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('assets/images/app_icon.jpg');
-  // final IOSInitializationSettings initializationSettingsIOS =
-  //     IOSInitializationSettings();
-  // const InitializationSettings initializationSettings = InitializationSettings(
-  //     android: initializationSettingsAndroid,
-  // iOS: initializationSettingsIOS
-  // );
-  // await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-  //
-  // await flutterLocalNotificationsPlugin
-  //     .resolvePlatformSpecificImplementation<
-  //         AndroidFlutterLocalNotificationsPlugin>()
-  //     ?.createNotificationChannel(channel);
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  var initializationSettingsIOS = const DarwinInitializationSettings();
+  InitializationSettings initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
   runZonedGuarded(() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

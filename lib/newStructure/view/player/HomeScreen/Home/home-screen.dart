@@ -149,6 +149,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                                 : _sportsList[index].nameArabic
                                       };
                                       removeOverlay();
+                                      searchFlag = false;
+                                      searchController.clear();
                                       Navigator.pushNamed(context,
                                           RouteNames.specificSportsScreen,
                                           arguments: detail);
@@ -244,6 +246,14 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         }
       }
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    searchController.dispose();
+    searchFlag = false;
   }
 
   @override

@@ -1,53 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
-import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
+import '../../../../../main.dart';
 
-class ProfileEmpty extends StatefulWidget {
+class ProfileEmptyScreen extends StatefulWidget {
+  const ProfileEmptyScreen({super.key});
+
   @override
-  _ProfileEmptyState createState() => _ProfileEmptyState();
+  // ignore: library_private_types_in_public_api
+  _ProfileEmptyScreenState createState() => _ProfileEmptyScreenState();
 }
 
-class _ProfileEmptyState extends State<ProfileEmpty> {
+class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
   @override
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
     return Material(
       child: Scaffold(
-        backgroundColor: const Color(0XFFD6D6D6),
+        backgroundColor: MyAppState.mode == ThemeMode.light
+            ? Colors.white
+            : const Color(0xff686868),
+        appBar: PreferredSize(
+          preferredSize: Size(sizeWidth, sizeHeight * 0.13),
+          child: AppBar(
+            title: Text(
+              AppLocalizations.of(context)!.profile,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: Colors.white),
+            ),
+            centerTitle: true,
+            backgroundColor: Colors.black,
+            leadingWidth: sizeWidth * 0.18,
+            // leading: Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: InkWell(
+            //     onTap: () {
+            //       Navigator.pop(context);
+            //     },
+            //     child: Container(
+            //         height: sizeHeight * 0.004,
+            //         decoration: BoxDecoration(
+            //             border: Border.all(color: Colors.grey),
+            //             shape: BoxShape.circle),
+            //         child: Icon(
+            //           AppLocalizations.of(context)!.locale == 'en'
+            //               ? Icons.keyboard_arrow_left_sharp
+            //               : Icons.keyboard_arrow_right,
+            //           color: Colors.white,
+            //         )),
+            //   ),
+            // ),
+          ),
+        ),
         body: Column(
           children: <Widget>[
-            buildAppBar(
-                language: AppLocalizations.of(context)!.locale,
-                title: AppLocalizations.of(context)!.profileC,
-                height: sizeHeight,
-                width: sizeWidth),
             Expanded(
               child: Container(
                 height: sizeHeight,
                 width: sizeWidth,
-                color: const Color(0XFFD6D6D6),
+                color: MyAppState.mode == ThemeMode.light
+                    ? const Color(0XFFD6D6D6)
+                    : const Color(0xff686868),
                 child: Column(
-                  children: <Widget>[
+                  children: [
                     const SizedBox(
                       height: 40,
                     ),
-                    // Text(
-                    //   AppLocalizations.of(context).profileDec,
-                    //   style: TextStyle(
-                    //       fontFamily: 'Poppins',
-                    //       fontSize: 18,
-                    //       color: Color(0XFF032040),
-                    //       fontWeight: FontWeight.w700),
-                    // ),
-                    // flaxibleGap(1),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
                         height: sizeHeight * .5,
-                        color: const Color(0XFFFFFFFF),
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(12)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
@@ -72,33 +103,23 @@ class _ProfileEmptyState extends State<ProfileEmpty> {
                             ),
                             flaxibleGap(1),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 20),
-                              child: Material(
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    color: const Color(0XFF25A163),
-                                    //color: Color(color),
-                                  ),
-                                  child: InkWell(
-                                    splashColor: Colors.black,
-                                    child: button(
-                                        name: AppLocalizations.of(context)!
-                                            .signIn),
-                                    onTap: () {
-                                      navigateToDetaillogin();
-                                    },
-                                  ),
-                                ),
-                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: sizeWidth * 0.03),
+                              child: ButtonWidget(
+                                  onTaped: () {
+                                    navigateToDetaillogin(1);
+                                  },
+                                  title: Center(
+                                      child: Text(
+                                          AppLocalizations.of(context)!.login)),
+                                  isLoading: false),
                             ),
                             SizedBox(
                                 height: MediaQuery.of(context).size.height * .1,
                                 width: MediaQuery.of(context).size.width / 1.2,
                                 child: GestureDetector(
                                   onTap: () {
-                                    navigateToDetail();
+                                    navigateToDetaillogin(2);
                                   },
                                   child: Row(
                                     children: <Widget>[
@@ -132,13 +153,13 @@ class _ProfileEmptyState extends State<ProfileEmpty> {
     );
   }
 
-  void navigateToDetail() {
-    // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: SignupPage()));
-    Navigator.pushNamed(context, RouteNames.chooseAccount);
-  }
-
-  void navigateToDetaillogin() {
-    //Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: Loginpage()));
-    Navigator.pushNamed(context, RouteNames.login);
+  void navigateToDetaillogin(int click) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => LoginScreen(
+                  message: '',
+                  clicked: click,
+                )));
   }
 }

@@ -23,10 +23,12 @@ class SignUpWidget extends StatefulWidget {
   var onChangedController;
   VoidCallback signUp;
   var player;
+  bool loading;
 
   SignUpWidget(
       {super.key,
       required this.signUp,
+      required this.loading,
       required this.player,
       required this.onChangedController,
       required this.lastnameController,
@@ -51,7 +53,8 @@ class SignUpWidgetState extends State<SignUpWidget> {
   final NetworkCalls _networkCalls = NetworkCalls();
   static String? player;
   List<String> playerEn = ["player", "Owner"];
-  List<String> genderAr = ["لاعب", "مالك"];
+  List<String> playerAr = ["لاعب", "مالك"];
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
 
   privacyPolicy(String text) async {
     _networkCalls.privacyPolicy(
@@ -102,6 +105,13 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 controller: widget.nameController,
                 onSubmitted: (value) {
                   FocusScope.of(context).requestFocus(lastnameFocus);
+                  return null;
+                },
+                onValidate: (value) {
+                  if (value.isEmpty) {
+                    return AppLocalizations.of(context)!.pleaseenterFirstName;
+                  }
+                  return null;
                 },
                 hintText: 'tahadde',
                 enableBorder: OutlineInputBorder(
@@ -139,6 +149,13 @@ class SignUpWidgetState extends State<SignUpWidget> {
               child: textFieldWidget(
                 onSubmitted: (value) {
                   FocusScope.of(context).requestFocus(emailFocus);
+                  return null;
+                },
+                onValidate: (value) {
+                  if (value.isEmpty) {
+                    return AppLocalizations.of(context)!.pleaseenterLastName;
+                  }
+                  return null;
                 },
                 focus: lastnameFocus,
                 controller: widget.lastnameController,
@@ -178,10 +195,11 @@ class SignUpWidgetState extends State<SignUpWidget> {
               child: textFieldWidget(
                 onSubmitted: (value) {
                   FocusScope.of(context).requestFocus(passwordFocus);
+                  return null;
                 },
                 focus: emailFocus,
                 controller: widget.emailController,
-                onTaped: (value) {
+                onValidate: (value) {
                   var msg;
                   if (!isMail(value!.trim())) {
                     msg = AppLocalizations.of(context)!.invalidEmail;
@@ -224,6 +242,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
               child: textFieldWidget(
                 onSubmitted: (value) {
                   UtilsSign.focusChange(confirmFocus, context);
+                  return null;
                 },
                 focus: passwordFocus,
                 controller: widget.passwordController,
@@ -232,8 +251,11 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 suffixIcon: Icons.visibility_off,
                 hideIcon: Icons.visibility,
                 suffixIconColor: Colors.grey,
-                onTaped: (e) {
-                  validatePassword(e.toString());
+                onValidate: (value) {
+                  if (value.isEmpty) {
+                    return AppLocalizations.of(context)!.pleaseenterPassword;
+                  }
+                  return null;
                 },
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
@@ -270,6 +292,11 @@ class SignUpWidgetState extends State<SignUpWidget> {
               child: textFieldWidget(
                 onSubmitted: (value) {
                   UtilsSign.focusChange(phoneFocus, context);
+                  return null;
+                },
+                onValidate: (e) {
+                  validatePassword(e.toString());
+                  return null;
                 },
                 focus: confirmFocus,
                 obscure: true,
@@ -348,7 +375,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           return AppLocalizations.of(context)!
                               .pleaseenterPhoneNumber;
                         }
-                        return '';
+                        return null;
                       },
                       controller: widget.phoneController,
                       text: false,
@@ -439,7 +466,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           isExpanded: true,
                           value: player,
                           hint: Text(
-                            AppLocalizations.of(context)!.gender,
+                            AppLocalizations.of(context)!.chooseAccount,
                             style: TextStyle(
                                 color: MyAppState.mode == ThemeMode.light
                                     ? const Color(0XFF032040)
@@ -447,7 +474,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12),
                           ),
-                          items: genderAr
+                          items: playerAr
                               .map((value) => DropdownMenuItem(
                                     value: value,
                                     child: Text(
@@ -466,6 +493,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                     ),
                   ),
             ButtonWidget(
+                isLoading: widget.loading,
                 onTaped: widget.signUp,
                 title: Text(AppLocalizations.of(context)!.signUp)),
             SizedBox(
@@ -519,10 +547,12 @@ class SignUpWidgetState extends State<SignUpWidget> {
     );
   }
 
-  String validatePassword(String value) {
+  validatePassword(String value) {
     if (value.trim().isEmpty || value.length < 6 || value.length > 14) {
       return AppLocalizations.of(context)!.minimumMaximum14Characters;
+    } else if (value.trim() != widget.passwordController.text.trim()) {
+      return AppLocalizations.of(context)!.passwordMismatch;
     }
-    return '';
+    return null;
   }
 }

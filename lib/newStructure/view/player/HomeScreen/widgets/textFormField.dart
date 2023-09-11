@@ -5,6 +5,7 @@ class textFieldWidget extends StatefulWidget {
   TextEditingController controller;
   String hintText;
   InputBorder? border;
+  bool enable;
   InputBorder? enableBorder;
   FormFieldValidator? onSubmitted;
   FocusNode? focus;
@@ -17,13 +18,14 @@ class textFieldWidget extends StatefulWidget {
   Color? suffixIconColor;
   Color? fillColor;
   Color? textColor;
-  FormFieldValidator? onTaped;
+  FormFieldValidator? onValidate;
   FormFieldValidator? onChanged;
 
   textFieldWidget(
       {required this.controller,
       required this.hintText,
-      this.onTaped,
+      this.onValidate,
+      this.enable = true,
       this.textColor,
       this.onChanged,
       this.border,
@@ -52,9 +54,10 @@ class _textFieldWidgetState extends State<textFieldWidget> {
       onChanged: widget.onChanged,
       onFieldSubmitted: widget.onSubmitted,
       focusNode: widget.focus,
-      validator: widget.onTaped,
+      validator: widget.onValidate,
+      enabled: widget.enable,
       style: TextStyle(
-          fontSize: widget.controller.text.length > 6 ? 12 : 15,
+          fontSize: widget.controller.text.length > 8 ? 12 : 15,
           color: MyAppState.mode == ThemeMode.light
               ? widget.textColor ?? Colors.black
               : Colors.white),
@@ -62,10 +65,10 @@ class _textFieldWidgetState extends State<textFieldWidget> {
           ? widget.textColor ?? Colors.black
           : Colors.white,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      scribbleEnabled: false,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
           hintText: widget.hintText,
+          errorStyle: TextStyle(fontSize: 13, height: 0.09),
           hintStyle: TextStyle(
               height: 1,
               color: MyAppState.mode == ThemeMode.light

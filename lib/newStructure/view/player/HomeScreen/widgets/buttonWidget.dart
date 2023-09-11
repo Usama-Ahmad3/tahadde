@@ -6,8 +6,13 @@ import '../../loginSignup/login.dart';
 class ButtonWidget extends StatefulWidget {
   VoidCallback onTaped;
   Widget title;
+  bool isLoading;
 
-  ButtonWidget({super.key, required this.onTaped, required this.title});
+  ButtonWidget(
+      {super.key,
+      required this.onTaped,
+      required this.title,
+      required this.isLoading});
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -28,7 +33,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
               color: Colors.yellow, borderRadius: BorderRadius.circular(10)),
           height: height * 0.06,
           child: Center(
-              child: LoginScreenState.isLoading
+              child: widget.isLoading
                   ? const CircularProgressIndicator()
                   : widget.title),
         ),

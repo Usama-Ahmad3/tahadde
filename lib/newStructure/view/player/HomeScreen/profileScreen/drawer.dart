@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
@@ -10,7 +11,15 @@ import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
 
 class ProfileDrawer extends StatefulWidget {
-  const ProfileDrawer({super.key});
+  String name;
+  String position;
+  String profileImage;
+
+  ProfileDrawer(
+      {super.key,
+      required this.name,
+      required this.position,
+      required this.profileImage});
 
   @override
   State<ProfileDrawer> createState() => _ProfileDrawerState();
@@ -32,141 +41,6 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
         if (mounted) on401(context);
       },
     );
-  }
-
-  void _settingModalBottomSheet(context, sizeHeight) {
-    showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        ),
-        builder: (BuildContext bc) {
-          return Container(
-            height: sizeHeight * .35,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  flaxibleGap(
-                    1,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.contectUs,
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      final link = WhatsAppUnilink(
-                        text: msg,
-                      );
-                      await launch("$link");
-                      //FlutterShareMe().shareToWhatsApp(base64Image: base64Image, msg: msg);
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/whatApp.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.whatsapp,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      launchInBrowser("http://instagram.com/tahadde");
-                      //InstagramShare.share('/', 'image');
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/instagram.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.instagram,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      launch("mailto:info@tahadde.com");
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/mailshare.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.email,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  flaxibleGap(
-                    1,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      makePhoneCall("tel:");
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/callshare.png',
-                          height: 20,
-                        ),
-                        Container(
-                          width: 20,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.callus,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Flexible(
-                    child: Container(),
-                    flex: 1,
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
   }
 
   Future onWillPop(String description, bool isLogout) {
@@ -276,7 +150,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     var mode = MyAppState.mode;
     return Scaffold(
       backgroundColor:
-          mode == ThemeMode.light ? Colors.white : Color(0xff686868),
+          mode == ThemeMode.light ? Colors.white : const Color(0xff686868),
       body: AnimatedContainer(
         duration: const Duration(microseconds: 300),
         curve: Curves.elasticInOut,
@@ -311,7 +185,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Usama Ahmad',
+                            widget.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -320,28 +194,50 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                         ? Colors.black
                                         : Colors.white),
                           ),
-                          const Text(
-                            'Player Position',
-                            style: TextStyle(fontSize: 11),
+                          Text(
+                            widget.position,
+                            style: const TextStyle(fontSize: 11),
                           ),
                         ],
                       ),
-                      CircleAvatar(
-                        radius: height * 0.06,
-                        backgroundImage:
-                            const AssetImage("assets/images/profile.png"),
-                      )
+                      widget.profileImage.isNotEmpty
+                          ? InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => CupertinoAlertDialog(
+                                    content: Container(
+                                      height: height * 0.25,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: NetworkImage(
+                                                  widget.profileImage))),
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: CircleAvatar(
+                                  radius: height * 0.06,
+                                  backgroundImage:
+                                      NetworkImage(widget.profileImage)),
+                            )
+                          : CircleAvatar(
+                              radius: height * 0.06,
+                              backgroundImage:
+                                  const AssetImage("assets/images/profile.png"),
+                            )
                     ],
                   ),
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  const Text('Your Account'),
+                  Text(AppLocalizations.of(context)!.account),
                   SizedBox(
                     height: height * 0.02,
                   ),
                   ...List.generate(
-                      4,
+                      5,
                       (index) => Padding(
                             padding:
                                 EdgeInsets.symmetric(vertical: height * 0.01),
@@ -364,10 +260,18 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                               Navigator.pushNamed(context,
                                                   RouteNames.myInterest);
                                             }
-                                          : () {
-                                              Navigator.pushNamed(
-                                                  context, RouteNames.more);
-                                            },
+                                          : index == 3
+                                              ? () {
+                                                  Navigator.pushNamed(
+                                                      context, RouteNames.rate);
+                                                }
+                                              : () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              const SettingsScreen()));
+                                                },
                               titleAlignment: ListTileTitleAlignment.center,
                               tileColor: mode == ThemeMode.light
                                   ? Colors.grey.shade200
@@ -414,7 +318,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  const Text('Support'),
+                  Text(AppLocalizations.of(context)!.support),
                   SizedBox(
                     height: height * 0.01,
                   ),
@@ -426,7 +330,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                           ? Colors.grey.shade200
                           : Colors.black12,
                       onTap: () {
-                        _settingModalBottomSheet(context, height);
+                        BottomSheett.settingModalBottomSheet(context, height);
                       },
                       shape: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.white12),
@@ -441,7 +345,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                       titleTextStyle: const TextStyle(
                           leadingDistribution: TextLeadingDistribution.even),
                       title: Text(
-                        'Help',
+                        AppLocalizations.of(context)!.help,
                         style: TextStyle(
                             color: mode == ThemeMode.light
                                 ? Colors.black
@@ -461,7 +365,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Text('Legal Information'),
+                  Text(AppLocalizations.of(context)!.legal),
                   SizedBox(
                     height: height * 0.01,
                   ),
@@ -538,9 +442,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                       style: ListTileStyle.list,
                       titleTextStyle: const TextStyle(
                           leadingDistribution: TextLeadingDistribution.even),
-                      title: const Text(
-                        'Logout',
-                        style: TextStyle(color: Colors.red, fontSize: 14),
+                      title: Text(
+                        AppLocalizations.of(context)!.logout,
+                        style: const TextStyle(color: Colors.red, fontSize: 16),
                       ),
                       trailing: Icon(
                         AppLocalizations.of(context)!.locale == 'en'
@@ -567,16 +471,27 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   List icon = [
     Icons.person,
     Icons.sports_baseball_outlined,
-    Icons.payments_sharp,
+    Icons.interests_outlined,
+    Icons.rate_review_outlined,
     Icons.settings
   ];
-  List title = ['Edit profile', 'Your bookings', 'Your interest', 'Settings'];
-  List subtitle = [
-    'name, email, phone, location',
-    'booking, venues, leagues',
-    'payment,methods,transactions',
-    'language, theme, configuration'
+  List title = [
+    AppLocalizations().editProfile,
+    AppLocalizations().bookingDetails,
+    AppLocalizations().yourInterest,
+    AppLocalizations().myReviewsRatings,
+    AppLocalizations().setting
   ];
-  List listTitle = ['Terms of use', 'Privacy policy'];
+  List subtitle = [
+    AppLocalizations().nameEmail,
+    AppLocalizations().bookingVenue,
+    'payment,methods,transactions',
+    AppLocalizations().ratingsReviews,
+    AppLocalizations().languageTheme
+  ];
+  List listTitle = [
+    AppLocalizations().termsofUse,
+    AppLocalizations().privacyPolicy
+  ];
   List iconList = [Icons.verified_user_outlined, Icons.privacy_tip_outlined];
 }

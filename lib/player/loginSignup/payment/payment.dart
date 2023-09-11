@@ -13,7 +13,9 @@ import '../../../network/network_calls.dart';
 
 class Payment extends StatefulWidget {
   dynamic detail;
+
   Payment({this.detail});
+
   @override
   _PaymentState createState() => _PaymentState();
 }
@@ -35,6 +37,7 @@ class _PaymentState extends State<Payment> {
   bool _isLoading = true;
   final NetworkCalls _networkCalls = NetworkCalls();
   Map? profileDetail;
+
   void setPaymentMethodSelected(int index, bool value) {
     for (int i = 0; i < isSelected.length; i++) {
       if (i == index) {
@@ -522,6 +525,7 @@ class CoustmerDetail {
   String? lastName;
   String? phoneNumber;
   String? countryCode;
+
   CoustmerDetail(
       {this.email,
       this.firstName,
