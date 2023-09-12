@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/changePassword.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/emailContactsFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/passwordSecurityFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileShimmer.dart';
@@ -73,7 +74,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
   @override
   void initState() {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
-      _internet = msg;
+      _internet = msg as bool;
       msg
           ? loadProfile()
           : setState(() {
@@ -81,12 +82,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
             });
     });
     super.initState();
-    // ignore: avoid_types_as_parameter_names
-    // WidgetsBinding.instance.addPostFrameCallback((Duration) {
-    //   if (widget.msg == 'Password has been reset') {
-    //     showMessage(widget.msg);
-    //   }
-    // });
   }
 
   @override
@@ -200,7 +195,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    ChangePassword(),
+                                                    const ChangePassword(),
                                               ));
                                         },
                                         child: PasswordSecurity(
@@ -296,7 +291,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         ],
                       ),
                     )
-                  : ProfileEmptyScreen()
+                  : const ProfileEmptyScreen()
               : Scaffold(
                   body: Column(
                     children: [
@@ -333,7 +328,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
 
   void navigateToEditProfile() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (_) => ProfileEmptyScreen()));
+        context, MaterialPageRoute(builder: (_) => const EditProfileScreen()));
   }
 
   void navigateToChangePassword() {

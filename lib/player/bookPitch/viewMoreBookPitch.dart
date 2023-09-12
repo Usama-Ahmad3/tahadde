@@ -14,7 +14,9 @@ import '../../pitchOwner/homePitchOwner/viewMoreOwner.dart';
 
 class ViewMoreBookPitch extends StatefulWidget {
   Map pitchType;
+
   ViewMoreBookPitch({required this.pitchType});
+
   @override
   _ViewMoreBookPitchState createState() => _ViewMoreBookPitchState();
 }
@@ -22,9 +24,10 @@ class ViewMoreBookPitch extends StatefulWidget {
 class _ViewMoreBookPitchState extends State<ViewMoreBookPitch> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
   final NetworkCalls _networkCalls = NetworkCalls();
-  late List<BookPitchDetail> bookPitchData;
+  List<BookPitchDetail>? bookPitchData;
   bool _isLoading = true;
   late bool _internet;
+
   loadBookPitch() async {
     await _networkCalls.bookpitch(
       onSuccess: (pitchInfo) {
@@ -133,7 +136,7 @@ class _ViewMoreBookPitchState extends State<ViewMoreBookPitch> {
                           List.generate(bookPitchData?.length ?? 0, (index) {
                         return GestureDetector(
                           onTap: () {
-                            navigateToDetail3(bookPitchData[index].id);
+                            navigateToDetail3(bookPitchData![index].id);
                           },
                           child: Stack(
                             alignment:
@@ -142,7 +145,7 @@ class _ViewMoreBookPitchState extends State<ViewMoreBookPitch> {
                                     : Alignment.bottomRight,
                             children: <Widget>[
                               LeagueListItem(
-                                file: bookPitchData[index]
+                                file: bookPitchData![index]
                                     .bookpitchfiles!
                                     .files![0]!
                                     .filePath,
@@ -164,7 +167,7 @@ class _ViewMoreBookPitchState extends State<ViewMoreBookPitch> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        '${bookPitchData[index].name}' ?? '',
+                                        '${bookPitchData![index].name}' ?? '',
                                         style: const TextStyle(
                                             height: 1,
                                             // letterSpacing: 1.0
@@ -174,7 +177,7 @@ class _ViewMoreBookPitchState extends State<ViewMoreBookPitch> {
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Text(
-                                        (bookPitchData[index].country ?? ""),
+                                        (bookPitchData![index].country ?? ""),
                                         style: const TextStyle(
                                             fontFamily: 'Poppins',
                                             fontSize: 10,

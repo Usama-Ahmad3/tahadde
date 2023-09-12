@@ -13,7 +13,7 @@ class AppLocalizations {
 
   static Future<AppLocalizations> load(Locale locale) {
     final String name =
-        locale.countryCode == null ? locale.languageCode : locale.toString();
+    locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((bool _) {
@@ -68,6 +68,14 @@ class AppLocalizations {
 
   String get yourProfile {
     return Intl.message('Your profile', name: 'yourProfile');
+  }
+
+  String get eventTitle {
+    return Intl.message('Events', name: 'eventTitle');
+  }
+
+  String get academy {
+    return Intl.message('Academies', name: 'academy');
   }
 
   String get darkMode {

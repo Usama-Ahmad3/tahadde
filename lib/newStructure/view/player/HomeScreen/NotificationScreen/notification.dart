@@ -18,7 +18,6 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   final NetworkCalls _networkCalls = NetworkCalls();
-  final scaffoldkey = GlobalKey<ScaffoldState>();
   List? detail = [];
   bool _isLoading = true;
   bool? _internet;
@@ -49,7 +48,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _networkCalls.checkInternetConnectivity(
       onSuccess: (msg) async {
@@ -135,15 +133,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 83.5 * fem, 0 * fem),
-                                  width: 32 * fem,
-                                  height: 32 * fem,
-                                  child: Image.asset(
-                                    'assets/light-design/images/icon-7AR.png',
-                                    width: 32 * fem,
-                                    height: 32 * fem,
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 83.5 * fem, 0 * fem),
+                                    width: 40 * fem,
+                                    height: 40 * fem,
+                                    child: Image.asset(
+                                      'assets/light-design/images/icon-7AR.png',
+                                      width: 40 * fem,
+                                      height: 40 * fem,
+                                    ),
                                   ),
                                 ),
                                 Text(
@@ -211,7 +214,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 left: 0,
                                 right: 0,
                                 child: Container(
-                                  height: 600 * fem,
+                                  height: 680 * fem,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(30 * fem),
@@ -261,9 +264,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                             int current = detail![0]
                                                     ["currentNotification"]
                                                 .length;
-                                            int previous = detail![0]
-                                                    ["previousNotfication"]
-                                                .length;
+                                            // int previous = detail![0]
+                                            //         ["previousNotfication"]
+                                            //     .length;
                                             return Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(

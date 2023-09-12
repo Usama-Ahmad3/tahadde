@@ -1,11 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../common_widgets/internet_loss.dart';
 import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
+import '../../main.dart';
 import '../../network/network_calls.dart';
 
 class EnterDetailPitch extends StatefulWidget {
@@ -80,712 +82,295 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
     return Material(
         child: loading
             ? Scaffold(
-                backgroundColor: const Color(0XFFF0F0F0),
-                appBar: appBar(
-                  title: AppLocalizations.of(context)!.bookingDetails,
-                  language: AppLocalizations.of(context)!.locale,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
+                backgroundColor: Colors.black,
+                appBar: PreferredSize(
+                  preferredSize: Size(sizewidth, sizeheight * 0.13),
+                  child: AppBar(
+                    title: Text(
+                      AppLocalizations.of(context)!.bookingDetails,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(color: Colors.white),
+                    ),
+                    centerTitle: true,
+                    backgroundColor: Colors.black,
+                  ),
                 ),
-                body: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: sizewidth * .05, right: sizewidth * .05),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          height: sizeheight * .02,
-                        ),
-                        Material(
-                          elevation: 5,
-                          color: const Color(0XFFFFFFFF),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20.0)),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: sizewidth * .05, right: sizewidth * .05),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  height: sizeheight * .01,
-                                ),
-                                Text(
-                                  AppLocalizations.of(context)!.slotDetails,
-                                  style: const TextStyle(
-                                      color: Color(0XFF032040),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Container(
-                                  height: sizeheight * .01,
-                                ),
-                                Text(
-                                    "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
-                                    style: const TextStyle(
-                                        color: Color(0XFF424242),
-                                        fontWeight: FontWeight.w600)),
-                                Text("${widget.detail["pitchType"]}",
-                                    style: const TextStyle(
-                                        color: Color(0XFF898989))),
-                                Container(
-                                  height: sizeheight * .005,
-                                ),
-                                // Container(
-                                //   height: sizeheight * .15,
-                                //   child: ListView.builder(
-                                //       itemCount: keys.length,
-                                //       itemBuilder: (context, index) {
-                                //         return Column(
-                                //           crossAxisAlignment:
-                                //               CrossAxisAlignment.start,
-                                //           children: <Widget>[
-                                //             Container(
-                                //               height: sizeheight * .005,
-                                //             ),
-                                //             Row(
-                                //               children: <Widget>[
-                                //                 dayConv(x: keys[index]),
-                                //                 Text(
-                                //                   ", ${AppLocalizations.of(context).locale == "en" ? monthFindRevers(index: widget.detail["slotdetail"]["month"]) : monthFindReversAr(index: widget.detail["slotdetail"]["month"])} ${keys[index]}, ${widget.detail["slotdetail"]["year"]}",
-                                //                   style: TextStyle(
-                                //                       color: Color(0XFF25A163)),
-                                //                 ),
-                                //               ],
-                                //             ),
-                                //             ListView.builder(
-                                //               shrinkWrap: true,
-                                //               physics: ClampingScrollPhysics(),
-                                //               itemCount: widget
-                                //                   .detail["slotdetail"]["days"]
-                                //                       [keys[index]]
-                                //                   .length,
-                                //               itemBuilder:
-                                //                   (BuildContext context,
-                                //                       int childIdx) {
-                                //                 return widget.detail["slotdetail"]
-                                //                                 ["days"]
-                                //                                 [keys[index]]
-                                //                                 [childIdx]
-                                //                             .toString()
-                                //                             .length <
-                                //                         3
-                                //                     ? Row(
-                                //                         children: <Widget>[
-                                //                           Text(
-                                //                               '${AppLocalizations.of(context).slot} : ${timing(x: widget.detail["slotdetail"]["days"][keys[index]][childIdx])}',
-                                //                               style: TextStyle(
-                                //                                   color: Color(
-                                //                                       0XFF898989))),
-                                //                           Flexible(
-                                //                             child: Container(),
-                                //                             flex: 1,
-                                //                           ),
-                                //                           // Text("${AppLocalizations.of(context).currency} ${widget.detail["detail"].grandTotal.round()}",style: TextStyle(
-                                //                           //     color: Color(
-                                //                           //         0XFF898989)))
-                                //                         ],
-                                //                       )
-                                //                     : widget.detail["slotdetail"]
-                                //                                     ["days"]
-                                //                                     [keys[index]]
-                                //                                     [childIdx]
-                                //                                 .toString()
-                                //                                 .length ==
-                                //                             5
-                                //                         ? Row(
-                                //                             children: <Widget>[
-                                //                               Text(
-                                //                                   '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0]))}',
-                                //                                   style: TextStyle(
-                                //                                       color: Color(
-                                //                                           0XFF898989))),
-                                //                               Text(" - "),
-                                //                               Text(
-                                //                                   '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length - 1)))}',
-                                //                                   style: TextStyle(
-                                //                                       color: Color(
-                                //                                           0XFF898989))),
-                                //                               Flexible(
-                                //                                 child:
-                                //                                     Container(),
-                                //                                 flex: 1,
-                                //                               ),
-                                //                               Text(
-                                //                                   '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length - 1)) - int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0])) * widget.detail["detail"].grandTotal.round()}',
-                                //                                   style: TextStyle(
-                                //                                       color: Color(
-                                //                                           0XFF898989)))
-                                //                             ],
-                                //                           )
-                                //                         : widget.detail["slotdetail"]
-                                //                                         ["days"]
-                                //                                         [keys[index]]
-                                //                                         [childIdx]
-                                //                                     .toString()
-                                //                                     .length ==
-                                //                                 6
-                                //                             ? Row(
-                                //                                 children: <
-                                //                                     Widget>[
-                                //                                   Text(
-                                //                                       '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0]))}',
-                                //                                       style: TextStyle(
-                                //                                           color:
-                                //                                               Color(0XFF898989))),
-                                //                                   Text(" - "),
-                                //                                   Text(
-                                //                                       '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(4, 6)))}',
-                                //                                       style: TextStyle(
-                                //                                           color:
-                                //                                               Color(0XFF898989))),
-                                //                                   Flexible(
-                                //                                     child:
-                                //                                         Container(),
-                                //                                     flex: 1,
-                                //                                   ),
-                                //                                   Text(
-                                //                                       '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(4, 6)) - int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0])) * widget.detail["detail"].grandTotal.round()}',
-                                //                                       style: TextStyle(
-                                //                                           color:
-                                //                                               Color(0XFF898989)))
-                                //                                 ],
-                                //                               )
-                                //                             : widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length == 8
-                                //                                 ? Row(
-                                //                                     children: <
-                                //                                         Widget>[
-                                //                                       Text(
-                                //                                           '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2)))}',
-                                //                                           style:
-                                //                                               TextStyle(color: Color(0XFF898989))),
-                                //                                       Text(
-                                //                                           " - "),
-                                //                                       Text(
-                                //                                           '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length - 1)))}',
-                                //                                           style:
-                                //                                               TextStyle(color: Color(0XFF898989))),
-                                //                                       Flexible(
-                                //                                         child:
-                                //                                             Container(),
-                                //                                         flex: 1,
-                                //                                       ),
-                                //                                       Text(
-                                //                                           '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[7])) * widget.detail["detail"].grandTotal.round()}',
-                                //                                           style:
-                                //                                               TextStyle(color: Color(0XFF898989)))
-                                //                                     ],
-                                //                                   )
-                                //                                 : widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length == 9
-                                //                                     ? Row(
-                                //                                         children: <
-                                //                                             Widget>[
-                                //                                           Text(
-                                //                                               '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2)))}',
-                                //                                               style: TextStyle(color: Color(0XFF898989))),
-                                //                                           Text(
-                                //                                               " - "),
-                                //                                           Text(
-                                //                                               '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(7, 9)))}',
-                                //                                               style: TextStyle(color: Color(0XFF898989))),
-                                //                                           Flexible(
-                                //                                             child:
-                                //                                                 Container(),
-                                //                                             flex:
-                                //                                                 1,
-                                //                                           ),
-                                //                                           Text(
-                                //                                               '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(7, 9))) * widget.detail["detail"].grandTotal.round()}',
-                                //                                               style: TextStyle(color: Color(0XFF898989)))
-                                //                                         ],
-                                //                                       )
-                                //                                     : Row(
-                                //                                         children: <
-                                //                                             Widget>[
-                                //                                           Text(
-                                //                                               '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2)))}',
-                                //                                               style: TextStyle(color: Color(0XFF898989))),
-                                //                                           Text(
-                                //                                               " - "),
-                                //                                           Text(
-                                //                                               '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(5, 7)))}',
-                                //                                               style: TextStyle(color: Color(0XFF898989))),
-                                //                                           Flexible(
-                                //                                             child:
-                                //                                                 Container(),
-                                //                                             flex:
-                                //                                                 1,
-                                //                                           ),
-                                //                                           Text(
-                                //                                               '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(5, 7)) - int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2))) * widget.detail["detail"].grandTotal.round()}',
-                                //                                               style: TextStyle(color: Color(0XFF898989)))
-                                //                                         ],
-                                //                                       );
-                                //               },
-                                //             ),
-                                //             Container(
-                                //               height: sizeheight * .01,
-                                //             ),
-                                //             Container(
-                                //               height: 1,
-                                //               color: Color(0XFFD6D6D6),
-                                //             )
-                                //           ],
-                                //         );
-                                //       }),
-                                // ),
-                                Container(
-                                  height: sizeheight * .01,
-                                ),
-                              ],
-                            ),
+                body: Container(
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                      color: MyAppState.mode == ThemeMode.light
+                          ? Colors.white
+                          : const Color(0xff686868),
+                      borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20))),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: sizewidth * .05, right: sizewidth * .05),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            height: sizeheight * .02,
                           ),
-                        ),
-                        Container(
-                          height: sizeheight * .01,
-                        ),
-                        Material(
-                          elevation: 5,
-                          color: const Color(0XFFFFFFFF),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20.0)),
-                          child: SizedBox(
-                            child: SizedBox(
-                              height: sizeheight * .2,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: sizewidth * .05,
-                                    right: sizewidth * .05),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Flexible(
-                                      flex: 3,
-                                      child: Container(),
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!.bookingUser,
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          color: Color(0XFF898989)),
-                                    ),
-                                    flaxibleGap(1),
-                                    Shimmer.fromColors(
-                                      baseColor: Colors.grey.shade300,
-                                      highlightColor: Colors.grey.shade100,
-                                      enabled: true,
-                                      child: Container(
-                                        height: 30,
-                                        width: sizewidth * .5,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5.0) //
-
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                    flaxibleGap(2),
-                                    Shimmer.fromColors(
-                                      baseColor: Colors.grey.shade300,
-                                      highlightColor: Colors.grey.shade100,
-                                      enabled: true,
-                                      child: Container(
-                                        height: 20,
-                                        width: sizewidth * .5,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5.0) //
-
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                    flaxibleGap(1),
-                                    Shimmer.fromColors(
-                                      baseColor: Colors.grey.shade300,
-                                      highlightColor: Colors.grey.shade100,
-                                      enabled: true,
-                                      child: Container(
-                                        height: 20,
-                                        width: sizewidth * .5,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5.0) //
-
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                    flaxibleGap(6),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: sizeheight * .01,
-                        ),
-                        Material(
-                          elevation: 5,
-                          color: const Color(0XFFFFFFFF),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20.0)),
-                          child: SizedBox(
-                            height: sizeheight * .16,
+                          Material(
+                            elevation: 5,
+                            color: const Color(0XFFFFFFFF),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20.0)),
                             child: Padding(
                               padding: EdgeInsets.only(
                                   left: sizewidth * .05,
                                   right: sizewidth * .05),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  flaxibleGap(4),
-                                  Text(
-                                    AppLocalizations.of(context)!
-                                        .paymentSummary,
-                                    style: const TextStyle(
-                                        color: Color(0XFF424242)),
-                                  ),
-                                  flaxibleGap(2),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.subTotal,
-                                        style: const TextStyle(
-                                            color: Color(0XFF7A7A7A)),
-                                      ),
-                                      flaxibleGap(18),
-                                      Text(
-                                        '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
-                                        style: const TextStyle(
-                                            color: Color(0XFF7A7A7A)),
-                                      ),
-                                      flaxibleGap(1),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.tex,
-                                        style: const TextStyle(
-                                            color: Color(0XFF7A7A7A)),
-                                      ),
-                                      flaxibleGap(18),
-                                      // widget.detail["detail"].tax != null
-                                      //     ? Text(
-                                      //         "${AppLocalizations.of(context).currency} ${widget.detail["count"] * widget.detail["detail"].tax.round()}",
-                                      //         style: TextStyle(
-                                      //             color: Color(0XFF7A7A7A)),
-                                      //       )
-                                      //     :
-                                      Text(
-                                        "${AppLocalizations.of(context)!.currency} 00 ",
-                                        style: const TextStyle(
-                                            color: Color(0XFF7A7A7A)),
-                                      ),
-                                      flaxibleGap(1),
-                                    ],
-                                  ),
-                                  flaxibleGap(1),
+                                children: <Widget>[
                                   Container(
-                                    height: 1,
-                                    color: const Color(0XFFD6D6D6),
+                                    height: sizeheight * .01,
                                   ),
-                                  flaxibleGap(1),
-                                  Row(
-                                    children: <Widget>[
-                                      Text(
-                                        AppLocalizations.of(context)!
-                                            .grandTotal,
-                                        style: const TextStyle(
-                                            color: Color(0XFF424242),
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      flaxibleGap(18),
-                                      Text(
-                                        '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
-                                        style: const TextStyle(
-                                            color: Color(0XFF424242)),
-                                      ),
-                                      flaxibleGap(1),
-                                    ],
+                                  Text(
+                                    AppLocalizations.of(context)!.slotDetails,
+                                    style: const TextStyle(
+                                        color: Color(0XFF032040),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
                                   ),
-                                  flaxibleGap(3),
+                                  Container(
+                                    height: sizeheight * .01,
+                                  ),
+                                  Text(
+                                      "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
+                                      style: const TextStyle(
+                                          color: Color(0XFF424242),
+                                          fontWeight: FontWeight.w600)),
+                                  Text("${widget.detail["pitchType"]}",
+                                      style: const TextStyle(
+                                          color: Color(0XFF898989))),
+                                  Container(
+                                    height: sizeheight * .005,
+                                  ),
+                                  // Container(
+                                  //   height: sizeheight * .15,
+                                  //   child: ListView.builder(
+                                  //       itemCount: keys.length,
+                                  //       itemBuilder: (context, index) {
+                                  //         return Column(
+                                  //           crossAxisAlignment:
+                                  //               CrossAxisAlignment.start,
+                                  //           children: <Widget>[
+                                  //             Container(
+                                  //               height: sizeheight * .005,
+                                  //             ),
+                                  //             Row(
+                                  //               children: <Widget>[
+                                  //                 dayConv(x: keys[index]),
+                                  //                 Text(
+                                  //                   ", ${AppLocalizations.of(context).locale == "en" ? monthFindRevers(index: widget.detail["slotdetail"]["month"]) : monthFindReversAr(index: widget.detail["slotdetail"]["month"])} ${keys[index]}, ${widget.detail["slotdetail"]["year"]}",
+                                  //                   style: TextStyle(
+                                  //                       color: Color(0XFF25A163)),
+                                  //                 ),
+                                  //               ],
+                                  //             ),
+                                  //             ListView.builder(
+                                  //               shrinkWrap: true,
+                                  //               physics: ClampingScrollPhysics(),
+                                  //               itemCount: widget
+                                  //                   .detail["slotdetail"]["days"]
+                                  //                       [keys[index]]
+                                  //                   .length,
+                                  //               itemBuilder:
+                                  //                   (BuildContext context,
+                                  //                       int childIdx) {
+                                  //                 return widget.detail["slotdetail"]
+                                  //                                 ["days"]
+                                  //                                 [keys[index]]
+                                  //                                 [childIdx]
+                                  //                             .toString()
+                                  //                             .length <
+                                  //                         3
+                                  //                     ? Row(
+                                  //                         children: <Widget>[
+                                  //                           Text(
+                                  //                               '${AppLocalizations.of(context).slot} : ${timing(x: widget.detail["slotdetail"]["days"][keys[index]][childIdx])}',
+                                  //                               style: TextStyle(
+                                  //                                   color: Color(
+                                  //                                       0XFF898989))),
+                                  //                           Flexible(
+                                  //                             child: Container(),
+                                  //                             flex: 1,
+                                  //                           ),
+                                  //                           // Text("${AppLocalizations.of(context).currency} ${widget.detail["detail"].grandTotal.round()}",style: TextStyle(
+                                  //                           //     color: Color(
+                                  //                           //         0XFF898989)))
+                                  //                         ],
+                                  //                       )
+                                  //                     : widget.detail["slotdetail"]
+                                  //                                     ["days"]
+                                  //                                     [keys[index]]
+                                  //                                     [childIdx]
+                                  //                                 .toString()
+                                  //                                 .length ==
+                                  //                             5
+                                  //                         ? Row(
+                                  //                             children: <Widget>[
+                                  //                               Text(
+                                  //                                   '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0]))}',
+                                  //                                   style: TextStyle(
+                                  //                                       color: Color(
+                                  //                                           0XFF898989))),
+                                  //                               Text(" - "),
+                                  //                               Text(
+                                  //                                   '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length - 1)))}',
+                                  //                                   style: TextStyle(
+                                  //                                       color: Color(
+                                  //                                           0XFF898989))),
+                                  //                               Flexible(
+                                  //                                 child:
+                                  //                                     Container(),
+                                  //                                 flex: 1,
+                                  //                               ),
+                                  //                               Text(
+                                  //                                   '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length - 1)) - int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0])) * widget.detail["detail"].grandTotal.round()}',
+                                  //                                   style: TextStyle(
+                                  //                                       color: Color(
+                                  //                                           0XFF898989)))
+                                  //                             ],
+                                  //                           )
+                                  //                         : widget.detail["slotdetail"]
+                                  //                                         ["days"]
+                                  //                                         [keys[index]]
+                                  //                                         [childIdx]
+                                  //                                     .toString()
+                                  //                                     .length ==
+                                  //                                 6
+                                  //                             ? Row(
+                                  //                                 children: <
+                                  //                                     Widget>[
+                                  //                                   Text(
+                                  //                                       '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0]))}',
+                                  //                                       style: TextStyle(
+                                  //                                           color:
+                                  //                                               Color(0XFF898989))),
+                                  //                                   Text(" - "),
+                                  //                                   Text(
+                                  //                                       '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(4, 6)))}',
+                                  //                                       style: TextStyle(
+                                  //                                           color:
+                                  //                                               Color(0XFF898989))),
+                                  //                                   Flexible(
+                                  //                                     child:
+                                  //                                         Container(),
+                                  //                                     flex: 1,
+                                  //                                   ),
+                                  //                                   Text(
+                                  //                                       '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(4, 6)) - int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[0])) * widget.detail["detail"].grandTotal.round()}',
+                                  //                                       style: TextStyle(
+                                  //                                           color:
+                                  //                                               Color(0XFF898989)))
+                                  //                                 ],
+                                  //                               )
+                                  //                             : widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length == 8
+                                  //                                 ? Row(
+                                  //                                     children: <
+                                  //                                         Widget>[
+                                  //                                       Text(
+                                  //                                           '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2)))}',
+                                  //                                           style:
+                                  //                                               TextStyle(color: Color(0XFF898989))),
+                                  //                                       Text(
+                                  //                                           " - "),
+                                  //                                       Text(
+                                  //                                           '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length - 1)))}',
+                                  //                                           style:
+                                  //                                               TextStyle(color: Color(0XFF898989))),
+                                  //                                       Flexible(
+                                  //                                         child:
+                                  //                                             Container(),
+                                  //                                         flex: 1,
+                                  //                                       ),
+                                  //                                       Text(
+                                  //                                           '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString()[7])) * widget.detail["detail"].grandTotal.round()}',
+                                  //                                           style:
+                                  //                                               TextStyle(color: Color(0XFF898989)))
+                                  //                                     ],
+                                  //                                   )
+                                  //                                 : widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().length == 9
+                                  //                                     ? Row(
+                                  //                                         children: <
+                                  //                                             Widget>[
+                                  //                                           Text(
+                                  //                                               '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2)))}',
+                                  //                                               style: TextStyle(color: Color(0XFF898989))),
+                                  //                                           Text(
+                                  //                                               " - "),
+                                  //                                           Text(
+                                  //                                               '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(7, 9)))}',
+                                  //                                               style: TextStyle(color: Color(0XFF898989))),
+                                  //                                           Flexible(
+                                  //                                             child:
+                                  //                                                 Container(),
+                                  //                                             flex:
+                                  //                                                 1,
+                                  //                                           ),
+                                  //                                           Text(
+                                  //                                               '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(7, 9))) * widget.detail["detail"].grandTotal.round()}',
+                                  //                                               style: TextStyle(color: Color(0XFF898989)))
+                                  //                                         ],
+                                  //                                       )
+                                  //                                     : Row(
+                                  //                                         children: <
+                                  //                                             Widget>[
+                                  //                                           Text(
+                                  //                                               '${AppLocalizations.of(context).slot} : ${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2)))}',
+                                  //                                               style: TextStyle(color: Color(0XFF898989))),
+                                  //                                           Text(
+                                  //                                               " - "),
+                                  //                                           Text(
+                                  //                                               '${timing(x: int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(5, 7)))}',
+                                  //                                               style: TextStyle(color: Color(0XFF898989))),
+                                  //                                           Flexible(
+                                  //                                             child:
+                                  //                                                 Container(),
+                                  //                                             flex:
+                                  //                                                 1,
+                                  //                                           ),
+                                  //                                           Text(
+                                  //                                               '${AppLocalizations.of(context).currency} ${(int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(5, 7)) - int.parse(widget.detail["slotdetail"]["days"][keys[index]][childIdx].toString().substring(0, 2))) * widget.detail["detail"].grandTotal.round()}',
+                                  //                                               style: TextStyle(color: Color(0XFF898989)))
+                                  //                                         ],
+                                  //                                       );
+                                  //               },
+                                  //             ),
+                                  //             Container(
+                                  //               height: sizeheight * .01,
+                                  //             ),
+                                  //             Container(
+                                  //               height: 1,
+                                  //               color: Color(0XFFD6D6D6),
+                                  //             )
+                                  //           ],
+                                  //         );
+                                  //       }),
+                                  // ),
+                                  Container(
+                                    height: sizeheight * .01,
+                                  ),
                                 ],
                               ),
                             ),
                           ),
-                        ),
-                        fixedGap(
-                          height: sizeheight * .02,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Checkbox(
-                              focusNode: focus,
-                              autofocus: true,
-                              value: monVal,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  monVal = value!;
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              width: sizewidth * .76,
-                              child: RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          AppLocalizations.of(context)!.iAgree,
-                                      style: const TextStyle(
-                                          color: Color(0XFFADADAD),
-                                          fontSize: 15),
-                                    ),
-                                    TextSpan(
-                                      text:
-                                          " ${AppLocalizations.of(context)!.term} ",
-                                      style: const TextStyle(
-                                        color: Color(0XFF25A163),
-                                        fontSize: 15,
-                                        // decoration: TextDecoration.underline
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: AppLocalizations.of(context)!
-                                          .ofCompany,
-                                      style: const TextStyle(
-                                          color: Color(0XFFADADAD),
-                                          fontSize: 15),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        fixedGap(
-                          height: sizeheight * .01,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: Text(
-                            AppLocalizations.of(context)!
-                                .cancellationsMadeWithin,
-                            style: const TextStyle(
-                                color: Color(0XFFADADAD), fontSize: 11),
+                          Container(
+                            height: sizeheight * .01,
                           ),
-                        ),
-                        fixedGap(
-                          height: sizeheight * .01,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            : internet
-                ? Scaffold(
-                    backgroundColor: const Color(0XFFF0F0F0),
-                    bottomNavigationBar: monVal
-                        ? Container(
-                            height: sizeheight * .1,
-                            color: const Color(0XFF25A163),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
-                                      style: const TextStyle(
-                                          color: Color(0XFFFFFFFF),
-                                          fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    navigateToDetail();
-                                  },
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      color: Color(0XFFFFFFFF),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(5.0),
-                                      ),
-                                    ),
-                                    height: sizeheight * .04,
-                                    width: sizewidth * .25,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      AppLocalizations.of(context)!.proceed,
-                                      style: TextStyle(
-                                        color: const Color(0XFF25A163),
-                                        fontSize: AppLocalizations.of(context)!
-                                                    .locale ==
-                                                "en"
-                                            ? 18
-                                            : 22,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                    appBar: appBar(
-                      title: AppLocalizations.of(context)!.bookingDetails,
-                      language: AppLocalizations.of(context)!.locale,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    body: SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: sizewidth * .05, right: sizewidth * .05),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              height: sizeheight * .02,
-                            ),
-                            Material(
-                              elevation: 5,
-                              color: const Color(0XFFFFFFFF),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20.0)),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: sizewidth * .05,
-                                    right: sizewidth * .05),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Container(
-                                      height: sizeheight * .01,
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!.slotDetails,
-                                      style: const TextStyle(
-                                          color: Color(0XFF032040),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Container(
-                                      height: sizeheight * .01,
-                                    ),
-                                    Text(
-                                        "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
-                                        style: const TextStyle(
-                                            color: Color(0XFF424242),
-                                            fontWeight: FontWeight.w600)),
-                                    Text(
-                                      widget.detail["apiDetail"]["date"],
-                                      style: const TextStyle(
-                                          color: Color(0XFF25A163),
-                                          fontSize: 13,
-                                          fontFamily: "Poppins"),
-                                    ),
-                                    ListView.separated(
-                                        separatorBuilder: (context, index) {
-                                          return const Divider();
-                                        },
-                                        shrinkWrap: true,
-                                        itemCount: session.length,
-                                        itemBuilder: (context, index) {
-                                          return Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                " ${AppLocalizations.of(context)!.sessionName} ${session[index]}",
-                                                style: const TextStyle(
-                                                    color: Color(0XFF25A163)),
-                                              ),
-                                              SizedBox(
-                                                height: 40,
-                                                width: sizewidth,
-                                                child: ListView.builder(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  itemCount: widget
-                                                      .detail["slotDetail"]
-                                                          [session[index]]
-                                                      .length,
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int childIdx) {
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              5.0),
-                                                      child: Container(
-                                                        height: 30,
-                                                        width: 80,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        decoration: BoxDecoration(
-                                                            color: const Color(
-                                                                0XFF25A163),
-                                                            border: Border.all(
-                                                                color: const Color(
-                                                                    0XFF25A163))),
-                                                        child: Text(
-                                                          widget.detail[
-                                                                      "slotDetail"]
-                                                                      [session[
-                                                                          index]]
-                                                                      [childIdx]
-                                                                  .substring(
-                                                                      0, 5) ??
-                                                              "",
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 16,
-                                                                  color: Colors
-                                                                      .white),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          );
-                                        }),
-                                    Container(
-                                      height: sizeheight * .01,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: sizeheight * .01,
-                            ),
-                            Material(
-                              elevation: 5,
-                              color: const Color(0XFFFFFFFF),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20.0)),
+                          Material(
+                            elevation: 5,
+                            color: const Color(0XFFFFFFFF),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20.0)),
+                            child: SizedBox(
                               child: SizedBox(
                                 height: sizeheight * .2,
                                 child: Padding(
@@ -804,50 +389,354 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
                                         AppLocalizations.of(context)!
                                             .bookingUser,
                                         style: const TextStyle(
-                                            color: Color(0XFF032040),
                                             fontSize: 20,
-                                            fontWeight: FontWeight.w500),
+                                            color: Color(0XFF898989)),
                                       ),
                                       flaxibleGap(1),
-                                      Text(
-                                        profileDetail != null
-                                            ? '${profileDetail['first_name']} ${profileDetail['last_name']}'
-                                            : '',
-                                        style: const TextStyle(
-                                            color: Color(0XFF424242),
-                                            fontWeight: FontWeight.w600),
+                                      Shimmer.fromColors(
+                                        baseColor: Colors.grey.shade300,
+                                        highlightColor: Colors.grey.shade100,
+                                        enabled: true,
+                                        child: Container(
+                                          height: 30,
+                                          width: sizewidth * .5,
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5.0) //
+
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      flaxibleGap(2),
+                                      Shimmer.fromColors(
+                                        baseColor: Colors.grey.shade300,
+                                        highlightColor: Colors.grey.shade100,
+                                        enabled: true,
+                                        child: Container(
+                                          height: 20,
+                                          width: sizewidth * .5,
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5.0) //
+
+                                                ),
+                                          ),
+                                        ),
                                       ),
                                       flaxibleGap(1),
-                                      Text(
-                                          profileDetail != null
-                                              ? profileDetail['email']
-                                              : '',
-                                          style: const TextStyle(
-                                              color: Color(0XFF898989))),
-                                      Text(
-                                          profileDetail != null
-                                              ? profileDetail[
-                                                      'contact_number'] ??
-                                                  ""
-                                              : '',
-                                          style: const TextStyle(
-                                              color: Color(0XFF898989))),
+                                      Shimmer.fromColors(
+                                        baseColor: Colors.grey.shade300,
+                                        highlightColor: Colors.grey.shade100,
+                                        enabled: true,
+                                        child: Container(
+                                          height: 20,
+                                          width: sizewidth * .5,
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5.0) //
+
+                                                ),
+                                          ),
+                                        ),
+                                      ),
                                       flaxibleGap(6),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-                            Container(
-                              height: sizeheight * .01,
+                          ),
+                          Container(
+                            height: sizeheight * .01,
+                          ),
+                          Material(
+                            elevation: 5,
+                            color: const Color(0XFFFFFFFF),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20.0)),
+                            child: SizedBox(
+                              height: sizeheight * .16,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: sizewidth * .05,
+                                    right: sizewidth * .05),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    flaxibleGap(4),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .paymentSummary,
+                                      style: const TextStyle(
+                                          color: Color(0XFF424242)),
+                                    ),
+                                    flaxibleGap(2),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .subTotal,
+                                          style: const TextStyle(
+                                              color: Color(0XFF7A7A7A)),
+                                        ),
+                                        flaxibleGap(18),
+                                        Text(
+                                          '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
+                                          style: const TextStyle(
+                                              color: Color(0XFF7A7A7A)),
+                                        ),
+                                        flaxibleGap(1),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!.tex,
+                                          style: const TextStyle(
+                                              color: Color(0XFF7A7A7A)),
+                                        ),
+                                        flaxibleGap(18),
+                                        // widget.detail["detail"].tax != null
+                                        //     ? Text(
+                                        //         "${AppLocalizations.of(context).currency} ${widget.detail["count"] * widget.detail["detail"].tax.round()}",
+                                        //         style: TextStyle(
+                                        //             color: Color(0XFF7A7A7A)),
+                                        //       )
+                                        //     :
+                                        Text(
+                                          "${AppLocalizations.of(context)!.currency} 00 ",
+                                          style: const TextStyle(
+                                              color: Color(0XFF7A7A7A)),
+                                        ),
+                                        flaxibleGap(1),
+                                      ],
+                                    ),
+                                    flaxibleGap(1),
+                                    Container(
+                                      height: 1,
+                                      color: const Color(0XFFD6D6D6),
+                                    ),
+                                    flaxibleGap(1),
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .grandTotal,
+                                          style: const TextStyle(
+                                              color: Color(0XFF424242),
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        flaxibleGap(18),
+                                        Text(
+                                          '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
+                                          style: const TextStyle(
+                                              color: Color(0XFF424242)),
+                                        ),
+                                        flaxibleGap(1),
+                                      ],
+                                    ),
+                                    flaxibleGap(3),
+                                  ],
+                                ),
+                              ),
                             ),
-                            Material(
-                              elevation: 5,
-                              color: const Color(0XFFFFFFFF),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20.0)),
-                              child: SizedBox(
-                                height: sizeheight * .16,
+                          ),
+                          fixedGap(
+                            height: sizeheight * .02,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Checkbox(
+                                focusNode: focus,
+                                autofocus: true,
+                                value: monVal,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    monVal = value!;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: sizewidth * .76,
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .iAgree,
+                                        style: const TextStyle(
+                                            color: Color(0XFFADADAD),
+                                            fontSize: 15),
+                                      ),
+                                      TextSpan(
+                                        text:
+                                            " ${AppLocalizations.of(context)!.term} ",
+                                        style: const TextStyle(
+                                          color: Color(0XFF25A163),
+                                          fontSize: 15,
+                                          // decoration: TextDecoration.underline
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .ofCompany,
+                                        style: const TextStyle(
+                                            color: Color(0XFFADADAD),
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          fixedGap(
+                            height: sizeheight * .01,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Text(
+                              AppLocalizations.of(context)!
+                                  .cancellationsMadeWithin,
+                              style: const TextStyle(
+                                  color: Color(0XFFADADAD), fontSize: 11),
+                            ),
+                          ),
+                          fixedGap(
+                            height: sizeheight * .01,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            : internet
+                ? Scaffold(
+                    backgroundColor: Colors.black,
+                    appBar: PreferredSize(
+                      preferredSize: Size(sizewidth, sizeheight * 0.13),
+                      child: AppBar(
+                        title: Text(
+                          AppLocalizations.of(context)!.bookingDetails,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(color: Colors.white),
+                        ),
+                        centerTitle: true,
+                        backgroundColor: Colors.black,
+                        leadingWidth: sizewidth * 0.18,
+                        leading: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                                height: sizeheight * 0.004,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    shape: BoxShape.circle),
+                                child: Icon(
+                                  AppLocalizations.of(context)!.locale == 'en'
+                                      ? Icons.keyboard_arrow_left_sharp
+                                      : Icons.keyboard_arrow_right,
+                                  color: Colors.white,
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
+                    // bottomNavigationBar: monVal
+                    //     ? Container(
+                    //         height: sizeheight * 0.1,
+                    //         padding: EdgeInsets.symmetric(
+                    //             horizontal: sizewidth * 0.03,
+                    //             vertical: sizeheight * 0.006),
+                    //         child: ButtonWidget(
+                    //             onTaped: () {},
+                    //             title: Row(
+                    //               mainAxisAlignment:
+                    //                   MainAxisAlignment.spaceAround,
+                    //               crossAxisAlignment: CrossAxisAlignment.center,
+                    //               children: [
+                    //                 Column(
+                    //                   mainAxisAlignment:
+                    //                       MainAxisAlignment.center,
+                    //                   crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                   children: <Widget>[
+                    //                     Text(
+                    //                       '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
+                    //                       style: const TextStyle(
+                    //                           color: Color(0XFFFFFFFF),
+                    //                           fontSize: 16),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //                 GestureDetector(
+                    //                   onTap: () {
+                    //                     navigateToDetail();
+                    //                   },
+                    //                   child: Container(
+                    //                     decoration: const BoxDecoration(
+                    //                       color: Color(0XFFFFFFFF),
+                    //                       borderRadius: BorderRadius.all(
+                    //                         Radius.circular(5.0),
+                    //                       ),
+                    //                     ),
+                    //                     height: sizeheight * .05,
+                    //                     width: sizewidth * .3,
+                    //                     alignment: Alignment.center,
+                    //                     child: Text(
+                    //                       AppLocalizations.of(context)!.proceed,
+                    //                       style: TextStyle(
+                    //                         color: Colors.black,
+                    //                         fontSize:
+                    //                             AppLocalizations.of(context)!
+                    //                                         .locale ==
+                    //                                     "en"
+                    //                                 ? 17
+                    //                                 : 20,
+                    //                       ),
+                    //                     ),
+                    //                   ),
+                    //                 )
+                    //               ],
+                    //             ),
+                    //             isLoading: loading),
+                    //       )
+                    //     : const SizedBox.shrink(),
+                    body: Container(
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? Colors.white
+                              : const Color(0xff686868),
+                          borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20))),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: sizewidth * .05, right: sizewidth * .05),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                height: sizeheight * .02,
+                              ),
+                              Material(
+                                elevation: 5,
+                                color: const Color(0XFFFFFFFF),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
                                 child: Padding(
                                   padding: EdgeInsets.only(
                                       left: sizewidth * .05,
@@ -856,159 +745,418 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      flaxibleGap(4),
+                                      Container(
+                                        height: sizeheight * .01,
+                                      ),
                                       Text(
                                         AppLocalizations.of(context)!
-                                            .paymentSummary,
+                                            .slotDetails,
                                         style: const TextStyle(
                                             color: Color(0XFF032040),
                                             fontSize: 20,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                      flaxibleGap(2),
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .subTotal,
-                                            style: const TextStyle(
-                                                color: Color(0XFF424242),
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          flaxibleGap(18),
-                                          Text(
-                                            '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
-                                            style: const TextStyle(
-                                                color: Color(0XFF7A7A7A)),
-                                          ),
-                                          flaxibleGap(1),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            AppLocalizations.of(context)!.tex,
-                                            style: const TextStyle(
-                                                color: Color(0XFF424242),
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          flaxibleGap(18),
-                                          // widget.detail["detail"].tax != null
-                                          //     ? Text(
-                                          //         "${AppLocalizations.of(context).currency} ${widget.detail["count"] * widget.detail["detail"].tax.round()}",
-                                          //         style: TextStyle(
-                                          //             color: Color(0XFF7A7A7A)),
-                                          //       )
-                                          //     :
-                                          Text(
-                                            "${AppLocalizations.of(context)!.currency} 00 ",
-                                            style: const TextStyle(
-                                                color: Color(0XFF7A7A7A)),
-                                          ),
-                                          flaxibleGap(1),
-                                        ],
-                                      ),
-                                      flaxibleGap(1),
                                       Container(
-                                        height: 1,
-                                        color: const Color(0XFFD6D6D6),
+                                        height: sizeheight * .01,
                                       ),
-                                      flaxibleGap(1),
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .grandTotal,
-                                            style: const TextStyle(
-                                                color: Color(0XFF424242),
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          flaxibleGap(18),
-                                          Text(
-                                            '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
-                                            style: const TextStyle(
-                                                color: Color(0XFF424242)),
-                                          ),
-                                          flaxibleGap(1),
-                                        ],
+                                      Text(
+                                          "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
+                                          style: const TextStyle(
+                                              color: Color(0XFF424242),
+                                              fontWeight: FontWeight.w600)),
+                                      Text(
+                                        widget.detail["apiDetail"]["date"],
+                                        style: const TextStyle(
+                                            color: Color(0XFF25A163),
+                                            fontSize: 13,
+                                            fontFamily: "Poppins"),
                                       ),
-                                      flaxibleGap(3),
+                                      ListView.separated(
+                                          separatorBuilder: (context, index) {
+                                            return const Divider();
+                                          },
+                                          shrinkWrap: true,
+                                          itemCount: session.length,
+                                          itemBuilder: (context, index) {
+                                            return Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  " ${AppLocalizations.of(context)!.sessionName} ${session[index]}",
+                                                  style: const TextStyle(
+                                                      color: Color(0XFF25A163)),
+                                                ),
+                                                SizedBox(
+                                                  height: 40,
+                                                  width: sizewidth,
+                                                  child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount: widget
+                                                        .detail["slotDetail"]
+                                                            [session[index]]
+                                                        .length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int childIdx) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(5.0),
+                                                        child: Container(
+                                                          height: 30,
+                                                          width: 80,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                              color: const Color(
+                                                                  0xffffc300),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade50)),
+                                                          child: Text(
+                                                            widget.detail[
+                                                                        "slotDetail"]
+                                                                        [
+                                                                        session[
+                                                                            index]]
+                                                                        [
+                                                                        childIdx]
+                                                                    .substring(
+                                                                        0, 5) ??
+                                                                "",
+                                                            style: const TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 16,
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          }),
+                                      Container(
+                                        height: sizeheight * .01,
+                                      ),
                                     ],
                                   ),
                                 ),
                               ),
-                            ),
-                            fixedGap(
-                              height: sizeheight * .02,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Checkbox(
-                                  focusNode: focus,
-                                  autofocus: true,
-                                  value: monVal,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      monVal = value!;
-                                    });
-                                  },
-                                ),
-                                SizedBox(
-                                  width: sizewidth * .76,
-                                  child: RichText(
-                                    key: _textKey,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: AppLocalizations.of(context)!
-                                              .iAgree,
-                                          style: const TextStyle(
-                                              color: Color(0XFFADADAD),
-                                              fontSize: 15),
+                              Container(
+                                height: sizeheight * .01,
+                              ),
+                              Material(
+                                elevation: 5,
+                                color: const Color(0XFFFFFFFF),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
+                                child: SizedBox(
+                                  height: sizeheight * .2,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: sizewidth * .05,
+                                        right: sizewidth * .05),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Flexible(
+                                          flex: 3,
+                                          child: Container(),
                                         ),
-                                        TextSpan(
-                                          text:
-                                              " ${AppLocalizations.of(context)!.term} ",
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              privacyPolicy(
-                                                  "terms_and_conditions_url");
-                                            },
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .bookingUser,
                                           style: const TextStyle(
-                                            color: Color(0XFF25A163),
-                                            fontSize: 15,
-                                            // decoration: TextDecoration.underline
-                                          ),
+                                              color: Color(0XFF032040),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500),
                                         ),
-                                        TextSpan(
-                                          text: AppLocalizations.of(context)!
-                                              .ofCompany,
+                                        flaxibleGap(1),
+                                        Text(
+                                          profileDetail != null
+                                              ? '${profileDetail['first_name']} ${profileDetail['last_name']}'
+                                              : '',
                                           style: const TextStyle(
-                                              color: Color(0XFFADADAD),
-                                              fontSize: 15),
+                                              color: Color(0XFF424242),
+                                              fontWeight: FontWeight.w600),
                                         ),
+                                        flaxibleGap(1),
+                                        Text(
+                                            profileDetail != null
+                                                ? profileDetail['email']
+                                                : '',
+                                            style: const TextStyle(
+                                                color: Color(0XFF898989))),
+                                        Text(
+                                            profileDetail != null
+                                                ? profileDetail[
+                                                        'contact_number'] ??
+                                                    ""
+                                                : '',
+                                            style: const TextStyle(
+                                                color: Color(0XFF898989))),
+                                        flaxibleGap(6),
                                       ],
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            fixedGap(
-                              height: sizeheight * .01,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: Text(
-                                "Cancellations made within 24 hours will not receive a refund.",
-                                style: TextStyle(
-                                    color: Color(0XFFADADAD), fontSize: 11),
                               ),
-                            ),
-                            fixedGap(
-                              height: sizeheight * .01,
-                            ),
-                          ],
+                              Container(
+                                height: sizeheight * .01,
+                              ),
+                              Material(
+                                elevation: 5,
+                                color: const Color(0XFFFFFFFF),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
+                                child: SizedBox(
+                                  height: sizeheight * .16,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: sizewidth * .05,
+                                        right: sizewidth * .05),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        flaxibleGap(4),
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .paymentSummary,
+                                          style: const TextStyle(
+                                              color: Color(0XFF032040),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        flaxibleGap(2),
+                                        Row(
+                                          children: <Widget>[
+                                            Text(
+                                              AppLocalizations.of(context)!
+                                                  .subTotal,
+                                              style: const TextStyle(
+                                                  color: Color(0XFF424242),
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            flaxibleGap(18),
+                                            Text(
+                                              '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
+                                              style: const TextStyle(
+                                                  color: Color(0XFF7A7A7A)),
+                                            ),
+                                            flaxibleGap(1),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: <Widget>[
+                                            Text(
+                                              AppLocalizations.of(context)!.tex,
+                                              style: const TextStyle(
+                                                  color: Color(0XFF424242),
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            flaxibleGap(18),
+                                            // widget.detail["detail"].tax != null
+                                            //     ? Text(
+                                            //         "${AppLocalizations.of(context).currency} ${widget.detail["count"] * widget.detail["detail"].tax.round()}",
+                                            //         style: TextStyle(
+                                            //             color: Color(0XFF7A7A7A)),
+                                            //       )
+                                            //     :
+                                            Text(
+                                              "${AppLocalizations.of(context)!.currency} 00 ",
+                                              style: const TextStyle(
+                                                  color: Color(0XFF7A7A7A)),
+                                            ),
+                                            flaxibleGap(1),
+                                          ],
+                                        ),
+                                        flaxibleGap(1),
+                                        Container(
+                                          height: 1,
+                                          color: const Color(0XFFD6D6D6),
+                                        ),
+                                        flaxibleGap(1),
+                                        Row(
+                                          children: <Widget>[
+                                            Text(
+                                              AppLocalizations.of(context)!
+                                                  .grandTotal,
+                                              style: const TextStyle(
+                                                  color: Color(0XFF424242),
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            flaxibleGap(18),
+                                            Text(
+                                              '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
+                                              style: const TextStyle(
+                                                  color: Color(0XFF424242)),
+                                            ),
+                                            flaxibleGap(1),
+                                          ],
+                                        ),
+                                        flaxibleGap(3),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              fixedGap(
+                                height: sizeheight * .02,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Checkbox(
+                                    focusNode: focus,
+                                    autofocus: true,
+                                    activeColor: const Color(0xffffc300),
+                                    value: monVal,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        monVal = value!;
+                                      });
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: sizewidth * .76,
+                                    child: RichText(
+                                      key: _textKey,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .iAgree,
+                                            style: TextStyle(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? const Color(0XFFADADAD)
+                                                    : Colors.white,
+                                                fontSize: 15),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                " ${AppLocalizations.of(context)!.term} ",
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                privacyPolicy(
+                                                    "terms_and_conditions_url");
+                                              },
+                                            style: const TextStyle(
+                                              color: Color(0XFF25A163),
+                                              fontSize: 15,
+                                              // decoration: TextDecoration.underline
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .ofCompany,
+                                            style: TextStyle(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? const Color(0XFFADADAD)
+                                                    : Colors.white,
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              fixedGap(
+                                height: sizeheight * .01,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child: Text(
+                                  "Cancellations made within 24 hours will not receive a refund.",
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? const Color(0XFFADADAD)
+                                          : Colors.white,
+                                      fontSize: 11),
+                                ),
+                              ),
+                              fixedGap(
+                                height: sizeheight * .01,
+                              ),
+                              monVal
+                                  ? Container(
+                                      height: sizeheight * 0.1,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: sizewidth * 0.03,
+                                          vertical: sizeheight * 0.006),
+                                      child: ButtonWidget(
+                                          onTaped: () {},
+                                          title: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Text(
+                                                    '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
+                                                    style: const TextStyle(
+                                                        color:
+                                                            Color(0XFFFFFFFF),
+                                                        fontSize: 16),
+                                                  ),
+                                                ],
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  navigateToDetail();
+                                                },
+                                                child: Container(
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color: Color(0XFFFFFFFF),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                      Radius.circular(5.0),
+                                                    ),
+                                                  ),
+                                                  height: sizeheight * .04,
+                                                  width: sizewidth * .3,
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .proceed,
+                                                    style: const TextStyle(
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          isLoading: loading),
+                                    )
+                                  : const SizedBox.shrink(),
+                            ],
+                          ),
                         ),
                       ),
                     ),

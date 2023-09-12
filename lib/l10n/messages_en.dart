@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNewGroundPitch":
             MessageLookupByLibrary.simpleMessage("Add More Ground"),
         "addNewPitch": MessageLookupByLibrary.simpleMessage("Add New Venue"),
+        "eventTitle": MessageLookupByLibrary.simpleMessage("Events"),
+        "academy": MessageLookupByLibrary.simpleMessage("Academies"),
         "addPitch": MessageLookupByLibrary.simpleMessage("Add Venue"),
         "addPitchDetails":
             MessageLookupByLibrary.simpleMessage("Add new Venue Details"),

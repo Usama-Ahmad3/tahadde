@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/viewMoreBookPitch.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
@@ -7,9 +8,10 @@ import '../../../../../main.dart';
 import '../../../utils.dart';
 
 class VanueList extends StatefulWidget {
-  dynamic bookPitchData;
+  var bookPitchData;
+  bool tagForView;
 
-  VanueList({super.key, required this.bookPitchData});
+  VanueList({super.key, required this.bookPitchData, this.tagForView = true});
 
   @override
   State<VanueList> createState() => _VanueListState();
@@ -28,59 +30,60 @@ class _VanueListState extends State<VanueList> {
       margin: EdgeInsets.only(top: 24 * fem),
       padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 0),
       decoration: BoxDecoration(
-        color: mode == ThemeMode.light ? Color(0xffffffff) : Color(0xff5A5C60),
+        color: mode == ThemeMode.light
+            ? const Color(0xffffffff)
+            : const Color(0xff5A5C60),
         borderRadius: BorderRadius.circular(24 * fem),
       ),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 16 * fem),
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      if (mode == ThemeMode.light) {
-                        MyAppState.mode = ThemeMode.dark;
-                      } else {
-                        MyAppState.mode = ThemeMode.light;
-                      }
-                      setState(() {});
-                    },
-                    child: Text(
-                      'Academies',
-                      style: SafeGoogleFont('Inter',
-                          fontSize: 20 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.25 * ffem / fem,
-                          letterSpacing: -0.2 * fem,
-                          color: mode == ThemeMode.light
-                              ? Color(0xff050505)
-                              : Color(0xffffffff)),
+            widget.tagForView
+                ? Container(
+                    margin: EdgeInsets.only(bottom: 16 * fem),
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            var details = {"bool": false};
+                            navigateToViewMorePitch(details);
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.academy,
+                            style: SafeGoogleFont('Inter',
+                                fontSize: 20 * ffem,
+                                fontWeight: FontWeight.w600,
+                                height: 1.25 * ffem / fem,
+                                letterSpacing: -0.2 * fem,
+                                color: mode == ThemeMode.light
+                                    ? const Color(0xff050505)
+                                    : const Color(0xffffffff)),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            var details = {"bool": false};
+                            navigateToViewMorePitch(details);
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.viewAll,
+                            style: SafeGoogleFont(
+                              'Inter',
+                              fontSize: 13 * ffem,
+                              fontWeight: FontWeight.w400,
+                              height: 1.3846153846 * ffem / fem,
+                              color: mode == ThemeMode.light
+                                  ? const Color(0xff686868)
+                                  : Colors.white70,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      navigateToViewMorePitch(widget.bookPitchData);
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.viewAll,
-                      style: SafeGoogleFont(
-                        'Inter',
-                        fontSize: 13 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3846153846 * ffem / fem,
-                        color: mode == ThemeMode.light
-                            ? Color(0xff686868)
-                            : Colors.white70,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                  )
+                : const SizedBox.shrink(),
             ...List.generate(
               widget.bookPitchData.length,
               (index) => InkWell(
@@ -99,8 +102,8 @@ class _VanueListState extends State<VanueList> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: mode == ThemeMode.light
-                          ? Color(0xffffffff)
-                          : Color(0xff373737),
+                          ? const Color(0xffffffff)
+                          : const Color(0xff373737),
                       borderRadius: BorderRadius.circular(15 * fem),
                       boxShadow: [
                         BoxShadow(
@@ -149,8 +152,8 @@ class _VanueListState extends State<VanueList> {
                               height: 1.25 * ffem / fem,
                               letterSpacing: -0.2 * fem,
                               color: mode == ThemeMode.light
-                                  ? Color(0xff050505)
-                                  : Color(0xffffffff),
+                                  ? const Color(0xff050505)
+                                  : const Color(0xffffffff),
                             ),
                           ),
                         ),
@@ -196,6 +199,9 @@ class _VanueListState extends State<VanueList> {
   }
 
   void navigateToViewMorePitch(Map detail) {
-    Navigator.pushNamed(context, RouteNames.viewMore, arguments: detail);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => ViewMoreBookPitchScreen(pitchType: detail)));
   }
 }

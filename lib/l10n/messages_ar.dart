@@ -21,18 +21,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
 
-  static _notInlinedMessages(_) => <String, Function>{
+  static _notInlinedMessages(_) =>
+      <String, Function>{
         "CreateYourSession": MessageLookupByLibrary.simpleMessage("أنشئ جلستك"),
         "SelectPitchLeague":
-            MessageLookupByLibrary.simpleMessage("حدد الملعب للدوري"),
+        MessageLookupByLibrary.simpleMessage("حدد الملعب للدوري"),
         "Youmaximumplayersyourteam": MessageLookupByLibrary.simpleMessage(
             "يمكنك إضافة 16 لاعبًا كحد أقصى في فريقك"),
         "Youneedtocreateyourownteam":
-            MessageLookupByLibrary.simpleMessage("تحتاج إلى إنشاء فريقك الخاص"),
+        MessageLookupByLibrary.simpleMessage("تحتاج إلى إنشاء فريقك الخاص"),
         "about": MessageLookupByLibrary.simpleMessage("إحجز"),
         "account": MessageLookupByLibrary.simpleMessage("الحساب"),
         "accountHolderName":
-            MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
+        MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
         "addAsideCamesPitch": MessageLookupByLibrary.simpleMessage("أضف ملعبك"),
         "addNewCard": MessageLookupByLibrary.simpleMessage("إضافة بطاقة جديدة"),
@@ -40,39 +41,41 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNewPitch": MessageLookupByLibrary.simpleMessage("أضف ملعب جديد"),
         "addPitch": MessageLookupByLibrary.simpleMessage("اضافة ملعب"),
         "addPitchDetails":
-            MessageLookupByLibrary.simpleMessage("إضافة تفاصيل الملعب الجديد"),
+        MessageLookupByLibrary.simpleMessage("إضافة تفاصيل الملعب الجديد"),
         "addPitchImage":
-            MessageLookupByLibrary.simpleMessage("أضف صورة الملعب"),
+        MessageLookupByLibrary.simpleMessage("أضف صورة الملعب"),
         "addPlayerC": MessageLookupByLibrary.simpleMessage("إضافة لاعب"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("أضف لاعبين"),
         "addSession": MessageLookupByLibrary.simpleMessage("أضف الجلسة"),
         "addanotherdocument":
-            MessageLookupByLibrary.simpleMessage("أضف مستندًا آخر"),
+        MessageLookupByLibrary.simpleMessage("أضف مستندًا آخر"),
         "addnewpitchdetails":
-            MessageLookupByLibrary.simpleMessage("أضف تفاصيل ملعب جديد"),
+        MessageLookupByLibrary.simpleMessage("أضف تفاصيل ملعب جديد"),
         "addpitchtoyourfavorites":
-            MessageLookupByLibrary.simpleMessage("أضف الملعب إلى مفضلاتك"),
+        MessageLookupByLibrary.simpleMessage("أضف الملعب إلى مفضلاتك"),
         "addreviewspitchyouhaveplayedon":
-            MessageLookupByLibrary.simpleMessage("أضف تعليقاتك."),
+        MessageLookupByLibrary.simpleMessage("أضف تعليقاتك."),
         "addto": MessageLookupByLibrary.simpleMessage("أضف إلى"),
         "addyourexperienceforthepitchesyouhaveplayedupon":
-            MessageLookupByLibrary.simpleMessage(
-                "أضف خبرتك للملاعب التي لعبت عليها."),
+        MessageLookupByLibrary.simpleMessage(
+            "أضف خبرتك للملاعب التي لعبت عليها."),
         "ago": MessageLookupByLibrary.simpleMessage("منذ"),
         "Help": MessageLookupByLibrary.simpleMessage("يساعد"),
         "language,theme":
-            MessageLookupByLibrary.simpleMessage("اللغة والموضوع والتكوين"),
+        MessageLookupByLibrary.simpleMessage("اللغة والموضوع والتكوين"),
         "name,email": MessageLookupByLibrary.simpleMessage(
             "الاسم، البريد الإلكتروني، الهاتف، الموقع"),
         "booking,venue":
-            MessageLookupByLibrary.simpleMessage("الحجز والأماكن والبطولات"),
+        MessageLookupByLibrary.simpleMessage("الحجز والأماكن والبطولات"),
         "legalInformation":
-            MessageLookupByLibrary.simpleMessage("المعلومات القانونية"),
+        MessageLookupByLibrary.simpleMessage("المعلومات القانونية"),
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "am": MessageLookupByLibrary.simpleMessage("ص"),
         "amongstAvailableSlotUnavailable": MessageLookupByLibrary.simpleMessage(
             "يمكنك حجز التوقيت او جعله غير متاح."),
         "amount": MessageLookupByLibrary.simpleMessage("مقدار"),
+        "eventTitle": MessageLookupByLibrary.simpleMessage("الأحداث"),
+        "academy": MessageLookupByLibrary.simpleMessage("الأكاديميات"),
         "groundList": MessageLookupByLibrary.simpleMessage("القائمة الأرضية"),
         "bookGround": MessageLookupByLibrary.simpleMessage("الحجز ارض"),
         "popular": MessageLookupByLibrary.simpleMessage("ميزاتنا الشعبية"),
@@ -93,14 +96,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourProfile": MessageLookupByLibrary.simpleMessage("ملفك الشخصي"),
         "darkMode": MessageLookupByLibrary.simpleMessage("الوضع المظلم"),
         "asyourpitchhasnotbeenverifiedyet":
-            MessageLookupByLibrary.simpleMessage(
-                "لأن ملعبك لم يتم التحقق منه بعد."),
+        MessageLookupByLibrary.simpleMessage(
+            "لأن ملعبك لم يتم التحقق منه بعد."),
         "available": MessageLookupByLibrary.simpleMessage("متاح"),
         "availablePlayers":
-            MessageLookupByLibrary.simpleMessage("اللاعبين المتاحين"),
+        MessageLookupByLibrary.simpleMessage("اللاعبين المتاحين"),
         "availableSlots": MessageLookupByLibrary.simpleMessage("فتحات متاحة"),
         "bankDetails":
-            MessageLookupByLibrary.simpleMessage("تفاصيل الحساب البنكي"),
+        MessageLookupByLibrary.simpleMessage("تفاصيل الحساب البنكي"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
         "bookNowS": MessageLookupByLibrary.simpleMessage("احجز الآن"),
         "bookPitch": MessageLookupByLibrary.simpleMessage("احجز ملعباًً"),
@@ -114,27 +117,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookingSummaryC": MessageLookupByLibrary.simpleMessage("ملخص الكتاب"),
         "bookingUser": MessageLookupByLibrary.simpleMessage("حجز اللاعب"),
         "bookingpricefortheTournament":
-            MessageLookupByLibrary.simpleMessage("سعر الحجز للبطولة"),
+        MessageLookupByLibrary.simpleMessage("سعر الحجز للبطولة"),
         "bookingpricefortheleague":
-            MessageLookupByLibrary.simpleMessage("سعر الحجز للدوري"),
+        MessageLookupByLibrary.simpleMessage("سعر الحجز للدوري"),
         "bookingpriceleague":
-            MessageLookupByLibrary.simpleMessage("سعر الحجز للدوري"),
+        MessageLookupByLibrary.simpleMessage("سعر الحجز للدوري"),
         "both": MessageLookupByLibrary.simpleMessage("كلاهما"),
         "buildTahaddi":
-            MessageLookupByLibrary.simpleMessage("ابحث عن لاعبين حولك "),
+        MessageLookupByLibrary.simpleMessage("ابحث عن لاعبين حولك "),
         "bysigningupTahaddi": MessageLookupByLibrary.simpleMessage(
             "بالتسجيل في تحدي فإنك توافق على"),
         "calendar": MessageLookupByLibrary.simpleMessage("التقويم"),
         "calendarPermission":
-            MessageLookupByLibrary.simpleMessage("إذن التقويم"),
+        MessageLookupByLibrary.simpleMessage("إذن التقويم"),
         "callus": MessageLookupByLibrary.simpleMessage("تواصلوا معنا"),
         "cameraPermission":
-            MessageLookupByLibrary.simpleMessage("إذن الكاميرا"),
+        MessageLookupByLibrary.simpleMessage("إذن الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "cancelRequest": MessageLookupByLibrary.simpleMessage("إلغاء طلب"),
         "canceled": MessageLookupByLibrary.simpleMessage("ألغيت"),
         "cancellationPolicy":
-            MessageLookupByLibrary.simpleMessage("5. سياسة الإلغاء"),
+        MessageLookupByLibrary.simpleMessage("5. سياسة الإلغاء"),
         "cancellationPolicyDes": MessageLookupByLibrary.simpleMessage(
             "في حالة الإلغاء الذي يتم إجراؤه قبل 48 ساعة أو أكثر من تاريخ الحجز ، سيتم استرداد 100٪ من المبلغ المدفوع. الإلغاءات التي تتم في غضون 24 ساعة لن يتم استردادها"),
         "cancellationsMadeWithin": MessageLookupByLibrary.simpleMessage(
@@ -143,28 +146,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "captainC": MessageLookupByLibrary.simpleMessage("كابتن"),
         "captainName": MessageLookupByLibrary.simpleMessage("اسم الكابتن"),
         "cardHolderNumber":
-            MessageLookupByLibrary.simpleMessage("اسم صاحب البطاقة"),
+        MessageLookupByLibrary.simpleMessage("اسم صاحب البطاقة"),
         "cardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
         "cardNumberC": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
         "challengeTeam": MessageLookupByLibrary.simpleMessage("تحدى فريق"),
         "changeImage": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
         "changePhoto":
-            MessageLookupByLibrary.simpleMessage("غير الصورة الشخصية"),
+        MessageLookupByLibrary.simpleMessage("غير الصورة الشخصية"),
         "changepassword":
-            MessageLookupByLibrary.simpleMessage("تغيير كلمة السر"),
+        MessageLookupByLibrary.simpleMessage("تغيير كلمة السر"),
         "changepasswordC":
-            MessageLookupByLibrary.simpleMessage("تغيير كلمة السر"),
+        MessageLookupByLibrary.simpleMessage("تغيير كلمة السر"),
         "chooseAccount": MessageLookupByLibrary.simpleMessage("من انت؟"),
         "chooseFacilitiesProvided":
-            MessageLookupByLibrary.simpleMessage("اختر المرافق المراد توفيرها"),
+        MessageLookupByLibrary.simpleMessage("اختر المرافق المراد توفيرها"),
         "chooseLocation": MessageLookupByLibrary.simpleMessage("اختر موقعك"),
         "chooseYourTeam": MessageLookupByLibrary.simpleMessage("اختر فريقك"),
         "choosedateofbirth":
-            MessageLookupByLibrary.simpleMessage("حدد تاريخ الميلاد"),
+        MessageLookupByLibrary.simpleMessage("حدد تاريخ الميلاد"),
         "choosefromlibrary":
-            MessageLookupByLibrary.simpleMessage("آلبوم الصور"),
+        MessageLookupByLibrary.simpleMessage("آلبوم الصور"),
         "chooseteamlogo":
-            MessageLookupByLibrary.simpleMessage("اختر لوقو الفريق"),
+        MessageLookupByLibrary.simpleMessage("اختر لوقو الفريق"),
         "chooseyoursport": MessageLookupByLibrary.simpleMessage("إختر رياضتك"),
         "clear": MessageLookupByLibrary.simpleMessage("صافي"),
         "clickEndTime": MessageLookupByLibrary.simpleMessage(
@@ -177,13 +180,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "closedHours": MessageLookupByLibrary.simpleMessage("ساعات مغلقة"),
         "code": MessageLookupByLibrary.simpleMessage("كود"),
         "commentForThisPitch":
-            MessageLookupByLibrary.simpleMessage("التعليقات على هذا الملعب"),
+        MessageLookupByLibrary.simpleMessage("التعليقات على هذا الملعب"),
         "commissionPayment":
-            MessageLookupByLibrary.simpleMessage("3. العمولة والدفع"),
+        MessageLookupByLibrary.simpleMessage("3. العمولة والدفع"),
         "commissionPaymentDes": MessageLookupByLibrary.simpleMessage(
             "سوف تتقاضى شركة تحدي 15٪ لكل حجز كعمولة على خدماتها من مالك الملعب. سيتم خصم عمولة Tahadde تلقائيًا من الحجز وسيتم تحويل المبلغ المتبقي إلى مالك الملعب بناءً على المدة المتفق عليها وهي 7 أيام أو فترة أقصاها 30 يومًا حسب مالك الملعب."),
         "confermpassword":
-            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirm": MessageLookupByLibrary.simpleMessage("تآكيد"),
         "contactNumber": MessageLookupByLibrary.simpleMessage("رقم الاتصال"),
         "contacts": MessageLookupByLibrary.simpleMessage("جهات الاتصال"),
@@ -194,31 +197,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "createLeague": MessageLookupByLibrary.simpleMessage("أنشئ الدوري"),
         "createSession": MessageLookupByLibrary.simpleMessage("إنشاء الجلسة"),
         "createSlotDuration":
-            MessageLookupByLibrary.simpleMessage("إنشاء مدة الحجز"),
+        MessageLookupByLibrary.simpleMessage("إنشاء مدة الحجز"),
         "createTeam":
-            MessageLookupByLibrary.simpleMessage("قم بإنشاء فريقك الخاص"),
+        MessageLookupByLibrary.simpleMessage("قم بإنشاء فريقك الخاص"),
         "createTeamC": MessageLookupByLibrary.simpleMessage("ابدا الان"),
         "createTeamNow":
-            MessageLookupByLibrary.simpleMessage("إنشاء فريق الآن"),
+        MessageLookupByLibrary.simpleMessage("إنشاء فريق الآن"),
         "createTournament": MessageLookupByLibrary.simpleMessage("أنشئ بطولة"),
         "createYourAccount":
-            MessageLookupByLibrary.simpleMessage("انشئ حساب جديد"),
+        MessageLookupByLibrary.simpleMessage("انشئ حساب جديد"),
         "createYourLeagueHere":
-            MessageLookupByLibrary.simpleMessage("اضغط لإنشاء الدوري"),
+        MessageLookupByLibrary.simpleMessage("اضغط لإنشاء الدوري"),
         "createYourOwnChallenge":
-            MessageLookupByLibrary.simpleMessage("اصنع تحديك الخاص"),
+        MessageLookupByLibrary.simpleMessage("اصنع تحديك الخاص"),
         "createYourOwnTeam":
-            MessageLookupByLibrary.simpleMessage("قم بإنشاء فريقك الخاص"),
+        MessageLookupByLibrary.simpleMessage("قم بإنشاء فريقك الخاص"),
         "createYourTournamentHere":
-            MessageLookupByLibrary.simpleMessage("اضغط لإنشاء البطولة"),
+        MessageLookupByLibrary.simpleMessage("اضغط لإنشاء البطولة"),
         "createyourteam": MessageLookupByLibrary.simpleMessage("أنشئ فريقك"),
         "credit":
-            MessageLookupByLibrary.simpleMessage("بطاقة الائتمان / الخصم"),
+        MessageLookupByLibrary.simpleMessage("بطاقة الائتمان / الخصم"),
         "currency": MessageLookupByLibrary.simpleMessage("د.إ"),
         "currentPlayers":
-            MessageLookupByLibrary.simpleMessage("اللاعبين الحاليين"),
+        MessageLookupByLibrary.simpleMessage("اللاعبين الحاليين"),
         "currentpassword":
-            MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية"),
+        MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية"),
         "dateTime": MessageLookupByLibrary.simpleMessage("التاريخ والوقت"),
         "dateofBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "day": MessageLookupByLibrary.simpleMessage("يوم"),
@@ -228,48 +231,48 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("وصف"),
         "descriptionA": MessageLookupByLibrary.simpleMessage("الوصف (عربي)"),
         "descriptionEnglish":
-            MessageLookupByLibrary.simpleMessage("وصف الملعب بالإنجليزي"),
+        MessageLookupByLibrary.simpleMessage("وصف الملعب بالإنجليزي"),
         "descriptionS": MessageLookupByLibrary.simpleMessage("وصف"),
         "descriptioninArabic":
-            MessageLookupByLibrary.simpleMessage("وصف الملعب بالعربي"),
+        MessageLookupByLibrary.simpleMessage("وصف الملعب بالعربي"),
         "document": MessageLookupByLibrary.simpleMessage("وثيقة"),
         "documentName": MessageLookupByLibrary.simpleMessage("اسم الملف"),
         "documents": MessageLookupByLibrary.simpleMessage("مستندات"),
         "done": MessageLookupByLibrary.simpleMessage("منجز"),
         "doyouwanttoleaveteam":
-            MessageLookupByLibrary.simpleMessage("هل تريد مغادرة الفريق"),
+        MessageLookupByLibrary.simpleMessage("هل تريد مغادرة الفريق"),
         "editProfile":
-            MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+        MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "editcard":
-            MessageLookupByLibrary.simpleMessage("تعديل تفاصيل البطاقة"),
+        MessageLookupByLibrary.simpleMessage("تعديل تفاصيل البطاقة"),
         "editdatetime":
-            MessageLookupByLibrary.simpleMessage("تحرير التاريخ والوقت"),
+        MessageLookupByLibrary.simpleMessage("تحرير التاريخ والوقت"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailhasbeensent":
-            MessageLookupByLibrary.simpleMessage("تم ارسال البريد الالكتروني"),
+        MessageLookupByLibrary.simpleMessage("تم ارسال البريد الالكتروني"),
         "end": MessageLookupByLibrary.simpleMessage("نهاية"),
         "endDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
         "endDateC": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
         "endTime": MessageLookupByLibrary.simpleMessage("وقت النهاية"),
         "enterCode": MessageLookupByLibrary.simpleMessage("ادخل الرمز"),
         "enterYourDetails":
-            MessageLookupByLibrary.simpleMessage("أدخل التفاصيل الخاصة بك"),
+        MessageLookupByLibrary.simpleMessage("أدخل التفاصيل الخاصة بك"),
         "enteringwithtahadditeam":
-            MessageLookupByLibrary.simpleMessage("اشترك مع فريق تحدي"),
+        MessageLookupByLibrary.simpleMessage("اشترك مع فريق تحدي"),
         "enterthedigitcodewhichsentonregisteredphonenumber":
-            MessageLookupByLibrary.simpleMessage(
-                "أدخل الرمز المكون من 6 أرقام الذي تم إرساله إلى الرقم المسجل"),
+        MessageLookupByLibrary.simpleMessage(
+            "أدخل الرمز المكون من 6 أرقام الذي تم إرساله إلى الرقم المسجل"),
         "events": MessageLookupByLibrary.simpleMessage("بطولات"),
         "expiryDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء "),
         "expiryDocumentDate":
-            MessageLookupByLibrary.simpleMessage("تاريخ انتهاء الوثيقة "),
+        MessageLookupByLibrary.simpleMessage("تاريخ انتهاء الوثيقة "),
         "expriyDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
         "extraGraceTime": MessageLookupByLibrary.simpleMessage("وقت اضافي "),
         "facilitiesProvided":
-            MessageLookupByLibrary.simpleMessage("المرافق المتوفرة"),
+        MessageLookupByLibrary.simpleMessage("المرافق المتوفرة"),
         "facility": MessageLookupByLibrary.simpleMessage("موقع"),
         "facilityProvided":
-            MessageLookupByLibrary.simpleMessage("الخدمات المتوفرة"),
+        MessageLookupByLibrary.simpleMessage("الخدمات المتوفرة"),
         "filter": MessageLookupByLibrary.simpleMessage("تصفية"),
         "filterBy": MessageLookupByLibrary.simpleMessage("مصنف بواسطة"),
         "finish": MessageLookupByLibrary.simpleMessage("إنهاء"),
@@ -277,23 +280,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الاول"),
         "football": MessageLookupByLibrary.simpleMessage("كرة القدم"),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرو؟"),
+        MessageLookupByLibrary.simpleMessage("نسيت كلمة المرو؟"),
         "friday": MessageLookupByLibrary.simpleMessage("جمعة"),
         "galleryPermission": MessageLookupByLibrary.simpleMessage("إذن المعرض"),
         "game": MessageLookupByLibrary.simpleMessage("مباراة"),
         "gamePlayed": MessageLookupByLibrary.simpleMessage("لعبت المباراة"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "getDirection":
-            MessageLookupByLibrary.simpleMessage("احصل على الاتجاهات"),
+        MessageLookupByLibrary.simpleMessage("احصل على الاتجاهات"),
         "gotoHomepage":
-            MessageLookupByLibrary.simpleMessage("انتقل إلى الصفحة الرئيسية"),
+        MessageLookupByLibrary.simpleMessage("انتقل إلى الصفحة الرئيسية"),
         "gotoLoginPage": MessageLookupByLibrary.simpleMessage(
             "انتقل إلى صفحة تسجيل الدخول!"),
         "grandTotal": MessageLookupByLibrary.simpleMessage("المجموع"),
         "hasrequestedtojointheteam":
-            MessageLookupByLibrary.simpleMessage(" يدعوك للانضمام الى الفريق"),
+        MessageLookupByLibrary.simpleMessage(" يدعوك للانضمام الى الفريق"),
         "hasrequestedyoutojoin":
-            MessageLookupByLibrary.simpleMessage("لقد طلب منك الانضمام"),
+        MessageLookupByLibrary.simpleMessage("لقد طلب منك الانضمام"),
         "holiday": MessageLookupByLibrary.simpleMessage("إجازة"),
         "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "iAgree": MessageLookupByLibrary.simpleMessage("أنا أوافق على"),
@@ -304,9 +307,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "instagram": MessageLookupByLibrary.simpleMessage("انستقرام"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("الرمز غير صحيح"),
         "invalidEmail":
-            MessageLookupByLibrary.simpleMessage("البريد الالكتروني غير صحيح!"),
+        MessageLookupByLibrary.simpleMessage("البريد الالكتروني غير صحيح!"),
         "invalidOTPCode":
-            MessageLookupByLibrary.simpleMessage("الرمز غير صحيح"),
+        MessageLookupByLibrary.simpleMessage("الرمز غير صحيح"),
         "invite": MessageLookupByLibrary.simpleMessage("يدعو"),
         "invitePlayers": MessageLookupByLibrary.simpleMessage("لاعبين مدعوين"),
         "jerseyColor": MessageLookupByLibrary.simpleMessage("لون جيرسي"),
@@ -327,7 +330,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "locationDes": MessageLookupByLibrary.simpleMessage(
             "يجب أن تكون الخدمات متاحة في جميع أنحاء دولة الإمارات العربية المتحدة وتتمتع الشركة بصلاحية تقديم الخدمات للجمهور داخل المنطقة المحددة."),
         "locationPermission":
-            MessageLookupByLibrary.simpleMessage("إذن الموقع"),
+        MessageLookupByLibrary.simpleMessage("إذن الموقع"),
         "locationText": MessageLookupByLibrary.simpleMessage("1. الموقع"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logincancelledbytheuser": MessageLookupByLibrary.simpleMessage(
@@ -336,9 +339,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "makechoice": MessageLookupByLibrary.simpleMessage("Make choice!"),
         "manageSlots":
-            MessageLookupByLibrary.simpleMessage("إدارة حجوزات الملعب"),
+        MessageLookupByLibrary.simpleMessage("إدارة حجوزات الملعب"),
         "markAsHoliday":
-            MessageLookupByLibrary.simpleMessage("وضع علامة الاجازة "),
+        MessageLookupByLibrary.simpleMessage("وضع علامة الاجازة "),
         "minimumMaximum14Characters": MessageLookupByLibrary.simpleMessage(
             "6 أحرف كحد أدنى و 14 حرفًا كحد أقصى"),
         "monday": MessageLookupByLibrary.simpleMessage("الاثنين"),
@@ -352,7 +355,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameA": MessageLookupByLibrary.simpleMessage("الاسم (عربي)"),
         "nameOnCard": MessageLookupByLibrary.simpleMessage("الاسم على البطاقة"),
         "nameoftheclosedhours":
-            MessageLookupByLibrary.simpleMessage("ساعات العمل "),
+        MessageLookupByLibrary.simpleMessage("ساعات العمل "),
         "needcreateaccountorlogin": MessageLookupByLibrary.simpleMessage(
             "للإنضمام الى الفريق يرجى انشاء حساب او تسجيل الدخول"),
         "newC": MessageLookupByLibrary.simpleMessage("جديد"),
@@ -361,27 +364,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("التالى"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noBookingsFound":
-            MessageLookupByLibrary.simpleMessage("لم يتم العثور على حجوزات"),
+        MessageLookupByLibrary.simpleMessage("لم يتم العثور على حجوزات"),
         "noInternetConnection":
-            MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
+        MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "noPlayerRequests":
-            MessageLookupByLibrary.simpleMessage("لا يوجد لاعبين قيد الانتظار"),
+        MessageLookupByLibrary.simpleMessage("لا يوجد لاعبين قيد الانتظار"),
         "noSlotsAvailable":
-            MessageLookupByLibrary.simpleMessage("لا توجد فترات زمنية متاحة"),
+        MessageLookupByLibrary.simpleMessage("لا توجد فترات زمنية متاحة"),
         "noVenuesAvailable":
-            MessageLookupByLibrary.simpleMessage("لا توجد اماكن متاحة"),
+        MessageLookupByLibrary.simpleMessage("لا توجد اماكن متاحة"),
         "noplayershavebeenaddedyet": MessageLookupByLibrary.simpleMessage(
             "لم يتم إضافة أي لاعبين حتى الآن"),
         "noplayershavebeenfoundnearyou":
-            MessageLookupByLibrary.simpleMessage("م يتم العثور على الاعبين"),
+        MessageLookupByLibrary.simpleMessage("م يتم العثور على الاعبين"),
         "notification": MessageLookupByLibrary.simpleMessage("إشعارات"),
         "notificationC": MessageLookupByLibrary.simpleMessage("تنبيهات"),
         "notificationDec":
-            MessageLookupByLibrary.simpleMessage("لا توجد إشعارات متاحة."),
+        MessageLookupByLibrary.simpleMessage("لا توجد إشعارات متاحة."),
         "noverifiedpitchyet":
-            MessageLookupByLibrary.simpleMessage("لم يتم التحقق من الملعب بعد"),
+        MessageLookupByLibrary.simpleMessage("لم يتم التحقق من الملعب بعد"),
         "numberplayerscompleteteam":
-            MessageLookupByLibrary.simpleMessage("عدد اللاعبين لإكمال الفريق"),
+        MessageLookupByLibrary.simpleMessage("عدد اللاعبين لإكمال الفريق"),
         "ofCompany": MessageLookupByLibrary.simpleMessage("للشركة"),
         "oftheTeam": MessageLookupByLibrary.simpleMessage("من الفريق "),
         "ok": MessageLookupByLibrary.simpleMessage("اوك"),
@@ -394,15 +397,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "paidTotal": MessageLookupByLibrary.simpleMessage("مجموع المدفوع"),
         "password": MessageLookupByLibrary.simpleMessage("كلمه المرور"),
         "passwordMismatch":
-            MessageLookupByLibrary.simpleMessage("كلمة السر غير متطابقة !!!"),
+        MessageLookupByLibrary.simpleMessage("كلمة السر غير متطابقة !!!"),
         "passwordhasbeenchanged":
-            MessageLookupByLibrary.simpleMessage("تم تغيير كلمة المرور"),
+        MessageLookupByLibrary.simpleMessage("تم تغيير كلمة المرور"),
         "passwordhasbeenreset":
-            MessageLookupByLibrary.simpleMessage("تم إعادة تعيين كلمة السر"),
+        MessageLookupByLibrary.simpleMessage("تم إعادة تعيين كلمة السر"),
         "payNow": MessageLookupByLibrary.simpleMessage("ادفع الآن"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "paymentSuccessful":
-            MessageLookupByLibrary.simpleMessage("تمت عملية الدفع بنجاح!"),
+        MessageLookupByLibrary.simpleMessage("تمت عملية الدفع بنجاح!"),
         "paymentSuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم الدفع بنجاح للمزيد من التفاصيل قم بعرض ملخص الحجز."),
         "paymentSummary": MessageLookupByLibrary.simpleMessage("ملخص الدفع"),
@@ -420,16 +423,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "pitchLocation": MessageLookupByLibrary.simpleMessage("موقع الملعب"),
         "pitchName": MessageLookupByLibrary.simpleMessage("اسم الملعب"),
         "pitchNameEnglish":
-            MessageLookupByLibrary.simpleMessage("اسم الملعب بالإنجليزي"),
+        MessageLookupByLibrary.simpleMessage("اسم الملعب بالإنجليزي"),
         "pitchOwner": MessageLookupByLibrary.simpleMessage("مالك الملعب"),
         "pitchOwnerDetails":
-            MessageLookupByLibrary.simpleMessage("تفاصيل صاحب الملعب"),
+        MessageLookupByLibrary.simpleMessage("تفاصيل صاحب الملعب"),
         "pitchOwnerS": MessageLookupByLibrary.simpleMessage("صاحب مكان"),
         "pitchTournament": MessageLookupByLibrary.simpleMessage(
             "صاحب ملعب؟ لا تحاتي انت في المكان الصحيح"),
         "pitchcontact": MessageLookupByLibrary.simpleMessage("اتصال الملعب"),
         "pitchnameinArabic":
-            MessageLookupByLibrary.simpleMessage("اسم الملعب بالعربي"),
+        MessageLookupByLibrary.simpleMessage("اسم الملعب بالعربي"),
         "play": MessageLookupByLibrary.simpleMessage("العب"),
         "player": MessageLookupByLibrary.simpleMessage("لاعب"),
         "playerPosition": MessageLookupByLibrary.simpleMessage("مركز اللاعب"),
@@ -443,61 +446,61 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnterNewPassword": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال كلمة المرور الجديدة لحسابك."),
         "pleaseenterAccountHolderName":
-            MessageLookupByLibrary.simpleMessage("ادخل رقم صاحب الحساب"),
+        MessageLookupByLibrary.simpleMessage("ادخل رقم صاحب الحساب"),
         "pleaseenterAccountNumber":
-            MessageLookupByLibrary.simpleMessage("ادخل رقم الحساب"),
+        MessageLookupByLibrary.simpleMessage("ادخل رقم الحساب"),
         "pleaseenterCurrentPassword":
-            MessageLookupByLibrary.simpleMessage("ادخل كلمة السر الحالية"),
+        MessageLookupByLibrary.simpleMessage("ادخل كلمة السر الحالية"),
         "pleaseenterDescription":
-            MessageLookupByLibrary.simpleMessage("ادخل مواصفات الملعب"),
+        MessageLookupByLibrary.simpleMessage("ادخل مواصفات الملعب"),
         "pleaseenterEmail":
-            MessageLookupByLibrary.simpleMessage("ادخل البريد الاكتروني"),
+        MessageLookupByLibrary.simpleMessage("ادخل البريد الاكتروني"),
         "pleaseenterFirstName":
-            MessageLookupByLibrary.simpleMessage("ادخل الاسم الأول"),
+        MessageLookupByLibrary.simpleMessage("ادخل الاسم الأول"),
         "pleaseenterIBANCode":
-            MessageLookupByLibrary.simpleMessage("ادخل رقم IBAN"),
+        MessageLookupByLibrary.simpleMessage("ادخل رقم IBAN"),
         "pleaseenterLastName":
-            MessageLookupByLibrary.simpleMessage("ادخل الاسم الأخير"),
+        MessageLookupByLibrary.simpleMessage("ادخل الاسم الأخير"),
         "pleaseenterNewPassword":
-            MessageLookupByLibrary.simpleMessage("ادخل كلمة السر الجديدة"),
+        MessageLookupByLibrary.simpleMessage("ادخل كلمة السر الجديدة"),
         "pleaseenterPassword":
-            MessageLookupByLibrary.simpleMessage("ادخل كلمة السر"),
+        MessageLookupByLibrary.simpleMessage("ادخل كلمة السر"),
         "pleaseenterPhoneNumber":
-            MessageLookupByLibrary.simpleMessage("ادخل رقم الهاتف"),
+        MessageLookupByLibrary.simpleMessage("ادخل رقم الهاتف"),
         "pleaseenterPitchName":
-            MessageLookupByLibrary.simpleMessage("ادخل اسم الملعب"),
+        MessageLookupByLibrary.simpleMessage("ادخل اسم الملعب"),
         "pleaseenterReviews":
-            MessageLookupByLibrary.simpleMessage("الرجاء إدخال التقييمات"),
+        MessageLookupByLibrary.simpleMessage("الرجاء إدخال التقييمات"),
         "pleaseenterTeamName":
-            MessageLookupByLibrary.simpleMessage("ادخل اسم فريقك"),
+        MessageLookupByLibrary.simpleMessage("ادخل اسم فريقك"),
         "pleaseentercardholdername":
-            MessageLookupByLibrary.simpleMessage("ادخل اسم حامل البطاقة"),
+        MessageLookupByLibrary.simpleMessage("ادخل اسم حامل البطاقة"),
         "pleaseentercardnumber":
-            MessageLookupByLibrary.simpleMessage("ادخل رقم البطاقة"),
+        MessageLookupByLibrary.simpleMessage("ادخل رقم البطاقة"),
         "pleaseentercomment":
-            MessageLookupByLibrary.simpleMessage("ادخل تعليق"),
+        MessageLookupByLibrary.simpleMessage("ادخل تعليق"),
         "pleaseentercvvnumber":
-            MessageLookupByLibrary.simpleMessage("ادخل رقم cvv"),
+        MessageLookupByLibrary.simpleMessage("ادخل رقم cvv"),
         "pleaseentername": MessageLookupByLibrary.simpleMessage("ادخل الاسم"),
         "pleaseenterprice": MessageLookupByLibrary.simpleMessage("ادخل السعر"),
         "pleaseentervaliditydate":
-            MessageLookupByLibrary.simpleMessage("ادخل تاريخ انتهاء البطاقة"),
+        MessageLookupByLibrary.simpleMessage("ادخل تاريخ انتهاء البطاقة"),
         "pleaseentervaliditymonth":
-            MessageLookupByLibrary.simpleMessage("الرجاء إدخال الشهر"),
+        MessageLookupByLibrary.simpleMessage("الرجاء إدخال الشهر"),
         "pleaseselectDateofBirth":
-            MessageLookupByLibrary.simpleMessage("الرجاء تحديد تاريخ الميلاد"),
+        MessageLookupByLibrary.simpleMessage("الرجاء تحديد تاريخ الميلاد"),
         "pleaseselectgender":
-            MessageLookupByLibrary.simpleMessage("الرجاء التحديدالجنس"),
+        MessageLookupByLibrary.simpleMessage("الرجاء التحديدالجنس"),
         "pleaseselectnewcaptain":
-            MessageLookupByLibrary.simpleMessage("الرجاء تحديد كابتن جديد"),
+        MessageLookupByLibrary.simpleMessage("الرجاء تحديد كابتن جديد"),
         "pleaseselectyourfield":
-            MessageLookupByLibrary.simpleMessage("اختر ملعبك"),
+        MessageLookupByLibrary.simpleMessage("اختر ملعبك"),
         "pm": MessageLookupByLibrary.simpleMessage("م"),
         "prev": MessageLookupByLibrary.simpleMessage("السابق"),
         "previous": MessageLookupByLibrary.simpleMessage("السابق"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "pricePerPlayer":
-            MessageLookupByLibrary.simpleMessage("السعر لكل لاعب"),
+        MessageLookupByLibrary.simpleMessage("السعر لكل لاعب"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة خاصة."),
         "proceed": MessageLookupByLibrary.simpleMessage("متابعة"),
         "processing": MessageLookupByLibrary.simpleMessage("قيد المراجعة"),
@@ -508,30 +511,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "profileDecfirst": MessageLookupByLibrary.simpleMessage(
             "يرجى تسجيل الدخول أو إنشاء حساب جديد"),
         "profileDecsecond":
-            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "rateApp": MessageLookupByLibrary.simpleMessage("قيم التطبيق"),
         "ratepitchafteryourgame":
-            MessageLookupByLibrary.simpleMessage("لا توجد تقييمات"),
+        MessageLookupByLibrary.simpleMessage("لا توجد تقييمات"),
         "ratethepitch": MessageLookupByLibrary.simpleMessage("قيم الملعب"),
         "ratingsReviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
         "rebook": MessageLookupByLibrary.simpleMessage("إعادة الحجز"),
         "refer": MessageLookupByLibrary.simpleMessage("ادعوا لاعبا و اكسب"),
         "registeredTeam": MessageLookupByLibrary.simpleMessage("الفرق المسجلة"),
         "registeredTeamC":
-            MessageLookupByLibrary.simpleMessage("الفرق المسجلة"),
+        MessageLookupByLibrary.simpleMessage("الفرق المسجلة"),
         "reject": MessageLookupByLibrary.simpleMessage("رفض"),
         "rejected": MessageLookupByLibrary.simpleMessage("مرفوض"),
         "rejectedPitch": MessageLookupByLibrary.simpleMessage("ملعب مرفوض"),
         "remove": MessageLookupByLibrary.simpleMessage("إزالة"),
         "removeCard": MessageLookupByLibrary.simpleMessage("قم بإزالة البطاقة"),
         "requestjointeam":
-            MessageLookupByLibrary.simpleMessage("طلب الانضمام إلى الفريق"),
+        MessageLookupByLibrary.simpleMessage("طلب الانضمام إلى الفريق"),
         "resendOTP":
-            MessageLookupByLibrary.simpleMessage("إعادة إرسال رمز المرور"),
+        MessageLookupByLibrary.simpleMessage("إعادة إرسال رمز المرور"),
         "resetPassword":
-            MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
+        MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
         "responsibilities":
-            MessageLookupByLibrary.simpleMessage("2. المسؤوليات"),
+        MessageLookupByLibrary.simpleMessage("2. المسؤوليات"),
         "responsibilitiesDes": MessageLookupByLibrary.simpleMessage(
             "من واجب مالكي الملعب واللاعبين الراغبين في الحصول على الخدمات من التطبيق أن يتصرفوا باجتهاد مناسب ، .وأن يلتزموا بالوقت المناسب بالإضافة إلى الجهد لأداء الواجبات من المهم الحفاظ على المعرفة العملية والتكنولوجية .فيما يتعلق بالخدمات يجب على الشخص الذي يتلقى الخدمات الحفاظ على الاتصالات المناسبة المتعلقة بالخدمات."),
         "review": MessageLookupByLibrary.simpleMessage("مراجعة"),
@@ -541,45 +544,45 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveCards": MessageLookupByLibrary.simpleMessage("البطاقات المحفوظة"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
         "savePaymentMethod":
-            MessageLookupByLibrary.simpleMessage("حفظ طرق الدفع"),
+        MessageLookupByLibrary.simpleMessage("حفظ طرق الدفع"),
         "savePaymentMethods":
-            MessageLookupByLibrary.simpleMessage("حفظ طرق الدفع"),
+        MessageLookupByLibrary.simpleMessage("حفظ طرق الدفع"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "searchC": MessageLookupByLibrary.simpleMessage("بحث"),
         "searchlocationorevent":
-            MessageLookupByLibrary.simpleMessage("البحث عن موقع أو حدث"),
+        MessageLookupByLibrary.simpleMessage("البحث عن موقع أو حدث"),
         "searchplayerstahaddi":
-            MessageLookupByLibrary.simpleMessage("ابحث عن لاعبين في تحدي"),
+        MessageLookupByLibrary.simpleMessage("ابحث عن لاعبين في تحدي"),
         "securelySave":
-            MessageLookupByLibrary.simpleMessage("حفظ تفاصيل البطاقة بشكل آمن"),
+        MessageLookupByLibrary.simpleMessage("حفظ تفاصيل البطاقة بشكل آمن"),
         "select": MessageLookupByLibrary.simpleMessage("تحديد"),
         "selectAsidePitchLeague":
-            MessageLookupByLibrary.simpleMessage("حدد الملعب جانبا للدوري"),
+        MessageLookupByLibrary.simpleMessage("حدد الملعب جانبا للدوري"),
         "selectAsidePitchManageSlots":
-            MessageLookupByLibrary.simpleMessage("حدد الملعب لإدارة الحجوزات"),
+        MessageLookupByLibrary.simpleMessage("حدد الملعب لإدارة الحجوزات"),
         "selectAsidePitchTournament":
-            MessageLookupByLibrary.simpleMessage("حدد جانبا الملعب للبطولة"),
+        MessageLookupByLibrary.simpleMessage("حدد جانبا الملعب للبطولة"),
         "selectLocation": MessageLookupByLibrary.simpleMessage("حدد موقعك"),
         "selectPaymentMethod":
-            MessageLookupByLibrary.simpleMessage("اختر طريقة الدفع"),
+        MessageLookupByLibrary.simpleMessage("اختر طريقة الدفع"),
         "selectPitchTournament":
-            MessageLookupByLibrary.simpleMessage("حدد الملعب للبطولة"),
+        MessageLookupByLibrary.simpleMessage("حدد الملعب للبطولة"),
         "selectPitchType":
-            MessageLookupByLibrary.simpleMessage("حدد نوع الملعب"),
+        MessageLookupByLibrary.simpleMessage("حدد نوع الملعب"),
         "selectPlayerPosition":
-            MessageLookupByLibrary.simpleMessage("حدد مركز اللاعب"),
+        MessageLookupByLibrary.simpleMessage("حدد مركز اللاعب"),
         "selectUserType": MessageLookupByLibrary.simpleMessage(
             "حدد نوع المستخدم للمتابعة واستكشاف الملعب والألعاب"),
         "selected": MessageLookupByLibrary.simpleMessage("المحدد"),
         "selectnumberofplayer":
-            MessageLookupByLibrary.simpleMessage("حدد عدد اللاعبين للحجز"),
+        MessageLookupByLibrary.simpleMessage("حدد عدد اللاعبين للحجز"),
         "selectonefieldtoenterwithotherteam":
-            MessageLookupByLibrary.simpleMessage("اختر فريق التحدي الخاص بك"),
+        MessageLookupByLibrary.simpleMessage("اختر فريق التحدي الخاص بك"),
         "selectonefieldtoenterwithotheryourtahadditeam":
-            MessageLookupByLibrary.simpleMessage(
-                "املأ الحقول أدناه للدخول مع فريق آخر"),
+        MessageLookupByLibrary.simpleMessage(
+            "املأ الحقول أدناه للدخول مع فريق آخر"),
         "selecttypeofSport":
-            MessageLookupByLibrary.simpleMessage("اختر نوع الرياضة"),
+        MessageLookupByLibrary.simpleMessage("اختر نوع الرياضة"),
         "selectyourfield": MessageLookupByLibrary.simpleMessage("حدد الملعب "),
         "send": MessageLookupByLibrary.simpleMessage("إرسال"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("راسلنا"),
@@ -612,12 +615,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "startTime": MessageLookupByLibrary.simpleMessage("وقت البدء"),
         "subTotal": MessageLookupByLibrary.simpleMessage("المبلغ الاجمالي"),
         "subVenueName":
-            MessageLookupByLibrary.simpleMessage("اسم المكان الفرعي"),
+        MessageLookupByLibrary.simpleMessage("اسم المكان الفرعي"),
         "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
         "submitS": MessageLookupByLibrary.simpleMessage("إرسال"),
         "sunday": MessageLookupByLibrary.simpleMessage("الأحد"),
         "tahaddeAgreement":
-            MessageLookupByLibrary.simpleMessage("اتفاقية تحدي"),
+        MessageLookupByLibrary.simpleMessage("اتفاقية تحدي"),
         "tahaddi": MessageLookupByLibrary.simpleMessage("تحدي"),
         "morning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
         "takephoto": MessageLookupByLibrary.simpleMessage("التقط صورة"),
@@ -629,12 +632,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "teamName": MessageLookupByLibrary.simpleMessage("اسم الفريق"),
         "teaminTahaddi": MessageLookupByLibrary.simpleMessage("فريق في تحدي"),
         "teamnotTahaddi":
-            MessageLookupByLibrary.simpleMessage("فريق ليس في تحدي"),
+        MessageLookupByLibrary.simpleMessage("فريق ليس في تحدي"),
         "teamplayers":
-            MessageLookupByLibrary.simpleMessage("اللاعبين في الفريق"),
+        MessageLookupByLibrary.simpleMessage("اللاعبين في الفريق"),
         "term": MessageLookupByLibrary.simpleMessage(" الشروط و الأحكام "),
         "termTermination":
-            MessageLookupByLibrary.simpleMessage("4. المدة والإنهاء"),
+        MessageLookupByLibrary.simpleMessage("4. المدة والإنهاء"),
         "termTerminationDes": MessageLookupByLibrary.simpleMessage(
             "يجب على مالكي الملعب إدراج أراضيهم في تطبيق الهاتف المتحرك تحدي. لن يتم تحصيل أي عمولة من مالك الملعب في أول 30 يومًا من التسجيل. ستعمل تحدي فقط كمنصة تقدم الخدمات لكل من مالكي الملاعب واللاعبين. يتحمل مالكو الملعب وحدهم مسؤولية حجز الملاعب. تحدي ليست مسؤولة في حال وجود أي تعارض مع الحجوزات. تقع المسؤولية على عاتق المالكين."),
         "termsofUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
@@ -656,14 +659,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "لحجز مكان يرجى إنشاء حساب أو تسجيل الدخول"),
         "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "tokenhasbeenExpired":
-            MessageLookupByLibrary.simpleMessage("انتهت صلاحية الرمز"),
+        MessageLookupByLibrary.simpleMessage("انتهت صلاحية الرمز"),
         "toremovethecard":
-            MessageLookupByLibrary.simpleMessage("لإزالة البطاقة"),
+        MessageLookupByLibrary.simpleMessage("لإزالة البطاقة"),
         "totalTeamParticipate": MessageLookupByLibrary.simpleMessage(
             "مجموع الفرق التي يمكنها المشاركة"),
         "tournament": MessageLookupByLibrary.simpleMessage("البطولة"),
         "tournamentDetails":
-            MessageLookupByLibrary.simpleMessage("تفاصيل البطولة"),
+        MessageLookupByLibrary.simpleMessage("تفاصيل البطولة"),
         "tournamentName": MessageLookupByLibrary.simpleMessage("اسم البطولة"),
         "tranjectionId": MessageLookupByLibrary.simpleMessage("رقم المعاملة"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
@@ -671,17 +674,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeofSports": MessageLookupByLibrary.simpleMessage("نوع الرياضة"),
         "unavailable": MessageLookupByLibrary.simpleMessage("غير متاح"),
         "unavailableSlots":
-            MessageLookupByLibrary.simpleMessage("فتحات غير متاحة"),
+        MessageLookupByLibrary.simpleMessage("فتحات غير متاحة"),
         "undo": MessageLookupByLibrary.simpleMessage("الغاء"),
         "until": MessageLookupByLibrary.simpleMessage("حتى"),
         "uploadDocument": MessageLookupByLibrary.simpleMessage("حمل المستند"),
         "uploadImage": MessageLookupByLibrary.simpleMessage("تحميل الصورة"),
         "uploadPitchDocument":
-            MessageLookupByLibrary.simpleMessage("حمل مستند الملعب"),
+        MessageLookupByLibrary.simpleMessage("حمل مستند الملعب"),
         "uploadpitchimages":
-            MessageLookupByLibrary.simpleMessage("حمل صور الملعب"),
+        MessageLookupByLibrary.simpleMessage("حمل صور الملعب"),
         "uploadprofilepicture":
-            MessageLookupByLibrary.simpleMessage("حمل الصورة الشخصية"),
+        MessageLookupByLibrary.simpleMessage("حمل الصورة الشخصية"),
         "validity": MessageLookupByLibrary.simpleMessage("تاريخ الصلاحية "),
         "venueCreated": MessageLookupByLibrary.simpleMessage("إنشاء مكان"),
         "venueName": MessageLookupByLibrary.simpleMessage("اسم المكان"),
@@ -690,15 +693,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "verified": MessageLookupByLibrary.simpleMessage("معتمد"),
         "verifiedPitch": MessageLookupByLibrary.simpleMessage("ملعب معتمد"),
         "verifyMobile":
-            MessageLookupByLibrary.simpleMessage("تحقق من رقم هاتفك"),
+        MessageLookupByLibrary.simpleMessage("تحقق من رقم هاتفك"),
         "verifyOTP":
-            MessageLookupByLibrary.simpleMessage("تحقق من  رمز المرور"),
+        MessageLookupByLibrary.simpleMessage("تحقق من  رمز المرور"),
         "viewAll": MessageLookupByLibrary.simpleMessage("مشاهدة الكل"),
         "viewInterest":
-            MessageLookupByLibrary.simpleMessage("عرض الأماكن المفضلة لدي."),
+        MessageLookupByLibrary.simpleMessage("عرض الأماكن المفضلة لدي."),
         "viewMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
         "viewProfile":
-            MessageLookupByLibrary.simpleMessage("عرض الصفحة الشخصية"),
+        MessageLookupByLibrary.simpleMessage("عرض الصفحة الشخصية"),
         "viewTeam": MessageLookupByLibrary.simpleMessage("مشاهدة الفريق"),
         "viewbook": MessageLookupByLibrary.simpleMessage("عرض حجوزاتي."),
         "viewsavePaymentMethod": MessageLookupByLibrary.simpleMessage(
@@ -708,7 +711,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "walkHereTahaddi": MessageLookupByLibrary.simpleMessage(
             "عمرك فكرت انك تقدر تحجز ملعب،تشارك في بطولة أو دوري بضغطة وحدة بس؟ في تحدّي كل شي موجود في راحة ايدك."),
         "walkcreatePitch":
-            MessageLookupByLibrary.simpleMessage("أنشئ بطولات على ملعبك"),
+        MessageLookupByLibrary.simpleMessage("أنشئ بطولات على ملعبك"),
         "walkyouTahaddi": MessageLookupByLibrary.simpleMessage(
             "كوّن فريقك، \n ارسل لأصدقاءك طلبات انضمام لفريقك، \n ابحث عن لاعبين في منطقتك."),
         "wallets": MessageLookupByLibrary.simpleMessage("محافظ"),
@@ -717,9 +720,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "wednesday": MessageLookupByLibrary.simpleMessage("الأربعاء"),
         "whatsapp": MessageLookupByLibrary.simpleMessage("واتساب"),
         "withTahaddi":
-            MessageLookupByLibrary.simpleMessage("انضم مع فريقك \n في تحدي"),
+        MessageLookupByLibrary.simpleMessage("انضم مع فريقك \n في تحدي"),
         "withoutTahaddi":
-            MessageLookupByLibrary.simpleMessage(" انضم مع \n فريق اخر"),
+        MessageLookupByLibrary.simpleMessage(" انضم مع \n فريق اخر"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "yesterday": MessageLookupByLibrary.simpleMessage(" امس"),
         "youCanAdd": MessageLookupByLibrary.simpleMessage(
@@ -727,13 +730,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanBuild": MessageLookupByLibrary.simpleMessage(
             "لدينا منصة مخصصة لأصحاب الملاعب، يمكنك إدارة حجوزات ملاعبك، اقامة بطولات في خطوات بسيطة."),
         "youGoingDeleteAccount":
-            MessageLookupByLibrary.simpleMessage("ستحذف حسابك."),
+        MessageLookupByLibrary.simpleMessage("ستحذف حسابك."),
         "youGoingExit":
-            MessageLookupByLibrary.simpleMessage("الخروج من التطبيق!"),
+        MessageLookupByLibrary.simpleMessage("الخروج من التطبيق!"),
         "youGoingLogout": MessageLookupByLibrary.simpleMessage(
             "انت ذاهب الى الخروج من ملف التعريف الخاص بك!"),
         "youHaveBooked":
-            MessageLookupByLibrary.simpleMessage("لم تحجز أي ملعب."),
+        MessageLookupByLibrary.simpleMessage("لم تحجز أي ملعب."),
         "youHaveSuccessfully": MessageLookupByLibrary.simpleMessage(
             "لقد تم إعادة تعيين كلمة المرور بنجاح"),
         "youNeedChallenge": MessageLookupByLibrary.simpleMessage(
@@ -741,17 +744,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "youarecaptianoftheteamyoucreate": MessageLookupByLibrary.simpleMessage(
             "أنت كابتن الفريق الذي أنشأته"),
         "youarefacinganyissuespleaseemailuson":
-            MessageLookupByLibrary.simpleMessage(
-                " إذا كنت تواجه أي مشاكل يرجى مراسلتنا عبر البريد الإلكتروني"),
+        MessageLookupByLibrary.simpleMessage(
+            " إذا كنت تواجه أي مشاكل يرجى مراسلتنا عبر البريد الإلكتروني"),
         "youarelongermemberteam":
-            MessageLookupByLibrary.simpleMessage("لم تعد لاعبًا في هذا الفريق"),
+        MessageLookupByLibrary.simpleMessage("لم تعد لاعبًا في هذا الفريق"),
         "youcannotcreatea":
-            MessageLookupByLibrary.simpleMessage("لا يمكنك إنشاء ملف"),
+        MessageLookupByLibrary.simpleMessage("لا يمكنك إنشاء ملف"),
         "youcreateexistingteam": MessageLookupByLibrary.simpleMessage(
             "للإنضمام الى الفريق يرجى انشاء حساب او تسجيل الدخول"),
         "yourTahaddi": MessageLookupByLibrary.simpleMessage("تحدياتك"),
         "yourexperience": MessageLookupByLibrary.simpleMessage("خبرتك"),
         "yourteamhasbeensuccessfullycreated":
-            MessageLookupByLibrary.simpleMessage("تم إنشاء فريقك بنجاح")
+        MessageLookupByLibrary.simpleMessage("تم إنشاء فريقك بنجاح")
       };
 }

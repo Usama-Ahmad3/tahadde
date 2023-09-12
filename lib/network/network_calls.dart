@@ -1256,11 +1256,13 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
         "https://powerhouse.tahadde.ae/api/v1/bookpitch/pitchowner/pitch/player_available_pitches_list_details/?language=${prefs.get('lang')}";
-    if (urldetail != null) {
+    if (urldetail!.isNotEmpty) {
       url = "$url&sport_slug=$urldetail";
     }
     try {
-      response = await http.get(Uri.parse(url),
+      response = await http.get(
+          Uri.parse(
+              "https://powerhouse.tahadde.ae/api/v1/bookpitch/pitchowner/pitch/player_available_pitches_list_details/?language=en"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -1273,7 +1275,8 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
-      onFailure("Something went wrong");
+      onFailure("Something went wrong$e");
+      print(e);
     }
   }
 

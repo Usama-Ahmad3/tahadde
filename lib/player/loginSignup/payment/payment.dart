@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import 'package:myfatoorah_flutter/utils/MFCountry.dart';
 import 'package:myfatoorah_flutter/utils/MFEnvironment.dart';
@@ -8,6 +9,7 @@ import '../../../common_widgets/internet_loss.dart';
 import '../../../homeFile/routingConstant.dart';
 import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
+import '../../../main.dart';
 import '../../../modelClass/cardDetail.dart';
 import '../../../network/network_calls.dart';
 
@@ -154,17 +156,46 @@ class _PaymentState extends State<Payment> {
     var sizewidth = MediaQuery.of(context).size.width;
     return _isLoading
         ? Scaffold(
-            appBar: appBar(
-              title: AppLocalizations.of(context)!.selectPaymentMethod,
-              language: AppLocalizations.of(context)!.locale,
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+            backgroundColor: Colors.black,
+            appBar: PreferredSize(
+              preferredSize: Size(sizewidth, sizeheight * 0.13),
+              child: AppBar(
+                title: Text(
+                  AppLocalizations.of(context)!.selectPaymentMethod,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Colors.white),
+                ),
+                centerTitle: true,
+                backgroundColor: Colors.black,
+                leadingWidth: sizewidth * 0.18,
+                leading: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                      height: sizeheight * 0.004,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          shape: BoxShape.circle),
+                      child: Icon(
+                        AppLocalizations.of(context)!.locale == 'en'
+                            ? Icons.keyboard_arrow_left_sharp
+                            : Icons.keyboard_arrow_right,
+                        color: Colors.white,
+                      )),
+                ),
+              ),
             ),
             body: Container(
               height: sizeheight,
               width: sizewidth,
-              color: const Color(0XFFF0F0F0),
+              decoration: BoxDecoration(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? const Color(0XFFF0F0F0)
+                      : const Color(0xff686868),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
               child: Padding(
                   padding: EdgeInsets.only(
                       left: sizewidth * .05, right: sizewidth * .05),
@@ -190,184 +221,324 @@ class _PaymentState extends State<Payment> {
             ))
         : internet
             ? Scaffold(
-                appBar: appBar(
-                  title: AppLocalizations.of(context)!.selectPaymentMethod,
-                  language: AppLocalizations.of(context)!.locale,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                bottomNavigationBar: visibilityObs
-                    ? Container(
-                        height: sizeheight * .09,
-                        color: const Color(0XFF25A163),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
-                                  style: const TextStyle(
-                                      color: Color(0XFFFFFFFF), fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                _networkCalls.checkInternetConnectivity(
-                                    onSuccess: (msg) {
-                                  if (msg) {
-                                    setState(() {
-                                      _isLoading = true;
-                                    });
-                                    _networkCalls.checkInternetConnectivity(
-                                        onSuccess: (msg) {
-                                      if (msg) {
-                                        executeRegularPayment();
-                                      } else {
-                                        if (mounted) {
-                                          showMessage(
-                                              AppLocalizations.of(context)!
-                                                  .noInternetConnection);
-                                        }
-                                      }
-                                    });
-                                  } else {
-                                    if (mounted) {
-                                      showMessage(AppLocalizations.of(context)!
-                                          .noInternetConnection);
-                                    }
-                                  }
-                                });
-
-                                //navigateToDetail();
-                              },
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Color(0XFFFFFFFF),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5.0),
-                                    topRight: Radius.circular(5.0),
-                                    bottomLeft: Radius.circular(5.0),
-                                    bottomRight: Radius.circular(5.0),
-                                  ),
-                                ),
-                                height: sizeheight * .04,
-                                width: sizewidth * .3,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  AppLocalizations.of(context)!.payNow,
-                                  style:
-                                      const TextStyle(color: Color(0XFF25A163)),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    : Container(
-                        height: 1,
+                backgroundColor: Colors.black,
+                appBar: PreferredSize(
+                  preferredSize: Size(sizewidth, sizeheight * 0.13),
+                  child: AppBar(
+                    title: Text(
+                      AppLocalizations.of(context)!.selectPaymentMethod,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(color: Colors.white),
+                    ),
+                    centerTitle: true,
+                    backgroundColor: Colors.black,
+                    leadingWidth: sizewidth * 0.18,
+                    leading: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            height: sizeheight * 0.004,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              AppLocalizations.of(context)!.locale == 'en'
+                                  ? Icons.keyboard_arrow_left_sharp
+                                  : Icons.keyboard_arrow_right,
+                              color: Colors.white,
+                            )),
                       ),
+                    ),
+                  ),
+                ),
+                resizeToAvoidBottomInset: true,
+                // bottomNavigationBar: visibilityObs
+                //     ? ButtonWidget(
+                //         onTaped: () {},
+                //         title: Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //           crossAxisAlignment: CrossAxisAlignment.center,
+                //           children: <Widget>[
+                //             Column(
+                //               mainAxisAlignment: MainAxisAlignment.center,
+                //               children: <Widget>[
+                //                 Text(
+                //                   '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
+                //                   style: const TextStyle(
+                //                       color: Color(0XFFFFFFFF),
+                //                       fontSize: 20),
+                //                 ),
+                //               ],
+                //             ),
+                //             GestureDetector(
+                //               onTap: () {
+                //                 _networkCalls.checkInternetConnectivity(
+                //                     onSuccess: (msg) {
+                //                   if (msg) {
+                //                     setState(() {
+                //                       _isLoading = true;
+                //                     });
+                //                     _networkCalls.checkInternetConnectivity(
+                //                         onSuccess: (msg) {
+                //                       if (msg) {
+                //                         executeRegularPayment();
+                //                       } else {
+                //                         if (mounted) {
+                //                           showMessage(
+                //                               AppLocalizations.of(context)!
+                //                                   .noInternetConnection);
+                //                         }
+                //                       }
+                //                     });
+                //                   } else {
+                //                     if (mounted) {
+                //                       showMessage(
+                //                           AppLocalizations.of(context)!
+                //                               .noInternetConnection);
+                //                     }
+                //                   }
+                //                 });
+                //
+                //                 //navigateToDetail();
+                //               },
+                //               child: Container(
+                //                 decoration: const BoxDecoration(
+                //                   color: Color(0XFFFFFFFF),
+                //                   borderRadius: BorderRadius.only(
+                //                     topLeft: Radius.circular(5.0),
+                //                     topRight: Radius.circular(5.0),
+                //                     bottomLeft: Radius.circular(5.0),
+                //                     bottomRight: Radius.circular(5.0),
+                //                   ),
+                //                 ),
+                //                 height: sizeheight * .04,
+                //                 width: sizewidth * .3,
+                //                 alignment: Alignment.center,
+                //                 child: Text(
+                //                   AppLocalizations.of(context)!.payNow,
+                //                   style: const TextStyle(
+                //                       color: Color(0XFF25A163)),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //         isLoading: _isLoading)
+                //     : Container(
+                //         height: 1,
+                //       ),
                 body: Container(
                   height: sizeheight,
                   width: sizewidth,
-                  color: const Color(0XFFF0F0F0),
+                  decoration: BoxDecoration(
+                      color: MyAppState.mode == ThemeMode.light
+                          ? const Color(0XFFF0F0F0)
+                          : const Color(0xff686868),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20))),
                   child: Padding(
                       padding: EdgeInsets.only(
                           left: sizewidth * .05, right: sizewidth * .05),
-                      child: ListView.builder(
-                          itemCount: paymentMethods.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return !paymentMethods[index].isDirectPayment!
-                                ? Padding(
-                                    padding: const EdgeInsets.only(top: 20),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        isSelected[index] = !isSelected[index];
-                                        setState(() {
-                                          setPaymentMethodSelected(
-                                              index, isSelected[index]);
-                                        });
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: isSelected[index]
-                                              ? const Color(0XFF25A163)
-                                              : Colors.grey.withOpacity(.3),
-                                        ),
-                                        child: Row(
-                                          children: <Widget>[
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              5.0) //
-                                                          ),
-                                                ),
-                                                child: ClipRRect(
-                                                  clipBehavior: Clip.hardEdge,
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(5.0)),
-                                                  child: cachedNetworkImage(
-                                                      width: 55.0,
-                                                      height: 35.0,
-                                                      cuisineImageUrl:
-                                                          paymentMethods[index]
-                                                              .imageUrl),
-                                                )),
-                                            // Padding(
-                                            //     padding:
-                                            //         const EdgeInsets.all(8.0),
-                                            //     child: cachedNetworkImage(
-                                            //       width: 40.0,
-                                            //       height: 40.0,
-                                            //       cuisineImageUrl:
-                                            //           paymentMethods[index]
-                                            //               ?.imageUrl,
-                                            //     )),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            AppLocalizations.of(context)!
-                                                        .locale ==
-                                                    "en"
-                                                ? Text(
-                                                    paymentMethods[index]
-                                                        .paymentMethodEn
-                                                        .toString(),
-                                                    style: const TextStyle(
-                                                        color: Colors.black),
-                                                  )
-                                                : Text(
-                                                    paymentMethods[index]
-                                                        .paymentMethodAr
-                                                        .toString(),
-                                                    style: const TextStyle(
-                                                        color: Colors.black),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: paymentMethods.length,
+                                itemBuilder: (BuildContext ctxt, int index) {
+                                  return !paymentMethods[index].isDirectPayment!
+                                      ? Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 20),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              isSelected[index] =
+                                                  !isSelected[index];
+                                              setState(() {
+                                                setPaymentMethodSelected(
+                                                    index, isSelected[index]);
+                                              });
+                                            },
+                                            child: Container(
+                                              height: sizeheight * 0.07,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                color: isSelected[index]
+                                                    ? const Color(0xffffc300)
+                                                    : MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? Colors.grey
+                                                            .withOpacity(.3)
+                                                        : Colors.grey.shade300,
+                                              ),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  const SizedBox(
+                                                    width: 10,
                                                   ),
-                                            Flexible(
-                                              flex: 1,
-                                              child: Container(),
+                                                  Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5.0) //
+                                                                ),
+                                                      ),
+                                                      child: ClipRRect(
+                                                        clipBehavior:
+                                                            Clip.hardEdge,
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .all(
+                                                                Radius.circular(
+                                                                    5.0)),
+                                                        child: cachedNetworkImage(
+                                                            width: 55.0,
+                                                            height: 35.0,
+                                                            cuisineImageUrl:
+                                                                paymentMethods[
+                                                                        index]
+                                                                    .imageUrl),
+                                                      )),
+                                                  // Padding(
+                                                  //     padding:
+                                                  //         const EdgeInsets.all(8.0),
+                                                  //     child: cachedNetworkImage(
+                                                  //       width: 40.0,
+                                                  //       height: 40.0,
+                                                  //       cuisineImageUrl:
+                                                  //           paymentMethods[index]
+                                                  //               ?.imageUrl,
+                                                  //     )),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  AppLocalizations.of(context)!
+                                                              .locale ==
+                                                          "en"
+                                                      ? Text(
+                                                          paymentMethods[index]
+                                                              .paymentMethodEn
+                                                              .toString(),
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                        )
+                                                      : Text(
+                                                          paymentMethods[index]
+                                                              .paymentMethodAr
+                                                              .toString(),
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                        ),
+                                                  Flexible(
+                                                    flex: 1,
+                                                    child: Container(),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        )
+                                      : Container();
+                                }),
+                          ),
+                          visibilityObs
+                              ? ButtonWidget(
+                                  onTaped: () {},
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
+                                            style: const TextStyle(
+                                                color: Color(0XFFFFFFFF),
+                                                fontSize: 20),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  )
-                                : Container();
-                          })),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _networkCalls
+                                              .checkInternetConnectivity(
+                                                  onSuccess: (msg) {
+                                            if (msg) {
+                                              setState(() {
+                                                _isLoading = true;
+                                              });
+                                              _networkCalls
+                                                  .checkInternetConnectivity(
+                                                      onSuccess: (msg) {
+                                                if (msg) {
+                                                  executeRegularPayment();
+                                                } else {
+                                                  if (mounted) {
+                                                    showMessage(AppLocalizations
+                                                            .of(context)!
+                                                        .noInternetConnection);
+                                                  }
+                                                }
+                                              });
+                                            } else {
+                                              if (mounted) {
+                                                showMessage(AppLocalizations.of(
+                                                        context)!
+                                                    .noInternetConnection);
+                                              }
+                                            }
+                                          });
+
+                                          //navigateToDetail();
+                                        },
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: Color(0XFFFFFFFF),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(5.0),
+                                              topRight: Radius.circular(5.0),
+                                              bottomLeft: Radius.circular(5.0),
+                                              bottomRight: Radius.circular(5.0),
+                                            ),
+                                          ),
+                                          height: sizeheight * .04,
+                                          width: sizewidth * .25,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                .payNow,
+                                            style: const TextStyle(
+                                                color: Color(0XFF25A163)),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  isLoading: _isLoading)
+                              : Container(
+                                  height: 1,
+                                ),
+                        ],
+                      )),
                 ),
               )
             : InternetLoss(

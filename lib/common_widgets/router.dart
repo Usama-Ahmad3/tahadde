@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/NotificationScreen/notification.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
@@ -221,10 +222,7 @@ class RouterPage {
                   index: 1,
                 ));
       case RouteNames.notificationScreen:
-        return MaterialPageRoute(
-            builder: (_) => PlayerHomeScreen(
-                  index: 1,
-                ));
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
       case RouteNames.emptyProfile:
         return MaterialPageRoute(
             builder: (_) => PlayerHome(
@@ -273,9 +271,7 @@ class RouterPage {
       case RouteNames.viewMore:
         var msg = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => ViewMoreLeague(
-                  leagueType: msg as Map,
-                ));
+            builder: (_) => ViewMoreLeague(leagueType: msg));
       case RouteNames.viewMoreTournament:
         var msg = settings.arguments;
         return MaterialPageRoute(

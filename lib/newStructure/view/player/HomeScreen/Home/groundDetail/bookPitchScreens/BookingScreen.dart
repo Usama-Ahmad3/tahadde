@@ -281,6 +281,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                             horizontal: width * 0.01,
                                             vertical: height * 0.01),
                                         child: Container(
+                                          height: height * 0.08,
                                           decoration: BoxDecoration(
                                               color: Colors.white70,
                                               borderRadius:
@@ -303,8 +304,8 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                 width: width * 0.01,
                                               ),
                                               Container(
-                                                height: height * 0.05,
-                                                width: width * 0.1,
+                                                height: height * 0.06,
+                                                width: width * 0.12,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -343,6 +344,9 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                           ),
                                         ),
                                       )),
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
 
                               ///select area,player
                               Padding(

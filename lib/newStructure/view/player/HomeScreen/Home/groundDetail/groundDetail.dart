@@ -423,6 +423,7 @@ class GroundDetailState extends State<GroundDetail>
                                                     horizontal: width * 0.01,
                                                     vertical: height * 0.01),
                                                 child: Container(
+                                                  height: height * 0.08,
                                                   decoration: BoxDecoration(
                                                       color: Colors.white70,
                                                       borderRadius:
@@ -449,8 +450,8 @@ class GroundDetailState extends State<GroundDetail>
                                                         width: width * 0.01,
                                                       ),
                                                       Container(
-                                                        height: height * 0.05,
-                                                        width: width * 0.1,
+                                                        height: height * 0.06,
+                                                        width: width * 0.12,
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
