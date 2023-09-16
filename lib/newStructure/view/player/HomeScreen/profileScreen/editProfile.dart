@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -246,7 +247,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     firstNameController.dispose();
     _lastName.dispose();
@@ -268,7 +268,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ? Colors.white
                 : const Color(0xff686868),
             appBar: PreferredSize(
-              preferredSize: Size(width, height * 0.13),
+              preferredSize: Size(width, height * 0.105),
               child: AppBar(
                 title: Text(
                   AppLocalizations.of(context)!.editProfile,
@@ -287,15 +287,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                        height: height * 0.004,
+                        padding: EdgeInsets.all(height * 0.008),
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             shape: BoxShape.circle),
-                        child: Icon(
-                          AppLocalizations.of(context)!.locale == 'en'
-                              ? Icons.keyboard_arrow_left_sharp
-                              : Icons.keyboard_arrow_right,
-                          color: Colors.white,
+                        child: const Center(
+                          child: FaIcon(
+                            FontAwesomeIcons.close,
+                            color: Colors.white,
+                          ),
                         )),
                   ),
                 ),

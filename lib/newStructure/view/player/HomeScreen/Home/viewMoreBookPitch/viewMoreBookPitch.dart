@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
@@ -73,7 +74,6 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
@@ -120,15 +120,15 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                           Navigator.pop(context);
                         },
                         child: Container(
-                            height: sizeHeight * 0.004,
+                            padding: EdgeInsets.all(sizeHeight * 0.008),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 shape: BoxShape.circle),
-                            child: Icon(
-                              AppLocalizations.of(context)!.locale == 'en'
-                                  ? Icons.keyboard_arrow_left_sharp
-                                  : Icons.keyboard_arrow_right,
-                              color: Colors.white,
+                            child: const Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.close,
+                                color: Colors.white,
+                              ),
                             )),
                       ),
                     ),
@@ -177,7 +177,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: PreferredSize(
-          preferredSize: Size(sizeWidth, sizeHeight * 0.13),
+          preferredSize: Size(sizeWidth, sizeHeight * 0.105),
           child: AppBar(
             title: Text(
               AppLocalizations.of(context)!.bookPitch,
@@ -196,15 +196,15 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                   Navigator.pop(context);
                 },
                 child: Container(
-                    height: sizeHeight * 0.004,
+                    padding: EdgeInsets.all(sizeHeight * 0.008),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         shape: BoxShape.circle),
-                    child: Icon(
-                      AppLocalizations.of(context)!.locale == 'en'
-                          ? Icons.keyboard_arrow_left_sharp
-                          : Icons.keyboard_arrow_right,
-                      color: Colors.white,
+                    child: const Center(
+                      child: FaIcon(
+                        FontAwesomeIcons.close,
+                        color: Colors.white,
+                      ),
                     )),
               ),
             ),

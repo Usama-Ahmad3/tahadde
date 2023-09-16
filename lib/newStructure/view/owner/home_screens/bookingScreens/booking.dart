@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 
-import '../../homeFile/routingConstant.dart';
-import '../../homeFile/utility.dart';
-import '../../localizations.dart';
-import '../../modelClass/bookingModelClass.dart';
+import '../../../../../homeFile/routingConstant.dart';
+import '../../../../../homeFile/utility.dart';
+import '../../../../../localizations.dart';
+import '../../../../../modelClass/bookingModelClass.dart';
 
-class Bookings extends StatefulWidget {
+// ignore: must_be_immutable
+class BookingsWidget extends StatefulWidget {
   List<BookingModelClass>? bookingDetail;
-  Bookings({this.bookingDetail});
+  BookingsWidget({super.key, this.bookingDetail});
   @override
-  _BookingsState createState() => _BookingsState();
+  State<BookingsWidget> createState() => _BookingsWidgetState();
 }
 
-class _BookingsState extends State<Bookings> {
+class _BookingsWidgetState extends State<BookingsWidget> {
   @override
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;

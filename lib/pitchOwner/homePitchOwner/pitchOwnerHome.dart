@@ -114,7 +114,10 @@ class _PitchOwnerHomeState extends State<PitchOwnerHome>
         context: context,
         builder: (BuildContext cntext) {
           return AlertDialog(
-            content: const Text("Coming Soon"),
+            content: const Text(
+              "Coming Soon",
+              style: TextStyle(color: Colors.black),
+            ),
             // AppLocalizations.of(context).toReserve),
             actions: <Widget>[
               TextButton(

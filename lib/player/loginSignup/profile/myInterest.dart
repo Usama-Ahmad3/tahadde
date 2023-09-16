@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -7,6 +8,7 @@ import '../../../common_widgets/internet_loss.dart';
 import '../../../homeFile/routingConstant.dart';
 import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
+import '../../../main.dart';
 import '../../../network/network_calls.dart';
 
 class MyInterest extends StatefulWidget {
@@ -54,7 +56,6 @@ class _MyInterestState extends State<MyInterest> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
@@ -74,237 +75,319 @@ class _MyInterestState extends State<MyInterest> {
     var sizeWidth = MediaQuery.of(context).size.width;
     return loading
         ? Scaffold(
-            key: scaffoldKey,
-            appBar: appBar(
-              title: AppLocalizations.of(context)!.myInterest,
-              language: AppLocalizations.of(context)!.locale,
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+            backgroundColor: Colors.black,
+            appBar: PreferredSize(
+              preferredSize: Size(sizeWidth, sizeHeight * 0.108),
+              child: AppBar(
+                  title: Text(
+                    AppLocalizations.of(context)!.myInterest,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(color: Colors.white),
+                  ),
+                  centerTitle: true,
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.black,
+                  leadingWidth: sizeWidth * 0.18,
+                  leading: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                          padding: EdgeInsets.all(sizeHeight * 0.008),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              shape: BoxShape.circle),
+                          child: const Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.close,
+                              color: Colors.white,
+                            ),
+                          )),
+                    ),
+                  )),
             ),
             body: Container(
-              height: sizeHeight * .87,
+              height: sizeHeight,
               width: sizeWidth,
-              color: const Color(0XFFF0F0F0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .1),
-                    child: Container(
-                        height: sizeHeight * .1,
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          AppLocalizations.of(context)!.viewInterest,
-                          style: const TextStyle(
-                              fontSize: 12, color: Color(0XFFA3A3A3)),
-                        )),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .05),
-                    child: SizedBox(
-                      height: sizeHeight * .75,
-                      child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: 5,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
-                              child: _shimmerCard(),
-                            );
-                          }),
+              decoration: BoxDecoration(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? Colors.white
+                      : const Color(0xff686868),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: sizeWidth * .1),
+                      child: Container(
+                          height: sizeHeight * .1,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            AppLocalizations.of(context)!.viewInterest,
+                            style: const TextStyle(
+                                fontSize: 12, color: Color(0XFFA3A3A3)),
+                          )),
                     ),
-                  )
-                ],
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .05),
+                      child: SizedBox(
+                        height: sizeHeight * .75,
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5.0),
+                                child: _shimmerCard(),
+                              );
+                            }),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ))
         : _internet!
             ? Scaffold(
-                key: scaffoldKey,
-                appBar: appBar(
-                  title: AppLocalizations.of(context)!.myInterest,
-                  language: AppLocalizations.of(context)!.locale,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
+                backgroundColor: Colors.black,
+                appBar: PreferredSize(
+                  preferredSize: Size(sizeWidth, sizeHeight * 0.108),
+                  child: AppBar(
+                      title: Text(
+                        AppLocalizations.of(context)!.myInterest,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: Colors.white),
+                      ),
+                      centerTitle: true,
+                      automaticallyImplyLeading: false,
+                      backgroundColor: Colors.black,
+                      leadingWidth: sizeWidth * 0.18,
+                      leading: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                              padding: EdgeInsets.all(sizeHeight * 0.008),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  shape: BoxShape.circle),
+                              child: const Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.close,
+                                  color: Colors.white,
+                                ),
+                              )),
+                        ),
+                      )),
                 ),
                 body: data!
                     ? Container(
                         height: sizeHeight * .87,
                         width: sizeWidth,
-                        color: const Color(0XFFF0F0F0),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: sizeWidth * .1),
-                              child: Container(
-                                  height: sizeHeight * .1,
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    AppLocalizations.of(context)!.viewInterest,
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Color(0XFFA3A3A3)),
-                                  )),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: sizeWidth * .05),
-                              child: SizedBox(
-                                height: sizeHeight * .75,
-                                child: ListView.builder(
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: interest["pitch"].length,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(
-                                            top: sizeHeight * .01),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Map<String, dynamic> detail = {
-                                              "pitchId": interest["pitch"]
-                                                  [index]["id"],
-                                              "subPitchId": interest["pitch"]
-                                                      [index]["venue_details"]
-                                                  ["pitchType"][0]
-                                            };
-                                            navigateToBookPitchDetail(detail);
-                                          },
-                                          child: Container(
-                                            height: sizeHeight * .11,
-                                            width: sizeWidth * .8,
-                                            decoration: const BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(5.0),
-                                                  //
-                                                ),
-                                                color: Colors.white),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: EdgeInsets.all(
-                                                      sizeHeight * .01),
-                                                  child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5.0) //
-                                                                ),
-                                                      ),
-                                                      child: ClipRRect(
-                                                        clipBehavior:
-                                                            Clip.hardEdge,
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .all(
-                                                                Radius.circular(
-                                                                    5.0)),
-                                                        child: interest["pitch"][index]
-                                                                            [
-                                                                            "images"]
-                                                                        [
-                                                                        "files"][0]
-                                                                    [
-                                                                    "filePath"] !=
-                                                                null
-                                                            ? ClipRRect(
-                                                                clipBehavior:
-                                                                    Clip.hardEdge,
-                                                                borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            5.0)),
-                                                                child:
-                                                                    CachedNetworkImage(
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                  height:
-                                                                      sizeHeight *
-                                                                          .08,
-                                                                  width:
-                                                                      sizeWidth *
-                                                                          .15,
-                                                                  imageUrl: interest["pitch"][index]
+                        decoration: BoxDecoration(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? Colors.white
+                                : const Color(0xff686868),
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20))),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: sizeWidth * .1),
+                                child: Container(
+                                    height: sizeHeight * .1,
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .viewInterest,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0XFFA3A3A3)),
+                                    )),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: sizeWidth * .05),
+                                child: SizedBox(
+                                  height: sizeHeight * .75,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: 2,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: sizeHeight * .01),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Map<String, dynamic> detail = {
+                                                "pitchId": interest["pitch"]
+                                                    [index]["id"],
+                                                "subPitchId": interest["pitch"]
+                                                        [index]["venue_details"]
+                                                    ["pitchType"][0]
+                                              };
+                                              navigateToBookPitchDetail(detail);
+                                            },
+                                            child: Container(
+                                              height: sizeHeight * .1,
+                                              width: sizeWidth * .8,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors
+                                                          .blueGrey.shade200),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(12.0),
+                                                    //
+                                                  ),
+                                                  color: Colors.grey.shade300),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Padding(
+                                                    padding: EdgeInsets.all(
+                                                        sizeHeight * .01),
+                                                    child: Container(
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          5.0) //
+                                                                  ),
+                                                        ),
+                                                        child: ClipRRect(
+                                                          clipBehavior:
+                                                              Clip.hardEdge,
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          5.0)),
+                                                          child: interest["pitch"][index]
                                                                               [
                                                                               "images"]
                                                                           [
                                                                           "files"][0]
                                                                       [
-                                                                      "filePath"],
-                                                                  placeholder:
-                                                                      (context,
-                                                                          url) {
-                                                                    return Image
-                                                                        .asset(
-                                                                      'images/T.png',
-                                                                      height:
-                                                                          sizeHeight *
-                                                                              .08,
-                                                                      width:
-                                                                          sizeWidth *
-                                                                              .15,
-                                                                    );
-                                                                  },
-                                                                  errorWidget: (context,
-                                                                          url,
-                                                                          error) =>
-                                                                      const Icon(
-                                                                          Icons
-                                                                              .error),
+                                                                      "filePath"] !=
+                                                                  null
+                                                              ? ClipRRect(
+                                                                  clipBehavior:
+                                                                      Clip.hardEdge,
+                                                                  borderRadius:
+                                                                      const BorderRadius
+                                                                          .all(
+                                                                          Radius.circular(
+                                                                              5.0)),
+                                                                  child:
+                                                                      CachedNetworkImage(
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    height:
+                                                                        sizeHeight *
+                                                                            .08,
+                                                                    width:
+                                                                        sizeWidth *
+                                                                            .15,
+                                                                    imageUrl: interest["pitch"][index]["images"]
+                                                                            [
+                                                                            "files"][0]
+                                                                        [
+                                                                        "filePath"],
+                                                                    placeholder:
+                                                                        (context,
+                                                                            url) {
+                                                                      return Image
+                                                                          .asset(
+                                                                        'assets/images/T.png',
+                                                                        height: sizeHeight *
+                                                                            .08,
+                                                                        width: sizeWidth *
+                                                                            .15,
+                                                                      );
+                                                                    },
+                                                                    errorWidget: (context,
+                                                                            url,
+                                                                            error) =>
+                                                                        const Icon(
+                                                                            Icons.error),
+                                                                  ),
+                                                                )
+                                                              : Image.asset(
+                                                                  'assets/images/T.png',
+                                                                  fit: BoxFit
+                                                                      .fill,
+                                                                  height:
+                                                                      sizeHeight *
+                                                                          .1,
+                                                                  width:
+                                                                      sizeWidth *
+                                                                          .15,
                                                                 ),
-                                                              )
-                                                            : Image.asset(
-                                                                'images/T.png',
-                                                                fit:
-                                                                    BoxFit.fill,
-                                                                height:
-                                                                    sizeHeight *
-                                                                        .1,
-                                                                width:
-                                                                    sizeWidth *
-                                                                        .15,
-                                                              ),
-                                                      )),
-                                                ),
-                                                Container(
-                                                  width: sizeWidth * .1,
-                                                ),
-                                                Container(
-                                                  alignment: Alignment.center,
-                                                  width: sizeWidth * .4,
-                                                  child: Text(
-                                                      interest["pitch"][index]
-                                                              ["venue_details"]
-                                                          ["name"],
-                                                      style: const TextStyle(
-                                                          color:
-                                                              Color(0XFF032040),
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontFamily: "Poppins",
-                                                          fontSize: 16)),
-                                                ),
-                                              ],
+                                                        )),
+                                                  ),
+                                                  Container(
+                                                    width: sizeWidth * .1,
+                                                  ),
+                                                  Container(
+                                                    alignment: Alignment.center,
+                                                    width: sizeWidth * .4,
+                                                    child: Text(
+                                                        interest["pitch"][index]
+                                                                [
+                                                                "venue_details"]
+                                                            ["name"],
+                                                        style: const TextStyle(
+                                                            color: Color(
+                                                                0XFF032040),
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontFamily:
+                                                                "Poppins",
+                                                            fontSize: 16)),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    }),
-                              ),
-                            )
-                          ],
+                                        );
+                                      }),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       )
-                    : SizedBox(
+                    : Container(
                         height: sizeHeight,
                         width: sizeWidth,
+                        decoration: BoxDecoration(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? Colors.white
+                                : const Color(0xff686868),
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20))),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -324,11 +407,12 @@ class _MyInterestState extends State<MyInterest> {
                                 horizontal: sizeWidth * .25,
                               ),
                               child: Text(
-                                AppLocalizations.of(context)!
-                                    .addpitchtoyourfavorites,
+                                AppLocalizations.of(context)!.addYourFavorite,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    color: Color(0XFF032040),
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? const Color(0XFF032040)
+                                        : Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -363,7 +447,7 @@ class _MyInterestState extends State<MyInterest> {
 
   Widget _shimmerCard() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 3),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         height: 80,

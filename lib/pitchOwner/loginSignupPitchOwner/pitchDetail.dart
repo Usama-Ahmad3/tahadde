@@ -16,9 +16,9 @@ import 'select_sport.dart';
 
 class PitchDetail extends StatefulWidget {
   final SportsModel detail;
-  PitchDetail({required this.detail});
+  PitchDetail({super.key, required this.detail});
   @override
-  _PitchDetailState createState() => _PitchDetailState();
+  State<PitchDetail> createState() => _PitchDetailState();
 }
 
 class _PitchDetailState extends State<PitchDetail> {
@@ -151,7 +151,6 @@ class _PitchDetailState extends State<PitchDetail> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -173,45 +172,48 @@ class _PitchDetailState extends State<PitchDetail> {
                 color: const Color(0XFF25A163),
                 child: InkWell(
                   onTap: () async {
-                    // if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-                    _facility = "";
-                    for (int i = 0; i < indexList.length; i++) {
-                      print(indexList);
-                      _facility = "$_facility${facilitySlug[i]},";
-                    }
-                    _facility = _facility.substring(0, _facility.length - 1);
-                    _facility = _facility.substring(0);
-                    widget.detail.pitchDetailModel!.facility = _facility;
-                    widget.detail.pitchDetailModel!.gamePlay = gamePlay;
-                    setState(() {
-                      loading = true;
-                    });
-                    var detail = {"profile_image": image, "type": "bookpitch"};
-                    await _networkCalls.helperMultiImage(
-                      pitchImage: detail,
-                      onSuccess: (msg) {
-                        widget.detail.pitchDetailModel!.pitchImageId = msg;
-                        setState(() {
-                          loading = false;
-                        });
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      _facility = "";
+                      for (int i = 0; i < indexList.length; i++) {
+                        print(indexList);
+                        _facility = "$_facility${facilitySlug[i]},";
+                      }
+                      _facility = _facility.substring(0, _facility.length - 1);
+                      _facility = _facility.substring(0);
+                      widget.detail.pitchDetailModel!.facility = _facility;
+                      widget.detail.pitchDetailModel!.gamePlay = gamePlay;
+                      setState(() {
+                        loading = true;
+                      });
+                      var detail = {
+                        "profile_image": image,
+                        "type": "bookpitch"
+                      };
+                      await _networkCalls.helperMultiImage(
+                        pitchImage: detail,
+                        onSuccess: (msg) {
+                          widget.detail.pitchDetailModel!.pitchImageId = msg;
+                          setState(() {
+                            loading = false;
+                          });
 
-                        navigateToPriceScreen(widget.detail);
-                      },
-                      onFailure: (msg) {
-                        showMessage(msg);
-                        setState(() {
-                          loading = false;
-                        });
-                      },
-                      tokenExpire: () {
-                        if (mounted) on401(context);
-                        setState(() {
-                          loading = false;
-                        });
-                      },
-                    );
-                    // }
+                          navigateToPriceScreen(widget.detail);
+                        },
+                        onFailure: (msg) {
+                          showMessage(msg);
+                          setState(() {
+                            loading = false;
+                          });
+                        },
+                        tokenExpire: () {
+                          if (mounted) on401(context);
+                          setState(() {
+                            loading = false;
+                          });
+                        },
+                      );
+                    }
                   },
                   splashColor: Colors.black,
                   child: Container(
@@ -259,33 +261,25 @@ class _PitchDetailState extends State<PitchDetail> {
                         width: sizeWidth * .19,
                         color: const Color(0XFF25A163),
                       ),
-                      flaxibleGap(
-                        1,
-                      ),
+                      flaxibleGap(1),
                       Container(
                         height: sizeHeight * .005,
                         width: sizeWidth * .19,
                         color: const Color(0XFF25A163),
                       ),
-                      flaxibleGap(
-                        1,
-                      ),
+                      flaxibleGap(1),
                       Container(
                         height: sizeHeight * .005,
                         width: sizeWidth * .19,
                         color: const Color(0XFF25A163),
                       ),
-                      flaxibleGap(
-                        1,
-                      ),
+                      flaxibleGap(1),
                       Container(
                         height: sizeHeight * .005,
                         width: sizeWidth * .19,
                         color: const Color(0XFFCBCBCB),
                       ),
-                      flaxibleGap(
-                        1,
-                      ),
+                      flaxibleGap(1),
                       Container(
                         height: sizeHeight * .005,
                         width: sizeWidth * .19,
@@ -364,7 +358,7 @@ class _PitchDetailState extends State<PitchDetail> {
                             return AppLocalizations.of(context)!
                                 .pleaseenterPitchName;
                           }
-                          return '';
+                          return null;
                         },
                         text: false,
                         text1: false,

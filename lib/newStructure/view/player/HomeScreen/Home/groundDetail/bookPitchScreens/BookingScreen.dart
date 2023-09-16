@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/bookingShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../common_widgets/internet_loss.dart';
@@ -134,7 +135,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                       ///Top Widget
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.1,
+                          horizontal: width * 0.07,
                           vertical: height * 0.07,
                         ),
                         child: Row(
@@ -145,13 +146,12 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                 Navigator.pop(context);
                               },
                               child: Container(
+                                  padding: EdgeInsets.all(height * 0.008),
                                   decoration: BoxDecoration(
                                       border: Border.all(color: Colors.grey),
                                       shape: BoxShape.circle),
-                                  child: Icon(
-                                    AppLocalizations.of(context)!.locale == 'en'
-                                        ? Icons.keyboard_arrow_left_sharp
-                                        : Icons.keyboard_arrow_right,
+                                  child: FaIcon(
+                                    Icons.keyboard_arrow_right,
                                     color: Colors.white,
                                   )),
                             ),

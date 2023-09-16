@@ -378,7 +378,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
-                                    "images/Rectangle.png",
+                                    "assets/images/Rectangle.png",
                                     fit: BoxFit.fill,
                                   ),
                                 )
@@ -386,7 +386,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
-                                    "images/uncheck.png",
+                                    "assets/images/uncheck.png",
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -421,7 +421,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
-                                    "images/Rectangle.png",
+                                    "assets/images/Rectangle.png",
                                     fit: BoxFit.fill,
                                   ),
                                 )
@@ -429,7 +429,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
-                                    "images/uncheck.png",
+                                    "assets/images/uncheck.png",
                                     fit: BoxFit.fill,
                                   ),
                                 ),

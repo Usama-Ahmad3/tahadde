@@ -1,15 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin.dart';
 
-import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
-import '../../../../network/network_calls.dart';
 import '../HomeScreen/widgets/textFormField.dart';
-import 'login.dart';
 
 class LogInWidget extends StatefulWidget {
   var emailController;

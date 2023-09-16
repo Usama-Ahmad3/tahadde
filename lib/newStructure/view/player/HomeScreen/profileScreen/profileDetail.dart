@@ -15,8 +15,10 @@ import '../../../../../network/network_calls.dart';
 import 'profileEmpty.dart';
 import 'drawer.dart';
 
+// ignore: must_be_immutable
 class ProfileDetailScreen extends StatefulWidget {
-  const ProfileDetailScreen({super.key});
+  bool playerTag;
+  ProfileDetailScreen({super.key, this.playerTag = true});
 
   @override
   State<ProfileDetailScreen> createState() => _ProfileDetailScreenState();
@@ -90,6 +92,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.black54,
       body: _isLoading
           ? ProfileShimmer.buildShimmer(width, height, context)
           : _internet
@@ -100,16 +103,24 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                           Column(
                             children: [
                               Container(
-                                height: height * 0.25,
+                                height: height * 0.144,
                                 width: double.infinity,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/light-design/images/bg-image.png'),
-                                        fit: BoxFit.fitWidth)),
+                                decoration:
+                                    const BoxDecoration(color: Colors.black54),
+                                child: Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.profile,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: height * 0.026),
+                                  ),
+                                )),
                               ),
                               Container(
-                                color: Colors.black,
+                                color: Colors.black54,
+                                height: height * 0.78,
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: mode == ThemeMode.light
@@ -141,25 +152,28 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                                           ? Colors.black
                                                           : Colors.white),
                                             ),
-                                            InkWell(
-                                              onTap: () {
-                                                navigateToEditProfile();
-                                              },
-                                              child: CircleAvatar(
-                                                radius: height * 0.018,
-                                                backgroundColor:
-                                                    mode == ThemeMode.light
-                                                        ? Colors.grey.shade200
-                                                        : Colors.yellowAccent,
-                                                child: Icon(
-                                                  Icons.edit,
-                                                  size: height * 0.02,
-                                                  color: mode == ThemeMode.light
-                                                      ? Colors.black
-                                                      : Colors.grey,
-                                                ),
-                                              ),
-                                            )
+                                            widget.playerTag
+                                                ? InkWell(
+                                                    onTap: () {
+                                                      navigateToEditProfile();
+                                                    },
+                                                    child: CircleAvatar(
+                                                      radius: height * 0.018,
+                                                      backgroundColor: mode ==
+                                                              ThemeMode.light
+                                                          ? Colors.grey.shade200
+                                                          : Colors.yellowAccent,
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        size: height * 0.02,
+                                                        color: mode ==
+                                                                ThemeMode.light
+                                                            ? Colors.black
+                                                            : Colors.grey,
+                                                      ),
+                                                    ),
+                                                  )
+                                                : const SizedBox.shrink()
                                           ],
                                         ),
                                       ),
@@ -171,13 +185,15 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                             '${AppLocalizations.of(context)!.email} :',
                                         constantValue: profileDetail!['email'],
                                       ),
-                                      EmailContactDOB(
-                                          constant:
-                                              '${AppLocalizations.of(context)!.dateofBirth} :',
-                                          constantValue:
-                                              profileDetail!['dob'] ??
+                                      widget.playerTag
+                                          ? EmailContactDOB(
+                                              constant:
+                                                  '${AppLocalizations.of(context)!.dateofBirth} :',
+                                              constantValue: profileDetail![
+                                                      'dob'] ??
                                                   AppLocalizations.of(context)!
-                                                      .dateofBirth),
+                                                      .dateofBirth)
+                                          : const SizedBox.shrink(),
                                       EmailContactDOB(
                                         constant:
                                             '${AppLocalizations.of(context)!.contacts} :',
@@ -250,37 +266,48 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             ],
                           ),
                           Positioned(
-                              top: height * 0.186,
+                              top: height * 0.079,
                               left: 0,
                               right: width * 0.67,
-                              child: profileDetail!['profile_pic'] != null
+                              child: _isLoading
                                   ? CircleAvatar(
-                                      radius: height * 0.06,
-                                      backgroundImage: NetworkImage(
-                                          profileDetail!['profile_pic']
-                                              ['filePath']))
-                                  : CircleAvatar(
                                       radius: height * 0.06,
                                       backgroundImage: const AssetImage(
                                           "assets/images/profile.png"),
-                                    )),
+                                    )
+                                  : profileDetail!['profile_pic'] != null
+                                      ? CircleAvatar(
+                                          radius: height * 0.06,
+                                          backgroundImage: NetworkImage(
+                                              profileDetail!['profile_pic']
+                                                  ['filePath']))
+                                      : CircleAvatar(
+                                          radius: height * 0.06,
+                                          backgroundImage: const AssetImage(
+                                              "assets/images/profile.png"),
+                                        )),
                           Positioned(
-                            top: 35,
+                            top: height * 0.068,
                             right: 20,
                             child: InkWell(
                               onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return ProfileDrawer(
-                                        name:
-                                            '${profileDetail!['first_name']} ${profileDetail!['last_name']}',
-                                        position: '${profileDetail!['role']}',
-                                        profileImage:
-                                            profileDetail!['profile_pic']
-                                                ['filePath']);
-                                  },
-                                );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => ProfileDrawer(
+                                              name:
+                                                  '${profileDetail!['first_name']} ${profileDetail!['last_name']}',
+                                              position:
+                                                  '${profileDetail!['role']}',
+                                              profileImage: profileDetail![
+                                                          'profile_pic'] ==
+                                                      null
+                                                  ? ''
+                                                  : profileDetail![
+                                                          'profile_pic']
+                                                      ['filePath'],
+                                              playerTag: widget.playerTag,
+                                            )));
                               },
                               child: const Icon(
                                 Icons.dehaze,

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
 import '../../../../../homeFile/routingConstant.dart';
@@ -30,6 +32,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   bool? _internet;
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;
+  List<String> history = [];
+  List<String>? showHistory = [];
 
   // ignore: prefer_typing_uninitialized_variables
   var _bookPitchData;
@@ -38,6 +42,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   bool searchFlag = false;
 
   getSports() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    showHistory = prefs.getStringList('history');
     _networkCalls.sportsList(onSuccess: (detail) {
       _sportsList.clear();
       for (int i = 0; i < detail.length; i++) {
@@ -92,7 +98,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
           top: height * 0.17,
-          right: width * 0.25,
+          right: width * 0.22,
           left: width * 0.06,
           child: SingleChildScrollView(
             child: Container(
@@ -101,15 +107,12 @@ class _HomeScreenViewState extends State<HomeScreenView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Material(
                         child: Text(
-                          AppLocalizations.of(context)!.search,
+                          'Recent Search',
                           style: TextStyle(fontSize: height * 0.025),
                         ),
                       ),
@@ -120,8 +123,45 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       ),
                     ],
                   ),
+                  Wrap(
+                    children: [
+                      ...List.generate(
+                          showHistory!.length > 2 ? 2 : showHistory!.length,
+                          (index) => InkWell(
+                                onTap: () async {
+                                  searchController.text = showHistory![index];
+                                  setState(() {});
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.02,
+                                      vertical: height * 0.004),
+                                  child: Chip(
+                                      avatar: CircleAvatar(
+                                          radius: 20,
+                                          backgroundColor: Colors.transparent,
+                                          child: Image.asset(
+                                              'assets/images/T.png')),
+                                      backgroundColor: Colors.transparent,
+                                      elevation: 2,
+                                      padding: const EdgeInsets.all(5),
+                                      label: Text(
+                                        showHistory![index],
+                                        style: const TextStyle(
+                                            color: Colors.black),
+                                      )),
+                                ),
+                              )),
+                    ],
+                  ),
                   SizedBox(
-                    height: height * 0.03,
+                    height: height * 0.016,
+                  ),
+                  Material(
+                    child: Text(
+                      AppLocalizations.of(context)!.search,
+                      style: TextStyle(fontSize: height * 0.025),
+                    ),
                   ),
                   Wrap(
                     children: [
@@ -136,7 +176,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                     .contains(
                                         searchController.text.toLowerCase())
                                 ? InkWell(
-                                    onTap: () {
+                                    onTap: () async {
                                       Map detail = {
                                         "slug": _sportsList[index].slug,
                                         "bannerImage":
@@ -151,10 +191,16 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                       removeOverlay();
                                       searchFlag = false;
                                       searchController.clear();
+                                      // ignore: use_build_context_synchronously
                                       Navigator.pushNamed(context,
                                           RouteNames.specificSportsScreen,
                                           arguments: detail);
                                       setState(() {});
+                                      SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
+                                      history.add(
+                                          _sportsList[index].name.toString());
+                                      prefs.setStringList('history', history);
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
@@ -189,6 +235,9 @@ class _HomeScreenViewState extends State<HomeScreenView> {
           ));
     });
     overlayState.insert(overlayEntry!);
+    Future.delayed(const Duration(seconds: 3), () {
+      removeOverlay();
+    });
   }
 
   removeOverlay() {
@@ -250,7 +299,6 @@ class _HomeScreenViewState extends State<HomeScreenView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     searchController.dispose();
     searchFlag = false;
@@ -294,13 +342,16 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                     width: 40 * fem,
                     child: Image.asset(
                       'assets/images/T.png',
-                      color: Colors.white,
+                      color: Colors.greenAccent,
                     )),
+                SizedBox(
+                  width: width * 0.001,
+                ),
                 Text(
                   AppLocalizations.of(context)!.tahaddi,
                   style: SafeGoogleFont(
                     'Inter',
-                    fontSize: 20 * ffem,
+                    fontSize: 22 * ffem,
                     fontWeight: FontWeight.w600,
                     height: 1.25 * ffem / fem,
                     letterSpacing: -0.2 * fem,
@@ -311,56 +362,61 @@ class _HomeScreenViewState extends State<HomeScreenView> {
             ),
             bottom: PreferredSize(
               preferredSize: Size(
-                  width, searchFlag == true ? height * 0.037 : height * 0.01),
+                  width, searchFlag == true ? height * 0.044 : height * 0.01),
               child: searchFlag
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                            height: height * 0.057,
-                            width: width * 0.7,
-                            child: textFieldWidget(
-                                textColor: Colors.white,
-                                controller: searchController,
-                                hintText: AppLocalizations.of(context)!.search,
-                                fillColor: Colors.white24,
-                                prefixIcon: Icons.search,
-                                onChanged: (e) {
-                                  setState(() {
-                                    searchController.text.isEmpty
-                                        ? removeOverlay()
-                                        : showOverlay(context, height, width);
-                                  });
-                                  return null;
-                                },
-                                prefixIconColor: Colors.grey,
-                                enableBorder: UnderlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusBorder: UnderlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                border: UnderlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)))),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => WalkThroughScreen()));
-                          },
-                          child: Container(
-                            height: height * 0.05,
-                            width: width * 0.12,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Icon(
-                              Icons.list,
-                              color: Colors.white,
-                              size: height * 0.044,
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(vertical: height * 0.01),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                              height: height * 0.057,
+                              width: width * 0.7,
+                              child: textFieldWidget(
+                                  textColor: Colors.white,
+                                  controller: searchController,
+                                  hintText:
+                                      AppLocalizations.of(context)!.search,
+                                  fillColor: Colors.white24,
+                                  prefixIcon: Icons.search,
+                                  onChanged: (e) {
+                                    setState(() {
+                                      searchController.text.isEmpty
+                                          ? removeOverlay()
+                                          : showOverlay(context, height, width);
+                                    });
+                                    return null;
+                                  },
+                                  prefixIconColor: Colors.grey,
+                                  enableBorder: UnderlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusBorder: UnderlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  border: UnderlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)))),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => WalkThroughScreen()));
+                            },
+                            child: Container(
+                              height: height * 0.05,
+                              width: width * 0.12,
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Icon(
+                                Icons.list,
+                                color: Colors.white,
+                                size: height * 0.044,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   : Container(),
             ),

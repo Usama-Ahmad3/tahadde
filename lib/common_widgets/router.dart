@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/NotificationScreen/notification.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
@@ -21,6 +19,7 @@ import '../modelClass/pramotion_model_class.dart';
 import '../modelClass/teamModelClass.dart';
 import '../modelClass/yourTahaddiModelClass.dart';
 import '../newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/BookingScreen.dart';
+import '../newStructure/view/player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../pitchOwner/addNewPitch/addNewGround.dart';
 import '../pitchOwner/addNewPitch/addNewGroundSecond.dart';
 import '../pitchOwner/bookingPitchOwner/closingHour.dart';
@@ -204,7 +203,7 @@ class RouterPage {
                 ));
       case RouteNames.profileDetail:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const ProfileDetailScreen());
+            builder: (BuildContext context) => ProfileDetailScreen());
       case RouteNames.more:
         return MaterialPageRoute(
             builder: (_) => PlayerHome(

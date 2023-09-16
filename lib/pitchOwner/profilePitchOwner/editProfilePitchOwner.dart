@@ -33,7 +33,7 @@ class _EditProfilePitchOwnerState extends State<EditProfilePitchOwner> {
   late File myFile;
   late bool _internet;
   late String userName;
-  late File image;
+  File? image;
   bool isImageLoade = false;
   var profile_Id;
   String images = "";
@@ -722,15 +722,16 @@ class _EditProfilePitchOwnerState extends State<EditProfilePitchOwner> {
   Widget _decideImageview() {
     return image != null
         ? Image.file(
-            image,
+            image!,
             fit: BoxFit.cover,
           )
         : images == ""
             ? Image.asset(
-                "images/profile.png",
+                "assets/images/profile.png",
               )
             : cachedNetworkImage(
-                cuisineImageUrl: images, placeholder: "images/profile.png");
+                cuisineImageUrl: images,
+                placeholder: "assets/images/profile.png");
   }
 }
 

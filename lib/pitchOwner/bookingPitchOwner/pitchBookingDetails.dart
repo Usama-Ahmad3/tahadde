@@ -75,7 +75,7 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
                                   BorderRadius.circular(sizeHeight * .1),
                               child: cachedNetworkImage(
                                   height: sizeHeight * .08,
-                                  cuisineImageUrl: widget.bookindDetail?.user
+                                  cuisineImageUrl: widget.bookindDetail.user
                                       ?.profile_pic?.filePath,
                                   placeholder: 'images/profile.png'))),
                       flaxibleGap(2),
@@ -128,7 +128,8 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
                   padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
                   child: Text(
                     AppLocalizations.of(context)!.bookingDetails,
-                    style: const TextStyle(fontSize: 10, color: Color(0XFFADADAD)),
+                    style:
+                        const TextStyle(fontSize: 10, color: Color(0XFFADADAD)),
                   ),
                 ),
                 flaxibleGap(1),
@@ -138,8 +139,8 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
                     children: <Widget>[
                       Text(
                         widget.bookindDetail.pitchType!.area.toString(),
-                        style:
-                            const TextStyle(fontSize: 16, color: Color(0XFF032040)),
+                        style: const TextStyle(
+                            fontSize: 16, color: Color(0XFF032040)),
                       ),
                       flaxibleGap(1),
                       Container(
@@ -191,26 +192,30 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.slots,
-                        style: const TextStyle(fontSize: 8, color: Color(0XFFADADAD)),
+                        style: const TextStyle(
+                            fontSize: 8, color: Color(0XFFADADAD)),
                       ),
-                      widget.bookindDetail.booking_cancelled!?Text(AppLocalizations.of(context)!.canceled,
-                          style: const TextStyle(
-                              color: Color(0XFF25A163),
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Poppins",
-                              fontSize: 10)):Text(AppLocalizations.of(context)!.booked,
-                          style: const TextStyle(
-                              color: Color(0XFF25A163),
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Poppins",
-                              fontSize: 10))
+                      widget.bookindDetail.booking_cancelled!
+                          ? Text(AppLocalizations.of(context)!.canceled,
+                              style: const TextStyle(
+                                  color: Color(0XFF25A163),
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: "Poppins",
+                                  fontSize: 10))
+                          : Text(AppLocalizations.of(context)!.booked,
+                              style: const TextStyle(
+                                  color: Color(0XFF25A163),
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: "Poppins",
+                                  fontSize: 10))
                     ],
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
                   child: Text(
-                    (DateFormat.yMMMEd('en_US').format(DateTime.parse(widget.bookindDetail.slotDate!))),
+                    (DateFormat.yMMMEd('en_US').format(
+                        DateTime.parse(widget.bookindDetail.slotDate!))),
                     style: const TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 10,
@@ -225,7 +230,8 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      itemCount: widget.bookindDetail.slots!.booked_slots!.length,
+                      itemCount:
+                          widget.bookindDetail.slots!.booked_slots!.length,
                       itemBuilder: (context, blockindex) {
                         return Text(
                             '(${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
@@ -240,14 +246,16 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
                   padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
                   child: Text(
                     AppLocalizations.of(context)!.tranjectionId,
-                    style: const TextStyle(fontSize: 8, color: Color(0XFFADADAD)),
+                    style:
+                        const TextStyle(fontSize: 8, color: Color(0XFFADADAD)),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
                   child: Text(
                     widget.bookindDetail.transactionId!,
-                    style: const TextStyle(fontSize: 13, color: Color(0XFF032040)),
+                    style:
+                        const TextStyle(fontSize: 13, color: Color(0XFF032040)),
                   ),
                 ),
                 flaxibleGap(1),

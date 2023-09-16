@@ -21,9 +21,9 @@ import 'select_sport.dart';
 
 class Documents extends StatefulWidget {
   SportsModel detail;
-  Documents({required this.detail});
+  Documents({super.key, required this.detail});
   @override
-  _DocumentsState createState() => _DocumentsState();
+  State<Documents> createState() => _DocumentsState();
 }
 
 class _DocumentsState extends State<Documents> {
@@ -68,13 +68,14 @@ class _DocumentsState extends State<Documents> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(AppLocalizations.of(context)!.uploadprofilepicture),
+            title: Text(AppLocalizations.of(context)!.uploadprofilepicture,
+                style: TextStyle(color: Colors.black)),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
                   GestureDetector(
-                    child:
-                        Text(AppLocalizations.of(context)!.choosefromlibrary),
+                    child: Text(AppLocalizations.of(context)!.choosefromlibrary,
+                        style: TextStyle(color: Colors.black)),
                     onTap: () async {
                       var status = await Permission.photos.status;
                       if (status.isGranted) {
@@ -87,20 +88,28 @@ class _DocumentsState extends State<Documents> {
                             context: context,
                             builder: (BuildContext context) =>
                                 CupertinoAlertDialog(
-                                  title: Text(AppLocalizations.of(context)!
-                                      .galleryPermission),
-                                  content: Text(AppLocalizations.of(context)!
-                                      .thisGalleryPicturesUploadImage),
+                                  title: Text(
+                                      AppLocalizations.of(context)!
+                                          .galleryPermission,
+                                      style: TextStyle(color: Colors.black)),
+                                  content: Text(
+                                      AppLocalizations.of(context)!
+                                          .thisGalleryPicturesUploadImage,
+                                      style: TextStyle(color: Colors.black)),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       child: Text(
-                                          AppLocalizations.of(context)!.deny),
+                                          AppLocalizations.of(context)!.deny,
+                                          style:
+                                              TextStyle(color: Colors.black)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
                                     ),
                                     CupertinoDialogAction(
-                                      child: Text(AppLocalizations.of(context)!
-                                          .setting),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.setting,
+                                          style:
+                                              TextStyle(color: Colors.black)),
                                       onPressed: () => openAppSettings(),
                                     ),
                                   ],
@@ -274,7 +283,6 @@ class _DocumentsState extends State<Documents> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _permission();
     _getLocationPermission();
@@ -586,33 +594,25 @@ class _DocumentsState extends State<Documents> {
                                   width: sizeWidth * .19,
                                   color: const Color(0XFF25A163),
                                 ),
-                                flaxibleGap(
-                                  1,
-                                ),
+                                flaxibleGap(1),
                                 Container(
                                   height: sizeHeight * .005,
                                   width: sizeWidth * .19,
                                   color: const Color(0XFF25A163),
                                 ),
-                                flaxibleGap(
-                                  1,
-                                ),
+                                flaxibleGap(1),
                                 Container(
                                   height: sizeHeight * .005,
                                   width: sizeWidth * .19,
                                   color: const Color(0XFF25A163),
                                 ),
-                                flaxibleGap(
-                                  1,
-                                ),
+                                flaxibleGap(1),
                                 Container(
                                   height: sizeHeight * .005,
                                   width: sizeWidth * .19,
                                   color: const Color(0XFFCBCBCB),
                                 ),
-                                flaxibleGap(
-                                  1,
-                                ),
+                                flaxibleGap(1),
                                 Container(
                                   height: sizeHeight * .005,
                                   width: sizeWidth * .19,
@@ -687,7 +687,7 @@ class _DocumentsState extends State<Documents> {
                                                                           50.0),
                                                                       child: Image
                                                                           .asset(
-                                                                        "images/add_doc.png",
+                                                                        "assets/images/add_doc.png",
                                                                         height:
                                                                             50,
                                                                       ),
@@ -716,6 +716,7 @@ class _DocumentsState extends State<Documents> {
                                                                   setState(() {
                                                                     checkIndex =
                                                                         index;
+
                                                                     _nameController
                                                                             .text =
                                                                         doc[checkIndex - 1].docName ??
@@ -789,7 +790,7 @@ class _DocumentsState extends State<Documents> {
                                                                                 const EdgeInsets.all(50.0),
                                                                             child:
                                                                                 Image.asset(
-                                                                              "images/check.png",
+                                                                              "assets/images/check.png",
                                                                               height: 50,
                                                                             ),
                                                                           ),
@@ -875,7 +876,7 @@ class _DocumentsState extends State<Documents> {
                                       return AppLocalizations.of(context)!
                                           .pleaseenterPitchName;
                                     }
-                                    return '';
+                                    return null;
                                   },
                                   text: false,
                                   text1: false,
@@ -898,7 +899,7 @@ class _DocumentsState extends State<Documents> {
                                       return AppLocalizations.of(context)!
                                           .pleaseenterPitchName;
                                     }
-                                    return '';
+                                    return null;
                                   },
                                   text: false,
                                   text1: false,

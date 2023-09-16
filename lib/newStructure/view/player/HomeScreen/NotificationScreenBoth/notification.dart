@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/NotificationScreen/notificationShimmer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -8,9 +8,11 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../utils.dart';
+import 'notificationShimmer.dart';
 
 class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({super.key});
+  bool player;
+  NotificationScreen({super.key, this.player = true});
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
@@ -80,6 +82,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    double height = MediaQuery.of(context).size.height;
     return RefreshIndicator(
         displacement: 200,
         onRefresh: () async {
@@ -131,23 +134,29 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 18.0, vertical: 55),
                             child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 83.5 * fem, 0 * fem),
-                                    width: 40 * fem,
-                                    height: 40 * fem,
-                                    child: Image.asset(
-                                      'assets/light-design/images/icon-7AR.png',
-                                      width: 40 * fem,
-                                      height: 40 * fem,
-                                    ),
-                                  ),
+                                widget.player
+                                    ? InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Container(
+                                            padding:
+                                                EdgeInsets.all(height * 0.008),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.grey),
+                                                shape: BoxShape.circle),
+                                            child: const Center(
+                                              child: FaIcon(
+                                                FontAwesomeIcons.close,
+                                                color: Colors.white,
+                                              ),
+                                            )),
+                                      )
+                                    : const SizedBox.shrink(),
+                                SizedBox(
+                                  width: height * 0.116,
                                 ),
                                 Text(
                                   AppLocalizations.of(context)!.notificationC,
@@ -166,7 +175,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         ),
                         detail!.isEmpty
                             ? Positioned(
-                                top: 200 * fem,
+                                top: 180 * fem,
                                 left: 0,
                                 right: 0,
                                 child: Padding(
@@ -214,7 +223,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 left: 0,
                                 right: 0,
                                 child: Container(
-                                  height: 680 * fem,
+                                  height: widget.player ? 700 * fem : 650 * fem,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(30 * fem),
@@ -264,9 +273,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                             int current = detail![0]
                                                     ["currentNotification"]
                                                 .length;
-                                            // int previous = detail![0]
-                                            //         ["previousNotfication"]
-                                            //     .length;
                                             return Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
@@ -318,35 +324,32 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                   BorderRadius
                                                                       .circular(
                                                                           50.0),
-                                                              child: detail![0][
-                                                                              "previousNotfication"]
-                                                                          [
-                                                                          index -
-                                                                              current]["image"]["filePath"] ==
-                                                                      null
-                                                                  ? Image.asset(
-                                                                      "assets/images/profile.png",
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                      height:
-                                                                          .06 *
-                                                                              fem,
-                                                                      width: .06 *
-                                                                          fem,
-                                                                    )
-                                                                  : cachedNetworkImage(
-                                                                      height:
-                                                                          .06 *
-                                                                              fem,
-                                                                      width: .06 *
-                                                                          fem,
-                                                                      cuisineImageUrl: detail![0]
-                                                                              [
-                                                                              "previousNotfication"]
-                                                                          [
-                                                                          index -
-                                                                              current]["image"]["filePath"],
-                                                                    )),
+                                                              child: detail![0]["previousNotfication"]
+                                                                              [index - current]
+                                                                          ['notificationFor'] ==
+                                                                      'team'
+                                                                  ? detail![0]["previousNotfication"][index - current]["image"]["filePath"] == null
+                                                                      ? Image.asset(
+                                                                          "assets/images/profile.png",
+                                                                          fit: BoxFit
+                                                                              .fill,
+                                                                          height:
+                                                                              .06 * fem,
+                                                                          width:
+                                                                              .06 * fem,
+                                                                        )
+                                                                      : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index - current]["image"]["filePath"])
+                                                                  : detail![0]["previousNotfication"][index - current]["image"][index]["filePath"] == null
+                                                                      ? Image.asset(
+                                                                          "assets/images/profile.png",
+                                                                          fit: BoxFit
+                                                                              .fill,
+                                                                          height:
+                                                                              .06 * fem,
+                                                                          width:
+                                                                              .06 * fem,
+                                                                        )
+                                                                      : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index - current]["image"][index]["filePath"])),
                                                         ),
                                                         Container(
                                                           margin:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import 'package:myfatoorah_flutter/utils/MFCountry.dart';
 import 'package:myfatoorah_flutter/utils/MFEnvironment.dart';
@@ -16,7 +17,7 @@ import '../../../network/network_calls.dart';
 class Payment extends StatefulWidget {
   dynamic detail;
 
-  Payment({this.detail});
+  Payment({super.key, this.detail});
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -60,7 +61,6 @@ class _PaymentState extends State<Payment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
@@ -158,7 +158,7 @@ class _PaymentState extends State<Payment> {
         ? Scaffold(
             backgroundColor: Colors.black,
             appBar: PreferredSize(
-              preferredSize: Size(sizewidth, sizeheight * 0.13),
+              preferredSize: Size(sizewidth, sizeheight * 0.108),
               child: AppBar(
                 title: Text(
                   AppLocalizations.of(context)!.selectPaymentMethod,
@@ -173,15 +173,15 @@ class _PaymentState extends State<Payment> {
                 leading: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                      height: sizeheight * 0.004,
+                      padding: EdgeInsets.all(sizeheight * 0.008),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           shape: BoxShape.circle),
-                      child: Icon(
-                        AppLocalizations.of(context)!.locale == 'en'
-                            ? Icons.keyboard_arrow_left_sharp
-                            : Icons.keyboard_arrow_right,
-                        color: Colors.white,
+                      child: Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.close,
+                          color: Colors.white,
+                        ),
                       )),
                 ),
               ),
@@ -223,7 +223,7 @@ class _PaymentState extends State<Payment> {
             ? Scaffold(
                 backgroundColor: Colors.black,
                 appBar: PreferredSize(
-                  preferredSize: Size(sizewidth, sizeheight * 0.13),
+                  preferredSize: Size(sizewidth, sizeheight * 0.108),
                   child: AppBar(
                     title: Text(
                       AppLocalizations.of(context)!.selectPaymentMethod,
@@ -242,15 +242,15 @@ class _PaymentState extends State<Payment> {
                           Navigator.pop(context);
                         },
                         child: Container(
-                            height: sizeheight * 0.004,
+                            padding: EdgeInsets.all(sizeheight * 0.008),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 shape: BoxShape.circle),
-                            child: Icon(
-                              AppLocalizations.of(context)!.locale == 'en'
-                                  ? Icons.keyboard_arrow_left_sharp
-                                  : Icons.keyboard_arrow_right,
-                              color: Colors.white,
+                            child: Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.close,
+                                color: Colors.white,
+                              ),
                             )),
                       ),
                     ),

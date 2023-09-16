@@ -75,7 +75,6 @@ class _PriceScreenState extends State<PriceScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (Platform.isIOS) {
       focusNode.addListener(() {
@@ -136,73 +135,75 @@ class _PriceScreenState extends State<PriceScreen> {
                               color: const Color(0XFF25A163),
                               child: InkWell(
                                 onTap: () {
-                                  // if (_formKey.currentState!.validate()) {
-                                  // _formKey.currentState!.save();
-                                  Map pitchTypeDetail = {
-                                    "subpitchtypeName": _vanueController.text,
-                                    "payment": int.parse(_priceController.text),
-                                    "area": _pitchType[pitchTypeIndex].name,
-                                    "pitchtypeSlug":
-                                        _pitchType[pitchTypeIndex].slug,
-                                    "price_per_player":
-                                        int.parse(_pricePerPlayer.text),
-                                    "max_no_of_players":
-                                        widget.detail.sportsType == "swimming"
-                                            ? int.parse(
-                                                _numberPlayerList[indexItem])
-                                            : maxPlayer(
-                                                _pitchType[pitchTypeIndex].name)
-                                  };
-                                  Map detail = {
-                                    "sport_slug": widget.detail.sportsType,
-                                    "pitchName": widget
-                                        .detail.pitchDetailModel!.pitchName,
-                                    "pitchNamearabic": widget
-                                        .detail.pitchDetailModel!.pitchNameAr,
-                                    "pitchLocation":
-                                        widget.detail.documentModel!.address,
-                                    "pitchDescription": widget
-                                        .detail.pitchDetailModel!.description,
-                                    "pitchDescriptionarabic": widget
-                                        .detail.pitchDetailModel!.descriptionAr,
-                                    "gameplaySlug": widget
-                                        .detail.pitchDetailModel!.gamePlay,
-                                    "facilitiesSlug": widget
-                                        .detail.pitchDetailModel!.facility,
-                                    "pitchLatitude":
-                                        widget.detail.documentModel!.lat,
-                                    "pitchLongitude":
-                                        widget.detail.documentModel!.long,
-                                    "pitchimageId": widget
-                                        .detail.pitchDetailModel!.pitchImageId,
-                                    "pitchdocId": widget
-                                        .detail.documentModel!.documentImageId,
-                                    "document_code": widget
-                                        .detail.documentModel!.licenceNumber,
-                                    "pitchtypeDetails": [pitchTypeDetail],
-                                    "document_name": widget
-                                        .detail.documentModel!.documentName,
-                                    "documents_expiry_date":
-                                        widget.detail.documentModel!.expiryDate,
-                                    "code":
-                                        widget.detail.pitchDetailModel!.code,
-                                    "country":
-                                        widget.detail.documentModel!.country,
-                                  };
-                                  setState(() {
-                                    _isVenueLoading = true;
-                                  });
-                                  _networkCalls.createVenue(
-                                      detail: detail,
-                                      onSuccess: (detail) {
-                                        setState(() {
-                                          navigateToSession(detail);
-                                          _isVenueLoading = false;
-                                        });
-                                      },
-                                      onFailure: (onFailure) {},
-                                      tokenExpire: () {});
-                                  // }
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    Map pitchTypeDetail = {
+                                      "subpitchtypeName": _vanueController.text,
+                                      "payment":
+                                          int.parse(_priceController.text),
+                                      "area": _pitchType[pitchTypeIndex].name,
+                                      "pitchtypeSlug":
+                                          _pitchType[pitchTypeIndex].slug,
+                                      "price_per_player":
+                                          int.parse(_pricePerPlayer.text),
+                                      "max_no_of_players": widget
+                                                  .detail.sportsType ==
+                                              "swimming"
+                                          ? int.parse(
+                                              _numberPlayerList[indexItem])
+                                          : maxPlayer(
+                                              _pitchType[pitchTypeIndex].name)
+                                    };
+                                    Map detail = {
+                                      "sport_slug": widget.detail.sportsType,
+                                      "pitchName": widget
+                                          .detail.pitchDetailModel!.pitchName,
+                                      "pitchNamearabic": widget
+                                          .detail.pitchDetailModel!.pitchNameAr,
+                                      "pitchLocation":
+                                          widget.detail.documentModel!.address,
+                                      "pitchDescription": widget
+                                          .detail.pitchDetailModel!.description,
+                                      "pitchDescriptionarabic": widget.detail
+                                          .pitchDetailModel!.descriptionAr,
+                                      "gameplaySlug": widget
+                                          .detail.pitchDetailModel!.gamePlay,
+                                      "facilitiesSlug": widget
+                                          .detail.pitchDetailModel!.facility,
+                                      "pitchLatitude":
+                                          widget.detail.documentModel!.lat,
+                                      "pitchLongitude":
+                                          widget.detail.documentModel!.long,
+                                      "pitchimageId": widget.detail
+                                          .pitchDetailModel!.pitchImageId,
+                                      "pitchdocId": widget.detail.documentModel!
+                                          .documentImageId,
+                                      "document_code": widget
+                                          .detail.documentModel!.licenceNumber,
+                                      "pitchtypeDetails": [pitchTypeDetail],
+                                      "document_name": widget
+                                          .detail.documentModel!.documentName,
+                                      "documents_expiry_date": widget
+                                          .detail.documentModel!.expiryDate,
+                                      "code":
+                                          widget.detail.pitchDetailModel!.code,
+                                      "country":
+                                          widget.detail.documentModel!.country,
+                                    };
+                                    setState(() {
+                                      _isVenueLoading = true;
+                                    });
+                                    _networkCalls.createVenue(
+                                        detail: detail,
+                                        onSuccess: (detail) {
+                                          setState(() {
+                                            navigateToSession(detail);
+                                            _isVenueLoading = false;
+                                          });
+                                        },
+                                        onFailure: (onFailure) {},
+                                        tokenExpire: () {});
+                                  }
                                 },
                                 splashColor: Colors.black,
                                 child: Container(
@@ -247,131 +248,197 @@ class _PriceScreenState extends State<PriceScreen> {
                             width: size.width,
                             color: Colors.white,
                             child: SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 10.0),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Container(
-                                          height: size.height * .005,
-                                          width: size.width * .19,
-                                          color: const Color(0XFF25A163),
-                                        ),
-                                        flaxibleGap(
-                                          1,
-                                        ),
-                                        Container(
-                                          height: size.height * .005,
-                                          width: size.width * .19,
-                                          color: const Color(0XFF25A163),
-                                        ),
-                                        flaxibleGap(
-                                          1,
-                                        ),
-                                        Container(
-                                          height: size.height * .005,
-                                          width: size.width * .19,
-                                          color: const Color(0XFF25A163),
-                                        ),
-                                        flaxibleGap(
-                                          1,
-                                        ),
-                                        Container(
-                                          height: size.height * .005,
-                                          width: size.width * .19,
-                                          color: const Color(0XFFCBCBCB),
-                                        ),
-                                        flaxibleGap(
-                                          1,
-                                        ),
-                                        Container(
-                                          height: size.height * .005,
-                                          width: size.width * .19,
-                                          color: const Color(0XFFCBCBCB),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Material(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: const Color(0XFF25A163)
-                                            .withOpacity(.18),
-                                        borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(15),
-                                          topLeft: Radius.circular(15),
-                                        ),
-                                        //border: Border.all(width: 3,color: Color(0XFFE0E0E0),style: BorderStyle.solid)
+                              child: Form(
+                                key: _formKey,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10.0),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Container(
+                                            height: size.height * .005,
+                                            width: size.width * .19,
+                                            color: const Color(0XFF25A163),
+                                          ),
+                                          flaxibleGap(1),
+                                          Container(
+                                            height: size.height * .005,
+                                            width: size.width * .19,
+                                            color: const Color(0XFF25A163),
+                                          ),
+                                          flaxibleGap(1),
+                                          Container(
+                                            height: size.height * .005,
+                                            width: size.width * .19,
+                                            color: const Color(0XFF25A163),
+                                          ),
+                                          flaxibleGap(1),
+                                          Container(
+                                            height: size.height * .005,
+                                            width: size.width * .19,
+                                            color: const Color(0XFFCBCBCB),
+                                          ),
+                                          flaxibleGap(1),
+                                          Container(
+                                            height: size.height * .005,
+                                            width: size.width * .19,
+                                            color: const Color(0XFFCBCBCB),
+                                          ),
+                                        ],
                                       ),
-                                      constraints: BoxConstraints(
-                                          maxHeight: size.height * .06),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            cachedNetworkImage(
-                                                cuisineImageUrl:
-                                                    widget.detail.sportsImage,
-                                                height: 20,
-                                                width: 20,
-                                                imageFit: BoxFit.fill),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text(widget.detail.sportsName!,
-                                                style: const TextStyle(
-                                                    color: Color(0XFF032040),
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontFamily: "Poppins")),
-                                          ],
+                                    ),
+                                    Material(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: const Color(0XFF25A163)
+                                              .withOpacity(.18),
+                                          borderRadius: const BorderRadius.only(
+                                            topRight: Radius.circular(15),
+                                            topLeft: Radius.circular(15),
+                                          ),
+                                          //border: Border.all(width: 3,color: Color(0XFFE0E0E0),style: BorderStyle.solid)
+                                        ),
+                                        constraints: BoxConstraints(
+                                            maxHeight: size.height * .06),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              cachedNetworkImage(
+                                                  cuisineImageUrl:
+                                                      widget.detail.sportsImage,
+                                                  height: 20,
+                                                  width: 20,
+                                                  imageFit: BoxFit.fill),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(widget.detail.sportsName!,
+                                                  style: const TextStyle(
+                                                      color: Color(0XFF032040),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontFamily: "Poppins")),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                      height: size.height * .1,
-                                      color: Colors.white,
-                                      padding: const EdgeInsets.only(top: 20),
-                                      alignment: Alignment.center,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 15.0),
-                                        child: textField(
-                                            controller: _vanueController,
-                                            name: "Sub-Venue name",
-                                            // controller: _nameControllerArabic,
-                                            text: false,
-                                            text1: false,
-                                            focusAuto: true,
-                                            // submit: (value) =>
-                                            //     FocusScope.of(context).requestFocus(codeFocus),
-                                            onSaved: (value) =>
-                                                _subVenue = value!),
-                                      )),
-                                  widget.detail.sportsType == "swimming"
-                                      ? const SizedBox.shrink()
-                                      : Padding(
+                                    Container(
+                                        height: size.height * .1,
+                                        color: Colors.white,
+                                        padding: const EdgeInsets.only(top: 20),
+                                        alignment: Alignment.center,
+                                        child: Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 15.0, vertical: 10),
-                                          child: SizedBox(
+                                              horizontal: 15.0),
+                                          child: textField(
+                                              controller: _vanueController,
+                                              name: "Sub-Venue name",
+                                              // controller: _nameControllerArabic,
+                                              text: false,
+                                              text1: false,
+                                              focusAuto: true,
+                                              // submit: (value) =>
+                                              //     FocusScope.of(context).requestFocus(codeFocus),
+                                              onSaved: (value) =>
+                                                  _subVenue = value!),
+                                        )),
+                                    widget.detail.sportsType == "swimming"
+                                        ? const SizedBox.shrink()
+                                        : Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 15.0, vertical: 10),
+                                            child: SizedBox(
+                                              width: size.width,
+                                              height: size.height * .08,
+                                              child: CustomDropdown(
+                                                leadingIcon: false,
+                                                icon: Image.asset(
+                                                  "assets/images/drop_down.png",
+                                                  height: 8,
+                                                ),
+                                                onChange:
+                                                    (int value, int index) =>
+                                                        setState(() {
+                                                  pitchTypeIndex = index;
+                                                }),
+                                                dropdownButtonStyle:
+                                                    const DropdownButtonStyle(
+                                                  width: 170,
+                                                  height: 45,
+                                                  elevation: 1,
+                                                  backgroundColor: Colors.white,
+                                                  primaryColor: Colors.black87,
+                                                ),
+                                                dropdownStyle: DropdownStyle(
+                                                  borderRadius:
+                                                      BorderRadius.circular(0),
+                                                  elevation: 6,
+                                                  padding:
+                                                      const EdgeInsets.all(5),
+                                                ),
+                                                items: _pitchType
+                                                    .asMap()
+                                                    .entries
+                                                    .map(
+                                                      (item) => DropdownItem(
+                                                        value: item.key + 1,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  top: 8.0),
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Text(item
+                                                                      .value
+                                                                      .name),
+                                                                ],
+                                                              ),
+                                                              const Divider()
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                    .toList(),
+                                                child: Text(
+                                                  _pitchType[pitchTypeIndex]
+                                                      .name,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                    widget.detail.sportsType == "swimming"
+                                        ? Container(
                                             width: size.width,
-                                            height: size.height * .08,
+                                            padding: const EdgeInsets.only(
+                                                top: 10, left: 15, right: 15),
                                             child: CustomDropdown(
                                               leadingIcon: false,
                                               icon: Image.asset(
                                                 "assets/images/drop_down.png",
-                                                height: 8,
+                                                height: 6,
                                               ),
                                               onChange:
                                                   (int value, int index) =>
                                                       setState(() {
-                                                pitchTypeIndex = index;
+                                                indexItem = index;
                                               }),
                                               dropdownButtonStyle:
                                                   const DropdownButtonStyle(
@@ -388,7 +455,7 @@ class _PriceScreenState extends State<PriceScreen> {
                                                 padding:
                                                     const EdgeInsets.all(5),
                                               ),
-                                              items: _pitchType
+                                              items: _numberPlayerList
                                                   .asMap()
                                                   .entries
                                                   .map(
@@ -408,8 +475,8 @@ class _PriceScreenState extends State<PriceScreen> {
                                                                   MainAxisAlignment
                                                                       .center,
                                                               children: [
-                                                                Text(item.value
-                                                                    .name),
+                                                                Text(
+                                                                    item.value),
                                                               ],
                                                             ),
                                                             const Divider()
@@ -419,213 +486,158 @@ class _PriceScreenState extends State<PriceScreen> {
                                                     ),
                                                   )
                                                   .toList(),
-                                              child: Text(
-                                                _pitchType[pitchTypeIndex].name,
+                                              child: const Text(
+                                                'Max No. of Players',
+                                                style: TextStyle(fontSize: 12),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                  widget.detail.sportsType == "swimming"
-                                      ? Container(
-                                          width: size.width,
-                                          padding: const EdgeInsets.only(
-                                              top: 10, left: 15, right: 15),
-                                          child: CustomDropdown(
-                                            leadingIcon: false,
-                                            icon: Image.asset(
-                                              "assets/images/drop_down.png",
-                                              height: 6,
-                                            ),
-                                            onChange: (int value, int index) =>
-                                                setState(() {
-                                              indexItem = index;
-                                            }),
-                                            dropdownButtonStyle:
-                                                const DropdownButtonStyle(
-                                              width: 170,
-                                              height: 45,
-                                              elevation: 1,
-                                              backgroundColor: Colors.white,
-                                              primaryColor: Colors.black87,
-                                            ),
-                                            dropdownStyle: DropdownStyle(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              elevation: 6,
-                                              padding: const EdgeInsets.all(5),
-                                            ),
-                                            items: _numberPlayerList
-                                                .asMap()
-                                                .entries
-                                                .map(
-                                                  (item) => DropdownItem(
-                                                    value: item.key + 1,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 8.0),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(item.value),
-                                                            ],
-                                                          ),
-                                                          const Divider()
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                                .toList(),
-                                            child: const Text(
-                                              'Max No. of Players',
-                                              style: TextStyle(fontSize: 12),
-                                            ),
-                                          ),
-                                        )
-                                      : const SizedBox.shrink(),
-                                  widget.detail.sportsType == "swimming"
-                                      ? const SizedBox.shrink()
-                                      : Container(
-                                          height: size.height * .1,
-                                          width: size.width,
-                                          color: Colors.white,
-                                          alignment: Alignment.center,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 15.0),
-                                            child: TextFormField(
-                                              textAlign: TextAlign.right,
-                                              controller: _priceController,
-                                              autofocus: true,
-                                              decoration: const InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                                labelText: "Venue price",
-                                                hintStyle: TextStyle(
-                                                    color: Color(0XFF032040),
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 10),
-                                                labelStyle: TextStyle(
-                                                    color: Color(0XFFADADAD),
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                                enabledBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Color(0XFF9F9F9F)),
-                                                ),
-                                                focusedBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Color(0XFF9F9F9F)),
-                                                ),
-                                                prefix: Text(
-                                                  "Amount: ",
-                                                  style: TextStyle(
-                                                      color: appThemeColor,
+                                          )
+                                        : const SizedBox.shrink(),
+                                    widget.detail.sportsType == "swimming"
+                                        ? const SizedBox.shrink()
+                                        : Container(
+                                            height: size.height * .1,
+                                            width: size.width,
+                                            color: Colors.white,
+                                            alignment: Alignment.center,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 15.0),
+                                              child: TextFormField(
+                                                textAlign: TextAlign.right,
+                                                controller: _priceController,
+                                                autofocus: true,
+                                                decoration:
+                                                    const InputDecoration(
+                                                  contentPadding:
+                                                      EdgeInsets.all(0),
+                                                  labelText: "Venue price",
+                                                  hintStyle: TextStyle(
+                                                      color: Color(0XFF032040),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 10),
+                                                  labelStyle: TextStyle(
+                                                      color: Color(0XFFADADAD),
                                                       fontSize: 12,
                                                       fontWeight:
                                                           FontWeight.w500),
+                                                  enabledBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color:
+                                                            Color(0XFF9F9F9F)),
+                                                  ),
+                                                  focusedBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color:
+                                                            Color(0XFF9F9F9F)),
+                                                  ),
+                                                  prefix: Text(
+                                                    "Amount: ",
+                                                    style: TextStyle(
+                                                        color: appThemeColor,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                  suffix: Text(
+                                                    " AED",
+                                                    style: TextStyle(
+                                                        color: appThemeColor,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
                                                 ),
-                                                suffix: Text(
-                                                  " AED",
-                                                  style: TextStyle(
-                                                      color: appThemeColor,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
+                                                style: const TextStyle(
+                                                    color: Color(0XFF032040),
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 14),
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                onSaved: (value) {
+                                                  _venuePrice = value!;
+                                                },
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return "Please enter amount";
+                                                  }
+                                                  return null;
+                                                },
                                               ),
-                                              style: const TextStyle(
+                                            )),
+                                    Container(
+                                        height: size.height * .1,
+                                        width: size.width,
+                                        color: Colors.white,
+                                        alignment: Alignment.center,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 15.0),
+                                          child: TextFormField(
+                                            focusNode: focusNode,
+                                            controller: _pricePerPlayer,
+                                            textAlign: TextAlign.right,
+                                            autofocus: true,
+                                            decoration: const InputDecoration(
+                                              contentPadding: EdgeInsets.all(0),
+                                              labelText: "Price per player",
+                                              hintStyle: TextStyle(
                                                   color: Color(0XFF032040),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 14),
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              onSaved: (value) {
-                                                _venuePrice = value!;
-                                              },
-                                              validator: (value) {
-                                                if (value!.isEmpty) {
-                                                  return "Please enter amount";
-                                                }
-                                                return null;
-                                              },
-                                            ),
-                                          )),
-                                  Container(
-                                      height: size.height * .1,
-                                      width: size.width,
-                                      color: Colors.white,
-                                      alignment: Alignment.center,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 15.0),
-                                        child: TextFormField(
-                                          focusNode: focusNode,
-                                          controller: _pricePerPlayer,
-                                          textAlign: TextAlign.right,
-                                          autofocus: true,
-                                          decoration: const InputDecoration(
-                                            contentPadding: EdgeInsets.all(0),
-                                            labelText: "Price per player",
-                                            hintStyle: TextStyle(
-                                                color: Color(0XFF032040),
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 10),
-                                            labelStyle: TextStyle(
-                                                color: Color(0XFFADADAD),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500),
-                                            enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Color(0XFF9F9F9F)),
-                                            ),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Color(0XFF9F9F9F)),
-                                            ),
-                                            prefix: Text(
-                                              "Amount: ",
-                                              style: TextStyle(
-                                                  color: appThemeColor,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 10),
+                                              labelStyle: TextStyle(
+                                                  color: Color(0XFFADADAD),
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w500),
+                                              enabledBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Color(0XFF9F9F9F)),
+                                              ),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Color(0XFF9F9F9F)),
+                                              ),
+                                              prefix: Text(
+                                                "Amount: ",
+                                                style: TextStyle(
+                                                    color: appThemeColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              suffix: Text(
+                                                " AED",
+                                                style: TextStyle(
+                                                    color: appThemeColor,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
-                                            suffix: Text(
-                                              " AED",
-                                              style: TextStyle(
-                                                  color: appThemeColor,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
+                                            style: const TextStyle(
+                                                color: Color(0XFF032040),
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14),
+                                            keyboardType: TextInputType.number,
+                                            onSaved: (value) {
+                                              _playerPrice = value!;
+                                            },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return "Please enter amount";
+                                              }
+                                              return null;
+                                            },
                                           ),
-                                          style: const TextStyle(
-                                              color: Color(0XFF032040),
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14),
-                                          keyboardType: TextInputType.number,
-                                          onSaved: (value) {
-                                            _playerPrice = value!;
-                                          },
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return "Please enter amount";
-                                            }
-                                            return null;
-                                          },
-                                        ),
-                                      )),
-                                ],
+                                        )),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

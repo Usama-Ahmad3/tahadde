@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../common_widgets/internet_loss.dart';
@@ -13,10 +14,10 @@ import '../../network/network_calls.dart';
 class EnterDetailPitch extends StatefulWidget {
   final dynamic detail;
 
-  EnterDetailPitch({this.detail});
+  EnterDetailPitch({super.key, this.detail});
 
   @override
-  _EnterDetailPitch createState() => _EnterDetailPitch();
+  State<EnterDetailPitch> createState() => _EnterDetailPitch();
 }
 
 class _EnterDetailPitch extends State<EnterDetailPitch> {
@@ -84,8 +85,9 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
             ? Scaffold(
                 backgroundColor: Colors.black,
                 appBar: PreferredSize(
-                  preferredSize: Size(sizewidth, sizeheight * 0.13),
+                  preferredSize: Size(sizewidth, sizeheight * 0.108),
                   child: AppBar(
+                    automaticallyImplyLeading: false,
                     title: Text(
                       AppLocalizations.of(context)!.bookingDetails,
                       style: Theme.of(context)
@@ -620,7 +622,7 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
                 ? Scaffold(
                     backgroundColor: Colors.black,
                     appBar: PreferredSize(
-                      preferredSize: Size(sizewidth, sizeheight * 0.13),
+                      preferredSize: Size(sizewidth, sizeheight * 0.108),
                       child: AppBar(
                         title: Text(
                           AppLocalizations.of(context)!.bookingDetails,
@@ -639,15 +641,15 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
                               Navigator.pop(context);
                             },
                             child: Container(
-                                height: sizeheight * 0.004,
+                                padding: EdgeInsets.all(sizeheight * 0.008),
                                 decoration: BoxDecoration(
                                     border: Border.all(color: Colors.grey),
                                     shape: BoxShape.circle),
-                                child: Icon(
-                                  AppLocalizations.of(context)!.locale == 'en'
-                                      ? Icons.keyboard_arrow_left_sharp
-                                      : Icons.keyboard_arrow_right,
-                                  color: Colors.white,
+                                child: const Center(
+                                  child: FaIcon(
+                                    FontAwesomeIcons.close,
+                                    color: Colors.white,
+                                  ),
                                 )),
                           ),
                         ),

@@ -17,7 +17,7 @@ class ProfileShimmer {
               Column(
                 children: [
                   Container(
-                    height: sizeHeight * 0.25,
+                    height: sizeHeight * 0.144,
                     width: double.infinity,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
@@ -83,7 +83,7 @@ class ProfileShimmer {
                 ],
               ),
               Positioned(
-                  top: sizeHeight * 0.186,
+                  top: sizeHeight * 0.079,
                   left: 0,
                   right: sizeWidth * 0.67,
                   child: CircleAvatar(

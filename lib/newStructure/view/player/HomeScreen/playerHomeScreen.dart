@@ -21,15 +21,7 @@ class PlayerHomeScreen extends StatefulWidget {
   _PlayerHomeScreenState createState() => _PlayerHomeScreenState();
 }
 
-class _PlayerHomeScreenState extends State<PlayerHomeScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  void _handleTabSelection() {
-    FocusScope.of(context).requestFocus(FocusNode());
-    setState(() {});
-  }
-
+class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
   initDynamicLinks() async {
     bool _auth = await checkAuthorizaton() as bool;
     PendingDynamicLinkData? data =
@@ -61,21 +53,6 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
       navigateToLeagueDetail(detail);
     }
     FirebaseDynamicLinks.instance.onLink;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initDynamicLinks();
-    _tabController =
-        TabController(vsync: this, length: 4, initialIndex: widget.index);
-    _tabController.addListener(_handleTabSelection);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
   }
 
   onWillPop() {
@@ -141,8 +118,8 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
 
   final page = [
     const HomeScreenView(),
-    EventsScreen(),
-    const SettingsScreen(),
+    EventsScreen(bookingTag: false),
+    SettingsScreen(bookingTag: false),
     // ignore: prefer_const_constructors
     ProfileDetailScreen()
   ];
@@ -187,16 +164,28 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen>
                     selectedColor: const Color(0xffffc300),
                   ),
                   SalomonBottomBarItem(
-                    icon: const Icon(
-                      Icons.event,
+                    icon: Transform.rotate(
+                      angle: 2.75,
+                      child: SizedBox(
+                        height: 30,
+                        width: 30,
+                        child: Image.asset('assets/images/ticket-9LV.png'),
+                      ),
                     ),
                     title: Text(
-                      'events',
+                      AppLocalizations.of(context)!.booking,
                       style: const TextStyle(color: Colors.black),
                     ),
-                    activeIcon: const Icon(
-                      Icons.event_available,
-                      color: Colors.black,
+                    activeIcon: Transform.rotate(
+                      angle: 3.25,
+                      child: SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: Image.asset(
+                          'assets/images/ticket.png',
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                     selectedColor: const Color(0xffffc300),
                     unselectedColor: Colors.grey,

@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/events/events.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
@@ -14,12 +17,14 @@ class ProfileDrawer extends StatefulWidget {
   String name;
   String position;
   String profileImage;
+  bool playerTag;
 
   ProfileDrawer(
       {super.key,
       required this.name,
       required this.position,
-      required this.profileImage});
+      required this.profileImage,
+      this.playerTag = true});
 
   @override
   State<ProfileDrawer> createState() => _ProfileDrawerState();
@@ -147,10 +152,10 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    var mode = MyAppState.mode;
     return Scaffold(
-      backgroundColor:
-          mode == ThemeMode.light ? Colors.white : const Color(0xff686868),
+      backgroundColor: MyAppState.mode == ThemeMode.light
+          ? Colors.white
+          : const Color(0xff686868),
       body: AnimatedContainer(
         duration: const Duration(microseconds: 300),
         curve: Curves.elasticInOut,
@@ -159,8 +164,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             child: DefaultTextStyle(
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  color:
-                      mode == ThemeMode.light ? Colors.grey : Colors.white54),
+                  color: MyAppState.mode == ThemeMode.light
+                      ? Colors.grey
+                      : Colors.white54),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -190,7 +196,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                 .textTheme
                                 .titleMedium!
                                 .copyWith(
-                                    color: mode == ThemeMode.light
+                                    color: MyAppState.mode == ThemeMode.light
                                         ? Colors.black
                                         : Colors.white),
                           ),
@@ -237,84 +243,155 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                     height: height * 0.02,
                   ),
                   ...List.generate(
-                      5,
-                      (index) => Padding(
-                            padding:
-                                EdgeInsets.symmetric(vertical: height * 0.01),
-                            child: ListTile(
-                              onTap: index == 0
-                                  ? () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const EditProfileScreen()));
-                                    }
-                                  : index == 1
-                                      ? () {
-                                          Navigator.pushNamed(
-                                              context, RouteNames.myBookings);
-                                        }
-                                      : index == 2
-                                          ? () {
-                                              Navigator.pushNamed(context,
-                                                  RouteNames.myInterest);
-                                            }
-                                          : index == 3
-                                              ? () {
-                                                  Navigator.pushNamed(
-                                                      context, RouteNames.rate);
-                                                }
-                                              : () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              const SettingsScreen()));
-                                                },
-                              titleAlignment: ListTileTitleAlignment.center,
-                              tileColor: mode == ThemeMode.light
-                                  ? Colors.grey.shade200
-                                  : Colors.black12,
-                              shape: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.white12),
-                                  borderRadius: BorderRadius.circular(10)),
-                              leading: Icon(
-                                icon[index],
-                                color: mode == ThemeMode.light
-                                    ? Colors.black
-                                    : Colors.white,
+                      widget.playerTag ? 5 : 3,
+                      (index) => widget.playerTag
+                          ? Padding(
+                              padding:
+                                  EdgeInsets.symmetric(vertical: height * 0.01),
+                              child: ListTile(
+                                onTap: index == 0
+                                    ? () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) =>
+                                                    const EditProfileScreen()));
+                                      }
+                                    : index == 1
+                                        ? () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        EventsScreen(
+                                                          bookingTag: true,
+                                                        )));
+                                          }
+                                        : index == 2
+                                            ? () {
+                                                Navigator.pushNamed(context,
+                                                    RouteNames.myInterest);
+                                              }
+                                            : index == 3
+                                                ? () {
+                                                    Navigator.pushNamed(context,
+                                                        RouteNames.rate);
+                                                  }
+                                                : () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (_) =>
+                                                                SettingsScreen(
+                                                                  bookingTag:
+                                                                      true,
+                                                                )));
+                                                  },
+                                titleAlignment: ListTileTitleAlignment.center,
+                                tileColor: MyAppState.mode == ThemeMode.light
+                                    ? Colors.grey.shade200
+                                    : Colors.black12,
+                                shape: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.white12),
+                                    borderRadius: BorderRadius.circular(10)),
+                                leading: Icon(
+                                  icon[index],
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
+                                titleTextStyle: const TextStyle(
+                                    leadingDistribution:
+                                        TextLeadingDistribution.even),
+                                title: Text(
+                                  title[index],
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white,
+                                      fontSize: 14),
+                                ),
+                                subtitle: Text(
+                                  subtitle[index],
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white),
+                                ),
+                                trailing: Icon(
+                                  AppLocalizations.of(context)!.locale == 'en'
+                                      ? Icons.keyboard_arrow_right
+                                      : Icons.keyboard_arrow_left,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
                               ),
-                              titleTextStyle: const TextStyle(
-                                  leadingDistribution:
-                                      TextLeadingDistribution.even),
-                              title: Text(
-                                title[index],
-                                style: TextStyle(
-                                    color: mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white,
-                                    fontSize: 14),
+                            )
+                          : Padding(
+                              padding:
+                                  EdgeInsets.symmetric(vertical: height * 0.01),
+                              child: ListTile(
+                                onTap: index == 0
+                                    ? () {}
+                                    : index == 1
+                                        ? () {
+                                            navigateToMyPitches();
+                                          }
+                                        : () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        SettingsScreen(
+                                                          bookingTag: true,
+                                                        )));
+                                          },
+                                titleAlignment: ListTileTitleAlignment.center,
+                                tileColor: MyAppState.mode == ThemeMode.light
+                                    ? Colors.grey.shade200
+                                    : Colors.black12,
+                                shape: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.white12),
+                                    borderRadius: BorderRadius.circular(10)),
+                                leading: Icon(
+                                  ownerIcon[index],
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
+                                titleTextStyle: const TextStyle(
+                                    leadingDistribution:
+                                        TextLeadingDistribution.even),
+                                title: Text(
+                                  ownerTitle[index],
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white,
+                                      fontSize: 14),
+                                ),
+                                subtitle: Text(
+                                  ownerSubtitle[index],
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white),
+                                ),
+                                trailing: Icon(
+                                  AppLocalizations.of(context)!.locale == 'en'
+                                      ? Icons.keyboard_arrow_right
+                                      : Icons.keyboard_arrow_left,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
                               ),
-                              subtitle: Text(
-                                subtitle[index],
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white),
-                              ),
-                              trailing: Icon(
-                                AppLocalizations.of(context)!.locale == 'en'
-                                    ? Icons.keyboard_arrow_right
-                                    : Icons.keyboard_arrow_left,
-                                color: mode == ThemeMode.light
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),
-                            ),
-                          )),
+                            )),
                   SizedBox(
                     height: height * 0.02,
                   ),
@@ -326,7 +403,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                     padding: EdgeInsets.symmetric(vertical: height * 0.01),
                     child: ListTile(
                       titleAlignment: ListTileTitleAlignment.center,
-                      tileColor: mode == ThemeMode.light
+                      tileColor: MyAppState.mode == ThemeMode.light
                           ? Colors.grey.shade200
                           : Colors.black12,
                       onTap: () {
@@ -337,7 +414,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                           borderRadius: BorderRadius.circular(10)),
                       leading: Icon(
                         Icons.help,
-                        color: mode == ThemeMode.light
+                        color: MyAppState.mode == ThemeMode.light
                             ? Colors.black
                             : Colors.white,
                       ),
@@ -347,7 +424,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                       title: Text(
                         AppLocalizations.of(context)!.help,
                         style: TextStyle(
-                            color: mode == ThemeMode.light
+                            color: MyAppState.mode == ThemeMode.light
                                 ? Colors.black
                                 : Colors.white,
                             fontSize: 14),
@@ -356,7 +433,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                         AppLocalizations.of(context)!.locale == 'en'
                             ? Icons.keyboard_arrow_right
                             : Icons.keyboard_arrow_left,
-                        color: mode == ThemeMode.light
+                        color: MyAppState.mode == ThemeMode.light
                             ? Colors.black
                             : Colors.white,
                       ),
@@ -376,7 +453,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                 EdgeInsets.symmetric(vertical: height * 0.01),
                             child: ListTile(
                               titleAlignment: ListTileTitleAlignment.center,
-                              tileColor: mode == ThemeMode.light
+                              tileColor: MyAppState.mode == ThemeMode.light
                                   ? Colors.grey.shade200
                                   : Colors.black12,
                               onTap: index == 0
@@ -392,7 +469,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   borderRadius: BorderRadius.circular(10)),
                               leading: Icon(
                                 iconList[index],
-                                color: mode == ThemeMode.light
+                                color: MyAppState.mode == ThemeMode.light
                                     ? Colors.black
                                     : Colors.white,
                               ),
@@ -403,7 +480,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                               title: Text(
                                 listTitle[index],
                                 style: TextStyle(
-                                    color: mode == ThemeMode.light
+                                    color: MyAppState.mode == ThemeMode.light
                                         ? Colors.black
                                         : Colors.white,
                                     fontSize: 14),
@@ -412,7 +489,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                 AppLocalizations.of(context)!.locale == 'en'
                                     ? Icons.keyboard_arrow_right
                                     : Icons.keyboard_arrow_left,
-                                color: mode == ThemeMode.light
+                                color: MyAppState.mode == ThemeMode.light
                                     ? Colors.black
                                     : Colors.white,
                               ),
@@ -425,7 +502,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                     padding: EdgeInsets.symmetric(vertical: height * 0.01),
                     child: ListTile(
                       titleAlignment: ListTileTitleAlignment.center,
-                      tileColor: mode == ThemeMode.light
+                      tileColor: MyAppState.mode == ThemeMode.light
                           ? Colors.grey.shade200
                           : Colors.black12,
                       shape: OutlineInputBorder(
@@ -450,7 +527,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                         AppLocalizations.of(context)!.locale == 'en'
                             ? Icons.keyboard_arrow_right
                             : Icons.keyboard_arrow_left,
-                        color: mode == ThemeMode.light
+                        color: MyAppState.mode == ThemeMode.light
                             ? Colors.black
                             : Colors.white,
                       ),
@@ -468,11 +545,20 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     );
   }
 
+  void navigateToMyPitches() {
+    Navigator.pushNamed(context, RouteNames.myVenues);
+  }
+
   List icon = [
     Icons.person,
     Icons.sports_baseball_outlined,
     Icons.interests_outlined,
     Icons.rate_review_outlined,
+    Icons.settings
+  ];
+  List ownerIcon = [
+    FontAwesomeIcons.bank,
+    FontAwesomeIcons.flag,
     Icons.settings
   ];
   List title = [
@@ -482,11 +568,21 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     AppLocalizations().myReviewsRatings,
     AppLocalizations().setting
   ];
+  List ownerTitle = [
+    AppLocalizations().bankDetails,
+    AppLocalizations().myPitches,
+    AppLocalizations().setting
+  ];
   List subtitle = [
     AppLocalizations().nameEmail,
     AppLocalizations().bookingVenue,
     'payment,methods,transactions',
     AppLocalizations().ratingsReviews,
+    AppLocalizations().languageTheme
+  ];
+  List ownerSubtitle = [
+    'payment,methods,transactions',
+    AppLocalizations().bookingVenue,
     AppLocalizations().languageTheme
   ];
   List listTitle = [

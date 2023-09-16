@@ -7,12 +7,14 @@ class ButtonWidget extends StatefulWidget {
   VoidCallback onTaped;
   Widget title;
   bool isLoading;
+  Color color;
 
   ButtonWidget(
       {super.key,
       required this.onTaped,
       required this.title,
-      required this.isLoading});
+      required this.isLoading,
+      this.color = Colors.yellow});
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -30,7 +32,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
             horizontal: width * 0.01, vertical: height * 0.01),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.yellow, borderRadius: BorderRadius.circular(10)),
+              color: widget.color, borderRadius: BorderRadius.circular(10)),
           height: height * 0.06,
           child: Center(
               child: widget.isLoading

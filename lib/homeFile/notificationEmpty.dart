@@ -597,8 +597,7 @@ class _NotificationEmptyState extends State<NotificationEmpty>
                                                                     BorderRadius
                                                                         .circular(
                                                                             50.0),
-                                                                child: detail![0]["previousNotfication"][blockIdx -
-                                                                                current]["image"]
+                                                                child: detail![0]["previousNotfication"][blockIdx - current]["image"][blockIdx]
                                                                             [
                                                                             "filePath"] ==
                                                                         null
@@ -618,8 +617,7 @@ class _NotificationEmptyState extends State<NotificationEmpty>
                                                                         width: sizeHeight *
                                                                             .06,
                                                                         cuisineImageUrl:
-                                                                            detail![0]["previousNotfication"][blockIdx -
-                                                                                current]["image"]["filePath"],
+                                                                            detail![0]["previousNotfication"][blockIdx - current]["image"][blockIdx]["filePath"].toString(),
                                                                       )),
                                                           ),
                                                           Container(

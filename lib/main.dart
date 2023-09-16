@@ -26,6 +26,7 @@ import 'homeFile/routingConstant.dart';
 import 'homeFile/select_your_location.dart';
 import 'homeFile/utility.dart';
 import 'localizations.dart';
+import 'newStructure/view/owner/home_screens/ownerHomeScreen.dart';
 import 'newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'pitchOwner/homePitchOwner/homePitchOwner.dart';
 import 'player/loginSignup/profile/profile.dart';
@@ -311,7 +312,7 @@ class _LanguageSaveState extends State<LanguageSave> {
           : widget.walk == null
               ? WalkThroughScreen()
               : widget.role == "pitchowner"
-                  ? HomePitchOwner(
+                  ? HomePitchOwnerScreen(
                       index: 0,
                     )
                   : widget.country != null

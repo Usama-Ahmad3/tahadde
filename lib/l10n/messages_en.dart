@@ -50,9 +50,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add Venue \n image"),
         "addPlayerC": MessageLookupByLibrary.simpleMessage("ADD PLAYER"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("Add Players"),
+        "addYourFavorite":
+            MessageLookupByLibrary.simpleMessage("Add Your Favorites"),
         "addSession": MessageLookupByLibrary.simpleMessage("Add Session"),
         "groundList": MessageLookupByLibrary.simpleMessage('Ground List'),
-        "bookGround": MessageLookupByLibrary.simpleMessage('Booking a Ground'),
+        "bookAcademy":
+            MessageLookupByLibrary.simpleMessage('Booking a Academy'),
         "popular": MessageLookupByLibrary.simpleMessage("Our Popular Features"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "Help": MessageLookupByLibrary.simpleMessage("Help"),

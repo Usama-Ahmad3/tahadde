@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -13,7 +14,7 @@ import '../../../network/network_calls.dart';
 
 class Rate extends StatefulWidget {
   @override
-  _RateState createState() => _RateState();
+  State<StatefulWidget> createState() => _RateState();
 }
 
 class _RateState extends State<Rate> {
@@ -52,7 +53,6 @@ class _RateState extends State<Rate> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
@@ -72,17 +72,51 @@ class _RateState extends State<Rate> {
     var sizeWidth = MediaQuery.of(context).size.width;
     return loading
         ? Scaffold(
-            appBar: appBar(
-              title: AppLocalizations.of(context)!.myReviewsRatings,
-              language: AppLocalizations.of(context)!.locale,
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+            backgroundColor: Colors.black,
+            appBar: PreferredSize(
+              preferredSize: Size(sizeWidth, sizeHeight * 0.108),
+              child: AppBar(
+                  title: Text(
+                    AppLocalizations.of(context)!.ratingsReviews,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(color: Colors.white),
+                  ),
+                  centerTitle: true,
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.black,
+                  leadingWidth: sizeWidth * 0.18,
+                  leading: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                          padding: EdgeInsets.all(sizeHeight * 0.008),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              shape: BoxShape.circle),
+                          child: const Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.close,
+                              color: Colors.white,
+                            ),
+                          )),
+                    ),
+                  )),
             ),
             body: Container(
               height: sizeHeight * .87,
               width: sizeWidth,
-              color: const Color(0XFFF0F0F0),
+              decoration: BoxDecoration(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? Colors.white
+                      : const Color(0xff686868),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -121,12 +155,40 @@ class _RateState extends State<Rate> {
             ))
         : _internet!
             ? Scaffold(
-                appBar: appBar(
-                  title: AppLocalizations.of(context)!.myReviewsRatings,
-                  language: AppLocalizations.of(context)!.locale,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
+                backgroundColor: Colors.black,
+                appBar: PreferredSize(
+                  preferredSize: Size(sizeWidth, sizeHeight * 0.108),
+                  child: AppBar(
+                      title: Text(
+                        AppLocalizations.of(context)!.ratingsReviews,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: Colors.white),
+                      ),
+                      centerTitle: true,
+                      automaticallyImplyLeading: false,
+                      backgroundColor: Colors.black,
+                      leadingWidth: sizeWidth * 0.18,
+                      leading: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                              padding: EdgeInsets.all(sizeHeight * 0.008),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  shape: BoxShape.circle),
+                              child: const Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.close,
+                                  color: Colors.white,
+                                ),
+                              )),
+                        ),
+                      )),
                 ),
                 body: data!
                     ? Stack(
@@ -134,31 +196,36 @@ class _RateState extends State<Rate> {
                           Container(
                             height: sizeHeight * .87,
                             width: sizeWidth,
-                            color: const Color(0XFFF0F0F0),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: sizeWidth * .1),
-                                  child: Container(
-                                      height: sizeHeight * .1,
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        AppLocalizations.of(context)!
-                                            .addyourexperienceforthepitchesyouhaveplayedupon,
-                                        style: const TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0XFFA3A3A3)),
-                                      )),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: sizeWidth * .05),
-                                  child: SizedBox(
-                                    height: sizeHeight * .75,
+                            decoration: BoxDecoration(
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFFF0F0F0)
+                                    : const Color(0xff686868),
+                                borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    topLeft: Radius.circular(20))),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: sizeWidth * .1,
+                                        vertical: sizeHeight * 0.02),
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .addyourexperienceforthepitchesyouhaveplayedupon,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0XFFA3A3A3)),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: sizeWidth * .01),
                                     child: ListView.builder(
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: 2,
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount: 10,
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
                                             onTap: () {
@@ -169,173 +236,169 @@ class _RateState extends State<Rate> {
                                               });
                                             },
                                             child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: sizeHeight * .02),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: sizeWidth * 0.03,
+                                                  vertical: sizeHeight * 0.01),
                                               child: Container(
-                                                height: sizeHeight * .13,
+                                                height: sizeHeight * .11,
                                                 width: sizeWidth * .8,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors
+                                                            .blueGrey.shade300),
                                                     borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(5.0),
+                                                        const BorderRadius.all(
+                                                      Radius.circular(12.0),
                                                       //
                                                     ),
                                                     color: Colors.white),
-                                                child: SingleChildScrollView(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding: EdgeInsets.all(
-                                                            sizeHeight * .01),
-                                                        child: Container(
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius.all(
-                                                                      Radius.circular(
-                                                                          5.0) //
-                                                                      ),
-                                                            ),
-                                                            child: ClipRRect(
-                                                              clipBehavior:
-                                                                  Clip.hardEdge,
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .all(
-                                                                      Radius.circular(
-                                                                          5.0)),
-                                                              child: rating[index]["bookpitchfiles"]["files"]
-                                                                              [0]
-                                                                          [
-                                                                          "filePath"] !=
-                                                                      null
-                                                                  ? ClipRRect(
-                                                                      clipBehavior:
-                                                                          Clip
-                                                                              .hardEdge,
-                                                                      borderRadius: const BorderRadius
-                                                                          .all(
-                                                                          Radius.circular(
-                                                                              5.0)),
-                                                                      child:
-                                                                          cachedNetworkImage(
-                                                                        height: sizeHeight *
-                                                                            .08,
-                                                                        width: sizeWidth *
-                                                                            .15,
-                                                                        cuisineImageUrl:
-                                                                            rating[index]["bookpitchfiles"]["files"][0]["filePath"],
-                                                                      ))
-                                                                  : Image.asset(
-                                                                      'assets/images/T.png',
-                                                                      fit: BoxFit
-                                                                          .fill,
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.all(
+                                                          sizeHeight * .01),
+                                                      child: Container(
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        5.0) //
+                                                                    ),
+                                                          ),
+                                                          child: ClipRRect(
+                                                            clipBehavior:
+                                                                Clip.hardEdge,
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .all(
+                                                                    Radius.circular(
+                                                                        5.0)),
+                                                            child: rating[index]["bookpitchfiles"]
+                                                                            ["files"][0]
+                                                                        [
+                                                                        "filePath"] !=
+                                                                    null
+                                                                ? ClipRRect(
+                                                                    clipBehavior:
+                                                                        Clip
+                                                                            .hardEdge,
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .all(
+                                                                            Radius.circular(
+                                                                                5.0)),
+                                                                    child:
+                                                                        cachedNetworkImage(
                                                                       height:
                                                                           sizeHeight *
-                                                                              .1,
+                                                                              .08,
                                                                       width:
                                                                           sizeWidth *
                                                                               .15,
-                                                                    ),
-                                                            )),
-                                                      ),
-                                                      flaxibleGap(
-                                                        1,
-                                                      ),
-                                                      Container(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        width: sizeWidth * .4,
-                                                        child: Text(
-                                                            '${rating[index]["name"]}',
-                                                            style: TextStyle(
-                                                                color: Color(
-                                                                    0XFF032040),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                fontFamily:
-                                                                    "Poppins",
-                                                                fontSize: 16)),
-                                                      ),
-                                                      flaxibleGap(
-                                                        2,
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  sizeHeight *
-                                                                      .005),
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    "${rating[index]["reviewAndratings"]["rating"] ?? 0}/5",
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0XFF9B9B9B),
-                                                                        fontSize:
-                                                                            14),
+                                                                      cuisineImageUrl:
+                                                                          rating[index]["bookpitchfiles"]["files"][0]
+                                                                              [
+                                                                              "filePath"],
+                                                                    ))
+                                                                : Image.asset(
+                                                                    'assets/images/T.png',
+                                                                    fit: BoxFit
+                                                                        .fill,
+                                                                    height:
+                                                                        sizeHeight *
+                                                                            .1,
+                                                                    width:
+                                                                        sizeWidth *
+                                                                            .15,
                                                                   ),
-                                                                  Container(
-                                                                    width: 5,
-                                                                  ),
-                                                                  Image.asset(
-                                                                      "assets/images/star.png")
-                                                                ],
-                                                              ),
-                                                              Container(
-                                                                height: 5,
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    "${rating[index]["reviewAndratings"]["review"] ?? 0}",
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0XFF9B9B9B),
-                                                                        fontSize:
-                                                                            14),
-                                                                  ),
-                                                                  Container(
-                                                                    width: 5,
-                                                                  ),
-                                                                  Text(
-                                                                    AppLocalizations.of(
-                                                                            context)!
-                                                                        .review,
-                                                                    style: const TextStyle(
-                                                                        color: Color(
-                                                                            0XFF9B9B9B),
-                                                                        fontSize:
-                                                                            14),
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            ],
                                                           )),
-                                                      flaxibleGap(
-                                                        2,
-                                                      ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                    Text(
+                                                        '${rating[index]["name"]}',
+                                                        style: TextStyle(
+                                                            color: Color(
+                                                                0XFF032040),
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontFamily:
+                                                                "Poppins",
+                                                            fontSize: 16)),
+                                                    flaxibleGap(
+                                                      2,
+                                                    ),
+                                                    Padding(
+                                                        padding: EdgeInsets.all(
+                                                            sizeHeight * .005),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Text(
+                                                                  "${rating[index]["reviewAndratings"]["rating"] ?? 0}/5",
+                                                                  style: TextStyle(
+                                                                      color: Color(
+                                                                          0XFF9B9B9B),
+                                                                      fontSize:
+                                                                          14),
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 5,
+                                                                ),
+                                                                Image.asset(
+                                                                    "assets/images/star.png")
+                                                              ],
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 5,
+                                                            ),
+                                                            Row(
+                                                              children: [
+                                                                Text(
+                                                                  "${rating[index]["reviewAndratings"]["review"] ?? 0}",
+                                                                  style: TextStyle(
+                                                                      color: Color(
+                                                                          0XFF9B9B9B),
+                                                                      fontSize:
+                                                                          14),
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 5,
+                                                                ),
+                                                                Text(
+                                                                  AppLocalizations.of(
+                                                                          context)!
+                                                                      .review,
+                                                                  style: const TextStyle(
+                                                                      color: Color(
+                                                                          0XFF9B9B9B),
+                                                                      fontSize:
+                                                                          14),
+                                                                ),
+                                                              ],
+                                                            )
+                                                          ],
+                                                        )),
+                                                    flaxibleGap(
+                                                      2,
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
                                           );
                                         }),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           rateValue
@@ -346,7 +409,7 @@ class _RateState extends State<Rate> {
                                     color: Colors.black.withOpacity(0),
                                   ),
                                 )
-                              : Container(),
+                              : const SizedBox(),
                           rateValue
                               ? Center(
                                   child: Padding(
@@ -742,37 +805,34 @@ class _RateState extends State<Rate> {
                                                                     context)!
                                                                 .save)),
                                                     isLoading: loading)
-                                                : Container(
-                                                    color:
-                                                        const Color(0XFFBCBCBC),
-                                                    height: sizeHeight * .08,
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .save,
-                                                      style: const TextStyle(
-                                                        decoration:
-                                                            TextDecoration.none,
-                                                        color: Colors.white,
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontFamily: "Poppins",
-                                                      ),
-                                                    )),
+                                                : ButtonWidget(
+                                                    onTaped: () {},
+                                                    color: Colors.grey,
+                                                    title: Center(
+                                                        child: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .save)),
+                                                    isLoading: loading),
                                           ],
                                         ),
                                       ),
                                     ),
                                   ),
                                 )
-                              : Container(),
+                              : const SizedBox(),
                         ],
                       )
-                    : SizedBox(
+                    : Container(
                         height: sizeHeight,
                         width: sizeWidth,
+                        decoration: BoxDecoration(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? Colors.white
+                                : const Color(0xff686868),
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20))),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -795,8 +855,10 @@ class _RateState extends State<Rate> {
                                 AppLocalizations.of(context)!
                                     .ratepitchafteryourgame,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    color: Color(0XFF032040),
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? const Color(0XFF032040)
+                                        : Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600),
                               ),

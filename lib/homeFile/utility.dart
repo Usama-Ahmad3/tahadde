@@ -19,7 +19,7 @@ Widget searchbar(
     {required String hintText,
     int color = 0xFFFFFFF,
     int colorText = 0XFF7A7A7A,
-    String icon = 'images/Shape.png',
+    String icon = 'assets/images/Shape.png',
     double size = 14,
     FocusNode? node,
     bool enableText = true,

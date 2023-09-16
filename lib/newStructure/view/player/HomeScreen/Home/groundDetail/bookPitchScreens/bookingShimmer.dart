@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -25,14 +26,12 @@ class BookingShimmer {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            shape: BoxShape.circle),
-                        child: const Icon(
-                          Icons.keyboard_arrow_left_sharp,
-                          color: Colors.white,
-                        )),
+                    FaIcon(
+                      AppLocalizations.of(context)!.locale == 'en'
+                          ? FontAwesomeIcons.arrowsTurnRight
+                          : FontAwesomeIcons.arrowsTurnRight,
+                      color: Colors.white,
+                    ),
                     SizedBox(
                       width: width * 0.12,
                     ),

@@ -20,11 +20,13 @@ class textFieldWidget extends StatefulWidget {
   Color? textColor;
   FormFieldValidator? onValidate;
   FormFieldValidator? onChanged;
+  VoidCallback? onTap;
 
   textFieldWidget(
       {required this.controller,
       required this.hintText,
       this.onValidate,
+      this.onTap,
       this.enable = true,
       this.textColor,
       this.onChanged,
@@ -56,8 +58,9 @@ class _textFieldWidgetState extends State<textFieldWidget> {
       focusNode: widget.focus,
       validator: widget.onValidate,
       enabled: widget.enable,
+      onTap: widget.onTap,
       style: TextStyle(
-          fontSize: widget.controller.text.length > 8 ? 12 : 15,
+          fontSize: widget.controller.text.length > 8 ? 12 : 14,
           color: MyAppState.mode == ThemeMode.light
               ? widget.textColor ?? Colors.black
               : Colors.white),

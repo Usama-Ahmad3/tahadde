@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../homeFile/notificationEmpty.dart';
 import '../../localizations.dart';
+import '../../newStructure/view/player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../bookingPitchOwner/booking.dart';
 import '../profilePitchOwner/account.dart';
 import 'pitchOwnerHome.dart';
@@ -34,21 +35,57 @@ class _HomePitchOwnerState extends State<HomePitchOwner>
         context: context,
         builder: (BuildContext cntext) {
           return AlertDialog(
+            elevation: 2,
+            backgroundColor: Colors.grey.shade200,
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             title: Text(AppLocalizations.of(context)!.areYouSure),
-            content: Text(AppLocalizations.of(context)!.youGoingExit),
+            content: Text(
+              AppLocalizations.of(context)!.youGoingExit,
+              style: const TextStyle(color: Colors.red),
+            ),
             actions: <Widget>[
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.no),
-                onPressed: () {
+              InkWell(
+                onTap: () {
                   Navigator.of(context).pop(false);
                 },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black,
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.no,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.yes),
-                onPressed: () {
+              const SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
                   Navigator.of(context).pop(true);
                 },
-              )
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.transparent,
+                    border: Border.all(width: 1, color: Colors.red),
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.yes,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
+              ),
             ],
           );
         });
@@ -60,6 +97,8 @@ class _HomePitchOwnerState extends State<HomePitchOwner>
     super.dispose();
   }
 
+  final page = [PitchOwnerHome(), Booking(), NotificationScreen(), Account()];
+
   @override
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
@@ -68,102 +107,81 @@ class _HomePitchOwnerState extends State<HomePitchOwner>
         return onWillPop();
       },
       child: Material(
-          child: DefaultTabController(
-        length: 4,
-        child: Scaffold(
-            appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(0),
-                child: AppBar(
-                  backgroundColor: const Color(0XFF032040),
-                )),
-            bottomNavigationBar: SizedBox(
-              height: sizeHeight * .13,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    height: sizeHeight * .002,
-                    color: const Color(0XFFE0E0E0),
-                  ),
-                  TabBar(
-                    labelStyle: const TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Poppins',
-                    ),
-                    controller: _tabController,
-                    tabs: [
-                      Tab(
-                          icon: _tabController.index == 0
-                              ? Image.asset(
-                                  'assets/images/home.png',
-                                  height: sizeHeight * .035,
-                                  color: const Color(0XFF25A163),
-                                )
-                              : Image.asset(
-                                  'assets/images/home.png',
-                                  height: sizeHeight * .035,
-                                  color: Colors.grey,
-                                ),
-                          text: AppLocalizations.of(context)!.home),
-                      Tab(
-                          icon: _tabController.index == 1
-                              ? Image.asset(
-                                  'assets/images/booking.png',
-                                  height: sizeHeight * .035,
-                                  color: const Color(0XFF25A163),
-                                )
-                              : Image.asset(
-                                  'assets/images/booking.png',
-                                  height: sizeHeight * .035,
-                                  color: Colors.grey,
-                                ),
-                          text: AppLocalizations.of(context)!.booking),
-                      Tab(
-                          icon: _tabController.index == 2
-                              ? Image.asset(
-                                  'assets/images/notificationP.png',
-                                  height: sizeHeight * .035,
-                                  color: const Color(0XFF25A163),
-                                )
-                              : Image.asset(
-                                  'assets/images/notificationP.png',
-                                  height: sizeHeight * .035,
-                                  color: Colors.grey,
-                                ),
-                          text: AppLocalizations.of(context)!.notification),
-                      Tab(
-                          icon: _tabController.index == 3
-                              ? Image.asset(
-                                  'assets/images/account.png',
-                                  height: sizeHeight * .035,
-                                  color: const Color(0XFF25A163),
-                                )
-                              : Image.asset(
-                                  'assets/images/account.png',
-                                  height: sizeHeight * .035,
-                                  color: Colors.grey,
-                                ),
-                          text: AppLocalizations.of(context)!.account),
-                    ],
-                    labelColor: const Color(0XFF25A163),
-                    indicatorWeight: 4,
-                    unselectedLabelColor: const Color(0XFF7A7A7A),
-                    //indicatorSize: TabBarIndicatorSize.label,
-                    indicatorPadding: const EdgeInsets.only(bottom: 3),
-                    indicatorColor: const Color(0XFF25A163),
-                  ),
-                ],
+          child: Scaffold(
+        bottomNavigationBar: SalomonBottomBar(
+          currentIndex: widget.index,
+          onTap: (index) {
+            widget.index = index;
+            setState(() {});
+          },
+          selectedItemColor: const Color(0xffffc300),
+          backgroundColor: Colors.black,
+          selectedColorOpacity: 1,
+          curve: Curves.bounceInOut,
+          items: [
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.home_outlined,
               ),
+              title: Text(
+                AppLocalizations.of(context)!.home,
+                style: const TextStyle(color: Colors.black),
+              ),
+              activeIcon: const Icon(
+                Icons.home,
+                color: Colors.black,
+              ),
+              unselectedColor: Colors.grey,
+              selectedColor: const Color(0xffffc300),
             ),
-            body: TabBarView(
-              controller: _tabController,
-              children: <Widget>[
-                PitchOwnerHome(),
-                Booking(),
-                NotificationEmpty(),
-                Account()
-              ],
-            )),
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.airplane_ticket_outlined,
+              ),
+              title: Text(
+                AppLocalizations.of(context)!.booking,
+                style: const TextStyle(color: Colors.black),
+              ),
+              activeIcon: const Icon(
+                Icons.airplane_ticket,
+                color: Colors.black,
+              ),
+              selectedColor: const Color(0xffffc300),
+              unselectedColor: Colors.grey,
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.notifications_none,
+              ),
+              title: Text(
+                AppLocalizations.of(context)!.notification,
+                style: const TextStyle(color: Colors.black),
+              ),
+              activeIcon: const Icon(
+                Icons.notifications_sharp,
+                color: Colors.black,
+              ),
+              selectedColor: const Color(0xffffc300),
+              unselectedColor: Colors.grey,
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.person_2_outlined,
+              ),
+              title: Text(
+                AppLocalizations.of(context)!.account,
+                style: const TextStyle(color: Colors.black),
+              ),
+              activeIcon: const Icon(
+                Icons.person,
+                color: Colors.black,
+              ),
+              selectedColor: const Color(0xffffc300),
+              unselectedColor: Colors.grey,
+            ),
+          ],
+        ),
+        body: page[widget.index],
       )),
     );
   }

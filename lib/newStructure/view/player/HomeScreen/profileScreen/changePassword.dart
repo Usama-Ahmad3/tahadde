@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -32,7 +33,6 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     NetworkCalls().checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
@@ -63,9 +63,9 @@ class _ChangePasswordState extends State<ChangePassword> {
         ? Scaffold(
             backgroundColor: MyAppState.mode == ThemeMode.light
                 ? Colors.white
-                : Color(0xff686868),
+                : const Color(0xff686868),
             appBar: PreferredSize(
-              preferredSize: Size(width, height * 0.13),
+              preferredSize: Size(width, height * 0.105),
               child: AppBar(
                 title: Text(
                   AppLocalizations.of(context)!.changepassword,
@@ -84,15 +84,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                        height: height * 0.004,
+                        padding: EdgeInsets.all(height * 0.008),
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             shape: BoxShape.circle),
-                        child: Icon(
-                          AppLocalizations.of(context)!.locale == 'en'
-                              ? Icons.keyboard_arrow_left_sharp
-                              : Icons.keyboard_arrow_right,
-                          color: Colors.white,
+                        child: const Center(
+                          child: FaIcon(
+                            FontAwesomeIcons.close,
+                            color: Colors.white,
+                          ),
                         )),
                   ),
                 ),
@@ -414,6 +414,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     return null;
   }
 
+  // ignore: non_constant_identifier_names
   void NavigatorToProfile() {
     Navigator.pushReplacementNamed(context, RouteNames.profileDetail);
   }

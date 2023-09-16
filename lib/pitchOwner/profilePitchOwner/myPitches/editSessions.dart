@@ -279,11 +279,11 @@ class _EditSessionState extends State<EditSession> {
                                                                     .slug]![0]
                                                             .isHoliday!
                                                         ? const AssetImage(
-                                                            "images/holiday.png")
+                                                            "assets/images/holiday.png")
                                                         : const AssetImage(
-                                                            "images/book.png")
+                                                            "assets/images/book.png")
                                                     : const AssetImage(
-                                                        "images/holiday.png"),
+                                                        "assets/images/holiday.png"),
                                                 fit: BoxFit.fitWidth,
                                               ),
                                             ),
@@ -299,7 +299,7 @@ class _EditSessionState extends State<EditSession> {
                                           ),
                                         ),
                                         Image.asset(
-                                          "images/bar_icon.png",
+                                          "assets/images/bar_icon.png",
                                           width: 43,
                                         )
                                       ],
@@ -325,11 +325,11 @@ class _EditSessionState extends State<EditSession> {
                                                             .slug]![0]
                                                         .isHoliday!
                                                     ? const AssetImage(
-                                                        "images/holiday.png")
+                                                        "assets/images/holiday.png")
                                                     : const AssetImage(
-                                                        "images/book.png")
+                                                        "assets/images/book.png")
                                                 : const AssetImage(
-                                                    "images/holiday.png"),
+                                                    "assets/images/holiday.png"),
                                             fit: BoxFit.fitWidth,
                                           ),
                                         ),
@@ -377,7 +377,8 @@ class _EditSessionState extends State<EditSession> {
                                         setState(() {});
                                       });
                                     },
-                                    child: Image.asset("images/add_venue.png")),
+                                    child: Image.asset(
+                                        "assets/images/add_venue.png")),
                               ],
                             ),
                           ),
@@ -412,8 +413,8 @@ class _EditSessionState extends State<EditSession> {
                                           setState(() {});
                                         });
                                       },
-                                      child:
-                                          Image.asset("images/add_venue.png")),
+                                      child: Image.asset(
+                                          "assets/images/add_venue.png")),
                                 ],
                               ),
                             ),
@@ -471,7 +472,7 @@ class _EditSessionState extends State<EditSession> {
                                                   10,
                                                 ),
                                                 Image.asset(
-                                                  "images/delete_icon.png",
+                                                  "assets/images/delete_icon.png",
                                                   color: Colors.red,
                                                   height: 20,
                                                   width: 20,
@@ -709,7 +710,7 @@ class _EditSessionState extends State<EditSession> {
                                                     height: size.height * .03,
                                                     width: size.width * .055,
                                                     child: Image.asset(
-                                                      "images/Rectangle.png",
+                                                      "assets/images/Rectangle.png",
                                                       fit: BoxFit.fill,
                                                     ),
                                                   )
@@ -717,7 +718,7 @@ class _EditSessionState extends State<EditSession> {
                                                     height: size.height * .03,
                                                     width: size.width * .055,
                                                     child: Image.asset(
-                                                      "images/uncheck.png",
+                                                      "assets/images/uncheck.png",
                                                       fit: BoxFit.fill,
                                                     ),
                                                   ),
@@ -887,7 +888,7 @@ class _EditSessionState extends State<EditSession> {
                                                   height: size.height * .03,
                                                   width: size.width * .055,
                                                   child: Image.asset(
-                                                    "images/Rectangle.png",
+                                                    "assets/images/Rectangle.png",
                                                     fit: BoxFit.fill,
                                                   ),
                                                 )
@@ -895,7 +896,7 @@ class _EditSessionState extends State<EditSession> {
                                                   height: size.height * .03,
                                                   width: size.width * .055,
                                                   child: Image.asset(
-                                                    "images/uncheck.png",
+                                                    "assets/images/uncheck.png",
                                                     fit: BoxFit.fill,
                                                   ),
                                                 ),
@@ -923,11 +924,8 @@ class _EditSessionState extends State<EditSession> {
                                           child: CustomDropdown(
                                             key: scaffoldKey,
                                             leadingIcon: false,
-                                            child: Text(
-                                              "Copy from ${_copyDays[copyDaysIndex]}",
-                                            ),
                                             icon: Image.asset(
-                                              "images/drop_down.png",
+                                              "assets/images/drop_down.png",
                                               height: 8,
                                             ),
                                             onChange: (int value, int index) =>
@@ -991,6 +989,9 @@ class _EditSessionState extends State<EditSession> {
                                                   ),
                                                 )
                                                 .toList(),
+                                            child: Text(
+                                              "Copy from ${_copyDays[copyDaysIndex]}",
+                                            ),
                                           ),
                                         )
                                       : const SizedBox.shrink(),
@@ -1029,7 +1030,7 @@ class _EditSessionState extends State<EditSession> {
                                                         context)!
                                                     .pleaseenterPitchName;
                                               }
-                                              return '';
+                                              return null;
                                             },
                                             text: true,
                                             keybordType: false,

@@ -13,7 +13,7 @@ class AppLocalizations {
 
   static Future<AppLocalizations> load(Locale locale) {
     final String name =
-    locale.countryCode == null ? locale.languageCode : locale.toString();
+        locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((bool _) {
@@ -151,6 +151,10 @@ class AppLocalizations {
     return Intl.message('signIn', name: 'signIn');
   }
 
+  String get addYourFavorite {
+    return Intl.message('Add Your Favorite', name: 'addYourFavorite');
+  }
+
   String get signUp {
     return Intl.message('signUp', name: 'signUp');
   }
@@ -208,7 +212,7 @@ class AppLocalizations {
   }
 
   String get bookingGround {
-    return Intl.message('Booking a Ground', name: 'bookGround');
+    return Intl.message('Booking a Academy', name: 'bookAcademy');
   }
 
   String get dateTime {

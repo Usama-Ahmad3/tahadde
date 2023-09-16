@@ -10,6 +10,7 @@ import '../../modelClass/bookPitchModelClass.dart';
 import '../../modelClass/manageSlotModelClass.dart';
 import '../../network/network_calls.dart';
 
+// ignore: must_be_immutable
 class ManageSlotsDetail extends StatefulWidget {
   BookPitchDetail pitchDetail;
   ManageSlotsDetail({required this.pitchDetail});
@@ -37,12 +38,12 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
   slotDetails() async {
     Map detail = {
       "id": "${widget.pitchDetail.id}",
-      "year":
-          DateFormat.y('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-      "month":
-          DateFormat.M('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-      "day":
-          DateFormat.d('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
+      "year": DateFormat.y('en_US')
+          .format(DateTime.parse(bookingDate ?? date["currentDate"])),
+      "month": DateFormat.M('en_US')
+          .format(DateTime.parse(bookingDate ?? date["currentDate"])),
+      "day": DateFormat.d('en_US')
+          .format(DateTime.parse(bookingDate ?? date["currentDate"])),
       "pitchId": subPitchId,
     };
     await _networkCalls.manageSlot(
@@ -469,14 +470,22 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                   children: <Widget>[
                                     AppLocalizations.of(context)!.locale == "en"
                                         ? Text(
-                                            DateFormat.yMMMMEEEEd('en_US').format(bookingDate != null ? DateTime.parse(bookingDate) : DateTime.now()),
+                                            DateFormat.yMMMMEEEEd('en_US')
+                                                .format(bookingDate != null
+                                                    ? DateTime.parse(
+                                                        bookingDate)
+                                                    : DateTime.now()),
                                             style: const TextStyle(
                                                 color: Color(0XFF032040),
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w700),
                                           )
                                         : Text(
-                                            DateFormat.yMMMMEEEEd('AR_SA').format(bookingDate != null ? DateTime.parse(bookingDate) : DateTime.now()),
+                                            DateFormat.yMMMMEEEEd('AR_SA')
+                                                .format(bookingDate != null
+                                                    ? DateTime.parse(
+                                                        bookingDate)
+                                                    : DateTime.now()),
                                             style: const TextStyle(
                                                 color: Color(0XFF032040),
                                                 fontSize: 15,
@@ -536,8 +545,7 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                             right: sizeWidth * .05,
                             top: sizeHeight * .03),
                         child: Text(
-                          slotDetail.bookpitch!
-                              .name.toString(),
+                          slotDetail.bookpitch!.name.toString(),
                           style: const TextStyle(
                               color: Color(0XFF032040),
                               fontSize: 16,
@@ -638,7 +646,8 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                               scrollDirection: Axis.horizontal,
                               itemCount: slotDetail.slots!.length - 12,
                               itemBuilder: (context, index) {
-                                return slotDetail.slots![index]!.is_booked == true
+                                return slotDetail.slots![index]!.is_booked ==
+                                        true
                                     ? Padding(
                                         padding: EdgeInsets.only(
                                           right: sizeWidth * .02,
@@ -648,8 +657,10 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                           alignment: Alignment.bottomCenter,
                                           decoration: BoxDecoration(
                                               border: Border.all(
-                                                  color: const Color(0XFF032040)),
-                                              borderRadius: const BorderRadius.all(
+                                                  color:
+                                                      const Color(0XFF032040)),
+                                              borderRadius:
+                                                  const BorderRadius.all(
                                                 Radius.circular(5.0),
                                               ),
                                               color: const Color(0XFF25A163)),
@@ -657,7 +668,10 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                             padding:
                                                 EdgeInsets.all(sizeWidth * .01),
                                             child: Text(
-                                              timing(x: int.parse(slotDetail.slots![index]!.startTime!.substring(0, 2))),
+                                              timing(
+                                                  x: int.parse(slotDetail
+                                                      .slots![index]!.startTime!
+                                                      .substring(0, 2))),
                                               style: const TextStyle(
                                                   color: Color(0XFF032040),
                                                   fontSize: 12,
@@ -684,7 +698,8 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                       .slots![index]!.id);
                                                 } else {
                                                   slotIdAM.add(slotDetail
-                                                      .slots![index]!.id!.toInt());
+                                                      .slots![index]!.id!
+                                                      .toInt());
                                                 }
                                                 //count=blockIdx;
                                               });
@@ -697,13 +712,14 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                 width: sizeHeight * .08,
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
-                                                        color:
-                                                            const Color(0XFF032040)),
+                                                        color: const Color(
+                                                            0XFF032040)),
                                                     borderRadius:
                                                         const BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
-                                                    color: const Color(0XFFE0E0E0)),
+                                                    color: const Color(
+                                                        0XFFE0E0E0)),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(
                                                       sizeWidth * .01),
@@ -723,7 +739,14 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                         1,
                                                       ),
                                                       Text(
-                                                        timing(x: int.parse(slotDetail.slots![index]!.startTime!.substring(0, 2))),
+                                                        timing(
+                                                            x: int.parse(
+                                                                slotDetail
+                                                                    .slots![
+                                                                        index]!
+                                                                    .startTime!
+                                                                    .substring(
+                                                                        0, 2))),
                                                       )
                                                     ],
                                                   ),
@@ -746,7 +769,8 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                       .slots![index]!.id);
                                                 } else {
                                                   slotIdAM.add(slotDetail
-                                                      .slots![index]!.id!.toInt());
+                                                      .slots![index]!.id!
+                                                      .toInt());
                                                 }
                                                 //count=blockIdx;
                                               });
@@ -759,13 +783,14 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                 width: sizeHeight * .08,
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
-                                                        color:
-                                                            const Color(0XFF032040)),
+                                                        color: const Color(
+                                                            0XFF032040)),
                                                     borderRadius:
                                                         const BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
-                                                    color: const Color(0XFFFFFFFF)),
+                                                    color: const Color(
+                                                        0XFFFFFFFF)),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(
                                                       sizeWidth * .01),
@@ -785,7 +810,14 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                         1,
                                                       ),
                                                       Text(
-                                                        timing(x: int.parse(slotDetail.slots![index]!.startTime!.substring(0, 2))),
+                                                        timing(
+                                                            x: int.parse(
+                                                                slotDetail
+                                                                    .slots![
+                                                                        index]!
+                                                                    .startTime!
+                                                                    .substring(
+                                                                        0, 2))),
                                                       )
                                                     ],
                                                   ),
@@ -819,7 +851,8 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                               scrollDirection: Axis.horizontal,
                               itemCount: slotDetail.slots!.length - 12,
                               itemBuilder: (context, index) {
-                                return slotDetail.slots![index + 12]!.is_booked ==
+                                return slotDetail
+                                            .slots![index + 12]!.is_booked ==
                                         true
                                     ? Padding(
                                         padding: EdgeInsets.only(
@@ -830,8 +863,10 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                           alignment: Alignment.bottomCenter,
                                           decoration: BoxDecoration(
                                               border: Border.all(
-                                                  color: const Color(0XFF032040)),
-                                              borderRadius: const BorderRadius.all(
+                                                  color:
+                                                      const Color(0XFF032040)),
+                                              borderRadius:
+                                                  const BorderRadius.all(
                                                 Radius.circular(5.0),
                                               ),
                                               color: const Color(0XFF25A163)),
@@ -839,7 +874,11 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                             padding:
                                                 EdgeInsets.all(sizeWidth * .01),
                                             child: Text(
-                                              timing(x: int.parse(slotDetail.slots![(index + 12)]!.startTime!.substring(0, 2))),
+                                              timing(
+                                                  x: int.parse(slotDetail
+                                                      .slots![(index + 12)]!
+                                                      .startTime!
+                                                      .substring(0, 2))),
                                               style: const TextStyle(
                                                   color: Color(0XFF032040),
                                                   fontSize: 12,
@@ -861,12 +900,15 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                   indexListPM.add(index);
                                                 }
                                                 if (slotIdPM.contains(slotDetail
-                                                    .slots![(index + 12)]!.id)) {
+                                                    .slots![(index + 12)]!
+                                                    .id)) {
                                                   slotIdPM.remove(slotDetail
-                                                      .slots![(index + 12)]!.id);
+                                                      .slots![(index + 12)]!
+                                                      .id);
                                                 } else {
                                                   slotIdPM.add(slotDetail
-                                                      .slots![(index + 12)]!.id!.toInt());
+                                                      .slots![(index + 12)]!.id!
+                                                      .toInt());
                                                 }
                                                 //count=blockIdx;
                                               });
@@ -879,13 +921,14 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                 width: sizeHeight * .08,
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
-                                                        color:
-                                                            const Color(0XFF032040)),
+                                                        color: const Color(
+                                                            0XFF032040)),
                                                     borderRadius:
                                                         const BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
-                                                    color: const Color(0XFFE0E0E0)),
+                                                    color: const Color(
+                                                        0XFFE0E0E0)),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(
                                                       sizeWidth * .01),
@@ -905,7 +948,15 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                         1,
                                                       ),
                                                       Text(
-                                                        timing(x: int.parse(slotDetail.slots![index + 12]!.startTime!.substring(0, 2))),
+                                                        timing(
+                                                            x: int.parse(
+                                                                slotDetail
+                                                                    .slots![
+                                                                        index +
+                                                                            12]!
+                                                                    .startTime!
+                                                                    .substring(
+                                                                        0, 2))),
                                                       )
                                                     ],
                                                   ),
@@ -923,12 +974,15 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                   indexListPM.add(index);
                                                 }
                                                 if (slotIdPM.contains(slotDetail
-                                                    .slots![(index + 12)]!.id)) {
+                                                    .slots![(index + 12)]!
+                                                    .id)) {
                                                   slotIdPM.remove(slotDetail
-                                                      .slots![(index + 12)]!.id);
+                                                      .slots![(index + 12)]!
+                                                      .id);
                                                 } else {
                                                   slotIdPM.add(slotDetail
-                                                      .slots![(index + 12)]!.id!.toInt());
+                                                      .slots![(index + 12)]!.id!
+                                                      .toInt());
                                                 }
                                                 //count=blockIdx;
                                               });
@@ -941,13 +995,14 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                 width: sizeHeight * .08,
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
-                                                        color:
-                                                            const Color(0XFF032040)),
+                                                        color: const Color(
+                                                            0XFF032040)),
                                                     borderRadius:
                                                         const BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
-                                                    color: const Color(0XFFFFFFFF)),
+                                                    color: const Color(
+                                                        0XFFFFFFFF)),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(
                                                       sizeWidth * .01),
@@ -967,7 +1022,15 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                         1,
                                                       ),
                                                       Text(
-                                                        timing(x: int.parse(slotDetail.slots![(index + 12)]!.startTime!.substring(0, 2))),
+                                                        timing(
+                                                            x: int.parse(
+                                                                slotDetail
+                                                                    .slots![
+                                                                        (index +
+                                                                            12)]!
+                                                                    .startTime!
+                                                                    .substring(
+                                                                        0, 2))),
                                                       )
                                                     ],
                                                   ),
@@ -1014,12 +1077,15 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
 
                                         Map detail = {
                                           "id": "${widget.pitchDetail.id}",
-                                          "year":
-                                              DateFormat.y('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-                                          "month":
-                                              DateFormat.M('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-                                          "day":
-                                              DateFormat.d('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
+                                          "year": DateFormat.y('en_US').format(
+                                              DateTime.parse(bookingDate ??
+                                                  date["currentDate"])),
+                                          "month": DateFormat.M('en_US').format(
+                                              DateTime.parse(bookingDate ??
+                                                  date["currentDate"])),
+                                          "day": DateFormat.d('en_US').format(
+                                              DateTime.parse(bookingDate ??
+                                                  date["currentDate"])),
                                           "pitchId": subPitchId,
                                           "status": "available",
                                           "slotIds": slotIds
@@ -1108,12 +1174,15 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                             0, slotIds.length - 1);
                                         Map detail = {
                                           "id": "${widget.pitchDetail.id}",
-                                          "year":
-                                              DateFormat.y('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-                                          "month":
-                                              DateFormat.M('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-                                          "day":
-                                              DateFormat.d('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
+                                          "year": DateFormat.y('en_US').format(
+                                              DateTime.parse(bookingDate ??
+                                                  date["currentDate"])),
+                                          "month": DateFormat.M('en_US').format(
+                                              DateTime.parse(bookingDate ??
+                                                  date["currentDate"])),
+                                          "day": DateFormat.d('en_US').format(
+                                              DateTime.parse(bookingDate ??
+                                                  date["currentDate"])),
                                           "pitchId": subPitchId,
                                           "status": "unavailable",
                                           "slotIds": slotIds
@@ -1147,8 +1216,9 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                     } else {
                                       if (mounted) {
                                         showMessage(
-                                            AppLocalizations.of(context)!
-                                                .noInternetConnection,);
+                                          AppLocalizations.of(context)!
+                                              .noInternetConnection,
+                                        );
                                       }
                                     }
                                   });
@@ -1265,8 +1335,8 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                 itemBuilder:
                                     (BuildContext context, int blockIdx) {
                                   return Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(horizontal: 4.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4.0),
                                     child: Padding(
                                       padding: const EdgeInsets.all(2.0),
                                       child: Material(
@@ -1297,8 +1367,8 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                   });
                                                 },
                                                 child: Padding(
-                                                  padding: const EdgeInsets.symmetric(
-                                                      horizontal: 8),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 8),
                                                   child: SizedBox(
                                                     height: sizeHeight * .03,
                                                     width: sizeHeight * .03,
@@ -1323,8 +1393,11 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                 width: sizeWidth * .2,
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  widget.pitchDetail
-                                                      .pitchType![blockIdx]!.area.toString(),
+                                                  widget
+                                                      .pitchDetail
+                                                      .pitchType![blockIdx]!
+                                                      .area
+                                                      .toString(),
                                                   style: const TextStyle(
                                                       decoration:
                                                           TextDecoration.none,
@@ -1347,7 +1420,8 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                                                     widget
                                                         .pitchDetail
                                                         .pitchType![blockIdx]!
-                                                        .name.toString(),
+                                                        .name
+                                                        .toString(),
                                                     style: const TextStyle(
                                                         decoration:
                                                             TextDecoration.none,
@@ -1424,12 +1498,12 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
   void navigateToClosingHour() {
     Map detail = {
       "id": "${widget.pitchDetail.id}",
-      "year":
-          DateFormat.y('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-      "month":
-          DateFormat.M('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
-      "day":
-          DateFormat.d('en_US').format(DateTime.parse(bookingDate ?? date["currentDate"])),
+      "year": DateFormat.y('en_US')
+          .format(DateTime.parse(bookingDate ?? date["currentDate"])),
+      "month": DateFormat.M('en_US')
+          .format(DateTime.parse(bookingDate ?? date["currentDate"])),
+      "day": DateFormat.d('en_US')
+          .format(DateTime.parse(bookingDate ?? date["currentDate"])),
       "pitchId": subPitchId,
       "status": "available",
     };

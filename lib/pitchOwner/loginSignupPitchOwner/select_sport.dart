@@ -6,6 +6,7 @@ import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
+import '../../newStructure/view/owner/home_screens/home_page/document_screen.dart';
 
 class SelectSport extends StatefulWidget {
   bool isBack = true;
@@ -205,7 +206,8 @@ class _SelectSportState extends State<SelectSport> {
   }
 
   void navigateToDocuments(SportsModel detail) {
-    Navigator.pushNamed(context, RouteNames.documents, arguments: detail);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => DocumentScreen(detail: detail)));
   }
 }
 

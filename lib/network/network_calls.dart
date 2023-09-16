@@ -3216,6 +3216,7 @@ class NetworkCalls {
           Uri.parse(
               "https://powerhouse.tahadde.ae${RestApis.SLOT_LIST}$id/manage-slot/?pitchtype_id=$subPitchId&weekday=$weekDay&language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
