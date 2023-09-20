@@ -570,7 +570,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   ];
   List ownerTitle = [
     AppLocalizations().bankDetails,
-    AppLocalizations().myPitches,
+    AppLocalizations().myBooking,
     AppLocalizations().setting
   ];
   List subtitle = [

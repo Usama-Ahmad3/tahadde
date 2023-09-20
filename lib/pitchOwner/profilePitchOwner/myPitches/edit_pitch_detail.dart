@@ -227,7 +227,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                             return AppLocalizations.of(context)!
                                 .pleaseenterPitchName;
                           }
-                          return '';
+                          return null;
                         },
                         text: false,
                         text1: false,

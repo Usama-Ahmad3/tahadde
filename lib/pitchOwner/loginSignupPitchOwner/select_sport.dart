@@ -6,7 +6,7 @@ import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
-import '../../newStructure/view/owner/home_screens/home_page/document_screen.dart';
+import '../../newStructure/view/owner/home_screens/home_page/document_screen_both.dart';
 
 class SelectSport extends StatefulWidget {
   bool isBack = true;

@@ -13,7 +13,6 @@ import 'package:readmore/readmore.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 import '../../../../../../common_widgets/grediant_text.dart';
 import '../../../../../../common_widgets/internet_loss.dart';

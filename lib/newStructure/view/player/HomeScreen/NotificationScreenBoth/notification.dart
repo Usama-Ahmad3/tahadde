@@ -339,7 +339,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                               .06 * fem,
                                                                         )
                                                                       : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index - current]["image"]["filePath"])
-                                                                  : detail![0]["previousNotfication"][index - current]["image"][index]["filePath"] == null
+                                                                  : current == 0 || index >= current
                                                                       ? Image.asset(
                                                                           "assets/images/profile.png",
                                                                           fit: BoxFit
@@ -349,7 +349,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                           width:
                                                                               .06 * fem,
                                                                         )
-                                                                      : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index - current]["image"][index]["filePath"])),
+                                                                      : detail![0]["previousNotfication"][index]["image"][0]["filePath"] == null
+                                                                          ? Image.asset(
+                                                                              "assets/images/profile.png",
+                                                                              fit: BoxFit.fill,
+                                                                              height: .06 * fem,
+                                                                              width: .06 * fem,
+                                                                            )
+                                                                          : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index]["image"][0]["filePath"])),
                                                         ),
                                                         Container(
                                                           margin:
@@ -464,10 +471,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                       ? Padding(
                                                           padding: EdgeInsets
                                                               .symmetric(
-                                                                  vertical:
-                                                                      12 * fem,
-                                                                  horizontal:
-                                                                      24 * fem),
+                                                            vertical: 12 * fem,
+                                                          ),
                                                           child: Align(
                                                             alignment: Alignment
                                                                 .topLeft,
@@ -488,8 +493,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                     1.3333333333 *
                                                                         ffem /
                                                                         fem,
-                                                                color: const Color(
-                                                                    0xff686868),
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0xff686868)
+                                                                    : Colors
+                                                                        .white,
                                                               ),
                                                             ),
                                                           ),

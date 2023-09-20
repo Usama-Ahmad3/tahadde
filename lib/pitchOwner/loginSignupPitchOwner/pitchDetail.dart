@@ -16,7 +16,7 @@ import 'select_sport.dart';
 
 class PitchDetail extends StatefulWidget {
   final SportsModel detail;
-  PitchDetail({super.key, required this.detail});
+  const PitchDetail({super.key, required this.detail});
   @override
   State<PitchDetail> createState() => _PitchDetailState();
 }
@@ -197,7 +197,6 @@ class _PitchDetailState extends State<PitchDetail> {
                           setState(() {
                             loading = false;
                           });
-
                           navigateToPriceScreen(widget.detail);
                         },
                         onFailure: (msg) {

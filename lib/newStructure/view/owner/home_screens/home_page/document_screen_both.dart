@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart' hide openAppSettings;
@@ -13,7 +13,6 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart' hide Marker;
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../../constant.dart';
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
@@ -76,10 +75,12 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 style: const TextStyle(color: Colors.black)),
             content: SingleChildScrollView(
               child: ListBody(
-                children: <Widget>[
+                children: [
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.choosefromlibrary,
-                        style: const TextStyle(color: Colors.black)),
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal)),
                     onTap: () async {
                       var status = await Permission.photos.status;
                       if (status.isGranted) {
@@ -127,7 +128,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                     padding: EdgeInsets.all(8.0),
                   ),
                   GestureDetector(
-                    child: Text(AppLocalizations.of(context)!.takephoto),
+                    child: Text(
+                      AppLocalizations.of(context)!.takephoto,
+                      style: const TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.normal),
+                    ),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -340,7 +345,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   leading: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       child: Container(
                           padding: EdgeInsets.all(sizeHeight * 0.008),
                           decoration: BoxDecoration(
@@ -569,7 +576,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
                         leading: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
                             child: Container(
                                 padding: EdgeInsets.all(sizeHeight * 0.008),
                                 decoration: BoxDecoration(
@@ -583,78 +592,51 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 )),
                           ),
                         ),
-                      )),
-                  bottomNavigationBar: pitch_Id != null &&
-                          pitchLong != null &&
-                          locationController.text.isNotEmpty &&
-                          _expiryDate.text.isNotEmpty &&
-                          _nameController.text != "" &&
-                          !widget.detail.isEdit!
-                      ? Material(
-                          color: const Color(0XFF25A163),
-                          child: InkWell(
-                            onTap: () {
-                              // if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-                              if (widget.detail.isEdit!) {
-                                Map detail = {
-                                  "location": locationController.text,
-                                  "documentId": pitch_Id,
-                                  "document_name":
-                                      widget.detail.documentModel!.documentName,
-                                  "documents_expiry_date": _apiExpiryDate,
-                                  "document_code": widget
-                                      .detail.documentModel!.licenceNumber,
-                                  "country": country,
-                                  "pitchLatitude": pitchLat,
-                                  "pitchLongitude": pitchLong,
-                                };
-                                editVenue(detail);
-                              } else {
-                                widget.detail.documentModel!.lat = pitchLat;
-                                widget.detail.documentModel!.long = pitchLong;
-                                widget.detail.documentModel!.address =
-                                    locationController.text;
-                                widget.detail.documentModel!.documentImageId =
-                                    pitch_Id;
-                                widget.detail.documentModel!.expiryDate =
-                                    _apiExpiryDate;
-                                widget.detail.documentModel!.country = country;
-                                navigateToDocuments(widget.detail);
-                              }
-                              // }
-                            },
-                            splashColor: Colors.black,
-                            child: Container(
-                                height: sizeHeight * .104,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  AppLocalizations.of(context)!.continueW,
-                                  style: const TextStyle(
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 20,
-                                      color: Colors.white),
-                                )),
+                        bottom: PreferredSize(
+                          preferredSize: Size(sizeWidth, 10),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: sizeWidth * 0.035),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: sizeHeight * .005,
+                                  width: sizeWidth * .17,
+                                  color: const Color(0XFF25A163),
+                                ),
+                                flaxibleGap(1),
+                                Container(
+                                  height: sizeHeight * .005,
+                                  width: sizeWidth * .17,
+                                  color: const Color(0XFF25A163),
+                                ),
+                                flaxibleGap(1),
+                                Container(
+                                  height: sizeHeight * .005,
+                                  width: sizeWidth * .17,
+                                  color: const Color(0XFF25A163),
+                                ),
+                                flaxibleGap(1),
+                                Container(
+                                  height: sizeHeight * .005,
+                                  width: sizeWidth * .17,
+                                  color: const Color(0XFFCBCBCB),
+                                ),
+                                flaxibleGap(1),
+                                Container(
+                                  height: sizeHeight * .005,
+                                  width: sizeWidth * .17,
+                                  color: const Color(0XFFCBCBCB),
+                                ),
+                              ],
+                            ),
                           ),
-                        )
-                      : Container(
-                          height: sizeHeight * .104,
-                          color: const Color(0XFFBCBCBC),
-                          alignment: Alignment.center,
-                          child: Text(
-                            AppLocalizations.of(context)!.continueW,
-                            style: const TextStyle(
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: Colors.white),
-                          )),
+                        ),
+                      )),
                   body: SingleChildScrollView(
                     child: Container(
                       color: Colors.black,
                       child: Container(
-                        height: sizeHeight,
                         width: sizeWidth,
                         padding:
                             EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
@@ -672,39 +654,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
                             children: [
                               SizedBox(
                                 height: sizeHeight * 0.008,
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    height: sizeHeight * .005,
-                                    width: sizeWidth * .17,
-                                    color: const Color(0XFF25A163),
-                                  ),
-                                  flaxibleGap(1),
-                                  Container(
-                                    height: sizeHeight * .005,
-                                    width: sizeWidth * .17,
-                                    color: const Color(0XFF25A163),
-                                  ),
-                                  flaxibleGap(1),
-                                  Container(
-                                    height: sizeHeight * .005,
-                                    width: sizeWidth * .17,
-                                    color: const Color(0XFF25A163),
-                                  ),
-                                  flaxibleGap(1),
-                                  Container(
-                                    height: sizeHeight * .005,
-                                    width: sizeWidth * .17,
-                                    color: const Color(0XFFCBCBCB),
-                                  ),
-                                  flaxibleGap(1),
-                                  Container(
-                                    height: sizeHeight * .005,
-                                    width: sizeWidth * .17,
-                                    color: const Color(0XFFCBCBCB),
-                                  ),
-                                ],
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(
@@ -726,223 +675,233 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                         height: sizeHeight * .2,
                                         width: sizeWidth,
                                         child: image == null
-                                            ? doc.isNotEmpty
-                                                ? ListView.builder(
-                                                    itemCount: doc.length + 1,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(5.0),
-                                                        child: index == 0
-                                                            ? widget.detail
-                                                                    .isEdit!
-                                                                ? const SizedBox
-                                                                    .shrink()
-                                                                : GestureDetector(
-                                                                    onTap: () {
-                                                                      setState(
-                                                                          () {
-                                                                        checkIndex =
-                                                                            -1;
-                                                                        _nameController.text =
-                                                                            "";
-                                                                        _licenceController.text =
-                                                                            "";
-                                                                        _expiryDate.text =
-                                                                            '';
-                                                                        _apiExpiryDate =
-                                                                            null;
-                                                                        _showChoiceDialog(
-                                                                            context);
-                                                                      });
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          sizeHeight *
-                                                                              .3,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      width:
-                                                                          150,
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: const EdgeInsets
-                                                                            .all(
-                                                                            50.0),
-                                                                        child: Image
-                                                                            .asset(
-                                                                          "assets/images/add_doc.png",
-                                                                          height:
-                                                                              50,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                            : GestureDetector(
-                                                                onTap: () {
-                                                                  if (checkIndex ==
-                                                                      index) {
-                                                                    setState(
-                                                                        () {
-                                                                      checkIndex =
-                                                                          -1;
-                                                                      _nameController
-                                                                          .text = "";
-                                                                      _licenceController
-                                                                          .text = "";
-                                                                      _expiryDate
-                                                                          .text = '';
-                                                                      _apiExpiryDate =
-                                                                          null;
-                                                                      pitch_Id =
-                                                                          null;
-                                                                    });
-                                                                  } else {
-                                                                    setState(
-                                                                        () {
-                                                                      checkIndex =
-                                                                          index;
-                                                                      _nameController
-                                                                              .text =
-                                                                          doc[checkIndex - 1].docName ??
-                                                                              "";
-                                                                      _licenceController
-                                                                          .text = doc[checkIndex -
-                                                                              1]
-                                                                          .licenceNumber!;
-                                                                      if (doc[checkIndex - 1]
-                                                                              .expiryDate !=
-                                                                          null) {
-                                                                        _expiryDate
-                                                                            .text = formatter.format(DateTime.parse(doc[checkIndex -
-                                                                                1]
-                                                                            .expiryDate!));
-                                                                        _apiExpiryDate =
-                                                                            apiFormatter.format(DateTime.parse(doc[checkIndex - 1].expiryDate!));
-                                                                        pitch_Id =
-                                                                            doc[checkIndex - 1].id;
-                                                                      } else {
-                                                                        _expiryDate.text =
-                                                                            '';
-                                                                        _apiExpiryDate =
-                                                                            null;
-                                                                        pitch_Id =
-                                                                            null;
-                                                                      }
-                                                                    });
-                                                                  }
-                                                                },
-                                                                child: Stack(
-                                                                  children: [
-                                                                    ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      child: cachedNetworkImage(
-                                                                          height: sizeHeight *
-                                                                              .2,
-                                                                          width: sizeWidth *
-                                                                              0.45,
-                                                                          cuisineImageUrl: doc[index - 1]
-                                                                              .docImage,
-                                                                          imageFit:
-                                                                              BoxFit.fill),
-                                                                    ),
-                                                                    checkIndex ==
-                                                                            index
-                                                                        ? Container(
-                                                                            height:
-                                                                                sizeHeight * .2,
-                                                                            width:
-                                                                                sizeWidth * 0.45,
-                                                                            color:
-                                                                                Colors.white.withOpacity(.2),
-                                                                          )
-                                                                        : const SizedBox
-                                                                            .shrink(),
-                                                                    checkIndex ==
-                                                                            index
-                                                                        ? SizedBox(
-                                                                            height:
-                                                                                sizeHeight * .2,
-                                                                            width:
-                                                                                sizeWidth * 0.45,
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsets.all(50.0),
-                                                                              child: Image.asset(
-                                                                                "assets/images/check.png",
-                                                                                height: 50,
-                                                                              ),
-                                                                            ),
-                                                                          )
-                                                                        : const SizedBox
-                                                                            .shrink(),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                      );
-                                                    })
-                                                : GestureDetector(
-                                                    onTap: () {
-                                                      _showChoiceDialog(
-                                                          context);
-                                                    },
-                                                    child: Column(
-                                                      children: <Widget>[
-                                                        flaxibleGap(
-                                                          1,
-                                                        ),
-                                                        const Icon(
-                                                          Icons.add_circle,
-                                                          color: Colors.white,
-                                                          size: 50,
-                                                        ),
-                                                        flaxibleGap(
-                                                          1,
-                                                        ),
-                                                        Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .uploadDocument,
-                                                            style: const TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 15,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontFamily:
-                                                                    "Poppins")),
-                                                        flaxibleGap(
-                                                          1,
-                                                        ),
-                                                        Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .weNeedAccount,
-                                                            style: TextStyle(
-                                                                color: const Color(
-                                                                        0XFF9B9B9B)
-                                                                    .withOpacity(
-                                                                        .5),
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontFamily:
-                                                                    "Poppins")),
-                                                        flaxibleGap(
-                                                          1,
-                                                        ),
-                                                      ],
+                                            ?
+                                            // doc.isNotEmpty
+                                            //         ? ListView.builder(
+                                            //             itemCount: doc.length + 1,
+                                            //             scrollDirection:
+                                            //                 Axis.horizontal,
+                                            //             itemBuilder:
+                                            //                 (context, index) {
+                                            //               return Padding(
+                                            //                 padding:
+                                            //                     const EdgeInsets
+                                            //                         .all(5.0),
+                                            //                 child: index == 0
+                                            //                     ? widget.detail
+                                            //                             .isEdit!
+                                            //                         ? const SizedBox
+                                            //                             .shrink()
+                                            //                         : GestureDetector(
+                                            //                             onTap: () {
+                                            //                               setState(
+                                            //                                   () {
+                                            //                                 checkIndex =
+                                            //                                     -1;
+                                            //                                 _nameController.text =
+                                            //                                     "";
+                                            //                                 _licenceController.text =
+                                            //                                     "";
+                                            //                                 _expiryDate.text =
+                                            //                                     '';
+                                            //                                 _apiExpiryDate =
+                                            //                                     null;
+                                            //                                 _showChoiceDialog(
+                                            //                                     context);
+                                            //                               });
+                                            //                             },
+                                            //                             child:
+                                            //                                 Container(
+                                            //                               height:
+                                            //                                   sizeHeight *
+                                            //                                       .3,
+                                            //                               width:
+                                            //                                   150,
+                                            //                               decoration: BoxDecoration(
+                                            //                                   color: MyAppState.mode == ThemeMode.light
+                                            //                                       ? Colors.grey.shade200
+                                            //                                       : Colors.white,
+                                            //                                   borderRadius: BorderRadius.circular(10)),
+                                            //                               child:
+                                            //                                   Padding(
+                                            //                                 padding: const EdgeInsets
+                                            //                                     .all(
+                                            //                                     50.0),
+                                            //                                 child: Image
+                                            //                                     .asset(
+                                            //                                   "assets/images/add_doc.png",
+                                            //                                   height:
+                                            //                                       50,
+                                            //                                 ),
+                                            //                               ),
+                                            //                             ),
+                                            //                           )
+                                            //                     : GestureDetector(
+                                            //                         onTap: () {
+                                            //                           if (checkIndex ==
+                                            //                               index) {
+                                            //                             setState(
+                                            //                                 () {
+                                            //                               checkIndex =
+                                            //                                   -1;
+                                            //                               _nameController
+                                            //                                   .text = "";
+                                            //                               _licenceController
+                                            //                                   .text = "";
+                                            //                               _expiryDate
+                                            //                                   .text = '';
+                                            //                               _apiExpiryDate =
+                                            //                                   null;
+                                            //                               pitch_Id =
+                                            //                                   null;
+                                            //                             });
+                                            //                           } else {
+                                            //                             setState(
+                                            //                                 () {
+                                            //                               checkIndex =
+                                            //                                   index;
+                                            //                               _nameController
+                                            //                                       .text =
+                                            //                                   doc[checkIndex - 1].docName ??
+                                            //                                       "";
+                                            //                               _licenceController
+                                            //                                   .text = doc[checkIndex -
+                                            //                                       1]
+                                            //                                   .licenceNumber!;
+                                            //                               if (doc[checkIndex - 1]
+                                            //                                       .expiryDate !=
+                                            //                                   null) {
+                                            //                                 _expiryDate
+                                            //                                     .text = formatter.format(DateTime.parse(doc[checkIndex -
+                                            //                                         1]
+                                            //                                     .expiryDate!));
+                                            //                                 _apiExpiryDate =
+                                            //                                     apiFormatter.format(DateTime.parse(doc[checkIndex - 1].expiryDate!));
+                                            //                                 pitch_Id =
+                                            //                                     doc[checkIndex - 1].id;
+                                            //                               } else {
+                                            //                                 _expiryDate.text =
+                                            //                                     '';
+                                            //                                 _apiExpiryDate =
+                                            //                                     null;
+                                            //                                 pitch_Id =
+                                            //                                     null;
+                                            //                               }
+                                            //                             });
+                                            //                           }
+                                            //                         },
+                                            //                         child: Stack(
+                                            //                           children: [
+                                            //                             ClipRRect(
+                                            //                               borderRadius:
+                                            //                                   BorderRadius.circular(
+                                            //                                       10),
+                                            //                               child: cachedNetworkImage(
+                                            //                                   height: sizeHeight *
+                                            //                                       .2,
+                                            //                                   width: sizeWidth *
+                                            //                                       0.45,
+                                            //                                   cuisineImageUrl: doc[index - 1]
+                                            //                                       .docImage,
+                                            //                                   imageFit:
+                                            //                                       BoxFit.fill),
+                                            //                             ),
+                                            //                             checkIndex ==
+                                            //                                     index
+                                            //                                 ? Container(
+                                            //                                     height:
+                                            //                                         sizeHeight * .2,
+                                            //                                     width:
+                                            //                                         sizeWidth * 0.45,
+                                            //                                     decoration:
+                                            //                                         BoxDecoration(color: Colors.white.withOpacity(.2), borderRadius: BorderRadius.circular(10)),
+                                            //                                   )
+                                            //                                 : const SizedBox
+                                            //                                     .shrink(),
+                                            //                             checkIndex ==
+                                            //                                     index
+                                            //                                 ? SizedBox(
+                                            //                                     height:
+                                            //                                         sizeHeight * .2,
+                                            //                                     width:
+                                            //                                         sizeWidth * 0.45,
+                                            //                                     child:
+                                            //                                         Padding(
+                                            //                                       padding: const EdgeInsets.all(50.0),
+                                            //                                       child: Image.asset(
+                                            //                                         "assets/images/check.png",
+                                            //                                         height: 50,
+                                            //                                       ),
+                                            //                                     ),
+                                            //                                   )
+                                            //                                 : const SizedBox
+                                            //                                     .shrink(),
+                                            //                           ],
+                                            //                         ),
+                                            //                       ),
+                                            //               );
+                                            //             }) :
+                                            GestureDetector(
+                                                onTap: () {
+                                                  _showChoiceDialog(context);
+                                                },
+                                                child: Column(
+                                                  children: <Widget>[
+                                                    flaxibleGap(
+                                                      1,
                                                     ),
-                                                  )
+                                                    Icon(
+                                                      Icons.add_circle,
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF9B9B9B)
+                                                          : Colors.white,
+                                                      size: 50,
+                                                    ),
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                    Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .uploadDocument,
+                                                        style: TextStyle(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0XFF9B9B9B)
+                                                                : Colors.white,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontFamily:
+                                                                "Poppins")),
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                    Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .weNeedAccount,
+                                                        style: TextStyle(
+                                                            color: const Color(
+                                                                    0XFF9B9B9B)
+                                                                .withOpacity(
+                                                                    .5),
+                                                            fontSize: 10,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontFamily:
+                                                                "Poppins")),
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
                                             : GestureDetector(
                                                 onTap: () {
                                                   _showChoiceDialog(context);
@@ -971,7 +930,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                     return '';
                                   },
                                   onValidate: (value) {
-                                    if (value.isEmpty()) {
+                                    if (value.toString().isEmpty) {
                                       return AppLocalizations.of(context)!
                                           .pleaseentername;
                                     }
@@ -1013,7 +972,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   },
                                   enable: widget.detail.isEdit! ? false : true,
                                   onValidate: (value) {
-                                    if (value.isEmpty()) {
+                                    if (value.isEmpty) {
                                       return AppLocalizations.of(context)!
                                           .pleaseenterPitchName;
                                     }
@@ -1062,9 +1021,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 child: textFieldWidget(
                                   controller: _expiryDate,
                                   hintText: 'Expiry Document Date',
-                                  enable: widget.detail.isEdit! ? false : true,
+                                  enable: false,
                                   onValidate: (value) {
-                                    if (value.isEmpty()) {
+                                    if (value.isEmpty) {
                                       return AppLocalizations.of(context)!
                                           .expriyDate;
                                     }
@@ -1142,7 +1101,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                 : Colors.white,
                                             enable: false,
                                             onValidate: (value) {
-                                              if (value.isEmpty()) {
+                                              if (value.isEmpty) {
                                                 return AppLocalizations.of(
                                                         context)!
                                                     .expriyDate;
@@ -1166,201 +1125,80 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                     BorderRadius.circular(12)),
                                           ),
                                         ),
-
-                              ///   old
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizeWidth * .07),
-                                child: textField(
-                                    name: AppLocalizations.of(context)!
-                                        .documentName,
-                                    controller: _nameController,
-                                    onchange: (value) {},
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return AppLocalizations.of(context)!
-                                            .pleaseenterPitchName;
-                                      }
-                                      return null;
-                                    },
-                                    text: false,
-                                    text1: false,
-                                    // submit: (value) => FocusScope.of(context)
-                                    //     .requestFocus(focusss),
-                                    onSaved: (value) {
-                                      widget.detail.documentModel =
-                                          DocumentModel(documentName: value!);
-                                    }),
+                              SizedBox(
+                                height: sizeHeight * 0.02,
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizeWidth * .07),
-                                child: textField(
-                                    name: AppLocalizations.of(context)!
-                                        .licenceName,
-                                    controller: _licenceController,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return AppLocalizations.of(context)!
-                                            .pleaseenterPitchName;
-                                      }
-                                      return null;
-                                    },
-                                    text: false,
-                                    text1: false,
-                                    // submit: (value) => FocusScope.of(context)
-                                    //     .requestFocus(focusss),
-                                    onSaved: (value) => widget.detail
-                                        .documentModel!.licenceNumber = value!),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: sizeWidth * .07,
-                                ),
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    final selectDate =
-                                        await slecteDtateTime(context);
-                                    if (selectDate != null) {
-                                      setState(() {
-                                        _expiryDate.text = formatter
-                                            .format((selectDate))
-                                            .toString();
-                                        _apiExpiryDate = apiFormatter
-                                            .format((selectDate))
-                                            .toString();
-                                      });
-                                    }
-                                  },
-                                  child: Text(
-                                    _expiryDate.text ?? "Expiry Document Date",
-                                    style: const TextStyle(
-                                        fontFamily: 'Poppins',
-                                        decoration: TextDecoration.none,
-                                        color: Color(0XFF032040),
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12),
-                                  ),
-                                ),
-                              ),
-                              !widget.detail.isEdit!
-                                  ? Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .07),
-                                      child: Container(
-                                        height: 1,
-                                        width: sizeWidth,
-                                        color: Colors.grey,
-                                      ),
-                                    )
-                                  : const SizedBox.shrink(),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: sizeWidth * .07,
-                                ),
-                                child: locationController.text.isNotEmpty &&
-                                        !widget.detail.isEdit!
-                                    ? Container(
-                                        alignment: AppLocalizations.of(context)!
-                                                    .locale ==
-                                                "en"
-                                            ? Alignment.centerLeft
-                                            : Alignment.centerRight,
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .pitchLocation,
-                                          style: const TextStyle(
-                                              color: Color(0XFFADADAD),
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      )
-                                    : Container(),
-                              ),
-                              // widget.detail.isEdit!
-                              //     ? const SizedBox.shrink()
-                              // : !isAddressLoading
-                              //     ? GestureDetector(
-                              //         onTap: () {
-                              //           _permission();
-                              //         },
-                              //         child: Padding(
-                              //           padding: EdgeInsets.symmetric(
-                              //               horizontal: sizeWidth * .07,
-                              //               vertical: 20),
-                              //           child: Column(
-                              //             crossAxisAlignment:
-                              //                 CrossAxisAlignment.start,
-                              //             children: [
-                              //               shimmer(width: sizeWidth),
-                              //               const SizedBox(
-                              //                 height: 10,
-                              //               ),
-                              //               shimmer(width: sizeWidth * .7),
-                              //             ],
-                              //           ),
-                              //         ),
-                              //       )
-                              //     : Ink(
-                              //         padding: EdgeInsets.symmetric(
-                              //             horizontal: sizeWidth * .07),
-                              //         child: InkWell(
-                              //           splashColor: Colors.black,
-                              //           onTap: () {
-                              //             setState(() {
-                              //               isAddressLoading = true;
-                              //               FocusScope.of(context)
-                              //                   .unfocus();
-                              //               _getLocationPermission();
-                              //             });
-                              //           },
-                              //           child: Row(
-                              //             children: <Widget>[
-                              //               SizedBox(
-                              //                 width: sizeWidth * .7,
-                              //                 child: Text(
-                              //                   "$locationName",
-                              //                   style: TextStyle(
-                              //                     decoration:
-                              //                         TextDecoration.none,
-                              //                     color:
-                              //                         locationName == null
-                              //                             ? const Color(
-                              //                                 0XFFADADAD)
-                              //                             : const Color(
-                              //                                 0XFF032040),
-                              //                     fontSize: 12,
-                              //                     fontWeight:
-                              //                         locationName == null
-                              //                             ? FontWeight.w500
-                              //                             : FontWeight.w600,
-                              //                     fontFamily: 'Poppins',
-                              //                   ),
-                              //                 ),
-                              //               ),
-                              //               flaxibleGap(
-                              //                 1,
-                              //               ),
-                              //               Image.asset(
-                              //                 "assets/images/locationPitch.png",
-                              //                 height: 20,
-                              //               ),
-                              //             ],
-                              //           ),
-                              //         ),
-                              //       ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizeWidth * .07),
-                                child: Container(
-                                  height: 1,
-                                  width: sizeWidth,
-                                  color: Colors.grey,
-                                ),
-                              ),
+                              pitch_Id != null &&
+                                      pitchLong != null &&
+                                      locationController.text != '' &&
+                                      _expiryDate.text != '' &&
+                                      _nameController.text != "" &&
+                                      !widget.detail.isEdit!
+                                  ? ButtonWidget(
+                                      onTaped: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          _formKey.currentState!.save();
+                                          if (widget.detail.isEdit!) {
+                                            Map detail = {
+                                              "location":
+                                                  locationController.text,
+                                              "documentId": pitch_Id,
+                                              "document_name": widget.detail
+                                                  .documentModel!.documentName,
+                                              "documents_expiry_date":
+                                                  _apiExpiryDate,
+                                              "document_code": widget.detail
+                                                  .documentModel!.licenceNumber,
+                                              "country": country,
+                                              "pitchLatitude": pitchLat,
+                                              "pitchLongitude": pitchLong,
+                                            };
+                                            editVenue(detail);
+                                          } else {
+                                            widget.detail.documentModel?.lat =
+                                                pitchLat;
+                                            widget.detail.documentModel?.long =
+                                                pitchLong;
+                                            widget.detail.documentModel != null
+                                                ? widget.detail.documentModel!
+                                                        .address =
+                                                    locationController.text
+                                                : widget.detail.documentModel
+                                                        ?.address =
+                                                    locationController.text;
+                                            widget.detail.documentModel != null
+                                                ? widget.detail.documentModel!
+                                                    .documentImageId = pitch_Id
+                                                : widget.detail.documentModel
+                                                        ?.documentImageId =
+                                                    pitch_Id;
+                                            widget.detail.documentModel != null
+                                                ? widget.detail.documentModel!
+                                                    .expiryDate = _apiExpiryDate
+                                                : widget.detail.documentModel
+                                                        ?.expiryDate =
+                                                    _apiExpiryDate;
+                                            widget.detail.documentModel != null
+                                                ? widget.detail.documentModel!
+                                                    .country = country
+                                                : widget.detail.documentModel
+                                                    ?.country = country;
+                                            navigateToDocuments(widget.detail);
+                                          }
+                                        }
+                                      },
+                                      title: Text(AppLocalizations.of(context)!
+                                          .continu),
+                                      isLoading: loading)
+                                  : ButtonWidget(
+                                      color: const Color(0XFFBCBCBC),
+                                      onTaped: () {},
+                                      title: Text(AppLocalizations.of(context)!
+                                          .continu),
+                                      isLoading: false),
+                              SizedBox(
+                                height: sizeHeight * 0.01,
+                              )
                             ],
                           ),
                         ),
@@ -1440,73 +1278,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
       fit: BoxFit.cover,
     );
   }
-
-//   Future<void> _handlePressButton() async {
-//     // show input autocomplete with selected mode
-//     // then get the Prediction selected
-//     Prediction p = await PlacesAutocomplete.show(
-//       context: context,
-//       apiKey: kGoogleApiKey,
-//       onError: onError,
-//       mode: Mode.fullscreen,
-//       language: "en",
-//       logo: const Text(""),
-//       components: [Component(Component.country, "are")],
-//     );
-//
-//     displayPrediction(p, homeScaffoldKey.currentState);
-//   }
-//
-//   void onError(PlacesAutocompleteResponse response) {
-//     homeScaffoldKey.currentState.showSnackBar(
-//       SnackBar(content: Text(response.errorMessage)),
-//     );
-//   }
-//
-//   Future<Null> displayPrediction(Prediction p, ScaffoldState scaffold) async {
-//     if (p != null) {
-//       // get detail (lat/lng)
-//       PlacesDetailsResponse detail =
-//           await _places.getDetailsByPlaceId(p.placeId);
-//       pitchLat = detail.result.geometry.location.lat;
-//       pitchLong = detail.result.geometry.location.lng;
-//       _mapController
-//           .animateCamera(CameraUpdate.newLatLng(LatLng(pitchLat, pitchLong)));
-//       Map latlong = {
-//         "latitude": pitchLat.toString(),
-//         "longitude": pitchLong.toString(),
-//       };
-//       _networkCalls.getAddress(
-//           LatLong: latlong,
-//           onSuccess: (msg) {
-//             setState(() {
-//               country = msg[1];
-//               locationName = msg[0];
-//               isAddressLoading = true;
-//             });
-//           },
-//           onFailure: (msg) {
-//             showMessage(msg, homeScaffoldKey);
-//           },
-//           tokenExpire: () {
-//             if (mounted) on401(context);
-//           });
-//       //defaultGetUserLocation(pitchLat, pitchLong,true);
-//       setState(() {
-//         allMarkers.add(Marker(
-//           draggable: true,
-//           markerId: const MarkerId('myMarker'),
-//           onTap: () {
-//             debugPrint('marker');
-//           },
-//           position: LatLng(pitchLat, pitchLong),
-//         ));
-//       });
-// //      scaffold.showSnackBar(
-// //        SnackBar(content: Text("${p.description} - $lat/$lng")),
-// //      );
-//     }
-//   }
 }
 
 class DocumentResponse {

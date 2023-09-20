@@ -92,6 +92,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "applyCoupon": MessageLookupByLibrary.simpleMessage("Apply Coupon"),
         "approve": MessageLookupByLibrary.simpleMessage("Approve"),
+        "academyName": MessageLookupByLibrary.simpleMessage("Academy Name"),
+        "subAcademyName":
+            MessageLookupByLibrary.simpleMessage("Sub-Academy Name"),
+        "academyNameA":
+            MessageLookupByLibrary.simpleMessage("Academy Name(Arabic)"),
         "areCreateTournament": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to create this tournament ?"),
         "areCreateleague": MessageLookupByLibrary.simpleMessage(

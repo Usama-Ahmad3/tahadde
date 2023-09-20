@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/venue_detail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
@@ -18,6 +19,7 @@ import '../modelClass/my_venue_list_model_class.dart';
 import '../modelClass/pramotion_model_class.dart';
 import '../modelClass/teamModelClass.dart';
 import '../modelClass/yourTahaddiModelClass.dart';
+import '../newStructure/view/owner/home_screens/home_page/pitchDetailScreen2.dart';
 import '../newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/BookingScreen.dart';
 import '../newStructure/view/player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../pitchOwner/addNewPitch/addNewGround.dart';
@@ -294,7 +296,7 @@ class RouterPage {
       case RouteNames.pitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => PitchDetail(detail: detail as SportsModel));
+            builder: (_) => PitchDetailScreen(detail: detail as SportsModel));
       case RouteNames.viewMoreowner:
         var event = settings.arguments;
         return MaterialPageRoute(
@@ -419,6 +421,8 @@ class RouterPage {
             builder: (_) => SelectSport(
                   isBack: detail as bool,
                 ));
+
+      ///
       case RouteNames.priceScreen:
         var detail = settings.arguments;
         return MaterialPageRoute(
@@ -452,7 +456,7 @@ class RouterPage {
       case RouteNames.editPitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EditPitchDetail(
+            builder: (_) => EditPitchDetailScreen(
                   detail: detail,
                 ));
       case RouteNames.venueDetailScreen:

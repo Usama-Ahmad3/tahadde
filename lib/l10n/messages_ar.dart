@@ -162,7 +162,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseFacilitiesProvided":
             MessageLookupByLibrary.simpleMessage("اختر المرافق المراد توفيرها"),
         "chooseLocation": MessageLookupByLibrary.simpleMessage("اختر موقعك"),
+        "academyName": MessageLookupByLibrary.simpleMessage("اسم الأكاديمية"),
+        "academyNameA":
+            MessageLookupByLibrary.simpleMessage("اسم الأكاديمية (عربي)"),
         "chooseYourTeam": MessageLookupByLibrary.simpleMessage("اختر فريقك"),
+        "subAcademyName": MessageLookupByLibrary.simpleMessage(
+            "اسم الأكاديمية الفرعية (عربي)"),
         "choosedateofbirth":
             MessageLookupByLibrary.simpleMessage("حدد تاريخ الميلاد"),
         "choosefromlibrary":

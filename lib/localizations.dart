@@ -50,6 +50,18 @@ class AppLocalizations {
     return Intl.message('Ground List', name: 'groundList');
   }
 
+  String get academyName {
+    return Intl.message('Academy Name', name: 'academyName');
+  }
+
+  String get subAcademyName {
+    return Intl.message('Sub-Academy Name', name: 'subAcademyName');
+  }
+
+  String get academyNameA {
+    return Intl.message('Academy Name(Arabic)', name: 'academyNameA');
+  }
+
   String get teamH {
     return Intl.message('teamH', name: 'teamH');
   }

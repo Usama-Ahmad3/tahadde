@@ -62,7 +62,6 @@ class _SlotChartState extends State<SlotChart> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (Platform.isIOS) {
       focusNode.addListener(() {
@@ -100,6 +99,9 @@ class _SlotChartState extends State<SlotChart> {
 
   loadSlotList() {
     _networkCalls.slotList(
+        id: widget.pitchDetail["id"],
+        subPitchId: widget.pitchDetail["subPitchId"],
+        weekDay: _weakList[_weakIndex].slug,
         onSuccess: (detail) {
           slotList.clear();
           detail.forEach((slot) {
@@ -109,9 +111,6 @@ class _SlotChartState extends State<SlotChart> {
             _isLoading = false;
           });
         },
-        id: widget.pitchDetail["id"],
-        subPitchId: widget.pitchDetail["subPitchId"],
-        weekDay: _weakList[_weakIndex].slug,
         onFailure: (onFailure) {},
         tokenExpire: () {
           if (mounted) on401(context);
@@ -121,7 +120,6 @@ class _SlotChartState extends State<SlotChart> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    print(slotList);
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(

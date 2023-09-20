@@ -25,7 +25,7 @@ class _VenueCreatedState extends State<VenueCreated> {
               onTap: () {
                 Navigator.of(context).pop();
               },
-              isBack: false),
+              isBack: true),
           bottomNavigationBar: Material(
             color: const Color(0XFF25A163),
             child: InkWell(

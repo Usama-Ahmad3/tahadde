@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';

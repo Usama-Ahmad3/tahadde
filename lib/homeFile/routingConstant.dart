@@ -79,6 +79,7 @@ class RouteNames {
   static const String venueCreated = "venueCreated";
   static const String myVenues = "MyVenues";
   static const String editVenues = "editVenues";
+  static const String editVenuesScreen = "editVenuesScreen";
   static const String preferredSports = "preferredSports";
   static const String sportExperience = "sportExperience";
   static const String editPitchDetail = "editPitchDetail";

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/document_screen.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/document_screen_both.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -564,7 +564,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
 
   List title = [
     AppLocalizations().documents,
-    AppLocalizations().pitchDetails,
+    AppLocalizations().bookingDetails,
     AppLocalizations().slotPrice,
     AppLocalizations().sessions
   ];

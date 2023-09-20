@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/booking.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/bookingWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/shimmer_bookings.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
