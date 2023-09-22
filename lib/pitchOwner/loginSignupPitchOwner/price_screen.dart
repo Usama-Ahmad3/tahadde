@@ -10,8 +10,8 @@ import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
+import '../../newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import '../../player/loginSignup/signup.dart';
-import 'select_sport.dart';
 
 class PriceScreen extends StatefulWidget {
   SportsModel detail;

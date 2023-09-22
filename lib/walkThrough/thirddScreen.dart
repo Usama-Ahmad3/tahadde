@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common_widgets/localeHelper.dart';
 import '../homeFile/routingConstant.dart';
-import '../homeFile/select_your_location.dart';
 import '../homeFile/utility.dart';
 import '../localizations.dart';
 import '../network/network_calls.dart';
+import '../newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 
 class ThirdScreen extends StatefulWidget {
   @override
@@ -180,8 +179,8 @@ class _ThirdScreenState extends State<ThirdScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen(
-                                      message: '',
+                                builder: (context) => PlayerHomeScreen(
+                                      index: 0,
                                     )
                                 // SelectYourLocation(),
                                 ));

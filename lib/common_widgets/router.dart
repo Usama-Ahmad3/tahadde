@@ -20,6 +20,7 @@ import '../modelClass/pramotion_model_class.dart';
 import '../modelClass/teamModelClass.dart';
 import '../modelClass/yourTahaddiModelClass.dart';
 import '../newStructure/view/owner/home_screens/home_page/pitchDetailScreen2.dart';
+import '../newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import '../newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/BookingScreen.dart';
 import '../newStructure/view/player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../pitchOwner/addNewPitch/addNewGround.dart';
@@ -38,9 +39,7 @@ import '../pitchOwner/homePitchOwner/view_more_venue.dart';
 import '../pitchOwner/loginSignupPitchOwner/bankDetail.dart';
 import '../pitchOwner/loginSignupPitchOwner/createSession.dart';
 import '../pitchOwner/loginSignupPitchOwner/documents.dart';
-import '../pitchOwner/loginSignupPitchOwner/pitchDetail.dart';
 import '../pitchOwner/loginSignupPitchOwner/price_screen.dart';
-import '../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../pitchOwner/loginSignupPitchOwner/signUpPitchOwner.dart';
 import '../pitchOwner/loginSignupPitchOwner/slot_chart.dart';
 import '../pitchOwner/loginSignupPitchOwner/venue_created.dart';
@@ -49,7 +48,6 @@ import '../pitchOwner/profilePitchOwner/account.dart';
 import '../pitchOwner/profilePitchOwner/editProfilePitchOwner.dart';
 import '../pitchOwner/profilePitchOwner/myPitches/editPitch.dart';
 import '../pitchOwner/profilePitchOwner/myPitches/editSessions.dart';
-import '../pitchOwner/profilePitchOwner/myPitches/edit_pitch_detail.dart';
 import '../pitchOwner/profilePitchOwner/myPitches/edit_venue.dart';
 import '../pitchOwner/profilePitchOwner/myPitches/myPitches.dart';
 import '../pitchOwner/profilePitchOwner/myPitches/my_venues.dart';
@@ -418,7 +416,7 @@ class RouterPage {
       case RouteNames.selectSport:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => SelectSport(
+            builder: (_) => SelectSportScreen(
                   isBack: detail as bool,
                 ));
 

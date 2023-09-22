@@ -1254,15 +1254,15 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    ///
     String url =
         "https://powerhouse.tahadde.ae/api/v1/bookpitch/pitchowner/pitch/player_available_pitches_list_details/?language=${prefs.get('lang')}";
     if (urldetail!.isNotEmpty) {
       url = "$url&sport_slug=$urldetail";
     }
     try {
-      response = await http.get(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae/api/v1/bookpitch/pitchowner/pitch/player_available_pitches_list_details/?language=en"),
+      response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));

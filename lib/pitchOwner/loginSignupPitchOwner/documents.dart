@@ -15,9 +15,7 @@ import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
-import 'select_sport.dart';
-
-// GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
+import '../../newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 
 class Documents extends StatefulWidget {
   SportsModel detail;
@@ -69,13 +67,13 @@ class _DocumentsState extends State<Documents> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.uploadprofilepicture,
-                style: TextStyle(color: Colors.black)),
+                style: const TextStyle(color: Colors.black)),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.choosefromlibrary,
-                        style: TextStyle(color: Colors.black)),
+                        style: const TextStyle(color: Colors.black)),
                     onTap: () async {
                       var status = await Permission.photos.status;
                       if (status.isGranted) {
@@ -91,25 +89,27 @@ class _DocumentsState extends State<Documents> {
                                   title: Text(
                                       AppLocalizations.of(context)!
                                           .galleryPermission,
-                                      style: TextStyle(color: Colors.black)),
+                                      style:
+                                          const TextStyle(color: Colors.black)),
                                   content: Text(
                                       AppLocalizations.of(context)!
                                           .thisGalleryPicturesUploadImage,
-                                      style: TextStyle(color: Colors.black)),
+                                      style:
+                                          const TextStyle(color: Colors.black)),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
-                                          style:
-                                              TextStyle(color: Colors.black)),
+                                          style: const TextStyle(
+                                              color: Colors.black)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
                                     ),
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.setting,
-                                          style:
-                                              TextStyle(color: Colors.black)),
+                                          style: const TextStyle(
+                                              color: Colors.black)),
                                       onPressed: () => openAppSettings(),
                                     ),
                                   ],

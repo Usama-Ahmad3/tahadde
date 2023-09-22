@@ -12,6 +12,8 @@ import '../../../network/network_calls.dart';
 
 class EditSession extends StatefulWidget {
   Map pitchData;
+
+  ///
   EditSession({Key? key, required this.pitchData}) : super(key: key);
 
   @override

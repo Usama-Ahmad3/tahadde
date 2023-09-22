@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/picthowner_main_home.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
@@ -26,7 +27,7 @@ import 'homeFile/routingConstant.dart';
 import 'homeFile/select_your_location.dart';
 import 'homeFile/utility.dart';
 import 'localizations.dart';
-import 'newStructure/view/owner/home_screens/ownerHomeScreen.dart';
+import 'newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
 import 'newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'pitchOwner/homePitchOwner/homePitchOwner.dart';
 import 'player/loginSignup/profile/profile.dart';
@@ -298,28 +299,24 @@ class _LanguageSaveState extends State<LanguageSave> {
   @override
   Widget build(BuildContext context) {
     return ConnectivityStatus(
-      child: _isSplace
-          ? SizedBox.expand(
-              child: FittedBox(
-                fit: BoxFit.fill,
-                child: SizedBox(
-                  width: _controller.value.size.width ?? 0,
-                  height: _controller.value.size.height ?? 0,
-                  child: VideoPlayer(_controller),
+        child: _isSplace
+            ? SizedBox.expand(
+                child: FittedBox(
+                  fit: BoxFit.fill,
+                  child: SizedBox(
+                    width: _controller.value.size.width ?? 0,
+                    height: _controller.value.size.height ?? 0,
+                    child: VideoPlayer(_controller),
+                  ),
                 ),
-              ),
-            )
-          : widget.walk == null
-              ? WalkThroughScreen()
-              : widget.role == "pitchowner"
-                  ? HomePitchOwnerScreen(
-                      index: 0,
-                    )
-                  : widget.country != null
-                      ? PlayerHomeScreen(index: 0)
-                      : SelectYourLocation(),
-      // PermissionPrimingScreen(),
-    );
+              )
+            : widget.walk == null
+                ? WalkThroughScreen()
+                : widget.role == "pitchowner"
+                    ? HomePitchOwnerScreen(
+                        index: 0,
+                      )
+                    : PlayerHomeScreen(index: 0));
   }
 }
 

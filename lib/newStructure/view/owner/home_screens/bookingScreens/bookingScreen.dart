@@ -22,7 +22,7 @@ class _BookingScreenState extends State<BookingScreen> {
   var BookingDate;
   var bookingDateApi;
   late String datevalue;
-  late bool _internet;
+  bool _internet = true;
   final DateFormat formatter = DateFormat('yyyy-MM-dd', 'en_US');
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;

@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/createSession4.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/document_screen_both.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/slot_chart_screen5.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,7 +19,6 @@ import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../modelClass/specific_pitch_model_class.dart';
 import '../../../../../../network/network_calls.dart';
-import '../../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 
 class EditVenuesScreen extends StatefulWidget {
   final Map detail;
@@ -591,7 +593,14 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
   }
 
   void navigateToSlotScreen(Map detail) {
-    Navigator.pushNamed(context, RouteNames.slotChart, arguments: detail);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => SlotChartScreen(
+                  pitchDetail: detail,
+                  backTag: true,
+                )));
+    // Navigator.pushNamed(context, RouteNames.slotChart, arguments: detail);
   }
 
   void navigateToEditSession() {
@@ -600,6 +609,10 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
       "subPitchId":
           specificPitchScreen.venueDetails!.pitchType![0]!.id.toString(),
     };
-    Navigator.pushNamed(context, RouteNames.editSession, arguments: detail);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => CreateSessionScreen(pitchData: detail)));
+    // Navigator.pushNamed(context, RouteNames.editSession, arguments: detail);
   }
 }

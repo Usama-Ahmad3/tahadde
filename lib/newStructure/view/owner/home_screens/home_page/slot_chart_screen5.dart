@@ -15,7 +15,8 @@ import '../../../player/HomeScreen/widgets/textFormField.dart';
 
 class SlotChartScreen extends StatefulWidget {
   final Map pitchDetail;
-  const SlotChartScreen({Key? key, required this.pitchDetail})
+  bool backTag;
+  SlotChartScreen({Key? key, required this.pitchDetail, this.backTag = false})
       : super(key: key);
 
   @override
@@ -101,6 +102,28 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
               ),
               centerTitle: true,
               backgroundColor: Colors.black,
+              leadingWidth: size.width * 0.18,
+              leading: widget.backTag
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            padding: EdgeInsets.all(size.height * 0.008),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                shape: BoxShape.circle),
+                            child: const Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.close,
+                                color: Colors.white,
+                              ),
+                            )),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
               bottom: PreferredSize(
                 preferredSize: Size(size.width, 10),
                 child: Padding(

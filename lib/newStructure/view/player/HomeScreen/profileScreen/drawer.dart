@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/profile/myPitches.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/events/events.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
+import '../playerHomeScreen.dart';
 
 class ProfileDrawer extends StatefulWidget {
   String name;
@@ -94,7 +95,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                             NetworkCalls().clearToken(key: 'token');
                             NetworkCalls().clearToken(key: 'role');
                             NetworkCalls().clearToken(key: "auth");
-                            // navigateToHome();
+                            setState(() {
+                              navigateToHome();
+                            });
                           },
                           onFailure: (msg) {
                             showMessage(msg);
@@ -546,7 +549,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   }
 
   void navigateToMyPitches() {
-    Navigator.pushNamed(context, RouteNames.myVenues);
+    Navigator.push(context, MaterialPageRoute(builder: (_) => MyPitches()));
+    // Navigator.pushNamed(context, RouteNames.myVenues);
   }
 
   List icon = [
@@ -575,14 +579,14 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   ];
   List subtitle = [
     AppLocalizations().nameEmail,
-    AppLocalizations().bookingVenue,
-    'payment,methods,transactions',
+    AppLocalizations().bookingAcademy,
+    AppLocalizations().paymentTransaction,
     AppLocalizations().ratingsReviews,
     AppLocalizations().languageTheme
   ];
   List ownerSubtitle = [
-    'payment,methods,transactions',
-    AppLocalizations().bookingVenue,
+    AppLocalizations().paymentTransaction,
+    AppLocalizations().bookingAcademy,
     AppLocalizations().languageTheme
   ];
   List listTitle = [
@@ -590,4 +594,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     AppLocalizations().privacyPolicy
   ];
   List iconList = [Icons.verified_user_outlined, Icons.privacy_tip_outlined];
+  navigateToHome() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => PlayerHomeScreen(index: 0)));
+  }
 }

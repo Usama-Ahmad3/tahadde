@@ -48,7 +48,7 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
                       color: MyAppState.mode == ThemeMode.light
                           ? const Color(0XFFD6D6D6)
                           : const Color(0xff686868),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20))),
                   child: Column(

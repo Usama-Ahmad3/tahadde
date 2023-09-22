@@ -30,9 +30,13 @@ class ShimmerBookings {
           body: Container(
             height: sizeHeight,
             width: sizeWidth,
-            color: MyAppState.mode == ThemeMode.light
-                ? Colors.white
-                : Color(0xff686868),
+            decoration: BoxDecoration(
+                color: MyAppState.mode == ThemeMode.light
+                    ? Colors.white
+                    : const Color(0xff686868),
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

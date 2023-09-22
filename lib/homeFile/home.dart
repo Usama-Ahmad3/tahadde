@@ -978,36 +978,31 @@ class LeagueListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppLocalizations.of(context)!.locale == "en"
-          ? EdgeInsets.only(left: MediaQuery.of(context).size.width * .02)
-          : EdgeInsets.only(right: MediaQuery.of(context).size.width * .02),
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: <Widget>[
-          Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5.0) //
-                    ),
-              ),
-              width: 160,
-              child: ClipRRect(
-                clipBehavior: Clip.hardEdge,
-                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                child: cachedNetworkImage(
-                    height: 130, width: 140, cuisineImageUrl: file.toString()),
-              )),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.7),
-              borderRadius: const BorderRadius.all(Radius.circular(5.0) //
+    return Stack(
+      alignment: Alignment.bottomLeft,
+      children: [
+        Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10.0) //
                   ),
             ),
-            height: 50,
-            width: 160,
+            width: MediaQuery.of(context).size.width * 0.44,
+            child: ClipRRect(
+              clipBehavior: Clip.hardEdge,
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: cachedNetworkImage(
+                  height: 130, width: 140, cuisineImageUrl: file.toString()),
+            )),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.7),
+            borderRadius: const BorderRadius.all(Radius.circular(5.0) //
+                ),
           ),
-        ],
-      ),
+          height: 50,
+          width: 160,
+        ),
+      ],
     );
   }
 }

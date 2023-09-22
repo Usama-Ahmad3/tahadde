@@ -6,6 +6,8 @@ import 'package:firebase_messaging/firebase_messaging.dart' as fMessaging;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/picthowner_main_home.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -179,50 +181,59 @@ class LoginScreenState extends State<LoginScreen> {
   _loginFacebook() async {
     FacebookAuth.getInstance();
     facebookSignIn.isWebSdkInitialized;
-    final result = await FacebookAuth.instance.login();
-    switch (result.status) {
-      case LoginStatus.success:
-        final AccessToken? accessToken = result.accessToken;
-        var details = {
-          "fbUserToken": accessToken!.token,
-          "deviceType": logDetail.deviceType,
-          "deviceToken": logDetail.fcmToken
-        };
-        _networkCalls.loginFacebook(
-            loginDetail: details,
-            onSuccess: (msg) {
-              if (msg["token"] != null) {
-                _networkCalls.saveToken(msg["token"]);
-                _networkCalls.saveRole(msg["role"]);
-                _networkCalls.authorizationSave(true);
-                navigateToDetail();
-              } else {
-                var detail = {"detail": msg, "facebook": true};
-                navigateToSocialDetail(detail);
-              }
-            },
-            onFailure: (msg) {
-              showMessage(msg);
-            });
+    try {
+      final result = await facebookSignIn.login();
+      switch (result.status) {
+        case LoginStatus.success:
+          final AccessToken? accessToken = result.accessToken;
+          var details = {
+            "fbUserToken": accessToken!.token,
+            "deviceType": logDetail.deviceType,
+            "deviceToken": logDetail.fcmToken
+          };
+          print(details);
+          _networkCalls.loginFacebook(
+              loginDetail: details,
+              onSuccess: (msg) {
+                if (msg["token"] != null) {
+                  _networkCalls.saveToken(msg["token"]);
+                  _networkCalls.saveRole(msg["role"]);
+                  _networkCalls.authorizationSave(true);
+                  navigateToDetail();
+                } else {
+                  var detail = {"detail": msg, "facebook": true};
+                  navigateToSocialDetail(detail);
+                }
+              },
+              onFailure: (msg) {
+                showMessage(msg);
+              });
 
-        break;
-      case LoginStatus.cancelled:
-        // ignore: use_build_context_synchronously
-        showMessage(AppLocalizations.of(context)!.logincancelledbytheuser);
-        break;
-      case LoginStatus.failed:
-        showMessage('Something went wrong with the login process.\n'
-            'Here\'s the error Facebook gave us: ${result.message}');
-        print("jiiii${result.message}");
-        break;
-      default:
+          break;
+        case LoginStatus.cancelled:
+          // ignore: use_build_context_synchronously
+          showMessage(AppLocalizations.of(context)!.logincancelledbytheuser);
+          break;
+        case LoginStatus.failed:
+          showMessage('Something went wrong with the login process.\n'
+              'Here\'s the error Facebook gave us: ${result.message}');
+          print("jiiii${result.message}");
+          break;
+        default:
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
   Future _logOut() async {
     FacebookAuth.getInstance();
     facebookSignIn.isWebSdkInitialized;
-    await facebookSignIn.logOut();
+    try {
+      await facebookSignIn.logOut();
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future _loginGoogle() async {
@@ -747,8 +758,10 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void navigateToOwnerHome() {
-    Navigator.pushNamedAndRemoveUntil(
-        context, RouteNames.homePitchOwner, (r) => false);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => HomePitchOwnerScreen(index: 0)));
+    // Navigator.pushNamedAndRemoveUntil(
+    //     context, RouteNames.homePitchOwner, (r) => false);
   }
 
   void navigateToVerification(SignUpSignInDetail detail) {

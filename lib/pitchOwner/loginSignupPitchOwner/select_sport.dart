@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../constant.dart';
 import '../../drop_down_file.dart';
-import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
-import '../../newStructure/view/owner/home_screens/home_page/document_screen_both.dart';
 
 class SelectSport extends StatefulWidget {
   bool isBack = true;
@@ -206,8 +204,8 @@ class _SelectSportState extends State<SelectSport> {
   }
 
   void navigateToDocuments(SportsModel detail) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (_) => DocumentScreen(detail: detail)));
+    // Navigator.push(context,
+    //     MaterialPageRoute(builder: (_) => DocumentScreen(detail: detail)));
   }
 }
 

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_tahaddi/localizations.dart';
+import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/sportList.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,16 +32,19 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   String? arabicCountry;
   String? arabicCity;
   bool? _internet;
+  String sportName = '';
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;
   List<String> history = [];
   List<String>? showHistory = [];
+  int isSelected = -1;
 
   // ignore: prefer_typing_uninitialized_variables
   var _bookPitchData;
   final List<SportsList> _sportsList = [];
   var searchController = TextEditingController();
   bool searchFlag = false;
+  var bookSpecific;
 
   getSports() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -277,6 +282,30 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     );
   }
 
+  loadVenuesSpecific() async {
+    await _networkCalls.bookpitch(
+      urldetail: sportName,
+      onSuccess: (pitchInfo) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+            bookSpecific = pitchInfo;
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -397,10 +426,111 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                           BorderRadius.circular(10)))),
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => WalkThroughScreen()));
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => Padding(
+                                        padding: EdgeInsets.only(
+                                            left: width * 0.2,
+                                            top: height * 0.12,
+                                            bottom: height * 0.089),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.white
+                                                  : const Color(0xff686868),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: height * 0.01,
+                                              ),
+                                              Text(
+                                                AppLocalizations.of(context)!
+                                                    .filterBy,
+                                                style: TextStyle(
+                                                    fontSize: height * 0.02,
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? Colors.black
+                                                        : Colors.white),
+                                              ),
+                                              SizedBox(
+                                                height: height * 0.02,
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  ...List.generate(
+                                                      _sportsList.length,
+                                                      (index) => InkWell(
+                                                            onTap: () {
+                                                              if (isSelected ==
+                                                                  index) {
+                                                                isSelected = -1;
+                                                              } else {
+                                                                isSelected =
+                                                                    index;
+                                                                sportName =
+                                                                    _sportsList[
+                                                                            index]
+                                                                        .slug
+                                                                        .toString();
+                                                                loadVenuesSpecific();
+                                                              }
+                                                              Navigator.pop(
+                                                                  context);
+                                                              setState(() {});
+                                                            },
+                                                            child: Padding(
+                                                              padding: EdgeInsets.symmetric(
+                                                                  horizontal: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.02),
+                                                              child: Chip(
+                                                                  avatar: CircleAvatar(
+                                                                      radius:
+                                                                          30,
+                                                                      backgroundColor: isSelected ==
+                                                                              index
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .grey,
+                                                                      child: Image.network(_sportsList[index]
+                                                                          .image
+                                                                          .toString())),
+                                                                  backgroundColor: isSelected ==
+                                                                          index
+                                                                      ? const Color(
+                                                                          0xff7b61ff)
+                                                                      : Colors
+                                                                          .black,
+                                                                  elevation: 2,
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                          10),
+                                                                  label: Text(
+                                                                    _sportsList[
+                                                                            index]
+                                                                        .name!,
+                                                                    style: TextStyle(
+                                                                        color: isSelected ==
+                                                                                index
+                                                                            ? Colors.white
+                                                                            : const Color(0xff686868)),
+                                                                  )),
+                                                            ),
+                                                          ))
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ));
                             },
                             child: Container(
                               height: height * 0.05,
@@ -587,9 +717,15 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                             //         isSelected: isSelected,
                             //         sportsList: _sportsList,
                             //       ),
-                            _bookPitchData != null
-                                ? VanueList(bookPitchData: _bookPitchData)
-                                : const SizedBox.shrink(),
+                            isSelected != -1
+                                ? bookSpecific.isNotEmpty
+                                    ? VanueList(bookPitchData: bookSpecific)
+                                    : VanueList(
+                                        bookPitchData: bookSpecific,
+                                        empty: true)
+                                : _bookPitchData != null
+                                    ? VanueList(bookPitchData: _bookPitchData)
+                                    : const SizedBox.shrink()
                           ],
                         ),
                       ],

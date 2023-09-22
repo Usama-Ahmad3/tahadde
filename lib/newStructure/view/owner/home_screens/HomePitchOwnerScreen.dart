@@ -3,12 +3,10 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../constant.dart';
 import '../../../../localizations.dart';
-import '../../../../pitchOwner/bookingPitchOwner/booking.dart';
-import '../../../../pitchOwner/homePitchOwner/pitchOwnerHome.dart';
-import '../../../../pitchOwner/profilePitchOwner/account.dart';
 import '../../player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../../player/HomeScreen/profileScreen/profileDetail.dart';
 import 'bookingScreens/bookingScreen.dart';
+import 'home_page/main_home/picthowner_main_home.dart';
 
 // ignore: must_be_immutable
 class HomePitchOwnerScreen extends StatefulWidget {
@@ -81,7 +79,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
   }
 
   final page = [
-    PitchOwnerHome(),
+    const PitchOwnerMainHome(),
     const BookingScreen(),
     NotificationScreen(
       player: false,

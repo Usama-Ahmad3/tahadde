@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/sportList.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../../../constant.dart';
-import '../../../../../homeFile/utility.dart';
-import '../../../../../localizations.dart';
-import '../../../utils.dart';
 
 class ShimmerWidgets {
   Widget buildShimmer(double size, context, bookPitchData) {

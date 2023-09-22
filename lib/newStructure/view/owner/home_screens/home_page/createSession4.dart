@@ -174,7 +174,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniEndFloat,
           floatingActionButton: Align(
-            alignment: Alignment(1.1, 0.9),
+            alignment: const Alignment(1.1, 0.9),
             child: SpeedDial(
               elevation: 3,
               label: Text(
@@ -1372,8 +1372,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child:
-                                                              Text('Cancel')),
+                                                          child: const Text(
+                                                              'Cancel')),
                                                       TextButton(
                                                           onPressed: () {
                                                             sessionDetail
@@ -1383,7 +1383,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child: Text('OK')),
+                                                          child:
+                                                              const Text('OK')),
                                                     ],
                                                     content: Container(
                                                       height:
@@ -1502,8 +1503,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child:
-                                                              Text('Cancel')),
+                                                          child: const Text(
+                                                              'Cancel')),
                                                       TextButton(
                                                           onPressed: () {
                                                             sessionDetail
@@ -1513,7 +1514,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child: Text('OK')),
+                                                          child:
+                                                              const Text('OK')),
                                                     ],
                                                     content: Container(
                                                       height:
@@ -1633,8 +1635,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 .startTime);
                                                             setState(() {});
                                                           },
-                                                          child:
-                                                              Text('Cancel')),
+                                                          child: const Text(
+                                                              'Cancel')),
                                                       TextButton(
                                                           onPressed: () {
                                                             sessionDetail
@@ -1644,7 +1646,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child: Text('OK')),
+                                                          child:
+                                                              const Text('OK')),
                                                     ],
                                                     content: Container(
                                                       height:
@@ -1749,8 +1752,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child:
-                                                              Text('Cancel')),
+                                                          child: const Text(
+                                                              'Cancel')),
                                                       TextButton(
                                                           onPressed: () {
                                                             sessionDetail
@@ -1759,7 +1762,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child: Text('OK')),
+                                                          child:
+                                                              const Text('OK')),
                                                     ],
                                                     content: Container(
                                                       height:

@@ -38,6 +38,19 @@ class AppLocalizations {
     return Intl.message('bookPitch', name: 'bookPitch');
   }
 
+  String get noAcademy {
+    return Intl.message('No Academies Available', name: 'noAcademy');
+  }
+
+  String get filterResult {
+    return Intl.message('Filter Results', name: 'filterResult');
+  }
+
+  String get paymentTransaction {
+    return Intl.message('payment,methods,transaction',
+        name: 'paymentTransaction');
+  }
+
   String get team {
     return Intl.message('team', name: 'team');
   }
@@ -52,6 +65,10 @@ class AppLocalizations {
 
   String get academyName {
     return Intl.message('Academy Name', name: 'academyName');
+  }
+
+  String get innovative {
+    return Intl.message('Innovative Hub', name: 'innovative');
   }
 
   String get subAcademyName {
@@ -90,12 +107,16 @@ class AppLocalizations {
     return Intl.message('Academies', name: 'academy');
   }
 
+  String get myAcademy {
+    return Intl.message('My Academies', name: 'myAcademy');
+  }
+
   String get darkMode {
     return Intl.message('Dark Mode', name: 'darkMode');
   }
 
-  String get bookingVenue {
-    return Intl.message('Booking, Venues, leagues', name: 'booking,venue');
+  String get bookingAcademy {
+    return Intl.message('Booking, Academies, leagues', name: 'bookingAcademy');
   }
 
   String get languageTheme {

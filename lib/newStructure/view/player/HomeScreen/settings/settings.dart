@@ -107,7 +107,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             NetworkCalls().clearToken(key: 'token');
                             NetworkCalls().clearToken(key: 'role');
                             NetworkCalls().clearToken(key: "auth");
-                            navigateToHome();
+                            setState(() {
+                              navigateToHome();
+                            });
                           },
                           onFailure: (msg) {
                             showMessage(msg);
@@ -122,7 +124,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             NetworkCalls().clearToken(key: 'token');
                             NetworkCalls().clearToken(key: 'role');
                             NetworkCalls().clearToken(key: "auth");
-                            navigateToHome();
+                            setState(() {
+                              navigateToHome();
+                            });
                           },
                           onFailure: (msg) {
                             showMessage(msg);

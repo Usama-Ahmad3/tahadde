@@ -65,8 +65,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourInterest": MessageLookupByLibrary.simpleMessage("Your Interest"),
         "yourProfile": MessageLookupByLibrary.simpleMessage("Your profile"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
-        "booking,venue":
-            MessageLookupByLibrary.simpleMessage("booking, venue, leagues"),
+        "myAcademy": MessageLookupByLibrary.simpleMessage("My Academies"),
+        "bookingAcademy":
+            MessageLookupByLibrary.simpleMessage("booking, academy, leagues"),
         "language,theme": MessageLookupByLibrary.simpleMessage(
             "language, theme, configuration"),
         "name,email": MessageLookupByLibrary.simpleMessage(
@@ -86,6 +87,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "ago": MessageLookupByLibrary.simpleMessage("ago"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "am": MessageLookupByLibrary.simpleMessage("AM"),
+        "filterResult": MessageLookupByLibrary.simpleMessage("Filter Result"),
+        "paymentTransaction":
+            MessageLookupByLibrary.simpleMessage("payment,methods,transaction"),
+        "noAcademy":
+            MessageLookupByLibrary.simpleMessage("No Academies Available"),
         "amongstAvailableSlotUnavailable": MessageLookupByLibrary.simpleMessage(
             "You can book a slot or make it unavailable."),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
@@ -93,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "applyCoupon": MessageLookupByLibrary.simpleMessage("Apply Coupon"),
         "approve": MessageLookupByLibrary.simpleMessage("Approve"),
         "academyName": MessageLookupByLibrary.simpleMessage("Academy Name"),
+        "innovative": MessageLookupByLibrary.simpleMessage("Innovative Hub"),
         "subAcademyName":
             MessageLookupByLibrary.simpleMessage("Sub-Academy Name"),
         "academyNameA":

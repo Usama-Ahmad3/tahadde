@@ -14,6 +14,8 @@ import 'createSession.dart';
 
 class SlotChart extends StatefulWidget {
   final Map pitchDetail;
+
+  ///
   const SlotChart({Key? key, required this.pitchDetail}) : super(key: key);
 
   @override

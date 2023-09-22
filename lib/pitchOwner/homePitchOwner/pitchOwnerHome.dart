@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -654,7 +655,9 @@ class _PitchOwnerHomeState extends State<PitchOwnerHome>
   }
 
   void navigateToSports() {
-    Navigator.pushNamed(context, RouteNames.selectSport, arguments: true);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => SelectSportScreen(isBack: true)));
+    // Navigator.pushNamed(context, RouteNames.selectSport, arguments: true);
   }
 
   void navigateTocreateEvevt(String detail) {

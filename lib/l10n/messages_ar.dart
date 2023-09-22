@@ -57,20 +57,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "addreviewspitchyouhaveplayedon":
             MessageLookupByLibrary.simpleMessage("أضف تعليقاتك."),
         "addto": MessageLookupByLibrary.simpleMessage("أضف إلى"),
+        "filterResult": MessageLookupByLibrary.simpleMessage("تصفية النتائج"),
+        "noAcademy":
+            MessageLookupByLibrary.simpleMessage("لا توجد أكاديميات متاحة"),
         "addyourexperienceforthepitchesyouhaveplayedupon":
             MessageLookupByLibrary.simpleMessage(
                 "أضف خبرتك للملاعب التي لعبت عليها."),
         "ago": MessageLookupByLibrary.simpleMessage("منذ"),
+        "paymentTransaction":
+            MessageLookupByLibrary.simpleMessage("الدفع، طرق، المعاملات"),
         "Help": MessageLookupByLibrary.simpleMessage("يساعد"),
         "language,theme":
             MessageLookupByLibrary.simpleMessage("اللغة والموضوع والتكوين"),
         "name,email": MessageLookupByLibrary.simpleMessage(
             "الاسم، البريد الإلكتروني، الهاتف، الموقع"),
-        "booking,venue":
-            MessageLookupByLibrary.simpleMessage("الحجز والأماكن والبطولات"),
+        "bookingAcademy": MessageLookupByLibrary.simpleMessage(
+            "الحجز والأكاديميات والبطولات"),
         "legalInformation":
             MessageLookupByLibrary.simpleMessage("المعلومات القانونية"),
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
+        "myAcademy": MessageLookupByLibrary.simpleMessage("أكاديمياتي"),
         "am": MessageLookupByLibrary.simpleMessage("ص"),
         "amongstAvailableSlotUnavailable": MessageLookupByLibrary.simpleMessage(
             "يمكنك حجز التوقيت او جعله غير متاح."),
@@ -163,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختر المرافق المراد توفيرها"),
         "chooseLocation": MessageLookupByLibrary.simpleMessage("اختر موقعك"),
         "academyName": MessageLookupByLibrary.simpleMessage("اسم الأكاديمية"),
+        "innovative": MessageLookupByLibrary.simpleMessage("مركز مبتكر"),
         "academyNameA":
             MessageLookupByLibrary.simpleMessage("اسم الأكاديمية (عربي)"),
         "chooseYourTeam": MessageLookupByLibrary.simpleMessage("اختر فريقك"),
