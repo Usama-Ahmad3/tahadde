@@ -25,7 +25,7 @@ class CustomDataTable<T> extends StatefulWidget {
   Function(Map count)? monthDetail;
 
   CustomDataTable(
-      {this.fixedColCells,
+      {super.key, this.fixedColCells,
       this.fixedRowCells,
       @required this.rowsCells,
       this.cellBuilder,
@@ -69,7 +69,7 @@ class CustomDataTableState<T> extends State<CustomDataTable<T>> {
       child: widget.cellBuilder?.call((checking(data) ? "" : data) as T) ??
           Text('$data'));
 
-  Widget _buildChild1(double width, T data) => Container(
+  Widget _buildChild1(double width, T data) => SizedBox(
       width: width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -118,7 +118,7 @@ class CustomDataTableState<T> extends State<CustomDataTable<T>> {
                   .map((c) =>
                       DataColumn(label: _buildChild1(widget.cellWidth!, c)))
                   .toList(),
-              rows: []),
+              rows: const []),
         );
 
   Widget _buildSubTable() => Material(
@@ -266,7 +266,7 @@ class CustomDataTableState<T> extends State<CustomDataTable<T>> {
                         label: _buildChild(widget.fixedColWidth!,
                             widget.fixedCornerCell as Object))
                   ],
-                  rows: []),
+                  rows: const []),
             );
 
   @override
@@ -328,7 +328,7 @@ class CustomDataTableState<T> extends State<CustomDataTable<T>> {
   }
 
   Widget DayFind(String index) {
-    var day;
+    Text day;
     switch (index) {
       case "1":
         day = const Text(
@@ -389,7 +389,7 @@ class CustomDataTableState<T> extends State<CustomDataTable<T>> {
   }
 
   Widget DayFindAr(String index) {
-    var day;
+    Text day;
     switch (index) {
       case "1":
         day = const Text(
@@ -460,7 +460,7 @@ class CustomDataTableState<T> extends State<CustomDataTable<T>> {
   }
 
   int yearFind({required String index}) {
-    var day;
+    int day;
     switch (index) {
       case "2019":
         day = 2019;

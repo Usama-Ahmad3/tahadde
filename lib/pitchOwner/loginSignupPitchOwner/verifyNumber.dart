@@ -12,7 +12,7 @@ import '../../player/loginSignup/signup.dart';
 
 class VarifyMoblie extends StatefulWidget {
   final SignUpDetail detail;
-  VarifyMoblie({required this.detail});
+  const VarifyMoblie({super.key, required this.detail});
   @override
   _VarifyMoblieState createState() => _VarifyMoblieState();
 }

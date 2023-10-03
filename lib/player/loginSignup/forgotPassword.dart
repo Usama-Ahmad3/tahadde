@@ -12,7 +12,7 @@ import '../../network/network_calls.dart';
 class ForgotPassword extends StatefulWidget {
   bool tokenStatus;
 
-  ForgotPassword({required this.tokenStatus});
+  ForgotPassword({super.key, required this.tokenStatus});
 
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();
@@ -25,7 +25,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   bool _internet = true;
   final _formKey = GlobalKey<FormState>();
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  NetworkCalls _networkCalls = NetworkCalls();
+  final NetworkCalls _networkCalls = NetworkCalls();
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         ? _internet
             ? Scaffold(
                 backgroundColor: MyAppState.mode == ThemeMode.light
-                    ? Color(0XFFF0F0F0)
+                    ? const Color(0XFFF0F0F0)
                     : Colors.grey.shade300,
                 appBar: PreferredSize(
                   preferredSize: Size(sizewidth, sizeheight * 0.1),

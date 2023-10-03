@@ -17,9 +17,9 @@ TeamModelClass _$TeamModelClassFromJson(Map<String, dynamic> json) {
     created_at: json['created_at'] as String,
     numberofPlayers: json['numberofPlayers'] as int,
     players: (json['players'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : Players.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     teamLogo: json['teamLogo'] == null
         ? null
         : TeamLogo.fromJson(json['teamLogo'] as Map<String, dynamic>),
@@ -38,7 +38,7 @@ Map<String, dynamic> _$TeamModelClassToJson(TeamModelClass instance) =>
       'created_at': instance.created_at,
       'numberofPlayers': instance.numberofPlayers,
       'captain': instance.captain?.toJson(),
-      'players': instance.players?.map((e) => e?.toJson())?.toList(),
+      'players': instance.players?.map((e) => e?.toJson()).toList(),
       'teamLogo': instance.teamLogo?.toJson(),
     };
 

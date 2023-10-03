@@ -8,7 +8,7 @@ import '../../modelClass/bookingModelClass.dart';
 
 class Bookings extends StatefulWidget {
   List<BookingModelClass>? bookingDetail;
-  Bookings({this.bookingDetail});
+  Bookings({super.key, this.bookingDetail});
   @override
   _BookingsState createState() => _BookingsState();
 }
@@ -182,7 +182,7 @@ class _BookingsState extends State<Bookings> {
   }
 
   String timing({required int x}) {
-    var day;
+    String day;
     switch (x) {
       case 0:
         day = "12 AM";

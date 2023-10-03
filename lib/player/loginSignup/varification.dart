@@ -13,7 +13,7 @@ import 'signup.dart';
 
 class Verification extends StatefulWidget {
   SignUpDetail detail;
-  Verification({required this.detail});
+  Verification({super.key, required this.detail});
 
   @override
   _VerificationState createState() => _VerificationState();
@@ -354,7 +354,7 @@ class _VerificationState extends State<Verification> {
                                     child: Ink(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(4),
-                                        color: Color(0XFF25A163),
+                                        color: const Color(0XFF25A163),
                                       ),
                                       child: InkWell(
                                           splashColor: Colors.black,

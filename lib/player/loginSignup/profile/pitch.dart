@@ -9,6 +9,8 @@ import '../../../modelClass/pitchModelClass.dart';
 import '../../../network/network_calls.dart';
 
 class Pitch extends StatefulWidget {
+  const Pitch({super.key});
+
   @override
   _PitchState createState() => _PitchState();
 }
@@ -424,7 +426,7 @@ class _PitchState extends State<Pitch> {
 
   String timing({String? y}) {
     int x = int.parse(y!.substring(0, 2));
-    var day;
+    String day;
     switch (x) {
       case 0:
         day = "12 AM";

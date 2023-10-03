@@ -17,6 +17,8 @@ import '../../network/network_calls.dart';
 import '../../player/loginSignup/signup.dart';
 
 class EditProfilePitchOwner extends StatefulWidget {
+  const EditProfilePitchOwner({super.key});
+
   @override
   _EditProfilePitchOwnerState createState() => _EditProfilePitchOwnerState();
 }
@@ -55,7 +57,7 @@ class _EditProfilePitchOwnerState extends State<EditProfilePitchOwner> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -465,7 +467,7 @@ class _EditProfilePitchOwnerState extends State<EditProfilePitchOwner> {
                                   onSaved: (value) {
                                     _detail.email = value ?? '';
                                   }),
-                              Container(
+                              SizedBox(
                                 height: sizeheight * .075,
                                 width: sizewidth,
                                 child: Row(

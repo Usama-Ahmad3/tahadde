@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 
-import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../localizations.dart';
 
 class SportList extends StatefulWidget {
@@ -34,8 +34,11 @@ class _SportListState extends State<SportList> {
                         ? widget.sportsList[index].name
                         : widget.sportsList[index].nameArabic
                   };
-                  Navigator.pushNamed(context, RouteNames.specificSportsScreen,
-                      arguments: detail);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SpecificSportsListScreen(detail: detail)));
                   setState(() {});
                 },
                 child: Padding(

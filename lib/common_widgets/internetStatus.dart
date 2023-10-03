@@ -7,7 +7,7 @@ import '../localizations.dart';
 
 class ConnectivityStatus extends StatefulWidget {
   final Widget child;
-  ConnectivityStatus({required this.child});
+  const ConnectivityStatus({super.key, required this.child});
   @override
   State<StatefulWidget> createState() {
     return _ConnectivityStatusState();
@@ -35,7 +35,7 @@ class _ConnectivityStatusState extends State<ConnectivityStatus> {
   }
 
   Future initConnectivity() async {
-    ConnectivityResult result = await _connectivity.checkConnectivity();;
+    ConnectivityResult result = await _connectivity.checkConnectivity();
     try {
       result = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {

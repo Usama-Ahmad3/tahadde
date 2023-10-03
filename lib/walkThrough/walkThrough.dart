@@ -5,15 +5,17 @@ import 'secondScreen.dart';
 import 'thirddScreen.dart';
 
 class WalkThroughScreen extends StatefulWidget {
+  const WalkThroughScreen({super.key});
+
   @override
   _WalkThroughScreenState createState() => _WalkThroughScreenState();
 }
 
 class _WalkThroughScreenState extends State<WalkThroughScreen> {
   final List<Widget> introWidgetsList = <Widget>[
-    FirstScreen(),
-    SecondScreen(),
-    ThirdScreen(),
+    const FirstScreen(),
+    const SecondScreen(),
+    const ThirdScreen(),
   ];
   PageController controller = PageController(initialPage: 0);
   var currentPageValue = 0;
@@ -93,7 +95,7 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                 },
                 child: Text(
                   AppLocalizations.of(context)!.skip,
-                  style: TextStyle(color: Colors.grey, fontSize: 18),
+                  style: const TextStyle(color: Colors.grey, fontSize: 18),
                 )),
           )
         ],

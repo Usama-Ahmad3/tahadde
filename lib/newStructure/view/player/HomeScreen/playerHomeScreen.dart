@@ -1,7 +1,6 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/events/events.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -10,6 +9,7 @@ import '../../../../constant.dart';
 import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
+import 'events/events.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
   int index;
@@ -23,29 +23,26 @@ class PlayerHomeScreen extends StatefulWidget {
 
 class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
   initDynamicLinks() async {
-    bool _auth = await checkAuthorizaton() as bool;
+    bool auth = await checkAuthorizaton() as bool;
     PendingDynamicLinkData? data =
         await FirebaseDynamicLinks.instance.getInitialLink();
     Uri deepLink = data != null ? data.link : Uri.parse('uri');
-    if (deepLink != null && deepLink.queryParameters["token"] != null) {
-      if (!_auth) {
+    if (deepLink.queryParameters["token"] != null) {
+      if (!auth) {
         // ignore: use_build_context_synchronously
         Navigator.pushNamed(context, RouteNames.forgotPasswordScreen,
             arguments: deepLink.queryParameters["token"]);
       }
-    } else if (deepLink != null &&
-        deepLink.queryParameters["event_details"] == "pitch_details") {
+    } else if (deepLink.queryParameters["event_details"] == "pitch_details") {
       navigateToBookPitchDetail(
           int.parse(deepLink.queryParameters["pk"] ?? ''));
-    } else if (deepLink != null &&
-        deepLink.queryParameters["event_details"] == "league_details") {
+    } else if (deepLink.queryParameters["event_details"] == "league_details") {
       Map detail = {
         "id": int.parse(deepLink.queryParameters["pk"] ?? ''),
         "type": "League"
       };
       navigateToLeagueDetail(detail);
-    } else if (deepLink != null &&
-        deepLink.queryParameters["event_details"] == "tournament_details") {
+    } else if (deepLink.queryParameters["event_details"] == "tournament_details") {
       Map detail = {
         "id": int.parse(deepLink.queryParameters["pk"] ?? ''),
         "type": "Tournament"
@@ -143,7 +140,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   widget.index = index;
                   setState(() {});
                 },
-                selectedItemColor: const Color(0xffffc300),
+                selectedItemColor: const Color(0xff1d7e55),
                 backgroundColor: Colors.black,
                 selectedColorOpacity: 1,
                 curve: Curves.bounceInOut,
@@ -161,33 +158,30 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                       color: Colors.black,
                     ),
                     unselectedColor: Colors.grey,
-                    selectedColor: const Color(0xffffc300),
+                    selectedColor: const Color(0xff1d7e55),
                   ),
                   SalomonBottomBarItem(
-                    icon: Transform.rotate(
-                      angle: 2.75,
-                      child: SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: Image.asset('assets/images/ticket-9LV.png'),
+                    icon: SizedBox(
+                      height: 23,
+                      width: 23,
+                      child: Image.asset(
+                        'assets/images/booking2.png',
+                        color: Colors.grey,
                       ),
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.booking,
                       style: const TextStyle(color: Colors.black),
                     ),
-                    activeIcon: Transform.rotate(
-                      angle: 3.25,
-                      child: SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: Image.asset(
-                          'assets/images/ticket.png',
-                          color: Colors.black,
-                        ),
+                    activeIcon: SizedBox(
+                      height: 23,
+                      width: 23,
+                      child: Image.asset(
+                        'assets/images/file.png',
+                        color: Colors.black,
                       ),
                     ),
-                    selectedColor: const Color(0xffffc300),
+                    selectedColor: const Color(0xff1d7e55),
                     unselectedColor: Colors.grey,
                   ),
                   SalomonBottomBarItem(
@@ -202,7 +196,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                       Icons.settings,
                       color: Colors.black,
                     ),
-                    selectedColor: const Color(0xffffc300),
+                    selectedColor: const Color(0xff1d7e55),
                     unselectedColor: Colors.grey,
                   ),
                   SalomonBottomBarItem(
@@ -217,7 +211,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                       Icons.person,
                       color: Colors.black,
                     ),
-                    selectedColor: const Color(0xffffc300),
+                    selectedColor: const Color(0xff1d7e55),
                     unselectedColor: Colors.grey,
                   ),
                 ],

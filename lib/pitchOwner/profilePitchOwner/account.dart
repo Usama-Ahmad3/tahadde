@@ -11,6 +11,8 @@ import '../../localizations.dart';
 import '../../network/network_calls.dart';
 
 class Account extends StatefulWidget {
+  const Account({super.key});
+
   @override
   _AccountState createState() => _AccountState();
 }
@@ -873,8 +875,7 @@ class _AccountState extends State<Account> with AutomaticKeepAliveClientMixin {
                                       Text(
                                         AppLocalizations.of(context)!.locale ==
                                                 "en"
-                                            ? "${profileDetail['countryCode'] ?? ""}" +
-                                                "${profileDetail['contact_number'] ?? ""}"
+                                            ? "${profileDetail['countryCode'] ?? ""}" "${profileDetail['contact_number'] ?? ""}"
                                             : "${profileDetail['countryCode'].substring(1) ?? ""}${profileDetail['contact_number'] ?? ""}${profileDetail['countryCode'].substring(0, 1) ?? ""}",
                                         style: const TextStyle(
                                             fontSize: 13, color: Colors.white),

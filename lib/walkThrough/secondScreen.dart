@@ -5,6 +5,8 @@ import '../homeFile/utility.dart';
 import '../localizations.dart';
 
 class SecondScreen extends StatefulWidget {
+  const SecondScreen({super.key});
+
   @override
   _SecondScreenState createState() => _SecondScreenState();
 }
@@ -84,7 +86,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           ),
                         ),
                         flaxibleGap(1),
-                        Container(
+                        SizedBox(
                             width: sizeWidth * .5,
                             child: Text(
                               AppLocalizations.of(context)!.createyourteam,
@@ -110,7 +112,7 @@ class _SecondScreenState extends State<SecondScreen> {
             flaxibleGap(1),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizeWidth * .05),
-              child: Container(
+              child: SizedBox(
                   width: sizeWidth * .6,
                   child: Text(
                     AppLocalizations.of(context)!.buildTahaddi,
@@ -124,7 +126,7 @@ class _SecondScreenState extends State<SecondScreen> {
             flaxibleGap(1),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizeWidth * .05),
-              child: Container(
+              child: SizedBox(
                   width: sizeWidth * .57,
                   child: Text(
                     AppLocalizations.of(context)!.walkyouTahaddi,

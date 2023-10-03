@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class AddPhotos extends StatelessWidget {
+  const AddPhotos({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // addphotosbAq (513:7663)
         width: double.infinity,
         height: 812 * fem,
@@ -18,7 +20,7 @@ class AddPhotos extends StatelessWidget {
           // addphotosKMj (305:12135)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -55,7 +57,7 @@ class AddPhotos extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -129,7 +131,7 @@ class AddPhotos extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ],
@@ -144,7 +146,7 @@ class AddPhotos extends StatelessWidget {
                     24 * fem, 24 * fem, 24 * fem, 152 * fem),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -161,7 +163,7 @@ class AddPhotos extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Container(
+                          SizedBox(
                             // captionzg9 (305:12139)
                             width: 257.5 * fem,
                             child: Text(
@@ -173,14 +175,14 @@ class AddPhotos extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
                           SizedBox(
                             height: 24 * fem,
                           ),
-                          Container(
+                          SizedBox(
                             // imageqgm (305:12250)
                             width: double.infinity,
                             child: Column(
@@ -210,8 +212,8 @@ class AddPhotos extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8 * fem),
-                                          color: Color(0x4c000000),
-                                          image: DecorationImage(
+                                          color: const Color(0x4c000000),
+                                          image: const DecorationImage(
                                             fit: BoxFit.cover,
                                             image: AssetImage(
                                               'assets/light-design/images/rectangle-40186-bg-waR.png',
@@ -251,8 +253,8 @@ class AddPhotos extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8 * fem),
-                                          color: Color(0x4c000000),
-                                          image: DecorationImage(
+                                          color: const Color(0x4c000000),
+                                          image: const DecorationImage(
                                             fit: BoxFit.cover,
                                             image: AssetImage(
                                               'assets/light-design/images/rectangle-40187-bg.png',
@@ -283,7 +285,7 @@ class AddPhotos extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   // imagejxV (305:12264)
                                   width: double.infinity,
                                   height: 120 * fem,
@@ -305,8 +307,8 @@ class AddPhotos extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8 * fem),
-                                          color: Color(0x4c000000),
-                                          image: DecorationImage(
+                                          color: const Color(0x4c000000),
+                                          image: const DecorationImage(
                                             fit: BoxFit.cover,
                                             image: AssetImage(
                                               'assets/light-design/images/rectangle-40188-bg.png',
@@ -346,8 +348,8 @@ class AddPhotos extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8 * fem),
-                                          color: Color(0x4c000000),
-                                          image: DecorationImage(
+                                          color: const Color(0x4c000000),
+                                          image: const DecorationImage(
                                             fit: BoxFit.cover,
                                             image: AssetImage(
                                               'assets/light-design/images/rectangle-40189-bg.png',
@@ -384,7 +386,7 @@ class AddPhotos extends StatelessWidget {
                           SizedBox(
                             height: 24 * fem,
                           ),
-                          Container(
+                          SizedBox(
                             // photoiconandcaptionsz9 (305:12277)
                             width: double.infinity,
                             height: 98 * fem,
@@ -401,11 +403,11 @@ class AddPhotos extends StatelessWidget {
                                   height: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xffcdcdcd)),
+                                        Border.all(color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
-                                  child: Container(
+                                  child: SizedBox(
                                     // cameraiconandcaptionFE1 (305:12279)
                                     width: double.infinity,
                                     height: double.infinity,
@@ -435,7 +437,7 @@ class AddPhotos extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -450,7 +452,7 @@ class AddPhotos extends StatelessWidget {
                                   height: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xffcdcdcd)),
+                                        Border.all(color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
@@ -479,7 +481,7 @@ class AddPhotos extends StatelessWidget {
                                           fontSize: 13 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3846153846 * ffem / fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                       ),
                                     ],
@@ -496,7 +498,7 @@ class AddPhotos extends StatelessWidget {
                       width: double.infinity,
                       height: 57 * fem,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(16 * fem),
                       ),
                       child: Center(
@@ -508,7 +510,7 @@ class AddPhotos extends StatelessWidget {
                             fontSize: 17 * ffem,
                             fontWeight: FontWeight.w600,
                             height: 1.4705882353 * ffem / fem,
-                            color: Color(0xff050505),
+                            color: const Color(0xff050505),
                           ),
                         ),
                       ),

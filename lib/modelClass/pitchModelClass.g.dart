@@ -14,7 +14,7 @@ PitchHistory _$PitchHistoryFromJson(Map<String, dynamic> json) {
     bookpitch: json['bookpitch'] == null
         ? null
         : EventType.fromJson(json['bookpitch'] as Map<String, dynamic>),
-    paidTotal: (json['paidTotal'] as num)?.toDouble(),
+    paidTotal: (json['paidTotal'] as num).toDouble(),
     transactionId: json['transactionId'] as String,
     payment_id: json['payment_id'] as String,
     transactionMadeon: json['transactionMadeon'] as String,
@@ -81,15 +81,15 @@ Slots _$SlotsFromJson(Map<String, dynamic> json) {
   return Slots(
     booked_for_date: json['booked_for_date'] as String,
     booked_slots: (json['booked_slots'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : BookedSlots.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
   );
 }
 
 Map<String, dynamic> _$SlotsToJson(Slots instance) => <String, dynamic>{
       'booked_for_date': instance.booked_for_date,
-      'booked_slots': instance.booked_slots?.map((e) => e?.toJson())?.toList(),
+      'booked_slots': instance.booked_slots?.map((e) => e?.toJson()).toList(),
     };
 
 BookedSlots _$BookedSlotsFromJson(Map<String, dynamic> json) {

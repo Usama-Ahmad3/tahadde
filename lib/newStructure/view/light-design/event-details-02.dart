@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class EditDetail_02 extends StatelessWidget {
+  const EditDetail_02({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // eventdetails02KTw (513:7656)
         width: double.infinity,
         height: 892 * fem,
@@ -18,7 +20,7 @@ class EditDetail_02 extends StatelessWidget {
           // eventdetails023Pw (316:12467)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Stack(
@@ -30,7 +32,7 @@ class EditDetail_02 extends StatelessWidget {
                 child: Container(
                   width: 375 * fem,
                   height: 368.68 * fem,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0x99000000),
                     image: DecorationImage(
                       fit: BoxFit.cover,
@@ -39,7 +41,7 @@ class EditDetail_02 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: Container(
+                  child: SizedBox(
                     // toolbaro1j (316:12468)
                     width: double.infinity,
                     height: 92 * fem,
@@ -69,7 +71,7 @@ class EditDetail_02 extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     height: 1.2575 * ffem / fem,
                                     letterSpacing: -0.2800000012 * fem,
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                   ),
                                 ),
                               ),
@@ -150,7 +152,7 @@ class EditDetail_02 extends StatelessWidget {
                   width: 375 * fem,
                   height: 764 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
@@ -179,7 +181,7 @@ class EditDetail_02 extends StatelessWidget {
                                 height: 100 * fem,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // groundnameandlocationTZT (316:12564)
                               width: double.infinity,
                               child: Column(
@@ -199,7 +201,7 @@ class EditDetail_02 extends StatelessWidget {
                                           fontWeight: FontWeight.w600,
                                           height: 1.09375 * ffem / fem,
                                           letterSpacing: -0.32 * fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                       ),
                                     ),
@@ -235,7 +237,7 @@ class EditDetail_02 extends StatelessWidget {
                                             fontSize: 11 * ffem,
                                             fontWeight: FontWeight.w400,
                                             height: 1.3636363636 * ffem / fem,
-                                            color: Color(0xff828282),
+                                            color: const Color(0xff828282),
                                           ),
                                         ),
                                       ],
@@ -266,8 +268,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: 98 * fem,
                               height: double.infinity,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
-                                color: Color(0xffffffff),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
                               child: Column(
@@ -285,7 +287,7 @@ class EditDetail_02 extends StatelessWidget {
                                       height: 36 * fem,
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // teamnumberWxy (I316:12595;156:10175)
                                     width: double.infinity,
                                     child: Column(
@@ -305,7 +307,7 @@ class EditDetail_02 extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.2 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -318,7 +320,7 @@ class EditDetail_02 extends StatelessWidget {
                                             fontSize: 13 * ffem,
                                             fontWeight: FontWeight.w400,
                                             height: 1.3846153846 * ffem / fem,
-                                            color: Color(0xffb4b4b4),
+                                            color: const Color(0xffb4b4b4),
                                           ),
                                         ),
                                       ],
@@ -337,8 +339,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: 98 * fem,
                               height: double.infinity,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
-                                color: Color(0xffffffff),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
                               child: Column(
@@ -356,7 +358,7 @@ class EditDetail_02 extends StatelessWidget {
                                       height: 36 * fem,
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // teamnumberQD7 (I316:12631;156:10175)
                                     width: double.infinity,
                                     child: Column(
@@ -376,7 +378,7 @@ class EditDetail_02 extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.2 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -389,7 +391,7 @@ class EditDetail_02 extends StatelessWidget {
                                             fontSize: 13 * ffem,
                                             fontWeight: FontWeight.w400,
                                             height: 1.3846153846 * ffem / fem,
-                                            color: Color(0xffb4b4b4),
+                                            color: const Color(0xffb4b4b4),
                                           ),
                                         ),
                                       ],
@@ -410,8 +412,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: 98 * fem,
                               height: double.infinity,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
-                                color: Color(0xffffffff),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
                               child: Column(
@@ -429,7 +431,7 @@ class EditDetail_02 extends StatelessWidget {
                                       height: 35.66 * fem,
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // teamnumber9iR (I316:12667;156:10175)
                                     width: double.infinity,
                                     child: Column(
@@ -449,7 +451,7 @@ class EditDetail_02 extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.2 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -462,7 +464,7 @@ class EditDetail_02 extends StatelessWidget {
                                             fontSize: 13 * ffem,
                                             fontWeight: FontWeight.w400,
                                             height: 1.3846153846 * ffem / fem,
-                                            color: Color(0xffb4b4b4),
+                                            color: const Color(0xffb4b4b4),
                                           ),
                                         ),
                                       ],
@@ -477,13 +479,13 @@ class EditDetail_02 extends StatelessWidget {
                       SizedBox(
                         height: 24 * fem,
                       ),
-                      Container(
+                      SizedBox(
                         // captionandcarddetailsVQu (316:12479)
                         width: double.infinity,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
+                            SizedBox(
                               // captionE7b (316:12480)
                               width: double.infinity,
                               child: Text(
@@ -494,7 +496,7 @@ class EditDetail_02 extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
@@ -508,11 +510,11 @@ class EditDetail_02 extends StatelessWidget {
                               width: double.infinity,
                               height: 74 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
-                                color: Color(0xffffffff),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
-                              child: Container(
+                              child: SizedBox(
                                 // imageandtextcP3 (I316:12481;137:9503)
                                 width: 188 * fem,
                                 height: double.infinity,
@@ -534,7 +536,7 @@ class EditDetail_02 extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // textQph (I316:12481;137:9498)
                                       width: 122 * fem,
                                       height: double.infinity,
@@ -554,7 +556,7 @@ class EditDetail_02 extends StatelessWidget {
                                                 fontWeight: FontWeight.w600,
                                                 height: 1.25 * ffem / fem,
                                                 letterSpacing: -0.2 * fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ),
@@ -592,7 +594,7 @@ class EditDetail_02 extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xffb4b4b4),
+                                                    color: const Color(0xffb4b4b4),
                                                   ),
                                                 ),
                                               ],
@@ -615,11 +617,11 @@ class EditDetail_02 extends StatelessWidget {
                               width: double.infinity,
                               height: 74 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
-                                color: Color(0xffffffff),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
-                              child: Container(
+                              child: SizedBox(
                                 // imageandtextULh (I316:12729;137:9503)
                                 width: 184 * fem,
                                 height: double.infinity,
@@ -641,7 +643,7 @@ class EditDetail_02 extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // textVmb (I316:12729;137:9498)
                                       width: 118 * fem,
                                       height: double.infinity,
@@ -661,7 +663,7 @@ class EditDetail_02 extends StatelessWidget {
                                                 fontWeight: FontWeight.w600,
                                                 height: 1.25 * ffem / fem,
                                                 letterSpacing: -0.2 * fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ),
@@ -699,7 +701,7 @@ class EditDetail_02 extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xffb4b4b4),
+                                                    color: const Color(0xffb4b4b4),
                                                   ),
                                                 ),
                                               ],
@@ -722,11 +724,11 @@ class EditDetail_02 extends StatelessWidget {
                               width: double.infinity,
                               height: 74 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
-                                color: Color(0xffffffff),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
-                              child: Container(
+                              child: SizedBox(
                                 // imageandtextAem (I316:12744;137:9503)
                                 width: 189 * fem,
                                 height: double.infinity,
@@ -748,7 +750,7 @@ class EditDetail_02 extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // text9mb (I316:12744;137:9498)
                                       width: 123 * fem,
                                       height: double.infinity,
@@ -768,7 +770,7 @@ class EditDetail_02 extends StatelessWidget {
                                                 fontWeight: FontWeight.w600,
                                                 height: 1.25 * ffem / fem,
                                                 letterSpacing: -0.2 * fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ),
@@ -806,7 +808,7 @@ class EditDetail_02 extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xffb4b4b4),
+                                                    color: const Color(0xffb4b4b4),
                                                   ),
                                                 ),
                                               ],
@@ -830,7 +832,7 @@ class EditDetail_02 extends StatelessWidget {
                         width: double.infinity,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(12 * fem),
                         ),
                         child: Center(
@@ -842,7 +844,7 @@ class EditDetail_02 extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),

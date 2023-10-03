@@ -120,7 +120,7 @@ class _CreateSessionState extends State<CreateSession> {
                       _sessionMap.forEach((k, v) {
                         List<Map<dynamic, dynamic>> sessionsData = [];
                         if (!v[0].isHoliday!) {
-                          v.forEach((element) {
+                          for (var element in v) {
                             Map detail = {
                               "session_name": element.sessionName,
                               "session_name_arabic": element.sessionNameAr,
@@ -133,7 +133,7 @@ class _CreateSessionState extends State<CreateSession> {
                               "slot_price": 0
                             };
                             sessionsData.add(detail);
-                          });
+                          }
                           Map<dynamic, dynamic> detail = {
                             "weekday": k,
                             "sessions_data": sessionsData
@@ -590,7 +590,7 @@ class _CreateSessionState extends State<CreateSession> {
   bottomSheet({required Function onTap}) {
     var size = MediaQuery.of(context).size;
     _copyDays = _sessionMap.keys.toList();
-    SessionDetail _sessionDetail = SessionDetail();
+    SessionDetail sessionDetail = SessionDetail();
     copyDaysIndex = 0;
     return showModalBottomSheet(
         backgroundColor: Colors.transparent,
@@ -614,10 +614,10 @@ class _CreateSessionState extends State<CreateSession> {
                           color: const Color(0XFF25A163),
                           child: InkWell(
                             onTap: () {
-                              List<SessionDetail> _sessionList = [];
-                              _sessionList.add(_sessionDetail);
+                              List<SessionDetail> sessionList = [];
+                              sessionList.add(sessionDetail);
                               _sessionMap[_weakList[_weakIndex].slug] =
-                                  _sessionList;
+                                  sessionList;
                               Navigator.of(context).pop();
                               onTap();
                             },
@@ -725,7 +725,7 @@ class _CreateSessionState extends State<CreateSession> {
                                             onTap: () {
                                               setState(() {
                                                 _holiday = !_holiday;
-                                                _sessionDetail.isHoliday =
+                                                sessionDetail.isHoliday =
                                                     _holiday;
                                               });
                                             },
@@ -765,12 +765,12 @@ class _CreateSessionState extends State<CreateSession> {
                                       _weakList[_weakIndex].slug) &&
                                   !_sessionMap[_weakList[_weakIndex].slug]![0]
                                       .isHoliday!) {
-                                if (!_sessionDetail.isHoliday!) {
-                                  _sessionDetail.isHoliday = false;
-                                  _sessionDetail.graceTime ??= 20;
-                                  _sessionDetail.slotDuration ??= 20;
-                                  _sessionDetail.startTime ??= DateTime.now();
-                                  _sessionDetail.endTime ??= DateTime.now();
+                                if (!sessionDetail.isHoliday!) {
+                                  sessionDetail.isHoliday = false;
+                                  sessionDetail.graceTime ??= 20;
+                                  sessionDetail.slotDuration ??= 20;
+                                  sessionDetail.startTime ??= DateTime.now();
+                                  sessionDetail.endTime ??= DateTime.now();
                                   if (_sessionMap.containsKey(
                                       _weakList[_weakIndex].slug)) {
                                     if (_sessionMap[
@@ -789,47 +789,45 @@ class _CreateSessionState extends State<CreateSession> {
                                                   ? a
                                                   : b);
                                     }
-                                    if (minStartDate != null &&
-                                            (_sessionDetail.startTime!.isBefore(
-                                                    minStartDate.startTime) &&
-                                                _sessionDetail.endTime!
-                                                    .isBefore(minStartDate
-                                                        .startTime)) ||
-                                        (_sessionDetail.startTime!
+                                    if ((sessionDetail.startTime!.isBefore(
+                                                minStartDate.startTime) &&
+                                            sessionDetail.endTime!.isBefore(
+                                                minStartDate.startTime)) ||
+                                        (sessionDetail.startTime!
                                                 .isAfter(maxEndDate.endTime) &&
-                                            _sessionDetail.endTime!
+                                            sessionDetail.endTime!
                                                 .isAfter(maxEndDate.endTime))) {
                                       _sessionMap[_weakList[_weakIndex].slug]!
-                                          .add(_sessionDetail);
+                                          .add(sessionDetail);
                                     } else {
                                       showMessage(
                                           "Your time is not proper as compare to previous sessions");
                                     }
                                   } else {
-                                    List<SessionDetail> _sessionList = [];
-                                    _sessionList.add(_sessionDetail);
+                                    List<SessionDetail> sessionList = [];
+                                    sessionList.add(sessionDetail);
                                     _sessionMap[_weakList[_weakIndex].slug] =
-                                        _sessionList;
+                                        sessionList;
                                   }
                                 } else {
-                                  List<SessionDetail> _sessionList = [];
-                                  _sessionList.add(_sessionDetail);
+                                  List<SessionDetail> sessionList = [];
+                                  sessionList.add(sessionDetail);
                                   _sessionMap[_weakList[_weakIndex].slug] =
-                                      _sessionList;
+                                      sessionList;
                                 }
                               } else {
-                                _sessionDetail.graceTime ??= 20;
-                                _sessionDetail.slotDuration ??= 20;
-                                _sessionDetail.startTime ??= DateTime.now();
-                                _sessionDetail.endTime ??= DateTime.now();
-                                List<SessionDetail> _sessionList = [];
-                                _sessionList.add(_sessionDetail);
+                                sessionDetail.graceTime ??= 20;
+                                sessionDetail.slotDuration ??= 20;
+                                sessionDetail.startTime ??= DateTime.now();
+                                sessionDetail.endTime ??= DateTime.now();
+                                List<SessionDetail> sessionList = [];
+                                sessionList.add(sessionDetail);
                                 if (_sessionMap[_weakList[_weakIndex].slug] ==
                                         null ||
                                     _sessionMap[_weakList[_weakIndex].slug]![0]
                                         .isHoliday!) {
                                   _sessionMap[_weakList[_weakIndex].slug] =
-                                      _sessionList;
+                                      sessionList;
                                 } else {
                                   if (_sessionMap[_weakList[_weakIndex].slug] !=
                                       null) {
@@ -846,17 +844,16 @@ class _CreateSessionState extends State<CreateSession> {
                                                     ? a
                                                     : b);
                                   }
-                                  if (minStartDate != null &&
-                                          (_sessionDetail.startTime!.isBefore(
-                                                  minStartDate.startTime) &&
-                                              _sessionDetail.endTime!.isBefore(
-                                                  minStartDate.startTime)) ||
-                                      (_sessionDetail.startTime!
+                                  if ((sessionDetail.startTime!.isBefore(
+                                              minStartDate.startTime) &&
+                                          sessionDetail.endTime!.isBefore(
+                                              minStartDate.startTime)) ||
+                                      (sessionDetail.startTime!
                                               .isAfter(maxEndDate.endTime) &&
-                                          _sessionDetail.endTime!
+                                          sessionDetail.endTime!
                                               .isAfter(maxEndDate.endTime))) {
                                     _sessionMap[_weakList[_weakIndex].slug]!
-                                        .add(_sessionDetail);
+                                        .add(sessionDetail);
                                   } else {
                                     showMessage(
                                         "Your time is not proper as compare to previous sessions");
@@ -970,7 +967,7 @@ class _CreateSessionState extends State<CreateSession> {
                                           onTap: () {
                                             setState(() {
                                               _holiday = !_holiday;
-                                              _sessionDetail.isHoliday =
+                                              sessionDetail.isHoliday =
                                                   _holiday;
                                             });
                                           },
@@ -1112,7 +1109,7 @@ class _CreateSessionState extends State<CreateSession> {
                                             submit: (value) =>
                                                 FocusScope.of(context)
                                                     .requestFocus(focusName),
-                                            onSaved: (value) => _sessionDetail
+                                            onSaved: (value) => sessionDetail
                                                 .sessionName = value!),
                                         textField(
                                             name: AppLocalizations.of(context)!
@@ -1121,7 +1118,7 @@ class _CreateSessionState extends State<CreateSession> {
                                             text: false,
                                             text1: false,
                                             node: focusName,
-                                            onSaved: (value) => _sessionDetail
+                                            onSaved: (value) => sessionDetail
                                                 .sessionNameAr = value!),
                                       ],
                                     ),
@@ -1160,7 +1157,7 @@ class _CreateSessionState extends State<CreateSession> {
                                                 Text("$name min"),
                                             ],
                                             onSelectedItemChanged: (value) {
-                                              _sessionDetail.slotDuration =
+                                              sessionDetail.slotDuration =
                                                   int.parse(
                                                       currenciesList[value]);
                                             },
@@ -1205,7 +1202,7 @@ class _CreateSessionState extends State<CreateSession> {
                                                     Text("$name min"),
                                                 ],
                                                 onSelectedItemChanged: (value) {
-                                                  _sessionDetail.graceTime =
+                                                  sessionDetail.graceTime =
                                                       value;
                                                 },
                                               ),
@@ -1244,7 +1241,7 @@ class _CreateSessionState extends State<CreateSession> {
                                                     .time,
                                                 use24hFormat: true,
                                                 onDateTimeChanged: (value) {
-                                                  _sessionDetail.startTime =
+                                                  sessionDetail.startTime =
                                                       value;
                                                 },
                                               ),
@@ -1272,8 +1269,7 @@ class _CreateSessionState extends State<CreateSession> {
                                                     .time,
                                                 use24hFormat: true,
                                                 onDateTimeChanged: (value) {
-                                                  _sessionDetail.endTime =
-                                                      value;
+                                                  sessionDetail.endTime = value;
                                                 },
                                               ),
                                             )

@@ -12,7 +12,7 @@ import 'customdata.dart';
 
 class BookPitchSlots extends StatefulWidget {
   var id;
-  BookPitchSlots({this.id});
+  BookPitchSlots({super.key, this.id});
 
   @override
   _BookPitchSlotState createState() => _BookPitchSlotState();
@@ -4278,6 +4278,7 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
     if (!year2 && month1 == 2) {
       return 4;
     }
+    return null;
   }
 
   cellDataChanges() {
@@ -4569,7 +4570,7 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
 
   bool timeComparison(
       {String? currentTime, String? year, String? month, int? date, String? hour}) {
-    var now1 = new DateTime(
+    var now1 = DateTime(
         int.parse(year!), monthFind(index: month!), date!, int.parse(hour!));
     var now = DateTime.parse(currentTime!);
 

@@ -5,6 +5,8 @@ import '../../../localizations.dart';
 import 'pitch.dart';
 
 class MyBookings extends StatefulWidget {
+  const MyBookings({super.key});
+
   @override
   _MyBookingsState createState() => _MyBookingsState();
 }
@@ -92,7 +94,7 @@ class _MyBookingsState extends State<MyBookings> {
           //             : FontWeight.normal),
           //   ),
           // ),
-          body: Pitch()
+          body: const Pitch()
 
           // TabBarView(
           //   children: [Events(), Pitch()],

@@ -178,7 +178,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                           style: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Color(0XFF032040)
+                                                  ? const Color(0XFF032040)
                                                   : Colors.white,
                                               fontWeight: FontWeight.w700,
                                               fontFamily: "Poppins",
@@ -192,7 +192,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                             style: TextStyle(
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF646464)
+                                                    ? const Color(0XFF646464)
                                                     : Colors.grey,
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily: "Poppins",

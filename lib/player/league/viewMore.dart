@@ -16,7 +16,7 @@ import '../../network/network_calls.dart';
 class ViewMoreLeague extends StatefulWidget {
   var leagueType;
 
-  ViewMoreLeague({required this.leagueType});
+  ViewMoreLeague({super.key, required this.leagueType});
 
   @override
   _ViewMoreLeagueState createState() => _ViewMoreLeagueState();
@@ -69,6 +69,7 @@ class _ViewMoreLeagueState extends State<ViewMoreLeague> {
     );
   }
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -301,7 +302,7 @@ class _ViewMoreLeagueState extends State<ViewMoreLeague> {
 class LeagueListItem extends StatelessWidget {
   final String file;
 
-  LeagueListItem({required this.file});
+  const LeagueListItem({super.key, required this.file});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import '../../common_widgets/internet_loss.dart';
 import '../../common_widgets/loginButoon.dart';
@@ -17,6 +15,8 @@ import '../../localizations.dart';
 import '../../network/network_calls.dart';
 
 class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
   @override
   _SignupPageState createState() => _SignupPageState();
 }
@@ -74,7 +74,7 @@ class _SignupPageState extends State<SignupPage> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -268,6 +268,7 @@ class _SignupPageState extends State<SignupPage> {
                             controller: _password,
                             validator: (e) {
                               validateConfirmPassword;
+                              return null;
                             },
                             autofocus: false,
                             obscureText: confermPasswordHide,
@@ -682,6 +683,8 @@ class _SignupPageState extends State<SignupPage> {
 }
 
 class DoneButton extends StatelessWidget {
+  const DoneButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -9,7 +9,7 @@ import '../../loginSignupPitchOwner/select_sport.dart';
 
 class EditPitchDetail extends StatefulWidget {
   final detail;
-  EditPitchDetail({this.detail});
+  const EditPitchDetail({super.key, this.detail});
   @override
   _EditPitchDetailState createState() => _EditPitchDetailState();
 }
@@ -103,14 +103,14 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      String _facility = "";
+                      String facility = "";
                       for (int i = 0; i < indexList.length; i++) {
                         print(indexList);
-                        _facility = "$_facility${indexList[i]},";
+                        facility = "$facility${indexList[i]},";
                       }
-                      _facility = _facility.substring(0, _facility.length - 1);
-                      _facility = _facility.substring(0);
-                      detailSportsModel.facility = _facility;
+                      facility = facility.substring(0, facility.length - 1);
+                      facility = facility.substring(0);
+                      detailSportsModel.facility = facility;
                       String gamePlayApi;
                       if (indoor && outdoor) {
                         gamePlayApi = "both";
@@ -167,7 +167,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                       color: Colors.white),
                 )),
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: sizeWidth,
             child: Form(
               key: _formKey,
@@ -374,7 +374,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                         ),
                         GestureDetector(
                           child: indoor
-                              ? Container(
+                              ? SizedBox(
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
@@ -382,7 +382,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                                     fit: BoxFit.fill,
                                   ),
                                 )
-                              : Container(
+                              : SizedBox(
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
@@ -417,7 +417,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                         ),
                         GestureDetector(
                           child: outdoor
-                              ? Container(
+                              ? SizedBox(
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
@@ -425,7 +425,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                                     fit: BoxFit.fill,
                                   ),
                                 )
-                              : Container(
+                              : SizedBox(
                                   height: sizeHeight * .03,
                                   width: sizeWidth * .055,
                                   child: Image.asset(
@@ -479,7 +479,7 @@ class _EditPitchDetailState extends State<EditPitchDetail> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 40, bottom: 10),
-                    child: Container(
+                    child: SizedBox(
                       height: sizeHeight * .13,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,

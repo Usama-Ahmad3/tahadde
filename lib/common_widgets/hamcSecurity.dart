@@ -9,8 +9,8 @@ class AppSigning {
       String data, HttpMethod method, SharedPreferences prefs) {
     //String baseUrl="http://19901e95f869.ngrok.io";
     String baseUrl = "https://powerhouse.tahadde.ae";
-    var methodName;
-    var effectiveData;
+    String methodName;
+    String effectiveData;
     switch (method) {
       case HttpMethod.POST:
         methodName = "POST";
@@ -29,7 +29,7 @@ class AppSigning {
         effectiveData = data;
         break;
     }
-    var secretKey;
+    String secretKey;
     var currentUrl = prefs.get("baseUrl");
     if (currentUrl == null || currentUrl == baseUrl) {
       secretKey =
@@ -40,7 +40,7 @@ class AppSigning {
     }
     var key = utf8.encode(secretKey);
     var bytes = utf8.encode("$secretKey-$methodName-$effectiveData");
-    var hmacSha256 = new Hmac(sha256, key);
+    var hmacSha256 = Hmac(sha256, key);
     var digest = hmacSha256.convert(bytes);
     print((base64Encode(digest.bytes)).toString());
     return base64Encode(digest.bytes);

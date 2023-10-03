@@ -7,10 +7,10 @@ import 'varifiedPitch.dart';
 
 class MyPitches extends StatefulWidget {
   int index = 0;
-  MyPitches({required this.index});
+  MyPitches({super.key, required this.index});
   @override
   _MyPitchesState createState() =>
-      _MyPitchesState(this.index, this.key as TabController);
+      _MyPitchesState(index, key as TabController);
 }
 
 class _MyPitchesState extends State<MyPitches>
@@ -128,7 +128,7 @@ class _MyPitchesState extends State<MyPitches>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [
+                  children: const [
                     VarifiedPitch(),
                     ReviewPitch(),
                   ],

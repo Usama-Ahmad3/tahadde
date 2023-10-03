@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import '../utils.dart';
 class BookingList2 extends StatelessWidget {
+  const BookingList2({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // bookinglsitQZP (360:19919)
         width: double.infinity,
         height: 1059*fem,
-        decoration: BoxDecoration (
+        decoration: const BoxDecoration (
           color: Color(0xffffffff),
         ),
         child: Container(
@@ -23,7 +22,7 @@ class BookingList2 extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 16*fem),
           width: 377*fem,
           height: double.infinity,
-          decoration: BoxDecoration (
+          decoration: const BoxDecoration (
             color: Color(0xff050505),
           ),
           child: Column(
@@ -56,7 +55,7 @@ class BookingList2 extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575*ffem/fem,
                                 letterSpacing: -0.2800000012*fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -122,7 +121,7 @@ class BookingList2 extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.25*ffem/fem,
                                       letterSpacing: -0.2*fem,
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                     ),
                                   ),
                                 ),
@@ -134,13 +133,13 @@ class BookingList2 extends StatelessWidget {
                                     fontSize: 13*ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846*ffem/fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // iconDj7 (I323:12113;84:7712)
                             width: 36*fem,
                             height: 36*fem,
@@ -169,7 +168,7 @@ class BookingList2 extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(10*fem, 8*fem, 10*fem, 8*fem),
                       height: double.infinity,
                       decoration: BoxDecoration (
-                        color: Color(0xff1e1e1e),
+                        color: const Color(0xff1e1e1e),
                         borderRadius: BorderRadius.circular(32*fem),
                       ),
                       child: Column(
@@ -186,7 +185,7 @@ class BookingList2 extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25*ffem/fem,
                                 letterSpacing: -0.2*fem,
-                                color: Color(0xff999999),
+                                color: const Color(0xff999999),
                               ),
                             ),
                           ),
@@ -199,7 +198,7 @@ class BookingList2 extends StatelessWidget {
                               fontSize: 13*ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.3846153846*ffem/fem,
-                              color: Color(0xff999999),
+                              color: const Color(0xff999999),
                             ),
                           ),
                         ],
@@ -210,7 +209,7 @@ class BookingList2 extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(10*fem, 8*fem, 10*fem, 9*fem),
                       height: double.infinity,
                       decoration: BoxDecoration (
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(32*fem),
                       ),
                       child: Column(
@@ -227,7 +226,7 @@ class BookingList2 extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25*ffem/fem,
                                 letterSpacing: -0.2*fem,
-                                color: Color(0xff1e1e1e),
+                                color: const Color(0xff1e1e1e),
                               ),
                             ),
                           ),
@@ -240,7 +239,7 @@ class BookingList2 extends StatelessWidget {
                               fontSize: 13*ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.3846153846*ffem/fem,
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                             ),
                           ),
                         ],
@@ -258,7 +257,7 @@ class BookingList2 extends StatelessWidget {
                             padding: EdgeInsets.fromLTRB(16*fem, 8*fem, 16*fem, 8*fem),
                             height: double.infinity,
                             decoration: BoxDecoration (
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32*fem),
                             ),
                             child: Column(
@@ -275,7 +274,7 @@ class BookingList2 extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25*ffem/fem,
                                       letterSpacing: -0.2*fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -288,7 +287,7 @@ class BookingList2 extends StatelessWidget {
                                     fontSize: 13*ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846*ffem/fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -302,7 +301,7 @@ class BookingList2 extends StatelessWidget {
                             padding: EdgeInsets.fromLTRB(13.5*fem, 8*fem, 13.5*fem, 8*fem),
                             height: double.infinity,
                             decoration: BoxDecoration (
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32*fem),
                             ),
                             child: Column(
@@ -319,7 +318,7 @@ class BookingList2 extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25*ffem/fem,
                                       letterSpacing: -0.2*fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -332,7 +331,7 @@ class BookingList2 extends StatelessWidget {
                                     fontSize: 13*ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846*ffem/fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -346,7 +345,7 @@ class BookingList2 extends StatelessWidget {
                             padding: EdgeInsets.fromLTRB(12*fem, 8*fem, 12*fem, 8*fem),
                             height: double.infinity,
                             decoration: BoxDecoration (
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32*fem),
                             ),
                             child: Column(
@@ -363,7 +362,7 @@ class BookingList2 extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25*ffem/fem,
                                       letterSpacing: -0.2*fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -376,7 +375,7 @@ class BookingList2 extends StatelessWidget {
                                     fontSize: 13*ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846*ffem/fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -391,7 +390,7 @@ class BookingList2 extends StatelessWidget {
                             width: 48*fem,
                             height: double.infinity,
                             decoration: BoxDecoration (
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32*fem),
                             ),
                             child: Column(
@@ -408,7 +407,7 @@ class BookingList2 extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25*ffem/fem,
                                       letterSpacing: -0.2*fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -421,7 +420,7 @@ class BookingList2 extends StatelessWidget {
                                     fontSize: 13*ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846*ffem/fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -439,7 +438,7 @@ class BookingList2 extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(24*fem, 24*fem, 24*fem, 24*fem),
                 width: 375*fem,
                 decoration: BoxDecoration (
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.circular(24*fem),
                 ),
                 child: Column(
@@ -470,7 +469,7 @@ class BookingList2 extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.25*ffem/fem,
                                       letterSpacing: -0.2*fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -482,13 +481,13 @@ class BookingList2 extends StatelessWidget {
                                     fontSize: 13*ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846*ffem/fem,
-                                    color: Color(0xff686868),
+                                    color: const Color(0xff686868),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // frame1000006394gvm (323:12887)
                             width: double.infinity,
                             child: Column(
@@ -507,8 +506,8 @@ class BookingList2 extends StatelessWidget {
                                         width: double.infinity,
                                         height: 161*fem,
                                         decoration: BoxDecoration (
-                                          border: Border.all(color: Color(0xff7b61ff)),
-                                          color: Color(0xffffffff),
+                                          border: Border.all(color: const Color(0xff7b61ff)),
+                                          color: const Color(0xffffffff),
                                           borderRadius: BorderRadius.only (
                                             topLeft: Radius.circular(20*fem),
                                             topRight: Radius.circular(20*fem),
@@ -520,7 +519,7 @@ class BookingList2 extends StatelessWidget {
                                               // groundnameiconRms (I323:12693;113:9091)
                                               left: 11.5*fem,
                                               top: 16*fem,
-                                              child: Container(
+                                              child: SizedBox(
                                                 width: 244*fem,
                                                 height: 129*fem,
                                                 child: Column(
@@ -537,7 +536,7 @@ class BookingList2 extends StatelessWidget {
                                                         height: 60*fem,
                                                       ),
                                                     ),
-                                                    Container(
+                                                    SizedBox(
                                                       // nameandlocetione8q (I323:12693;113:9051)
                                                       width: double.infinity,
                                                       child: Column(
@@ -554,11 +553,11 @@ class BookingList2 extends StatelessWidget {
                                                                 fontWeight: FontWeight.w600,
                                                                 height: 1.25*ffem/fem,
                                                                 letterSpacing: -0.2*fem,
-                                                                color: Color(0xff050505),
+                                                                color: const Color(0xff050505),
                                                               ),
                                                             ),
                                                           ),
-                                                          Container(
+                                                          SizedBox(
                                                             // locationh77 (I323:12693;113:9053)
                                                             width: double.infinity,
                                                             child: Row(
@@ -583,7 +582,7 @@ class BookingList2 extends StatelessWidget {
                                                                     fontSize: 15*ffem,
                                                                     fontWeight: FontWeight.w400,
                                                                     height: 1.3333333333*ffem/fem,
-                                                                    color: Color(0xff686868),
+                                                                    color: const Color(0xff686868),
                                                                   ),
                                                                 ),
                                                               ],
@@ -600,7 +599,7 @@ class BookingList2 extends StatelessWidget {
                                               // timeanddateVof (I323:12693;113:9058)
                                               left: 238.5*fem,
                                               top: 16*fem,
-                                              child: Container(
+                                              child: SizedBox(
                                                 width: 81*fem,
                                                 height: 42*fem,
                                                 child: Column(
@@ -616,7 +615,7 @@ class BookingList2 extends StatelessWidget {
                                                           fontSize: 17*ffem,
                                                           fontWeight: FontWeight.w600,
                                                           height: 1.4705882353*ffem/fem,
-                                                          color: Color(0xff050505),
+                                                          color: const Color(0xff050505),
                                                         ),
                                                       ),
                                                     ),
@@ -630,7 +629,7 @@ class BookingList2 extends StatelessWidget {
                                                           fontSize: 11*ffem,
                                                           fontWeight: FontWeight.w500,
                                                           height: 1.3636363636*ffem/fem,
-                                                          color: Color(0xff686868),
+                                                          color: const Color(0xff686868),
                                                         ),
                                                       ),
                                                     ),
@@ -647,7 +646,7 @@ class BookingList2 extends StatelessWidget {
                                         width: double.infinity,
                                         height: 58*fem,
                                         decoration: BoxDecoration (
-                                          color: Color(0xff7b61ff),
+                                          color: const Color(0xff7b61ff),
                                           borderRadius: BorderRadius.only (
                                             bottomRight: Radius.circular(20*fem),
                                             bottomLeft: Radius.circular(20*fem),
@@ -1044,7 +1043,7 @@ class BookingList2 extends StatelessWidget {
                                                             height: 4.5*fem,
                                                           ),
                                                         ),
-                                                        Container(
+                                                        SizedBox(
                                                           // polygon353mB (I323:12693;113:9135)
                                                           width: 5.2*fem,
                                                           height: 4.5*fem,
@@ -1070,7 +1069,7 @@ class BookingList2 extends StatelessWidget {
                                                           fontWeight: FontWeight.w700,
                                                           height: 1.25*ffem/fem,
                                                           letterSpacing: -0.24*fem,
-                                                          color: Color(0xffffffff),
+                                                          color: const Color(0xffffffff),
                                                         ),
                                                       ),
                                                     ),
@@ -1265,7 +1264,7 @@ class BookingList2 extends StatelessWidget {
                                                 height: 4.5*fem,
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // polygon53kYR (I323:12693;113:9156)
                                               width: 4.8*fem,
                                               height: 4*fem,
@@ -1281,7 +1280,7 @@ class BookingList2 extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   // bookingcardted (323:12790)
                                   width: double.infinity,
                                   child: Column(
@@ -1293,8 +1292,8 @@ class BookingList2 extends StatelessWidget {
                                         width: double.infinity,
                                         height: 161*fem,
                                         decoration: BoxDecoration (
-                                          border: Border.all(color: Color(0xff050505)),
-                                          color: Color(0xffffffff),
+                                          border: Border.all(color: const Color(0xff050505)),
+                                          color: const Color(0xffffffff),
                                           borderRadius: BorderRadius.only (
                                             topLeft: Radius.circular(20*fem),
                                             topRight: Radius.circular(20*fem),
@@ -1306,7 +1305,7 @@ class BookingList2 extends StatelessWidget {
                                               // groundnameiconKzq (I323:12790;113:9091)
                                               left: 11.5*fem,
                                               top: 16*fem,
-                                              child: Container(
+                                              child: SizedBox(
                                                 width: 244*fem,
                                                 height: 129*fem,
                                                 child: Column(
@@ -1323,7 +1322,7 @@ class BookingList2 extends StatelessWidget {
                                                         height: 60*fem,
                                                       ),
                                                     ),
-                                                    Container(
+                                                    SizedBox(
                                                       // nameandlocetionUmF (I323:12790;113:9051)
                                                       width: double.infinity,
                                                       child: Column(
@@ -1340,11 +1339,11 @@ class BookingList2 extends StatelessWidget {
                                                                 fontWeight: FontWeight.w600,
                                                                 height: 1.25*ffem/fem,
                                                                 letterSpacing: -0.2*fem,
-                                                                color: Color(0xff050505),
+                                                                color: const Color(0xff050505),
                                                               ),
                                                             ),
                                                           ),
-                                                          Container(
+                                                          SizedBox(
                                                             // location7pD (I323:12790;113:9053)
                                                             width: double.infinity,
                                                             child: Row(
@@ -1369,7 +1368,7 @@ class BookingList2 extends StatelessWidget {
                                                                     fontSize: 15*ffem,
                                                                     fontWeight: FontWeight.w400,
                                                                     height: 1.3333333333*ffem/fem,
-                                                                    color: Color(0xff686868),
+                                                                    color: const Color(0xff686868),
                                                                   ),
                                                                 ),
                                                               ],
@@ -1386,7 +1385,7 @@ class BookingList2 extends StatelessWidget {
                                               // timeanddatei3K (I323:12790;113:9058)
                                               left: 238.5*fem,
                                               top: 16*fem,
-                                              child: Container(
+                                              child: SizedBox(
                                                 width: 81*fem,
                                                 height: 42*fem,
                                                 child: Column(
@@ -1402,7 +1401,7 @@ class BookingList2 extends StatelessWidget {
                                                           fontSize: 17*ffem,
                                                           fontWeight: FontWeight.w600,
                                                           height: 1.4705882353*ffem/fem,
-                                                          color: Color(0xff050505),
+                                                          color: const Color(0xff050505),
                                                         ),
                                                       ),
                                                     ),
@@ -1416,7 +1415,7 @@ class BookingList2 extends StatelessWidget {
                                                           fontSize: 11*ffem,
                                                           fontWeight: FontWeight.w500,
                                                           height: 1.3636363636*ffem/fem,
-                                                          color: Color(0xff686868),
+                                                          color: const Color(0xff686868),
                                                         ),
                                                       ),
                                                     ),
@@ -1433,7 +1432,7 @@ class BookingList2 extends StatelessWidget {
                                         width: double.infinity,
                                         height: 58*fem,
                                         decoration: BoxDecoration (
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                           borderRadius: BorderRadius.only (
                                             bottomRight: Radius.circular(20*fem),
                                             bottomLeft: Radius.circular(20*fem),
@@ -1830,7 +1829,7 @@ class BookingList2 extends StatelessWidget {
                                                             height: 4.5*fem,
                                                           ),
                                                         ),
-                                                        Container(
+                                                        SizedBox(
                                                           // polygon35XfX (I323:12790;113:9135)
                                                           width: 5.2*fem,
                                                           height: 4.5*fem,
@@ -1856,7 +1855,7 @@ class BookingList2 extends StatelessWidget {
                                                           fontWeight: FontWeight.w700,
                                                           height: 1.25*ffem/fem,
                                                           letterSpacing: -0.24*fem,
-                                                          color: Color(0xffffffff),
+                                                          color: const Color(0xffffffff),
                                                         ),
                                                       ),
                                                     ),
@@ -2051,7 +2050,7 @@ class BookingList2 extends StatelessWidget {
                                                 height: 4.5*fem,
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // polygon53bPo (I323:12790;113:9156)
                                               width: 4.8*fem,
                                               height: 4*fem,
@@ -2098,7 +2097,7 @@ class BookingList2 extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.25*ffem/fem,
                                       letterSpacing: -0.2*fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -2110,7 +2109,7 @@ class BookingList2 extends StatelessWidget {
                                     fontSize: 13*ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846*ffem/fem,
-                                    color: Color(0xff686868),
+                                    color: const Color(0xff686868),
                                   ),
                                 ),
                               ],
@@ -2122,11 +2121,11 @@ class BookingList2 extends StatelessWidget {
                             width: double.infinity,
                             height: 112*fem,
                             decoration: BoxDecoration (
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                               borderRadius: BorderRadius.circular(16*fem),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0x14050513),
+                                  color: const Color(0x14050513),
                                   offset: Offset(0*fem, 30*fem),
                                   blurRadius: 30*fem,
                                 ),
@@ -2172,7 +2171,7 @@ class BookingList2 extends StatelessWidget {
                                                   fontSize: 17*ffem,
                                                   fontWeight: FontWeight.w600,
                                                   height: 1.4705882353*ffem/fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -2202,7 +2201,7 @@ class BookingList2 extends StatelessWidget {
                                                       fontSize: 13*ffem,
                                                       fontWeight: FontWeight.w400,
                                                       height: 1.3846153846*ffem/fem,
-                                                      color: Color(0xff686868),
+                                                      color: const Color(0xff686868),
                                                     ),
                                                   ),
                                                 ],
@@ -2219,7 +2218,7 @@ class BookingList2 extends StatelessWidget {
                                           fontSize: 13*ffem,
                                           fontWeight: FontWeight.w400,
                                           height: 1.3846153846*ffem/fem,
-                                          color: Color(0xff1e1e1e),
+                                          color: const Color(0xff1e1e1e),
                                         ),
                                       ),
                                     ],
@@ -2231,7 +2230,7 @@ class BookingList2 extends StatelessWidget {
                                   width: 52*fem,
                                   height: double.infinity,
                                   decoration: BoxDecoration (
-                                    color: Color(0xfff2f2f2),
+                                    color: const Color(0xfff2f2f2),
                                     borderRadius: BorderRadius.circular(28*fem),
                                   ),
                                   child: Center(
@@ -2242,7 +2241,7 @@ class BookingList2 extends StatelessWidget {
                                         fontSize: 15*ffem,
                                         fontWeight: FontWeight.w600,
                                         height: 1.3333333333*ffem/fem,
-                                        color: Color(0xff1e1e1e),
+                                        color: const Color(0xff1e1e1e),
                                       ),
                                     ),
                                   ),
@@ -2270,7 +2269,7 @@ class BookingList2 extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(14.5*fem, 12*fem, 14.5*fem, 12*fem),
                       height: double.infinity,
                       decoration: BoxDecoration (
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(32*fem),
                       ),
                       child: Row(
@@ -2295,7 +2294,7 @@ class BookingList2 extends StatelessWidget {
                               fontSize: 13*ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.3846153846*ffem/fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ],
@@ -2323,7 +2322,7 @@ class BookingList2 extends StatelessWidget {
                         height: 24*fem,
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       // navmenut9F (I336:12230;331:14080)
                       width: 24*fem,
                       height: 24*fem,

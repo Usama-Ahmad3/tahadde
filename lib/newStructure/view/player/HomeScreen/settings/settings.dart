@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
 import '../../../../../common_widgets/localeHelper.dart';
@@ -11,6 +10,7 @@ import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
 import '../profileScreen/bottomSheet.dart';
+import '../widgets/app_bar.dart';
 
 class SettingsScreen extends StatefulWidget {
   bool bookingTag;
@@ -187,42 +187,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return _internet
         ? Scaffold(
             backgroundColor: Colors.black54,
-            appBar: PreferredSize(
-              preferredSize: Size(width, height * 0.1),
-              child: AppBar(
-                title: Text(
-                  AppLocalizations.of(context)!.setting,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Colors.white),
-                ),
-                centerTitle: true,
-                automaticallyImplyLeading: false,
-                backgroundColor: Colors.black45,
-                leadingWidth: width * 0.18,
-                leading: widget.bookingTag
-                    ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                              padding: EdgeInsets.all(height * 0.008),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  shape: BoxShape.circle),
-                              child: const Center(
-                                child: FaIcon(
-                                  FontAwesomeIcons.close,
-                                  color: Colors.white,
-                                ),
-                              )),
-                        ),
-                      )
-                    : Container(),
-              ),
+            appBar: appBarWidget(
+              width,
+              height,
+              context,
+              AppLocalizations.of(context)!.setting,
+              widget.bookingTag ? true : false,
             ),
             body: DefaultTextStyle(
                 style: TextStyle(
@@ -248,7 +218,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: Column(
                           children: [
                             ...List.generate(
-                                _auth ? 2 : 3,
+                                _auth ? 2 : 4,
                                 (index) => ListWidgetSettings(
                                       callback: index == 0
                                           ? _auth == false
@@ -259,6 +229,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                           builder: (_) =>
                                                               LoginScreen(
                                                                 message: '',
+                                                                clicked: 1,
                                                               )));
                                                 }
                                               : () {
@@ -269,20 +240,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           : index == 1
                                               ? _auth == false
                                                   ? () {
-                                                      BottomSheett
-                                                          .settingModalBottomSheet(
-                                                              context, height);
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (_) =>
+                                                                  LoginScreen(
+                                                                    message: '',
+                                                                    clicked: 2,
+                                                                  )));
                                                     }
                                                   : () {
                                                       privacyPolicy(
                                                           "privacy_policy_url");
                                                     }
-                                              : () {
-                                                  privacyPolicy(
-                                                      "privacy_policy_url");
-                                                },
-                                      title: title[_auth ? index + 1 : index],
-                                      icon: icon[_auth ? index + 1 : index],
+                                              : _auth == false
+                                                  ? index == 2
+                                                      ? () {
+                                                          BottomSheett
+                                                              .settingModalBottomSheet(
+                                                                  context,
+                                                                  height);
+                                                        }
+                                                      : () {
+                                                          privacyPolicy(
+                                                              "privacy_policy_url");
+                                                        }
+                                                  : () {},
+                                      title: title[_auth ? index + 2 : index],
+                                      icon: icon[_auth ? index + 2 : index],
                                     )),
                             Padding(
                               padding:
@@ -347,7 +332,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           Switch(
                                             value: isSwitched,
                                             inactiveTrackColor:
-                                                Colors.amber.shade200,
+                                                Colors.greenAccent,
                                             onChanged: (value) {
                                               if (mounted) {
                                                 setState(() {
@@ -364,14 +349,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 AppLocalizations.of(context)!
                                                             .locale ==
                                                         'en'
-                                                    ? const Color(0xffffc300)
+                                                    ? const Color(0xff1d7e55)
                                                     : Colors.grey,
                                             inactiveThumbColor:
                                                 AppLocalizations.of(context)!
                                                             .locale ==
                                                         'en'
                                                     ? Colors.grey
-                                                    : const Color(0xffffc300),
+                                                    : const Color(0xff1d7e55),
                                           ),
                                           Text(
                                             'En',
@@ -464,8 +449,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 });
                                               }
                                             },
-                                            activeColor:
-                                                const Color(0xffffc300),
+                                            activeColor: const Color(0xff1d7e55),
                                             inactiveThumbColor: Colors.grey,
                                           ),
                                           Text('On',
@@ -587,10 +571,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   List title = [
     AppLocalizations().login,
+    AppLocalizations().signUp,
     AppLocalizations().contectUs,
     AppLocalizations().ourPolicy,
   ];
-  List icon = [Icons.calendar_view_day, Icons.call, Icons.policy_rounded];
+  List icon = [
+    Icons.calendar_view_day,
+    Icons.logout_outlined,
+    Icons.call,
+    Icons.policy_rounded
+  ];
   List accountTitle = [
     AppLocalizations().logout,
     AppLocalizations().deleteAccount

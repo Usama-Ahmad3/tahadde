@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -21,8 +21,8 @@ class EventsScreen extends StatefulWidget {
 class _EventsScreenState extends State<EventsScreen> {
   bool? internet;
   bool state = true;
+  final bool _auth = false;
   String date = "name";
-  final scaffoldkey = GlobalKey<ScaffoldState>();
   final NetworkCalls _networkCalls = NetworkCalls();
   late List<Event> events;
 
@@ -38,7 +38,10 @@ class _EventsScreenState extends State<EventsScreen> {
         showMessage(msg);
       },
       tokenExpire: () {
-        if (mounted) on401(context);
+        if (mounted) {
+          on401(context);
+          showMessage(AppLocalizations.of(context)!.loginRequired);
+        }
       },
     );
   }
@@ -64,43 +67,12 @@ class _EventsScreenState extends State<EventsScreen> {
     var sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Colors.black54,
-        appBar: PreferredSize(
-          preferredSize: Size(sizeWidth, sizeHeight * 0.1),
-          child: AppBar(
-            title: Text(
-              AppLocalizations.of(context)!.booking,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.white),
-            ),
-            centerTitle: true,
-            automaticallyImplyLeading: false,
-            backgroundColor: Colors.black45,
-            leadingWidth: sizeWidth * 0.18,
-            leading: widget.bookingTag
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                          padding: EdgeInsets.all(sizeHeight * 0.008),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              shape: BoxShape.circle),
-                          child: const Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.close,
-                              color: Colors.white,
-                            ),
-                          )),
-                    ),
-                  )
-                : Container(),
-          ),
-        ),
+        appBar: appBarWidget(
+            sizeWidth,
+            sizeHeight,
+            context,
+            AppLocalizations.of(context)!.booking,
+            widget.bookingTag ? true : false),
         body: state
             ? Container(
                 color: Colors.black54,
@@ -115,7 +87,7 @@ class _EventsScreenState extends State<EventsScreen> {
                           topLeft: Radius.circular(20))),
                   child: const Center(
                     child: CircularProgressIndicator(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Color(0xff1d7e55),
                       valueColor: AlwaysStoppedAnimation<Color>(
                         Colors.white,
                       ),

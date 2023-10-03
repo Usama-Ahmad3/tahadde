@@ -12,7 +12,7 @@ import '../../../network/network_calls.dart';
 
 class EnterDetailJoinTeam extends StatefulWidget {
   TeamModelClass? teamDeatail;
-  EnterDetailJoinTeam({this.teamDeatail});
+  EnterDetailJoinTeam({super.key, this.teamDeatail});
   @override
   _EnterDetailJoinTeamState createState() => _EnterDetailJoinTeamState();
 }
@@ -656,11 +656,8 @@ class _EnterDetailJoinTeamState extends State<EnterDetailJoinTeam> {
                                             AppLocalizations.of(context)!
                                                         .locale ==
                                                     "en"
-                                                ? "${profileDetail!['countryCode'] ?? ""}" +
-                                                    "${profileDetail!['contact_number'] ?? ""}"
-                                                : "${profileDetail!['countryCode'].substring(1) ?? ""}" +
-                                                    "${profileDetail!['contact_number'] ?? ""}" +
-                                                    "${profileDetail!['countryCode'].substring(0, 1) ?? ""}",
+                                                ? "${profileDetail!['countryCode'] ?? ""}" "${profileDetail!['contact_number'] ?? ""}"
+                                                : "${profileDetail!['countryCode'].substring(1) ?? ""}${profileDetail!['contact_number'] ?? ""}${profileDetail!['countryCode'].substring(0, 1) ?? ""}",
                                             style: const TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w700,

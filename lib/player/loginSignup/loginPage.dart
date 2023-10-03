@@ -20,7 +20,7 @@ import '../../network/network_calls.dart';
 class Loginpage extends StatefulWidget {
   String message;
 
-  Loginpage({required this.message});
+  Loginpage({super.key, required this.message});
 
   @override
   _LoginpageState createState() => _LoginpageState();

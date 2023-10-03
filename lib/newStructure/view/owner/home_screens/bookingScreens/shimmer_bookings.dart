@@ -18,7 +18,7 @@ class ShimmerBookings {
               preferredSize: Size(sizeWidth, sizeHeight * 0.105),
               child: AppBar(
                 title: Text(
-                  AppLocalizations.of(context)!.pitchBookings,
+                  AppLocalizations.of(context)!.academyBook,
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!

@@ -57,6 +57,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "addreviewspitchyouhaveplayedon":
             MessageLookupByLibrary.simpleMessage("أضف تعليقاتك."),
         "addto": MessageLookupByLibrary.simpleMessage("أضف إلى"),
+        "academyList": MessageLookupByLibrary.simpleMessage("قائمة الأكاديمية"),
+        "status": MessageLookupByLibrary.simpleMessage("حالة"),
+        "academyBook": MessageLookupByLibrary.simpleMessage("حجز الأكاديمية"),
+        "academyOnly": MessageLookupByLibrary.simpleMessage("الأكاديمية"),
+        "loginRequired": MessageLookupByLibrary.simpleMessage(
+            "تسجيل الدخول مطلوب لرؤية الحجز"),
         "filterResult": MessageLookupByLibrary.simpleMessage("تصفية النتائج"),
         "noAcademy":
             MessageLookupByLibrary.simpleMessage("لا توجد أكاديميات متاحة"),
@@ -141,6 +147,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "cameraPermission":
             MessageLookupByLibrary.simpleMessage("إذن الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "perAcademy": MessageLookupByLibrary.simpleMessage("لكل أكاديمية"),
+        "academyCreated":
+            MessageLookupByLibrary.simpleMessage("تم إنشاء الأكاديمية"),
+        "academyLocation":
+            MessageLookupByLibrary.simpleMessage("موقع الأكاديمية"),
         "cancelRequest": MessageLookupByLibrary.simpleMessage("إلغاء طلب"),
         "canceled": MessageLookupByLibrary.simpleMessage("ألغيت"),
         "cancellationPolicy":
@@ -280,7 +291,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "expiryDocumentDate":
             MessageLookupByLibrary.simpleMessage("تاريخ انتهاء الوثيقة "),
         "expriyDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
-        "extraGraceTime": MessageLookupByLibrary.simpleMessage("وقت اضافي "),
+        "extraGraceTime": MessageLookupByLibrary.simpleMessage("فتحة إضافية"),
         "facilitiesProvided":
             MessageLookupByLibrary.simpleMessage("المرافق المتوفرة"),
         "facility": MessageLookupByLibrary.simpleMessage("موقع"),
@@ -513,12 +524,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "previous": MessageLookupByLibrary.simpleMessage("السابق"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "pricePerPlayer":
-            MessageLookupByLibrary.simpleMessage("السعر لكل لاعب"),
+            MessageLookupByLibrary.simpleMessage("االسعر للشخص الواحد"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة خاصة."),
         "proceed": MessageLookupByLibrary.simpleMessage("متابعة"),
         "processing": MessageLookupByLibrary.simpleMessage("قيد المراجعة"),
         "profile": MessageLookupByLibrary.simpleMessage("الشخصي"),
         "profileC": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "yourTime": MessageLookupByLibrary.simpleMessage(
+            "وقتك ليس مناسبا مقارنة بالجلسات السابقة"),
+        "copy": MessageLookupByLibrary.simpleMessage("ينسخ"),
+        "noSession":
+            MessageLookupByLibrary.simpleMessage("لم يتم إنشاء أي جلسة"),
+        "swiptD": MessageLookupByLibrary.simpleMessage("انتقد للحذف"),
+        "copyFrom": MessageLookupByLibrary.simpleMessage(
+            "نسخة من الجلسة الأولى لجميع الأيام"),
         "profileDec": MessageLookupByLibrary.simpleMessage(
             "إنشاء ملف التعريف الشخصي الخاص بك"),
         "profileDecfirst": MessageLookupByLibrary.simpleMessage(

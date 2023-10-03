@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:flutter_tahaddi/walkThrough/walkThrough.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -8,7 +7,6 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
-import 'sportList.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -131,7 +129,7 @@ class _SearchState extends State<Search> {
                             decoration: InputDecoration(
                                 hintText: AppLocalizations.of(context)!.search,
                                 fillColor: Colors.white24,
-                                prefixIcon: Icon(Icons.search),
+                                prefixIcon: const Icon(Icons.search),
                                 prefixIconColor: Colors.grey,
                                 enabledBorder: UnderlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
@@ -148,7 +146,7 @@ class _SearchState extends State<Search> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => WalkThroughScreen()));
+                                  builder: (_) => const WalkThroughScreen()));
                         },
                         child: Container(
                           height: height * 0.062,

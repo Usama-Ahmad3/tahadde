@@ -9,6 +9,8 @@ import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
 
 class ResetPassword extends StatefulWidget {
+  const ResetPassword({super.key});
+
   @override
   _ResetPasswordState createState() => _ResetPasswordState();
 }
@@ -69,9 +71,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                         );
                       }
                     } else {
-                      if (mounted)
+                      if (mounted) {
                         showMessage(
                             AppLocalizations.of(context)!.noInternetConnection);
+                      }
                     }
                   });
                 },
@@ -102,8 +105,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                       child: Column(
                         children: <Widget>[
                           Flexible(
-                            child: Container(),
                             flex: 2,
+                            child: Container(),
                           ),
                           textField(
                             name: AppLocalizations.of(context)!.currentpassword,

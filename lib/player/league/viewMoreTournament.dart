@@ -15,7 +15,7 @@ import '../../pitchOwner/homePitchOwner/viewMoreOwner.dart';
 
 class ViewMoreTournament extends StatefulWidget {
   Map tournamentType;
-  ViewMoreTournament({required this.tournamentType});
+  ViewMoreTournament({super.key, required this.tournamentType});
   @override
   _ViewMoreTournamentState createState() => _ViewMoreTournamentState();
 }
@@ -126,7 +126,7 @@ class _ViewMoreTournamentState extends State<ViewMoreTournament> {
                       padding: const EdgeInsets.all(0),
                       // Generate 100 widgets that display their index in the List.
                       children:
-                          List.generate(tournamentData?.length ?? 0, (index) {
+                          List.generate(tournamentData.length ?? 0, (index) {
                         return GestureDetector(
                           onTap: () {
                             navigateToDetail2(tournamentData[index]);

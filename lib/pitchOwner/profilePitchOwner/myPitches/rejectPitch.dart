@@ -24,7 +24,7 @@ import '../../../player/loginSignup/signup.dart';
 class RejectPitch extends StatefulWidget {
   Map pitchDetail;
 
-  RejectPitch({required this.pitchDetail});
+  RejectPitch({super.key, required this.pitchDetail});
 
   @override
   _RejectPitchState createState() => _RejectPitchState();
@@ -98,7 +98,7 @@ class _RejectPitchState extends State<RejectPitch> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);

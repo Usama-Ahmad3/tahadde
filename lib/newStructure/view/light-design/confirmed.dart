@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Confirmed extends StatelessWidget {
+  const Confirmed({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // confirmed1nq (513:7659)
         width: double.infinity,
         height: 812 * fem,
@@ -18,7 +20,7 @@ class Confirmed extends StatelessWidget {
           // confirmedNNV (310:13489)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Stack(
@@ -27,7 +29,7 @@ class Confirmed extends StatelessWidget {
                 // toolbargty (310:13490)
                 left: 0 * fem,
                 top: 0 * fem,
-                child: Container(
+                child: SizedBox(
                   width: 375 * fem,
                   height: 92 * fem,
                   child: Column(
@@ -56,7 +58,7 @@ class Confirmed extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.2575 * ffem / fem,
                                   letterSpacing: -0.2800000012 * fem,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                 ),
                               ),
                             ),
@@ -130,7 +132,7 @@ class Confirmed extends StatelessWidget {
                                 fontSize: 17 * ffem,
                                 fontWeight: FontWeight.w600,
                                 height: 1.4705882353 * ffem / fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ],
@@ -150,9 +152,9 @@ class Confirmed extends StatelessWidget {
                   width: 327 * fem,
                   height: 192 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xff1e1e1e),
+                    color: const Color(0xff1e1e1e),
                     borderRadius: BorderRadius.circular(16 * fem),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
                         'assets/light-design/images/mask-group-FmK.png',
@@ -209,7 +211,7 @@ class Confirmed extends StatelessWidget {
                           height: 15 * fem,
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         // contentSMf (310:13500)
                         width: double.infinity,
                         height: 37 * fem,
@@ -236,7 +238,7 @@ class Confirmed extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         height: 1.25 * ffem / fem,
                                         letterSpacing: -0.2 * fem,
-                                        color: Color(0xffffffff),
+                                        color: const Color(0xffffffff),
                                       ),
                                     ),
                                   ),
@@ -248,13 +250,13 @@ class Confirmed extends StatelessWidget {
                                       fontSize: 17 * ffem,
                                       fontWeight: FontWeight.w600,
                                       height: 1.4705882353 * ffem / fem,
-                                      color: Color(0xffffc300),
+                                      color: const Color(0xffffc300),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // group1000004054hgu (310:13504)
                               width: 46 * fem,
                               height: 37 * fem,
@@ -281,7 +283,7 @@ class Confirmed extends StatelessWidget {
                   width: 375 * fem,
                   height: 468 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
@@ -290,7 +292,7 @@ class Confirmed extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
+                      SizedBox(
                         // captionandcarddetailsHQD (310:13511)
                         width: double.infinity,
                         child: Column(
@@ -309,11 +311,11 @@ class Confirmed extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // card55B (310:13513)
                               width: double.infinity,
                               child: Column(
@@ -327,7 +329,7 @@ class Confirmed extends StatelessWidget {
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xffe6e6e6)),
+                                          Border.all(color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -368,13 +370,13 @@ class Confirmed extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: Color(0xff0a0c0e),
+                                                  color: const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // selectorpqP (I310:13514;141:10598)
                                           width: 24 * fem,
                                           height: 24 * fem,
@@ -398,7 +400,7 @@ class Confirmed extends StatelessWidget {
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xffe6e6e6)),
+                                          Border.all(color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -439,13 +441,13 @@ class Confirmed extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: Color(0xff0a0c0e),
+                                                  color: const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // selector2a5 (I310:13515;141:10598)
                                           width: 24 * fem,
                                           height: 24 * fem,
@@ -468,12 +470,12 @@ class Confirmed extends StatelessWidget {
                                     width: double.infinity,
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Color(0x1408091f),
+                                          color: const Color(0x1408091f),
                                           offset: Offset(0 * fem, 40 * fem),
                                           blurRadius: 30 * fem,
                                         ),
@@ -516,13 +518,13 @@ class Confirmed extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: Color(0xff0a0c0e),
+                                                  color: const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // selectorJJd (I310:13516;141:10598)
                                           width: 24 * fem,
                                           height: 24 * fem,
@@ -572,7 +574,7 @@ class Confirmed extends StatelessWidget {
                                 fontSize: 13 * ffem,
                                 fontWeight: FontWeight.w500,
                                 height: 1.3846153846 * ffem / fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ],
@@ -586,7 +588,7 @@ class Confirmed extends StatelessWidget {
                         width: double.infinity,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(16 * fem),
                         ),
                         child: Center(
@@ -598,7 +600,7 @@ class Confirmed extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),
@@ -618,7 +620,7 @@ class Confirmed extends StatelessWidget {
                     child: Opacity(
                       opacity: 0.5,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0x7f050505),
                         ),
                       ),
@@ -636,7 +638,7 @@ class Confirmed extends StatelessWidget {
                   width: 339 * fem,
                   height: 389 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.circular(20 * fem),
                   ),
                   child: Column(
@@ -672,7 +674,7 @@ class Confirmed extends StatelessWidget {
                                       height: 100 * fem,
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // groundnameandlocationZpD (145:9803)
                                     width: double.infinity,
                                     child: Column(
@@ -693,7 +695,7 @@ class Confirmed extends StatelessWidget {
                                                 fontWeight: FontWeight.w700,
                                                 height: 1.25 * ffem / fem,
                                                 letterSpacing: -0.24 * fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ),
@@ -735,10 +737,10 @@ class Confirmed extends StatelessWidget {
                                                     height: 1.3636363636 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff505050),
+                                                    color: const Color(0xff505050),
                                                   ),
                                                   children: [
-                                                    TextSpan(
+                                                    const TextSpan(
                                                       text: '5 Mins ',
                                                     ),
                                                     TextSpan(
@@ -752,10 +754,10 @@ class Confirmed extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xffb4b4b4),
+                                                            const Color(0xffb4b4b4),
                                                       ),
                                                     ),
-                                                    TextSpan(
+                                                    const TextSpan(
                                                       text:
                                                           ' Kumarpara, 27 Sylhet',
                                                     ),
@@ -796,7 +798,7 @@ class Confirmed extends StatelessWidget {
                         width: double.infinity,
                         height: 126 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xfff2f2f2),
+                          color: const Color(0xfff2f2f2),
                           borderRadius: BorderRadius.circular(12 * fem),
                         ),
                         child: Row(
@@ -830,7 +832,7 @@ class Confirmed extends StatelessWidget {
                                               fontSize: 11 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3636363636 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -842,13 +844,13 @@ class Confirmed extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // dateCLh (146:9818)
                                     width: double.infinity,
                                     child: Column(
@@ -866,7 +868,7 @@ class Confirmed extends StatelessWidget {
                                               fontSize: 11 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3636363636 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -878,7 +880,7 @@ class Confirmed extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ],
@@ -887,7 +889,7 @@ class Confirmed extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // bookingcodeandtimeCV7 (146:9821)
                               width: 105 * fem,
                               height: double.infinity,
@@ -913,7 +915,7 @@ class Confirmed extends StatelessWidget {
                                               fontSize: 11 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3636363636 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -925,13 +927,13 @@ class Confirmed extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // captionandtimeV6q (146:9825)
                                     width: double.infinity,
                                     child: Column(
@@ -949,7 +951,7 @@ class Confirmed extends StatelessWidget {
                                               fontSize: 11 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3636363636 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -961,7 +963,7 @@ class Confirmed extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ],
@@ -984,7 +986,7 @@ class Confirmed extends StatelessWidget {
                           fontSize: 17 * ffem,
                           fontWeight: FontWeight.w600,
                           height: 1.4705882353 * ffem / fem,
-                          color: Color(0xff050505),
+                          color: const Color(0xff050505),
                         ),
                       ),
                     ],

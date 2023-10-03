@@ -33,8 +33,8 @@ League _$LeagueFromJson(Map<String, dynamic> json) {
     pitchType: json['pitchType'] == null
         ? null
         : PitchType.fromJson(json['pitchType'] as Map<String, dynamic>),
-    latitude: (json['latitude'] as num)?.toDouble(),
-    longitude: (json['longitude'] as num)?.toDouble(),
+    latitude: (json['latitude'] as num).toDouble(),
+    longitude: (json['longitude'] as num).toDouble(),
     description: json['description'] as String,
     startDate: json['startDate'] as String,
     endDate: json['endDate'] as String,
@@ -53,15 +53,15 @@ League _$LeagueFromJson(Map<String, dynamic> json) {
         ? null
         : LeagueLogo.fromJson(json['leagueLogo'] as Map<String, dynamic>),
     facilities: (json['facilities'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : Facility.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     link: json['link'] as String,
     registeredTeam: (json['registeredTeam'] as List)
-        ?.map((e) => e == null
+        .map((e) => e == null
             ? null
             : RegisteredTeam.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     gamePlay: json['gamePlay'] == null
         ? null
         : GamePlay.fromJson(json['gamePlay'] as Map<String, dynamic>),
@@ -84,11 +84,11 @@ Map<String, dynamic> _$LeagueToJson(League instance) => <String, dynamic>{
       'organisedBy': instance.organisedBy?.toJson(),
       'leaguefiles': instance.leaguefiles?.toJson(),
       'leagueLogo': instance.leagueLogo?.toJson(),
-      'facilities': instance.facilities?.map((e) => e?.toJson())?.toList(),
+      'facilities': instance.facilities?.map((e) => e?.toJson()).toList(),
       'gamePlay': instance.gamePlay?.toJson(),
       'link': instance.link,
       'registeredTeam':
-          instance.registeredTeam?.map((e) => e?.toJson())?.toList(),
+          instance.registeredTeam?.map((e) => e?.toJson()).toList(),
     };
 
 LeagueFiles _$LeagueFilesFromJson(Map<String, dynamic> json) {
@@ -157,9 +157,9 @@ PaymentSummary _$PaymentSummaryFromJson(Map<String, dynamic> json) {
   return PaymentSummary(
     id: json['id'] as int,
     name: json['name'] as String,
-    grandTotal: (json['grandTotal'] as num)?.toDouble(),
-    tax: (json['tax'] as num)?.toDouble(),
-    subTotal: (json['subTotal'] as num)?.toDouble(),
+    grandTotal: (json['grandTotal'] as num).toDouble(),
+    tax: (json['tax'] as num).toDouble(),
+    subTotal: (json['subTotal'] as num).toDouble(),
     paymentFor: json['paymentFor'] as String,
   );
 }
@@ -233,7 +233,7 @@ RegisteredTeam _$RegisteredTeamFromJson(Map<String, dynamic> json) {
     team: json['team'] == null
         ? null
         : Team.fromJson(json['team'] as Map<String, dynamic>),
-    paidTotal: (json['paidTotal'] as num)?.toDouble(),
+    paidTotal: (json['paidTotal'] as num).toDouble(),
     transactionId: json['transactionId'] as String,
   );
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/document_screen_both.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -13,8 +11,11 @@ import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../modelClass/my_venue_list_model_class.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../player/HomeScreen/widgets/app_bar.dart';
 
 class MyPitches extends StatefulWidget {
+  const MyPitches({super.key});
+
   @override
   State<MyPitches> createState() => _MyPitchesState();
 }
@@ -100,39 +101,13 @@ class _MyPitchesState extends State<MyPitches> {
           size: sizeHeight * 0.04,
         ),
       ),
-      appBar: PreferredSize(
-          preferredSize: Size(sizeWidth, sizeHeight * 0.105),
-          child: AppBar(
-            title: Text(
-              AppLocalizations.of(context)!.myAcademy,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.white),
-            ),
-            centerTitle: true,
-            backgroundColor: Colors.black,
-            leadingWidth: sizeWidth * 0.18,
-            leading: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                    padding: EdgeInsets.all(sizeHeight * 0.008),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        shape: BoxShape.circle),
-                    child: const Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.close,
-                        color: Colors.white,
-                      ),
-                    )),
-              ),
-            ),
-          )),
+      appBar: appBarWidget(
+        sizeWidth,
+        sizeHeight,
+        context,
+        AppLocalizations.of(context)!.myAcademy,
+        true,
+      ),
       body: _isLoading
           ? Container(
               color: Colors.black54,

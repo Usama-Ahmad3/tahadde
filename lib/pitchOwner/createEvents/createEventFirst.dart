@@ -15,7 +15,7 @@ import '../../player/loginSignup/signup.dart';
 
 class CreateEventFirst extends StatefulWidget {
   String event;
-  CreateEventFirst({required this.event});
+  CreateEventFirst({super.key, required this.event});
   @override
   _CreateEventFirstState createState() => _CreateEventFirstState();
 }
@@ -57,7 +57,7 @@ class _CreateEventFirstState extends State<CreateEventFirst> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);

@@ -9,6 +9,8 @@ import 'routingConstant.dart';
 import 'utility.dart';
 
 class NotificationEmpty extends StatefulWidget {
+  const NotificationEmpty({super.key});
+
   @override
   _NotificationEmptyState createState() => _NotificationEmptyState();
 }

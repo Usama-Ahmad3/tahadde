@@ -20,7 +20,7 @@ import '../../network/network_calls.dart';
 class BookPitch extends StatefulWidget {
   final int pitchDetail;
 
-  BookPitch({required this.pitchDetail});
+  const BookPitch({super.key, required this.pitchDetail});
 
   @override
   _BookPitchState createState() => _BookPitchState();
@@ -286,7 +286,7 @@ class _BookPitchState extends State<BookPitch> {
                                         width:
                                             MediaQuery.of(context).size.width,
                                         cuisineImageUrl: pitchDetail
-                                            ?.bookpitchfiles
+                                            .bookpitchfiles
                                             ?.files![0]
                                             ?.filePath,
                                       )),
@@ -414,7 +414,7 @@ class _BookPitchState extends State<BookPitch> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: sizewidth * .05),
                                 child: Text(
-                                  pitchDetail?.gamePlay?.name ?? '',
+                                  pitchDetail.gamePlay?.name ?? '',
                                   style: const TextStyle(
                                       fontFamily: 'Poppins',
                                       color: Color(0XFF25A163),
@@ -710,7 +710,7 @@ class _BookPitchState extends State<BookPitch> {
                                                               sizewidth * .18,
                                                           cuisineImageUrl:
                                                               pitchDetail
-                                                                  ?.facilities![
+                                                                  .facilities![
                                                                       blockIdx]
                                                                   ?.image
                                                                   ?.filePath,

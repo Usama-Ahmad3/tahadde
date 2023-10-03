@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class EditProfile extends StatelessWidget {
+  const EditProfile({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // editprofile3Ud (513:7657)
         width: double.infinity,
         height: 975 * fem,
@@ -18,7 +20,7 @@ class EditProfile extends StatelessWidget {
           // editprofileCMX (311:13969)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -55,7 +57,7 @@ class EditProfile extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -129,7 +131,7 @@ class EditProfile extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ],
@@ -144,7 +146,7 @@ class EditProfile extends StatelessWidget {
                     EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 13 * fem),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -174,17 +176,17 @@ class EditProfile extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // infoWiu (311:14066)
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   // imputfill3yj (311:14067)
                                   width: double.infinity,
                                   child: Column(
@@ -202,7 +204,7 @@ class EditProfile extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff686868),
+                                            color: const Color(0xff686868),
                                           ),
                                         ),
                                       ),
@@ -213,7 +215,7 @@ class EditProfile extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -236,11 +238,11 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // iconJHP (I311:14067;164:10221)
                                               width: 12 * fem,
                                               height: 12 * fem,
@@ -259,7 +261,7 @@ class EditProfile extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfilld4m (311:14068)
                                   width: double.infinity,
                                   child: Column(
@@ -277,7 +279,7 @@ class EditProfile extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff686868),
+                                            color: const Color(0xff686868),
                                           ),
                                         ),
                                       ),
@@ -288,7 +290,7 @@ class EditProfile extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -311,11 +313,11 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // iconw7P (I311:14068;164:10221)
                                               width: 12 * fem,
                                               height: 12 * fem,
@@ -334,7 +336,7 @@ class EditProfile extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfillG9f (311:14069)
                                   width: double.infinity,
                                   child: Column(
@@ -352,7 +354,7 @@ class EditProfile extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff686868),
+                                            color: const Color(0xff686868),
                                           ),
                                         ),
                                       ),
@@ -363,7 +365,7 @@ class EditProfile extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -386,11 +388,11 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // iconYFb (I311:14069;164:10221)
                                               width: 12 * fem,
                                               height: 12 * fem,
@@ -409,7 +411,7 @@ class EditProfile extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfillFA1 (311:14070)
                                   width: double.infinity,
                                   child: Column(
@@ -427,7 +429,7 @@ class EditProfile extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff686868),
+                                            color: const Color(0xff686868),
                                           ),
                                         ),
                                       ),
@@ -438,7 +440,7 @@ class EditProfile extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -461,11 +463,11 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // iconZ4D (I311:14070;164:10221)
                                               width: 12 * fem,
                                               height: 12 * fem,
@@ -484,7 +486,7 @@ class EditProfile extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfill3VB (311:14071)
                                   width: double.infinity,
                                   child: Column(
@@ -502,7 +504,7 @@ class EditProfile extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff686868),
+                                            color: const Color(0xff686868),
                                           ),
                                         ),
                                       ),
@@ -513,7 +515,7 @@ class EditProfile extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -536,11 +538,11 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // icon8f3 (I311:14071;164:10221)
                                               width: 12 * fem,
                                               height: 12 * fem,
@@ -559,7 +561,7 @@ class EditProfile extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfillExy (311:14072)
                                   width: double.infinity,
                                   child: Column(
@@ -577,7 +579,7 @@ class EditProfile extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff686868),
+                                            color: const Color(0xff686868),
                                           ),
                                         ),
                                       ),
@@ -588,7 +590,7 @@ class EditProfile extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -611,11 +613,11 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // icon7QV (I311:14072;164:10221)
                                               width: 12 * fem,
                                               height: 12 * fem,
@@ -637,13 +639,13 @@ class EditProfile extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       // captionandcarddetails3ow (311:14109)
                       width: double.infinity,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             // captionmV3 (311:14110)
                             width: double.infinity,
                             child: Text(
@@ -654,7 +656,7 @@ class EditProfile extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
@@ -668,11 +670,11 @@ class EditProfile extends StatelessWidget {
                             width: double.infinity,
                             height: 52 * fem,
                             decoration: BoxDecoration(
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                               borderRadius: BorderRadius.circular(16 * fem),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0x0f060714),
+                                  color: const Color(0x0f060714),
                                   offset: Offset(0 * fem, 2 * fem),
                                   blurRadius: 30 * fem,
                                 ),
@@ -710,7 +712,7 @@ class EditProfile extends StatelessWidget {
                                           fontSize: 13 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3846153846 * ffem / fem,
-                                          color: Color(0xff1e1e1e),
+                                          color: const Color(0xff1e1e1e),
                                         ),
                                       ),
                                     ],
@@ -724,7 +726,7 @@ class EditProfile extends StatelessWidget {
                                     fontSize: 15 * ffem,
                                     fontWeight: FontWeight.w600,
                                     height: 1.3333333333 * ffem / fem,
-                                    color: Color(0xff00d555),
+                                    color: const Color(0xff00d555),
                                   ),
                                 ),
                               ],
@@ -740,11 +742,11 @@ class EditProfile extends StatelessWidget {
                             width: double.infinity,
                             height: 52 * fem,
                             decoration: BoxDecoration(
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                               borderRadius: BorderRadius.circular(16 * fem),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0x0f060714),
+                                  color: const Color(0x0f060714),
                                   offset: Offset(0 * fem, 2 * fem),
                                   blurRadius: 30 * fem,
                                 ),
@@ -781,7 +783,7 @@ class EditProfile extends StatelessWidget {
                                           fontSize: 13 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3846153846 * ffem / fem,
-                                          color: Color(0xff1e1e1e),
+                                          color: const Color(0xff1e1e1e),
                                         ),
                                       ),
                                     ],
@@ -795,7 +797,7 @@ class EditProfile extends StatelessWidget {
                                     fontSize: 15 * ffem,
                                     fontWeight: FontWeight.w600,
                                     height: 1.3333333333 * ffem / fem,
-                                    color: Color(0xff00d555),
+                                    color: const Color(0xff00d555),
                                   ),
                                 ),
                               ],

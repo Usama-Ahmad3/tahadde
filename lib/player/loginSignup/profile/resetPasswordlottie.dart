@@ -7,7 +7,7 @@ import '../../../localizations.dart';
 
 class ResetPasswordSuccess extends StatefulWidget {
   var msg;
-  ResetPasswordSuccess({this.msg});
+  ResetPasswordSuccess({super.key, this.msg});
   @override
   _ResetPasswordSuccess createState() => _ResetPasswordSuccess();
 }
@@ -39,7 +39,7 @@ class _ResetPasswordSuccess extends State<ResetPasswordSuccess> {
               ),
             ),
           ),
-          body: Container(
+          body: SizedBox(
             height: sizeheight,
             width: sizewidth,
             child: Column(

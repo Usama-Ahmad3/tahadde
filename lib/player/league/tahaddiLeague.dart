@@ -19,7 +19,7 @@ import '../../network/network_calls.dart';
 
 class LeagueTahaddi extends StatefulWidget {
   Map leaguedata;
-  LeagueTahaddi({required this.leaguedata});
+  LeagueTahaddi({super.key, required this.leaguedata});
   @override
   _LeagueTahaddiState createState() => _LeagueTahaddiState();
 }
@@ -809,8 +809,7 @@ class _LeagueTahaddiState extends State<LeagueTahaddi> {
                                           AppLocalizations.of(context)!
                                                       .locale ==
                                                   "en"
-                                              ? "${leaguedata.organisedBy.countryCode ?? ""}" +
-                                                  "${leaguedata.organisedBy.contact_number ?? ""}"
+                                              ? "${leaguedata.organisedBy.countryCode ?? ""}" "${leaguedata.organisedBy.contact_number ?? ""}"
                                               : "${leaguedata.organisedBy.countryCode == null ? "" : leaguedata.organisedBy.countryCode.substring(1)}${leaguedata.organisedBy.contact_number ?? ""}${leaguedata.organisedBy.countryCode == null ? "" : leaguedata.organisedBy.countryCode.substring(0, 1)}",
                                           style: const TextStyle(
                                               fontFamily: 'Poppins',

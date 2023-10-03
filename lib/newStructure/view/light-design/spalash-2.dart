@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Splash2 extends StatelessWidget {
+  const Splash2({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // spalash2J9F (331:12298)
         width: double.infinity,
         height: 812 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xff7b61ff),
         ),
         child: Stack(
@@ -45,7 +47,7 @@ class Splash2 extends StatelessWidget {
                 width: 356.56 * fem,
                 height: 635.9 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xffffc300),
+                  color: const Color(0xffffc300),
                   borderRadius: BorderRadius.circular(29.8846130371 * fem),
                 ),
                 child: Column(
@@ -76,7 +78,7 @@ class Splash2 extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       // autogroup2sth4Zf (RQpKvhCy9wsheo8axH2STH)
                       width: double.infinity,
                       height: 513.21 * fem,
@@ -92,7 +94,7 @@ class Splash2 extends StatelessWidget {
                                 height: 483.23 * fem,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                     borderRadius: BorderRadius.only(
                                       topLeft:
                                           Radius.circular(22.2238521576 * fem),
@@ -108,7 +110,7 @@ class Splash2 extends StatelessWidget {
                             // frame10000064004TB (373:17379)
                             left: 80.6220703125 * fem,
                             top: 467.68359375 * fem,
-                            child: Container(
+                            child: SizedBox(
                               width: 233.92 * fem,
                               height: 45.53 * fem,
                               child: Row(
@@ -188,7 +190,7 @@ class Splash2 extends StatelessWidget {
                               width: 254.08 * fem,
                               height: 70.53 * fem,
                               decoration: BoxDecoration(
-                                color: Color(0xfff2f2f2),
+                                color: const Color(0xfff2f2f2),
                                 borderRadius:
                                     BorderRadius.circular(12.8076915741 * fem),
                               ),
@@ -213,8 +215,8 @@ class Splash2 extends StatelessWidget {
                                       height: double.infinity,
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xffffffff)),
-                                        color: Color(0xffffffff),
+                                            color: const Color(0xffffffff)),
+                                        color: const Color(0xffffffff),
                                         borderRadius: BorderRadius.circular(
                                             8.5384607315 * fem),
                                       ),
@@ -228,7 +230,7 @@ class Splash2 extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       7.0892791748 * fem),
-                                              color: Color(0xffa1a1a1),
+                                              color: const Color(0xffa1a1a1),
                                             ),
                                           ),
                                         ),
@@ -244,7 +246,7 @@ class Splash2 extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                           7.0892791748 * fem),
-                                      color: Color(0xffd9d9d9),
+                                      color: const Color(0xffd9d9d9),
                                     ),
                                   ),
                                 ],
@@ -255,7 +257,7 @@ class Splash2 extends StatelessWidget {
                             // frame1000006408iED (373:17396)
                             left: 27.2244873047 * fem,
                             top: 95.09375 * fem,
-                            child: Container(
+                            child: SizedBox(
                               width: 262.79 * fem,
                               height: 127.34 * fem,
                               child: Column(
@@ -273,7 +275,7 @@ class Splash2 extends StatelessWidget {
                                       height: 62.29 * fem,
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // frame1000006407VPP (373:17401)
                                     width: 255.13 * fem,
                                     height: 61.99 * fem,
@@ -299,7 +301,7 @@ class Splash2 extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
                                         9.2599372864 * fem),
-                                    color: Color(0xffff0d0d),
+                                    color: const Color(0xffff0d0d),
                                   ),
                                 ),
                               ),
@@ -315,7 +317,7 @@ class Splash2 extends StatelessWidget {
                               width: 253.76 * fem,
                               height: 67.74 * fem,
                               decoration: BoxDecoration(
-                                color: Color(0xffdddddd),
+                                color: const Color(0xffdddddd),
                                 borderRadius:
                                     BorderRadius.circular(11.1119251251 * fem),
                               ),
@@ -327,7 +329,7 @@ class Splash2 extends StatelessWidget {
                                   fontSize: 17 * ffem,
                                   fontWeight: FontWeight.w600,
                                   height: 1.4705882353 * ffem / fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
@@ -352,7 +354,7 @@ class Splash2 extends StatelessWidget {
                             // frame1000006409DMK (373:17420)
                             left: 54.4688720703 * fem,
                             top: 310.2578125 * fem,
-                            child: Container(
+                            child: SizedBox(
                               width: 252.26 * fem,
                               height: 54.93 * fem,
                               child: Row(
@@ -403,7 +405,7 @@ class Splash2 extends StatelessWidget {
                 width: 375 * fem,
                 height: 385 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xff050505),
+                  color: const Color(0xff050505),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -444,7 +446,7 @@ class Splash2 extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                     ),
                                   ),
                                 ),
@@ -461,14 +463,14 @@ class Splash2 extends StatelessWidget {
                                       fontSize: 13 * ffem,
                                       fontWeight: FontWeight.w400,
                                       height: 1.3846153846 * ffem / fem,
-                                      color: Color(0xff828282),
+                                      color: const Color(0xff828282),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // slider9Zj (331:12344)
                             width: 38 * fem,
                             height: 12 * fem,
@@ -500,11 +502,11 @@ class Splash2 extends StatelessWidget {
                                 fontSize: 15 * ffem,
                                 fontWeight: FontWeight.w500,
                                 height: 1.3333333333 * ffem / fem,
-                                color: Color(0xff505050),
+                                color: const Color(0xff505050),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // frame1000006380viu (331:12353)
                             width: 64 * fem,
                             height: 64 * fem,

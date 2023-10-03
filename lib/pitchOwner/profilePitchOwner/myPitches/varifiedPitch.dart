@@ -9,6 +9,8 @@ import '../../../modelClass/bookPitchModelClass.dart';
 import '../../../network/network_calls.dart';
 
 class VarifiedPitch extends StatefulWidget {
+  const VarifiedPitch({super.key});
+
   @override
   _VarifiedPitchState createState() => _VarifiedPitchState();
 }
@@ -62,7 +64,7 @@ class _VarifiedPitchState extends State<VarifiedPitch> {
     return Scaffold(
         backgroundColor: const Color(0XFFF0F0F0),
         body: _isLoading
-            ? Container(
+            ? SizedBox(
                 width: sizeWidth,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -79,7 +81,7 @@ class _VarifiedPitchState extends State<VarifiedPitch> {
                           flaxibleGap(
                             30,
                           ),
-                          Container(
+                          SizedBox(
                               height: sizeHeight * .15,
                               width: sizeHeight * .2,
                               child: Image.asset(
@@ -149,7 +151,7 @@ class _VarifiedPitchState extends State<VarifiedPitch> {
                                                 width: sizeWidth * .2,
                                                 cuisineImageUrl:
                                                     pitchDetail[index]
-                                                        ?.bookpitchfiles
+                                                        .bookpitchfiles
                                                         ?.files![0]
                                                         ?.filePath,
                                               ))),

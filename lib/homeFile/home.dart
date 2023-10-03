@@ -14,6 +14,8 @@ import 'routingConstant.dart';
 import 'utility.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -974,7 +976,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 class LeagueListItem extends StatelessWidget {
   final String? file;
 
-  LeagueListItem({this.file});
+  const LeagueListItem({super.key, this.file});
 
   @override
   Widget build(BuildContext context) {
@@ -1010,6 +1012,8 @@ class LeagueListItem extends StatelessWidget {
 class PlusMinusEntry extends PopupMenuEntry<int> {
   @override
   double height = 100;
+
+  PlusMinusEntry({super.key});
 
   // height doesn't matter, as long as we are not giving
   // initialValue to showMenu().

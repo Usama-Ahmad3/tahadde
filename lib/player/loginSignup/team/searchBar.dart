@@ -10,6 +10,8 @@ import '../../../modelClass/teamModelClass.dart';
 import '../../../network/network_calls.dart';
 
 class SearchBarScreen extends StatefulWidget {
+  const SearchBarScreen({super.key});
+
   @override
   _SearchBarScreenState createState() => _SearchBarScreenState();
 }
@@ -404,9 +406,9 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                                                         ? FontWeight.bold
                                                         : FontWeight.normal),
                                               ),
-                                              Text('Ahmad',
+                                              const Text('Ahmad',
                                                   // "${teamInfoData!.captain!.first_name} ${teamInfoData!.captain!.last_name}",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       fontFamily: 'Poppins',
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -592,7 +594,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                                                                             width: sizeHeight *
                                                                                 .08,
                                                                             cuisineImageUrl:
-                                                                                searchData[index]?.profile_pic?.filePath,
+                                                                                searchData[index].profile_pic?.filePath,
                                                                             placeholder: "images/profile.png")),
                                                                   ),
                                                                   Padding(
@@ -741,7 +743,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                                                                       child: Container(
                                                                           child: ClipRRect(
                                                                               borderRadius: BorderRadius.circular(50.0),
-                                                                              child: cachedNetworkImage(height: sizeHeight * .08, width: sizeHeight * .08, cuisineImageUrl: searchData[index]?.profile_pic?.filePath, placeholder: "images/profile.png"))),
+                                                                              child: cachedNetworkImage(height: sizeHeight * .08, width: sizeHeight * .08, cuisineImageUrl: searchData[index].profile_pic?.filePath, placeholder: "images/profile.png"))),
                                                                     ),
                                                                     Padding(
                                                                       padding: EdgeInsets.all(

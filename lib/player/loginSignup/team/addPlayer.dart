@@ -13,7 +13,7 @@ import 'pendingMembers.dart';
 
 class AddPlayer extends StatefulWidget {
   int index = 0;
-  AddPlayer({required this.index});
+  AddPlayer({super.key, required this.index});
   @override
   _AddPlayerState createState() => _AddPlayerState();
 }
@@ -146,7 +146,7 @@ class _AddPlayerState extends State<AddPlayer>
                     body: Container(
                       height: sizeHeight,
                       width: sizeWidth,
-                      color: const Color(0XFFFF0F0F0),
+                      color: const Color(0xffff0f0f0),
                       child: Flex(
                         direction: Axis.vertical,
                         children: <Widget>[
@@ -190,7 +190,7 @@ class _AddPlayerState extends State<AddPlayer>
                                   flaxibleGap(
                                     2,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: sizeWidth * .5,
                                     height: sizeHeight * .19,
                                     child: Column(
@@ -379,7 +379,7 @@ class _AddPlayerState extends State<AddPlayer>
                                         teamMember = team;
                                       },
                                     ),
-                                    PendingMember(),
+                                    const PendingMember(),
                                   ],
                                 ),
                                 Padding(
@@ -439,7 +439,7 @@ class _AddPlayerState extends State<AddPlayer>
                                                 flaxibleGap(
                                                   1,
                                                 ),
-                                                Container(
+                                                SizedBox(
                                                   height: 40,
                                                   child: FloatingActionButton(
                                                     heroTag: null,
@@ -512,7 +512,7 @@ class _AddPlayerState extends State<AddPlayer>
                                                 flaxibleGap(
                                                   1,
                                                 ),
-                                                Container(
+                                                SizedBox(
                                                   height: 40,
                                                   child: FloatingActionButton(
                                                     backgroundColor:
@@ -562,7 +562,7 @@ class _AddPlayerState extends State<AddPlayer>
                                             1,
                                           ),
                                           addPlayer
-                                              ? Container(
+                                              ? SizedBox(
                                                   height: 50,
                                                   child: FloatingActionButton(
                                                     backgroundColor:
@@ -580,7 +580,7 @@ class _AddPlayerState extends State<AddPlayer>
                                                     },
                                                   ),
                                                 )
-                                              : Container(
+                                              : SizedBox(
                                                   height: 50,
                                                   child: FloatingActionButton(
                                                     heroTag: null,
@@ -641,7 +641,7 @@ class _AddPlayerState extends State<AddPlayer>
       body: Container(
         height: sizeHeight,
         width: sizeWidth,
-        color: const Color(0XFFFF0F0F0),
+        color: const Color(0xffff0f0f0),
         child: Column(
           children: <Widget>[
             Container(
@@ -681,7 +681,7 @@ class _AddPlayerState extends State<AddPlayer>
                     flaxibleGap(
                       2,
                     ),
-                    Container(
+                    SizedBox(
                       width: sizeWidth * .5,
                       height: sizeHeight * .19,
                       child: Column(

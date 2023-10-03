@@ -14,6 +14,8 @@ import '../../network/network_calls.dart';
 import '../../player/loginSignup/signup.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -67,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -90,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Text(AppLocalizations.of(context)!.informationText)),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            content: Container(
+            content: SizedBox(
               height: height,
               width: width,
               child: SingleChildScrollView(
@@ -195,13 +197,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             actions: <Widget>[
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 0.20,
                 child: ElevatedButton(
-                  child: Text(
-                    AppLocalizations.of(context)!.ok,
-                    style: const TextStyle(color: Colors.white),
-                  ),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color(0XFF25A163),
                     shape: RoundedRectangleBorder(
@@ -211,6 +209,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
+                  child: Text(
+                    AppLocalizations.of(context)!.ok,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
               )
             ],
@@ -304,8 +306,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                               showMessage(msg);
                                                             },
                                                             tokenExpire: () {
-                                                              if (mounted)
+                                                              if (mounted) {
                                                                 on401(context);
+                                                              }
                                                             });
                                                   },
                                                   onFailure: (msg) {
@@ -357,7 +360,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   body: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Container(
+                      SizedBox(
                         height: sizeHeight * .205,
                         child: Column(
                           children: [
@@ -450,7 +453,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           },
                                           text1: false,
                                           validator: (value) {
-                                            var msg;
+                                            String msg;
                                             if (!isMail(value!.trim())) {
                                               msg =
                                                   AppLocalizations.of(context)!
@@ -513,6 +516,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         controller: _passwordController,
                                         validator: (e) {
                                           validatePassword(e.toString());
+                                          return null;
                                         },
                                         onSaved: (value) {
                                           String encoded = base64
@@ -577,6 +581,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         controller: _password,
                                         validator: (e) {
                                           validateConfirmPassword;
+                                          return null;
                                         },
                                         autofocus: false,
                                         obscureText: passwordHide1,
@@ -661,7 +666,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                                                   initialSelection:
                                                       _initialCountry,
-                                                  favorite: ['+971', 'ITU'],
+                                                  favorite: const ['+971', 'ITU'],
                                                   // optional. Shows only country name and flag
                                                   showCountryOnly: false,
                                                   // optional. Shows only country name and flag when popup is closed.
@@ -722,7 +727,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                                                   initialSelection:
                                                       _initialCountry,
-                                                  favorite: ['+971', 'ITU'],
+                                                  favorite: const ['+971', 'ITU'],
                                                   // optional. Shows only country name and flag
                                                   showCountryOnly: false,
                                                   // optional. Shows only country name and flag when popup is closed.
@@ -848,7 +853,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         });
                                       },
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: sizeWidth * .8,
                                       child: RichText(
                                         key: _textKey,

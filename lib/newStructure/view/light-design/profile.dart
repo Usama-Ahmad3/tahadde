@@ -86,7 +86,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                   // toolbarpPs (314:12231)
                   left: 0 * fem,
                   top: 0 * fem,
-                  child: Container(
+                  child: SizedBox(
                     width: 375 * fem,
                     height: 92 * fem,
                     child: Container(
@@ -160,7 +160,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                   // profiledetailsQeu (315:12462)
                   left: 24 * fem,
                   top: 155 * fem,
-                  child: Container(
+                  child: SizedBox(
                     width: 327 * fem,
                     height: 546 * fem,
                     child: Column(
@@ -174,7 +174,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 // imageandnameRpu (314:12234)
                                 width: 161 * fem,
                                 child: Column(
@@ -203,7 +203,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // nameandidCDP (314:12242)
                                       width: double.infinity,
                                       child: Column(
@@ -236,7 +236,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                                           ),
                                           Center(
                                             // idFhT (314:12244)
-                                            child: Container(
+                                            child: SizedBox(
                                               width: double.infinity,
                                               child: Text(
                                                 'ID: 67limon',
@@ -406,7 +406,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           // changeoptionJzV (314:12262)
                           width: double.infinity,
                           child: Column(
@@ -462,7 +462,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // arrowrightHjw (I314:12263;163:10170)
                                       width: 16 * fem,
                                       height: 16 * fem,
@@ -528,7 +528,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // arrowright53X (I314:12264;163:10170)
                                       width: 16 * fem,
                                       height: 16 * fem,
@@ -594,7 +594,7 @@ class _ProfileScreenViewState extends State<ProfileScreenView> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // arrowright4Jm (I314:12265;163:10170)
                                       width: 16 * fem,
                                       height: 16 * fem,

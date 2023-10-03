@@ -1,4 +1,3 @@
-
 library country_code_picker;
 
 import 'package:country_code_picker/country_code_picker.dart';
@@ -66,7 +65,7 @@ class CountryCodePicker extends StatefulWidget {
   /// Set to true if you want to hide the search part
   final bool hideSearch;
 
-  CountryCodePicker({
+  const CountryCodePicker({
     required this.onChanged,
     required this.onInit,
     required this.initialSelection,
@@ -104,14 +103,13 @@ class CountryCodePicker extends StatefulWidget {
   State<StatefulWidget> createState() {
     List<Map> jsonList = codes;
 
-    List<CountryCode> elements =
-        jsonList.map((json) => CountryCode.fromJson(json as Map<String, dynamic>)).toList();
+    List<CountryCode> elements = jsonList
+        .map((json) => CountryCode.fromJson(json as Map<String, dynamic>))
+        .toList();
 
-    if (comparator != null) {
-      elements.sort(comparator);
-    }
+    elements.sort(comparator);
 
-    if (countryFilter != null && countryFilter.isNotEmpty) {
+    if (countryFilter.isNotEmpty) {
       final uppercaseCustomList =
           countryFilter.map((c) => c.toUpperCase()).toList();
       elements = elements
@@ -122,7 +120,7 @@ class CountryCodePicker extends StatefulWidget {
           .toList();
     }
 
-    return CountryCodePickerState(elements,[],[] as CountryCode);
+    return CountryCodePickerState(elements, [], [] as CountryCode);
   }
 }
 
@@ -131,27 +129,26 @@ class CountryCodePickerState extends State<CountryCodePicker> {
   List<CountryCode> elements = [];
   List<CountryCode> favoriteElements = [];
 
-  CountryCodePickerState(this.elements,this.favoriteElements,this.selectedItem);
+  CountryCodePickerState(
+      this.elements, this.favoriteElements, this.selectedItem);
 
   @override
   Widget build(BuildContext context) {
-    Widget _widget;
+    var widget;
     if (widget.builder != null) {
-      _widget = InkWell(
+      widget = InkWell(
         onTap: showCountryCodePickerDialog,
         child: widget.builder(selectedItem),
       );
     } else {
-      _widget = TextButton(
+      widget = TextButton(
         // padding: widget.padding,
         onPressed: widget.enabled ? showCountryCodePickerDialog : null,
         child: Flex(
           direction: Axis.horizontal,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            if (widget.showFlagMain != null
-                ? widget.showFlagMain
-                : widget.showFlag)
+            if (widget.showFlagMain ?? widget.showFlag)
               Flexible(
                 flex: widget.alignLeft ? 0 : 1,
                 fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
@@ -190,14 +187,14 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         ),
       );
     }
-    return _widget;
+    return widget;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    this.elements = elements.map((e) => e.localize(context)).toList();
+    elements = elements.map((e) => e.localize(context)).toList();
     _onInit(selectedItem);
   }
 
@@ -212,7 +209,8 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 (e.code!.toUpperCase() ==
                     widget.initialSelection.toUpperCase()) ||
                 (e.dialCode == widget.initialSelection) ||
-                (e.name!.toUpperCase() == widget.initialSelection.toUpperCase()),
+                (e.name!.toUpperCase() ==
+                    widget.initialSelection.toUpperCase()),
             orElse: () => elements[0]);
       } else {
         selectedItem = elements[0];
@@ -228,7 +226,8 @@ class CountryCodePickerState extends State<CountryCodePicker> {
     if (widget.initialSelection != null) {
       selectedItem = elements.firstWhere(
           (e) =>
-              (e.code!.toUpperCase() == widget.initialSelection.toUpperCase()) ||
+              (e.code!.toUpperCase() ==
+                  widget.initialSelection.toUpperCase()) ||
               (e.dialCode == widget.initialSelection) ||
               (e.name!.toUpperCase() == widget.initialSelection.toUpperCase()),
           orElse: () => elements[0]);
@@ -263,9 +262,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
           searchStyle: widget.searchStyle,
           textStyle: widget.dialogTextStyle,
           boxDecoration: widget.boxDecoration,
-          showFlag: widget.showFlagDialog != null
-              ? widget.showFlagDialog
-              : widget.showFlag,
+          showFlag: widget.showFlagDialog ?? widget.showFlag,
           flagWidth: widget.flagWidth,
           // size: widget.dialogSize,
           hideSearch: widget.hideSearch,
@@ -276,23 +273,17 @@ class CountryCodePickerState extends State<CountryCodePicker> {
   }
 
   void _publishSelection(CountryCode e) {
-    if (widget.onChanged != null) {
-      widget.onChanged(e);
-      {
-        if (e != null) {
-          setState(() {
-            selectedItem = e;
-          });
+    widget.onChanged(e);
+    {
+      setState(() {
+        selectedItem = e;
+      });
 
-          _publishSelection(e);
-        }
-      }
+      _publishSelection(e);
     }
   }
 
   void _onInit(CountryCode e) {
-    if (widget.onInit != null) {
-      widget.onInit(e);
-    }
+    widget.onInit(e);
   }
 }

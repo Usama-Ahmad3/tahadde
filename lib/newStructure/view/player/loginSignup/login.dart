@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/picthowner_main_home.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -191,7 +191,6 @@ class LoginScreenState extends State<LoginScreen> {
             "deviceType": logDetail.deviceType,
             "deviceToken": logDetail.fcmToken
           };
-          print(details);
           _networkCalls.loginFacebook(
               loginDetail: details,
               onSuccess: (msg) {
@@ -285,7 +284,7 @@ class LoginScreenState extends State<LoginScreen> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -301,6 +300,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+    isLoading = false;
     _logOut();
     _getAppleSigninAvailability();
     firebaseCloudMessaging_Listeners();
@@ -329,7 +329,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     nameController.dispose();
     emailController.dispose();
@@ -559,6 +558,7 @@ class LoginScreenState extends State<LoginScreen> {
                                                                 isLoading =
                                                                     false;
                                                               });
+                                                              print(logDetail);
                                                               navigateToVerification(
                                                                   logDetail);
                                                             },
@@ -749,8 +749,10 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void navigateToDetail() {
-    Navigator.pushNamedAndRemoveUntil(
-        context, RouteNames.playerHome, (r) => false);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => PlayerHomeScreen(index: 0)));
+    // Navigator.pushNamedAndRemoveUntil(
+    //     context, RouteNames.playerHome, (r) => false);
   }
 
   void navigateToSocialDetail(var detail) {

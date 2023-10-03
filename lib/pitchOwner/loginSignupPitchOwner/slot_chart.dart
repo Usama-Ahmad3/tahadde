@@ -49,7 +49,7 @@ class _SlotChartState extends State<SlotChart> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -68,17 +68,19 @@ class _SlotChartState extends State<SlotChart> {
     if (Platform.isIOS) {
       focusNode.addListener(() {
         bool hasFocus = focusNode.hasFocus;
-        if (hasFocus)
+        if (hasFocus) {
           showOverlay(context);
-        else
+        } else {
           removeOverlay();
+        }
       });
       focusName.addListener(() {
         bool hasFocus = focusName.hasFocus;
-        if (hasFocus)
+        if (hasFocus) {
           showOverlay(context);
-        else
+        } else {
           removeOverlay();
+        }
       });
     }
     loadSlot();

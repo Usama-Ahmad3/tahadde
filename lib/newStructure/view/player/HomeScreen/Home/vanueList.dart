@@ -11,9 +11,11 @@ class VanueList extends StatefulWidget {
   var bookPitchData;
   bool tagForView;
   bool empty;
+  bool? searchflag;
 
   VanueList(
       {super.key,
+      this.searchflag = false,
       required this.bookPitchData,
       this.tagForView = true,
       this.empty = false});
@@ -31,7 +33,11 @@ class _VanueListState extends State<VanueList> {
     double ffem = fem * 0.97;
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 550 * fem,
+      height: widget.tagForView
+          ? widget.searchflag!
+              ? 450 * fem
+              : 480 * fem
+          : MediaQuery.of(context).size.height,
       margin: EdgeInsets.only(top: 24 * fem),
       padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 0),
       decoration: BoxDecoration(
@@ -212,6 +218,9 @@ class _VanueListState extends State<VanueList> {
                         ),
                       ),
                     ),
+            ),
+            SizedBox(
+              height: 10 * fem,
             )
           ],
         ),

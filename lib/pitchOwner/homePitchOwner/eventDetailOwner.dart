@@ -15,7 +15,7 @@ import '../../network/network_calls.dart';
 
 class EventDetailOwner extends StatefulWidget {
   Map id;
-  EventDetailOwner({required this.id});
+  EventDetailOwner({super.key, required this.id});
   @override
   _EventDetailOwnerState createState() => _EventDetailOwnerState();
 }

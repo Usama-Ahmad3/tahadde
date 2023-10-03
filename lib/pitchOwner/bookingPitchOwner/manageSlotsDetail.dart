@@ -13,7 +13,7 @@ import '../../network/network_calls.dart';
 // ignore: must_be_immutable
 class ManageSlotsDetail extends StatefulWidget {
   BookPitchDetail pitchDetail;
-  ManageSlotsDetail({required this.pitchDetail});
+  ManageSlotsDetail({super.key, required this.pitchDetail});
   @override
   _ManageSlotsDetailState createState() => _ManageSlotsDetailState();
 }
@@ -1511,7 +1511,7 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
   }
 
   String timing({required int x}) {
-    var day;
+    String day;
     switch (x) {
       case 0:
         day = "12:00";

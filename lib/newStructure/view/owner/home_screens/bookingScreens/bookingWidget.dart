@@ -183,7 +183,7 @@ class _BookingsWidgetState extends State<BookingsWidget> {
   }
 
   String timing({required int x}) {
-    var day;
+    String day;
     switch (x) {
       case 0:
         day = "12 AM";

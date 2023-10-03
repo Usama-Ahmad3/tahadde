@@ -13,7 +13,7 @@ import '../../network/network_calls.dart';
 class ForgotPasswordScreen extends StatefulWidget {
   String token;
 
-  ForgotPasswordScreen({required this.token});
+  ForgotPasswordScreen({super.key, required this.token});
 
   @override
   _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
@@ -82,7 +82,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return _isLoading
         ? Scaffold(
             key: scaffoldkey,
-            body: Container(
+            body: SizedBox(
               width: sizewidth,
               child: Column(
                 mainAxisSize: MainAxisSize.max,

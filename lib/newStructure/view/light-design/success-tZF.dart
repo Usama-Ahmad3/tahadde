@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class SuccessZ extends StatelessWidget {
+  const SuccessZ({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // successwTw (513:7664)
         width: double.infinity,
         height: 812 * fem,
@@ -18,7 +20,7 @@ class SuccessZ extends StatelessWidget {
           // successJ3b (305:12294)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Stack(
@@ -27,7 +29,7 @@ class SuccessZ extends StatelessWidget {
                 // toolbarEhw (305:12295)
                 left: 0 * fem,
                 top: 0 * fem,
-                child: Container(
+                child: SizedBox(
                   width: 375 * fem,
                   height: 92 * fem,
                   child: Column(
@@ -56,7 +58,7 @@ class SuccessZ extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.2575 * ffem / fem,
                                   letterSpacing: -0.2800000012 * fem,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                 ),
                               ),
                             ),
@@ -130,7 +132,7 @@ class SuccessZ extends StatelessWidget {
                                 fontSize: 17 * ffem,
                                 fontWeight: FontWeight.w600,
                                 height: 1.4705882353 * ffem / fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ],
@@ -150,7 +152,7 @@ class SuccessZ extends StatelessWidget {
                   width: 375 * fem,
                   height: 684 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
@@ -167,7 +169,7 @@ class SuccessZ extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Container(
+                            SizedBox(
                               // captionGc1 (305:12298)
                               width: 257.5 * fem,
                               child: Text(
@@ -179,14 +181,14 @@ class SuccessZ extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
                             SizedBox(
                               height: 24 * fem,
                             ),
-                            Container(
+                            SizedBox(
                               // imageLLy (305:12299)
                               width: double.infinity,
                               child: Column(
@@ -216,8 +218,8 @@ class SuccessZ extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(8 * fem),
-                                            color: Color(0x4c000000),
-                                            image: DecorationImage(
+                                            color: const Color(0x4c000000),
+                                            image: const DecorationImage(
                                               fit: BoxFit.cover,
                                               image: AssetImage(
                                                 'assets/light-design/images/rectangle-40186-bg.png',
@@ -257,8 +259,8 @@ class SuccessZ extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(8 * fem),
-                                            color: Color(0x4c000000),
-                                            image: DecorationImage(
+                                            color: const Color(0x4c000000),
+                                            image: const DecorationImage(
                                               fit: BoxFit.cover,
                                               image: AssetImage(
                                                 'assets/light-design/images/rectangle-40187-bg-QCR.png',
@@ -289,7 +291,7 @@ class SuccessZ extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // imageR2y (305:12313)
                                     width: double.infinity,
                                     height: 120 * fem,
@@ -311,8 +313,8 @@ class SuccessZ extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(8 * fem),
-                                            color: Color(0x4c000000),
-                                            image: DecorationImage(
+                                            color: const Color(0x4c000000),
+                                            image: const DecorationImage(
                                               fit: BoxFit.cover,
                                               image: AssetImage(
                                                 'assets/light-design/images/rectangle-40188-bg-FiR.png',
@@ -352,8 +354,8 @@ class SuccessZ extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(8 * fem),
-                                            color: Color(0x4c000000),
-                                            image: DecorationImage(
+                                            color: const Color(0x4c000000),
+                                            image: const DecorationImage(
                                               fit: BoxFit.cover,
                                               image: AssetImage(
                                                 'assets/light-design/images/rectangle-40189-bg-dof.png',
@@ -390,7 +392,7 @@ class SuccessZ extends StatelessWidget {
                             SizedBox(
                               height: 24 * fem,
                             ),
-                            Container(
+                            SizedBox(
                               // photoiconandcaptionp73 (305:12326)
                               width: double.infinity,
                               height: 98 * fem,
@@ -407,11 +409,11 @@ class SuccessZ extends StatelessWidget {
                                     height: double.infinity,
                                     decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xffcdcdcd)),
+                                          Border.all(color: const Color(0xffcdcdcd)),
                                       borderRadius:
                                           BorderRadius.circular(8 * fem),
                                     ),
-                                    child: Container(
+                                    child: SizedBox(
                                       // cameraiconandcaptionojf (305:12328)
                                       width: double.infinity,
                                       height: double.infinity,
@@ -442,7 +444,7 @@ class SuccessZ extends StatelessWidget {
                                                 fontWeight: FontWeight.w500,
                                                 height:
                                                     1.3846153846 * ffem / fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ),
@@ -457,7 +459,7 @@ class SuccessZ extends StatelessWidget {
                                     height: double.infinity,
                                     decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xffcdcdcd)),
+                                          Border.all(color: const Color(0xffcdcdcd)),
                                       borderRadius:
                                           BorderRadius.circular(8 * fem),
                                     ),
@@ -486,7 +488,7 @@ class SuccessZ extends StatelessWidget {
                                             fontSize: 13 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3846153846 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ],
@@ -503,7 +505,7 @@ class SuccessZ extends StatelessWidget {
                         width: double.infinity,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(16 * fem),
                         ),
                         child: Center(
@@ -515,7 +517,7 @@ class SuccessZ extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),
@@ -535,7 +537,7 @@ class SuccessZ extends StatelessWidget {
                     child: Opacity(
                       opacity: 0.5,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0x7f050505),
                         ),
                       ),
@@ -553,7 +555,7 @@ class SuccessZ extends StatelessWidget {
                   width: 315 * fem,
                   height: 362 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.circular(20 * fem),
                   ),
                   child: Column(
@@ -593,7 +595,7 @@ class SuccessZ extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff1e1e1e),
+                                  color: const Color(0xff1e1e1e),
                                 ),
                               ),
                             ),
@@ -605,7 +607,7 @@ class SuccessZ extends StatelessWidget {
                         width: double.infinity,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(12 * fem),
                         ),
                         child: Center(
@@ -618,7 +620,7 @@ class SuccessZ extends StatelessWidget {
                                 fontSize: 17 * ffem,
                                 fontWeight: FontWeight.w600,
                                 height: 1.4705882353 * ffem / fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),

@@ -16,7 +16,7 @@ import '../../player/loginSignup/signup.dart';
 class PriceScreen extends StatefulWidget {
   SportsModel detail;
 
-  PriceScreen({required this.detail});
+  PriceScreen({super.key, required this.detail});
 
   @override
   _PriceScreenState createState() => _PriceScreenState();
@@ -60,7 +60,7 @@ class _PriceScreenState extends State<PriceScreen> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -79,10 +79,11 @@ class _PriceScreenState extends State<PriceScreen> {
     if (Platform.isIOS) {
       focusNode.addListener(() {
         bool hasFocus = focusNode.hasFocus;
-        if (hasFocus)
+        if (hasFocus) {
           showOverlay(context);
-        else
+        } else {
           removeOverlay();
+        }
       });
     }
     _networkCalls.availablePitchType(

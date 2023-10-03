@@ -16,7 +16,7 @@ import '../loginSignup/signup.dart';
 
 class EnterDetail extends StatefulWidget {
   dynamic leagueData;
-  EnterDetail({this.leagueData});
+  EnterDetail({super.key, this.leagueData});
   @override
   _EnterDetail createState() => _EnterDetail();
 }
@@ -59,7 +59,7 @@ class _EnterDetail extends State<EnterDetail> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -1547,7 +1547,7 @@ class _EnterDetail extends State<EnterDetail> {
                                                       style: const TextStyle(
                                                           fontSize: 15,
                                                           color: Color(
-                                                              0XFF0320040)),
+                                                              0xff0320040)),
                                                     ),
                                                     Text(
                                                       AppLocalizations.of(

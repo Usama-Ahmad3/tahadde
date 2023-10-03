@@ -39,6 +39,7 @@ class LocationClass{
             ],
           ));
     }
+    return null;
   }
   Future<Map> defaultLocation() async {
     late Map address;

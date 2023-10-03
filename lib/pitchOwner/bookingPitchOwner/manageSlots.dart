@@ -10,6 +10,8 @@ import '../../modelClass/my_venue_list_model_class.dart';
 import '../../network/network_calls.dart';
 
 class ManageSlots extends StatefulWidget {
+  const ManageSlots({super.key});
+
   @override
   _ManageSlotsState createState() => _ManageSlotsState();
 }

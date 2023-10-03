@@ -171,7 +171,7 @@ class _EditSessionState extends State<EditSession> {
                   _sessionMap.forEach((k, v) {
                     List<Map<dynamic, dynamic>> sessionsData = [];
                     if (!v[0].isHoliday!) {
-                      v.forEach((element) {
+                      for (var element in v) {
                         Map detail = {
                           "session_name": element.sessionName,
                           "session_name_arabic": element.sessionNameAr,
@@ -183,7 +183,7 @@ class _EditSessionState extends State<EditSession> {
                           "slot_price": 0
                         };
                         sessionsData.add(detail);
-                      });
+                      }
                       Map<dynamic, dynamic> detail = {
                         "weekday": k,
                         "sessions_data": sessionsData
@@ -592,7 +592,7 @@ class _EditSessionState extends State<EditSession> {
   bottomSheet({required Function onTap}) {
     var size = MediaQuery.of(context).size;
     _copyDays = _sessionMap.keys.toList();
-    SessionDetail _sessionDetail = SessionDetail();
+    SessionDetail sessionDetail = SessionDetail();
     copyDaysIndex = 0;
     return showModalBottomSheet(
         backgroundColor: Colors.transparent,
@@ -616,10 +616,10 @@ class _EditSessionState extends State<EditSession> {
                           color: const Color(0XFF25A163),
                           child: InkWell(
                             onTap: () {
-                              List<SessionDetail> _sessionList = [];
-                              _sessionList.add(_sessionDetail);
+                              List<SessionDetail> sessionList = [];
+                              sessionList.add(sessionDetail);
                               _sessionMap[_weakList[_weakIndex].slug!] =
-                                  _sessionList;
+                                  sessionList;
                               Navigator.of(context).pop();
                               onTap();
                             },
@@ -727,7 +727,7 @@ class _EditSessionState extends State<EditSession> {
                                             onTap: () {
                                               setState(() {
                                                 _holiday = !_holiday;
-                                                _sessionDetail.isHoliday =
+                                                sessionDetail.isHoliday =
                                                     _holiday;
                                               });
                                             },
@@ -765,37 +765,37 @@ class _EditSessionState extends State<EditSession> {
                                         _weakList[_weakIndex].slug) &&
                                     !_sessionMap[_weakList[_weakIndex].slug]![0]
                                         .isHoliday!) {
-                                  if (!_sessionDetail.isHoliday!) {
-                                    _sessionDetail.isHoliday = false;
-                                    _sessionDetail.graceTime ??= 0;
-                                    _sessionDetail.slotDuration ??= 20;
-                                    _sessionDetail.startTime ??= DateTime.now();
-                                    _sessionDetail.endTime ??= DateTime.now();
+                                  if (!sessionDetail.isHoliday!) {
+                                    sessionDetail.isHoliday = false;
+                                    sessionDetail.graceTime ??= 0;
+                                    sessionDetail.slotDuration ??= 20;
+                                    sessionDetail.startTime ??= DateTime.now();
+                                    sessionDetail.endTime ??= DateTime.now();
                                     if (_sessionMap.containsKey(
                                         _weakList[_weakIndex].slug)) {
                                       _sessionMap[_weakList[_weakIndex].slug]!
-                                          .add(_sessionDetail);
+                                          .add(sessionDetail);
                                     } else {
-                                      List<SessionDetail> _sessionList = [];
-                                      _sessionList.add(_sessionDetail);
+                                      List<SessionDetail> sessionList = [];
+                                      sessionList.add(sessionDetail);
                                       _sessionMap[_weakList[_weakIndex].slug!] =
-                                          _sessionList;
+                                          sessionList;
                                     }
                                   } else {
-                                    List<SessionDetail> _sessionList = [];
-                                    _sessionList.add(_sessionDetail);
+                                    List<SessionDetail> sessionList = [];
+                                    sessionList.add(sessionDetail);
                                     _sessionMap[_weakList[_weakIndex].slug!] =
-                                        _sessionList;
+                                        sessionList;
                                   }
                                 } else {
-                                  _sessionDetail.graceTime ??= 20;
-                                  _sessionDetail.slotDuration ??= 20;
-                                  _sessionDetail.startTime ??= DateTime.now();
-                                  _sessionDetail.endTime ??= DateTime.now();
-                                  List<SessionDetail> _sessionList = [];
-                                  _sessionList.add(_sessionDetail);
+                                  sessionDetail.graceTime ??= 20;
+                                  sessionDetail.slotDuration ??= 20;
+                                  sessionDetail.startTime ??= DateTime.now();
+                                  sessionDetail.endTime ??= DateTime.now();
+                                  List<SessionDetail> sessionList = [];
+                                  sessionList.add(sessionDetail);
                                   _sessionMap[_weakList[_weakIndex].slug!] =
-                                      _sessionList;
+                                      sessionList;
                                 }
 
                                 Navigator.of(context).pop();
@@ -905,7 +905,7 @@ class _EditSessionState extends State<EditSession> {
                                           onTap: () {
                                             setState(() {
                                               _holiday = !_holiday;
-                                              _sessionDetail.isHoliday =
+                                              sessionDetail.isHoliday =
                                                   _holiday;
                                             });
                                           },
@@ -1039,7 +1039,7 @@ class _EditSessionState extends State<EditSession> {
                                             submit: (value) =>
                                                 FocusScope.of(context)
                                                     .requestFocus(focusName),
-                                            onSaved: (value) => _sessionDetail
+                                            onSaved: (value) => sessionDetail
                                                 .sessionName = value!),
                                         textField(
                                             name: AppLocalizations.of(context)!
@@ -1048,7 +1048,7 @@ class _EditSessionState extends State<EditSession> {
                                             text: false,
                                             text1: false,
                                             node: focusName,
-                                            onSaved: (value) => _sessionDetail
+                                            onSaved: (value) => sessionDetail
                                                 .sessionNameAr = value!),
                                       ],
                                     ),
@@ -1087,7 +1087,7 @@ class _EditSessionState extends State<EditSession> {
                                                 Text("$name min"),
                                             ],
                                             onSelectedItemChanged: (value) {
-                                              _sessionDetail.slotDuration =
+                                              sessionDetail.slotDuration =
                                                   int.parse(
                                                       currenciesList[value]);
                                             },
@@ -1132,7 +1132,7 @@ class _EditSessionState extends State<EditSession> {
                                                     Text("$name min"),
                                                 ],
                                                 onSelectedItemChanged: (value) {
-                                                  _sessionDetail.graceTime =
+                                                  sessionDetail.graceTime =
                                                       value;
                                                 },
                                               ),
@@ -1171,7 +1171,7 @@ class _EditSessionState extends State<EditSession> {
                                                     .time,
                                                 use24hFormat: true,
                                                 onDateTimeChanged: (value) {
-                                                  _sessionDetail.startTime =
+                                                  sessionDetail.startTime =
                                                       value;
                                                 },
                                               ),
@@ -1199,7 +1199,7 @@ class _EditSessionState extends State<EditSession> {
                                                     .time,
                                                 use24hFormat: true,
                                                 onDateTimeChanged: (value) {
-                                                  _sessionDetail.endTime =
+                                                  sessionDetail.endTime =
                                                       value;
                                                 },
                                               ),

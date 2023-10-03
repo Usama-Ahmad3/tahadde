@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Success extends StatelessWidget {
+  const Success({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // successJmo (513:7667)
         width: double.infinity,
         height: 812 * fem,
@@ -18,7 +20,7 @@ class Success extends StatelessWidget {
           // successFww (303:12368)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Stack(
@@ -27,7 +29,7 @@ class Success extends StatelessWidget {
                 // toolbarzed (303:12369)
                 left: 0 * fem,
                 top: 0 * fem,
-                child: Container(
+                child: SizedBox(
                   width: 375 * fem,
                   height: 92 * fem,
                   child: Column(
@@ -56,7 +58,7 @@ class Success extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.2575 * ffem / fem,
                                   letterSpacing: -0.2800000012 * fem,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                 ),
                               ),
                             ),
@@ -130,7 +132,7 @@ class Success extends StatelessWidget {
                                 fontSize: 17 * ffem,
                                 fontWeight: FontWeight.w600,
                                 height: 1.4705882353 * ffem / fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ],
@@ -150,9 +152,9 @@ class Success extends StatelessWidget {
                   width: 327 * fem,
                   height: 192 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xff1e1e1e),
+                    color: const Color(0xff1e1e1e),
                     borderRadius: BorderRadius.circular(16 * fem),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
                         'assets/light-design/images/mask-group-RnZ.png',
@@ -209,7 +211,7 @@ class Success extends StatelessWidget {
                           height: 15 * fem,
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         // contentTXX (303:12379)
                         width: double.infinity,
                         height: 37 * fem,
@@ -236,7 +238,7 @@ class Success extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         height: 1.25 * ffem / fem,
                                         letterSpacing: -0.2 * fem,
-                                        color: Color(0xffffffff),
+                                        color: const Color(0xffffffff),
                                       ),
                                     ),
                                   ),
@@ -248,13 +250,13 @@ class Success extends StatelessWidget {
                                       fontSize: 17 * ffem,
                                       fontWeight: FontWeight.w600,
                                       height: 1.4705882353 * ffem / fem,
-                                      color: Color(0xffffc300),
+                                      color: const Color(0xffffc300),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // group1000004054x6u (303:12383)
                               width: 46 * fem,
                               height: 37 * fem,
@@ -281,13 +283,13 @@ class Success extends StatelessWidget {
                   width: 375 * fem,
                   height: 468 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
                     ),
                   ),
-                  child: Container(
+                  child: SizedBox(
                     // captionandcarddetailsL7T (303:12390)
                     width: double.infinity,
                     height: double.infinity,
@@ -307,17 +309,17 @@ class Success extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                               height: 1.25 * ffem / fem,
                               letterSpacing: -0.2 * fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           // imputfilltoB (303:12392)
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
+                              SizedBox(
                                 // imputfillEs3 (303:12393)
                                 width: double.infinity,
                                 child: Column(
@@ -334,7 +336,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff1e1e1e),
+                                          color: const Color(0xff1e1e1e),
                                         ),
                                       ),
                                     ),
@@ -345,7 +347,7 @@ class Success extends StatelessWidget {
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xffcdcdcd)),
+                                            color: const Color(0xffcdcdcd)),
                                         borderRadius:
                                             BorderRadius.circular(12 * fem),
                                       ),
@@ -356,7 +358,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                       ),
                                     ),
@@ -366,7 +368,7 @@ class Success extends StatelessWidget {
                               SizedBox(
                                 height: 16 * fem,
                               ),
-                              Container(
+                              SizedBox(
                                 // imputfill6Xs (303:12394)
                                 width: double.infinity,
                                 child: Column(
@@ -383,7 +385,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff1e1e1e),
+                                          color: const Color(0xff1e1e1e),
                                         ),
                                       ),
                                     ),
@@ -394,7 +396,7 @@ class Success extends StatelessWidget {
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xffcdcdcd)),
+                                            color: const Color(0xffcdcdcd)),
                                         borderRadius:
                                             BorderRadius.circular(12 * fem),
                                       ),
@@ -405,7 +407,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                       ),
                                     ),
@@ -415,7 +417,7 @@ class Success extends StatelessWidget {
                               SizedBox(
                                 height: 16 * fem,
                               ),
-                              Container(
+                              SizedBox(
                                 // imputfillb7F (303:12395)
                                 width: double.infinity,
                                 child: Column(
@@ -432,7 +434,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff1e1e1e),
+                                          color: const Color(0xff1e1e1e),
                                         ),
                                       ),
                                     ),
@@ -443,7 +445,7 @@ class Success extends StatelessWidget {
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xffcdcdcd)),
+                                            color: const Color(0xffcdcdcd)),
                                         borderRadius:
                                             BorderRadius.circular(12 * fem),
                                       ),
@@ -454,7 +456,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                       ),
                                     ),
@@ -464,7 +466,7 @@ class Success extends StatelessWidget {
                               SizedBox(
                                 height: 16 * fem,
                               ),
-                              Container(
+                              SizedBox(
                                 // imputfill8mP (303:12396)
                                 width: double.infinity,
                                 child: Column(
@@ -481,7 +483,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff1e1e1e),
+                                          color: const Color(0xff1e1e1e),
                                         ),
                                       ),
                                     ),
@@ -492,7 +494,7 @@ class Success extends StatelessWidget {
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xffcdcdcd)),
+                                            color: const Color(0xffcdcdcd)),
                                         borderRadius:
                                             BorderRadius.circular(12 * fem),
                                       ),
@@ -503,7 +505,7 @@ class Success extends StatelessWidget {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                       ),
                                     ),
@@ -529,7 +531,7 @@ class Success extends StatelessWidget {
                     child: Opacity(
                       opacity: 0.5,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0x7f050505),
                         ),
                       ),
@@ -547,7 +549,7 @@ class Success extends StatelessWidget {
                   width: 315 * fem,
                   height: 362 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.circular(20 * fem),
                   ),
                   child: Column(
@@ -587,7 +589,7 @@ class Success extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff1e1e1e),
+                                  color: const Color(0xff1e1e1e),
                                 ),
                               ),
                             ),
@@ -599,7 +601,7 @@ class Success extends StatelessWidget {
                         width: double.infinity,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(12 * fem),
                         ),
                         child: Center(
@@ -612,7 +614,7 @@ class Success extends StatelessWidget {
                                 fontSize: 17 * ffem,
                                 fontWeight: FontWeight.w600,
                                 height: 1.4705882353 * ffem / fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),

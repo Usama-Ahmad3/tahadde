@@ -8,13 +8,12 @@ import '../common_widgets/internet_loss.dart';
 import '../common_widgets/localeHelper.dart';
 import '../localizations.dart';
 import '../network/network_calls.dart';
-import '../newStructure/view/light-design/booking-details.dart';
-import '../newStructure/view/light-design/ground-details.dart';
-import '../newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'routingConstant.dart';
 import 'utility.dart';
 
 class More extends StatefulWidget {
+  const More({super.key});
+
   @override
   _MoreState createState() => _MoreState();
 }
@@ -27,7 +26,7 @@ class _MoreState extends State<More> {
 
   // String base64Image =
   //     "https://tahadde.page.link?link=https://www.google.com/&apn=com.root.tahadde";
-  NetworkCalls _networkCalls = NetworkCalls();
+  final NetworkCalls _networkCalls = NetworkCalls();
   final scaffoldkey = GlobalKey<ScaffoldState>();
   late bool _internet;
   bool _isLoading = true;
@@ -572,7 +571,7 @@ class _MoreState extends State<More> {
                       ),
                     )
                   : Expanded(
-                      child: Container(
+                      child: SizedBox(
                         height: sizeHeight * .5,
                         child: InternetLoss(
                           onChange: () {
@@ -594,7 +593,7 @@ class _MoreState extends State<More> {
 
   Widget _buildLoadingShimmer(sizeWidth) {
     return Expanded(
-      child: Container(
+      child: SizedBox(
         width: sizeWidth,
         height: 500,
         child: Column(
@@ -706,7 +705,7 @@ class _MoreState extends State<More> {
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         builder: (BuildContext bc) {
-          return Container(
+          return SizedBox(
             height: sizeHeight * .35,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -823,8 +822,8 @@ class _MoreState extends State<More> {
                     ),
                   ),
                   Flexible(
-                    child: Container(),
                     flex: 1,
+                    child: Container(),
                   ),
                 ],
               ),

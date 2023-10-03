@@ -38,8 +38,32 @@ class AppLocalizations {
     return Intl.message('bookPitch', name: 'bookPitch');
   }
 
+  String get academyLocation {
+    return Intl.message('Academy Location', name: 'academyLocation');
+  }
+
   String get noAcademy {
     return Intl.message('No Academies Available', name: 'noAcademy');
+  }
+
+  String get academyList {
+    return Intl.message('Academy List', name: 'academyList');
+  }
+
+  String get academyOnly {
+    return Intl.message('Academy', name: 'academyOnly');
+  }
+
+  String get status {
+    return Intl.message('Status', name: 'status');
+  }
+
+  String get loginRequired {
+    return Intl.message('login required to see booking', name: 'loginRequired');
+  }
+
+  String get academyBook {
+    return Intl.message('Academy Booking', name: 'academyBook');
   }
 
   String get filterResult {
@@ -1729,6 +1753,14 @@ class AppLocalizations {
     return Intl.message('youcannotcreatea', name: 'youcannotcreatea');
   }
 
+  String get perAcademy {
+    return Intl.message('Per Academy', name: 'perAcademy');
+  }
+
+  String get academyCreated {
+    return Intl.message('Academy Created', name: 'academyCreated');
+  }
+
   String get asyourpitchhasnotbeenverifiedyet {
     return Intl.message('asyourpitchhasnotbeenverifiedyet',
         name: 'asyourpitchhasnotbeenverifiedyet');
@@ -2113,6 +2145,29 @@ class AppLocalizations {
     return Intl.message('endTime', name: 'endTime');
   }
 
+  String get swipeDelete {
+    return Intl.message('Swipe to delete', name: 'swipeD');
+  }
+
+  String get noSession {
+    return Intl.message('No Session Created', name: 'noSession');
+  }
+
+  String get yourTimeNot {
+    return Intl.message(
+        'Your time is not proper as compare to previous sessions',
+        name: 'yourTime');
+  }
+
+  String get copySession {
+    return Intl.message('Copy From first session for all days',
+        name: 'copyFrom');
+  }
+
+  String get copy {
+    return Intl.message('Copy', name: 'copy');
+  }
+
   String get createSession {
     return Intl.message('createSession', name: 'createSession');
   }
@@ -2146,7 +2201,7 @@ class AppLocalizations {
   }
 
   String get extraGraceTime {
-    return Intl.message('extraGraceTime', name: 'extraGraceTime');
+    return Intl.message('Extra Slot', name: 'extraGraceTime');
   }
 
   String get monday {

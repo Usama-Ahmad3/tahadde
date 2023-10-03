@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
-import 'package:myfatoorah_flutter/utils/MFCountry.dart';
-import 'package:myfatoorah_flutter/utils/MFEnvironment.dart';
+import "package:myfatoorah_flutter/utils/MFCountry.dart";
+import "package:myfatoorah_flutter/utils/MFEnvironment.dart";
 import 'package:shimmer/shimmer.dart';
 
 import '../../../common_widgets/internet_loss.dart';
@@ -13,7 +12,9 @@ import '../../../localizations.dart';
 import '../../../main.dart';
 import '../../../modelClass/cardDetail.dart';
 import '../../../network/network_calls.dart';
+import '../../../newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 
+// ignore: must_be_immutable
 class Payment extends StatefulWidget {
   dynamic detail;
 
@@ -97,9 +98,9 @@ class _PaymentState extends State<Payment> {
   loadToken() {
     _networkCalls.transectionToken(onSuccess: (msg) {
       mAPIKey = "bearer ${msg["bearer_token"]}";
-      print("TokenBearer${msg["bearer_token"]}");
+      // print("TokenBearer${msg["bearer_token"]}");
       baseUrl = msg["myfatoorah_base_url"];
-      print("Url${msg['myfatoorah_base_url']}");
+      // print("Url${msg['myfatoorah_base_url']}");
       // MFSDK.init(mAPIKey, msg, msg["myfatoorah_base_url"]);
       MFSDK.init(
           mAPIKey,
@@ -157,35 +158,8 @@ class _PaymentState extends State<Payment> {
     return _isLoading
         ? Scaffold(
             backgroundColor: Colors.black,
-            appBar: PreferredSize(
-              preferredSize: Size(sizewidth, sizeheight * 0.108),
-              child: AppBar(
-                title: Text(
-                  AppLocalizations.of(context)!.selectPaymentMethod,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Colors.white),
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.black,
-                leadingWidth: sizewidth * 0.18,
-                leading: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      padding: EdgeInsets.all(sizeheight * 0.008),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          shape: BoxShape.circle),
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.close,
-                          color: Colors.white,
-                        ),
-                      )),
-                ),
-              ),
-            ),
+            appBar: appBarWidget(sizewidth, sizeheight, context,
+                AppLocalizations.of(context)!.selectPaymentMethod, true),
             body: Container(
               height: sizeheight,
               width: sizewidth,
@@ -222,116 +196,9 @@ class _PaymentState extends State<Payment> {
         : internet
             ? Scaffold(
                 backgroundColor: Colors.black,
-                appBar: PreferredSize(
-                  preferredSize: Size(sizewidth, sizeheight * 0.108),
-                  child: AppBar(
-                    title: Text(
-                      AppLocalizations.of(context)!.selectPaymentMethod,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: Colors.white),
-                    ),
-                    centerTitle: true,
-                    backgroundColor: Colors.black,
-                    leadingWidth: sizewidth * 0.18,
-                    leading: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                            padding: EdgeInsets.all(sizeheight * 0.008),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                shape: BoxShape.circle),
-                            child: Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.close,
-                                color: Colors.white,
-                              ),
-                            )),
-                      ),
-                    ),
-                  ),
-                ),
+                appBar: appBarWidget(sizewidth, sizeheight, context,
+                    AppLocalizations.of(context)!.selectPaymentMethod, true),
                 resizeToAvoidBottomInset: true,
-                // bottomNavigationBar: visibilityObs
-                //     ? ButtonWidget(
-                //         onTaped: () {},
-                //         title: Row(
-                //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //           crossAxisAlignment: CrossAxisAlignment.center,
-                //           children: <Widget>[
-                //             Column(
-                //               mainAxisAlignment: MainAxisAlignment.center,
-                //               children: <Widget>[
-                //                 Text(
-                //                   '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
-                //                   style: const TextStyle(
-                //                       color: Color(0XFFFFFFFF),
-                //                       fontSize: 20),
-                //                 ),
-                //               ],
-                //             ),
-                //             GestureDetector(
-                //               onTap: () {
-                //                 _networkCalls.checkInternetConnectivity(
-                //                     onSuccess: (msg) {
-                //                   if (msg) {
-                //                     setState(() {
-                //                       _isLoading = true;
-                //                     });
-                //                     _networkCalls.checkInternetConnectivity(
-                //                         onSuccess: (msg) {
-                //                       if (msg) {
-                //                         executeRegularPayment();
-                //                       } else {
-                //                         if (mounted) {
-                //                           showMessage(
-                //                               AppLocalizations.of(context)!
-                //                                   .noInternetConnection);
-                //                         }
-                //                       }
-                //                     });
-                //                   } else {
-                //                     if (mounted) {
-                //                       showMessage(
-                //                           AppLocalizations.of(context)!
-                //                               .noInternetConnection);
-                //                     }
-                //                   }
-                //                 });
-                //
-                //                 //navigateToDetail();
-                //               },
-                //               child: Container(
-                //                 decoration: const BoxDecoration(
-                //                   color: Color(0XFFFFFFFF),
-                //                   borderRadius: BorderRadius.only(
-                //                     topLeft: Radius.circular(5.0),
-                //                     topRight: Radius.circular(5.0),
-                //                     bottomLeft: Radius.circular(5.0),
-                //                     bottomRight: Radius.circular(5.0),
-                //                   ),
-                //                 ),
-                //                 height: sizeheight * .04,
-                //                 width: sizewidth * .3,
-                //                 alignment: Alignment.center,
-                //                 child: Text(
-                //                   AppLocalizations.of(context)!.payNow,
-                //                   style: const TextStyle(
-                //                       color: Color(0XFF25A163)),
-                //                 ),
-                //               ),
-                //             )
-                //           ],
-                //         ),
-                //         isLoading: _isLoading)
-                //     : Container(
-                //         height: 1,
-                //       ),
                 body: Container(
                   height: sizeheight,
                   width: sizewidth,
@@ -370,7 +237,7 @@ class _PaymentState extends State<Payment> {
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 color: isSelected[index]
-                                                    ? const Color(0xffffc300)
+                                                    ? const Color(0xff1d7e55)
                                                     : MyAppState.mode ==
                                                             ThemeMode.light
                                                         ? Colors.grey

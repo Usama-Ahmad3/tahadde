@@ -94,7 +94,7 @@ class _OverlayWidgetState extends State<OverlayWidget> {
                                     padding: const EdgeInsets.all(10),
                                     label: Text(
                                       widget.sportsList[index].name!,
-                                      style: TextStyle(color: Colors.black),
+                                      style: const TextStyle(color: Colors.black),
                                     )),
                               ),
                             )

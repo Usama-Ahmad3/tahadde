@@ -661,15 +661,15 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                               onTaped: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
-                                  String _facility = "";
+                                  String facility = "";
                                   for (int i = 0; i < indexList.length; i++) {
                                     print(indexList);
-                                    _facility = "$_facility${indexList[i]},";
+                                    facility = "$facility${indexList[i]},";
                                   }
-                                  _facility = _facility.substring(
-                                      0, _facility.length - 1);
-                                  _facility = _facility.substring(0);
-                                  detailSportsModel?.facility = _facility;
+                                  facility = facility.substring(
+                                      0, facility.length - 1);
+                                  facility = facility.substring(0);
+                                  detailSportsModel?.facility = facility;
                                   String gamePlayApi;
                                   if (indoor && outdoor) {
                                     gamePlayApi = "both";

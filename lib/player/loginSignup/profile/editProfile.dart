@@ -18,6 +18,8 @@ import '../../../network/network_calls.dart';
 import '../signup.dart';
 
 class EditProfile extends StatefulWidget {
+  const EditProfile({super.key});
+
   @override
   _EditProfileState createState() => _EditProfileState();
 }
@@ -57,7 +59,7 @@ class _EditProfileState extends State<EditProfile> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -177,7 +179,7 @@ class _EditProfileState extends State<EditProfile> {
             _curentlySelectedItem = msg['playerPosition'] != ""
                 ? msg['playerPosition']["name"]
                 : "";
-            _gender = msg['gender'] ?? null;
+            _gender = msg['gender'];
             _networkCalls.playerPosition(
               onSuccess: (msg) {
                 if (mounted) {
@@ -572,7 +574,7 @@ class _EditProfileState extends State<EditProfile> {
                                   onSaved: (value) {
                                     _detail.last_name = value ?? '';
                                   }),
-                              Container(
+                              SizedBox(
                                 height: sizeheight * .078,
                                 width: sizewidth,
                                 child: Row(
@@ -591,7 +593,7 @@ class _EditProfileState extends State<EditProfile> {
 
                                               initialSelection:
                                                   _detail.countryCode,
-                                              favorite: ['+971', 'ITU'],
+                                              favorite: const ['+971', 'ITU'],
 
                                               showCountryOnly: false,
                                               // optional. Shows only country name and flag when popup is closed.
@@ -642,7 +644,7 @@ class _EditProfileState extends State<EditProfile> {
                                               // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                                               initialSelection:
                                                   _detail.countryCode,
-                                              favorite: [
+                                              favorite: const [
                                                 '+971',
                                                 'ITU',
                                               ],
@@ -699,7 +701,7 @@ class _EditProfileState extends State<EditProfile> {
                                 width: sizewidth,
                                 color: Colors.grey,
                               ),
-                              Container(
+                              SizedBox(
                                 height: sizeheight * .07,
                                 width: sizewidth,
                                 child: Center(

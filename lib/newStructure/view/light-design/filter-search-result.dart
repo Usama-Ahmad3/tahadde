@@ -3,25 +3,27 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class FilterSearch extends StatelessWidget {
+  const FilterSearch({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // filtersearchresultdiH (360:19920)
         width: double.infinity,
         height: 956 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Container(
           // filtersearchresult8Q9 (320:12932)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -58,7 +60,7 @@ class FilterSearch extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -132,7 +134,7 @@ class FilterSearch extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ],
@@ -148,13 +150,13 @@ class FilterSearch extends StatelessWidget {
                 width: double.infinity,
                 height: 828 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
                   ),
                 ),
-                child: Container(
+                child: SizedBox(
                   // captionandcarddetailsVLV (320:12935)
                   width: double.infinity,
                   height: double.infinity,
@@ -174,11 +176,11 @@ class FilterSearch extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             height: 1.25 * ffem / fem,
                             letterSpacing: -0.2 * fem,
-                            color: Color(0xff050505),
+                            color: const Color(0xff050505),
                           ),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         // groundlistFU5 (320:13022)
                         width: double.infinity,
                         child: Column(
@@ -190,11 +192,11 @@ class FilterSearch extends StatelessWidget {
                                   0 * fem, 0 * fem, 0 * fem, 16 * fem),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(15 * fem),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x14070516),
+                                    color: const Color(0x14070516),
                                     offset: Offset(0 * fem, 26 * fem),
                                     blurRadius: 30 * fem,
                                   ),
@@ -240,11 +242,11 @@ class FilterSearch extends StatelessWidget {
                                               fontWeight: FontWeight.w600,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.2 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // addressanddistanceyS1 (I320:13023;93:9229)
                                           width: double.infinity,
                                           height: 24 * fem,
@@ -292,7 +294,7 @@ class FilterSearch extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff828282),
+                                                            const Color(0xff828282),
                                                       ),
                                                     ),
                                                   ],
@@ -338,7 +340,7 @@ class FilterSearch extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff050505),
+                                                            const Color(0xff050505),
                                                       ),
                                                     ),
                                                   ],
@@ -362,11 +364,11 @@ class FilterSearch extends StatelessWidget {
                                   0 * fem, 0 * fem, 0 * fem, 16 * fem),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(15 * fem),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x14070516),
+                                    color: const Color(0x14070516),
                                     offset: Offset(0 * fem, 26 * fem),
                                     blurRadius: 30 * fem,
                                   ),
@@ -413,11 +415,11 @@ class FilterSearch extends StatelessWidget {
                                               fontWeight: FontWeight.w600,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.2 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // addressanddistanceYxH (I320:13024;93:9229)
                                           width: double.infinity,
                                           height: 24 * fem,
@@ -465,7 +467,7 @@ class FilterSearch extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff828282),
+                                                            const Color(0xff828282),
                                                       ),
                                                     ),
                                                   ],
@@ -511,7 +513,7 @@ class FilterSearch extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff050505),
+                                                            const Color(0xff050505),
                                                       ),
                                                     ),
                                                   ],
@@ -535,11 +537,11 @@ class FilterSearch extends StatelessWidget {
                                   0 * fem, 0 * fem, 0 * fem, 16 * fem),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(15 * fem),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x14070516),
+                                    color: const Color(0x14070516),
                                     offset: Offset(0 * fem, 26 * fem),
                                     blurRadius: 30 * fem,
                                   ),
@@ -586,11 +588,11 @@ class FilterSearch extends StatelessWidget {
                                               fontWeight: FontWeight.w600,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.2 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // addressanddistanceeJV (I320:13025;93:9229)
                                           width: double.infinity,
                                           height: 24 * fem,
@@ -638,7 +640,7 @@ class FilterSearch extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff828282),
+                                                            const Color(0xff828282),
                                                       ),
                                                     ),
                                                   ],
@@ -684,7 +686,7 @@ class FilterSearch extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff050505),
+                                                            const Color(0xff050505),
                                                       ),
                                                     ),
                                                   ],

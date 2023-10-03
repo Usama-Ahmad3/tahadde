@@ -3,22 +3,25 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart' hide openAppSettings;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart' hide Marker;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../player/HomeScreen/widgets/app_bar.dart';
 
 // ignore: must_be_immutable
 class DocumentScreen extends StatefulWidget {
@@ -37,7 +40,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
   final locationController = TextEditingController();
   var _apiExpiryDate;
   GoogleMapController? mapController;
-  // String locationName = '';
   String? country;
   int checkIndex = -1;
   bool isAddressLoading = true;
@@ -46,6 +48,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
   bool internet = true;
   bool _isImageLoading = false;
   File? image;
+  File? documentFilePath;
+  bool pdfClicked = false;
   var pitch_Id;
   Position? position;
   double? pitchLat;
@@ -66,6 +70,43 @@ class _DocumentScreenState extends State<DocumentScreen> {
     ));
   }
 
+  Future<void> _pickDocument() async {
+    pdfClicked = true;
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        allowCompression: true,
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+
+      if (result != null) {
+        documentFilePath = File(result.files.single.path.toString());
+        print(documentFilePath);
+        setState(() {
+          var detail = {"profile_image": documentFilePath, "type": "bookpitch"};
+          _networkCalls.helperProfile(
+            profileDetail: detail,
+            onSuccess: (msg) {
+              setState(() {
+                pitch_Id = msg;
+                print(msg);
+
+                _isImageLoading = false;
+              });
+            },
+            onFailure: (msg) {},
+            tokenExpire: () {
+              if (mounted) on401(context);
+            },
+          );
+        });
+        Navigator.of(context).pop();
+      }
+    } catch (e) {
+      showMessage(e.toString());
+    }
+  }
+
   Future<void> _showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -76,6 +117,57 @@ class _DocumentScreenState extends State<DocumentScreen> {
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
+                  GestureDetector(
+                    child: const Text('Upload Pdf',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal)),
+                    onTap: () async {
+                      var status = await Permission.photos.status;
+                      if (status.isGranted) {
+                        _pickDocument();
+                      } else if (status.isDenied) {
+                        _pickDocument();
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                CupertinoAlertDialog(
+                                  title: Text(
+                                      AppLocalizations.of(context)!
+                                          .galleryPermission,
+                                      style:
+                                          const TextStyle(color: Colors.black)),
+                                  content: Text(
+                                      AppLocalizations.of(context)!
+                                          .thisGalleryPicturesUploadImage,
+                                      style:
+                                          const TextStyle(color: Colors.black)),
+                                  actions: <Widget>[
+                                    CupertinoDialogAction(
+                                      child: Text(
+                                          AppLocalizations.of(context)!.deny,
+                                          style: const TextStyle(
+                                              color: Colors.black)),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                    CupertinoDialogAction(
+                                      child: Text(
+                                          AppLocalizations.of(context)!.setting,
+                                          style: const TextStyle(
+                                              color: Colors.black)),
+                                      onPressed: () => openAppSettings(),
+                                    ),
+                                  ],
+                                ));
+                      }
+                    },
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                  ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.choosefromlibrary,
                         style: const TextStyle(
@@ -326,42 +418,17 @@ class _DocumentScreenState extends State<DocumentScreen> {
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
+    var size = MediaQuery.of(context).size;
     return loading
         ? Scaffold(
             backgroundColor: Colors.black,
-            appBar: PreferredSize(
-                preferredSize: Size(sizeWidth, sizeHeight * 0.105),
-                child: AppBar(
-                  title: Text(
-                    AppLocalizations.of(context)!.documents,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.white),
-                  ),
-                  centerTitle: true,
-                  backgroundColor: Colors.black,
-                  leadingWidth: sizeWidth * 0.18,
-                  leading: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                          padding: EdgeInsets.all(sizeHeight * 0.008),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              shape: BoxShape.circle),
-                          child: const Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.close,
-                              color: Colors.white,
-                            ),
-                          )),
-                    ),
-                  ),
-                )),
+            appBar: appBarWidget(
+              sizeWidth,
+              sizeHeight,
+              context,
+              AppLocalizations.of(context)!.document,
+              true,
+            ),
             body: Container(
               height: sizeHeight,
               width: sizeWidth,
@@ -374,7 +441,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               child: const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Color(0xff1d7e55),
+                ),
               ),
             ),
           )
@@ -560,79 +629,14 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   backgroundColor: MyAppState.mode == ThemeMode.light
                       ? Colors.white
                       : const Color(0xff686868),
-                  appBar: PreferredSize(
-                      preferredSize: Size(sizeWidth, sizeHeight * 0.105),
-                      child: AppBar(
-                        title: Text(
-                          AppLocalizations.of(context)!.documents,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(color: Colors.white),
-                        ),
-                        centerTitle: true,
-                        backgroundColor: Colors.black,
-                        leadingWidth: sizeWidth * 0.18,
-                        leading: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                                padding: EdgeInsets.all(sizeHeight * 0.008),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    shape: BoxShape.circle),
-                                child: const Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.close,
-                                    color: Colors.white,
-                                  ),
-                                )),
-                          ),
-                        ),
-                        bottom: PreferredSize(
-                          preferredSize: Size(sizeWidth, 10),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: sizeWidth * 0.035),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: sizeHeight * .005,
-                                  width: sizeWidth * .17,
-                                  color: const Color(0XFF25A163),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: sizeHeight * .005,
-                                  width: sizeWidth * .17,
-                                  color: const Color(0XFF25A163),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: sizeHeight * .005,
-                                  width: sizeWidth * .17,
-                                  color: const Color(0XFF25A163),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: sizeHeight * .005,
-                                  width: sizeWidth * .17,
-                                  color: const Color(0XFFCBCBCB),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: sizeHeight * .005,
-                                  width: sizeWidth * .17,
-                                  color: const Color(0XFFCBCBCB),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )),
+                  appBar: appBarForCreatingAcademy(
+                    size,
+                    context,
+                    AppLocalizations.of(context)!.document,
+                    true,
+                    const Color(0XFFCBCBCB),
+                    const Color(0XFFCBCBCB),
+                  ),
                   body: SingleChildScrollView(
                     child: Container(
                       color: Colors.black,
@@ -671,10 +675,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                           'assets/lottiefiles/profile.json',
                                         ),
                                       )
-                                    : Container(
+                                    : SizedBox(
                                         height: sizeHeight * .2,
                                         width: sizeWidth,
-                                        child: image == null
+                                        child: image != null ||
+                                                documentFilePath != null
                                             ?
                                             // doc.isNotEmpty
                                             //         ? ListView.builder(
@@ -845,6 +850,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                 onTap: () {
                                                   _showChoiceDialog(context);
                                                 },
+                                                child: pdfClicked
+                                                    ? _decidePdfView()
+                                                    : _decideImageview())
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  _showChoiceDialog(context);
+                                                },
                                                 child: Column(
                                                   children: <Widget>[
                                                     flaxibleGap(
@@ -901,13 +913,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                     ),
                                                   ],
                                                 ),
-                                              )
-                                            : GestureDetector(
-                                                onTap: () {
-                                                  _showChoiceDialog(context);
-                                                },
-                                                child: _decideImageview()),
-                                      ),
+                                              )),
                               ),
                               Text(
                                 AppLocalizations.of(context)!.documentName,
@@ -1050,7 +1056,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                       !widget.detail.isEdit!
                                   ? Text(
                                       AppLocalizations.of(context)!
-                                          .pitchLocation,
+                                          .academyLocation,
                                       style: TextStyle(
                                           color:
                                               MyAppState.mode == ThemeMode.light
@@ -1222,6 +1228,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
     setState(() {
       _isImageLoading = true;
       image = File(picture!.path);
+      print('Image$image');
       var detail = {"profile_image": image, "type": "bookpitch"};
       _networkCalls.helperProfile(
         profileDetail: detail,
@@ -1270,6 +1277,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
       // }
     });
     Navigator.of(context).pop();
+  }
+
+  Widget _decidePdfView() {
+    return PDFView(
+      filePath: documentFilePath!.path,
+      enableSwipe: true,
+    );
   }
 
   Widget _decideImageview() {

@@ -515,7 +515,6 @@ class _DocumentsState extends State<Documents> {
                       }),
                   bottomNavigationBar: pitch_Id != null &&
                           pitchLong != null &&
-                          locationName != null &&
                           _expiryDate != null &&
                           _nameController.text != "" &&
                           !widget.detail.isEdit!
@@ -970,8 +969,7 @@ class _DocumentsState extends State<Documents> {
                               padding: EdgeInsets.symmetric(
                                 horizontal: sizeWidth * .07,
                               ),
-                              child: locationName != null &&
-                                      !widget.detail.isEdit!
+                              child: !widget.detail.isEdit!
                                   ? Container(
                                       alignment: AppLocalizations.of(context)!
                                                   .locale ==
@@ -1030,7 +1028,7 @@ class _DocumentsState extends State<Documents> {
                                               SizedBox(
                                                 width: sizeWidth * .7,
                                                 child: Text(
-                                                  "$locationName",
+                                                  locationName,
                                                   style: TextStyle(
                                                     decoration:
                                                         TextDecoration.none,

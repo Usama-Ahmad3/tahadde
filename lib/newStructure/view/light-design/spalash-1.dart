@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Splash1 extends StatelessWidget {
+  const Splash1({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // spalash1QQq (200:10874)
         width: double.infinity,
         height: 812 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xff7b61ff),
         ),
         child: Stack(
@@ -43,11 +45,11 @@ class Splash1 extends StatelessWidget {
                 width: 514.19 * fem,
                 height: 675.37 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xfff1f1f1),
+                  color: const Color(0xfff1f1f1),
                   borderRadius: BorderRadius.circular(30.0866775513 * fem),
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0x306e6f7f),
+                      color: const Color(0x306e6f7f),
                       offset: Offset(-32.2357254028 * fem, 21.4904823303 * fem),
                       blurRadius: 42.9809646606 * fem,
                     ),
@@ -59,7 +61,7 @@ class Splash1 extends StatelessWidget {
                       // frame1000006384CED (373:17040)
                       left: 220.228515625 * fem,
                       top: 51.91796875 * fem,
-                      child: Container(
+                      child: SizedBox(
                         width: 239.46 * fem,
                         height: 123.68 * fem,
                         child: Column(
@@ -85,7 +87,7 @@ class Splash1 extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(
                                                 9.3165607452 * fem),
-                                            color: Color(0xff2c344b),
+                                            color: const Color(0xff2c344b),
                                           ),
                                         ),
                                       ),
@@ -103,7 +105,7 @@ class Splash1 extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(
                                                 1.8633122444 * fem),
-                                            color: Color(0x4ca1a1a1),
+                                            color: const Color(0x4ca1a1a1),
                                           ),
                                         ),
                                       ),
@@ -117,7 +119,7 @@ class Splash1 extends StatelessWidget {
                               width: 29.55 * fem,
                               height: 29.55 * fem,
                               decoration: BoxDecoration(
-                                color: Color(0xffc5c5c5),
+                                color: const Color(0xffc5c5c5),
                                 borderRadius:
                                     BorderRadius.circular(27.9496841431 * fem),
                               ),
@@ -136,7 +138,7 @@ class Splash1 extends StatelessWidget {
                         width: 278.43 * fem,
                         height: 155.85 * fem,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffe3e3e3)),
+                          border: Border.all(color: const Color(0xffe3e3e3)),
                           borderRadius:
                               BorderRadius.circular(13.9748420715 * fem),
                         ),
@@ -161,7 +163,7 @@ class Splash1 extends StatelessWidget {
                                     width: 29.55 * fem,
                                     height: 29.55 * fem,
                                     decoration: BoxDecoration(
-                                      color: Color(0xffc5c5c5),
+                                      color: const Color(0xffc5c5c5),
                                       borderRadius: BorderRadius.circular(
                                           27.9496841431 * fem),
                                     ),
@@ -170,7 +172,7 @@ class Splash1 extends StatelessWidget {
                                     // rectangle40199oYm (373:17047)
                                     width: 55.93 * fem,
                                     height: 27.81 * fem,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xffe3e3e3),
                                     ),
                                   ),
@@ -184,7 +186,7 @@ class Splash1 extends StatelessWidget {
                               width: 29.55 * fem,
                               height: 29.55 * fem,
                               decoration: BoxDecoration(
-                                color: Color(0xffffc300),
+                                color: const Color(0xffffc300),
                                 borderRadius:
                                     BorderRadius.circular(27.9496841431 * fem),
                               ),
@@ -197,7 +199,7 @@ class Splash1 extends StatelessWidget {
                       // frame10000063903T7 (373:17050)
                       left: 179.3743896484 * fem,
                       top: 147.0283203125 * fem,
-                      child: Container(
+                      child: SizedBox(
                         width: 253.56 * fem,
                         height: 121.59 * fem,
                         child: Row(
@@ -210,7 +212,7 @@ class Splash1 extends StatelessWidget {
                               padding: EdgeInsets.fromLTRB(
                                   6 * fem, 5.15 * fem, 10.22 * fem, 9.6 * fem),
                               decoration: BoxDecoration(
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                                 borderRadius:
                                     BorderRadius.circular(12.8942899704 * fem),
                               ),
@@ -289,7 +291,7 @@ class Splash1 extends StatelessWidget {
                           height: 456.92 * fem,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(22.359746933 * fem),
                                 topRight: Radius.circular(22.359746933 * fem),
@@ -335,7 +337,7 @@ class Splash1 extends StatelessWidget {
                       // frame1000006400qhj (373:17128)
                       left: 12.3259277344 * fem,
                       top: 535.5078125 * fem,
-                      child: Container(
+                      child: SizedBox(
                         width: 221.83 * fem,
                         height: 113.12 * fem,
                         child: Row(
@@ -419,7 +421,7 @@ class Splash1 extends StatelessWidget {
                 width: 375 * fem,
                 height: 385 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xff050505),
+                  color: const Color(0xff050505),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -460,7 +462,7 @@ class Splash1 extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                     ),
                                   ),
                                 ),
@@ -477,14 +479,14 @@ class Splash1 extends StatelessWidget {
                                       fontSize: 13 * ffem,
                                       fontWeight: FontWeight.w400,
                                       height: 1.3846153846 * ffem / fem,
-                                      color: Color(0xff828282),
+                                      color: const Color(0xff828282),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // slider7cd (202:12255)
                             width: 38 * fem,
                             height: 12 * fem,
@@ -497,7 +499,7 @@ class Splash1 extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       // buttonandskipday (217:11922)
                       width: double.infinity,
                       child: Row(
@@ -514,11 +516,11 @@ class Splash1 extends StatelessWidget {
                                 fontSize: 15 * ffem,
                                 fontWeight: FontWeight.w500,
                                 height: 1.3333333333 * ffem / fem,
-                                color: Color(0xff505050),
+                                color: const Color(0xff505050),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // frame1000006380Jh7 (217:11917)
                             width: 64 * fem,
                             height: 64 * fem,

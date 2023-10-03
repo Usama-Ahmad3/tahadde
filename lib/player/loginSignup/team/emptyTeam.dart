@@ -12,6 +12,8 @@ import 'playerJoinTeam.dart';
 import 'teamPlayer.dart';
 
 class TeamEmpaty extends StatefulWidget {
+  const TeamEmpaty({super.key});
+
   @override
   _TeamEmpatyState createState() => _TeamEmpatyState();
 }
@@ -158,10 +160,10 @@ class _TeamEmpatyState extends State<TeamEmpaty> {
                         index: 0,
                       )
                     : subRole == "member"
-                        ? TeamPlayer()
+                        ? const TeamPlayer()
                         : subRole == null
                             ? invitatiionStatus
-                                ? PlayerJoinTeam()
+                                ? const PlayerJoinTeam()
                                 : Material(
                                     child: Scaffold(
                                         appBar: PreferredSize(
@@ -284,7 +286,7 @@ class _TeamEmpatyState extends State<TeamEmpaty> {
                                           ],
                                         )),
                                   )
-                            : TeamPlayer()
+                            : const TeamPlayer()
                 : Scaffold(
                     appBar: PreferredSize(
                         preferredSize: const Size.fromHeight(0),
@@ -329,7 +331,7 @@ class _TeamEmpatyState extends State<TeamEmpaty> {
       body: Container(
         height: sizeHeight,
         width: sizeWidth,
-        color: const Color(0XFFFF0F0F0),
+        color: const Color(0xffff0f0f0),
         child: Column(
           children: <Widget>[
             buildAppBar(

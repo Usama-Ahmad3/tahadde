@@ -3,25 +3,27 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class GroundBooking extends StatelessWidget {
+  const GroundBooking({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // groundbookingVVb (360:20402)
         width: double.infinity,
         height: 900 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Container(
           // groundbookingDwP (305:12399)
           width: 377 * fem,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -58,7 +60,7 @@ class GroundBooking extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -132,7 +134,7 @@ class GroundBooking extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ],
@@ -157,7 +159,7 @@ class GroundBooking extends StatelessWidget {
                           10 * fem, 8 * fem, 10 * fem, 8 * fem),
                       height: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color(0xff1e1e1e),
+                        color: const Color(0xff1e1e1e),
                         borderRadius: BorderRadius.circular(32 * fem),
                       ),
                       child: Column(
@@ -175,7 +177,7 @@ class GroundBooking extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff999999),
+                                color: const Color(0xff999999),
                               ),
                             ),
                           ),
@@ -188,7 +190,7 @@ class GroundBooking extends StatelessWidget {
                               fontSize: 13 * ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.3846153846 * ffem / fem,
-                              color: Color(0xff999999),
+                              color: const Color(0xff999999),
                             ),
                           ),
                         ],
@@ -200,7 +202,7 @@ class GroundBooking extends StatelessWidget {
                           10 * fem, 8 * fem, 10 * fem, 9 * fem),
                       height: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(32 * fem),
                       ),
                       child: Column(
@@ -218,7 +220,7 @@ class GroundBooking extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff1e1e1e),
+                                color: const Color(0xff1e1e1e),
                               ),
                             ),
                           ),
@@ -231,7 +233,7 @@ class GroundBooking extends StatelessWidget {
                               fontSize: 13 * ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.3846153846 * ffem / fem,
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                             ),
                           ),
                         ],
@@ -251,7 +253,7 @@ class GroundBooking extends StatelessWidget {
                                 16 * fem, 8 * fem, 16 * fem, 8 * fem),
                             height: double.infinity,
                             decoration: BoxDecoration(
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32 * fem),
                             ),
                             child: Column(
@@ -269,7 +271,7 @@ class GroundBooking extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -282,7 +284,7 @@ class GroundBooking extends StatelessWidget {
                                     fontSize: 13 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846 * ffem / fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -297,7 +299,7 @@ class GroundBooking extends StatelessWidget {
                                 13.5 * fem, 8 * fem, 13.5 * fem, 8 * fem),
                             height: double.infinity,
                             decoration: BoxDecoration(
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32 * fem),
                             ),
                             child: Column(
@@ -315,7 +317,7 @@ class GroundBooking extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -328,7 +330,7 @@ class GroundBooking extends StatelessWidget {
                                     fontSize: 13 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846 * ffem / fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -343,7 +345,7 @@ class GroundBooking extends StatelessWidget {
                                 12 * fem, 8 * fem, 12 * fem, 8 * fem),
                             height: double.infinity,
                             decoration: BoxDecoration(
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32 * fem),
                             ),
                             child: Column(
@@ -361,7 +363,7 @@ class GroundBooking extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -374,7 +376,7 @@ class GroundBooking extends StatelessWidget {
                                     fontSize: 13 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846 * ffem / fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -390,7 +392,7 @@ class GroundBooking extends StatelessWidget {
                             width: 48 * fem,
                             height: double.infinity,
                             decoration: BoxDecoration(
-                              color: Color(0xff1e1e1e),
+                              color: const Color(0xff1e1e1e),
                               borderRadius: BorderRadius.circular(32 * fem),
                             ),
                             child: Column(
@@ -408,7 +410,7 @@ class GroundBooking extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),
                                 ),
@@ -421,7 +423,7 @@ class GroundBooking extends StatelessWidget {
                                     fontSize: 13 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846 * ffem / fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
@@ -440,7 +442,7 @@ class GroundBooking extends StatelessWidget {
                     EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 38 * fem),
                 width: 375 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -449,7 +451,7 @@ class GroundBooking extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       // captionandcarddetailsKCM (305:12402)
                       width: double.infinity,
                       child: Column(
@@ -468,11 +470,11 @@ class GroundBooking extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // frame1000006383K5s (306:12750)
                             width: double.infinity,
                             child: Column(
@@ -485,12 +487,12 @@ class GroundBooking extends StatelessWidget {
                                   width: double.infinity,
                                   height: 74 * fem,
                                   decoration: BoxDecoration(
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Color(0x14070d1c),
+                                        color: const Color(0x14070d1c),
                                         offset: Offset(0 * fem, 30 * fem),
                                         blurRadius: 30 * fem,
                                       ),
@@ -559,11 +561,11 @@ class GroundBooking extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff050505),
+                                                            const Color(0xff050505),
                                                       ),
                                                     ),
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     // frame1000006382LYh (I306:12699;306:12554)
                                                     width: double.infinity,
                                                     child: Row(
@@ -599,7 +601,7 @@ class GroundBooking extends StatelessWidget {
                                                                 1.3846153846 *
                                                                     ffem /
                                                                     fem,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffb4b4b4),
                                                           ),
                                                         ),
@@ -612,7 +614,7 @@ class GroundBooking extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selector4uw (I306:12699;137:9500)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -636,8 +638,8 @@ class GroundBooking extends StatelessWidget {
                                   height: 74 * fem,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xffe6e6e6)),
-                                    color: Color(0xffffffff),
+                                        Border.all(color: const Color(0xffe6e6e6)),
+                                    color: const Color(0xffffffff),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -704,11 +706,11 @@ class GroundBooking extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff050505),
+                                                            const Color(0xff050505),
                                                       ),
                                                     ),
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     // frame1000006382xnM (I306:12716;306:12554)
                                                     width: double.infinity,
                                                     child: Row(
@@ -744,7 +746,7 @@ class GroundBooking extends StatelessWidget {
                                                                 1.3846153846 *
                                                                     ffem /
                                                                     fem,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffb4b4b4),
                                                           ),
                                                         ),
@@ -757,7 +759,7 @@ class GroundBooking extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selectorHTF (I306:12716;137:9500)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -781,8 +783,8 @@ class GroundBooking extends StatelessWidget {
                                   height: 74 * fem,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xffe6e6e6)),
-                                    color: Color(0xffffffff),
+                                        Border.all(color: const Color(0xffe6e6e6)),
+                                    color: const Color(0xffffffff),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -849,11 +851,11 @@ class GroundBooking extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff050505),
+                                                            const Color(0xff050505),
                                                       ),
                                                     ),
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     // frame10000063828kh (I306:12734;306:12554)
                                                     width: double.infinity,
                                                     child: Row(
@@ -889,7 +891,7 @@ class GroundBooking extends StatelessWidget {
                                                                 1.3846153846 *
                                                                     ffem /
                                                                     fem,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffb4b4b4),
                                                           ),
                                                         ),
@@ -902,7 +904,7 @@ class GroundBooking extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selectorZ5K (I306:12734;137:9500)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -924,7 +926,7 @@ class GroundBooking extends StatelessWidget {
                     SizedBox(
                       height: 24 * fem,
                     ),
-                    Container(
+                    SizedBox(
                       // captionandcarddetailsesT (306:12751)
                       width: double.infinity,
                       child: Column(
@@ -943,17 +945,17 @@ class GroundBooking extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // frame1000006387CAD (306:13107)
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   // frame10000063847HB (306:13088)
                                   width: double.infinity,
                                   height: 47 * fem,
@@ -972,7 +974,7 @@ class GroundBooking extends StatelessWidget {
                                             16 * fem),
                                         height: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xfff2f2f2),
+                                          color: const Color(0xfff2f2f2),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -996,11 +998,11 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: Color(0xff9b9b9b),
+                                                  color: const Color(0xff9b9b9b),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // selector1ms (I306:13080;306:12919)
                                               width: 12.5 * fem,
                                               height: 12.5 * fem,
@@ -1022,7 +1024,7 @@ class GroundBooking extends StatelessWidget {
                                             16 * fem),
                                         height: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -1046,11 +1048,11 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: Color(0xffffffff),
+                                                  color: const Color(0xffffffff),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // selectorwow (I306:13084;306:13010)
                                               width: 15 * fem,
                                               height: 15 * fem,
@@ -1069,7 +1071,7 @@ class GroundBooking extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // frame1000006385TXP (306:13089)
                                   width: double.infinity,
                                   height: 47 * fem,
@@ -1088,7 +1090,7 @@ class GroundBooking extends StatelessWidget {
                                             16 * fem),
                                         height: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -1112,11 +1114,11 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: Color(0xffffffff),
+                                                  color: const Color(0xffffffff),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // selectorP3f (I306:13090;306:13010)
                                               width: 15 * fem,
                                               height: 15 * fem,
@@ -1138,12 +1140,12 @@ class GroundBooking extends StatelessWidget {
                                             16 * fem),
                                         height: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffffffff),
+                                          color: const Color(0xffffffff),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Color(0x14060a17),
+                                              color: const Color(0x14060a17),
                                               offset: Offset(0 * fem, 30 * fem),
                                               blurRadius: 30 * fem,
                                             ),
@@ -1169,11 +1171,11 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // selectorgws (I306:13091;306:12987)
                                               width: 15 * fem,
                                               height: 15 * fem,
@@ -1192,7 +1194,7 @@ class GroundBooking extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // frame1000006386pYH (306:13098)
                                   width: double.infinity,
                                   height: 47 * fem,
@@ -1211,12 +1213,12 @@ class GroundBooking extends StatelessWidget {
                                             16 * fem),
                                         height: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffffffff),
+                                          color: const Color(0xffffffff),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Color(0x14060a17),
+                                              color: const Color(0x14060a17),
                                               offset: Offset(0 * fem, 30 * fem),
                                               blurRadius: 30 * fem,
                                             ),
@@ -1242,11 +1244,11 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // selectorJLy (I306:13099;306:12987)
                                               width: 15 * fem,
                                               height: 15 * fem,
@@ -1268,7 +1270,7 @@ class GroundBooking extends StatelessWidget {
                                             16 * fem),
                                         height: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xfff2f2f2),
+                                          color: const Color(0xfff2f2f2),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -1292,11 +1294,11 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: Color(0xff9b9b9b),
+                                                  color: const Color(0xff9b9b9b),
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // selectornvM (I306:13100;306:12919)
                                               width: 12.5 * fem,
                                               height: 12.5 * fem,
@@ -1326,7 +1328,7 @@ class GroundBooking extends StatelessWidget {
                       width: double.infinity,
                       height: 57 * fem,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(16 * fem),
                       ),
                       child: Center(
@@ -1338,7 +1340,7 @@ class GroundBooking extends StatelessWidget {
                             fontSize: 17 * ffem,
                             fontWeight: FontWeight.w600,
                             height: 1.4705882353 * ffem / fem,
-                            color: Color(0xff050505),
+                            color: const Color(0xff050505),
                           ),
                         ),
                       ),

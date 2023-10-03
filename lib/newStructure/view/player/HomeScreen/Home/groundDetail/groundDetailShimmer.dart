@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:readmore/readmore.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -106,7 +105,7 @@ class GroundShimmer {
                             ),
 
                             ///GroundList
-                            Text('Ground List',
+                            Text(AppLocalizations.of(context)!.academyList,
                                 style: TextStyle(fontSize: height * 0.03)),
                             ...List.generate(
                                 3,
@@ -162,7 +161,7 @@ class GroundShimmer {
                                     )),
 
                             ///facilities
-                            Facilities(),
+                            const Facilities(),
 
                             ///location
                             Padding(
@@ -283,6 +282,5 @@ class GroundShimmer {
         ],
       ),
     );
-    ;
   }
 }

@@ -119,7 +119,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
       "last_name": widget.detail.lastName,
       "email": widget.detail.email,
       "contact_number": widget.detail.phoneNumber,
-      "role": widget.detail.player,
+      "role":
+          widget.detail.player == 'Owner' ? 'pitchowner' : widget.detail.player,
       "country": "UAE",
       "countryCode": widget.detail.countryCode,
       "password": base64.encode(utf8.encode(widget.detail.password.toString())),
@@ -152,6 +153,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   @override
   void initState() {
+    print(widget.detail.player);
     phoneNo = "${widget.detail.countryCode}${widget.detail.phoneNumber}";
     super.initState();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) async {
@@ -297,7 +299,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                     MyAppState.mode == ThemeMode.light
                                         ? Colors.black12
                                         : Colors.white,
-                                activeColor: Colors.green,
+                                activeColor: const Color(0xff1d7e55),
                                 selectedColor: Colors.grey,
                                 borderWidth: 2,
                               ),

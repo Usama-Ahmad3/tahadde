@@ -16,7 +16,7 @@ class BottomSheett {
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         builder: (BuildContext bc) {
-          return Container(
+          return SizedBox(
             height: sizeHeight * .35,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -133,8 +133,8 @@ class BottomSheett {
                     ),
                   ),
                   Flexible(
-                    child: Container(),
                     flex: 1,
+                    child: Container(),
                   ),
                 ],
               ),

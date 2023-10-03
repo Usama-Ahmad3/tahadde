@@ -10,8 +10,6 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/text
 import 'package:intl/intl.dart';
 
 import '../../common_widgets/internet_loss.dart';
-import '../../common_widgets/loginButoon.dart';
-import '../../constant.dart';
 import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
@@ -21,7 +19,7 @@ import 'signup.dart';
 class SocialDetail extends StatefulWidget {
   var detail;
 
-  SocialDetail({this.detail});
+  SocialDetail({super.key, this.detail});
 
   @override
   _SocialDetailState createState() => _SocialDetailState();
@@ -86,7 +84,7 @@ class _SocialDetailState extends State<SocialDetail> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);

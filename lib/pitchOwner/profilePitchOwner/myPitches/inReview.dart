@@ -9,6 +9,8 @@ import '../../../modelClass/bookPitchModelClass.dart';
 import '../../../network/network_calls.dart';
 
 class ReviewPitch extends StatefulWidget {
+  const ReviewPitch({super.key});
+
   @override
   _ReviewPitchState createState() => _ReviewPitchState();
 }
@@ -269,7 +271,7 @@ class _ReviewPitchState extends State<ReviewPitch> {
                                                               cuisineImageUrl:
                                                                   pitchDetail[
                                                                           index]
-                                                                      ?.bookpitchfiles
+                                                                      .bookpitchfiles
                                                                       ?.files![0]
                                                                       ?.filePath,
                                                             ))),

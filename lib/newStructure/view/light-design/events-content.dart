@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class EventContent extends StatelessWidget {
+  const EventContent({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // eventscontenta7B (360:20031)
         width: double.infinity,
         height: 888 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Container(
@@ -22,7 +24,7 @@ class EventContent extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 16 * fem),
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -59,7 +61,7 @@ class EventContent extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -131,7 +133,7 @@ class EventContent extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                     ),
                                   ),
                                 ),
@@ -143,13 +145,13 @@ class EventContent extends StatelessWidget {
                                     fontSize: 13 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3846153846 * ffem / fem,
-                                    color: Color(0xff999999),
+                                    color: const Color(0xff999999),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // iconaTs (I149:10504;84:7712)
                             width: 36 * fem,
                             height: 36 * fem,
@@ -173,13 +175,13 @@ class EventContent extends StatelessWidget {
                     EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 24 * fem),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.circular(24 * fem),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       // captionyW1 (149:10552)
                       width: double.infinity,
                       child: Row(
@@ -197,7 +199,7 @@ class EventContent extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
@@ -209,7 +211,7 @@ class EventContent extends StatelessWidget {
                               fontSize: 13 * ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.3846153846 * ffem / fem,
-                              color: Color(0xff686868),
+                              color: const Color(0xff686868),
                             ),
                           ),
                         ],
@@ -224,7 +226,7 @@ class EventContent extends StatelessWidget {
                       height: 180 * fem,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16 * fem),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           begin: Alignment(-1.951, -0.111),
                           end: Alignment(-0.336, -0.167),
                           colors: <Color>[
@@ -263,7 +265,7 @@ class EventContent extends StatelessWidget {
                             // buttonandtextBe1 (I184:10395;184:10377)
                             left: 16 * fem,
                             top: 16 * fem,
-                            child: Container(
+                            child: SizedBox(
                               width: 152 * fem,
                               height: 146 * fem,
                               child: Column(
@@ -292,7 +294,7 @@ class EventContent extends StatelessWidget {
                                               fontSize: 17 * ffem,
                                               fontWeight: FontWeight.w600,
                                               height: 1.4705882353 * ffem / fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -309,7 +311,7 @@ class EventContent extends StatelessWidget {
                                                 fontWeight: FontWeight.w400,
                                                 height:
                                                     1.3636363636 * ffem / fem,
-                                                color: Color(0xff828282),
+                                                color: const Color(0xff828282),
                                               ),
                                               children: [
                                                 TextSpan(
@@ -322,7 +324,7 @@ class EventContent extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff828282),
+                                                    color: const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -334,7 +336,7 @@ class EventContent extends StatelessWidget {
                                                     height: 1.3636363636 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff828282),
+                                                    color: const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -346,7 +348,7 @@ class EventContent extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff828282),
+                                                    color: const Color(0xff828282),
                                                   ),
                                                 ),
                                               ],
@@ -361,7 +363,7 @@ class EventContent extends StatelessWidget {
                                     width: 87 * fem,
                                     height: 36 * fem,
                                     decoration: BoxDecoration(
-                                      color: Color(0xffffc300),
+                                      color: const Color(0xffffc300),
                                       borderRadius:
                                           BorderRadius.circular(8 * fem),
                                     ),
@@ -375,7 +377,7 @@ class EventContent extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w600,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ),
@@ -399,19 +401,19 @@ class EventContent extends StatelessWidget {
                       height: 180 * fem,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16 * fem),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           begin: Alignment(-0.514, -0.417),
                           end: Alignment(0.223, 0.689),
                           colors: <Color>[Color(0xff050c14), Color(0x00050d18)],
                           stops: <double>[0, 1],
                         ),
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage(
                             'assets/light-design/images/image-21-bg-qE9.png',
                           ),
                         ),
                       ),
-                      child: Container(
+                      child: SizedBox(
                         // buttonandtextfQ5 (I318:12868;318:12847)
                         width: 148 * fem,
                         height: double.infinity,
@@ -440,7 +442,7 @@ class EventContent extends StatelessWidget {
                                         fontSize: 17 * ffem,
                                         fontWeight: FontWeight.w600,
                                         height: 1.4705882353 * ffem / fem,
-                                        color: Color(0xffffffff),
+                                        color: const Color(0xffffffff),
                                       ),
                                     ),
                                   ),
@@ -456,7 +458,7 @@ class EventContent extends StatelessWidget {
                                           fontSize: 11 * ffem,
                                           fontWeight: FontWeight.w400,
                                           height: 1.3636363636 * ffem / fem,
-                                          color: Color(0xffcdcdcd),
+                                          color: const Color(0xffcdcdcd),
                                         ),
                                         children: [
                                           TextSpan(
@@ -466,7 +468,7 @@ class EventContent extends StatelessWidget {
                                               fontSize: 11 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3636363636 * ffem / fem,
-                                              color: Color(0xffcdcdcd),
+                                              color: const Color(0xffcdcdcd),
                                             ),
                                           ),
                                           TextSpan(
@@ -476,7 +478,7 @@ class EventContent extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xffcdcdcd),
+                                              color: const Color(0xffcdcdcd),
                                             ),
                                           ),
                                         ],
@@ -491,7 +493,7 @@ class EventContent extends StatelessWidget {
                               width: 87 * fem,
                               height: 36 * fem,
                               decoration: BoxDecoration(
-                                color: Color(0xffffc300),
+                                color: const Color(0xffffc300),
                                 borderRadius: BorderRadius.circular(8 * fem),
                               ),
                               child: Center(
@@ -504,7 +506,7 @@ class EventContent extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w600,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -525,19 +527,19 @@ class EventContent extends StatelessWidget {
                       height: 180 * fem,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16 * fem),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           begin: Alignment(-0.48, -0.361),
                           end: Alignment(0.905, 0.878),
                           colors: <Color>[Color(0xe5140513), Color(0x00140514)],
                           stops: <double>[0, 1],
                         ),
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage(
                             'assets/light-design/images/image-21-bg-rPT.png',
                           ),
                         ),
                       ),
-                      child: Container(
+                      child: SizedBox(
                         // buttonandtextqfF (I318:12878;318:12847)
                         width: 148 * fem,
                         height: double.infinity,
@@ -566,7 +568,7 @@ class EventContent extends StatelessWidget {
                                         fontSize: 17 * ffem,
                                         fontWeight: FontWeight.w600,
                                         height: 1.4705882353 * ffem / fem,
-                                        color: Color(0xffffffff),
+                                        color: const Color(0xffffffff),
                                       ),
                                     ),
                                   ),
@@ -582,7 +584,7 @@ class EventContent extends StatelessWidget {
                                           fontSize: 11 * ffem,
                                           fontWeight: FontWeight.w400,
                                           height: 1.3636363636 * ffem / fem,
-                                          color: Color(0xffcdcdcd),
+                                          color: const Color(0xffcdcdcd),
                                         ),
                                         children: [
                                           TextSpan(
@@ -592,7 +594,7 @@ class EventContent extends StatelessWidget {
                                               fontSize: 11 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3636363636 * ffem / fem,
-                                              color: Color(0xffcdcdcd),
+                                              color: const Color(0xffcdcdcd),
                                             ),
                                           ),
                                           TextSpan(
@@ -602,7 +604,7 @@ class EventContent extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xffcdcdcd),
+                                              color: const Color(0xffcdcdcd),
                                             ),
                                           ),
                                         ],
@@ -617,7 +619,7 @@ class EventContent extends StatelessWidget {
                               width: 87 * fem,
                               height: 36 * fem,
                               decoration: BoxDecoration(
-                                color: Color(0xffffc300),
+                                color: const Color(0xffffc300),
                                 borderRadius: BorderRadius.circular(8 * fem),
                               ),
                               child: Center(
@@ -630,7 +632,7 @@ class EventContent extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w600,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -684,7 +686,7 @@ class EventContent extends StatelessWidget {
                           11.5 * fem, 12 * fem, 11.5 * fem, 12 * fem),
                       height: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(32 * fem),
                       ),
                       child: Row(
@@ -710,13 +712,13 @@ class EventContent extends StatelessWidget {
                               fontSize: 13 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.3846153846 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       // navmenuQJM (I336:12262;331:14100)
                       width: 24 * fem,
                       height: 24 * fem,

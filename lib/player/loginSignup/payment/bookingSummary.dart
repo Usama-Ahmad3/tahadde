@@ -10,7 +10,7 @@ import '../../../network/network_calls.dart';
 
 class BookingSummary extends StatefulWidget {
   var price;
-  BookingSummary({this.price});
+  BookingSummary({super.key, this.price});
   @override
   _BookingSummary createState() => _BookingSummary();
 }
@@ -199,8 +199,8 @@ class _BookingSummary extends State<BookingSummary> {
                     body: Column(
                       children: <Widget>[
                         Flexible(
-                          child: Container(),
                           flex: 2,
+                          child: Container(),
                         ),
                         Padding(
                           padding: EdgeInsets.only(

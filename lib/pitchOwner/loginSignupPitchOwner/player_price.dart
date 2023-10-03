@@ -90,7 +90,7 @@ class _PlayerPriceState extends State<PlayerPrice> {
                 onChange: (int value, int index) => setState(() {
                   indexItem = index;
                 }),
-                dropdownButtonStyle: DropdownButtonStyle(
+                dropdownButtonStyle: const DropdownButtonStyle(
                   width: 170,
                   height: 45,
                   elevation: 1,

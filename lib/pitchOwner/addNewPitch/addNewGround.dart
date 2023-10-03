@@ -22,6 +22,8 @@ import '../../network/network_calls.dart';
 FlutterGooglePlacesSdk _places = FlutterGooglePlacesSdk(kGoogleApiKey);
 
 class AddNewGroundFirst extends StatefulWidget {
+  const AddNewGroundFirst({super.key});
+
   @override
   _AddNewGroundFirstState createState() => _AddNewGroundFirstState();
 }
@@ -530,10 +532,8 @@ class _AddNewGroundFirstState extends State<AddNewGroundFirst> {
                         backgroundColor: const Color(0XFF032040),
                       ),
                       bottomNavigationBar: pitchId != null &&
-                              pitchLong != null &&
                               indexList.isNotEmpty &&
-                              gamePlay != "" &&
-                              locationName != null
+                              gamePlay != ""
                           ? Material(
                               color: const Color(0XFF25A163),
                               child: InkWell(
@@ -543,7 +543,7 @@ class _AddNewGroundFirstState extends State<AddNewGroundFirst> {
                                     _facility = "";
                                     for (int i = 0; i < indexList.length; i++) {
                                       _facility =
-                                          _facility + facilitySlug[i] + ",";
+                                          "$_facility${facilitySlug[i]},";
                                     }
                                     _facility = _facility.substring(
                                         0, facility.length - 1);

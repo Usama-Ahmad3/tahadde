@@ -8,6 +8,8 @@ import '../../../modelClass/teamModelClass.dart';
 import '../../../network/network_calls.dart';
 
 class TeamPlayer extends StatefulWidget {
+  const TeamPlayer({super.key});
+
   @override
   _TeamPlayerState createState() => _TeamPlayerState();
 }

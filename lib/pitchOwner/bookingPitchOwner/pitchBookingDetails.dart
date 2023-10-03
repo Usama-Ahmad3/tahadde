@@ -8,7 +8,7 @@ import '../../modelClass/bookingModelClass.dart';
 
 class PitchBookingDetails extends StatefulWidget {
   BookingModelClass bookindDetail;
-  PitchBookingDetails({required this.bookindDetail});
+  PitchBookingDetails({super.key, required this.bookindDetail});
   @override
   _PitchBookingDetailsState createState() => _PitchBookingDetailsState();
 }
@@ -225,7 +225,7 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                  child: Container(
+                  child: SizedBox(
                     height: 15,
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -299,7 +299,7 @@ class _PitchBookingDetailsState extends State<PitchBookingDetails> {
   }
 
   String timing({required int x}) {
-    var day;
+    String day;
     switch (x) {
       case 0:
         day = "12 AM";

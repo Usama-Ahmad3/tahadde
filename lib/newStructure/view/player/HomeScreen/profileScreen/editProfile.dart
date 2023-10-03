@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -267,40 +267,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             backgroundColor: MyAppState.mode == ThemeMode.light
                 ? Colors.white
                 : const Color(0xff686868),
-            appBar: PreferredSize(
-              preferredSize: Size(width, height * 0.105),
-              child: AppBar(
-                title: Text(
-                  AppLocalizations.of(context)!.editProfile,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Colors.white),
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.black,
-                leadingWidth: width * 0.18,
-                leading: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(height * 0.008),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            shape: BoxShape.circle),
-                        child: const Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.close,
-                            color: Colors.white,
-                          ),
-                        )),
-                  ),
-                ),
-              ),
-            ),
+            appBar: appBarWidget(width, height, context,
+                AppLocalizations.of(context)!.editProfile, true),
             body: DefaultTextStyle(
                 style: TextStyle(
                     fontSize: height * 0.02,
@@ -373,7 +341,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                             "assets/images/profile.png"),
                                                         fit: BoxFit.cover),
                                                 border: Border.all(
-                                                    color: Colors.amberAccent)),
+                                                  color: const Color(0xff1d7e55),
+                                                )),
                                           ),
                                         ),
                                 ),

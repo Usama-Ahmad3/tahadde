@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -13,6 +13,8 @@ import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
 
 class Rate extends StatefulWidget {
+  const Rate({super.key});
+
   @override
   State<StatefulWidget> createState() => _RateState();
 }
@@ -73,40 +75,8 @@ class _RateState extends State<Rate> {
     return loading
         ? Scaffold(
             backgroundColor: Colors.black,
-            appBar: PreferredSize(
-              preferredSize: Size(sizeWidth, sizeHeight * 0.108),
-              child: AppBar(
-                  title: Text(
-                    AppLocalizations.of(context)!.ratingsReviews,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.white),
-                  ),
-                  centerTitle: true,
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Colors.black,
-                  leadingWidth: sizeWidth * 0.18,
-                  leading: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                          padding: EdgeInsets.all(sizeHeight * 0.008),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              shape: BoxShape.circle),
-                          child: const Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.close,
-                              color: Colors.white,
-                            ),
-                          )),
-                    ),
-                  )),
-            ),
+            appBar: appBarWidget(sizeWidth, sizeHeight, context,
+                AppLocalizations.of(context)!.ratingsReviews, true),
             body: Container(
               height: sizeHeight * .87,
               width: sizeWidth,
@@ -156,40 +126,8 @@ class _RateState extends State<Rate> {
         : _internet!
             ? Scaffold(
                 backgroundColor: Colors.black,
-                appBar: PreferredSize(
-                  preferredSize: Size(sizeWidth, sizeHeight * 0.108),
-                  child: AppBar(
-                      title: Text(
-                        AppLocalizations.of(context)!.ratingsReviews,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(color: Colors.white),
-                      ),
-                      centerTitle: true,
-                      automaticallyImplyLeading: false,
-                      backgroundColor: Colors.black,
-                      leadingWidth: sizeWidth * 0.18,
-                      leading: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                              padding: EdgeInsets.all(sizeHeight * 0.008),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  shape: BoxShape.circle),
-                              child: const Center(
-                                child: FaIcon(
-                                  FontAwesomeIcons.close,
-                                  color: Colors.white,
-                                ),
-                              )),
-                        ),
-                      )),
-                ),
+                appBar: appBarWidget(sizeWidth, sizeHeight, context,
+                    AppLocalizations.of(context)!.ratingsReviews, true),
                 body: data!
                     ? Stack(
                         children: [
@@ -321,7 +259,7 @@ class _RateState extends State<Rate> {
                                                     ),
                                                     Text(
                                                         '${rating[index]["name"]}',
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             color: Color(
                                                                 0XFF032040),
                                                             fontWeight:
@@ -344,7 +282,7 @@ class _RateState extends State<Rate> {
                                                               children: [
                                                                 Text(
                                                                   "${rating[index]["reviewAndratings"]["rating"] ?? 0}/5",
-                                                                  style: TextStyle(
+                                                                  style: const TextStyle(
                                                                       color: Color(
                                                                           0XFF9B9B9B),
                                                                       fontSize:
@@ -364,7 +302,7 @@ class _RateState extends State<Rate> {
                                                               children: [
                                                                 Text(
                                                                   "${rating[index]["reviewAndratings"]["review"] ?? 0}",
-                                                                  style: TextStyle(
+                                                                  style: const TextStyle(
                                                                       color: Color(
                                                                           0XFF9B9B9B),
                                                                       fontSize:

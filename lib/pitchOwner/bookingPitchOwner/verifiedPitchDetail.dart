@@ -14,7 +14,7 @@ import '../../player/loginSignup/signup.dart';
 
 class VerifiedPitchDetail extends StatefulWidget {
   Map pitchDetail;
-  VerifiedPitchDetail({required this.pitchDetail});
+  VerifiedPitchDetail({super.key, required this.pitchDetail});
   @override
   _VerifiedPitchDetailState createState() => _VerifiedPitchDetailState();
 }
@@ -72,7 +72,7 @@ class _VerifiedPitchDetailState extends State<VerifiedPitchDetail> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -607,7 +607,7 @@ class _VerifiedPitchDetailState extends State<VerifiedPitchDetail> {
                                                                 sizeWidth * .18,
                                                             cuisineImageUrl:
                                                                 pitchDetail
-                                                                    ?.facilities![
+                                                                    .facilities![
                                                                         blockIdx]
                                                                     ?.image
                                                                     ?.filePath,

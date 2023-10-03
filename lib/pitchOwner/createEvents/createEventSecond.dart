@@ -12,7 +12,7 @@ import '../../network/network_calls.dart';
 
 class CreateEventSecond extends StatefulWidget {
   Map event;
-  CreateEventSecond({required this.event});
+  CreateEventSecond({super.key, required this.event});
   @override
   _CreateEventSecondState createState() => _CreateEventSecondState();
 }
@@ -395,7 +395,7 @@ class _CreateEventSecondState extends State<CreateEventSecond> {
                   ),
                   backgroundColor: const Color(0XFF032040),
                 ),
-                bottomNavigationBar: indexList.isNotEmpty && count != null
+                bottomNavigationBar: indexList.isNotEmpty
                     ? Material(
                         color: const Color(0XFF25A163),
                         child: InkWell(
@@ -524,7 +524,7 @@ class _CreateEventSecondState extends State<CreateEventSecond> {
                                                               .width,
                                                       cuisineImageUrl:
                                                           _pitchDetail[index]
-                                                              ?.bookpitchfiles
+                                                              .bookpitchfiles
                                                               ?.files![0]
                                                               ?.filePath,
                                                     )),
@@ -650,7 +650,7 @@ class _CreateEventSecondState extends State<CreateEventSecond> {
                                                               .width,
                                                       cuisineImageUrl:
                                                           _pitchDetail[index]
-                                                              ?.bookpitchfiles
+                                                              .bookpitchfiles
                                                               ?.files![0]
                                                               ?.filePath,
                                                     )),

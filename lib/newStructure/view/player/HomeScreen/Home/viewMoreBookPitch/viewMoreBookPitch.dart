@@ -16,7 +16,7 @@ import '../../../../utils.dart';
 class ViewMoreBookPitchScreen extends StatefulWidget {
   Map pitchType;
 
-  ViewMoreBookPitchScreen({required this.pitchType});
+  ViewMoreBookPitchScreen({super.key, required this.pitchType});
 
   @override
   _ViewMoreBookPitchScreenState createState() =>
@@ -101,10 +101,10 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
             ? Scaffold(
                 backgroundColor: Colors.black,
                 appBar: PreferredSize(
-                  preferredSize: Size(sizeWidth, sizeHeight * 0.13),
+                  preferredSize: Size(sizeWidth, sizeHeight * 0.08),
                   child: AppBar(
                     title: Text(
-                      AppLocalizations.of(context)!.bookPitch,
+                      AppLocalizations.of(context)!.academy,
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
@@ -134,25 +134,9 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                     ),
                   ),
                 ),
-                body: Container(
-                  height: sizeHeight,
-                  decoration: BoxDecoration(
-                      color: MyAppState.mode == ThemeMode.light
-                          ? Colors.white
-                          : const Color(0xff5A5C60),
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20))),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        VanueList(
-                          bookPitchData: bookPitchData,
-                          tagForView: false,
-                        ),
-                      ],
-                    ),
-                  ),
+                body: VanueList(
+                  bookPitchData: bookPitchData,
+                  tagForView: false,
                 ))
             : InternetLoss(
                 onChange: () {
@@ -180,7 +164,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
           preferredSize: Size(sizeWidth, sizeHeight * 0.105),
           child: AppBar(
             title: Text(
-              AppLocalizations.of(context)!.bookPitch,
+              AppLocalizations.of(context)!.academy,
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
@@ -239,8 +223,8 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                           decoration: BoxDecoration(
                             color: const Color(0xffffffff),
                             borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              const BoxShadow(
+                            boxShadow: const [
+                              BoxShadow(
                                 color: Color(0x0f050818),
                                 offset: Offset(10, 40),
                                 blurRadius: 30,

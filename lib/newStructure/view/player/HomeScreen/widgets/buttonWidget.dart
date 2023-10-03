@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../localizations.dart';
-import '../../loginSignup/login.dart';
 
 class ButtonWidget extends StatefulWidget {
   VoidCallback onTaped;
@@ -14,7 +12,7 @@ class ButtonWidget extends StatefulWidget {
       required this.onTaped,
       required this.title,
       required this.isLoading,
-      this.color = Colors.yellow});
+      this.color = const Color(0xff1d7e55)});
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -36,7 +34,9 @@ class _ButtonWidgetState extends State<ButtonWidget> {
           height: height * 0.06,
           child: Center(
               child: widget.isLoading
-                  ? const CircularProgressIndicator()
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
                   : widget.title),
         ),
       ),

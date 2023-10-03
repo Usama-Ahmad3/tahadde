@@ -4,7 +4,7 @@ import '../localizations.dart';
 
 class InternetLoss extends StatefulWidget {
   Function onChange;
-  InternetLoss({required this.onChange});
+  InternetLoss({super.key, required this.onChange});
   @override
   _InternetLossState createState() => _InternetLossState();
 }

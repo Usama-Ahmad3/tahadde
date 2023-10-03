@@ -12,7 +12,7 @@ import '../../player/loginSignup/signup.dart';
 
 class BankDetail extends StatefulWidget {
   Map detail;
-  BankDetail({required this.detail});
+  BankDetail({super.key, required this.detail});
   @override
   _BankDetailState createState() => _BankDetailState();
 }
@@ -40,7 +40,7 @@ class _BankDetailState extends State<BankDetail> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -93,7 +93,7 @@ class _BankDetailState extends State<BankDetail> {
                   SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Container(
+                      child: SizedBox(
                         height: sizeHeight * .9,
                         width: sizeWidth,
                         child: Column(
@@ -130,7 +130,7 @@ class _BankDetailState extends State<BankDetail> {
                               ),
                             ),
                             flaxibleGap(1),
-                            Container(
+                            SizedBox(
                                 width: MediaQuery.of(context).size.width / 1.2,
                                 child: RichText(
                                   text: TextSpan(
@@ -224,7 +224,7 @@ class _BankDetailState extends State<BankDetail> {
                 body: SingleChildScrollView(
                   child: Form(
                     key: _formKey,
-                    child: Container(
+                    child: SizedBox(
                       width: sizeWidth,
                       child: Column(
                         children: <Widget>[
@@ -243,7 +243,7 @@ class _BankDetailState extends State<BankDetail> {
                                       width: sizeWidth,
                                       height: sizeHeight * .2,
                                     ),
-                              Container(
+                              SizedBox(
                                 height: sizeHeight * .18,
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 30),
@@ -480,7 +480,7 @@ class _BankDetailState extends State<BankDetail> {
                               width: sizeWidth,
                               height: sizeHeight * .2,
                             ),
-                      Container(
+                      SizedBox(
                         height: sizeHeight * .18,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 30),

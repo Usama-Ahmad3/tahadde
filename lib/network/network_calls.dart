@@ -46,11 +46,11 @@ class NetworkCalls {
 
   Map<String, String> headerWithToken(
       SharedPreferences pref, String data, HttpMethod method) {
-    Map<String, String> _headers = header(pref, data, method);
+    Map<String, String> headers = header(pref, data, method);
     if (pref.get('token') != null) {
-      _headers.addAll({"Authorization": "Token ${pref.get('token')}"});
+      headers.addAll({"Authorization": "Token ${pref.get('token')}"});
     }
-    return _headers;
+    return headers;
   }
 
   checkAvailabilityOfEmail(
@@ -266,6 +266,7 @@ class NetworkCalls {
               "https://powerhouse.tahadde.ae${RestApis.SIGNUP}${prefs.get("lang")}"),
           headers: header(prefs, body, HttpMethod.POST),
           body: body);
+      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp["success"]);
@@ -405,7 +406,6 @@ class NetworkCalls {
       required OnFailure onFailure,
       required TokenExpire tokenExpire}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     FormData formData = FormData.fromMap(
       {
         "filePath": MultipartFile.fromBytes(
@@ -416,7 +416,6 @@ class NetworkCalls {
         "fileType": "I",
       },
     );
-
     try {
       Dio dio = Dio();
       dio.options.headers.addAll(
@@ -426,7 +425,7 @@ class NetworkCalls {
             "https://powerhouse.tahadde.ae${RestApis.HELPERPROFILE}"),
         data: formData,
       );
-
+      print("response$response");
       if (response.statusCode == 200) {
         var fileId = response.data["fileId"];
         onSuccess(fileId);
@@ -438,6 +437,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print("error$e");
       onFailure("fail to load image");
     }
   }
@@ -458,7 +458,7 @@ class NetworkCalls {
       formData.files.addAll([
         MapEntry(
           "filePath",
-          await MultipartFile.fromBytes(
+          MultipartFile.fromBytes(
               pitchImage["profile_image"][i].readAsBytesSync(),
               filename:
                   pitchImage["profile_image"][i].path.split('/').removeLast()),
@@ -548,6 +548,7 @@ class NetworkCalls {
       onFailure(internetStatus);
     } catch (e) {
       onFailure("Please Check server$e");
+      print("Please Check server$e");
     }
   }
 
@@ -2432,7 +2433,7 @@ class NetworkCalls {
         TeamModelClass teamInfoData = TeamModelClass.fromJson(resp);
         onSuccess(teamInfoData);
       } else if (response.statusCode == 400) {
-        Null teamInfoData = null;
+        Null teamInfoData;
         onSuccess(teamInfoData);
       } else if (response.statusCode == tokenExpireStatus) {
         tokenExpire();

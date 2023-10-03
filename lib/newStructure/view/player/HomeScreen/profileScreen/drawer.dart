@@ -12,6 +12,7 @@ import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../owner/home_screens/HomePitchOwnerScreen.dart';
 import '../playerHomeScreen.dart';
 
 class ProfileDrawer extends StatefulWidget {
@@ -178,7 +179,14 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => widget.playerTag
+                                  ? PlayerHomeScreen(index: 3)
+                                  : HomePitchOwnerScreen(
+                                      index: 3,
+                                    )));
                     },
                     child: CircleAvatar(
                         backgroundColor: Colors.grey.shade200,
@@ -338,7 +346,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   EdgeInsets.symmetric(vertical: height * 0.01),
                               child: ListTile(
                                 onTap: index == 0
-                                    ? () {}
+                                    ? () {
+                                        navigateToBankDetail();
+                                      }
                                     : index == 1
                                         ? () {
                                             navigateToMyPitches();
@@ -549,7 +559,13 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   }
 
   void navigateToMyPitches() {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => MyPitches()));
+    Navigator.push(context, MaterialPageRoute(builder: (_) => const MyPitches()));
+    // Navigator.pushNamed(context, RouteNames.myVenues);
+  }
+
+  void navigateToBankDetail() {
+    // Navigator.push(
+    //     context, MaterialPageRoute(builder: (_) => BankDetailScreen()));
     // Navigator.pushNamed(context, RouteNames.myVenues);
   }
 

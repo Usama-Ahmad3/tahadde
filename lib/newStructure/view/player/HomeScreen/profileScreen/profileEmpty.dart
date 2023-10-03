@@ -119,7 +119,8 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
                                         Text(
                                           AppLocalizations.of(context)!.signUp,
                                           style: const TextStyle(
-                                              color: Colors.green),
+                                            color: Color(0xff1d7e55),
+                                          ),
                                         ),
                                         flaxibleGap(4),
                                       ],

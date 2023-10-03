@@ -13,7 +13,7 @@ import '../../network/network_calls.dart';
 
 class ViewMoreowner extends StatefulWidget {
   final String eventType;
-  ViewMoreowner({required this.eventType});
+  const ViewMoreowner({super.key, required this.eventType});
   @override
   _ViewMoreownerState createState() => _ViewMoreownerState();
 }
@@ -599,7 +599,7 @@ class _ViewMoreownerState extends State<ViewMoreowner> {
 
 class LeagueListItem extends StatelessWidget {
   final String file;
-  LeagueListItem({required this.file});
+  const LeagueListItem({super.key, required this.file});
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

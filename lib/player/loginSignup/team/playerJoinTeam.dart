@@ -8,6 +8,8 @@ import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
 
 class PlayerJoinTeam extends StatefulWidget {
+  const PlayerJoinTeam({super.key});
+
   @override
   _PlayerJoinTeamState createState() => _PlayerJoinTeamState();
 }
@@ -104,7 +106,7 @@ class _PlayerJoinTeamState extends State<PlayerJoinTeam> {
                   body: Container(
                     height: sizeHeight,
                     width: sizeWidth,
-                    color: const Color(0XFFFF0F0F0),
+                    color: const Color(0xffff0f0f0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -206,7 +208,7 @@ class _PlayerJoinTeamState extends State<PlayerJoinTeam> {
                                                           _internet = msg;
                                                           if (msg == true) {
                                                             Map detailData = {
-                                                              "id": detail![
+                                                              "id": detail[
                                                                           index]
                                                                       ["id"]
                                                                   .toString(),
@@ -279,7 +281,7 @@ class _PlayerJoinTeamState extends State<PlayerJoinTeam> {
                                                           _internet = msg;
                                                           if (msg == true) {
                                                             Map detailData = {
-                                                              "id": detail![
+                                                              "id": detail[
                                                                           index]
                                                                       ["id"]
                                                                   .toString(),

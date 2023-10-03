@@ -10,6 +10,8 @@ import '../network/network_calls.dart';
 import 'location_class.dart';
 
 class PermissionPrimingScreen extends StatefulWidget {
+  const PermissionPrimingScreen({super.key});
+
 
   @override
   State<StatefulWidget> createState() {
@@ -92,7 +94,7 @@ class _PermissionPrimingScreenState extends State<PermissionPrimingScreen> {
                 fit: BoxFit.fill,),
             ),
             const SizedBox(height: 20,),
-            BottomContent()
+            const BottomContent()
           ],
         ),
       ),
@@ -102,7 +104,7 @@ class _PermissionPrimingScreenState extends State<PermissionPrimingScreen> {
           onTap: ()async{
            var address= await LocationClass().permission(context);
            bool status=false;
-          _territoryData.forEach((elementCountry) {
+          for (var elementCountry in _territoryData) {
             if(elementCountry.country!.name==address!["country"]){
               elementCountry.cities!.forEach((element) async{
                 if(element!.city!.name==address["city"]){
@@ -131,7 +133,7 @@ class _PermissionPrimingScreenState extends State<PermissionPrimingScreen> {
                 }
               });
             }
-          });
+          }
           if(status){
             Navigator.pushNamedAndRemoveUntil(context, RouteNames.playerHome, (r) => false);
           }else{
@@ -154,7 +156,7 @@ class _PermissionPrimingScreenState extends State<PermissionPrimingScreen> {
 
 class BottomContent extends StatelessWidget {
   final bool? isLocationPermission;
-  BottomContent({this.isLocationPermission});
+  const BottomContent({super.key, this.isLocationPermission});
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

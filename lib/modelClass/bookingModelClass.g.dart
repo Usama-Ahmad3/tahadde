@@ -13,7 +13,7 @@ BookingModelClass _$BookingModelClassFromJson(Map<String, dynamic> json) {
         ? null
         : PitchType.fromJson(json['pitchType'] as Map<String, dynamic>),
     slotDate: json['slotDate'] as String,
-    paidTotal: (json['paidTotal'] as num)?.toDouble(),
+    paidTotal: (json['paidTotal'] as num).toDouble(),
     slots: json['slots'] == null
         ? null
         : BookedSlots.fromJson(json['slots'] as Map<String, dynamic>),
@@ -62,9 +62,9 @@ PaymentSummary _$PaymentSummaryFromJson(Map<String, dynamic> json) {
   return PaymentSummary(
     id: json['id'] as int,
     name: json['name'] as String,
-    grandTotal: (json['grandTotal'] as num)?.toDouble(),
-    tax: (json['tax'] as num)?.toDouble(),
-    subTotal: (json['subTotal'] as num)?.toDouble(),
+    grandTotal: (json['grandTotal'] as num).toDouble(),
+    tax: (json['tax'] as num).toDouble(),
+    subTotal: (json['subTotal'] as num).toDouble(),
     paymentFor: json['paymentFor'] as String,
   );
 }
@@ -120,7 +120,7 @@ BookedSlots _$BookedSlotsFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$BookedSlotsToJson(BookedSlots instance) =>
     <String, dynamic>{
-      'booked_slots': instance.booked_slots?.map((e) => e?.toJson())?.toList(),
+      'booked_slots': instance.booked_slots?.map((e) => e?.toJson()).toList(),
     };
 
 Profile _$ProfileFromJson(Map<String, dynamic> json) {

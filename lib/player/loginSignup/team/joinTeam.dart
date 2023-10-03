@@ -11,7 +11,7 @@ import '../../../network/network_calls.dart';
 class JoinTeam extends StatefulWidget {
   TeamModelClass? detailTeam;
 
-  JoinTeam({this.detailTeam});
+  JoinTeam({super.key, this.detailTeam});
 
   @override
   _JoinTeamState createState() => _JoinTeamState();

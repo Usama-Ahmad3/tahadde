@@ -3,25 +3,27 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class EditDetail_01 extends StatelessWidget {
+  const EditDetail_01({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // eventdetails01SaM (360:20311)
         width: double.infinity,
         height: 923 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Container(
           // eventdetailskL9 (360:20312)
           width: 420 * fem,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Stack(
@@ -33,7 +35,7 @@ class EditDetail_01 extends StatelessWidget {
                 child: Container(
                   width: 375 * fem,
                   height: 368.68 * fem,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0x99000000),
                     image: DecorationImage(
                       image: AssetImage(
@@ -41,7 +43,7 @@ class EditDetail_01 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: Container(
+                  child: SizedBox(
                     // toolbarXER (360:20314)
                     width: double.infinity,
                     height: 92 * fem,
@@ -71,7 +73,7 @@ class EditDetail_01 extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     height: 1.2575 * ffem / fem,
                                     letterSpacing: -0.2800000012 * fem,
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                   ),
                                 ),
                               ),
@@ -145,7 +147,7 @@ class EditDetail_01 extends StatelessWidget {
                                   fontSize: 17 * ffem,
                                   fontWeight: FontWeight.w600,
                                   height: 1.4705882353 * ffem / fem,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                 ),
                               ),
                             ],
@@ -166,7 +168,7 @@ class EditDetail_01 extends StatelessWidget {
                   width: 420 * fem,
                   height: 669 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
@@ -214,7 +216,7 @@ class EditDetail_01 extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.24 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -231,7 +233,7 @@ class EditDetail_01 extends StatelessWidget {
                                                 fontWeight: FontWeight.w400,
                                                 height:
                                                     1.3333333333 * ffem / fem,
-                                                color: Color(0xff828282),
+                                                color: const Color(0xff828282),
                                               ),
                                               children: [
                                                 TextSpan(
@@ -244,10 +246,10 @@ class EditDetail_01 extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff828282),
+                                                    color: const Color(0xff828282),
                                                   ),
                                                 ),
-                                                TextSpan(
+                                                const TextSpan(
                                                   text: '. ',
                                                 ),
                                                 TextSpan(
@@ -259,7 +261,7 @@ class EditDetail_01 extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff828282),
+                                                    color: const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -271,7 +273,7 @@ class EditDetail_01 extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff1e1e1e),
+                                                    color: const Color(0xff1e1e1e),
                                                   ),
                                                 ),
                                               ],
@@ -303,7 +305,7 @@ class EditDetail_01 extends StatelessWidget {
                                             height: 32 * fem,
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // textErD (360:20322)
                                           width: 200 * fem,
                                           height: double.infinity,
@@ -326,7 +328,7 @@ class EditDetail_01 extends StatelessWidget {
                                                     fontWeight: FontWeight.w600,
                                                     height: 1.25 * ffem / fem,
                                                     letterSpacing: -0.2 * fem,
-                                                    color: Color(0xff050505),
+                                                    color: const Color(0xff050505),
                                                   ),
                                                 ),
                                               ),
@@ -370,7 +372,7 @@ class EditDetail_01 extends StatelessWidget {
                                                             ffem /
                                                             fem,
                                                         color:
-                                                            Color(0xff505050),
+                                                            const Color(0xff505050),
                                                       ),
                                                     ),
                                                   ],
@@ -392,7 +394,7 @@ class EditDetail_01 extends StatelessWidget {
                               width: double.infinity,
                               height: 63 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -416,7 +418,7 @@ class EditDetail_01 extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -428,7 +430,7 @@ class EditDetail_01 extends StatelessWidget {
                                             fontSize: 17 * ffem,
                                             fontWeight: FontWeight.w600,
                                             height: 1.4705882353 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ],
@@ -451,7 +453,7 @@ class EditDetail_01 extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -463,7 +465,7 @@ class EditDetail_01 extends StatelessWidget {
                                             fontSize: 17 * ffem,
                                             fontWeight: FontWeight.w600,
                                             height: 1.4705882353 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ],
@@ -477,7 +479,7 @@ class EditDetail_01 extends StatelessWidget {
                               width: double.infinity,
                               height: 63 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xfff2f2f2)),
+                                border: Border.all(color: const Color(0xfff2f2f2)),
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -501,7 +503,7 @@ class EditDetail_01 extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -513,7 +515,7 @@ class EditDetail_01 extends StatelessWidget {
                                             fontSize: 17 * ffem,
                                             fontWeight: FontWeight.w600,
                                             height: 1.4705882353 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ],
@@ -536,7 +538,7 @@ class EditDetail_01 extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ),
@@ -548,7 +550,7 @@ class EditDetail_01 extends StatelessWidget {
                                             fontSize: 17 * ffem,
                                             fontWeight: FontWeight.w600,
                                             height: 1.4705882353 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ],
@@ -563,7 +565,7 @@ class EditDetail_01 extends StatelessWidget {
                       SizedBox(
                         height: 24 * fem,
                       ),
-                      Container(
+                      SizedBox(
                         // memoriesLNm (360:20343)
                         width: double.infinity,
                         child: Column(
@@ -581,17 +583,17 @@ class EditDetail_01 extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // imagePM3 (360:20345)
                               width: double.infinity,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     // rectangle40180wNZ (360:20346)
                                     width: 90 * fem,
                                     height: 90 * fem,
@@ -607,7 +609,7 @@ class EditDetail_01 extends StatelessWidget {
                                   SizedBox(
                                     width: 12 * fem,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // rectangle40181SaD (360:20347)
                                     width: 90 * fem,
                                     height: 90 * fem,
@@ -623,7 +625,7 @@ class EditDetail_01 extends StatelessWidget {
                                   SizedBox(
                                     width: 12 * fem,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // rectangle40182xoT (360:20348)
                                     width: 90 * fem,
                                     height: 90 * fem,
@@ -639,7 +641,7 @@ class EditDetail_01 extends StatelessWidget {
                                   SizedBox(
                                     width: 12 * fem,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // rectangle40183eRP (360:20349)
                                     width: 90 * fem,
                                     height: 90 * fem,
@@ -668,7 +670,7 @@ class EditDetail_01 extends StatelessWidget {
                         width: 327 * fem,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(12 * fem),
                         ),
                         child: Center(
@@ -680,7 +682,7 @@ class EditDetail_01 extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),

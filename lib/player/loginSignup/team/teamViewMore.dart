@@ -10,6 +10,8 @@ import '../../../modelClass/teamModelClass.dart';
 import '../../../network/network_calls.dart';
 
 class ViewMoreTeam extends StatefulWidget {
+  const ViewMoreTeam({super.key});
+
   @override
   _ViewMoreTeamState createState() => _ViewMoreTeamState();
 }
@@ -44,6 +46,7 @@ class _ViewMoreTeamState extends State<ViewMoreTeam> {
     );
   }
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();

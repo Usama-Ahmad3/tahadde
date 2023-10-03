@@ -26,13 +26,13 @@ class PasswordSecurity extends StatelessWidget {
         height: height * 0.075,
         decoration: BoxDecoration(
           color: MyAppState.mode == ThemeMode.light
-              ? Color(0xffffffff)
+              ? const Color(0xffffffff)
               : Colors.black12,
           borderRadius: BorderRadius.circular(height * 0.01),
           border: Border.all(
               color: MyAppState.mode == ThemeMode.light
-                  ? Color(0xfff2f2f2)
-                  : Color(0xff050505)),
+                  ? const Color(0xfff2f2f2)
+                  : const Color(0xff050505)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +49,7 @@ class PasswordSecurity extends StatelessWidget {
                     child: Icon(
                       prefixIcon,
                       color: MyAppState.mode == ThemeMode.light
-                          ? Color(0xff050505)
+                          ? const Color(0xff050505)
                           : Colors.white,
                     ),
                   ),
@@ -60,7 +60,7 @@ class PasswordSecurity extends StatelessWidget {
                   style: TextStyle(
                     fontSize: height * 0.018,
                     color: MyAppState.mode == ThemeMode.light
-                        ? Color(0xff050505)
+                        ? const Color(0xff050505)
                         : Colors.white,
                   ),
                 )
@@ -69,7 +69,7 @@ class PasswordSecurity extends StatelessWidget {
             Icon(
               (suffixIcon),
               color: MyAppState.mode == ThemeMode.light
-                  ? Color(0xff050505)
+                  ? const Color(0xff050505)
                   : Colors.white,
             )
           ],

@@ -28,9 +28,9 @@ PaymentSummary _$PaymentSummaryFromJson(Map<String, dynamic> json) {
   return PaymentSummary(
     id: json['id'] as int,
     name: json['name'] as String,
-    grandTotal: (json['grandTotal'] as num)!.toDouble(),
-    tax: (json['tax'] as num)!.toDouble(),
-    subTotal: (json['subTotal'] as num)!.toDouble(),
+    grandTotal: (json['grandTotal'] as num).toDouble(),
+    tax: (json['tax'] as num).toDouble(),
+    subTotal: (json['subTotal'] as num).toDouble(),
     paymentFor: json['paymentFor'] as String,
   );
 }
@@ -52,11 +52,11 @@ BookPitchDetail _$BookPitchDetailFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     location: json['location'] as String,
     pitchType: (json['pitchType'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : PitchType.fromJson(e as Map<String, dynamic>))
-        !.toList(),
-    latitude: (json['latitude'] as num)?.toDouble(),
-    longitude: (json['longitude'] as num)?.toDouble(),
+        .toList(),
+    latitude: (json['latitude'] as num).toDouble(),
+    longitude: (json['longitude'] as num).toDouble(),
     description: json['description'] as String,
     organisedBy: json['organisedBy'] == null
         ? null
@@ -72,9 +72,9 @@ BookPitchDetail _$BookPitchDetailFromJson(Map<String, dynamic> json) {
         : GamePlay.fromJson(json['gamePlay'] as Map<String, dynamic>),
     link: json['link'] as String,
     facilities: (json['facilities'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : Facility.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     createdDate: json['createdDate'] as int,
     is_declined: json['is_declined'] as bool,
     is_verified: json['is_verified'] as bool,
@@ -91,7 +91,7 @@ Map<String, dynamic> _$BookPitchDetailToJson(BookPitchDetail instance) =>
       'currentYear': instance.currentYear,
       'currentMonth': instance.currentMonth,
       'location': instance.location,
-      'pitchType': instance.pitchType?.map((e) => e?.toJson())?.toList(),
+      'pitchType': instance.pitchType?.map((e) => e?.toJson()).toList(),
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'is_verified': instance.is_verified,
@@ -102,16 +102,16 @@ Map<String, dynamic> _$BookPitchDetailToJson(BookPitchDetail instance) =>
       'bookpitchfiles': instance.bookpitchfiles?.toJson(),
       'gamePlay': instance.gamePlay?.toJson(),
       'link': instance.link,
-      'facilities': instance.facilities?.map((e) => e?.toJson())?.toList(),
+      'facilities': instance.facilities?.map((e) => e?.toJson()).toList(),
     };
 
 BookPitchFiles _$BookPitchFilesFromJson(Map<String, dynamic> json) {
   return BookPitchFiles(
     id: json['id'] as int,
     files: (json['files'] as List)
-        ?.map(
+        .map(
             (e) => e == null ? null : Files.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     is_active: json['is_active'] as bool,
     document: json['document'] == null
         ? null
@@ -122,7 +122,7 @@ BookPitchFiles _$BookPitchFilesFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$BookPitchFilesToJson(BookPitchFiles instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'files': instance.files?.map((e) => e?.toJson())?.toList(),
+      'files': instance.files?.map((e) => e?.toJson()).toList(),
       'is_active': instance.is_active,
       'document': instance.document?.toJson(),
     };
@@ -135,9 +135,9 @@ OrganisedBy _$OrganisedByFromJson(Map<String, dynamic> json) {
     contact_number: json['contact_number'] as String,
     countryCode: json['countryCode'] as String,
     userReviews: (json['userReviews'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : Reviews.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     ratings: json['ratings'] == null
         ? null
         : Rating.fromJson(json['ratings'] as Map<String, dynamic>),
@@ -152,7 +152,7 @@ Map<String, dynamic> _$OrganisedByToJson(OrganisedBy instance) =>
       'contact_number': instance.contact_number,
       'countryCode': instance.countryCode,
       'ratings': instance.ratings?.toJson(),
-      'userReviews': instance.userReviews?.map((e) => e?.toJson())?.toList(),
+      'userReviews': instance.userReviews?.map((e) => e?.toJson()).toList(),
     };
 
 PitchType _$PitchTypeFromJson(Map<String, dynamic> json) {
@@ -230,7 +230,7 @@ Map<String, dynamic> _$ImagesToJson(Images instance) => <String, dynamic>{
 
 Rating _$RatingFromJson(Map<String, dynamic> json) {
   return Rating(
-    ratingsAvg: (json['ratingsAvg'] as num)?.toDouble(),
+    ratingsAvg: (json['ratingsAvg'] as num).toDouble(),
   );
 }
 

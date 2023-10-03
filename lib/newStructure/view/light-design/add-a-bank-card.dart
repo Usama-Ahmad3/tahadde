@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class AddBankCard extends StatelessWidget {
+  const AddBankCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // addabankcardRMT (513:7665)
         width: double.infinity,
         height: 942 * fem,
@@ -18,7 +20,7 @@ class AddBankCard extends StatelessWidget {
           // addabankcardZyT (303:12087)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -55,7 +57,7 @@ class AddBankCard extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -129,7 +131,7 @@ class AddBankCard extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ],
@@ -146,9 +148,9 @@ class AddBankCard extends StatelessWidget {
                     EdgeInsets.fromLTRB(16 * fem, 16 * fem, 16 * fem, 16 * fem),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xff1e1e1e),
+                  color: const Color(0xff1e1e1e),
                   borderRadius: BorderRadius.circular(16 * fem),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(
                       'assets/light-design/images/mask-group-9jP.png',
@@ -205,7 +207,7 @@ class AddBankCard extends StatelessWidget {
                         height: 15 * fem,
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       // contentYAV (303:12231)
                       width: double.infinity,
                       height: 37 * fem,
@@ -232,7 +234,7 @@ class AddBankCard extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.25 * ffem / fem,
                                       letterSpacing: -0.2 * fem,
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                     ),
                                   ),
                                 ),
@@ -244,13 +246,13 @@ class AddBankCard extends StatelessWidget {
                                     fontSize: 17 * ffem,
                                     fontWeight: FontWeight.w600,
                                     height: 1.4705882353 * ffem / fem,
-                                    color: Color(0xffffc300),
+                                    color: const Color(0xffffc300),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // group1000004054DA9 (303:12235)
                             width: 46 * fem,
                             height: 37 * fem,
@@ -272,7 +274,7 @@ class AddBankCard extends StatelessWidget {
                     EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 24 * fem),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -281,7 +283,7 @@ class AddBankCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       // captionandcarddetails2tH (303:12244)
                       width: double.infinity,
                       child: Column(
@@ -300,17 +302,17 @@ class AddBankCard extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // imputfillTih (303:12246)
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   // imputfillQdw (303:12247)
                                   width: double.infinity,
                                   child: Column(
@@ -328,7 +330,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ),
@@ -339,7 +341,7 @@ class AddBankCard extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -350,7 +352,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ),
@@ -360,7 +362,7 @@ class AddBankCard extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfillH5T (303:12248)
                                   width: double.infinity,
                                   child: Column(
@@ -378,7 +380,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ),
@@ -389,7 +391,7 @@ class AddBankCard extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -400,7 +402,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ),
@@ -410,7 +412,7 @@ class AddBankCard extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfill489 (303:12249)
                                   width: double.infinity,
                                   child: Column(
@@ -428,7 +430,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ),
@@ -439,7 +441,7 @@ class AddBankCard extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -450,7 +452,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ),
@@ -460,7 +462,7 @@ class AddBankCard extends StatelessWidget {
                                 SizedBox(
                                   height: 16 * fem,
                                 ),
-                                Container(
+                                SizedBox(
                                   // imputfillZj7 (303:12250)
                                   width: double.infinity,
                                   child: Column(
@@ -478,7 +480,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ),
@@ -489,7 +491,7 @@ class AddBankCard extends StatelessWidget {
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -500,7 +502,7 @@ class AddBankCard extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ),
@@ -544,7 +546,7 @@ class AddBankCard extends StatelessWidget {
                               fontSize: 13 * ffem,
                               fontWeight: FontWeight.w500,
                               height: 1.3846153846 * ffem / fem,
-                              color: Color(0xff010101),
+                              color: const Color(0xff010101),
                             ),
                           ),
                         ],
@@ -558,7 +560,7 @@ class AddBankCard extends StatelessWidget {
                       width: double.infinity,
                       height: 57 * fem,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(16 * fem),
                       ),
                       child: Center(
@@ -570,7 +572,7 @@ class AddBankCard extends StatelessWidget {
                             fontSize: 17 * ffem,
                             fontWeight: FontWeight.w600,
                             height: 1.4705882353 * ffem / fem,
-                            color: Color(0xff050505),
+                            color: const Color(0xff050505),
                           ),
                         ),
                       ),

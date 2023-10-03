@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
@@ -8,7 +9,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../constant.dart';
 import '../modelClass/my_venue_list_model_class.dart';
-import 'routingConstant.dart';
 
 typedef FormFieldValidator<T> = String? Function(T value);
 typedef FormFieldSetter<T> = void Function(T newValue);
@@ -52,10 +52,10 @@ Widget searchbar(
       decoration: InputDecoration(
         // contentPadding: EdgeInsets.all(0),
         hintStyle: TextStyle(fontSize: size, color: const Color(0XFF7A7A7A)),
-        hintText: '$hintText',
+        hintText: hintText,
         prefixIcon: GestureDetector(
           child: Image.asset(
-            '$icon',
+            icon,
             color: const Color(0XFF9B9B9B),
           ),
           onTap: () {},
@@ -133,7 +133,7 @@ Widget button({required String name}) {
       //color: Color(color),
     ),
     child: Text(
-      '$name',
+      name,
       style: const TextStyle(
         fontSize: 20,
         color: Colors.white,
@@ -187,8 +187,11 @@ on401(BuildContext context) async {
   prefs.remove("token");
   prefs.remove("auth");
   // ignore: use_build_context_synchronously
-  Navigator.pushNamedAndRemoveUntil(
-      context, RouteNames.playerHome, (r) => false);
+  // Navigator.pushNamedAndRemoveUntil(
+  //     context, RouteNames.playerHome, (r) => false);
+  // ignore: use_build_context_synchronously
+  Navigator.push(
+      context, MaterialPageRoute(builder: (_) => PlayerHomeScreen(index: 0)));
 }
 
 Future<void> launchInBrowser(String url) async {

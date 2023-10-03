@@ -23,7 +23,7 @@ import '../../../player/loginSignup/signup.dart';
 
 class EditPitch extends StatefulWidget {
   Map pitchDetail;
-  EditPitch({required this.pitchDetail});
+  EditPitch({super.key, required this.pitchDetail});
   @override
   _EditPitchState createState() => _EditPitchState();
 }
@@ -91,7 +91,7 @@ class _EditPitchState extends State<EditPitch> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -1039,7 +1039,7 @@ class _EditPitchState extends State<EditPitch> {
                                                     setState(() {
                                                       _curentlySelectedItem1 =
                                                           value!;
-                                                      gamePlay = value!;
+                                                      gamePlay = value;
                                                       gamePlayId =
                                                           value == "Indoor"
                                                               ? 9
@@ -1772,7 +1772,7 @@ class _EditPitchState extends State<EditPitch> {
                                                                               .center,
                                                                       child:
                                                                           Text(
-                                                                        "${_pitchType[blockIdx]}",
+                                                                        _pitchType[blockIdx],
                                                                         style: const TextStyle(
                                                                             decoration: TextDecoration
                                                                                 .none,
@@ -1807,7 +1807,7 @@ class _EditPitchState extends State<EditPitch> {
                                                                               .center,
                                                                       child:
                                                                           Text(
-                                                                        "${_pitchType[blockIdx]}",
+                                                                        _pitchType[blockIdx],
                                                                         style: const TextStyle(
                                                                             decoration: TextDecoration
                                                                                 .none,

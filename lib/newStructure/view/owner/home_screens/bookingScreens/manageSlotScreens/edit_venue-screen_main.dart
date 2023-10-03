@@ -612,7 +612,10 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => CreateSessionScreen(pitchData: detail)));
+            builder: (context) => CreateSessionScreen(
+                  pitchData: detail,
+                  createdTag: true,
+                )));
     // Navigator.pushNamed(context, RouteNames.editSession, arguments: detail);
   }
 }

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/picthowner_main_home.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
@@ -24,12 +23,10 @@ import 'homeFile/home.dart';
 import 'homeFile/more.dart';
 import 'homeFile/notificationEmpty.dart';
 import 'homeFile/routingConstant.dart';
-import 'homeFile/select_your_location.dart';
 import 'homeFile/utility.dart';
 import 'localizations.dart';
 import 'newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
 import 'newStructure/view/player/HomeScreen/playerHomeScreen.dart';
-import 'pitchOwner/homePitchOwner/homePitchOwner.dart';
 import 'player/loginSignup/profile/profile.dart';
 import 'walkThrough/walkThrough.dart';
 
@@ -57,13 +54,15 @@ Future<void> main() async {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
-    ]).then((value) => runApp(SplaceVedio()));
+    ]).then((value) => runApp(const SplaceVedio()));
   }, (error, stackTrace) {
     FirebaseCrashlytics.instance.recordError(error, stackTrace);
   });
 }
 
 class SplaceVedio extends StatefulWidget {
+  const SplaceVedio({super.key});
+
   @override
   _SplaceVedioState createState() => _SplaceVedioState();
 }
@@ -117,7 +116,7 @@ class MyApp extends StatefulWidget {
   final String? walk;
   final String? country;
 
-  const MyApp({this.language, this.role, this.walk, this.country});
+  const MyApp({super.key, this.language, this.role, this.walk, this.country});
 
   @override
   MyAppState createState() => MyAppState();
@@ -126,7 +125,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   late SpecificLocalizationDelegate _specificLocalizationDelegate;
   String? _language;
-  static ThemeMode mode = ThemeMode.system;
+  static ThemeMode? mode;
 
   @override
   void initState() {
@@ -156,13 +155,15 @@ class MyAppState extends State<MyApp> {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    var height = MediaQuery.of(context).size.height;
     Brightness currentSystemBrightness =
         MediaQuery.of(context).platformBrightness;
+    mode = currentSystemBrightness == Brightness.light
+        ? ThemeMode.light
+        : ThemeMode.dark;
     return MaterialApp(
       title: "Tahadde",
       color: Colors.white,
-      themeMode: mode,
+      themeMode: mode ?? ThemeMode.light,
       theme: ThemeData(
         brightness: currentSystemBrightness,
         fontFamily: 'Poppins',
@@ -202,7 +203,7 @@ class LanguageSave extends StatefulWidget {
   final String? walk;
   final String? country;
 
-  const LanguageSave({this.role, this.walk, this.country});
+  const LanguageSave({super.key, this.role, this.walk, this.country});
 
   @override
   _LanguageSaveState createState() => _LanguageSaveState();
@@ -311,7 +312,7 @@ class _LanguageSaveState extends State<LanguageSave> {
                 ),
               )
             : widget.walk == null
-                ? WalkThroughScreen()
+                ? const WalkThroughScreen()
                 : widget.role == "pitchowner"
                     ? HomePitchOwnerScreen(
                         index: 0,
@@ -340,29 +341,26 @@ class _PlayerHomeState extends State<PlayerHome>
   }
 
   initDynamicLinks() async {
-    bool _auth = await checkAuthorizaton() as bool;
+    bool auth = await checkAuthorizaton() as bool;
     PendingDynamicLinkData? data =
         await FirebaseDynamicLinks.instance.getInitialLink();
     Uri deepLink = data != null ? data.link : Uri.parse('uri');
-    if (deepLink != null && deepLink.queryParameters["token"] != null) {
-      if (!_auth) {
+    if (deepLink.queryParameters["token"] != null) {
+      if (!auth) {
         // ignore: use_build_context_synchronously
         Navigator.pushNamed(context, RouteNames.forgotPasswordScreen,
             arguments: deepLink.queryParameters["token"]);
       }
-    } else if (deepLink != null &&
-        deepLink.queryParameters["event_details"] == "pitch_details") {
+    } else if (deepLink.queryParameters["event_details"] == "pitch_details") {
       navigateToBookPitchDetail(
           int.parse(deepLink.queryParameters["pk"] ?? ''));
-    } else if (deepLink != null &&
-        deepLink.queryParameters["event_details"] == "league_details") {
+    } else if (deepLink.queryParameters["event_details"] == "league_details") {
       Map detail = {
         "id": int.parse(deepLink.queryParameters["pk"] ?? ''),
         "type": "League"
       };
       navigateToLeagueDetail(detail);
-    } else if (deepLink != null &&
-        deepLink.queryParameters["event_details"] == "tournament_details") {
+    } else if (deepLink.queryParameters["event_details"] == "tournament_details") {
       Map detail = {
         "id": int.parse(deepLink.queryParameters["pk"] ?? ''),
         "type": "Tournament"
@@ -412,7 +410,7 @@ class _PlayerHomeState extends State<PlayerHome>
         });
   }
 
-  final page = [Home(), NotificationEmpty(), ProfileScreen(msg: 'msg'), More()];
+  final page = [const Home(), const NotificationEmpty(), ProfileScreen(msg: 'msg'), const More()];
 
   @override
   Widget build(BuildContext context) {

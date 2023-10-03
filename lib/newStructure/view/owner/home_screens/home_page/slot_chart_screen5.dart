@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/venueCreated6.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/academy_created6.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -89,81 +90,13 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
         backgroundColor: MyAppState.mode == ThemeMode.light
             ? Colors.white
             : const Color(0xff686868),
-        appBar: PreferredSize(
-            preferredSize: Size(size.width, size.height * 0.105),
-            child: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text(
-                AppLocalizations.of(context)!.slotChart,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: Colors.white),
-              ),
-              centerTitle: true,
-              backgroundColor: Colors.black,
-              leadingWidth: size.width * 0.18,
-              leading: widget.backTag
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                            padding: EdgeInsets.all(size.height * 0.008),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                shape: BoxShape.circle),
-                            child: const Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.close,
-                                color: Colors.white,
-                              ),
-                            )),
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-              bottom: PreferredSize(
-                preferredSize: Size(size.width, 10),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.035),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: size.height * .005,
-                        width: size.width * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: size.height * .005,
-                        width: size.width * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: size.height * .005,
-                        width: size.width * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: size.height * .005,
-                        width: size.width * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: size.height * .005,
-                        width: size.width * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )),
+        appBar: appBarForCreatingAcademy(
+            size,
+            context,
+            AppLocalizations.of(context)!.slotChart,
+            false,
+            const Color(0XFF25A163),
+            const Color(0XFF25A163)),
         body: Container(
           color: Colors.black,
           child: Container(

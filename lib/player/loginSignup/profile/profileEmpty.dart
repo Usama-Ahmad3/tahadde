@@ -5,6 +5,8 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 
 class ProfileEmpty extends StatefulWidget {
+  const ProfileEmpty({super.key});
+
   @override
   _ProfileEmptyState createState() => _ProfileEmptyState();
 }

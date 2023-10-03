@@ -14,6 +14,8 @@ import '../../modelClass/turnamentModelClass.dart';
 import '../../network/network_calls.dart';
 
 class PitchOwnerHome extends StatefulWidget {
+  const PitchOwnerHome({super.key});
+
   @override
   _PitchOwnerHomeState createState() => _PitchOwnerHomeState();
 }

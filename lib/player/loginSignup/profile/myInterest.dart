@@ -1,17 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../common_widgets/internet_loss.dart';
-import '../../../homeFile/routingConstant.dart';
 import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
 import '../../../main.dart';
 import '../../../network/network_calls.dart';
+import '../../../newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 
 class MyInterest extends StatefulWidget {
+  const MyInterest({super.key});
+
   @override
   _MyInterestState createState() => _MyInterestState();
 }
@@ -76,40 +78,8 @@ class _MyInterestState extends State<MyInterest> {
     return loading
         ? Scaffold(
             backgroundColor: Colors.black,
-            appBar: PreferredSize(
-              preferredSize: Size(sizeWidth, sizeHeight * 0.108),
-              child: AppBar(
-                  title: Text(
-                    AppLocalizations.of(context)!.myInterest,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.white),
-                  ),
-                  centerTitle: true,
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Colors.black,
-                  leadingWidth: sizeWidth * 0.18,
-                  leading: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                          padding: EdgeInsets.all(sizeHeight * 0.008),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              shape: BoxShape.circle),
-                          child: const Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.close,
-                              color: Colors.white,
-                            ),
-                          )),
-                    ),
-                  )),
-            ),
+            appBar: appBarWidget(sizeWidth, sizeHeight, context,
+                AppLocalizations.of(context)!.myInterest, true),
             body: Container(
               height: sizeHeight,
               width: sizeWidth,
@@ -158,40 +128,8 @@ class _MyInterestState extends State<MyInterest> {
         : _internet!
             ? Scaffold(
                 backgroundColor: Colors.black,
-                appBar: PreferredSize(
-                  preferredSize: Size(sizeWidth, sizeHeight * 0.108),
-                  child: AppBar(
-                      title: Text(
-                        AppLocalizations.of(context)!.myInterest,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(color: Colors.white),
-                      ),
-                      centerTitle: true,
-                      automaticallyImplyLeading: false,
-                      backgroundColor: Colors.black,
-                      leadingWidth: sizeWidth * 0.18,
-                      leading: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                              padding: EdgeInsets.all(sizeHeight * 0.008),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  shape: BoxShape.circle),
-                              child: const Center(
-                                child: FaIcon(
-                                  FontAwesomeIcons.close,
-                                  color: Colors.white,
-                                ),
-                              )),
-                        ),
-                      )),
-                ),
+                appBar: appBarWidget(sizeWidth, sizeHeight, context,
+                    AppLocalizations.of(context)!.myInterest, true),
                 body: data!
                     ? Container(
                         height: sizeHeight * .87,
@@ -251,7 +189,7 @@ class _MyInterestState extends State<MyInterest> {
                                                       color: Colors
                                                           .blueGrey.shade200),
                                                   borderRadius:
-                                                      BorderRadius.all(
+                                                      const BorderRadius.all(
                                                     Radius.circular(12.0),
                                                     //
                                                   ),
@@ -441,8 +379,14 @@ class _MyInterestState extends State<MyInterest> {
   }
 
   void navigateToBookPitchDetail(Map detail) {
-    Navigator.pushNamed(context, RouteNames.venueDetailScreen,
-        arguments: detail);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => GroundDetail(
+                  detail: detail,
+                )));
+    // Navigator.pushNamed(context, RouteNames.venueDetailScreen,
+    //     arguments: detail);
   }
 
   Widget _shimmerCard() {

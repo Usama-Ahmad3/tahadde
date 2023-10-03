@@ -28,9 +28,9 @@ PaymentSummary _$PaymentSummaryFromJson(Map<String, dynamic> json) {
   return PaymentSummary(
     id: json['id'] as int,
     name: json['name'] as String,
-    grandTotal: (json['grandTotal'] as num)?.toDouble(),
-    tax: (json['tax'] as num)?.toDouble(),
-    subTotal: (json['subTotal'] as num)?.toDouble(),
+    grandTotal: (json['grandTotal'] as num).toDouble(),
+    tax: (json['tax'] as num).toDouble(),
+    subTotal: (json['subTotal'] as num).toDouble(),
     paymentFor: json['paymentFor'] as String,
   );
 }
@@ -52,10 +52,10 @@ YourTahaddiBookPitchDetail _$YourTahaddiBookPitchDetailFromJson(
         ? null
         : BookPitch.fromJson(json['bookPitch'] as Map<String, dynamic>),
     bookingDetails: (json['bookingDetails'] as List)
-        ?.map((e) => e == null
+        .map((e) => e == null
             ? null
             : BookingDetails.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
   );
 }
 
@@ -64,7 +64,7 @@ Map<String, dynamic> _$YourTahaddiBookPitchDetailToJson(
     <String, dynamic>{
       'bookPitch': instance.bookPitch?.toJson(),
       'bookingDetails':
-          instance.bookingDetails?.map((e) => e?.toJson())?.toList(),
+          instance.bookingDetails?.map((e) => e?.toJson()).toList(),
     };
 
 BookPitch _$BookPitchFromJson(Map<String, dynamic> json) {
@@ -75,8 +75,8 @@ BookPitch _$BookPitchFromJson(Map<String, dynamic> json) {
     currentYear: json['currentYear'] as int,
     currentMonth: json['currentMonth'] as int,
     location: json['location'] as String,
-    latitude: (json['latitude'] as num)?.toDouble(),
-    longitude: (json['longitude'] as num)?.toDouble(),
+    latitude: (json['latitude'] as num).toDouble(),
+    longitude: (json['longitude'] as num).toDouble(),
     description: json['description'] as String,
     organisedBy: json['organisedBy'] == null
         ? null
@@ -90,9 +90,9 @@ BookPitch _$BookPitchFromJson(Map<String, dynamic> json) {
         : PaymentSummary.fromJson(
             json['paymentSummary'] as Map<String, dynamic>),
     facilities: (json['facilities'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : Facility.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     gamePlay: json['gamePlay'] == null
         ? null
         : GamePlay.fromJson(json['gamePlay'] as Map<String, dynamic>),
@@ -113,7 +113,7 @@ Map<String, dynamic> _$BookPitchToJson(BookPitch instance) => <String, dynamic>{
       'organisedBy': instance.organisedBy?.toJson(),
       'gamePlay': instance.gamePlay?.toJson(),
       'link': instance.link,
-      'facilities': instance.facilities?.map((e) => e?.toJson())?.toList(),
+      'facilities': instance.facilities?.map((e) => e?.toJson()).toList(),
       'bookpitchfiles': instance.bookpitchfiles?.toJson(),
       'paymentSummary': instance.paymentSummary?.toJson(),
     };
@@ -160,21 +160,21 @@ Map<String, dynamic> _$OrganisedByToJson(OrganisedBy instance) =>
 
 BookingDetails _$BookingDetailsFromJson(Map<String, dynamic> json) {
   return BookingDetails(
-    paidTotal: (json['paidTotal'] as num)?.toDouble(),
+    paidTotal: (json['paidTotal'] as num).toDouble(),
     pitchType: json['pitchType'] == null
         ? null
         : PitchType.fromJson(json['pitchType'] as Map<String, dynamic>),
     slotDate: (json['slotDate'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : SlotDate.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
   );
 }
 
 Map<String, dynamic> _$BookingDetailsToJson(BookingDetails instance) =>
     <String, dynamic>{
       'pitchType': instance.pitchType?.toJson(),
-      'slotDate': instance.slotDate?.map((e) => e?.toJson())?.toList(),
+      'slotDate': instance.slotDate?.map((e) => e?.toJson()).toList(),
       'paidTotal': instance.paidTotal,
     };
 
@@ -195,15 +195,15 @@ Map<String, dynamic> _$PitchTypeToJson(PitchType instance) => <String, dynamic>{
 SlotDate _$SlotDateFromJson(Map<String, dynamic> json) {
   return SlotDate(
     slots: (json['slots'] as List)
-        ?.map(
+        .map(
             (e) => e == null ? null : Slot.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
     date: json['date'] as String,
   );
 }
 
 Map<String, dynamic> _$SlotDateToJson(SlotDate instance) => <String, dynamic>{
-      'slots': instance.slots?.map((e) => e?.toJson())?.toList(),
+      'slots': instance.slots?.map((e) => e?.toJson()).toList(),
       'date': instance.date,
     };
 

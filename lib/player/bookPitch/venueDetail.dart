@@ -27,7 +27,7 @@ import '../../network/network_calls.dart';
 class VenueDetailScreen extends StatefulWidget {
   Map detail;
 
-  VenueDetailScreen({required this.detail});
+  VenueDetailScreen({super.key, required this.detail});
 
   @override
   _VenueDetailScreenState createState() => _VenueDetailScreenState();
@@ -589,8 +589,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
                 ),
                 actions: [
                   _auth
-                      ? _venueDetail.isFavourite!
-                      ? IconButton(
+                      ? _venueDetail.isFavourite? IconButton(
                       onPressed: () {
                         _networkCalls
                             .checkInternetConnectivity(
@@ -2318,9 +2317,9 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
 
   double slotPriceCalculation(List<double> priceList) {
     double slotPrice = 0.0;
-    priceList.forEach((element) {
+    for (var element in priceList) {
       slotPrice = slotPrice + element;
-    });
+    }
     return slotPrice;
   }
 
@@ -2332,6 +2331,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
     } else if (value.bookedPlayer && !value.bookedVenue) {
       return isPerPlayer ? true : false;
     }
+    return null;
   }
 
   _buildShemmer(sizewidth, sizeheight) {

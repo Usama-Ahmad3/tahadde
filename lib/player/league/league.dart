@@ -24,7 +24,7 @@ import '../../network/network_calls.dart';
 class League extends StatefulWidget {
   final Map? eventData;
 
-  League({this.eventData});
+  const League({super.key, this.eventData});
 
   @override
   _League1State createState() => _League1State();

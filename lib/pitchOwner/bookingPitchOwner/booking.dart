@@ -11,6 +11,8 @@ import 'bookings.dart';
 import 'manageSlots.dart';
 
 class Booking extends StatefulWidget {
+  const Booking({super.key});
+
   @override
   _BookingState createState() => _BookingState();
 }
@@ -342,7 +344,7 @@ class _BookingState extends State<Booking> with AutomaticKeepAliveClientMixin {
                                             Bookings(
                                               bookingDetail: bookingDetail,
                                             ),
-                                            ManageSlots(),
+                                            const ManageSlots(),
                                           ],
                                         ),
                                       ),

@@ -10,6 +10,7 @@ import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../modelClass/bookingModelClass.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../player/HomeScreen/widgets/app_bar.dart';
 import 'manageSlotWidget.dart';
 
 class BookingScreen extends StatefulWidget {
@@ -122,19 +123,13 @@ class _BookingScreenState extends State<BookingScreen> {
                     length: 2,
                     child: Scaffold(
                       backgroundColor: Colors.black,
-                      appBar: PreferredSize(
-                          preferredSize: Size(width, height * 0.105),
-                          child: AppBar(
-                            title: Text(
-                              AppLocalizations.of(context)!.pitchBookings,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(color: Colors.white),
-                            ),
-                            centerTitle: true,
-                            backgroundColor: Colors.black,
-                          )),
+                      appBar: appBarWidget(
+                        width,
+                        height,
+                        context,
+                        AppLocalizations.of(context)!.academyBook,
+                        false,
+                      ),
                       body: LayoutBuilder(
                         builder: (context, constraint) {
                           return SingleChildScrollView(
@@ -208,7 +203,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                                               FontWeight.w700),
                                                     ),
                                               Text(
-                                                "${date["bookings"]}",
+                                                "${date["bookings"]} ${AppLocalizations.of(context)!.booking}",
                                                 style: TextStyle(
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light

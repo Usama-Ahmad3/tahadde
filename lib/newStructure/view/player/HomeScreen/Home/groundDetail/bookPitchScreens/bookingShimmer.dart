@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../../constant.dart';
@@ -126,7 +125,7 @@ class BookingShimmer {
                                       SizedBox(
                                         width: width * 0.03,
                                       ),
-                                      Text(''),
+                                      const Text(''),
                                       SizedBox(
                                         width: width * 0.3,
                                       ),
@@ -320,11 +319,11 @@ class BookingShimmer {
                                     elevation: 6,
                                     padding: const EdgeInsets.all(5),
                                   ),
-                                  items: [],
+                                  items: const [],
                                   onChange: (e, int) {},
-                                  child: Text('',
+                                  child: const Text('',
                                       textAlign: TextAlign.center,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           color: appThemeColor))),
                             ),
                           ],
@@ -352,9 +351,9 @@ class BookingShimmer {
                                               horizontal: width * 0.02,
                                               vertical: height * 0.01),
                                           child: Badge(
-                                            label: Text(
+                                            label: const Text(
                                               '0',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w600),
                                             ),

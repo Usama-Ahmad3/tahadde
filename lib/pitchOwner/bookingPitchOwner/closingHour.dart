@@ -8,7 +8,7 @@ import '../../network/network_calls.dart';
 
 class ClosingHour extends StatefulWidget {
   Map detail;
-  ClosingHour({required this.detail});
+  ClosingHour({super.key, required this.detail});
 
   @override
   _ClosingHourState createState() => _ClosingHourState();
@@ -650,8 +650,9 @@ class _ClosingHourState extends State<ClosingHour> {
                                                             });
                                                           },
                                                           tokenExpire: () {
-                                                            if (mounted)
+                                                            if (mounted) {
                                                               on401(context);
+                                                            }
                                                           },
                                                         );
                                                       });
@@ -958,9 +959,9 @@ class _ClosingHourState extends State<ClosingHour> {
                                                                             FontWeight.w700),
                                                                   ),
                                                                   Flexible(
+                                                                    flex: 2,
                                                                     child:
                                                                         Container(),
-                                                                    flex: 2,
                                                                   ),
                                                                   Image.asset(
                                                                     'images/arrow.png',
@@ -997,7 +998,7 @@ class _ClosingHourState extends State<ClosingHour> {
   }
 
   String timing({required int x}) {
-    var day;
+    String day;
     switch (x) {
       case 0:
         day = "00:00";

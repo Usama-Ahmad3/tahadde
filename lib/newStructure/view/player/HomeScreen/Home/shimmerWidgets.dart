@@ -37,9 +37,9 @@ class ShimmerWidgets {
                         color: Colors.white,
                       ),
                       enabled: false,
-                      label: Text(
+                      label: const Text(
                         'City',
-                        style: const TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white),
                       ),
                       prefixIcon: Icon(
                         Icons.location_on_outlined,
@@ -56,7 +56,7 @@ class ShimmerWidgets {
                 left: 0,
                 right: 0,
                 child: SizedBox(
-                    height: 500 * size, child: VanueList(bookPitchData: [])))
+                    height: 500 * size, child: VanueList(bookPitchData: const [])))
           ],
         ),
       ),
@@ -70,7 +70,7 @@ class ShimmerWidgets {
           baseColor: Colors.grey.shade300,
           highlightColor: Colors.grey.shade100,
           enabled: true,
-          child: Container(
+          child: SizedBox(
             height: sizeWidth * 75,
             width: double.infinity,
             child: ListView.builder(

@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Cancel extends StatelessWidget {
+  const Cancel({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // cancel19T (513:7653)
         width: double.infinity,
         height: 806 * fem,
@@ -18,7 +20,7 @@ class Cancel extends StatelessWidget {
           // cancelZRs (310:13584)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Stack(
@@ -27,7 +29,7 @@ class Cancel extends StatelessWidget {
                 // toolbar6Ro (310:13585)
                 left: 0 * fem,
                 top: 0 * fem,
-                child: Container(
+                child: SizedBox(
                   width: 375 * fem,
                   height: 92 * fem,
                   child: Column(
@@ -56,7 +58,7 @@ class Cancel extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.2575 * ffem / fem,
                                   letterSpacing: -0.2800000012 * fem,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                 ),
                               ),
                             ),
@@ -130,7 +132,7 @@ class Cancel extends StatelessWidget {
                                 fontSize: 17 * ffem,
                                 fontWeight: FontWeight.w600,
                                 height: 1.4705882353 * ffem / fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ],
@@ -150,9 +152,9 @@ class Cancel extends StatelessWidget {
                   width: 327 * fem,
                   height: 192 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xff1e1e1e),
+                    color: const Color(0xff1e1e1e),
                     borderRadius: BorderRadius.circular(16 * fem),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
                         'assets/light-design/images/mask-group-dsF.png',
@@ -209,7 +211,7 @@ class Cancel extends StatelessWidget {
                           height: 15 * fem,
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         // contentRCV (310:13595)
                         width: double.infinity,
                         height: 37 * fem,
@@ -236,7 +238,7 @@ class Cancel extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         height: 1.25 * ffem / fem,
                                         letterSpacing: -0.2 * fem,
-                                        color: Color(0xffffffff),
+                                        color: const Color(0xffffffff),
                                       ),
                                     ),
                                   ),
@@ -248,13 +250,13 @@ class Cancel extends StatelessWidget {
                                       fontSize: 17 * ffem,
                                       fontWeight: FontWeight.w600,
                                       height: 1.4705882353 * ffem / fem,
-                                      color: Color(0xffffc300),
+                                      color: const Color(0xffffc300),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // group1000004054iqo (310:13599)
                               width: 46 * fem,
                               height: 37 * fem,
@@ -281,7 +283,7 @@ class Cancel extends StatelessWidget {
                   width: 375 * fem,
                   height: 462 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
@@ -290,7 +292,7 @@ class Cancel extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
+                      SizedBox(
                         // captionandcarddetailsijK (310:13606)
                         width: double.infinity,
                         child: Column(
@@ -309,11 +311,11 @@ class Cancel extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // cardYTT (310:13608)
                               width: double.infinity,
                               child: Column(
@@ -327,7 +329,7 @@ class Cancel extends StatelessWidget {
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xffe6e6e6)),
+                                          Border.all(color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -368,13 +370,13 @@ class Cancel extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: Color(0xff0a0c0e),
+                                                  color: const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // selectorJDf (I310:13609;141:10598)
                                           width: 24 * fem,
                                           height: 24 * fem,
@@ -398,7 +400,7 @@ class Cancel extends StatelessWidget {
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xffe6e6e6)),
+                                          Border.all(color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -439,13 +441,13 @@ class Cancel extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: Color(0xff0a0c0e),
+                                                  color: const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // selectorhv1 (I310:13610;141:10598)
                                           width: 24 * fem,
                                           height: 24 * fem,
@@ -468,12 +470,12 @@ class Cancel extends StatelessWidget {
                                     width: double.infinity,
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Color(0x1408091f),
+                                          color: const Color(0x1408091f),
                                           offset: Offset(0 * fem, 40 * fem),
                                           blurRadius: 30 * fem,
                                         ),
@@ -516,13 +518,13 @@ class Cancel extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: Color(0xff0a0c0e),
+                                                  color: const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // selectorSuX (I310:13611;141:10598)
                                           width: 24 * fem,
                                           height: 24 * fem,
@@ -572,7 +574,7 @@ class Cancel extends StatelessWidget {
                                 fontSize: 13 * ffem,
                                 fontWeight: FontWeight.w500,
                                 height: 1.3846153846 * ffem / fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ],
@@ -586,7 +588,7 @@ class Cancel extends StatelessWidget {
                         width: double.infinity,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(16 * fem),
                         ),
                         child: Center(
@@ -598,7 +600,7 @@ class Cancel extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),
@@ -618,7 +620,7 @@ class Cancel extends StatelessWidget {
                     child: Opacity(
                       opacity: 0.5,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0x7f050505),
                         ),
                       ),
@@ -636,7 +638,7 @@ class Cancel extends StatelessWidget {
                   width: 375 * fem,
                   height: 370 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
@@ -675,11 +677,11 @@ class Cancel extends StatelessWidget {
                                         fontWeight: FontWeight.w700,
                                         height: 1.25 * ffem / fem,
                                         letterSpacing: -0.2 * fem,
-                                        color: Color(0xff050505),
+                                        color: const Color(0xff050505),
                                       ),
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // canceliconVAy (310:13775)
                                     width: 13.15 * fem,
                                     height: 13.15 * fem,
@@ -692,7 +694,7 @@ class Cancel extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // contentzdX (310:13782)
                               width: double.infinity,
                               child: Column(
@@ -731,7 +733,7 @@ class Cancel extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff828282),
+                                              color: const Color(0xff828282),
                                             ),
                                           ),
                                         ),
@@ -774,7 +776,7 @@ class Cancel extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff828282),
+                                              color: const Color(0xff828282),
                                             ),
                                           ),
                                         ),
@@ -817,7 +819,7 @@ class Cancel extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff828282),
+                                              color: const Color(0xff828282),
                                             ),
                                           ),
                                         ),
@@ -860,7 +862,7 @@ class Cancel extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff828282),
+                                              color: const Color(0xff828282),
                                             ),
                                           ),
                                         ),
@@ -903,7 +905,7 @@ class Cancel extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff828282),
+                                              color: const Color(0xff828282),
                                             ),
                                           ),
                                         ),
@@ -946,7 +948,7 @@ class Cancel extends StatelessWidget {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff828282),
+                                              color: const Color(0xff828282),
                                             ),
                                           ),
                                         ),
@@ -964,7 +966,7 @@ class Cancel extends StatelessWidget {
                         width: double.infinity,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(16 * fem),
                         ),
                         child: Center(
@@ -976,7 +978,7 @@ class Cancel extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),

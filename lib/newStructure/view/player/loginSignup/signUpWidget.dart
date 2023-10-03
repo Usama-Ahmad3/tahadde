@@ -5,7 +5,6 @@ import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin.dart';
 
-import '../../../../constant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import '../../../../network/network_calls.dart';
@@ -49,7 +48,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
   FocusNode passwordFocus = FocusNode();
   FocusNode emailFocus = FocusNode();
   FocusNode confirmFocus = FocusNode();
-  String _initialCountry = '+971';
+  final String _initialCountry = '+971';
   final NetworkCalls _networkCalls = NetworkCalls();
   static String? player;
   List<String> playerEn = ["player", "Owner"];
@@ -72,7 +71,6 @@ class SignUpWidgetState extends State<SignUpWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     LoginScreenState.isLoading = false;
   }

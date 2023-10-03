@@ -42,9 +42,9 @@ YourTahaddi _$YourTahaddiFromJson(Map<String, dynamic> json) {
     transactionMadeon: json['transactionMadeon'] as String,
     transactionFor: json['transactionFor'] as String,
     pitchType: (json['pitchType'] as List)
-        ?.map((e) =>
+        .map((e) =>
             e == null ? null : PitchType.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
   );
 }
 
@@ -53,7 +53,7 @@ Map<String, dynamic> _$YourTahaddiToJson(YourTahaddi instance) =>
       'tahaddis': instance.tahaddis?.toJson(),
       'transactionMadeon': instance.transactionMadeon,
       'transactionFor': instance.transactionFor,
-      'pitchType': instance.pitchType?.map((e) => e?.toJson())?.toList(),
+      'pitchType': instance.pitchType?.map((e) => e?.toJson()).toList(),
     };
 
 Tahaddi _$TahaddiFromJson(Map<String, dynamic> json) {

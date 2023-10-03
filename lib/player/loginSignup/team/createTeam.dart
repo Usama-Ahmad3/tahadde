@@ -18,6 +18,8 @@ import '../../../network/network_calls.dart';
 import '../signup.dart';
 
 class CreateTeam extends StatefulWidget {
+  const CreateTeam({super.key});
+
   @override
   _CreateTeamState createState() => _CreateTeamState();
 }
@@ -50,7 +52,7 @@ class _CreateTeamState extends State<CreateTeam> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -238,7 +240,7 @@ class _CreateTeamState extends State<CreateTeam> {
               backgroundColor: const Color(0XFF032040),
             ),
             body: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 height: sizeHeight * .78,
                 width: sizeWidth,
                 child: Column(
@@ -305,7 +307,7 @@ class _CreateTeamState extends State<CreateTeam> {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: sizeWidth * .4,
                                       child: Column(
                                         mainAxisAlignment:
@@ -454,9 +456,10 @@ class _CreateTeamState extends State<CreateTeam> {
                             setState(() {});
                           }
                         } else {
-                          if (mounted)
+                          if (mounted) {
                             showMessage(AppLocalizations.of(context)!
                                 .noInternetConnection);
+                          }
                         }
                       });
                     },
@@ -500,7 +503,7 @@ class _CreateTeamState extends State<CreateTeam> {
                   backgroundColor: const Color(0XFF032040),
                 ),
                 body: SingleChildScrollView(
-                  child: Container(
+                  child: SizedBox(
                     height: sizeHeight * .78,
                     width: sizeWidth,
                     child: Column(
@@ -585,7 +588,7 @@ class _CreateTeamState extends State<CreateTeam> {
                                                         ),
                                                 )),
                                           ),
-                                          Container(
+                                          SizedBox(
                                             width: sizeWidth * .4,
                                             child: Column(
                                               mainAxisAlignment:

@@ -99,7 +99,7 @@ class _ChooseAccountState extends State<ChooseAccount> {
                       pitchOwner = false;
                     });
                   },
-                  child: Container(
+                  child: SizedBox(
                     height: sizeHeight * .2,
                     width: sizeWidth * .55,
                     child: player
@@ -140,7 +140,7 @@ class _ChooseAccountState extends State<ChooseAccount> {
                       player = false;
                     });
                   },
-                  child: Container(
+                  child: SizedBox(
                     height: sizeHeight * .2,
                     width: sizeWidth * .55,
                     child: pitchOwner

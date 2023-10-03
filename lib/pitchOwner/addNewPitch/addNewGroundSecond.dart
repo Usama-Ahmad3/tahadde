@@ -18,7 +18,7 @@ import '../../player/loginSignup/signup.dart';
 
 class AddNewGroundSecond extends StatefulWidget {
   Map? detail;
-  AddNewGroundSecond({this.detail});
+  AddNewGroundSecond({super.key, this.detail});
   @override
   _AddNewGroundSecondState createState() => _AddNewGroundSecondState();
 }
@@ -58,7 +58,7 @@ class _AddNewGroundSecondState extends State<AddNewGroundSecond> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -203,7 +203,7 @@ class _AddNewGroundSecondState extends State<AddNewGroundSecond> {
     var sizeWidth = MediaQuery.of(context).size.width;
     return _isLoading
         ? Scaffold(
-            body: Container(
+            body: SizedBox(
               width: sizeWidth,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -367,7 +367,7 @@ class _AddNewGroundSecondState extends State<AddNewGroundSecond> {
                               fontSize: 20,
                               color: Colors.white),
                         )),
-                body: Container(
+                body: SizedBox(
                   width: sizeWidth,
                   child: Column(
                     children: <Widget>[
@@ -615,7 +615,7 @@ class _AddNewGroundSecondState extends State<AddNewGroundSecond> {
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily: "Poppins")),
                                         flaxibleGap(1),
-                                        Container(
+                                        SizedBox(
                                           height: sizeHeight * .03,
                                           child: FloatingActionButton(
                                             onPressed: () {

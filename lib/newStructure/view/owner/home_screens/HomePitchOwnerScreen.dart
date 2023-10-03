@@ -106,7 +106,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                     widget.index = index;
                     setState(() {});
                   },
-                  selectedItemColor: const Color(0xffffc300),
+                  selectedItemColor: const Color(0xff1d7e55),
                   backgroundColor: Colors.black,
                   selectedColorOpacity: 1,
                   curve: Curves.bounceInOut,
@@ -124,33 +124,30 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                         color: Colors.black,
                       ),
                       unselectedColor: Colors.grey,
-                      selectedColor: const Color(0xffffc300),
+                      selectedColor: const Color(0xff1d7e55),
                     ),
                     SalomonBottomBarItem(
-                      icon: Transform.rotate(
-                        angle: 2.75,
-                        child: SizedBox(
-                          height: 30,
-                          width: 30,
-                          child: Image.asset('assets/images/ticket-9LV.png'),
+                      icon: SizedBox(
+                        height: 23,
+                        width: 23,
+                        child: Image.asset(
+                          'assets/images/booking2.png',
+                          color: Colors.grey,
                         ),
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.booking,
                         style: const TextStyle(color: Colors.black),
                       ),
-                      activeIcon: Transform.rotate(
-                        angle: 3.25,
-                        child: SizedBox(
-                          height: 25,
-                          width: 25,
-                          child: Image.asset(
-                            'assets/images/ticket.png',
-                            color: Colors.black,
-                          ),
+                      activeIcon: SizedBox(
+                        height: 23,
+                        width: 23,
+                        child: Image.asset(
+                          'assets/images/file.png',
+                          color: Colors.black,
                         ),
                       ),
-                      selectedColor: const Color(0xffffc300),
+                      selectedColor: const Color(0xff1d7e55),
                       unselectedColor: Colors.grey,
                     ),
                     SalomonBottomBarItem(
@@ -165,7 +162,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                         Icons.notifications_sharp,
                         color: Colors.black,
                       ),
-                      selectedColor: const Color(0xffffc300),
+                      selectedColor: const Color(0xff1d7e55),
                       unselectedColor: Colors.grey,
                     ),
                     SalomonBottomBarItem(
@@ -180,7 +177,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                         Icons.person,
                         color: Colors.black,
                       ),
-                      selectedColor: const Color(0xffffc300),
+                      selectedColor: const Color(0xff1d7e55),
                       unselectedColor: Colors.grey,
                     ),
                   ],

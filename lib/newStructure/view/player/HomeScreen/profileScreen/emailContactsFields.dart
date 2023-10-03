@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
 
-import '../../../utils.dart';
+import '../widgets/textFormField.dart';
 
 class EmailContactDOB extends StatelessWidget {
   String constant;
@@ -13,53 +13,58 @@ class EmailContactDOB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = TextEditingController();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: width * 0.06, vertical: height * 0.012),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        width: double.infinity,
-        height: height * 0.05,
-        decoration: BoxDecoration(
-          border: Border.all(
-              color: MyAppState.mode == ThemeMode.light
-                  ? Color(0xfff2f2f2)
-                  : Colors.grey),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              constant,
-              overflow: TextOverflow.ellipsis,
-              style: SafeGoogleFont(
-                'Inter',
-                fontSize: AppLocalizations.of(context)!.locale == 'en'
-                    ? height * 0.02
-                    : height * 0.015,
-                fontWeight: FontWeight.w500,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            constant,
+            style: TextStyle(
                 color: MyAppState.mode == ThemeMode.light
-                    ? Color(0xff050505)
-                    : Colors.white,
-              ),
+                    ? Colors.black
+                    : Colors.white),
+          ),
+          SizedBox(
+            height: height * 0.01,
+          ),
+          SizedBox(
+            height: height * 0.062,
+            child: textFieldWidget(
+              controller: controller,
+              enable: false,
+              hintText: constantValue,
+              suffixIcon: Icons.edit_outlined,
+              fillColor: Colors.transparent,
+              suffixIconColor: MyAppState.mode == ThemeMode.light
+                  ? Colors.black
+                  : Colors.white,
+              border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12)),
+              enableBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12)),
+              focusBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12)),
+              onSubmitted: (value) {
+                // UtilsSign.focusChange(lastFocus, context);
+                return null;
+              },
+              onValidate: (value) {
+                if (value.isEmpty) {
+                  return AppLocalizations.of(context)!.pleaseenterFirstName;
+                }
+                return null;
+              },
             ),
-            Text(
-              constantValue,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.right,
-              style: SafeGoogleFont(
-                'Inter',
-                fontSize: height * 0.017,
-                fontWeight: FontWeight.w500,
-                color: MyAppState.mode == ThemeMode.light
-                    ? Color(0xff686868)
-                    : Colors.grey,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

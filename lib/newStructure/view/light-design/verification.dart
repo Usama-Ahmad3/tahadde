@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Verfication extends StatelessWidget {
+  const Verfication({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // verificationjvh (513:7666)
         width: double.infinity,
         height: 812 * fem,
@@ -18,7 +20,7 @@ class Verfication extends StatelessWidget {
           // verificationTbo (303:12270)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -55,7 +57,7 @@ class Verfication extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -129,7 +131,7 @@ class Verfication extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ],
@@ -144,7 +146,7 @@ class Verfication extends StatelessWidget {
                     24 * fem, 24 * fem, 24 * fem, 358 * fem),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -174,7 +176,7 @@ class Verfication extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
@@ -190,7 +192,7 @@ class Verfication extends StatelessWidget {
                                 fontSize: 15 * ffem,
                                 fontWeight: FontWeight.w400,
                                 height: 1.3333333333 * ffem / fem,
-                                color: Color(0xff828282),
+                                color: const Color(0xff828282),
                               ),
                             ),
                           ),
@@ -217,7 +219,7 @@ class Verfication extends StatelessWidget {
                                         height: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xff7b61ff)),
+                                              color: const Color(0xff7b61ff)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -229,7 +231,7 @@ class Verfication extends StatelessWidget {
                                               fontSize: 15 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3333333333 * ffem / fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -243,7 +245,7 @@ class Verfication extends StatelessWidget {
                                         height: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xff7b61ff)),
+                                              color: const Color(0xff7b61ff)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -255,7 +257,7 @@ class Verfication extends StatelessWidget {
                                               fontSize: 15 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3333333333 * ffem / fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -269,7 +271,7 @@ class Verfication extends StatelessWidget {
                                         height: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -282,7 +284,7 @@ class Verfication extends StatelessWidget {
                                               fontWeight: FontWeight.w500,
                                               height: 1.3999999551 * ffem / fem,
                                               letterSpacing: -0.068000001 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -296,7 +298,7 @@ class Verfication extends StatelessWidget {
                                         height: double.infinity,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -309,7 +311,7 @@ class Verfication extends StatelessWidget {
                                               fontWeight: FontWeight.w500,
                                               height: 1.3999999551 * ffem / fem,
                                               letterSpacing: -0.068000001 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -326,7 +328,7 @@ class Verfication extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     height: 1.25 * ffem / fem,
                                     letterSpacing: -0.2 * fem,
-                                    color: Color(0xff050505),
+                                    color: const Color(0xff050505),
                                   ),
                                 ),
                               ],
@@ -340,7 +342,7 @@ class Verfication extends StatelessWidget {
                       width: double.infinity,
                       height: 57 * fem,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(16 * fem),
                       ),
                       child: Center(
@@ -352,7 +354,7 @@ class Verfication extends StatelessWidget {
                             fontSize: 17 * ffem,
                             fontWeight: FontWeight.w600,
                             height: 1.4705882353 * ffem / fem,
-                            color: Color(0xff050505),
+                            color: const Color(0xff050505),
                           ),
                         ),
                       ),

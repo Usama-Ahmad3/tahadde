@@ -14,7 +14,7 @@ Event _$EventFromJson(Map<String, dynamic> json) {
     event: json['event'] == null
         ? null
         : EventType.fromJson(json['event'] as Map<String, dynamic>),
-    paidTotal: (json['paidTotal'] as num)?.toDouble(),
+    paidTotal: (json['paidTotal'] as num).toDouble(),
     transactionId: json['transactionId'] as String,
     transactionMadeon: json['transactionMadeon'] as String,
   );

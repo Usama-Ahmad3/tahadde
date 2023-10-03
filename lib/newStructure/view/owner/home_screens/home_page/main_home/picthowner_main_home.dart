@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_tahaddi/main.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/view_all.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
+import '../../../../../../homeFile/routingConstant.dart';
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../modelClass/my_venue_list_model_class.dart';
@@ -23,6 +23,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
   bool _isLoading = true;
   List<MyVenueModelClass> _pitchDetail = [];
   bool _internet = true;
+  int initial = 0;
+  int clicked = 1;
 
   loadMyPitch() async {
     await _networkCalls.myVenues(
@@ -85,390 +87,627 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
         });
       },
       child: _internet
-          ? Scaffold(
-              backgroundColor: const Color(0xff050505),
-              appBar: AppBar(
-                elevation: 2,
-                automaticallyImplyLeading: false,
-                title: Row(
-                  children: [
-                    SizedBox(
-                        height: 40 * fem,
-                        width: 40 * fem,
-                        child: Image.asset(
-                          'assets/images/T.png',
-                          color: Colors.greenAccent,
+          ? DefaultTabController(
+              length: 2,
+              child: Scaffold(
+                  backgroundColor: const Color(0xff050505),
+                  appBar: PreferredSize(
+                    preferredSize: Size(
+                      double.infinity,
+                      sizeHeight * 0.34,
+                    ),
+                    child: AppBar(
+                        elevation: 2,
+                        automaticallyImplyLeading: false,
+                        flexibleSpace: Column(
+                          children: [
+                            SizedBox(
+                              height: sizeHeight * 0.12,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: sizeHeight * 0.03),
+                              child: SizedBox(
+                                height: sizeHeight * 0.19,
+                                width: double.infinity,
+                                child: const Placeholder(),
+                              ),
+                            ),
+                          ],
+                        ),
+                        title: Row(
+                          children: [
+                            SizedBox(
+                                height: 40 * fem,
+                                width: 40 * fem,
+                                child: Image.asset(
+                                  'assets/images/T.png',
+                                  color: Colors.greenAccent,
+                                )),
+                            SizedBox(
+                              width: sizeWidth * 0.001,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!.tahaddi,
+                              style: SafeGoogleFont(
+                                'Inter',
+                                fontSize: 22 * ffem,
+                                fontWeight: FontWeight.w600,
+                                height: 1.25 * ffem / fem,
+                                letterSpacing: -0.2 * fem,
+                                color: const Color(0xffffffff),
+                              ),
+                            ),
+                          ],
+                        ),
+                        bottom: TabBar(
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          unselectedLabelColor: Colors.grey,
+                          dividerColor: Colors.red,
+                          // indicator: BoxDecoration(
+                          //   color: Color(0xff1d7e55),
+                          //   borderRadius: BorderRadius.circular(8),
+                          // ),
+                          padding: EdgeInsets.symmetric(
+                              vertical: sizeHeight * 0.003),
+                          tabs: [
+                            Center(
+                                child: Padding(
+                              padding: EdgeInsets.all(sizeHeight * 0.012),
+                              child: Text(
+                                AppLocalizations.of(context)!.academyOnly,
+                              ),
+                            )),
+                            Center(
+                                child: Padding(
+                              padding: EdgeInsets.all(sizeHeight * 0.012),
+                              child: Text(
+                                AppLocalizations.of(context)!.innovative,
+                              ),
+                            )),
+                          ],
                         )),
-                    SizedBox(
-                      width: sizeWidth * 0.001,
+                  ),
+                  floatingActionButton: SpeedDial(
+                    elevation: 3,
+                    label: Text(
+                      'Add',
+                      // AppLocalizations.of(context)!.add,
+                      style: TextStyle(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? Colors.white
+                              : Colors.black,
+                          fontSize: 11),
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.tahaddi,
-                      style: SafeGoogleFont(
-                        'Inter',
-                        fontSize: 22 * ffem,
-                        fontWeight: FontWeight.w600,
-                        height: 1.25 * ffem / fem,
-                        letterSpacing: -0.2 * fem,
-                        color: const Color(0xffffffff),
-                      ),
+                    animationCurve: Curves.easeInOutCirc,
+                    backgroundColor: MyAppState.mode == ThemeMode.light
+                        ? const Color(0xff686868)
+                        : Colors.tealAccent.shade100,
+                    onPress: () {
+                      navigateToSports();
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: MyAppState.mode == ThemeMode.light
+                          ? Colors.white
+                          : Colors.black,
+                      size: sizeHeight * 0.03,
                     ),
-                  ],
-                ),
-              ),
-              body: _isLoading
-                  ? ShimmerWidgets().buildShimmer(fem, context, _pitchDetail)
-                  : ListView(
-                      children: [
-                        SizedBox(
-                          height: sizeHeight * 0.02,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: sizeHeight * 0.03),
-                          child: SizedBox(
-                            height: sizeHeight * 0.19,
-                            width: double.infinity,
-                            child: const Placeholder(),
-                          ),
-                        ),
-                        SizedBox(
-                          height: sizeHeight * 0.01,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: sizeHeight * 0.63,
-                          margin: EdgeInsets.only(top: sizeHeight * 0.02),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: sizeWidth * 0.07,
-                              vertical: sizeHeight * 0.03),
-                          decoration: BoxDecoration(
-                            color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0xffffffff)
-                                : const Color(0xff5A5C60),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    children: [
-                                      ...List.generate(
-                                        _pitchDetail.length,
-                                        // _pitchDetail.length,
-                                        (index) => index == 0
-                                            ? Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: sizeWidth * 0.022),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    navigateToSports();
-                                                  },
-                                                  child: Container(
-                                                    width: sizeWidth * 0.85,
-                                                    height: sizeHeight * 0.22,
+                  ),
+                  body: _isLoading
+                      ? ShimmerWidgets()
+                          .buildShimmer(fem, context, _pitchDetail)
+                      : TabBarView(children: [
+                          Container(
+                              color: Colors.black,
+                              child: Container(
+                                height: sizeHeight,
+                                width: sizeWidth,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: sizeWidth * 0.033),
+                                decoration: BoxDecoration(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? Colors.white
+                                        : const Color(0xff686868),
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20))),
+                                child: SingleChildScrollView(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: sizeHeight * 0.01,
+                                        horizontal: sizeWidth * 0.01),
+                                    child: Column(
+                                      children: [
+                                        ...List.generate(
+                                          _pitchDetail.length > 2
+                                              ? 2
+                                              : _pitchDetail.length,
+                                          (index) => Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: sizeHeight * 0.01),
+                                            child: Container(
+                                              width: sizeWidth * 0.9,
+                                              decoration: BoxDecoration(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? Colors.grey.shade200
+                                                    : Colors.white12,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Container(
                                                     decoration: BoxDecoration(
-                                                      image: const DecorationImage(
-                                                          fit: BoxFit.fill,
-                                                          image: AssetImage(
-                                                              "assets/images/addnew.png")),
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? Colors.grey.shade200
-                                                          : Colors.white12,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        SizedBox(
-                                                          height:
-                                                              sizeHeight * 0.02,
-                                                        ),
-                                                        Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .academy,
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    sizeHeight *
-                                                                        0.023,
-                                                                color: MyAppState
-                                                                            .mode ==
-                                                                        ThemeMode
-                                                                            .light
-                                                                    ? const Color(
-                                                                        0xff686868)
-                                                                    : Colors
-                                                                        .white70)),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            : Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal:
-                                                        sizeWidth * 0.01),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? Colors.grey.shade200
-                                                        : const Color(
-                                                            0xff373737),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15),
-                                                  ),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      SizedBox(
-                                                        width: sizeWidth * 0.85,
-                                                        height:
-                                                            sizeHeight * 0.196,
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    15),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    15),
-                                                          ),
-                                                          child:
-                                                              cachedNetworkImage(
-                                                            cuisineImageUrl:
-                                                                _pitchDetail[
-                                                                        index]
-                                                                    .pitchImage,
-                                                            imageFit:
-                                                                BoxFit.fill,
-                                                            errorFit: BoxFit
-                                                                .fitHeight,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        _pitchDetail[index]
-                                                            .venueName
-                                                            .toString(),
-                                                        style: SafeGoogleFont(
-                                                          'Inter',
-                                                          fontSize: 16,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12)),
+                                                    child: DefaultTextStyle(
+                                                      style: TextStyle(
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                              FontWeight.bold,
                                                           color: MyAppState
                                                                       .mode ==
                                                                   ThemeMode
                                                                       .light
-                                                              ? const Color(
-                                                                  0xff050505)
-                                                              : const Color(
-                                                                  0xffffffff),
-                                                        ),
+                                                              ? Colors.black
+                                                              : Colors.white),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding: EdgeInsets.symmetric(
+                                                                horizontal:
+                                                                    sizeWidth *
+                                                                        0.02,
+                                                                vertical:
+                                                                    sizeHeight *
+                                                                        0.005),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                    '${AppLocalizations.of(context)!.status}:'),
+                                                                Text(
+                                                                  _pitchDetail[
+                                                                              index]
+                                                                          .isVerified!
+                                                                      ? AppLocalizations.of(
+                                                                              context)!
+                                                                          .verified
+                                                                      : _pitchDetail[index]
+                                                                              .isDecline!
+                                                                          ? AppLocalizations.of(context)!
+                                                                              .rejected
+                                                                          : AppLocalizations.of(context)!
+                                                                              .inReview,
+                                                                  style: const TextStyle(
+                                                                      color: Colors
+                                                                          .redAccent),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12),
+                                                            child:
+                                                                cachedNetworkImage(
+                                                              height:
+                                                                  sizeHeight *
+                                                                      0.193,
+                                                              imageFit:
+                                                                  BoxFit.fill,
+                                                              width:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                              cuisineImageUrl: _pitchDetail[
+                                                                          index]
+                                                                      .pitchImage
+                                                                      .toString() ??
+                                                                  "",
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height: sizeHeight *
+                                                                0.005,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              cachedNetworkImage(
+                                                                height:
+                                                                    sizeHeight *
+                                                                        0.02,
+                                                                imageFit:
+                                                                    BoxFit.fill,
+                                                                width:
+                                                                    sizeWidth *
+                                                                        0.05,
+                                                                cuisineImageUrl:
+                                                                    _pitchDetail[index]
+                                                                            .sportImage
+                                                                            .toString() ??
+                                                                        "",
+                                                              ),
+                                                              SizedBox(
+                                                                width:
+                                                                    sizeWidth *
+                                                                        0.01,
+                                                              ),
+                                                              Text(_pitchDetail[
+                                                                      index]
+                                                                  .venueName
+                                                                  .toString()),
+                                                            ],
+                                                          ),
+                                                          Padding(
+                                                            padding: EdgeInsets.only(
+                                                                bottom:
+                                                                    sizeHeight *
+                                                                        0.008,
+                                                                left:
+                                                                    sizeWidth *
+                                                                        0.007),
+                                                            child: Text(
+                                                                _pitchDetail[
+                                                                        index]
+                                                                    .location!),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                ),
+                                                ],
                                               ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: sizeHeight * 0.01,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    navigateToVenuesViewMore(_pitchDetail);
-                                  },
-                                  child: Text(
-                                    AppLocalizations.of(context)!.viewAll,
-                                    style: SafeGoogleFont(
-                                      'Inter',
-                                      fontSize: 16,
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? const Color(0xff686868)
-                                          : Colors.white70,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: sizeHeight * 0.01,
+                                        ),
+                                        Align(
+                                          alignment: Alignment.bottomLeft,
+                                          child: InkWell(
+                                            onTap: () {
+                                              navigateToVenuesViewMore(
+                                                  _pitchDetail);
+                                            },
+                                            child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .viewMore,
+                                              style: SafeGoogleFont(
+                                                'Inter',
+                                                color: Colors.green,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: sizeHeight * 0.02,
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: sizeHeight * 0.02,
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(right: sizeWidth * 0.022),
-                                  child: InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        if (MyAppState.mode ==
-                                            ThemeMode.light) {
-                                          MyAppState.mode = ThemeMode.dark;
-                                        } else {
-                                          MyAppState.mode = ThemeMode.light;
-                                        }
-                                      });
-                                    },
-                                    child: Container(
-                                      width: sizeWidth * 0.85,
-                                      height: sizeHeight * 0.22,
-                                      decoration: BoxDecoration(
-                                        image: const DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: AssetImage(
-                                                "assets/images/addnew.png")),
-                                        color:
-                                            MyAppState.mode == ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.white12,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                              AppLocalizations.of(context)!
-                                                  .innovative,
-                                              style: TextStyle(
-                                                  fontSize: sizeHeight * 0.023,
+                              )),
+                          Container(
+                            color: Colors.black,
+                            child: Container(
+                                height: sizeHeight,
+                                width: sizeWidth,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: sizeWidth * 0.033),
+                                decoration: BoxDecoration(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? Colors.white
+                                        : const Color(0xff686868),
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20))),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: sizeHeight * 0.01,
+                                      horizontal: sizeWidth * 0.01),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        ...List.generate(
+                                          _pitchDetail.length > 2
+                                              ? 1
+                                              : _pitchDetail.length,
+                                          (index) => InkWell(
+                                            onTap: () {
+                                              navigateToSports();
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: sizeHeight * 0.01),
+                                              child: Container(
+                                                width: sizeWidth * 0.9,
+                                                decoration: BoxDecoration(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
-                                                      ? const Color(0xff686868)
-                                                      : Colors.white70)),
-                                        ],
-                                      ),
+                                                      ? Colors.grey.shade200
+                                                      : Colors.white12,
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                      child: DefaultTextStyle(
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? Colors.black
+                                                                : Colors.white),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(
+                                                                  horizontal:
+                                                                      sizeWidth *
+                                                                          0.02,
+                                                                  vertical:
+                                                                      sizeHeight *
+                                                                          0.005),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Text(
+                                                                      '${AppLocalizations.of(context)!.status}:'),
+                                                                  Text(
+                                                                    _pitchDetail[
+                                                                                index]
+                                                                            .isVerified!
+                                                                        ? AppLocalizations.of(context)!
+                                                                            .verified
+                                                                        : AppLocalizations.of(context)!
+                                                                            .inReview,
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .redAccent),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12),
+                                                              child:
+                                                                  cachedNetworkImage(
+                                                                height:
+                                                                    sizeHeight *
+                                                                        0.193,
+                                                                imageFit:
+                                                                    BoxFit.fill,
+                                                                width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                                cuisineImageUrl:
+                                                                    _pitchDetail[index]
+                                                                            .pitchImage
+                                                                            .toString() ??
+                                                                        "",
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              height:
+                                                                  sizeHeight *
+                                                                      0.005,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                cachedNetworkImage(
+                                                                  height:
+                                                                      sizeHeight *
+                                                                          0.02,
+                                                                  imageFit:
+                                                                      BoxFit
+                                                                          .fill,
+                                                                  width:
+                                                                      sizeWidth *
+                                                                          0.05,
+                                                                  cuisineImageUrl:
+                                                                      _pitchDetail[index]
+                                                                              .sportImage
+                                                                              .toString() ??
+                                                                          "",
+                                                                ),
+                                                                SizedBox(
+                                                                  width:
+                                                                      sizeWidth *
+                                                                          0.01,
+                                                                ),
+                                                                Text(_pitchDetail[
+                                                                        index]
+                                                                    .venueName
+                                                                    .toString()),
+                                                              ],
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  bottom:
+                                                                      sizeHeight *
+                                                                          0.008,
+                                                                  left:
+                                                                      sizeWidth *
+                                                                          0.007),
+                                                              child: Text(
+                                                                  _pitchDetail[
+                                                                          index]
+                                                                      .location!),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: sizeHeight * 0.02,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                                // ...List.generate(
-                                //   widget.bookPitchData.length,
-                                //       (index) => InkWell(
-                                //     onTap: () {
-                                //       dynamic detail = {
-                                //         "pitchId": widget.bookPitchData[index]["id"] ?? 0,
-                                //         "subPitchId":
-                                //         widget.bookPitchData[index]["pitchType"][0] ?? 0
-                                //       };
-                                //       navigateToGroundDetail(detail);
-                                //     },
-                                //     child: Padding(
-                                //       padding: EdgeInsets.only(bottom: 16 * fem),
-                                //       child: Container(
-                                //         padding: EdgeInsets.only(bottom: 16 * fem),
-                                //         width: double.infinity,
-                                //         decoration: BoxDecoration(
-                                //           color: mode == ThemeMode.light
-                                //               ? const Color(0xffffffff)
-                                //               : const Color(0xff373737),
-                                //           borderRadius: BorderRadius.circular(15 * fem),
-                                //           boxShadow: [
-                                //             BoxShadow(
-                                //               color: const Color(0x0f050818),
-                                //               offset: Offset(10 * fem, 40 * fem),
-                                //               blurRadius: 30 * fem,
-                                //             ),
-                                //           ],
-                                //         ),
-                                //         child: Column(
-                                //           crossAxisAlignment: CrossAxisAlignment.start,
-                                //           children: [
-                                //             Container(
-                                //               margin: EdgeInsets.only(bottom: 12 * fem),
-                                //               width: 327 * fem,
-                                //               height: 145 * fem,
-                                //               child: ClipRRect(
-                                //                 borderRadius: BorderRadius.only(
-                                //                   topLeft: Radius.circular(15 * fem),
-                                //                   topRight: Radius.circular(15 * fem),
-                                //                 ),
-                                //                 child: cachedNetworkImage(
-                                //                   cuisineImageUrl: widget
-                                //                       .bookPitchData[index]["bookpitchfiles"]
-                                //                   ["files"]
-                                //                       .isNotEmpty
-                                //                       ? widget.bookPitchData[index]
-                                //                   ["bookpitchfiles"]["files"][0]["filePath"]
-                                //                       : Container(),
-                                //                   height: 150,
-                                //                   width: fem,
-                                //                   imageFit: BoxFit.fitWidth,
-                                //                   errorFit: BoxFit.fitHeight,
-                                //                 ),
-                                //               ),
-                                //             ),
-                                //             Padding(
-                                //               padding:
-                                //               EdgeInsets.only(left: 4.0 * fem, bottom: 2 * fem),
-                                //               child: Text(
-                                //                 widget.bookPitchData[index]["name"],
-                                //                 style: SafeGoogleFont(
-                                //                   'Inter',
-                                //                   fontSize: 20 * ffem,
-                                //                   fontWeight: FontWeight.w600,
-                                //                   height: 1.25 * ffem / fem,
-                                //                   letterSpacing: -0.2 * fem,
-                                //                   color: mode == ThemeMode.light
-                                //                       ? const Color(0xff050505)
-                                //                       : const Color(0xffffffff),
-                                //                 ),
-                                //               ),
-                                //             ),
-                                //             Row(
-                                //               children: [
-                                //                 Container(
-                                //                   margin: EdgeInsets.only(
-                                //                       right: 10 * fem, left: 4 * fem),
-                                //                   width: 24 * fem,
-                                //                   height: 24 * fem,
-                                //                   child: Image.asset(
-                                //                     'assets/light-design/images/icon-bus.png',
-                                //                     width: 24 * fem,
-                                //                     height: 24 * fem,
-                                //                   ),
-                                //                 ),
-                                //                 Text(
-                                //                   AppLocalizations.of(context)!.showDirections,
-                                //                   style: SafeGoogleFont(
-                                //                     'Inter',
-                                //                     fontSize: 13 * ffem,
-                                //                     fontWeight: FontWeight.w400,
-                                //                     height: 1.3846153846 * ffem / fem,
-                                //                     color: const Color(0xff686868),
-                                //                   ),
-                                //                 ),
-                                //               ],
-                                //             ),
-                                //           ],
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ),
-                                // )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                                )),
+                          )
+                        ])
+                  // ...List.generate(
+                  //   widget.bookPitchData.length,
+                  //       (index) => InkWell(
+                  //     onTap: () {
+                  //       dynamic detail = {
+                  //         "pitchId": widget.bookPitchData[index]["id"] ?? 0,
+                  //         "subPitchId":
+                  //         widget.bookPitchData[index]["pitchType"][0] ?? 0
+                  //       };
+                  //       navigateToGroundDetail(detail);
+                  //     },
+                  //     child: Padding(
+                  //       padding: EdgeInsets.only(bottom: 16 * fem),
+                  //       child: Container(
+                  //         padding: EdgeInsets.only(bottom: 16 * fem),
+                  //         width: double.infinity,
+                  //         decoration: BoxDecoration(
+                  //           color: mode == ThemeMode.light
+                  //               ? const Color(0xffffffff)
+                  //               : const Color(0xff373737),
+                  //           borderRadius: BorderRadius.circular(15 * fem),
+                  //           boxShadow: [
+                  //             BoxShadow(
+                  //               color: const Color(0x0f050818),
+                  //               offset: Offset(10 * fem, 40 * fem),
+                  //               blurRadius: 30 * fem,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         child: Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             Container(
+                  //               margin: EdgeInsets.only(bottom: 12 * fem),
+                  //               width: 327 * fem,
+                  //               height: 145 * fem,
+                  //               child: ClipRRect(
+                  //                 borderRadius: BorderRadius.only(
+                  //                   topLeft: Radius.circular(15 * fem),
+                  //                   topRight: Radius.circular(15 * fem),
+                  //                 ),
+                  //                 child: cachedNetworkImage(
+                  //                   cuisineImageUrl: widget
+                  //                       .bookPitchData[index]["bookpitchfiles"]
+                  //                   ["files"]
+                  //                       .isNotEmpty
+                  //                       ? widget.bookPitchData[index]
+                  //                   ["bookpitchfiles"]["files"][0]["filePath"]
+                  //                       : Container(),
+                  //                   height: 150,
+                  //                   width: fem,
+                  //                   imageFit: BoxFit.fitWidth,
+                  //                   errorFit: BoxFit.fitHeight,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             Padding(
+                  //               padding:
+                  //               EdgeInsets.only(left: 4.0 * fem, bottom: 2 * fem),
+                  //               child: Text(
+                  //                 widget.bookPitchData[index]["name"],
+                  //                 style: SafeGoogleFont(
+                  //                   'Inter',
+                  //                   fontSize: 20 * ffem,
+                  //                   fontWeight: FontWeight.w600,
+                  //                   height: 1.25 * ffem / fem,
+                  //                   letterSpacing: -0.2 * fem,
+                  //                   color: mode == ThemeMode.light
+                  //                       ? const Color(0xff050505)
+                  //                       : const Color(0xffffffff),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             Row(
+                  //               children: [
+                  //                 Container(
+                  //                   margin: EdgeInsets.only(
+                  //                       right: 10 * fem, left: 4 * fem),
+                  //                   width: 24 * fem,
+                  //                   height: 24 * fem,
+                  //                   child: Image.asset(
+                  //                     'assets/light-design/images/icon-bus.png',
+                  //                     width: 24 * fem,
+                  //                     height: 24 * fem,
+                  //                   ),
+                  //                 ),
+                  //                 Text(
+                  //                   AppLocalizations.of(context)!.showDirections,
+                  //                   style: SafeGoogleFont(
+                  //                     'Inter',
+                  //                     fontSize: 13 * ffem,
+                  //                     fontWeight: FontWeight.w400,
+                  //                     height: 1.3846153846 * ffem / fem,
+                  //                     color: const Color(0xff686868),
+                  //                   ),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
+                  ),
             )
           : Column(
               children: [
@@ -496,16 +735,10 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
   }
 
   void navigateToVenuesViewMore(event) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ViewMoreVenueScreen(venues: event)));
-    // Navigator.pushNamed(context, RouteNames.viewMoreVenue, arguments: event);
+    Navigator.pushNamed(context, RouteNames.viewMoreVenue, arguments: event);
   }
 
   void navigateToSports() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (_) => SelectSportScreen(isBack: true)));
-    // Navigator.pushNamed(context, RouteNames.selectSport, arguments: true);
+    Navigator.pushNamed(context, RouteNames.selectSport, arguments: true);
   }
 }

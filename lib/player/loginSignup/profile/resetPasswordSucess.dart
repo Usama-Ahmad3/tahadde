@@ -5,6 +5,8 @@ import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
 
 class PassworSuccess extends StatefulWidget {
+  const PassworSuccess({super.key});
+
   @override
   _PassworSuccess createState() => _PassworSuccess();
 }
@@ -36,7 +38,7 @@ class _PassworSuccess extends State<PassworSuccess> {
               ),
             ),
           ),
-          body: Container(
+          body: SizedBox(
             height: sizeheight,
             width: sizewidth,
             child: Column(

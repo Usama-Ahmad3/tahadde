@@ -66,7 +66,7 @@ final List<String> imgList = [
   'assets/images/placeHolder.png',
 ];
 int monthFind({required String index}) {
-  var day;
+  int day;
   switch (index) {
     case "January":
       day = 1;
@@ -215,7 +215,7 @@ String monthFindReversAr({required int index}) {
 }
 
 String timing({required int x}) {
-  var day;
+  String day;
   switch (x) {
     case 0:
       day = "12 AM";

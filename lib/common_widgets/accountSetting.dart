@@ -7,6 +7,8 @@ import '../localizations.dart';
 import '../network/network_calls.dart';
 
 class AccountSetting extends StatefulWidget {
+  const AccountSetting({super.key});
+
   @override
   _AccountSettingState createState() => _AccountSettingState();
 }
@@ -23,7 +25,7 @@ class _AccountSettingState extends State<AccountSetting> {
       bottomNavigationBar: Container(
         color: const Color(0XFF25A163),
         child: SafeArea(
-          child: Container(
+          child: SizedBox(
             height: 60,
             child: Material(
               color: const Color(0XFF25A163),

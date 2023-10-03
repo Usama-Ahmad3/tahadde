@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/sportList.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +13,6 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../modelClass/territory_model_class.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
-import '../../../../../walkThrough/walkThrough.dart';
 import '../../../utils.dart';
 import '../widgets/textFormField.dart';
 import 'shimmerWidgets.dart';
@@ -171,7 +170,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                   Wrap(
                     children: [
                       ...List.generate(
-                        _sportsList.length,
+                        2,
                         (index) => _sportsList.isEmpty
                             ? const SizedBox.shrink()
                             : _sportsList[index]
@@ -197,9 +196,13 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                       searchFlag = false;
                                       searchController.clear();
                                       // ignore: use_build_context_synchronously
-                                      Navigator.pushNamed(context,
-                                          RouteNames.specificSportsScreen,
-                                          arguments: detail);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  SpecificSportsListScreen(
+                                                    detail: detail,
+                                                  )));
                                       setState(() {});
                                       SharedPreferences prefs =
                                           await SharedPreferences.getInstance();
@@ -230,7 +233,53 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                           )),
                                     ),
                                   )
-                                : Container(),
+                                : _bookPitchData[index]['name']
+                                        .toString()
+                                        .toLowerCase()
+                                        .contains(
+                                            searchController.text.toLowerCase())
+                                    ? InkWell(
+                                        onTap: () {
+                                          dynamic detail = {
+                                            "pitchId": _bookPitchData[index]
+                                                    ["id"] ??
+                                                0,
+                                            "subPitchId": _bookPitchData[index]
+                                                    ["pitchType"][0] ??
+                                                0
+                                          };
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) => GroundDetail(
+                                                      detail: detail)));
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: width * 0.025,
+                                              vertical: height * 0.01),
+                                          child: Chip(
+                                              avatar: CircleAvatar(
+                                                  radius: 30,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  child: Image.network(
+                                                      _bookPitchData[index][
+                                                                  "bookpitchfiles"]
+                                                              ["files"][0]
+                                                          ["filePath"])),
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              elevation: 2,
+                                              padding: const EdgeInsets.all(10),
+                                              label: Text(
+                                                _bookPitchData[index]['name']!,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              )),
+                                        ),
+                                      )
+                                    : Container(),
                       ),
                     ],
                   )
@@ -648,7 +697,10 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                       ),
                                     );
                             }))
-                        : const Center(child: CircularProgressIndicator()),
+                        : const Center(
+                            child: CircularProgressIndicator(
+                            color: Color(0xff1d7e55),
+                          )),
                   ),
                   InkWell(
                     onTap: () {
@@ -695,7 +747,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                           children: [
                             ///top widget
                             SizedBox(
-                              height: 20 * fem,
+                              height: 10 * fem,
                             ),
                             Padding(
                               padding:
@@ -703,11 +755,13 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                               child: SizedBox(
                                 height: fem * 150,
                                 width: double.infinity,
-                                child: const Placeholder(),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.network(
+                                      'https://tse1.mm.bing.net/th?id=OIP.ryflAnaIc1o2L2arTk4z1gHaEv&pid=Api&rs=1&c=1&qlt=95&w=163&h=104',
+                                      fit: BoxFit.fill),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 15 * fem,
                             ),
 
                             ///category
@@ -718,13 +772,19 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                             //         sportsList: _sportsList,
                             //       ),
                             isSelected != -1
-                                ? bookSpecific.isNotEmpty
-                                    ? VanueList(bookPitchData: bookSpecific)
+                                ? bookSpecific != null &&
+                                        bookSpecific.isNotEmpty
+                                    ? VanueList(
+                                        bookPitchData: bookSpecific,
+                                        searchflag: searchFlag)
                                     : VanueList(
                                         bookPitchData: bookSpecific,
-                                        empty: true)
+                                        empty: true,
+                                        searchflag: searchFlag)
                                 : _bookPitchData != null
-                                    ? VanueList(bookPitchData: _bookPitchData)
+                                    ? VanueList(
+                                        bookPitchData: _bookPitchData,
+                                        searchflag: searchFlag)
                                     : const SizedBox.shrink()
                           ],
                         ),

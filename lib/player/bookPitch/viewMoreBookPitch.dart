@@ -15,7 +15,7 @@ import '../../pitchOwner/homePitchOwner/viewMoreOwner.dart';
 class ViewMoreBookPitch extends StatefulWidget {
   Map pitchType;
 
-  ViewMoreBookPitch({required this.pitchType});
+  ViewMoreBookPitch({super.key, required this.pitchType});
 
   @override
   _ViewMoreBookPitchState createState() => _ViewMoreBookPitchState();

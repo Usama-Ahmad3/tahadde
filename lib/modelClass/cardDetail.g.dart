@@ -9,15 +9,15 @@ part of 'cardDetail.dart';
 CardDetail _$CardDetailFromJson(Map<String, dynamic> json) {
   return CardDetail(
     data: (json['data'] as List)
-        ?.map(
+        .map(
             (e) => e == null ? null : Files.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
   );
 }
 
 Map<String, dynamic> _$CardDetailToJson(CardDetail instance) =>
     <String, dynamic>{
-      'data': instance.data?.map((e) => e?.toJson())?.toList(),
+      'data': instance.data?.map((e) => e?.toJson()).toList(),
     };
 
 Files _$FilesFromJson(Map<String, dynamic> json) {

@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Events extends StatelessWidget {
+  const Events({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 1205;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // eventsdEq (319:12928)
         padding: EdgeInsets.fromLTRB(60 * fem, 49 * fem, 973 * fem, 50 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Row(
@@ -39,7 +41,7 @@ class Events extends StatelessWidget {
                 fontSize: 32 * ffem,
                 fontWeight: FontWeight.w700,
                 height: 1.15625 * ffem / fem,
-                color: Color(0xff050505),
+                color: const Color(0xff050505),
               ),
             ),
           ],

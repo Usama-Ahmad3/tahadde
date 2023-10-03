@@ -140,7 +140,7 @@ class _NotificationLState extends State<NotificationL> {
                           fontSize: 15 * ffem,
                           fontWeight: FontWeight.w500,
                           height: 1.3333333333 * ffem / fem,
-                          color: Color(0xff686868),
+                          color: const Color(0xff686868),
                         ),
                       ),
                     ),
@@ -157,7 +157,7 @@ class _NotificationLState extends State<NotificationL> {
                               width: double.infinity,
                               height: 62 * fem,
                               decoration: BoxDecoration(
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(15 * fem),
                               ),
                               child: Row(
@@ -188,7 +188,7 @@ class _NotificationLState extends State<NotificationL> {
                                           fontSize: 15 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3333333333 * ffem / fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                         children: [
                                           TextSpan(
@@ -198,10 +198,10 @@ class _NotificationLState extends State<NotificationL> {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w600,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
-                                          TextSpan(
+                                          const TextSpan(
                                             text: ' ',
                                           ),
                                           TextSpan(
@@ -212,7 +212,7 @@ class _NotificationLState extends State<NotificationL> {
                                               fontSize: 13 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.3846153846 * ffem / fem,
-                                              color: Color(0xff686868),
+                                              color: const Color(0xff686868),
                                             ),
                                           ),
                                         ],
@@ -228,7 +228,7 @@ class _NotificationLState extends State<NotificationL> {
                                       fontSize: 11 * ffem,
                                       fontWeight: FontWeight.w400,
                                       height: 1.3636363636 * ffem / fem,
-                                      color: Color(0xff686868),
+                                      color: const Color(0xff686868),
                                     ),
                                   ),
                                 ],
@@ -246,7 +246,7 @@ class _NotificationLState extends State<NotificationL> {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff686868),
+                                      color: const Color(0xff686868),
                                     ),
                                   )
                                 : Container(),

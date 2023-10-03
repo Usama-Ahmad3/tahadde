@@ -19,7 +19,7 @@ import '../../network/network_calls.dart';
 
 class BookPitchYourTahaddi extends StatefulWidget {
   YourTahaddi bookpitch;
-  BookPitchYourTahaddi({required this.bookpitch});
+  BookPitchYourTahaddi({super.key, required this.bookpitch});
   @override
   _BookPitchYourTahaddiState createState() => _BookPitchYourTahaddiState();
 }
@@ -252,7 +252,7 @@ class _BookPitchYourTahaddiState extends State<BookPitchYourTahaddi> {
                                 child: cachedNetworkImage(
                                   height: 250,
                                   width: MediaQuery.of(context).size.width,
-                                  cuisineImageUrl: widget.bookpitch?.tahaddis
+                                  cuisineImageUrl: widget.bookpitch.tahaddis
                                       ?.files?.files?.filePath,
                                 ),
                               ),
@@ -840,7 +840,7 @@ class _BookPitchYourTahaddiState extends State<BookPitchYourTahaddi> {
                                                     width: sizewidth * .18,
                                                     cuisineImageUrl:
                                                         pitchDetail[0]
-                                                            ?.bookPitch
+                                                            .bookPitch
                                                             ?.facilities![
                                                                 blockIdx]
                                                             ?.image
@@ -976,7 +976,7 @@ class _BookPitchYourTahaddiState extends State<BookPitchYourTahaddi> {
 
   String timing({required String y}) {
     int x = int.parse(y.substring(0, 2));
-    var day;
+    String day;
     switch (x) {
       case 0:
         day = "12 ${AppLocalizations.of(context)!.am}";

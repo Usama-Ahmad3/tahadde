@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../common_widgets/internet_loss.dart';
@@ -14,7 +14,7 @@ import '../../network/network_calls.dart';
 class EnterDetailPitch extends StatefulWidget {
   final dynamic detail;
 
-  EnterDetailPitch({super.key, this.detail});
+  const EnterDetailPitch({super.key, this.detail});
 
   @override
   State<EnterDetailPitch> createState() => _EnterDetailPitch();
@@ -23,7 +23,7 @@ class EnterDetailPitch extends StatefulWidget {
 class _EnterDetailPitch extends State<EnterDetailPitch> {
   final focus = FocusNode();
   late bool internet;
-  final GlobalKey _textKey = new GlobalKey();
+  final GlobalKey _textKey = GlobalKey();
   bool monVal = false;
   bool loading = true;
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -84,21 +84,8 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
         child: loading
             ? Scaffold(
                 backgroundColor: Colors.black,
-                appBar: PreferredSize(
-                  preferredSize: Size(sizewidth, sizeheight * 0.108),
-                  child: AppBar(
-                    automaticallyImplyLeading: false,
-                    title: Text(
-                      AppLocalizations.of(context)!.bookingDetails,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: Colors.white),
-                    ),
-                    centerTitle: true,
-                    backgroundColor: Colors.black,
-                  ),
-                ),
+                appBar: appBarWidget(sizewidth, sizeheight, context,
+                    AppLocalizations.of(context)!.bookingDetails, true),
                 body: Container(
                   height: double.infinity,
                   decoration: BoxDecoration(
@@ -621,40 +608,8 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
             : internet
                 ? Scaffold(
                     backgroundColor: Colors.black,
-                    appBar: PreferredSize(
-                      preferredSize: Size(sizewidth, sizeheight * 0.108),
-                      child: AppBar(
-                        title: Text(
-                          AppLocalizations.of(context)!.bookingDetails,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(color: Colors.white),
-                        ),
-                        centerTitle: true,
-                        backgroundColor: Colors.black,
-                        leadingWidth: sizewidth * 0.18,
-                        leading: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                                padding: EdgeInsets.all(sizeheight * 0.008),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    shape: BoxShape.circle),
-                                child: const Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.close,
-                                    color: Colors.white,
-                                  ),
-                                )),
-                          ),
-                        ),
-                      ),
-                    ),
+                    appBar: appBarWidget(sizewidth, sizeheight, context,
+                        AppLocalizations.of(context)!.bookingDetails, true),
                     // bottomNavigationBar: monVal
                     //     ? Container(
                     //         height: sizeheight * 0.1,
@@ -812,8 +767,8 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
                                                           alignment:
                                                               Alignment.center,
                                                           decoration: BoxDecoration(
-                                                              color: const Color(
-                                                                  0xffffc300),
+                                                              color:
+                                                                  Colors.green,
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
@@ -1025,7 +980,7 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
                                   Checkbox(
                                     focusNode: focus,
                                     autofocus: true,
-                                    activeColor: const Color(0xffffc300),
+                                    activeColor: Colors.green,
                                     value: monVal,
                                     onChanged: (bool? value) {
                                       setState(() {
@@ -1260,7 +1215,7 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
         "player_count": widget.detail["player_count"],
         "slug": widget.detail["slug"]
       };
-      Navigator.pushNamed(context, RouteNames.payment, arguments: detial);
+      // Navigator.pushNamed(context, RouteNames.payment, arguments: detial);
     }
   }
 }

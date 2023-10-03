@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 
-import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
+import '../HomePitchOwnerScreen.dart';
 
 class VenueCreatedScreen extends StatefulWidget {
   const VenueCreatedScreen({Key? key}) : super(key: key);
@@ -23,20 +24,8 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
           backgroundColor: MyAppState.mode == ThemeMode.light
               ? Colors.white
               : const Color(0xff686868),
-          appBar: PreferredSize(
-              preferredSize: Size(size.width, size.height * 0.105),
-              child: AppBar(
-                automaticallyImplyLeading: false,
-                title: Text(
-                  AppLocalizations.of(context)!.slotChart,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Colors.white),
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.black,
-              )),
+          appBar: appBarWidget(size.width, size.height, context,
+              AppLocalizations.of(context)!.academyCreated, false),
           body: Container(
               color: Colors.black,
               child: Container(
@@ -70,9 +59,9 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                       2,
                     ),
                     Text(
-                      "Thank you for creating a Venue.",
+                      "Thank you for creating a Academy.",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: MyAppState.mode == ThemeMode.light
                               ? Colors.black
@@ -110,7 +99,13 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
   }
 
   void navigateToHome() {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteNames.homePitchOwner, (Route<dynamic> route) => false);
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (_) => HomePitchOwnerScreen(
+                  index: 0,
+                )));
+    // Navigator.of(context).pushNamedAndRemoveUntil(
+    //     RouteNames.homePitchOwner, (Route<dynamic> route) => false);
   }
 }

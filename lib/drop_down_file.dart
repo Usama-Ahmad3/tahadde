@@ -21,7 +21,7 @@ class CustomDropdown<T> extends StatefulWidget {
 
   /// if true the dropdown icon will as a leading icon, default to false
   final bool leadingIcon;
-  CustomDropdown({
+  const CustomDropdown({
      Key? key,
     this.hideIcon = false,
     required this.child,
@@ -52,7 +52,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
     super.initState();
 
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 200));
     _expandAnimation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
@@ -69,7 +69,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
     // link the overlay to the button
     return CompositedTransformTarget(
       link: this._layerLink,
-      child: Container(
+      child: SizedBox(
         width: style.width,
         height: style.height,
         child: OutlinedButton(
@@ -92,11 +92,11 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
               ] else ...[
                 widget.items[_currentIndex],
               ],
-              Spacer(),
+              const Spacer(),
               if (!widget.hideIcon)
                 RotationTransition(
                   turns: _rotateAnimation,
-                  child: widget.icon ?? Icon(Icons.arrow_circle_down),
+                  child: widget.icon ?? const Icon(Icons.arrow_circle_down),
                 ),
             ],
           ),
@@ -119,7 +119,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
         onTap: () => _toggleDropdown(close: true),
         behavior: HitTestBehavior.translucent,
         // full screen container to register taps anywhere and close drop down
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Stack(

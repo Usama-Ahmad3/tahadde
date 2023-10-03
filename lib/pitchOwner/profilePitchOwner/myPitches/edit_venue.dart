@@ -16,7 +16,7 @@ import '../../loginSignupPitchOwner/select_sport.dart';
 
 class EditVenues extends StatefulWidget {
   final Map detail;
-  EditVenues({required this.detail});
+  const EditVenues({super.key, required this.detail});
   @override
   _EditVenuesState createState() => _EditVenuesState();
 }
@@ -340,13 +340,11 @@ class _EditVenuesState extends State<EditVenues> {
                                                                   index - 1);
                                                           List<int> imageList =
                                                               [];
-                                                          specificPitchScreen
-                                                              .images!.files!
-                                                              .forEach(
-                                                                  (element) {
+                                                          for (var element in specificPitchScreen
+                                                              .images!.files!) {
                                                             imageList.add(
                                                                 element!.id!);
-                                                          });
+                                                          }
                                                           Map<String, dynamic>
                                                               detail = {
                                                             "pitchimageId":
@@ -439,12 +437,11 @@ class _EditVenuesState extends State<EditVenues> {
                                                         .images!.files!
                                                         .removeAt(index - 1);
                                                     List<int> imageList = [];
-                                                    specificPitchScreen
-                                                        .images!.files!
-                                                        .forEach((element) {
+                                                    for (var element in specificPitchScreen
+                                                        .images!.files!) {
                                                       imageList
                                                           .add(element!.id!);
-                                                    });
+                                                    }
                                                     Map<String, dynamic>
                                                         detail = {
                                                       "pitchimageId": imageList,
@@ -546,9 +543,9 @@ class _EditVenuesState extends State<EditVenues> {
       pitchImage: detail,
       onSuccess: (msg) {
         List<dynamic> pitchImageId = msg;
-        specificPitchScreen.images!.files!.forEach((element) {
+        for (var element in specificPitchScreen.images!.files!) {
           pitchImageId.add(element!.id);
-        });
+        }
         Map<String, dynamic> detail = {
           "pitchimageId": pitchImageId,
         };
@@ -573,9 +570,9 @@ class _EditVenuesState extends State<EditVenues> {
       pitchImage: detail,
       onSuccess: (msg) {
         List<dynamic> pitchImageId = msg;
-        specificPitchScreen.images!.files!.forEach((element) {
+        for (var element in specificPitchScreen.images!.files!) {
           pitchImageId.add(element!.id);
-        });
+        }
         Map<String, dynamic> detail = {
           "pitchimageId": pitchImageId,
         };

@@ -12,7 +12,7 @@ import '../../../network/network_calls.dart';
 class ProfileScreen extends StatefulWidget {
   String msg;
 
-  ProfileScreen({required this.msg});
+  ProfileScreen({super.key, required this.msg});
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -239,8 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                                   AppLocalizations.of(context)!
                                                               .locale ==
                                                           "en"
-                                                      ? "${profileDetail!['countryCode'] ?? ""}" +
-                                                          "${profileDetail!['contact_number'] ?? ""}"
+                                                      ? "${profileDetail!['countryCode'] ?? ""}" "${profileDetail!['contact_number'] ?? ""}"
                                                       : "${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(1)}${profileDetail!['contact_number'] ?? ""}${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(0, 1)}",
                                                   style: TextStyle(
                                                       fontSize:
@@ -577,7 +576,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ),
                       )
-                    : ProfileEmpty()
+                    : const ProfileEmpty()
                 : Scaffold(
                     body: Column(
                       children: [

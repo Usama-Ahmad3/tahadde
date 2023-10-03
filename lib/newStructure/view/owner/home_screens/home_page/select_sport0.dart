@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../constant.dart';
-import '../../../../../drop_down_file.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'document_screen_both.dart';
 
 class SelectSportScreen extends StatefulWidget {
@@ -58,83 +56,19 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
       backgroundColor: MyAppState.mode == ThemeMode.light
           ? Colors.white
           : const Color(0xff686868),
-      appBar: PreferredSize(
-          preferredSize: Size(size.width, size.height * 0.105),
-          child: AppBar(
-            title: Text(
-              AppLocalizations.of(context)!.documents,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.white),
-            ),
-            centerTitle: true,
-            backgroundColor: Colors.black,
-            leadingWidth: size.width * 0.18,
-            leading: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                    padding: EdgeInsets.all(size.height * 0.008),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        shape: BoxShape.circle),
-                    child: const Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.close,
-                        color: Colors.white,
-                      ),
-                    )),
-              ),
-            ),
-            bottom: PreferredSize(
-              preferredSize: Size(size.width, 10),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.035),
-                child: Row(
-                  children: [
-                    Container(
-                      height: size.height * .005,
-                      width: size.width * .17,
-                      color: const Color(0XFF25A163),
-                    ),
-                    flaxibleGap(1),
-                    Container(
-                      height: size.height * .005,
-                      width: size.width * .17,
-                      color: const Color(0XFF25A163),
-                    ),
-                    flaxibleGap(1),
-                    Container(
-                      height: size.height * .005,
-                      width: size.width * .17,
-                      color: const Color(0XFF25A163),
-                    ),
-                    flaxibleGap(1),
-                    Container(
-                      height: size.height * .005,
-                      width: size.width * .17,
-                      color: const Color(0XFFCBCBCB),
-                    ),
-                    flaxibleGap(1),
-                    Container(
-                      height: size.height * .005,
-                      width: size.width * .17,
-                      color: const Color(0XFFCBCBCB),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )),
+      appBar: appBarForCreatingAcademy(
+        size,
+        context,
+        AppLocalizations.of(context)!.document,
+        true,
+        const Color(0XFFCBCBCB),
+        const Color(0XFFCBCBCB),
+      ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.height * 0.02),
         child: ButtonWidget(
           title: Text(AppLocalizations.of(context)!.continu),
-          color: indexItem != null ? Colors.yellow : Colors.grey,
+          color: indexItem != null ? const Color(0xff1d7e55) : Colors.grey,
           onTaped: () {
             indexItem != null
                 ? navigateToDocuments(SportsModel(
@@ -163,7 +97,7 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                         topRight: Radius.circular(20))),
                 child: const Center(
                   child: CircularProgressIndicator(
-                    color: appThemeColor,
+                    color: Color(0xff1d7e55),
                   ),
                 ),
               ))
@@ -203,10 +137,10 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                                   decoration: BoxDecoration(
                                       color: MyAppState.mode == ThemeMode.light
                                           ? selected == index
-                                              ? Colors.yellow
+                                              ? const Color(0xff1d7e55)
                                               : Colors.grey.shade200
                                           : selected == index
-                                              ? Colors.yellow
+                                              ? const Color(0xff1d7e55)
                                               : Colors.black12,
                                       borderRadius: BorderRadius.circular(10)),
                                   child: ListTile(

@@ -10,7 +10,7 @@ import '../../../network/network_calls.dart';
 class Member extends StatefulWidget {
   Function(int count)? onChange;
   Function(bool team)? onTeam;
-  Member({this.onChange, this.onTeam});
+  Member({super.key, this.onChange, this.onTeam});
   @override
   _MemberState createState() => _MemberState();
 }

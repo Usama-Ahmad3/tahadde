@@ -10,9 +10,9 @@ import '../../../network/network_calls.dart';
 
 class PaymentSuccess extends StatefulWidget {
   var price;
-  PaymentSuccess({this.price});
+  PaymentSuccess({super.key, this.price});
   @override
-  _PaymentSuccess createState() => _PaymentSuccess(this.price);
+  _PaymentSuccess createState() => _PaymentSuccess(price);
 }
 
 class _PaymentSuccess extends State<PaymentSuccess> {
@@ -89,8 +89,8 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Flexible(
-                    child: Container(),
                     flex: 15,
+                    child: Container(),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40),
@@ -124,8 +124,8 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                         ),
                       )),
                   Flexible(
-                    child: Container(),
                     flex: 20,
+                    child: Container(),
                   ),
                 ],
               ),
@@ -161,8 +161,8 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Flexible(
-                            child: Container(),
                             flex: 15,
+                            child: Container(),
                           ),
                           price["status"] == "Success"
                               ? Lottie.asset('assets/lottiefiles/success.json',
@@ -185,8 +185,8 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                             ),
                           ),
                           Flexible(
-                            child: Container(),
                             flex: 20,
+                            child: Container(),
                           ),
                         ],
                       ),

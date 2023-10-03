@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class GroundCategory extends StatelessWidget {
+  const GroundCategory({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: SizedBox(
         // groundcategoryjoF (513:7662)
         width: double.infinity,
         height: 812 * fem,
@@ -18,7 +20,7 @@ class GroundCategory extends StatelessWidget {
           // groundcategory681 (303:12546)
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Column(
@@ -55,7 +57,7 @@ class GroundCategory extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 height: 1.2575 * ffem / fem,
                                 letterSpacing: -0.2800000012 * fem,
-                                color: Color(0xffffffff),
+                                color: const Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -129,7 +131,7 @@ class GroundCategory extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ],
@@ -144,7 +146,7 @@ class GroundCategory extends StatelessWidget {
                     24 * fem, 24 * fem, 24 * fem, 186 * fem),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -175,11 +177,11 @@ class GroundCategory extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 height: 1.25 * ffem / fem,
                                 letterSpacing: -0.2 * fem,
-                                color: Color(0xff050505),
+                                color: const Color(0xff050505),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // groundlistQkH (305:12051)
                             width: double.infinity,
                             child: Column(
@@ -192,12 +194,12 @@ class GroundCategory extends StatelessWidget {
                                   width: double.infinity,
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Color(0x1408091f),
+                                        color: const Color(0x1408091f),
                                         offset: Offset(0 * fem, 40 * fem),
                                         blurRadius: 30 * fem,
                                       ),
@@ -240,13 +242,13 @@ class GroundCategory extends StatelessWidget {
                                                 fontWeight: FontWeight.w500,
                                                 height:
                                                     1.4705882353 * ffem / fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selectorx33 (I305:12052;187:11920)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -270,7 +272,7 @@ class GroundCategory extends StatelessWidget {
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff2f2f2)),
+                                        Border.all(color: const Color(0xfff2f2f2)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -311,13 +313,13 @@ class GroundCategory extends StatelessWidget {
                                                 fontWeight: FontWeight.w500,
                                                 height:
                                                     1.4705882353 * ffem / fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selectortzD (I305:12053;187:11920)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -341,7 +343,7 @@ class GroundCategory extends StatelessWidget {
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff2f2f2)),
+                                        Border.all(color: const Color(0xfff2f2f2)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -382,13 +384,13 @@ class GroundCategory extends StatelessWidget {
                                                 fontWeight: FontWeight.w500,
                                                 height:
                                                     1.4705882353 * ffem / fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selectorszZ (I305:12054;187:11920)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -412,7 +414,7 @@ class GroundCategory extends StatelessWidget {
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff2f2f2)),
+                                        Border.all(color: const Color(0xfff2f2f2)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -453,13 +455,13 @@ class GroundCategory extends StatelessWidget {
                                                 fontWeight: FontWeight.w500,
                                                 height:
                                                     1.4705882353 * ffem / fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selector3AH (I305:12055;187:11920)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -482,12 +484,12 @@ class GroundCategory extends StatelessWidget {
                                   width: double.infinity,
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Color(0x1408091f),
+                                        color: const Color(0x1408091f),
                                         offset: Offset(0 * fem, 40 * fem),
                                         blurRadius: 30 * fem,
                                       ),
@@ -530,13 +532,13 @@ class GroundCategory extends StatelessWidget {
                                                 fontWeight: FontWeight.w500,
                                                 height:
                                                     1.4705882353 * ffem / fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         // selectorFff (I305:12056;187:11920)
                                         width: 24 * fem,
                                         height: 24 * fem,
@@ -560,7 +562,7 @@ class GroundCategory extends StatelessWidget {
                       width: double.infinity,
                       height: 57 * fem,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(16 * fem),
                       ),
                       child: Center(
@@ -572,7 +574,7 @@ class GroundCategory extends StatelessWidget {
                             fontSize: 17 * ffem,
                             fontWeight: FontWeight.w600,
                             height: 1.4705882353 * ffem / fem,
-                            color: Color(0xff050505),
+                            color: const Color(0xff050505),
                           ),
                         ),
                       ),

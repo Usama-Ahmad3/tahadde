@@ -8,7 +8,7 @@ import 'routingConstant.dart';
 import 'utility.dart';
 
 class SelectYourLocation extends StatefulWidget {
-  SelectYourLocation();
+  const SelectYourLocation({super.key});
 
   @override
   State<StatefulWidget> createState() {

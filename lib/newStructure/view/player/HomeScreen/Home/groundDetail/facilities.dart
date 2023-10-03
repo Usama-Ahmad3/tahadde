@@ -6,6 +6,8 @@ import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
 
 class Facilities extends StatelessWidget {
+  const Facilities({super.key});
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;

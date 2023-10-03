@@ -5,6 +5,8 @@ import '../homeFile/utility.dart';
 import '../localizations.dart';
 
 class FirstScreen extends StatefulWidget {
+  const FirstScreen({super.key});
+
   @override
   _FirstScreenState createState() => _FirstScreenState();
 }
@@ -83,7 +85,7 @@ class _FirstScreenState extends State<FirstScreen> {
                           ),
                         ),
                         flaxibleGap(1),
-                        Container(
+                        SizedBox(
                             width: sizeWidth * .4,
                             child: Text(
                               AppLocalizations.of(context)!
@@ -111,7 +113,7 @@ class _FirstScreenState extends State<FirstScreen> {
             flaxibleGap(1),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizeWidth * .05),
-              child: Container(
+              child: SizedBox(
                   width: sizeWidth * .7,
                   child: Center(
                     child: Text(
@@ -127,7 +129,7 @@ class _FirstScreenState extends State<FirstScreen> {
             flaxibleGap(1),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizeWidth * .05),
-              child: Container(
+              child: SizedBox(
                   width: sizeWidth * .65,
                   child: Text(
                     AppLocalizations.of(context)!.walkHereTahaddi,

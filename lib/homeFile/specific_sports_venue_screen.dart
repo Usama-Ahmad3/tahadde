@@ -9,7 +9,7 @@ import 'utility.dart';
 class SpecificSportsScreen extends StatefulWidget {
   final Map? detail;
 
-  const SpecificSportsScreen({Key? key,this.detail}) : super(key: key);
+  const SpecificSportsScreen({Key? key, this.detail}) : super(key: key);
 
   @override
   _SpecificSportsScreenState createState() => _SpecificSportsScreenState();
@@ -45,93 +45,116 @@ class _SpecificSportsScreenState extends State<SpecificSportsScreen> {
       },
     );
   }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadVenues();
   }
+
   @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      // appBar: appBar (language: AppLocalizations.of(context).locale,  onTap: (){
-      //   Navigator.pop(context);
-      // },title:widget.detail["slug"]  ),
-     body: SafeArea(
-       top: true,
-       right: false,
-       bottom: false,
-       left: false,
-       child: Column(
-         children: [
-           Material(
-               elevation: 5,
-               child: Stack(
-                 children: [
-                   Container(
-                     height: 180,
-                     width: size.width,
-                     color: Colors.white,
-                     child: Column(
-                       children: [
-                         cachedNetworkImage( cuisineImageUrl:widget.detail!["bannerImage"]!=null?widget.detail!["bannerImage"]:null,
-                           height: 150,
-                           width: size.width,
-                           imageFit: BoxFit.fill,
-                         errorFit: BoxFit.fitHeight),
-                         Text(
-                          '${widget.detail!["sportName"]}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w600,fontFamily: "poppins"),)
-                       ],
-                     ),
-                   ),
-                   Positioned(
-                     left: AppLocalizations.of(context)!.locale=="en"?5.0:null,
-                     right:AppLocalizations.of(context)!.locale=="en"?null:5.0 ,
-                     top: 5.0,
-                     child:  Container(
-                       height: 40,
-                       width: 40,
-                       decoration: const BoxDecoration(
-                           color: Color(0xFF25A163),
-                           shape: BoxShape.circle),
-                       child: RawMaterialButton(
-                         onPressed: () {
-                           Navigator.of(context).pop();
-                         },
-                         elevation: 2.0,
-                         fillColor: const Color(0xFF25A163),
-                         padding: const EdgeInsets.all(5.0),
-                         shape: const CircleBorder(),
-                         child: const Icon(Icons.arrow_back_sharp,
-                             color: Colors.white),
-                       ),
-                     ),
-                   )
-                 ],
-               )),
-           _isLoading?const Expanded(child: Center(child: CircularProgressIndicator(color: appThemeColor,),)): _bookPitchData.isNotEmpty?
-           Expanded(
-             child: ListView.separated(
-                  itemCount: _bookPitchData.length,
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  padding: const EdgeInsets.only(top: 20),
-                  separatorBuilder: (context, index) {
-                    return fixedGap(height: 10.0);
-                  },
-                  itemBuilder:((context,index){
-                    return venuesWidget( size.width,index);
-                  }) ),
-           ):Expanded(child: Center(child: Text(AppLocalizations.of(context)!.noVenuesAvailable),)),
-         ],
-       ),
-     )
-    );
+        // appBar: appBar (language: AppLocalizations.of(context).locale,  onTap: (){
+        //   Navigator.pop(context);
+        // },title:widget.detail["slug"]  ),
+        body: SafeArea(
+      top: true,
+      right: false,
+      bottom: false,
+      left: false,
+      child: Column(
+        children: [
+          Material(
+              elevation: 5,
+              child: Stack(
+                children: [
+                  Container(
+                    height: 180,
+                    width: size.width,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        cachedNetworkImage(
+                            cuisineImageUrl:
+                                widget.detail!["bannerImage"],
+                            height: 150,
+                            width: size.width,
+                            imageFit: BoxFit.fill,
+                            errorFit: BoxFit.fitHeight),
+                        Text(
+                          '${widget.detail!["sportName"]}',
+                          style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "poppins"),
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    left: AppLocalizations.of(context)!.locale == "en"
+                        ? 5.0
+                        : null,
+                    right: AppLocalizations.of(context)!.locale == "en"
+                        ? null
+                        : 5.0,
+                    top: 5.0,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                          color: Color(0xFF25A163), shape: BoxShape.circle),
+                      child: RawMaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        elevation: 2.0,
+                        fillColor: const Color(0xFF25A163),
+                        padding: const EdgeInsets.all(5.0),
+                        shape: const CircleBorder(),
+                        child: const Icon(Icons.arrow_back_sharp,
+                            color: Colors.white),
+                      ),
+                    ),
+                  )
+                ],
+              )),
+          _isLoading
+              ? const Expanded(
+                  child: Center(
+                  child: CircularProgressIndicator(
+                    color: appThemeColor,
+                  ),
+                ))
+              : _bookPitchData.isNotEmpty
+                  ? Expanded(
+                      child: ListView.separated(
+                          itemCount: _bookPitchData.length,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          padding: const EdgeInsets.only(top: 20),
+                          separatorBuilder: (context, index) {
+                            return fixedGap(height: 10.0);
+                          },
+                          itemBuilder: ((context, index) {
+                            return venuesWidget(size.width, index);
+                          })),
+                    )
+                  : Expanded(
+                      child: Center(
+                      child:
+                          Text(AppLocalizations.of(context)!.noVenuesAvailable),
+                    )),
+        ],
+      ),
+    ));
   }
-  Widget venuesWidget(double sizeWidth,int index){
+
+  Widget venuesWidget(double sizeWidth, int index) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Map<String, dynamic> detail = {
           "pitchId": _bookPitchData[index]["id"],
           "subPitchId": _bookPitchData[index]["pitchType"][0]
@@ -144,22 +167,29 @@ class _SpecificSportsScreenState extends State<SpecificSportsScreen> {
             elevation: 5,
             color: Colors.white,
             borderRadius: const BorderRadius.all(
-              Radius.circular(20), ),
+              Radius.circular(20),
+            ),
             child: SizedBox(
               height: 250,
               width: sizeWidth,
               child: Column(
                 children: [
                   ClipRRect(
-                    borderRadius:
-                    const BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
-                      topRight:Radius.circular(20), ),
-                    child: cachedNetworkImage( cuisineImageUrl: _bookPitchData[index]["bookpitchfiles"]["files"].isNotEmpty? _bookPitchData[index]["bookpitchfiles"]["files"][0]["filePath"]:null,
-                      height: 150,
-                      width: sizeWidth,
-                      imageFit: BoxFit.fitWidth,
-                    errorFit:BoxFit.fitHeight ),
+                      topRight: Radius.circular(20),
+                    ),
+                    child: cachedNetworkImage(
+                        cuisineImageUrl: _bookPitchData[index]["bookpitchfiles"]
+                                    ["files"]
+                                .isNotEmpty
+                            ? _bookPitchData[index]["bookpitchfiles"]["files"]
+                                [0]["filePath"]
+                            : null,
+                        height: 150,
+                        width: sizeWidth,
+                        imageFit: BoxFit.fitWidth,
+                        errorFit: BoxFit.fitHeight),
                   ),
                   flaxibleGap(2),
                   Padding(
@@ -171,19 +201,23 @@ class _SpecificSportsScreenState extends State<SpecificSportsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text( _bookPitchData[index]["name"],style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: appThemeColor),),
+                            Text(
+                              _bookPitchData[index]["name"],
+                              style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: appThemeColor),
+                            ),
                             fixedGap(height: 5.0),
-                            Text(AppLocalizations.of(context)!.showDirections,style:const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0XFF25A163))),
-
-                          ],),
+                            Text(AppLocalizations.of(context)!.showDirections,
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0XFF25A163))),
+                          ],
+                        ),
                         Material(
                           elevation: 5,
                           borderRadius: BorderRadius.circular(50.0),
@@ -193,26 +227,36 @@ class _SpecificSportsScreenState extends State<SpecificSportsScreen> {
                             padding: const EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
                                 color: appThemeColor,
-                              borderRadius: BorderRadius.circular(50.0)
-                            ),
-                            child: cachedNetworkImage( cuisineImageUrl: _bookPitchData[index]["sports_types"]!=null?_bookPitchData[index]["sport_image"]!=null?_bookPitchData[index]["sports_types"]["sport_image"]["filePath"]:null:null,
+                                borderRadius: BorderRadius.circular(50.0)),
+                            child: cachedNetworkImage(
+                              cuisineImageUrl: _bookPitchData[index]
+                                          ["sports_types"] !=
+                                      null
+                                  ? _bookPitchData[index]["sport_image"] != null
+                                      ? _bookPitchData[index]["sports_types"]
+                                          ["sport_image"]["filePath"]
+                                      : null
+                                  : null,
                               height: 40,
                               width: 40,
                               color: Colors.white,
-                              imageFit: BoxFit.fitWidth,),
+                              imageFit: BoxFit.fitWidth,
+                            ),
                           ),
                         )
-                      ],),
+                      ],
+                    ),
                   ),
                   flaxibleGap(2),
-
                 ],
               ),
             )),
       ),
     );
   }
+
   void navigateToBookPitchDetail(Map detail) {
-    Navigator.pushNamed(context, RouteNames.venueDetailScreen,arguments: detail );
+    Navigator.pushNamed(context, RouteNames.venueDetailScreen,
+        arguments: detail);
   }
 }

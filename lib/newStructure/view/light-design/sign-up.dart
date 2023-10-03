@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class SignUp extends StatelessWidget {
+  const SignUp({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // signupsuB (331:12191)
         width: double.infinity,
         height: 812 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xff050505),
         ),
         child: Stack(
@@ -43,7 +45,7 @@ class SignUp extends StatelessWidget {
                 width: 375 * fem,
                 height: 625 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24 * fem),
                     topRight: Radius.circular(24 * fem),
@@ -59,10 +61,10 @@ class SignUp extends StatelessWidget {
                       width: double.infinity,
                       height: 60 * fem,
                       decoration: BoxDecoration(
-                        color: Color(0xfff6f5ff),
+                        color: const Color(0xfff6f5ff),
                         borderRadius: BorderRadius.circular(16 * fem),
                       ),
-                      child: Container(
+                      child: SizedBox(
                         // frame1000006401585 (331:12195)
                         width: double.infinity,
                         height: double.infinity,
@@ -88,7 +90,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -99,7 +101,7 @@ class SignUp extends StatelessWidget {
                               width: 155.5 * fem,
                               height: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0xff7b61ff),
+                                color: const Color(0xff7b61ff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
                               child: Center(
@@ -112,7 +114,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w600,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xffffffff),
+                                      color: const Color(0xffffffff),
                                     ),
                                   ),
                                 ),
@@ -125,13 +127,13 @@ class SignUp extends StatelessWidget {
                     SizedBox(
                       height: 30 * fem,
                     ),
-                    Container(
+                    SizedBox(
                       // frame1000006403tDw (331:12200)
                       width: double.infinity,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             // imputfilldBX (331:12201)
                             width: double.infinity,
                             child: Column(
@@ -148,7 +150,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff1e1e1e),
+                                      color: const Color(0xff1e1e1e),
                                     ),
                                   ),
                                 ),
@@ -159,7 +161,7 @@ class SignUp extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xffcdcdcd)),
+                                        Border.all(color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -170,7 +172,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -180,7 +182,7 @@ class SignUp extends StatelessWidget {
                           SizedBox(
                             height: 16 * fem,
                           ),
-                          Container(
+                          SizedBox(
                             // imputfill8Gh (331:12256)
                             width: double.infinity,
                             child: Column(
@@ -197,7 +199,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff1e1e1e),
+                                      color: const Color(0xff1e1e1e),
                                     ),
                                   ),
                                 ),
@@ -208,7 +210,7 @@ class SignUp extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xffcdcdcd)),
+                                        Border.all(color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -219,7 +221,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -229,7 +231,7 @@ class SignUp extends StatelessWidget {
                           SizedBox(
                             height: 16 * fem,
                           ),
-                          Container(
+                          SizedBox(
                             // imputfillmU5 (331:12260)
                             width: double.infinity,
                             child: Column(
@@ -246,7 +248,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff1e1e1e),
+                                      color: const Color(0xff1e1e1e),
                                     ),
                                   ),
                                 ),
@@ -257,7 +259,7 @@ class SignUp extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xffcdcdcd)),
+                                        Border.all(color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -268,7 +270,7 @@ class SignUp extends StatelessWidget {
                                       fontSize: 15 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3333333333 * ffem / fem,
-                                      color: Color(0xff050505),
+                                      color: const Color(0xff050505),
                                     ),
                                   ),
                                 ),
@@ -278,7 +280,7 @@ class SignUp extends StatelessWidget {
                           SizedBox(
                             height: 16 * fem,
                           ),
-                          Container(
+                          SizedBox(
                             // password4rV (331:12202)
                             width: double.infinity,
                             child: Column(
@@ -304,7 +306,7 @@ class SignUp extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff1e1e1e),
+                                            color: const Color(0xff1e1e1e),
                                           ),
                                         ),
                                       ),
@@ -316,7 +318,7 @@ class SignUp extends StatelessWidget {
                                         height: 48 * fem,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffcdcdcd)),
+                                              color: const Color(0xffcdcdcd)),
                                           borderRadius:
                                               BorderRadius.circular(12 * fem),
                                         ),
@@ -344,7 +346,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -358,7 +360,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -372,7 +374,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -386,7 +388,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -400,7 +402,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -414,7 +416,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -428,7 +430,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -442,7 +444,7 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -456,13 +458,13 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: Color(0xff010101),
+                                                      color: const Color(0xff010101),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               // eyex8Z (I331:12203;187:11712)
                                               width: 16 * fem,
                                               height: 16 * fem,
@@ -507,7 +509,7 @@ class SignUp extends StatelessWidget {
                                           fontSize: 11 * ffem,
                                           fontWeight: FontWeight.w500,
                                           height: 1.3636363636 * ffem / fem,
-                                          color: Color(0xff050505),
+                                          color: const Color(0xff050505),
                                         ),
                                       ),
                                     ],
@@ -527,7 +529,7 @@ class SignUp extends StatelessWidget {
                       width: double.infinity,
                       height: 57 * fem,
                       decoration: BoxDecoration(
-                        color: Color(0xffffc300),
+                        color: const Color(0xffffc300),
                         borderRadius: BorderRadius.circular(12 * fem),
                       ),
                       child: Center(
@@ -539,7 +541,7 @@ class SignUp extends StatelessWidget {
                             fontSize: 17 * ffem,
                             fontWeight: FontWeight.w600,
                             height: 1.4705882353 * ffem / fem,
-                            color: Color(0xff050505),
+                            color: const Color(0xff050505),
                           ),
                         ),
                       ),

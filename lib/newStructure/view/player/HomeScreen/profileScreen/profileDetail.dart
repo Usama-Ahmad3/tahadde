@@ -162,7 +162,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                                       backgroundColor: mode ==
                                                               ThemeMode.light
                                                           ? Colors.grey.shade200
-                                                          : Colors.yellowAccent,
+                                                          : const Color(0xff1d7e55),
                                                       child: Icon(
                                                         Icons.edit,
                                                         size: height * 0.02,
@@ -176,9 +176,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                                 : const SizedBox.shrink()
                                           ],
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.04,
                                       ),
                                       EmailContactDOB(
                                         constant:
@@ -311,7 +308,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                               },
                               child: const Icon(
                                 Icons.dehaze,
-                                color: Color(0xffffc300),
+                                color: Color(0xff1d7e55),
                               ),
                             ),
                           )

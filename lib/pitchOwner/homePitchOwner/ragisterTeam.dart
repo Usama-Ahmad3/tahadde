@@ -6,7 +6,7 @@ import '../../localizations.dart';
 
 class RegisterTeam extends StatefulWidget {
   List detail;
-  RegisterTeam({required this.detail});
+  RegisterTeam({super.key, required this.detail});
   @override
   _RegisterTeamState createState() => _RegisterTeamState();
 }
@@ -81,7 +81,7 @@ class _RegisterTeamState extends State<RegisterTeam> {
                       ),
                     ),
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         height: sizeheight * .7,
                         child: ListView.builder(
                             scrollDirection: Axis.vertical,
@@ -109,7 +109,7 @@ class _RegisterTeamState extends State<RegisterTeam> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Container(
+                                          SizedBox(
                                             height: sizeheight * .1,
                                             width: sizewidth,
                                             child: Row(
@@ -290,7 +290,7 @@ class _RegisterTeamState extends State<RegisterTeam> {
                                 flaxibleGap(
                                   1,
                                 ),
-                                Container(
+                                SizedBox(
                                   height: sizeheight * .03,
                                   child: FloatingActionButton(
                                     onPressed: () {
@@ -323,7 +323,7 @@ class _RegisterTeamState extends State<RegisterTeam> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: sizeheight * .1,
                                     width: sizewidth,
                                     child: Row(
@@ -487,14 +487,14 @@ class _RegisterTeamState extends State<RegisterTeam> {
                                   "${AppLocalizations.of(context)!.tranjectionId} : ",
                                   style: const TextStyle(
                                     fontSize: 12,
-                                    color: Color(0XFF0320040),
+                                    color: Color(0xff0320040),
                                   ),
                                 ),
                                 Text(
                                   "${widget.detail[count].transactionId ?? ""}",
                                   style: const TextStyle(
                                     fontSize: 12,
-                                    color: Color(0XFF0320040),
+                                    color: Color(0xff0320040),
                                   ),
                                 )
                               ],

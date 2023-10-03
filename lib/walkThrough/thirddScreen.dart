@@ -9,6 +9,8 @@ import '../network/network_calls.dart';
 import '../newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 
 class ThirdScreen extends StatefulWidget {
+  const ThirdScreen({super.key});
+
   @override
   _ThirdScreenState createState() => _ThirdScreenState();
 }

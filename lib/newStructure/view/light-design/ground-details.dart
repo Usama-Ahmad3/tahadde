@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class GroundDetails extends StatelessWidget {
+  const GroundDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -11,20 +13,20 @@ class GroundDetails extends StatelessWidget {
         .size
         .width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // grounddetails4oj (360:19917)
         width: double.infinity,
         height: 1509 * fem,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Container(
           // grounddetailsnzd (326:21054)
           width: 438 * fem,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff050505),
           ),
           child: Stack(
@@ -38,14 +40,14 @@ class GroundDetails extends StatelessWidget {
                   height: 368.68 * fem,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16 * fem),
-                    color: Color(0x4c050505),
-                    image: DecorationImage(
+                    color: const Color(0x4c050505),
+                    image: const DecorationImage(
                       image: AssetImage(
                         'assets/light-design/images/rectangle-40173-bg-Jwj.png',
                       ),
                     ),
                   ),
-                  child: Container(
+                  child: SizedBox(
                     // toolbarmLm (326:21056)
                     width: double.infinity,
                     height: 92 * fem,
@@ -75,7 +77,7 @@ class GroundDetails extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     height: 1.2575 * ffem / fem,
                                     letterSpacing: -0.2800000012 * fem,
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                   ),
                                 ),
                               ),
@@ -149,7 +151,7 @@ class GroundDetails extends StatelessWidget {
                                   fontSize: 17 * ffem,
                                   fontWeight: FontWeight.w600,
                                   height: 1.4705882353 * ffem / fem,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                 ),
                               ),
                             ],
@@ -170,7 +172,7 @@ class GroundDetails extends StatelessWidget {
                   width: 438 * fem,
                   height: 1214.93 * fem,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24 * fem),
                       topRight: Radius.circular(24 * fem),
@@ -179,7 +181,7 @@ class GroundDetails extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         // contentkQy (326:21058)
                         width: 327 * fem,
                         child: Column(
@@ -209,7 +211,7 @@ class GroundDetails extends StatelessWidget {
                                           width: 108 * fem,
                                           height: 49 * fem,
                                           decoration: BoxDecoration(
-                                            color: Color(0xfff2f2f2),
+                                            color: const Color(0xfff2f2f2),
                                             borderRadius:
                                             BorderRadius.circular(20 * fem),
                                           ),
@@ -222,7 +224,7 @@ class GroundDetails extends StatelessWidget {
                                                 fontWeight: FontWeight.w700,
                                                 height: 1.25 * ffem / fem,
                                                 letterSpacing: -0.2 * fem,
-                                                color: Color(0xff050505),
+                                                color: const Color(0xff050505),
                                               ),
                                             ),
                                           ),
@@ -236,13 +238,13 @@ class GroundDetails extends StatelessWidget {
                                             fontWeight: FontWeight.w700,
                                             height: 1.25 * ffem / fem,
                                             letterSpacing: -0.24 * fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // frame10000063992QR (326:21145)
                                     width: double.infinity,
                                     child: Column(
@@ -260,7 +262,7 @@ class GroundDetails extends StatelessWidget {
                                               fontSize: 15 * ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3333333333 * ffem / fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                           ),
                                         ),
@@ -277,7 +279,7 @@ class GroundDetails extends StatelessWidget {
                                                 fontWeight: FontWeight.w400,
                                                 height:
                                                 1.3333333333 * ffem / fem,
-                                                color: Color(0xff828282),
+                                                color: const Color(0xff828282),
                                               ),
                                               children: [
                                                 TextSpan(
@@ -290,10 +292,10 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff828282),
+                                                    color: const Color(0xff828282),
                                                   ),
                                                 ),
-                                                TextSpan(
+                                                const TextSpan(
                                                   text: '. ',
                                                 ),
                                                 TextSpan(
@@ -305,7 +307,7 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff828282),
+                                                    color: const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -317,7 +319,7 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff1e1e1e),
+                                                    color: const Color(0xff1e1e1e),
                                                   ),
                                                 ),
                                               ],
@@ -330,7 +332,7 @@ class GroundDetails extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // groundlistHv1 (326:21150)
                               width: double.infinity,
                               child: Column(
@@ -349,11 +351,11 @@ class GroundDetails extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         height: 1.25 * ffem / fem,
                                         letterSpacing: -0.2 * fem,
-                                        color: Color(0xff050505),
+                                        color: const Color(0xff050505),
                                       ),
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // listLtH (326:21152)
                                     width: double.infinity,
                                     child: Column(
@@ -368,13 +370,13 @@ class GroundDetails extends StatelessWidget {
                                           height: 74 * fem,
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                                color: Color(0xfff2f2f2)),
-                                            color: Color(0xffffffff),
+                                                color: const Color(0xfff2f2f2)),
+                                            color: const Color(0xffffffff),
                                             borderRadius:
                                             BorderRadius.circular(12 * fem),
                                             boxShadow: [
                                               BoxShadow(
-                                                color: Color(0x1408091e),
+                                                color: const Color(0x1408091e),
                                                 offset:
                                                 Offset(0 * fem, 40 * fem),
                                                 blurRadius: 30 * fem,
@@ -455,12 +457,12 @@ class GroundDetails extends StatelessWidget {
                                                                 1.4705882353 *
                                                                     ffem /
                                                                     fem,
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xff050505),
                                                               ),
                                                             ),
                                                           ),
-                                                          Container(
+                                                          SizedBox(
                                                             // frame1000006382gsb (I326:21153;306:12554)
                                                             width:
                                                             double.infinity,
@@ -506,7 +508,7 @@ class GroundDetails extends StatelessWidget {
                                                                     1.3846153846 *
                                                                         ffem /
                                                                         fem,
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xffb4b4b4),
                                                                   ),
                                                                 ),
@@ -519,7 +521,7 @@ class GroundDetails extends StatelessWidget {
                                                   ],
                                                 ),
                                               ),
-                                              Container(
+                                              SizedBox(
                                                 // selectorTWy (I326:21153;137:9500)
                                                 width: 24 * fem,
                                                 height: 24 * fem,
@@ -543,7 +545,7 @@ class GroundDetails extends StatelessWidget {
                                           height: 74 * fem,
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                                color: Color(0xffe6e6e6)),
+                                                color: const Color(0xffe6e6e6)),
                                             borderRadius:
                                             BorderRadius.circular(12 * fem),
                                           ),
@@ -621,12 +623,12 @@ class GroundDetails extends StatelessWidget {
                                                                 1.4705882353 *
                                                                     ffem /
                                                                     fem,
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xff050505),
                                                               ),
                                                             ),
                                                           ),
-                                                          Container(
+                                                          SizedBox(
                                                             // frame1000006382ufo (I326:21154;306:12554)
                                                             width:
                                                             double.infinity,
@@ -672,7 +674,7 @@ class GroundDetails extends StatelessWidget {
                                                                     1.3846153846 *
                                                                         ffem /
                                                                         fem,
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xffb4b4b4),
                                                                   ),
                                                                 ),
@@ -685,7 +687,7 @@ class GroundDetails extends StatelessWidget {
                                                   ],
                                                 ),
                                               ),
-                                              Container(
+                                              SizedBox(
                                                 // selectoru3X (I326:21154;137:9500)
                                                 width: 24 * fem,
                                                 height: 24 * fem,
@@ -709,7 +711,7 @@ class GroundDetails extends StatelessWidget {
                                           height: 74 * fem,
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                                color: Color(0xffe6e6e6)),
+                                                color: const Color(0xffe6e6e6)),
                                             borderRadius:
                                             BorderRadius.circular(12 * fem),
                                           ),
@@ -787,12 +789,12 @@ class GroundDetails extends StatelessWidget {
                                                                 1.4705882353 *
                                                                     ffem /
                                                                     fem,
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xff050505),
                                                               ),
                                                             ),
                                                           ),
-                                                          Container(
+                                                          SizedBox(
                                                             // frame1000006382nYZ (I326:21155;306:12554)
                                                             width:
                                                             double.infinity,
@@ -838,7 +840,7 @@ class GroundDetails extends StatelessWidget {
                                                                     1.3846153846 *
                                                                         ffem /
                                                                         fem,
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xffb4b4b4),
                                                                   ),
                                                                 ),
@@ -851,7 +853,7 @@ class GroundDetails extends StatelessWidget {
                                                   ],
                                                 ),
                                               ),
-                                              Container(
+                                              SizedBox(
                                                 // selectorCcH (I326:21155;137:9500)
                                                 width: 24 * fem,
                                                 height: 24 * fem,
@@ -876,13 +878,13 @@ class GroundDetails extends StatelessWidget {
                       SizedBox(
                         height: 24 * fem,
                       ),
-                      Container(
+                      SizedBox(
                         // captionandcarddetails7z9 (326:21204)
                         width: 327 * fem,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
+                            SizedBox(
                               // captionqv9 (326:21205)
                               width: double.infinity,
                               child: Text(
@@ -893,7 +895,7 @@ class GroundDetails extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   height: 1.25 * ffem / fem,
                                   letterSpacing: -0.2 * fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
@@ -948,13 +950,13 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // iconandcaptionvid (326:21211)
                                           height: double.infinity,
                                           child: Row(
@@ -985,7 +987,7 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1036,13 +1038,13 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // iconandcaption34V (326:21225)
                                           height: double.infinity,
                                           child: Row(
@@ -1073,7 +1075,7 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1091,13 +1093,13 @@ class GroundDetails extends StatelessWidget {
                       SizedBox(
                         height: 24 * fem,
                       ),
-                      Container(
+                      SizedBox(
                         // captionandcarddetails3Cu (326:21245)
                         width: 327 * fem,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
+                            SizedBox(
                               // captionxam (326:21246)
                               width: double.infinity,
                               child: Text(
@@ -1107,7 +1109,7 @@ class GroundDetails extends StatelessWidget {
                                   fontSize: 17 * ffem,
                                   fontWeight: FontWeight.w600,
                                   height: 1.4705882353 * ffem / fem,
-                                  color: Color(0xff050505),
+                                  color: const Color(0xff050505),
                                 ),
                               ),
                             ),
@@ -1148,7 +1150,7 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xffcdcdcd),
+                                                  color: const Color(0xffcdcdcd),
                                                   borderRadius:
                                                   BorderRadius.circular(
                                                       16 * fem),
@@ -1163,13 +1165,13 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // iconandcaptionUb3 (326:21252)
                                           height: double.infinity,
                                           child: Row(
@@ -1186,7 +1188,7 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xffcdcdcd),
+                                                  color: const Color(0xffcdcdcd),
                                                   borderRadius:
                                                   BorderRadius.circular(
                                                       16 * fem),
@@ -1201,7 +1203,7 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1242,7 +1244,7 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xffcdcdcd),
+                                                  color: const Color(0xffcdcdcd),
                                                   borderRadius:
                                                   BorderRadius.circular(
                                                       16 * fem),
@@ -1257,13 +1259,13 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // iconandcaptionnNm (326:21266)
                                           height: double.infinity,
                                           child: Row(
@@ -1280,7 +1282,7 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xffcdcdcd),
+                                                  color: const Color(0xffcdcdcd),
                                                   borderRadius:
                                                   BorderRadius.circular(
                                                       16 * fem),
@@ -1295,7 +1297,7 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3333333333 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1324,7 +1326,7 @@ class GroundDetails extends StatelessWidget {
                                           width: 12 * fem,
                                           height: double.infinity,
                                           decoration: BoxDecoration(
-                                            color: Color(0xffcdcdcd),
+                                            color: const Color(0xffcdcdcd),
                                             borderRadius:
                                             BorderRadius.circular(16 * fem),
                                           ),
@@ -1337,7 +1339,7 @@ class GroundDetails extends StatelessWidget {
                                             fontSize: 15 * ffem,
                                             fontWeight: FontWeight.w400,
                                             height: 1.3333333333 * ffem / fem,
-                                            color: Color(0xff050505),
+                                            color: const Color(0xff050505),
                                           ),
                                         ),
                                       ],
@@ -1352,7 +1354,7 @@ class GroundDetails extends StatelessWidget {
                       SizedBox(
                         height: 24 * fem,
                       ),
-                      Container(
+                      SizedBox(
                         // reviews7Sy (327:21292)
                         width: 327 * fem,
                         child: Column(
@@ -1377,7 +1379,7 @@ class GroundDetails extends StatelessWidget {
                                         fontSize: 17 * ffem,
                                         fontWeight: FontWeight.w600,
                                         height: 1.4705882353 * ffem / fem,
-                                        color: Color(0xff050505),
+                                        color: const Color(0xff050505),
                                       ),
                                     ),
                                   ),
@@ -1389,13 +1391,13 @@ class GroundDetails extends StatelessWidget {
                                       fontSize: 13 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.8461538462 * ffem / fem,
-                                      color: Color(0xff686868),
+                                      color: const Color(0xff686868),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // starandtextpVo (327:21296)
                               width: 136 * fem,
                               height: 25 * fem,
@@ -1405,7 +1407,7 @@ class GroundDetails extends StatelessWidget {
                                     // starmA9 (327:21297)
                                     left: 0 * fem,
                                     top: 0.5 * fem,
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 136 * fem,
                                       height: 24 * fem,
                                       child: Align(
@@ -1443,10 +1445,10 @@ class GroundDetails extends StatelessWidget {
                                               fontWeight: FontWeight.w600,
                                               height: 1.25 * ffem / fem,
                                               letterSpacing: -0.2 * fem,
-                                              color: Color(0xff050505),
+                                              color: const Color(0xff050505),
                                             ),
                                             children: [
-                                              TextSpan(
+                                              const TextSpan(
                                                 text: '4.8 ',
                                               ),
                                               TextSpan(
@@ -1458,7 +1460,7 @@ class GroundDetails extends StatelessWidget {
                                                   height:
                                                   1.3846153846 * ffem / fem,
                                                   letterSpacing: -0.2 * fem,
-                                                  color: Color(0xff9b9b9b),
+                                                  color: const Color(0xff9b9b9b),
                                                 ),
                                               ),
                                             ],
@@ -1482,7 +1484,7 @@ class GroundDetails extends StatelessWidget {
                             12 * fem, 12 * fem, 0 * fem, 12 * fem),
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xfff2f2f2)),
+                          border: Border.all(color: const Color(0xfff2f2f2)),
                           borderRadius: BorderRadius.circular(12 * fem),
                         ),
                         child: Column(
@@ -1516,8 +1518,8 @@ class GroundDetails extends StatelessWidget {
                                             borderRadius:
                                             BorderRadius.circular(20 * fem),
                                             border: Border.all(
-                                                color: Color(0xffffffff)),
-                                            image: DecorationImage(
+                                                color: const Color(0xffffffff)),
+                                            image: const DecorationImage(
                                               fit: BoxFit.cover,
                                               image: AssetImage(
                                                 'assets/light-design/images/image-bg.png',
@@ -1525,7 +1527,7 @@ class GroundDetails extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           // nameandprofession3xD (327:21329)
                                           height: double.infinity,
                                           child: Column(
@@ -1548,7 +1550,7 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.4705882353 *
                                                         ffem /
                                                         fem,
-                                                    color: Color(0xff050505),
+                                                    color: const Color(0xff050505),
                                                   ),
                                                 ),
                                               ),
@@ -1561,7 +1563,7 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                   1.3636363636 * ffem / fem,
-                                                  color: Color(0xff696969),
+                                                  color: const Color(0xff696969),
                                                 ),
                                               ),
                                             ],
@@ -1578,13 +1580,13 @@ class GroundDetails extends StatelessWidget {
                                       fontSize: 11 * ffem,
                                       fontWeight: FontWeight.w500,
                                       height: 1.3636363636 * ffem / fem,
-                                      color: Color(0xff696969),
+                                      color: const Color(0xff696969),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // frame1000006410xSu (390:17039)
                               width: double.infinity,
                               child: Row(
@@ -1604,11 +1606,11 @@ class GroundDetails extends StatelessWidget {
                                         fontSize: 13 * ffem,
                                         fontWeight: FontWeight.w400,
                                         height: 1.3846153846 * ffem / fem,
-                                        color: Color(0xff696969),
+                                        color: const Color(0xff696969),
                                       ),
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     // starandtexttzm (390:17027)
                                     width: 136 * fem,
                                     height: 26.5 * fem,
@@ -1618,7 +1620,7 @@ class GroundDetails extends StatelessWidget {
                                           // stardSZ (390:17028)
                                           left: 0 * fem,
                                           top: 2.5 * fem,
-                                          child: Container(
+                                          child: SizedBox(
                                             width: 136 * fem,
                                             height: 24 * fem,
                                             child: Align(
@@ -1659,7 +1661,7 @@ class GroundDetails extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                   1.3846153846 * ffem / fem,
-                                                  color: Color(0xff050505),
+                                                  color: const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -1682,7 +1684,7 @@ class GroundDetails extends StatelessWidget {
                         width: 327 * fem,
                         height: 57 * fem,
                         decoration: BoxDecoration(
-                          color: Color(0xffffc300),
+                          color: const Color(0xffffc300),
                           borderRadius: BorderRadius.circular(12 * fem),
                         ),
                         child: Center(
@@ -1694,7 +1696,7 @@ class GroundDetails extends StatelessWidget {
                               fontSize: 17 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.4705882353 * ffem / fem,
-                              color: Color(0xff050505),
+                              color: const Color(0xff050505),
                             ),
                           ),
                         ),

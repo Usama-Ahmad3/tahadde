@@ -4,7 +4,7 @@ class AppButton extends StatelessWidget {
   final bool isLoading;
   final Function() onPressed;
   final Widget child;
-  AppButton({this.isLoading = false, required this.onPressed, required this.child});
+  const AppButton({super.key, this.isLoading = false, required this.onPressed, required this.child});
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -25,7 +25,7 @@ class AppButton extends StatelessWidget {
             child: TextButton(
               onPressed: onPressed,
               child: isLoading
-                  ? Container(
+                  ? const SizedBox(
                       height: 0,
                       width: 0,
                     )

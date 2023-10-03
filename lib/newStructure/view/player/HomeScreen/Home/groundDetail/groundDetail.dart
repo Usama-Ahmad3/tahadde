@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -408,7 +407,7 @@ class GroundDetailState extends State<GroundDetail>
                                       ///GroundList
                                       Text(
                                           AppLocalizations.of(context)!
-                                              .groundList,
+                                              .academyList,
                                           style: TextStyle(
                                               fontSize: height * 0.03,
                                               color: MyAppState.mode ==
@@ -477,7 +476,7 @@ class GroundDetailState extends State<GroundDetail>
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: width * 0.3,
+                                                        width: width * 0.2,
                                                       ),
                                                       Checkbox(
                                                           shape:
@@ -501,7 +500,10 @@ class GroundDetailState extends State<GroundDetail>
                                               )),
 
                                       ///facilities
-                                      Facilities(),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      const Facilities(),
 
                                       ///location
                                       Padding(
@@ -801,7 +803,7 @@ class GroundDetailState extends State<GroundDetail>
     'Outdoor/Indoor',
     'Nature Grass Pitch'
   ];
-  List ground = ['Main Ground', 'Futsal Ground', 'tennis Ground'];
+  List ground = ['Main Academy', 'Futsal Academy', 'tennis Academy'];
 
   void navigateToBookingScreen(Map detail) {
     Navigator.pushNamed(context, RouteNames.bookingScreen, arguments: detail);

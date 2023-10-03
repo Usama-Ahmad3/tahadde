@@ -8,7 +8,7 @@ class textFieldWidget extends StatefulWidget {
   Widget? suffix;
   Widget? prefix;
   bool enable;
-  TextInputType? type;
+  TextInputType type;
   InputBorder? enableBorder;
   FormFieldValidator? onSubmitted;
   FocusNode? focus;
@@ -26,7 +26,7 @@ class textFieldWidget extends StatefulWidget {
   VoidCallback? onTap;
 
   textFieldWidget(
-      {required this.controller,
+      {super.key, required this.controller,
       required this.hintText,
       this.onValidate,
       this.onTap,
@@ -41,7 +41,7 @@ class textFieldWidget extends StatefulWidget {
       this.suffixIconColor,
       this.hideIcon,
       this.focusBorder,
-      this.type,
+      this.type = TextInputType.text,
       this.focus,
       this.onSubmitted,
       this.prefixIcon,
@@ -137,7 +137,7 @@ class textFieldWidgetMulti extends StatefulWidget {
   int? maxLines;
 
   textFieldWidgetMulti(
-      {required this.controller,
+      {super.key, required this.controller,
       required this.hintText,
       this.onValidate,
       this.onTap,

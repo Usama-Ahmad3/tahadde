@@ -10,6 +10,8 @@ import '../../../modelClass/my_venue_list_model_class.dart';
 import '../../../network/network_calls.dart';
 
 class MyVenues extends StatefulWidget {
+  const MyVenues({super.key});
+
   @override
   _MyVenuesState createState() => _MyVenuesState();
 }

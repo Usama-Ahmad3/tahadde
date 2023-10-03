@@ -1,14 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/createSession4.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../common_widgets/internet_loss.dart';
-import '../../../../../constant.dart';
-import '../../../../../drop_down_file.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
@@ -38,10 +36,14 @@ class _PriceScreenViewState extends State<PriceScreenView> {
   String playerPrice = "0";
   String? subVenue;
   String? area;
+  bool monVal = false;
   final _vanueController = TextEditingController();
   final _priceController = TextEditingController();
+  final maxPlayers = TextEditingController();
   final _pricePerPlayer = TextEditingController();
   var focusNode = FocusNode();
+  var pricePer = FocusNode();
+
   final List<AreaSlug> _pitchType = [];
   final List<String> _numberPlayerList = [
     '1',
@@ -64,7 +66,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
         right: 0,
         left: 0,
-        child: DoneButton(),
+        child: const DoneButton(),
       );
     });
     overlayState.insert(overlayEntry!);
@@ -77,16 +79,31 @@ class _PriceScreenViewState extends State<PriceScreenView> {
     }
   }
 
+  privacyPolicy(String text) async {
+    _networkCalls.privacyPolicy(
+      onSuccess: (msg) {
+        launchInBrowser(msg[text]);
+      },
+      onFailure: (msg) {
+        showMessage(msg);
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
     if (Platform.isIOS) {
       focusNode.addListener(() {
         bool hasFocus = focusNode.hasFocus;
-        if (hasFocus)
+        if (hasFocus) {
           showOverlay(context);
-        else
+        } else {
           removeOverlay();
+        }
       });
     }
     _networkCalls.availablePitchType(
@@ -122,7 +139,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
       child: _isLoading
           ? const Center(
               child: CircularProgressIndicator(
-                color: appThemeColor,
+                color: Color(0xff1d7e55),
               ),
             )
           : _internet
@@ -130,79 +147,14 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                   backgroundColor: MyAppState.mode == ThemeMode.light
                       ? Colors.white
                       : const Color(0xff686868),
-                  appBar: PreferredSize(
-                      preferredSize: Size(size.width, size.height * 0.105),
-                      child: AppBar(
-                        title: Text(
-                          AppLocalizations.of(context)!.price,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(color: Colors.white),
-                        ),
-                        centerTitle: true,
-                        backgroundColor: Colors.black,
-                        leadingWidth: size.width * 0.18,
-                        leading: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                                padding: EdgeInsets.all(size.height * 0.008),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    shape: BoxShape.circle),
-                                child: const Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.close,
-                                    color: Colors.white,
-                                  ),
-                                )),
-                          ),
-                        ),
-                        bottom: PreferredSize(
-                          preferredSize: Size(size.width, 10),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.035),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: size.height * .005,
-                                  width: size.width * .17,
-                                  color: const Color(0XFF25A163),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: size.height * .005,
-                                  width: size.width * .17,
-                                  color: const Color(0XFF25A163),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: size.height * .005,
-                                  width: size.width * .17,
-                                  color: const Color(0XFF25A163),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: size.height * .005,
-                                  width: size.width * .17,
-                                  color: const Color(0XFFCBCBCB),
-                                ),
-                                flaxibleGap(1),
-                                Container(
-                                  height: size.height * .005,
-                                  width: size.width * .17,
-                                  color: const Color(0XFFCBCBCB),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )),
+                  appBar: appBarForCreatingAcademy(
+                    size,
+                    context,
+                    AppLocalizations.of(context)!.price,
+                    true,
+                    const Color(0XFFCBCBCB),
+                    const Color(0XFFCBCBCB),
+                  ),
                   body: Container(
                     color: Colors.black,
                     child: Container(
@@ -230,7 +182,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 width: size.width,
                                 height: size.height * 0.06,
                                 decoration: BoxDecoration(
-                                    color: const Color(0xffffc300),
+                                    color: const Color(0xff1d7e55),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -271,7 +223,8 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                   hintText: AppLocalizations.of(context)!
                                       .subAcademyName,
                                   onSubmitted: (value) {
-                                    // FocusScope.of(context).requestFocus(arabicFocus);
+                                    FocusScope.of(context)
+                                        .requestFocus(focusNode);
                                     return null;
                                   },
                                   onChanged: (value) {
@@ -297,136 +250,132 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                       borderSide:
                                           const BorderSide(color: Colors.grey),
                                       borderRadius: BorderRadius.circular(12))),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
+                              // SizedBox(
+                              //   height: size.height * 0.02,
+                              // ),
+                              // widget.detail.sportsType == "swimming"
+                              //     ? const SizedBox.shrink()
+                              //     : Container(
+                              //         width: size.width,
+                              //         child: CustomDropdown(
+                              //           leadingIcon: false,
+                              //           icon: Image.asset(
+                              //             "assets/images/drop_down.png",
+                              //             height: 8,
+                              //           ),
+                              //           onChange: (int value, int index) =>
+                              //               setState(() {
+                              //             pitchTypeIndex = index;
+                              //           }),
+                              //           dropdownButtonStyle:
+                              //               DropdownButtonStyle(
+                              //             width: 170,
+                              //             height: 45,
+                              //             elevation: 1,
+                              //             backgroundColor:
+                              //                 MyAppState.mode == ThemeMode.light
+                              //                     ? Colors.grey.shade200
+                              //                     : Colors.white,
+                              //             primaryColor: Colors.black87,
+                              //           ),
+                              //           dropdownStyle: DropdownStyle(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(0),
+                              //             elevation: 6,
+                              //             padding: const EdgeInsets.all(5),
+                              //           ),
+                              //           items: _pitchType
+                              //               .asMap()
+                              //               .entries
+                              //               .map(
+                              //                 (item) => DropdownItem(
+                              //                   value: item.key + 1,
+                              //                   child: Column(
+                              //                     mainAxisAlignment:
+                              //                         MainAxisAlignment.end,
+                              //                     children: [
+                              //                       Row(
+                              //                         mainAxisAlignment:
+                              //                             MainAxisAlignment
+                              //                                 .center,
+                              //                         children: [
+                              //                           Text(item.value.name),
+                              //                         ],
+                              //                       ),
+                              //                       const Divider()
+                              //                     ],
+                              //                   ),
+                              //                 ),
+                              //               )
+                              //               .toList(),
+                              //           child: Text(
+                              //             _pitchType[pitchTypeIndex].name,
+                              //           ),
+                              //         ),
+                              //       ),
+                              // widget.detail.sportsType == "swimming"
+                              //     ? const SizedBox.shrink()
+                              //     : SizedBox(
+                              //         height: size.height * 0.02,
+                              //       ),
                               widget.detail.sportsType == "swimming"
-                                  ? const SizedBox.shrink()
-                                  : Container(
-                                      width: size.width,
-                                      child: CustomDropdown(
-                                        leadingIcon: false,
-                                        icon: Image.asset(
-                                          "assets/images/drop_down.png",
-                                          height: 8,
-                                        ),
-                                        onChange: (int value, int index) =>
-                                            setState(() {
-                                          pitchTypeIndex = index;
-                                        }),
-                                        dropdownButtonStyle:
-                                            DropdownButtonStyle(
-                                          width: 170,
-                                          height: 45,
-                                          elevation: 1,
-                                          backgroundColor:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? Colors.grey.shade200
-                                                  : Colors.white,
-                                          primaryColor: Colors.black87,
-                                        ),
-                                        dropdownStyle: DropdownStyle(
-                                          borderRadius:
-                                              BorderRadius.circular(0),
-                                          elevation: 6,
-                                          padding: const EdgeInsets.all(5),
-                                        ),
-                                        items: _pitchType
-                                            .asMap()
-                                            .entries
-                                            .map(
-                                              (item) => DropdownItem(
-                                                value: item.key + 1,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(item.value.name),
-                                                      ],
-                                                    ),
-                                                    const Divider()
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                        child: Text(
-                                          _pitchType[pitchTypeIndex].name,
-                                        ),
-                                      ),
-                                    ),
-                              widget.detail.sportsType == "swimming"
-                                  ? const SizedBox.shrink()
-                                  : SizedBox(
+                                  ? SizedBox(
                                       height: size.height * 0.02,
-                                    ),
+                                    )
+                                  : const SizedBox.shrink(),
                               widget.detail.sportsType == "swimming"
-                                  ? Container(
-                                      width: size.width,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: size.width * 0.03),
-                                      child: CustomDropdown(
-                                        leadingIcon: false,
-                                        icon: Image.asset(
-                                          "assets/images/drop_down.png",
-                                          height: 6,
-                                        ),
-                                        onChange: (int value, int index) =>
-                                            setState(() {
-                                          indexItem = index;
-                                        }),
-                                        dropdownButtonStyle:
-                                            const DropdownButtonStyle(
-                                          width: 170,
-                                          height: 45,
-                                          elevation: 1,
-                                          backgroundColor: Colors.white,
-                                          primaryColor: Colors.black87,
-                                        ),
-                                        dropdownStyle: DropdownStyle(
-                                          borderRadius:
-                                              BorderRadius.circular(0),
-                                          elevation: 6,
-                                          padding: const EdgeInsets.all(5),
-                                        ),
-                                        items: _numberPlayerList
-                                            .asMap()
-                                            .entries
-                                            .map(
-                                              (item) => DropdownItem(
-                                                value: item.key + 1,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 8.0),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Text(item.value),
-                                                        ],
-                                                      ),
-                                                      const Divider()
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                        child: const Text(
-                                          'Max No. of Players',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
+                                  ? SizedBox(
+                                      height: size.height * 0.07,
+                                      child: textFieldWidget(
+                                        onChanged: (value) {
+                                          if (value != null) {
+                                            indexItem =
+                                                int.parse(value.toString());
+                                          }
+                                          return null;
+                                        },
+                                        onValidate: (value) {
+                                          if (int.parse(value) > 10) {
+                                            return 'Enter between 1 to 10 ';
+                                          }
+                                          return null;
+                                        },
+                                        onSubmitted: (value) {
+                                          FocusScope.of(context)
+                                              .requestFocus(pricePer);
+                                          return null;
+                                        },
+                                        focus: focusNode,
+                                        controller: maxPlayers,
+                                        type: TextInputType.number,
+                                        hintText: '10',
+                                        enableBorder: OutlineInputBorder(
+                                            borderSide: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? BorderSide.none
+                                                : const BorderSide(
+                                                    color: Colors.white,
+                                                    width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                        focusBorder: OutlineInputBorder(
+                                            borderSide: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? BorderSide.none
+                                                : const BorderSide(
+                                                    color: Colors.white,
+                                                    width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                        border: OutlineInputBorder(
+                                            borderSide: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? BorderSide.none
+                                                : const BorderSide(
+                                                    color: Colors.white,
+                                                    width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
                                       ),
                                     )
                                   : const SizedBox.shrink(),
@@ -456,6 +405,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                             controller: _priceController,
                                             hintText: '',
                                             type: TextInputType.number,
+                                            focus: pricePer,
                                             prefix: const Text(
                                               "Amount: ",
                                               style: TextStyle(
@@ -503,7 +453,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 height: size.height * 0.02,
                               ),
                               Text(
-                                'Price per player',
+                                AppLocalizations.of(context)!.pricePerPlayer,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
                                         ? const Color(0XFF032040)
@@ -557,9 +507,61 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                               SizedBox(
                                 height: size.height * 0.02,
                               ),
-                              pitchTypeIndex != null
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Checkbox(
+                                    autofocus: true,
+                                    value: monVal,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        monVal = value!;
+                                      });
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: size.width * .76,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .iAgree,
+                                            style: const TextStyle(
+                                                color: Color(0XFFADADAD),
+                                                fontSize: 15),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                " ${AppLocalizations.of(context)!.term} ",
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                privacyPolicy(
+                                                    "terms_and_conditions_url");
+                                              },
+                                            style: const TextStyle(
+                                              color: Color(0XFF25A163),
+                                              fontSize: 15,
+                                              // decoration: TextDecoration.underline
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .ofCompany,
+                                            style: const TextStyle(
+                                                color: Color(0XFFADADAD),
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              monVal
                                   ? _isVenueLoading
                                       ? ButtonWidget(
+                                          color: Colors.grey,
                                           onTaped: () {},
                                           title: Text(
                                               AppLocalizations.of(context)!

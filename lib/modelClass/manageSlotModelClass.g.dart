@@ -17,9 +17,9 @@ ManageSlotModelClass _$ManageSlotModelClassFromJson(Map<String, dynamic> json) {
         ? null
         : Bookpitch.fromJson(json['bookpitch'] as Map<String, dynamic>),
     slots: (json['slots'] as List)
-        ?.map(
+        .map(
             (e) => e == null ? null : Slot.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
   );
 }
 
@@ -29,7 +29,7 @@ Map<String, dynamic> _$ManageSlotModelClassToJson(
       'bookpitch': instance.bookpitch?.toJson(),
       'pitchType': instance.pitchType?.toJson(),
       'current_datetime': instance.current_datetime,
-      'slots': instance.slots?.map((e) => e?.toJson())?.toList(),
+      'slots': instance.slots?.map((e) => e?.toJson()).toList(),
       'paidTotal': instance.paidTotal,
     };
 
@@ -56,9 +56,9 @@ PaymentSummary _$PaymentSummaryFromJson(Map<String, dynamic> json) {
   return PaymentSummary(
     id: json['id'] as int,
     name: json['name'] as String,
-    grandTotal: (json['grandTotal'] as num)?.toDouble(),
-    tax: (json['tax'] as num)?.toDouble(),
-    subTotal: (json['subTotal'] as num)?.toDouble(),
+    grandTotal: (json['grandTotal'] as num).toDouble(),
+    tax: (json['tax'] as num).toDouble(),
+    subTotal: (json['subTotal'] as num).toDouble(),
     paymentFor: json['paymentFor'] as String,
   );
 }

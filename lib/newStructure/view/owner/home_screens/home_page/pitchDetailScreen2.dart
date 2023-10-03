@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/priceScreen3.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart' hide Marker;
 import 'package:permission_handler/permission_handler.dart';
@@ -187,84 +188,21 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
+    var size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: MyAppState.mode == ThemeMode.light
             ? Colors.white
             : const Color(0xff686868),
-        appBar: PreferredSize(
-            preferredSize: Size(sizeWidth, sizeHeight * 0.105),
-            child: AppBar(
-              title: Text(
-                AppLocalizations.of(context)!.documents,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: Colors.white),
-              ),
-              centerTitle: true,
-              backgroundColor: Colors.black,
-              leadingWidth: sizeWidth * 0.18,
-              leading: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                      padding: EdgeInsets.all(sizeHeight * 0.008),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          shape: BoxShape.circle),
-                      child: const Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.close,
-                          color: Colors.white,
-                        ),
-                      )),
-                ),
-              ),
-              bottom: PreferredSize(
-                preferredSize: Size(sizeWidth, 10),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.035),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: sizeHeight * .005,
-                        width: sizeWidth * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: sizeHeight * .005,
-                        width: sizeWidth * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: sizeHeight * .005,
-                        width: sizeWidth * .17,
-                        color: const Color(0XFF25A163),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: sizeHeight * .005,
-                        width: sizeWidth * .17,
-                        color: const Color(0XFFCBCBCB),
-                      ),
-                      flaxibleGap(1),
-                      Container(
-                        height: sizeHeight * .005,
-                        width: sizeWidth * .17,
-                        color: const Color(0XFFCBCBCB),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )),
+        appBar: appBarForCreatingAcademy(
+          size,
+          context,
+          AppLocalizations.of(context)!.document,
+          true,
+          const Color(0XFFCBCBCB),
+          const Color(0XFFCBCBCB),
+        ),
         body: SingleChildScrollView(
           child: Container(
             color: Colors.black,
@@ -425,41 +363,41 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                       SizedBox(
                         height: sizeHeight * 0.02,
                       ),
-                      Text(
-                        AppLocalizations.of(context)!.code,
-                        style: TextStyle(
-                            color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
-                      ),
-                      SizedBox(
-                        height: sizeHeight * 0.01,
-                      ),
-                      textFieldWidget(
-                          controller: _codeController,
-                          hintText: AppLocalizations.of(context)!.code,
-                          focus: codeFocus,
-                          onSubmitted: (value) {
-                            FocusScope.of(context)
-                                .requestFocus(descriptionFocus);
-                            return null;
-                          },
-                          onChanged: (value) {
-                            widget.detail.pitchDetailModel!.code = value!;
-                            return '';
-                          },
-                          border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(12)),
-                          enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(12)),
-                          focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(12))),
-                      SizedBox(
-                        height: sizeHeight * 0.02,
-                      ),
+                      // Text(
+                      //   AppLocalizations.of(context)!.code,
+                      //   style: TextStyle(
+                      //       color: MyAppState.mode == ThemeMode.light
+                      //           ? const Color(0XFF032040)
+                      //           : Colors.white),
+                      // ),
+                      // SizedBox(
+                      //   height: sizeHeight * 0.01,
+                      // ),
+                      // textFieldWidget(
+                      //     controller: _codeController,
+                      //     hintText: AppLocalizations.of(context)!.code,
+                      //     focus: codeFocus,
+                      //     onSubmitted: (value) {
+                      //       FocusScope.of(context)
+                      //           .requestFocus(descriptionFocus);
+                      //       return null;
+                      //     },
+                      //     onChanged: (value) {
+                      //       widget.detail.pitchDetailModel!.code = value!;
+                      //       return '';
+                      //     },
+                      //     border: OutlineInputBorder(
+                      //         borderSide: const BorderSide(color: Colors.grey),
+                      //         borderRadius: BorderRadius.circular(12)),
+                      //     enableBorder: OutlineInputBorder(
+                      //         borderSide: const BorderSide(color: Colors.grey),
+                      //         borderRadius: BorderRadius.circular(12)),
+                      //     focusBorder: OutlineInputBorder(
+                      //         borderSide: const BorderSide(color: Colors.grey),
+                      //         borderRadius: BorderRadius.circular(12))),
+                      // SizedBox(
+                      //   height: sizeHeight * 0.02,
+                      // ),
                       Text(
                         AppLocalizations.of(context)!.description,
                         style: TextStyle(
@@ -806,6 +744,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
                                   _facility = "";
+                                  widget.detail.pitchDetailModel!.code =
+                                      Random().nextInt(100).toString();
                                   for (int i = 0; i < indexList.length; i++) {
                                     _facility = "$_facility${facilitySlug[i]},";
                                   }
@@ -833,9 +773,9 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                       });
 
                                       navigateToPriceScreen(widget.detail);
-                                      print(widget
-                                          .detail.documentModel!.expiryDate);
-                                      print(widget.detail.documentModel!.lat);
+                                      // print(widget
+                                      //     .detail.documentModel!.expiryDate);
+                                      // print(widget.detail.documentModel!.lat);
                                     },
                                     onFailure: (msg) {
                                       showMessage(msg);

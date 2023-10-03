@@ -44,12 +44,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "eventTitle": MessageLookupByLibrary.simpleMessage("Events"),
         "academy": MessageLookupByLibrary.simpleMessage("Academies"),
         "addPitch": MessageLookupByLibrary.simpleMessage("Add Venue"),
+        "status": MessageLookupByLibrary.simpleMessage("Status"),
+        "perAcademy": MessageLookupByLibrary.simpleMessage("Per Academy"),
+        "academyList": MessageLookupByLibrary.simpleMessage("Academy List"),
+        "academyBook": MessageLookupByLibrary.simpleMessage("Academy Booking"),
+        "loginRequired": MessageLookupByLibrary.simpleMessage(
+            "login required to see the booking"),
+        "academyOnly": MessageLookupByLibrary.simpleMessage("Academy"),
         "addPitchDetails":
             MessageLookupByLibrary.simpleMessage("Add new Venue Details"),
         "addPitchImage":
             MessageLookupByLibrary.simpleMessage("Add Venue \n image"),
         "addPlayerC": MessageLookupByLibrary.simpleMessage("ADD PLAYER"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("Add Players"),
+        "academyCreated":
+            MessageLookupByLibrary.simpleMessage("Academy Created"),
+        "academyLocation":
+            MessageLookupByLibrary.simpleMessage("Academy Location"),
         "addYourFavorite":
             MessageLookupByLibrary.simpleMessage("Add Your Favorites"),
         "addSession": MessageLookupByLibrary.simpleMessage("Add Session"),
@@ -290,8 +301,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "expiryDocumentDate":
             MessageLookupByLibrary.simpleMessage("Expiry Document Date"),
         "expriyDate": MessageLookupByLibrary.simpleMessage("Expriy Date"),
-        "extraGraceTime":
-            MessageLookupByLibrary.simpleMessage("Extra/Grace Time"),
+        "extraGraceTime": MessageLookupByLibrary.simpleMessage("Extra Slot"),
         "facilitiesProvided":
             MessageLookupByLibrary.simpleMessage("Facilities Provided"),
         "facility": MessageLookupByLibrary.simpleMessage("Facility"),
@@ -530,8 +540,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "prev": MessageLookupByLibrary.simpleMessage("Prev"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
+        "copy": MessageLookupByLibrary.simpleMessage("Copy"),
+        "swipeD": MessageLookupByLibrary.simpleMessage("Swipe to delete"),
+        "yourTime": MessageLookupByLibrary.simpleMessage(
+            "Your time is not proper as compare to previous sessions"),
+        "noSession": MessageLookupByLibrary.simpleMessage("No Session Created"),
+        "copyFrom": MessageLookupByLibrary.simpleMessage(
+            "Copy from first session for all days"),
         "pricePerPlayer":
-            MessageLookupByLibrary.simpleMessage("Price per Player"),
+            MessageLookupByLibrary.simpleMessage("Price per Person"),
         "privacyPolicy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy."),
         "proceed": MessageLookupByLibrary.simpleMessage("PROCEED"),
@@ -639,7 +656,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "slots": MessageLookupByLibrary.simpleMessage("SLOTS"),
         "socialTitle": MessageLookupByLibrary.simpleMessage("Social Title"),
         "sorryYouEditReview": MessageLookupByLibrary.simpleMessage(
-            "Sorry, you can’t edit your venue when it\'s in review."),
+            "Sorry, you can’t edit your venue when it's in review."),
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
         "sports": MessageLookupByLibrary.simpleMessage("Sports"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
@@ -674,7 +691,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsofUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
         "tex": MessageLookupByLibrary.simpleMessage("Tax"),
         "thankyouforaddingyourvenue": MessageLookupByLibrary.simpleMessage(
-            "Thank you for adding your venue. Your application is under review and we will notify you once\'s it is approved."),
+            "Thank you for adding your venue. Your application is under review and we will notify you once's it is approved."),
         "thisCalendarPicturesUploadImage": MessageLookupByLibrary.simpleMessage(
             "Tahadde app needs permission to access the calendar"),
         "thisDayHoliday":
@@ -785,7 +802,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You cannot create a"),
         "youcreateexistingteam": MessageLookupByLibrary.simpleMessage(
             "To join the team you need to create an account or login"),
-        "yourTahaddi": MessageLookupByLibrary.simpleMessage("YOUR TAHADDE\'S"),
+        "yourTahaddi": MessageLookupByLibrary.simpleMessage("YOUR TAHADDE'S"),
         "yourexperience":
             MessageLookupByLibrary.simpleMessage("Your experience"),
         "yourteamhasbeensuccessfullycreated":

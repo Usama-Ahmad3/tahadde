@@ -9,7 +9,7 @@ import 'pitchOwnerHome.dart';
 
 class HomePitchOwner extends StatefulWidget {
   int index = 0;
-  HomePitchOwner({required this.index});
+  HomePitchOwner({super.key, required this.index});
   @override
   _HomePitchOwnerState createState() => _HomePitchOwnerState();
 }
@@ -97,7 +97,7 @@ class _HomePitchOwnerState extends State<HomePitchOwner>
     super.dispose();
   }
 
-  final page = [PitchOwnerHome(), Booking(), NotificationScreen(), Account()];
+  final page = [const PitchOwnerHome(), const Booking(), NotificationScreen(), const Account()];
 
   @override
   Widget build(BuildContext context) {

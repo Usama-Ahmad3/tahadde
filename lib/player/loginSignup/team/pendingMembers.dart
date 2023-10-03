@@ -7,6 +7,8 @@ import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
 
 class PendingMember extends StatefulWidget {
+  const PendingMember({super.key});
+
   @override
   _PendingMemberState createState() => _PendingMemberState();
 }

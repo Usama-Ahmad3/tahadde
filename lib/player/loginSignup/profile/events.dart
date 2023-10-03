@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:intl/intl.dart';
 
 import '../../../common_widgets/internet_loss.dart';
@@ -10,6 +9,8 @@ import '../../../modelClass/eventModelClass.dart';
 import '../../../network/network_calls.dart';
 
 class Events extends StatefulWidget {
+  const Events({super.key});
+
   @override
   _EventsState createState() => _EventsState();
 }

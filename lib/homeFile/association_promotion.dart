@@ -57,10 +57,10 @@ class AssociationPromotion extends StatelessWidget {
                             },
                             elevation: 2.0,
                             fillColor: const Color(0xFF25A163),
-                            child: const Icon(Icons.arrow_back_sharp,
-                                color: Colors.white),
                             padding: const EdgeInsets.all(5.0),
                             shape: const CircleBorder(),
+                            child: const Icon(Icons.arrow_back_sharp,
+                                color: Colors.white),
                           ),
                         ),
                       )
