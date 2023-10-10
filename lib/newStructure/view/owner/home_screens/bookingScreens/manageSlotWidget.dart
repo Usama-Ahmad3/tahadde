@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -65,13 +66,13 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
     return Scaffold(
       backgroundColor: MyAppState.mode == ThemeMode.light
           ? const Color(0XFFF7F7F7)
-          : const Color(0xff686868),
+          : AppColors.darkTheme,
       body: _isLoading
           ? SizedBox(
               width: sizeWidth,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
+                children: [
                   _buildbodySimmer(),
                 ],
               ),
@@ -93,7 +94,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                             style: TextStyle(
                                 color: MyAppState.mode == ThemeMode.light
                                     ? const Color(0XFF424242)
-                                    : Colors.white,
+                                    : AppColors.white,
                                 fontFamily: "Poppins",
                                 fontSize: 18)),
                         flaxibleGap(1),
@@ -143,8 +144,8 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                   Radius.circular(5.0),
                                 ),
                                 color: MyAppState.mode == ThemeMode.light
-                                    ? Colors.grey.shade200
-                                    : Colors.black12,
+                                    ? AppColors.grey200
+                                    : AppColors.containerColorB,
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,8 +179,8 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                           style: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : Colors.white,
+                                                  ?AppColors.themeColor
+                                                  : AppColors.white,
                                               fontWeight: FontWeight.w700,
                                               fontFamily: "Poppins",
                                               fontSize: 16)),
@@ -193,7 +194,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? const Color(0XFF646464)
-                                                    : Colors.grey,
+                                                    : AppColors.grey,
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily: "Poppins",
                                                 fontSize: 12)),

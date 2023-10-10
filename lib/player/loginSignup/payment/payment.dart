@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import "package:myfatoorah_flutter/utils/MFCountry.dart";
@@ -122,7 +123,7 @@ class _PaymentState extends State<Payment> {
     MFSDK.setUpAppBar(
         title: AppLocalizations.of(context)!.payment,
         //titleColor: Colors.white, // Color(0xFFFFFFFF)
-        backgroundColor: const Color(0XFF032040), // Color(0xFF000000)
+        backgroundColor: AppColors.themeColor, // Color(0xFF000000)
         isShowAppBar: true);
 
     MFSDK.initiatePayment(
@@ -157,7 +158,7 @@ class _PaymentState extends State<Payment> {
     var sizewidth = MediaQuery.of(context).size.width;
     return _isLoading
         ? Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.black,
             appBar: appBarWidget(sizewidth, sizeheight, context,
                 AppLocalizations.of(context)!.selectPaymentMethod, true),
             body: Container(
@@ -166,7 +167,7 @@ class _PaymentState extends State<Payment> {
               decoration: BoxDecoration(
                   color: MyAppState.mode == ThemeMode.light
                       ? const Color(0XFFF0F0F0)
-                      : const Color(0xff686868),
+                      : AppColors.darkTheme,
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
@@ -186,7 +187,7 @@ class _PaymentState extends State<Payment> {
                               height: 50,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: Colors.grey,
+                                color: AppColors.grey,
                               ),
                             ),
                           ),
@@ -195,7 +196,7 @@ class _PaymentState extends State<Payment> {
             ))
         : internet
             ? Scaffold(
-                backgroundColor: Colors.black,
+                backgroundColor: AppColors.black,
                 appBar: appBarWidget(sizewidth, sizeheight, context,
                     AppLocalizations.of(context)!.selectPaymentMethod, true),
                 resizeToAvoidBottomInset: true,
@@ -205,7 +206,7 @@ class _PaymentState extends State<Payment> {
                   decoration: BoxDecoration(
                       color: MyAppState.mode == ThemeMode.light
                           ? const Color(0XFFF0F0F0)
-                          : const Color(0xff686868),
+                          : AppColors.darkTheme,
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20))),
@@ -237,15 +238,15 @@ class _PaymentState extends State<Payment> {
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 color: isSelected[index]
-                                                    ? const Color(0xff1d7e55)
+                                                    ? AppColors.appThemeColor
                                                     : MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.grey
+                                                        ? AppColors.grey
                                                             .withOpacity(.3)
                                                         : Colors.grey.shade300,
                                               ),
                                               child: Row(
-                                                children: <Widget>[
+                                                children:[
                                                   const SizedBox(
                                                     width: 10,
                                                   ),
@@ -307,8 +308,8 @@ class _PaymentState extends State<Payment> {
                                                               .paymentMethodAr
                                                               .toString(),
                                                           style:
-                                                              const TextStyle(
-                                                                  color: Colors
+                                                                TextStyle(
+                                                                  color: AppColors
                                                                       .black),
                                                         ),
                                                   Flexible(
@@ -394,7 +395,7 @@ class _PaymentState extends State<Payment> {
                                             AppLocalizations.of(context)!
                                                 .payNow,
                                             style: const TextStyle(
-                                                color: Color(0XFF25A163)),
+                                                color: AppColors.barLineColor),
                                           ),
                                         ),
                                       )

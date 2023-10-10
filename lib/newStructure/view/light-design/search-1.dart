@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class Search1 extends StatelessWidget {
   const Search1({super.key});
@@ -304,7 +304,8 @@ class Search1 extends StatelessWidget {
                                               height: double.infinity,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
-                                                    color: const Color(0xffe6e6e6)),
+                                                    color: const Color(
+                                                        0xffe6e6e6)),
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         32 * fem),
@@ -339,7 +340,8 @@ class Search1 extends StatelessWidget {
                                                       height: 1.3846153846 *
                                                           ffem /
                                                           fem,
-                                                      color: const Color(0xff050505),
+                                                      color: const Color(
+                                                          0xff050505),
                                                     ),
                                                   ),
                                                 ],
@@ -355,7 +357,8 @@ class Search1 extends StatelessWidget {
                                               height: double.infinity,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
-                                                    color: const Color(0xffe6e6e6)),
+                                                    color: const Color(
+                                                        0xffe6e6e6)),
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         32 * fem),
@@ -390,7 +393,8 @@ class Search1 extends StatelessWidget {
                                                       height: 1.3846153846 *
                                                           ffem /
                                                           fem,
-                                                      color: const Color(0xff050505),
+                                                      color: const Color(
+                                                          0xff050505),
                                                     ),
                                                   ),
                                                 ],
@@ -424,7 +428,8 @@ class Search1 extends StatelessWidget {
                                               height: double.infinity,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
-                                                    color: const Color(0xffe6e6e6)),
+                                                    color: const Color(
+                                                        0xffe6e6e6)),
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         32 * fem),
@@ -459,7 +464,8 @@ class Search1 extends StatelessWidget {
                                                       height: 1.3846153846 *
                                                           ffem /
                                                           fem,
-                                                      color: const Color(0xff050505),
+                                                      color: const Color(
+                                                          0xff050505),
                                                     ),
                                                   ),
                                                 ],
@@ -475,7 +481,8 @@ class Search1 extends StatelessWidget {
                                               height: double.infinity,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
-                                                    color: const Color(0xffe6e6e6)),
+                                                    color: const Color(
+                                                        0xffe6e6e6)),
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         32 * fem),
@@ -510,7 +517,8 @@ class Search1 extends StatelessWidget {
                                                       height: 1.3846153846 *
                                                           ffem /
                                                           fem,
-                                                      color: const Color(0xff050505),
+                                                      color: const Color(
+                                                          0xff050505),
                                                     ),
                                                   ),
                                                 ],
@@ -1390,13 +1398,15 @@ class Search1 extends StatelessWidget {
                                                 width: 32.58 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.389313221 * fem),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: const Color(0x59000000),
+                                                      color: const Color(
+                                                          0x59000000),
                                                       offset: Offset(
                                                           0 * fem, 1 * fem),
                                                       blurRadius: 0 * fem,
@@ -1415,7 +1425,8 @@ class Search1 extends StatelessWidget {
                                                           FontWeight.w400,
                                                       height:
                                                           1.2575 * ffem / fem,
-                                                      color: const Color(0xff000000),
+                                                      color: const Color(
+                                                          0xff000000),
                                                     ),
                                                   ),
                                                 ),
@@ -1430,13 +1441,15 @@ class Search1 extends StatelessWidget {
                                                 width: 32.58 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.389313221 * fem),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: const Color(0x59000000),
+                                                      color: const Color(
+                                                          0x59000000),
                                                       offset: Offset(
                                                           0 * fem, 1 * fem),
                                                       blurRadius: 0 * fem,
@@ -1455,7 +1468,8 @@ class Search1 extends StatelessWidget {
                                                           FontWeight.w400,
                                                       height:
                                                           1.2575 * ffem / fem,
-                                                      color: const Color(0xff000000),
+                                                      color: const Color(
+                                                          0xff000000),
                                                     ),
                                                   ),
                                                 ),
@@ -1470,13 +1484,15 @@ class Search1 extends StatelessWidget {
                                                 width: 32.58 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.389313221 * fem),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: const Color(0x59000000),
+                                                      color: const Color(
+                                                          0x59000000),
                                                       offset: Offset(
                                                           0 * fem, 1 * fem),
                                                       blurRadius: 0 * fem,
@@ -1495,7 +1511,8 @@ class Search1 extends StatelessWidget {
                                                           FontWeight.w400,
                                                       height:
                                                           1.2575 * ffem / fem,
-                                                      color: const Color(0xff000000),
+                                                      color: const Color(
+                                                          0xff000000),
                                                     ),
                                                   ),
                                                 ),
@@ -1510,13 +1527,15 @@ class Search1 extends StatelessWidget {
                                                 width: 32.58 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.389313221 * fem),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: const Color(0x59000000),
+                                                      color: const Color(
+                                                          0x59000000),
                                                       offset: Offset(
                                                           0 * fem, 1 * fem),
                                                       blurRadius: 0 * fem,
@@ -1535,7 +1554,8 @@ class Search1 extends StatelessWidget {
                                                           FontWeight.w400,
                                                       height:
                                                           1.2575 * ffem / fem,
-                                                      color: const Color(0xff000000),
+                                                      color: const Color(
+                                                          0xff000000),
                                                     ),
                                                   ),
                                                 ),
@@ -1550,13 +1570,15 @@ class Search1 extends StatelessWidget {
                                                 width: 32.58 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.389313221 * fem),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: const Color(0x59000000),
+                                                      color: const Color(
+                                                          0x59000000),
                                                       offset: Offset(
                                                           0 * fem, 1 * fem),
                                                       blurRadius: 0 * fem,
@@ -1575,7 +1597,8 @@ class Search1 extends StatelessWidget {
                                                           FontWeight.w400,
                                                       height:
                                                           1.2575 * ffem / fem,
-                                                      color: const Color(0xff000000),
+                                                      color: const Color(
+                                                          0xff000000),
                                                     ),
                                                   ),
                                                 ),
@@ -1590,13 +1613,15 @@ class Search1 extends StatelessWidget {
                                                 width: 32.58 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.389313221 * fem),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: const Color(0x59000000),
+                                                      color: const Color(
+                                                          0x59000000),
                                                       offset: Offset(
                                                           0 * fem, 1 * fem),
                                                       blurRadius: 0 * fem,
@@ -1615,7 +1640,8 @@ class Search1 extends StatelessWidget {
                                                           FontWeight.w400,
                                                       height:
                                                           1.2575 * ffem / fem,
-                                                      color: const Color(0xff000000),
+                                                      color: const Color(
+                                                          0xff000000),
                                                     ),
                                                   ),
                                                 ),
@@ -1625,13 +1651,15 @@ class Search1 extends StatelessWidget {
                                                 width: 32.58 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.389313221 * fem),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: const Color(0x59000000),
+                                                      color: const Color(
+                                                          0x59000000),
                                                       offset: Offset(
                                                           0 * fem, 1 * fem),
                                                       blurRadius: 0 * fem,
@@ -1650,7 +1678,8 @@ class Search1 extends StatelessWidget {
                                                           FontWeight.w400,
                                                       height:
                                                           1.2575 * ffem / fem,
-                                                      color: const Color(0xff000000),
+                                                      color: const Color(
+                                                          0xff000000),
                                                     ),
                                                   ),
                                                 ),

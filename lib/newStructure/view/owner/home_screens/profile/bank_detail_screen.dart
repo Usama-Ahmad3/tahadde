@@ -9,6 +9,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../player/loginSignup/signup.dart';
+import '../../../../app_colors/app_colors.dart';
 
 class BankDetailScreen extends StatefulWidget {
   Map detail;
@@ -80,7 +81,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
             backgroundColor: const Color(0XFFFFFFFF),
             body: SingleChildScrollView(
               child: Column(
-                children: <Widget>[
+                children: [
                   buildAppBar(
                       language: AppLocalizations.of(context)!.locale,
                       title: AppLocalizations.of(context)!.bankDetails,
@@ -113,7 +114,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                             Ink(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
-                                color: const Color(0XFF25A163),
+                                color: AppColors.barLineColor,
                               ),
                               child: Container(
                                 width: MediaQuery.of(context).size.width / 1.2,
@@ -121,9 +122,9 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   AppLocalizations.of(context)!.signUp,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 20,
-                                    color: Colors.white,
+                                    color: AppColors.white,
                                   ),
                                   textAlign: TextAlign.right,
                                 ),
@@ -143,7 +144,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                         text: AppLocalizations.of(context)!
                                             .termsofUse,
                                         style: const TextStyle(
-                                          color: Color(0XFF25A163),
+                                          color: AppColors.barLineColor,
                                           fontWeight: FontWeight.bold,
 //                                                  decoration:
 //                                                      TextDecoration.underline,
@@ -156,7 +157,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                           text: AppLocalizations.of(context)!
                                               .privacyPolicy,
                                           style: const TextStyle(
-                                            color: Color(0XFF25A163),
+                                            color: AppColors.barLineColor,
                                             fontWeight: FontWeight.bold,
 //                                                    decoration: TextDecoration
 //                                                        .underline,
@@ -178,7 +179,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
             ? Scaffold(
                 key: scaffoldkey,
                 bottomNavigationBar: Material(
-                  color: const Color(0XFF25A163),
+                  color: AppColors.barLineColor,
                   child: InkWell(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
@@ -227,9 +228,9 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                     child: SizedBox(
                       width: sizeWidth,
                       child: Column(
-                        children: <Widget>[
+                        children: [
                           Stack(
-                            children: <Widget>[
+                            children: [
                               AppLocalizations.of(context)!.locale == "en"
                                   ? Image.asset(
                                       'assets/images/header.png',
@@ -251,14 +252,14 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
+                                    children: [
                                       IconButton(
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.arrow_back_ios,
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                           size: 25,
                                         ),
                                       ),
@@ -267,7 +268,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                               horizontal: 20),
                                           width: sizeWidth,
                                           child: Row(
-                                            children: <Widget>[
+                                            children: [
                                               Text(
                                                 AppLocalizations.of(context)!
                                                     .bankDetails,
@@ -291,9 +292,9 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                               ),
                                               flaxibleGap(1),
                                               Material(
-                                                color: Colors.transparent,
+                                                color: AppColors.transparent,
                                                 child: InkWell(
-                                                  splashColor: Colors.black,
+                                                  splashColor: AppColors.black,
                                                   onTap: () {
                                                     _isButtonDisabled
                                                         ? null
@@ -340,8 +341,8 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                                         decoration:
                                                             TextDecoration.none,
                                                         // color: Color(0XFF25A163),
-                                                        color:
-                                                            Color(0XFF25A163),
+                                                        color: AppColors
+                                                            .barLineColor,
                                                         fontSize: 20,
                                                         fontFamily: 'Poppins',
                                                         fontWeight:
@@ -362,31 +363,31 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                               Container(
                                 height: sizeHeight * .005,
                                 width: sizeWidth * .19,
-                                color: const Color(0XFF25A163),
+                                color: AppColors.barLineColor,
                               ),
                               flaxibleGap(1),
                               Container(
                                 height: sizeHeight * .005,
                                 width: sizeWidth * .19,
-                                color: const Color(0XFF25A163),
+                                color: AppColors.barLineColor,
                               ),
                               flaxibleGap(1),
                               Container(
                                 height: sizeHeight * .005,
                                 width: sizeWidth * .19,
-                                color: const Color(0XFF25A163),
+                                color: AppColors.barLineColor,
                               ),
                               flaxibleGap(1),
                               Container(
                                 height: sizeHeight * .005,
                                 width: sizeWidth * .19,
-                                color: const Color(0XFF25A163),
+                                color: AppColors.barLineColor,
                               ),
                               flaxibleGap(1),
                               Container(
                                 height: sizeHeight * .005,
                                 width: sizeWidth * .19,
-                                color: const Color(0XFF25A163),
+                                color: AppColors.barLineColor,
                               ),
                             ],
                           ),
@@ -466,7 +467,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
             : Column(
                 children: [
                   Stack(
-                    children: <Widget>[
+                    children: [
                       AppLocalizations.of(context)!.locale == "en"
                           ? Image.asset(
                               'assets/images/header.png',
@@ -492,9 +493,9 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.arrow_back_ios,
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                   size: 25,
                                 ),
                               ),
@@ -503,7 +504,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                       horizontal: 20),
                                   width: sizeWidth,
                                   child: Row(
-                                    children: <Widget>[
+                                    children: [
                                       Text(
                                         AppLocalizations.of(context)!
                                             .bankDetails,
@@ -540,7 +541,7 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
                                           AppLocalizations.of(context)!.skip,
                                           style: const TextStyle(
                                               decoration: TextDecoration.none,
-                                              color: Color(0XFF25A163),
+                                              color: AppColors.barLineColor,
                                               fontSize: 20,
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w600),

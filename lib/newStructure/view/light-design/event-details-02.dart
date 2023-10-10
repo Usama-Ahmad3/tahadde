@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class EditDetail_02 extends StatelessWidget {
   const EditDetail_02({super.key});
@@ -268,7 +268,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: 98 * fem,
                               height: double.infinity,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                                 color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
@@ -339,7 +340,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: 98 * fem,
                               height: double.infinity,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                                 color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
@@ -412,7 +414,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: 98 * fem,
                               height: double.infinity,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                                 color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
@@ -510,7 +513,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: double.infinity,
                               height: 74 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                                 color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
@@ -594,7 +598,8 @@ class EditDetail_02 extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xffb4b4b4),
+                                                    color:
+                                                        const Color(0xffb4b4b4),
                                                   ),
                                                 ),
                                               ],
@@ -617,7 +622,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: double.infinity,
                               height: 74 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                                 color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
@@ -701,7 +707,8 @@ class EditDetail_02 extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xffb4b4b4),
+                                                    color:
+                                                        const Color(0xffb4b4b4),
                                                   ),
                                                 ),
                                               ],
@@ -724,7 +731,8 @@ class EditDetail_02 extends StatelessWidget {
                               width: double.infinity,
                               height: 74 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                                 color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(12 * fem),
                               ),
@@ -808,7 +816,8 @@ class EditDetail_02 extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xffb4b4b4),
+                                                    color:
+                                                        const Color(0xffb4b4b4),
                                                   ),
                                                 ),
                                               ],

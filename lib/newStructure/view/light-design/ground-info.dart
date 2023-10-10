@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class GroundInfo extends StatelessWidget {
   const GroundInfo({super.key});

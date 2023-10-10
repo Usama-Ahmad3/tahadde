@@ -8,6 +8,7 @@ import '../../../../../localizations.dart';
 import '../../../../../modelClass/eventModelClass.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../main.dart';
+import '../../../../app_colors/app_colors.dart';
 
 class EventsScreen extends StatefulWidget {
   bool bookingTag;
@@ -80,16 +81,16 @@ class _EventsScreenState extends State<EventsScreen> {
                   height: double.infinity,
                   decoration: BoxDecoration(
                       color: MyAppState.mode == ThemeMode.light
-                          ? Colors.white
-                          : const Color(0xff686868),
+                          ? AppColors.white
+                          : AppColors.darkTheme,
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20))),
-                  child: const Center(
+                  child: Center(
                     child: CircularProgressIndicator(
-                      backgroundColor: Color(0xff1d7e55),
+                      backgroundColor: AppColors.appThemeColor,
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
+                        AppColors.white,
                       ),
                     ),
                   ),
@@ -98,13 +99,13 @@ class _EventsScreenState extends State<EventsScreen> {
             : internet!
                 ? events.isEmpty
                     ? Container(
-                        color: Colors.black54,
+                        color: AppColors.containerColorB54,
                         child: Container(
                           height: double.infinity,
                           decoration: BoxDecoration(
                               color: MyAppState.mode == ThemeMode.light
-                                  ? Colors.white
-                                  : const Color(0xff686868),
+                                  ? AppColors.white
+                                  : AppColors.darkTheme,
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(20),
                                   topLeft: Radius.circular(20))),
@@ -129,7 +130,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                   style: TextStyle(
                                       color: MyAppState.mode == ThemeMode.light
                                           ? const Color(0XFF424242)
-                                          : Colors.white,
+                                          : AppColors.white,
                                       fontFamily: "Poppins",
                                       fontSize: 18)),
                               flaxibleGap(
@@ -140,13 +141,13 @@ class _EventsScreenState extends State<EventsScreen> {
                         ),
                       )
                     : Container(
-                        color: Colors.black54,
+                        color: AppColors.containerColorB54,
                         child: Container(
                           height: double.infinity,
                           decoration: BoxDecoration(
                               color: MyAppState.mode == ThemeMode.light
-                                  ? Colors.white
-                                  : const Color(0xff686868),
+                                  ? AppColors.white
+                                  : AppColors.darkTheme,
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(20),
                                   topLeft: Radius.circular(20))),
@@ -165,7 +166,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: <Widget>[
+                                                children: [
                                                   Container(
                                                     height: sizeHeight * .03,
                                                   ),
@@ -175,8 +176,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                                         color: MyAppState
                                                                     .mode ==
                                                                 ThemeMode.light
-                                                            ? Colors
-                                                                .grey.shade200
+                                                            ? AppColors.grey200
                                                             : const Color(
                                                                 0XFFFFFFFF),
                                                         borderRadius:
@@ -204,8 +204,8 @@ class _EventsScreenState extends State<EventsScreen> {
                                                           Text(
                                                             '${events[index].user!.first_name}${events[index].user!.last_name}',
                                                             style: const TextStyle(
-                                                                color: Color(
-                                                                    0XFF032040),
+                                                                color: AppColors
+                                                                    .themeColor,
                                                                 fontSize: 20,
                                                                 fontWeight:
                                                                     FontWeight
@@ -248,8 +248,8 @@ class _EventsScreenState extends State<EventsScreen> {
                                                           Text(
                                                               "${AppLocalizations.of(context)!.tranjectionId} : ${events[index].transactionId}",
                                                               style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFF032040),
+                                                                  color: AppColors
+                                                                      .themeColor,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
@@ -265,8 +265,8 @@ class _EventsScreenState extends State<EventsScreen> {
                                                   Container(
                                                     height: sizeHeight * .08,
                                                     decoration: const BoxDecoration(
-                                                        color:
-                                                            Color(0xffffc300),
+                                                        color: AppColors
+                                                            .appThemeColor,
                                                         borderRadius:
                                                             BorderRadius.only(
                                                                 bottomLeft: Radius
@@ -284,7 +284,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
-                                                        children: <Widget>[
+                                                        children: [
                                                           Text(
                                                             AppLocalizations.of(
                                                                     context)!
@@ -340,9 +340,9 @@ class _EventsScreenState extends State<EventsScreen> {
                                                         color: MyAppState
                                                                     .mode ==
                                                                 ThemeMode.light
-                                                            ? const Color(
-                                                                0XFF032040)
-                                                            : Colors.white,
+                                                            ? AppColors
+                                                                .themeColor
+                                                            : AppColors.white,
                                                         fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.w600),
@@ -356,8 +356,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                                         color: MyAppState
                                                                     .mode ==
                                                                 ThemeMode.light
-                                                            ? Colors
-                                                                .grey.shade200
+                                                            ? AppColors.grey200
                                                             : const Color(
                                                                 0XFFFFFFFF),
                                                         borderRadius:
@@ -378,15 +377,15 @@ class _EventsScreenState extends State<EventsScreen> {
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
-                                                        children: <Widget>[
+                                                        children: [
                                                           flaxibleGap(
                                                             2,
                                                           ),
                                                           Text(
                                                             '${events[index].user!.first_name} ${events[index].user!.last_name}',
                                                             style: const TextStyle(
-                                                                color: Color(
-                                                                    0XFF032040),
+                                                                color: AppColors
+                                                                    .themeColor,
                                                                 fontSize: 20,
                                                                 fontWeight:
                                                                     FontWeight
@@ -429,8 +428,8 @@ class _EventsScreenState extends State<EventsScreen> {
                                                           Text(
                                                               "${AppLocalizations.of(context)!.tranjectionId} : ${events[index].transactionId}",
                                                               style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFF032040),
+                                                                  color: AppColors
+                                                                      .themeColor,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
@@ -446,8 +445,8 @@ class _EventsScreenState extends State<EventsScreen> {
                                                   Container(
                                                     height: sizeHeight * .08,
                                                     decoration: const BoxDecoration(
-                                                        color:
-                                                            Color(0xffffc300),
+                                                        color: AppColors
+                                                            .themeColor,
                                                         borderRadius:
                                                             BorderRadius.only(
                                                                 bottomRight:
@@ -466,7 +465,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
-                                                        children: <Widget>[
+                                                        children: [
                                                           Text(
                                                             AppLocalizations.of(
                                                                     context)!

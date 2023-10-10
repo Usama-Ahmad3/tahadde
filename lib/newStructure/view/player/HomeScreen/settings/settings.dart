@@ -9,6 +9,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../profileScreen/bottomSheet.dart';
 import '../widgets/app_bar.dart';
 
@@ -67,12 +68,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             elevation: 2,
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: AppColors.grey200,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             title: Text(AppLocalizations.of(context)!.logout),
             content: Text(
               description,
-              style: const TextStyle(color: Colors.red),
+              style: TextStyle(color: AppColors.red),
             ),
             actions: <Widget>[
               InkWell(
@@ -84,12 +85,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: AppColors.black,
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.no,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -149,13 +150,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.transparent,
-                    border: Border.all(width: 1, color: Colors.red),
+                    color: AppColors.transparent,
+                    border: Border.all(width: 1, color: AppColors.red),
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.yes,
-                      style: const TextStyle(color: Colors.red),
+                      style: TextStyle(color: AppColors.red),
                     ),
                   ),
                 ),
@@ -198,16 +199,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: TextStyle(
                     fontSize: height * 0.02,
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.grey
-                        : Colors.white),
+                        ? AppColors.grey
+                        : AppColors.white),
                 child: Container(
                   color: Colors.black54,
                   child: Container(
                     height: height,
                     decoration: BoxDecoration(
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.white
-                            : const Color(0xff686868),
+                            ? AppColors.white
+                            : AppColors.darkTheme,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
@@ -276,8 +277,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 height: height * 0.09,
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.grey.shade200
-                                        : Colors.black12,
+                                        ? AppColors.grey200
+                                        : AppColors.containerColorB,
                                     borderRadius: BorderRadius.circular(13)),
                                 child: Center(
                                   child: ListTile(
@@ -285,22 +286,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         ListTileTitleAlignment.center,
                                     tileColor:
                                         MyAppState.mode == ThemeMode.light
-                                            ? Colors.grey.shade200
-                                            : Colors.black12,
+                                            ? AppColors.grey200
+                                            : AppColors.containerColorB,
                                     onTap: () {
                                       BottomSheett.settingModalBottomSheet(
                                           context, height);
                                     },
                                     shape: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.white12),
+                                        borderSide: BorderSide(
+                                            color: AppColors.containerColorB),
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     leading: Icon(
                                       Icons.sign_language_outlined,
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                     ),
                                     titleTextStyle: const TextStyle(
                                         leadingDistribution:
@@ -310,8 +311,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       style: TextStyle(
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white,
+                                                  ? AppColors.black
+                                                  : AppColors.white,
                                           fontSize: 14),
                                     ),
                                     trailing: SizedBox(
@@ -326,7 +327,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   color: isSwitched
                                                       ? const Color(0XFFB7B7B7)
                                                       : darkMode
-                                                          ? Colors.white
+                                                          ? AppColors.white
                                                           : const Color(
                                                               0xFF032040))),
                                           Switch(
@@ -350,13 +351,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                             .locale ==
                                                         'en'
                                                     ? const Color(0xff1d7e55)
-                                                    : Colors.grey,
+                                                    : AppColors.grey,
                                             inactiveThumbColor:
                                                 AppLocalizations.of(context)!
                                                             .locale ==
                                                         'en'
-                                                    ? Colors.grey
-                                                    : const Color(0xff1d7e55),
+                                                    ? AppColors.grey
+                                                    : AppColors.appThemeColor,
                                           ),
                                           Text(
                                             'En',
@@ -383,8 +384,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 height: height * 0.09,
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.grey.shade200
-                                        : Colors.black12,
+                                        ? AppColors.grey200
+                                        : AppColors.containerColorB,
                                     borderRadius: BorderRadius.circular(13)),
                                 child: Center(
                                   child: ListTile(
@@ -392,22 +393,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         ListTileTitleAlignment.center,
                                     tileColor:
                                         MyAppState.mode == ThemeMode.light
-                                            ? Colors.grey.shade200
-                                            : Colors.black12,
+                                            ? AppColors.grey200
+                                            : AppColors.containerColorB,
                                     onTap: () {
                                       BottomSheett.settingModalBottomSheet(
                                           context, height);
                                     },
                                     shape: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.white12),
+                                        borderSide: BorderSide(
+                                            color: AppColors.containerColorW12),
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     leading: Icon(
                                       Icons.dark_mode,
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                     ),
                                     titleTextStyle: const TextStyle(
                                         leadingDistribution:
@@ -417,8 +418,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       style: TextStyle(
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white,
+                                                  ? AppColors.black
+                                                  : AppColors.white,
                                           fontSize: 14),
                                     ),
                                     trailing: SizedBox(
@@ -436,7 +437,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                           0xFF032040))),
                                           Switch(
                                             value: darkMode,
-                                            inactiveTrackColor: Colors.black,
+                                            inactiveTrackColor: AppColors.black,
                                             onChanged: (value) {
                                               if (mounted) {
                                                 setState(() {
@@ -449,14 +450,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 });
                                               }
                                             },
-                                            activeColor: const Color(0xff1d7e55),
-                                            inactiveThumbColor: Colors.grey,
+                                            activeColor:
+                                                const Color(0xff1d7e55),
+                                            inactiveThumbColor:
+                                                AppColors.grey,
                                           ),
                                           Text('On',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   color: darkMode
-                                                      ? Colors.white
+                                                      ? AppColors.white
                                                       : const Color(
                                                           0XFFB7B7B7)))
                                         ],
@@ -480,8 +483,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           decoration: BoxDecoration(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.grey.shade200
-                                                  : Colors.black12,
+                                                  ? AppColors.grey200
+                                                  : AppColors.containerColorB,
                                               borderRadius:
                                                   BorderRadius.circular(13)),
                                           child: Center(
@@ -490,17 +493,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   ListTileTitleAlignment.center,
                                               tileColor: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.grey.shade200
-                                                  : Colors.black12,
+                                                  ? AppColors.grey200
+                                                  : AppColors.containerColorB,
                                               shape: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                      color: Colors.white12),
+                                                  borderSide: BorderSide(
+                                                      color: AppColors
+                                                          .containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
                                               leading: Icon(
                                                 accountIcon[index],
-                                                color: Colors.red,
+                                                color: AppColors.red,
                                               ),
                                               onTap: index == 0
                                                   ? () {
@@ -524,8 +528,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                           .even),
                                               title: Text(
                                                 accountTitle[index],
-                                                style: const TextStyle(
-                                                    color: Colors.red,
+                                                style: TextStyle(
+                                                    color: AppColors.red,
                                                     fontSize: 16),
                                               ),
                                               trailing: Icon(
@@ -536,8 +540,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                     : Icons.keyboard_arrow_left,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Colors.black
-                                                    : Colors.white,
+                                                    ? AppColors.black
+                                                    : AppColors.white,
                                               ),
                                             ),
                                           ),

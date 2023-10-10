@@ -17,6 +17,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/buttonWidget.dart';
 
 class PitchDetailScreen extends StatefulWidget {
@@ -57,12 +58,12 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
             title: Text(AppLocalizations.of(context)!.uploadprofilepicture),
             content: SingleChildScrollView(
               child: ListBody(
-                children: <Widget>[
+                children: [
                   GestureDetector(
                     child: Text(
                       AppLocalizations.of(context)!.choosefromlibrary,
-                      style: const TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.normal),
+                      style:   TextStyle(
+                          color: AppColors.black, fontWeight: FontWeight.normal),
                     ),
                     onTap: () async {
                       var status = await Permission.photos.status;
@@ -80,21 +81,21 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                   title: Text(
                                       AppLocalizations.of(context)!
                                           .galleryPermission,
-                                      style: const TextStyle(
-                                          color: Colors.black,
+                                      style:   TextStyle(
+                                          color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   content: Text(
                                       AppLocalizations.of(context)!
                                           .thisGalleryPicturesUploadImage,
-                                      style: const TextStyle(
-                                          color: Colors.black,
+                                      style:   TextStyle(
+                                          color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
-                                          style: const TextStyle(
-                                              color: Colors.black,
+                                          style:   TextStyle(
+                                              color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
@@ -102,8 +103,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.setting,
-                                          style: const TextStyle(
-                                              color: Colors.black,
+                                          style:   TextStyle(
+                                              color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () => openAppSettings(),
                                     ),
@@ -117,8 +118,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
-                        style: const TextStyle(
-                            color: Colors.black,
+                        style:   TextStyle(
+                            color: AppColors.black,
                             fontWeight: FontWeight.normal)),
                     onTap: () async {
                       var status = await Permission.camera.status;
@@ -135,21 +136,21 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                   title: Text(
                                       AppLocalizations.of(context)!
                                           .cameraPermission,
-                                      style: const TextStyle(
-                                          color: Colors.black,
+                                      style:   TextStyle(
+                                          color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   content: Text(
                                       AppLocalizations.of(context)!
                                           .thisPicturesUploadImage,
-                                      style: const TextStyle(
-                                          color: Colors.black,
+                                      style:   TextStyle(
+                                          color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
-                                          style: const TextStyle(
-                                              color: Colors.black,
+                                          style:   TextStyle(
+                                              color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
@@ -157,8 +158,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.setting,
-                                          style: const TextStyle(
-                                              color: Colors.black,
+                                          style:   TextStyle(
+                                              color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () => openAppSettings(),
                                     ),
@@ -193,8 +194,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: MyAppState.mode == ThemeMode.light
-            ? Colors.white
-            : const Color(0xff686868),
+            ? AppColors.white
+            : AppColors.darkTheme,
         appBar: appBarForCreatingAcademy(
           size,
           context,
@@ -205,14 +206,14 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: Colors.black,
+            color: AppColors.black,
             child: Container(
               width: sizeWidth,
               padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
               decoration: BoxDecoration(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : const Color(0xff686868),
+                      ? AppColors.white
+                      : AppColors.darkTheme,
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
@@ -227,7 +228,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             EdgeInsets.symmetric(vertical: sizeHeight * 0.01),
                         child: _isImageLoading
                             ? Container(
-                                color: const Color(0XFF032040),
+                                color: AppColors.themeColor,
                                 height: sizeHeight * .2,
                                 width: sizeWidth,
                                 child: Lottie.asset(
@@ -285,13 +286,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                         AppLocalizations.of(context)!.academyName,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
                       ),
-                      textFieldWidget(
+                      TextFieldWidget(
                           controller: _nameController,
                           hintText: AppLocalizations.of(context)!.academyName,
                           onSubmitted: (value) {
@@ -311,13 +312,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -326,13 +327,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                         AppLocalizations.of(context)!.academyNameA,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
                       ),
-                      textFieldWidget(
+                      TextFieldWidget(
                           controller: _nameControllerArabic,
                           hintText: AppLocalizations.of(context)!.academyNameA,
                           focus: arabicFocus,
@@ -352,13 +353,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -402,8 +403,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                         AppLocalizations.of(context)!.description,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ?AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
@@ -431,13 +432,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -446,8 +447,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                         AppLocalizations.of(context)!.descriptionA,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
@@ -470,13 +471,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide:   BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -532,7 +533,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                               style: indoor
                                   ? const TextStyle(
                                       fontSize: 12,
-                                      color: appThemeColor,
+                                      color: AppColors.appThemeColor,
                                       fontWeight: FontWeight.w600)
                                   : const TextStyle(
                                       fontSize: 12,
@@ -583,7 +584,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                               style: outdoor
                                   ? const TextStyle(
                                       fontSize: 12,
-                                      color: appThemeColor,
+                                      color: AppColors.appThemeColor,
                                       fontWeight: FontWeight.w600)
                                   : const TextStyle(
                                       fontSize: 12,
@@ -600,8 +601,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                         AppLocalizations.of(context)!.chooseFacilitiesProvided,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
@@ -633,11 +634,11 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                                 color: const Color(0XFFA3A3A3)),
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: const Color(0XFF25A163)
+                                            color: AppColors.barLineColor
                                                 .withOpacity(.3),
                                           ),
                                           child: Column(
-                                            children: <Widget>[
+                                            children: [
                                               flaxibleGap(
                                                 2,
                                               ),
@@ -688,7 +689,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                             color: Colors.white,
                                           ),
                                           child: Column(
-                                            children: <Widget>[
+                                            children: [
                                               flaxibleGap(
                                                 2,
                                               ),

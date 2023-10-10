@@ -12,6 +12,7 @@ import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import 'profileEmpty.dart';
 import 'drawer.dart';
 
@@ -92,7 +93,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: AppColors.containerColor54,
       body: _isLoading
           ? ProfileShimmer.buildShimmer(width, height, context)
           : _internet
@@ -106,26 +107,26 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                 height: height * 0.144,
                                 width: double.infinity,
                                 decoration:
-                                    const BoxDecoration(color: Colors.black54),
+                                    BoxDecoration(color: AppColors.black),
                                 child: Center(
                                     child: Padding(
                                   padding: const EdgeInsets.only(top: 10.0),
                                   child: Text(
                                     AppLocalizations.of(context)!.profile,
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: AppColors.white,
                                         fontSize: height * 0.026),
                                   ),
                                 )),
                               ),
                               Container(
-                                color: Colors.black54,
+                                color: AppColors.black,
                                 height: height * 0.78,
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: mode == ThemeMode.light
                                           ? const Color(0xffffffff)
-                                          : const Color(0xff686868),
+                                          : AppColors.darkTheme,
                                       borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(20),
                                           topLeft: Radius.circular(20))),
@@ -149,8 +150,8 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                                   .copyWith(
                                                       color: mode ==
                                                               ThemeMode.light
-                                                          ? Colors.black
-                                                          : Colors.white),
+                                                          ? AppColors.black
+                                                          : AppColors.white),
                                             ),
                                             widget.playerTag
                                                 ? InkWell(
@@ -161,15 +162,16 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                                       radius: height * 0.018,
                                                       backgroundColor: mode ==
                                                               ThemeMode.light
-                                                          ? Colors.grey.shade200
-                                                          : const Color(0xff1d7e55),
+                                                          ? AppColors.grey200
+                                                          : AppColors
+                                                              .appThemeColor,
                                                       child: Icon(
                                                         Icons.edit,
                                                         size: height * 0.02,
                                                         color: mode ==
                                                                 ThemeMode.light
-                                                            ? Colors.black
-                                                            : Colors.grey,
+                                                            ? AppColors.black
+                                                            : AppColors.grey,
                                                       ),
                                                     ),
                                                   )
@@ -308,7 +310,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                               },
                               child: const Icon(
                                 Icons.dehaze,
-                                color: Color(0xff1d7e55),
+                                color: AppColors.appThemeColor,
                               ),
                             ),
                           )

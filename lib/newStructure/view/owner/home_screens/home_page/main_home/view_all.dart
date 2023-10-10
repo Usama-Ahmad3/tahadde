@@ -4,6 +4,7 @@ import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
 import '../../../../../../modelClass/my_venue_list_model_class.dart';
+import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/widgets/app_bar.dart';
 
 class ViewMoreVenueScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class ViewMoreVenueScreen extends StatelessWidget {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.black,
         appBar: appBarWidget(sizeWidth, sizeHeight, context,
             AppLocalizations.of(context)!.academy, true),
         body: Container(
@@ -25,13 +26,16 @@ class ViewMoreVenueScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: MyAppState.mode == ThemeMode.light
                         ? const Color(0XFFD6D6D6)
-                        : const Color(0xff686868),
+                        : AppColors.darkTheme,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: sizeHeight * 0.01,
+                      ),
                       ...List.generate(
                         venues.length,
                         (index) => Padding(
@@ -41,8 +45,8 @@ class ViewMoreVenueScreen extends StatelessWidget {
                             width: sizeWidth * 0.9,
                             decoration: BoxDecoration(
                               color: MyAppState.mode == ThemeMode.light
-                                  ? Colors.grey.shade200
-                                  : Colors.white12,
+                                  ? AppColors.grey200
+                                  : AppColors.containerColorW12,
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
@@ -57,8 +61,8 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white),
+                                                ? AppColors.black
+                                                : AppColors.white),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,

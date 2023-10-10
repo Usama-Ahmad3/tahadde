@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 
-class textFieldWidget extends StatefulWidget {
+import '../../../../app_colors/app_colors.dart';
+
+class TextFieldWidget extends StatefulWidget {
   TextEditingController controller;
   String hintText;
   InputBorder? border;
@@ -25,7 +27,7 @@ class textFieldWidget extends StatefulWidget {
   FormFieldValidator? onChanged;
   VoidCallback? onTap;
 
-  textFieldWidget(
+  TextFieldWidget(
       {super.key, required this.controller,
       required this.hintText,
       this.onValidate,
@@ -50,10 +52,10 @@ class textFieldWidget extends StatefulWidget {
       this.fillColor});
 
   @override
-  State<textFieldWidget> createState() => _textFieldWidgetState();
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
 
-class _textFieldWidgetState extends State<textFieldWidget> {
+class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -69,11 +71,11 @@ class _textFieldWidgetState extends State<textFieldWidget> {
       style: TextStyle(
           fontSize: widget.controller.text.length > 8 ? 12 : 14,
           color: MyAppState.mode == ThemeMode.light
-              ? widget.textColor ?? Colors.black
-              : Colors.white),
+              ? widget.textColor ?? AppColors.black
+              : AppColors.white),
       cursorColor: MyAppState.mode == ThemeMode.light
-          ? widget.textColor ?? Colors.black
-          : Colors.white,
+          ? widget.textColor ?? AppColors.black
+          : AppColors.white,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
@@ -84,8 +86,8 @@ class _textFieldWidgetState extends State<textFieldWidget> {
           hintStyle: TextStyle(
               height: 1,
               color: MyAppState.mode == ThemeMode.light
-                  ? Colors.grey
-                  : Colors.white),
+                  ? AppColors.grey
+                  : AppColors.white),
           border: widget.border,
           suffixIcon: widget.suffixIcon != null
               ? widget.hideIcon != null
@@ -181,11 +183,11 @@ class _textFieldWidgetMultiState extends State<textFieldWidgetMulti> {
       style: TextStyle(
           fontSize: widget.controller.text.length > 8 ? 12 : 14,
           color: MyAppState.mode == ThemeMode.light
-              ? widget.textColor ?? Colors.black
-              : Colors.white),
+              ? widget.textColor ?? AppColors.black
+              : AppColors.white),
       cursorColor: MyAppState.mode == ThemeMode.light
-          ? widget.textColor ?? Colors.black
-          : Colors.white,
+          ? widget.textColor ?? AppColors.black
+          : AppColors.white,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       textAlign: TextAlign.start,
       maxLines: widget.maxLines,
@@ -197,8 +199,8 @@ class _textFieldWidgetMultiState extends State<textFieldWidgetMulti> {
           hintStyle: TextStyle(
               height: 1,
               color: MyAppState.mode == ThemeMode.light
-                  ? Colors.grey
-                  : Colors.white),
+                  ? AppColors.grey
+                  : AppColors.white),
           border: widget.border,
           suffixIcon: widget.suffixIcon != null
               ? widget.hideIcon != null

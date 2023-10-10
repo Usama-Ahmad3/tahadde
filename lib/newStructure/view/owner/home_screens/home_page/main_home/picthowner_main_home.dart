@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
 import '../../../../../../homeFile/routingConstant.dart';
@@ -8,8 +9,10 @@ import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../modelClass/my_venue_list_model_class.dart';
 import '../../../../../../network/network_calls.dart';
+import '../../../../../app_colors/app_colors.dart';
+import '../../../../player/HomeScreen/Home/home-screen.dart';
 import '../../../../player/HomeScreen/Home/shimmerWidgets.dart';
-import '../../../../utils.dart';
+import '../../../../../utils/utils.dart';
 
 class PitchOwnerMainHome extends StatefulWidget {
   const PitchOwnerMainHome({super.key});
@@ -57,6 +60,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
       if (_internet == true) {
         _isLoading = false;
         loadMyPitch();
+        HomeScreenViewState.loading();
       } else {
         setState(() {
           _isLoading = false;
@@ -110,9 +114,10 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                               child: SizedBox(
                                 height: sizeHeight * 0.19,
                                 width: double.infinity,
-                                child: const Placeholder(),
+                                child: HomeScreenViewState.loaded
+                                    ? AdWidget(ad: HomeScreenViewState.myBanner)
+                                    : const Placeholder()),
                               ),
-                            ),
                           ],
                         ),
                         title: Row(
@@ -142,8 +147,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                         ),
                         bottom: TabBar(
                           indicatorSize: TabBarIndicatorSize.tab,
-                          unselectedLabelColor: Colors.grey,
-                          dividerColor: Colors.red,
+                          unselectedLabelColor: AppColors.grey,
+                          dividerColor: AppColors.red,
                           // indicator: BoxDecoration(
                           //   color: Color(0xff1d7e55),
                           //   borderRadius: BorderRadius.circular(8),
@@ -175,13 +180,13 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                       // AppLocalizations.of(context)!.add,
                       style: TextStyle(
                           color: MyAppState.mode == ThemeMode.light
-                              ? Colors.white
-                              : Colors.black,
+                              ? AppColors.white
+                              : AppColors.black,
                           fontSize: 11),
                     ),
                     animationCurve: Curves.easeInOutCirc,
                     backgroundColor: MyAppState.mode == ThemeMode.light
-                        ? const Color(0xff686868)
+                        ? AppColors.darkTheme
                         : Colors.tealAccent.shade100,
                     onPress: () {
                       navigateToSports();
@@ -189,8 +194,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                     child: Icon(
                       Icons.add,
                       color: MyAppState.mode == ThemeMode.light
-                          ? Colors.white
-                          : Colors.black,
+                          ? AppColors.white
+                          : AppColors.black,
                       size: sizeHeight * 0.03,
                     ),
                   ),
@@ -199,7 +204,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                           .buildShimmer(fem, context, _pitchDetail)
                       : TabBarView(children: [
                           Container(
-                              color: Colors.black,
+                              color: AppColors.black,
                               child: Container(
                                 height: sizeHeight,
                                 width: sizeWidth,
@@ -207,8 +212,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                     horizontal: sizeWidth * 0.033),
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.white
-                                        : const Color(0xff686868),
+                                        ? AppColors.white
+                                        : AppColors.darkTheme,
                                     borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20))),
@@ -231,8 +236,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                               decoration: BoxDecoration(
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Colors.grey.shade200
-                                                    : Colors.white12,
+                                                    ? AppColors.grey200
+                                                    : AppColors.containerColorW12,
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                               ),
@@ -255,8 +260,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                       .mode ==
                                                                   ThemeMode
                                                                       .light
-                                                              ? Colors.black
-                                                              : Colors.white),
+                                                              ? AppColors.black
+                                                              : AppColors.white),
                                                       child: Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -293,8 +298,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                               .rejected
                                                                           : AppLocalizations.of(context)!
                                                                               .inReview,
-                                                                  style: const TextStyle(
-                                                                      color: Colors
+                                                                  style:   TextStyle(
+                                                                      color: AppColors
                                                                           .redAccent),
                                                                 ),
                                                               ],
@@ -396,7 +401,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                   .viewMore,
                                               style: SafeGoogleFont(
                                                 'Inter',
-                                                color: Colors.green,
+                                                color: AppColors.green,
                                               ),
                                             ),
                                           ),
@@ -410,7 +415,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                 ),
                               )),
                           Container(
-                            color: Colors.black,
+                            color: AppColors.black,
                             child: Container(
                                 height: sizeHeight,
                                 width: sizeWidth,
@@ -418,8 +423,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                     horizontal: sizeWidth * 0.033),
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.white
-                                        : const Color(0xff686868),
+                                        ? AppColors.white
+                                        : AppColors.darkTheme,
                                     borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20))),
@@ -446,8 +451,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                 decoration: BoxDecoration(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
-                                                      ? Colors.grey.shade200
-                                                      : Colors.white12,
+                                                      ? AppColors.grey200
+                                                      : AppColors.containerColorW12,
                                                   borderRadius:
                                                       BorderRadius.circular(15),
                                                 ),
@@ -471,8 +476,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                         .mode ==
                                                                     ThemeMode
                                                                         .light
-                                                                ? Colors.black
-                                                                : Colors.white),
+                                                                ? AppColors.black
+                                                                : AppColors.white),
                                                         child: Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
@@ -504,8 +509,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                             .verified
                                                                         : AppLocalizations.of(context)!
                                                                             .inReview,
-                                                                    style: const TextStyle(
-                                                                        color: Colors
+                                                                    style:   TextStyle(
+                                                                        color: AppColors
                                                                             .redAccent),
                                                                   ),
                                                                 ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class GroundBooking extends StatelessWidget {
   const GroundBooking({super.key});
@@ -560,8 +560,8 @@ class GroundBooking extends StatelessWidget {
                                                         height: 1.4705882353 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff050505),
+                                                        color: const Color(
+                                                            0xff050505),
                                                       ),
                                                     ),
                                                   ),
@@ -637,8 +637,8 @@ class GroundBooking extends StatelessWidget {
                                   width: double.infinity,
                                   height: 74 * fem,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffe6e6e6)),
+                                    border: Border.all(
+                                        color: const Color(0xffe6e6e6)),
                                     color: const Color(0xffffffff),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
@@ -705,8 +705,8 @@ class GroundBooking extends StatelessWidget {
                                                         height: 1.4705882353 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff050505),
+                                                        color: const Color(
+                                                            0xff050505),
                                                       ),
                                                     ),
                                                   ),
@@ -782,8 +782,8 @@ class GroundBooking extends StatelessWidget {
                                   width: double.infinity,
                                   height: 74 * fem,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffe6e6e6)),
+                                    border: Border.all(
+                                        color: const Color(0xffe6e6e6)),
                                     color: const Color(0xffffffff),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
@@ -850,8 +850,8 @@ class GroundBooking extends StatelessWidget {
                                                         height: 1.4705882353 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff050505),
+                                                        color: const Color(
+                                                            0xff050505),
                                                       ),
                                                     ),
                                                   ),
@@ -998,7 +998,8 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: const Color(0xff9b9b9b),
+                                                  color:
+                                                      const Color(0xff9b9b9b),
                                                 ),
                                               ),
                                             ),
@@ -1048,7 +1049,8 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                 ),
                                               ),
                                             ),
@@ -1114,7 +1116,8 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: const Color(0xffffffff),
+                                                  color:
+                                                      const Color(0xffffffff),
                                                 ),
                                               ),
                                             ),
@@ -1171,7 +1174,8 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -1244,7 +1248,8 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -1294,7 +1299,8 @@ class GroundBooking extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3636363636 * ffem / fem,
-                                                  color: const Color(0xff9b9b9b),
+                                                  color:
+                                                      const Color(0xff9b9b9b),
                                                 ),
                                               ),
                                             ),

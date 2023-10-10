@@ -3,6 +3,7 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../constant.dart';
 import '../../../../localizations.dart';
+import '../../../app_colors/app_colors.dart';
 import '../../player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../../player/HomeScreen/profileScreen/profileDetail.dart';
 import 'bookingScreens/bookingScreen.dart';
@@ -23,12 +24,12 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
         builder: (BuildContext cntext) {
           return AlertDialog(
             elevation: 2,
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: AppColors.grey200,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
-              style: const TextStyle(color: Colors.red),
+              style: TextStyle(color: AppColors.red),
             ),
             actions: <Widget>[
               InkWell(
@@ -40,12 +41,12 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: AppColors.black,
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.no,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -62,13 +63,13 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.transparent,
-                    border: Border.all(width: 1, color: Colors.red),
+                    color: AppColors.transparent,
+                    border: Border.all(width: 1, color: AppColors.red),
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.yes,
-                      style: const TextStyle(color: Colors.red),
+                      style: TextStyle(color: AppColors.red),
                     ),
                   ),
                 ),
@@ -106,8 +107,8 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                     widget.index = index;
                     setState(() {});
                   },
-                  selectedItemColor: const Color(0xff1d7e55),
-                  backgroundColor: Colors.black,
+                  selectedItemColor: AppColors.appThemeColor,
+                  backgroundColor: AppColors.black,
                   selectedColorOpacity: 1,
                   curve: Curves.bounceInOut,
                   items: [
@@ -117,14 +118,14 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.home,
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: AppColors.black),
                       ),
-                      activeIcon: const Icon(
+                      activeIcon:  Icon(
                         Icons.home,
-                        color: Colors.black,
+                        color: AppColors.black,
                       ),
-                      unselectedColor: Colors.grey,
-                      selectedColor: const Color(0xff1d7e55),
+                      unselectedColor: AppColors.grey,
+                      selectedColor: AppColors.appThemeColor,
                     ),
                     SalomonBottomBarItem(
                       icon: SizedBox(
@@ -132,7 +133,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                         width: 23,
                         child: Image.asset(
                           'assets/images/booking2.png',
-                          color: Colors.grey,
+                          color: AppColors.grey,
                         ),
                       ),
                       title: Text(
@@ -156,14 +157,14 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.notification,
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: AppColors.black),
                       ),
-                      activeIcon: const Icon(
+                      activeIcon: Icon(
                         Icons.notifications_sharp,
-                        color: Colors.black,
+                        color: AppColors.black,
                       ),
-                      selectedColor: const Color(0xff1d7e55),
-                      unselectedColor: Colors.grey,
+                      selectedColor: AppColors.appThemeColor,
+                      unselectedColor: AppColors.grey,
                     ),
                     SalomonBottomBarItem(
                       icon: const Icon(
@@ -171,14 +172,14 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.account,
-                        style: const TextStyle(color: Colors.black),
+                        style:  TextStyle(color: AppColors.black),
                       ),
-                      activeIcon: const Icon(
+                      activeIcon: Icon(
                         Icons.person,
-                        color: Colors.black,
+                        color: AppColors.black,
                       ),
-                      selectedColor: const Color(0xff1d7e55),
-                      unselectedColor: Colors.grey,
+                      selectedColor:  AppColors.appThemeColor,
+                      unselectedColor: AppColors.grey,
                     ),
                   ],
                 ),

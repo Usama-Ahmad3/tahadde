@@ -13,6 +13,7 @@ import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import '../../../../network/network_calls.dart';
+import '../../../app_colors/app_colors.dart';
 import 'login.dart';
 
 // ignore: must_be_immutable
@@ -181,13 +182,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
     var width = MediaQuery.of(context).size.width;
     return internet
         ? Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.black,
             appBar: PreferredSize(
               preferredSize: Size(width, height * 0.13),
               child: AppBar(
                 title: Text(AppLocalizations.of(context)!.verifyOTP),
                 centerTitle: true,
-                backgroundColor: Colors.black,
+                backgroundColor: AppColors.black,
                 leadingWidth: width * 0.18,
                 leading: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -198,13 +199,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     child: Container(
                         height: height * 0.004,
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(color: AppColors.grey),
                             shape: BoxShape.circle),
                         child: Icon(
                           AppLocalizations.of(context)!.locale == 'en'
                               ? Icons.keyboard_arrow_left_sharp
                               : Icons.keyboard_arrow_right,
-                          color: Colors.white,
+                          color: AppColors.white,
                         )),
                   ),
                 ),
@@ -215,8 +216,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
               width: width,
               decoration: BoxDecoration(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : Colors.white30),
+                      ? AppColors.white
+                      : AppColors.containerColorW),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -225,8 +226,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       height: MediaQuery.of(context).size.height * .55,
                       width: MediaQuery.of(context).size.width,
                       color: MyAppState.mode == ThemeMode.light
-                          ? Colors.white
-                          : Colors.white30,
+                          ? AppColors.white
+                          : AppColors.containerColorW,
                       child: Padding(
                         padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * .08,
@@ -242,10 +243,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               child: Text(
                                 AppLocalizations.of(context)!.enterCode,
                                 style: TextStyle(
-                                    backgroundColor: Colors.transparent,
+                                    backgroundColor: AppColors.transparent,
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white,
+                                        ? AppColors.black
+                                        : AppColors.white,
                                     fontSize: height * 0.03),
                               ),
                             ),
@@ -260,7 +261,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                         color:
                                             MyAppState.mode == ThemeMode.light
                                                 ? const Color(0XFF595959)
-                                                : Colors.white),
+                                                : AppColors.white),
                                   )
                                 : Text(
                                     '${AppLocalizations.of(context)!.pleaseEnter}${widget.detail.countryCode!.substring(1)}${widget.detail.phoneNumber}${widget.detail.countryCode!.substring(0, 1)}',
@@ -269,7 +270,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                         color:
                                             MyAppState.mode == ThemeMode.light
                                                 ? const Color(0XFF595959)
-                                                : Colors.white),
+                                                : AppColors.white),
                                   ),
                             flaxibleGap(
                               2,
@@ -278,8 +279,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               AppLocalizations.of(context)!.enterCode,
                               style: TextStyle(
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white),
+                                      ? AppColors.black
+                                      : AppColors.white),
                             ),
                             flaxibleGap(
                               1,
@@ -297,10 +298,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 fieldWidth: 40,
                                 inactiveColor:
                                     MyAppState.mode == ThemeMode.light
-                                        ? Colors.black12
-                                        : Colors.white,
+                                        ? AppColors.containerColorB
+                                        : AppColors.white,
                                 activeColor: const Color(0xff1d7e55),
-                                selectedColor: Colors.grey,
+                                selectedColor: AppColors.grey,
                                 borderWidth: 2,
                               ),
                               controller: controllerPin,
@@ -343,8 +344,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 AppLocalizations.of(context)!.resendOTP,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white),
+                                        ? AppColors.black
+                                        : AppColors.white),
                               ),
                             ),
                             flaxibleGap(

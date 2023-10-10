@@ -5,6 +5,7 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/butt
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../HomePitchOwnerScreen.dart';
 
 class VenueCreatedScreen extends StatefulWidget {
@@ -22,20 +23,20 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
         onWillPop: () async => false,
         child: Scaffold(
           backgroundColor: MyAppState.mode == ThemeMode.light
-              ? Colors.white
-              : const Color(0xff686868),
+              ? AppColors.white
+              : AppColors.darkTheme,
           appBar: appBarWidget(size.width, size.height, context,
               AppLocalizations.of(context)!.academyCreated, false),
           body: Container(
-              color: Colors.black,
+              color: AppColors.black,
               child: Container(
                 height: size.height,
                 width: size.width,
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.033),
                 decoration: BoxDecoration(
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.white
-                        : const Color(0xff686868),
+                        ? AppColors.white
+                        : AppColors.darkTheme,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
@@ -64,8 +65,8 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: MyAppState.mode == ThemeMode.light
-                              ? Colors.black
-                              : Colors.white),
+                              ? AppColors.black
+                              : AppColors.white),
                     ),
                     flaxibleGap(
                       1,
@@ -76,8 +77,8 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: MyAppState.mode == ThemeMode.light
-                              ? Colors.black
-                              : Colors.white),
+                              ? AppColors.black
+                              : AppColors.white),
                       textAlign: TextAlign.center,
                     ),
                     flaxibleGap(

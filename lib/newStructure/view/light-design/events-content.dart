@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class EventContent extends StatelessWidget {
   const EventContent({super.key});
@@ -324,7 +324,8 @@ class EventContent extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff828282),
+                                                    color:
+                                                        const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -336,7 +337,8 @@ class EventContent extends StatelessWidget {
                                                     height: 1.3636363636 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff828282),
+                                                    color:
+                                                        const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -348,7 +350,8 @@ class EventContent extends StatelessWidget {
                                                     height: 1.3846153846 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff828282),
+                                                    color:
+                                                        const Color(0xff828282),
                                                   ),
                                                 ),
                                               ],

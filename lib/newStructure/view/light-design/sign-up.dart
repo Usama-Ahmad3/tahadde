@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -160,8 +160,8 @@ class SignUp extends StatelessWidget {
                                       12 * fem, 14 * fem, 12 * fem, 14 * fem),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffcdcdcd)),
+                                    border: Border.all(
+                                        color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -209,8 +209,8 @@ class SignUp extends StatelessWidget {
                                       12 * fem, 14 * fem, 12 * fem, 14 * fem),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffcdcdcd)),
+                                    border: Border.all(
+                                        color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -258,8 +258,8 @@ class SignUp extends StatelessWidget {
                                       12 * fem, 14 * fem, 12 * fem, 14 * fem),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffcdcdcd)),
+                                    border: Border.all(
+                                        color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -346,7 +346,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -360,7 +361,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -374,7 +376,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -388,7 +391,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -402,7 +406,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -416,7 +421,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -430,7 +436,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -444,7 +451,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -458,7 +466,8 @@ class SignUp extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               3 * fem),
-                                                      color: const Color(0xff010101),
+                                                      color: const Color(
+                                                          0xff010101),
                                                     ),
                                                   ),
                                                 ],

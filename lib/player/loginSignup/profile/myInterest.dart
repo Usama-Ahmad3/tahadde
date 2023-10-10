@@ -9,6 +9,7 @@ import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
 import '../../../main.dart';
 import '../../../network/network_calls.dart';
+import '../../../newStructure/app_colors/app_colors.dart';
 import '../../../newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 
 class MyInterest extends StatefulWidget {
@@ -77,7 +78,7 @@ class _MyInterestState extends State<MyInterest> {
     var sizeWidth = MediaQuery.of(context).size.width;
     return loading
         ? Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.black,
             appBar: appBarWidget(sizeWidth, sizeHeight, context,
                 AppLocalizations.of(context)!.myInterest, true),
             body: Container(
@@ -85,8 +86,8 @@ class _MyInterestState extends State<MyInterest> {
               width: sizeWidth,
               decoration: BoxDecoration(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : const Color(0xff686868),
+                      ? AppColors.white
+                      : AppColors.darkTheme,
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
@@ -127,7 +128,7 @@ class _MyInterestState extends State<MyInterest> {
             ))
         : _internet!
             ? Scaffold(
-                backgroundColor: Colors.black,
+                backgroundColor: AppColors.black,
                 appBar: appBarWidget(sizeWidth, sizeHeight, context,
                     AppLocalizations.of(context)!.myInterest, true),
                 body: data!
@@ -136,8 +137,8 @@ class _MyInterestState extends State<MyInterest> {
                         width: sizeWidth,
                         decoration: BoxDecoration(
                             color: MyAppState.mode == ThemeMode.light
-                                ? Colors.white
-                                : const Color(0xff686868),
+                                ? AppColors.white
+                                : AppColors.darkTheme,
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
@@ -296,8 +297,8 @@ class _MyInterestState extends State<MyInterest> {
                                                                 "venue_details"]
                                                             ["name"],
                                                         style: const TextStyle(
-                                                            color: Color(
-                                                                0XFF032040),
+                                                            color: AppColors
+                                                                .themeColor,
                                                             fontWeight:
                                                                 FontWeight.w700,
                                                             fontFamily:
@@ -321,15 +322,15 @@ class _MyInterestState extends State<MyInterest> {
                         width: sizeWidth,
                         decoration: BoxDecoration(
                             color: MyAppState.mode == ThemeMode.light
-                                ? Colors.white
-                                : const Color(0xff686868),
+                                ? AppColors.white
+                                : AppColors.darkTheme,
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
+                          children: [
                             flaxibleGap(
                               10,
                             ),
@@ -349,8 +350,8 @@ class _MyInterestState extends State<MyInterest> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? const Color(0XFF032040)
-                                        : Colors.white,
+                                        ? AppColors.themeColor
+                                        : AppColors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -395,9 +396,9 @@ class _MyInterestState extends State<MyInterest> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         height: 80,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5.0) //
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(5.0) //
 
               ),
         ),

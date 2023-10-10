@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 
 import '../../../../../localizations.dart';
+import '../../../../app_colors/app_colors.dart';
 
 class SportList extends StatefulWidget {
   dynamic sportsList;
@@ -48,21 +49,21 @@ class _SportListState extends State<SportList> {
                       avatar: CircleAvatar(
                           radius: 30,
                           backgroundColor: widget.isSelected == index
-                              ? Colors.white
-                              : Colors.grey,
+                              ? AppColors.white
+                              : AppColors.grey,
                           child: Image.network(
                               widget.sportsList[index].image.toString())),
                       backgroundColor: widget.isSelected == index
                           ? const Color(0xff7b61ff)
-                          : Colors.black,
+                          : AppColors.black,
                       elevation: 2,
                       padding: const EdgeInsets.all(10),
                       label: Text(
                         widget.sportsList[index].name!,
                         style: TextStyle(
                             color: widget.isSelected == index
-                                ? Colors.white
-                                : const Color(0xff686868)),
+                                ? AppColors.white
+                                : AppColors.darkTheme),
                       )),
                 ),
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class AddBankCard2 extends StatelessWidget {
   const AddBankCard2({super.key});

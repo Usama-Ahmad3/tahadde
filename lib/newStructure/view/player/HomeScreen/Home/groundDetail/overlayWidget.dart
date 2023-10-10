@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../homeFile/routingConstant.dart';
 import '../../../../../../localizations.dart';
+import '../../../../../app_colors/app_colors.dart';
 
 class OverlayWidget extends StatefulWidget {
   var sportsList;
@@ -26,7 +27,7 @@ class _OverlayWidgetState extends State<OverlayWidget> {
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            color: AppColors.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -85,16 +86,16 @@ class _OverlayWidgetState extends State<OverlayWidget> {
                                 child: Chip(
                                     avatar: CircleAvatar(
                                         radius: 30,
-                                        backgroundColor: Colors.transparent,
+                                        backgroundColor: AppColors.transparent,
                                         child: Image.network(widget
                                             .sportsList[index].image
                                             .toString())),
-                                    backgroundColor: Colors.transparent,
+                                    backgroundColor: AppColors.transparent,
                                     elevation: 2,
                                     padding: const EdgeInsets.all(10),
                                     label: Text(
                                       widget.sportsList[index].name!,
-                                      style: const TextStyle(color: Colors.black),
+                                      style: TextStyle(color: AppColors.black),
                                     )),
                               ),
                             )

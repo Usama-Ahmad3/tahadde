@@ -11,6 +11,7 @@ import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../modelClass/my_venue_list_model_class.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/app_bar.dart';
 
 class MyPitches extends StatefulWidget {
@@ -72,13 +73,14 @@ class _MyPitchesState extends State<MyPitches> {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.black,
       floatingActionButton: SpeedDial(
         elevation: 3,
         activeChild: Icon(
           Icons.close,
-          color:
-              MyAppState.mode == ThemeMode.light ? Colors.white : Colors.black,
+          color: MyAppState.mode == ThemeMode.light
+              ? AppColors.white
+              : AppColors.black,
           size: sizeHeight * 0.035,
         ),
         animationCurve: Curves.easeInOutCirc,
@@ -88,7 +90,7 @@ class _MyPitchesState extends State<MyPitches> {
         closeManually: true,
         isOpenOnStart: false,
         backgroundColor: MyAppState.mode == ThemeMode.light
-            ? const Color(0xff686868)
+            ? AppColors.darkTheme
             : Colors.tealAccent.shade100,
         renderOverlay: false,
         onPress: () {
@@ -96,8 +98,9 @@ class _MyPitchesState extends State<MyPitches> {
         },
         child: Icon(
           Icons.add,
-          color:
-              MyAppState.mode == ThemeMode.light ? Colors.white : Colors.black,
+          color: MyAppState.mode == ThemeMode.light
+              ? AppColors.white
+              : AppColors.black,
           size: sizeHeight * 0.04,
         ),
       ),
@@ -110,14 +113,14 @@ class _MyPitchesState extends State<MyPitches> {
       ),
       body: _isLoading
           ? Container(
-              color: Colors.black54,
+              color: AppColors.containerColorB54,
               child: Container(
                 height: sizeHeight,
                 width: sizeWidth,
                 decoration: BoxDecoration(
                     color: MyAppState.mode == ThemeMode.light
                         ? const Color(0XFFD6D6D6)
-                        : const Color(0xff686868),
+                        : AppColors.darkTheme,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
@@ -125,14 +128,14 @@ class _MyPitchesState extends State<MyPitches> {
               ))
           : _internet
               ? Container(
-                  color: Colors.black54,
+                  color: AppColors.containerColorB54,
                   child: Container(
                       height: sizeHeight,
                       width: sizeWidth,
                       decoration: BoxDecoration(
                           color: MyAppState.mode == ThemeMode.light
                               ? const Color(0XFFD6D6D6)
-                              : const Color(0xff686868),
+                              : AppColors.darkTheme,
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20))),
@@ -169,9 +172,9 @@ class _MyPitchesState extends State<MyPitches> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         height: 80,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5.0) //
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(5.0) //
 
               ),
         ),
@@ -337,7 +340,7 @@ class _MyPitchesState extends State<MyPitches> {
                           ),
                           Image.asset(
                             "assets/images/delete_icon.png",
-                            color: Colors.red,
+                            color: AppColors.red,
                             height: 20,
                             width: 20,
                           ),
@@ -354,15 +357,15 @@ class _MyPitchesState extends State<MyPitches> {
                           top: sizeHeight * .02),
                       child: Container(
                         height: sizeHeight * .2,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
                               Radius.circular(5.0),
                               //
                             ),
-                            color: Colors.white),
+                            color: AppColors.white),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
+                          children: [
                             pitchDetail[index].isVerified!
                                 ? Image.asset(
                                     "assets/images/approved_status.png",
@@ -410,7 +413,7 @@ class _MyPitchesState extends State<MyPitches> {
                                   height: sizeHeight * .05,
                                   width: sizeHeight * .13,
                                   decoration: const BoxDecoration(
-                                      color: appThemeColor,
+                                      color: AppColors.appThemeColor,
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5))),
                                   child: Padding(
@@ -451,7 +454,7 @@ class _MyPitchesState extends State<MyPitches> {
                                   width: sizeWidth * .5,
                                   child: Text("${pitchDetail[index].venueName}",
                                       style: const TextStyle(
-                                          color: Color(0XFF032040),
+                                          color: AppColors.themeColor,
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins",
                                           fontSize: 15)),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
 
+import '../../../../app_colors/app_colors.dart';
 import '../widgets/textFormField.dart';
 
 class EmailContactDOB extends StatelessWidget {
@@ -26,31 +27,31 @@ class EmailContactDOB extends StatelessWidget {
             constant,
             style: TextStyle(
                 color: MyAppState.mode == ThemeMode.light
-                    ? Colors.black
-                    : Colors.white),
+                    ? AppColors.black
+                    : AppColors.white),
           ),
           SizedBox(
             height: height * 0.01,
           ),
           SizedBox(
             height: height * 0.062,
-            child: textFieldWidget(
+            child: TextFieldWidget(
               controller: controller,
               enable: false,
               hintText: constantValue,
               suffixIcon: Icons.edit_outlined,
               fillColor: Colors.transparent,
               suffixIconColor: MyAppState.mode == ThemeMode.light
-                  ? Colors.black
-                  : Colors.white,
+                  ? AppColors.black
+                  : AppColors.white,
               border: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey),
+                  borderSide: BorderSide(color: AppColors.grey),
                   borderRadius: BorderRadius.circular(12)),
               enableBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey),
+                  borderSide: BorderSide(color: AppColors.grey),
                   borderRadius: BorderRadius.circular(12)),
               focusBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey),
+                  borderSide: BorderSide(color: AppColors.grey),
                   borderRadius: BorderRadius.circular(12)),
               onSubmitted: (value) {
                 // UtilsSign.focusChange(lastFocus, context);

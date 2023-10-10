@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
@@ -238,7 +238,8 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -313,7 +314,8 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -388,7 +390,8 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -463,7 +466,8 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -538,7 +542,8 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),
@@ -613,7 +618,8 @@ class EditProfile extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),

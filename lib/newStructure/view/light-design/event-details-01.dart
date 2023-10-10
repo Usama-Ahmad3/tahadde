@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class EditDetail_01 extends StatelessWidget {
   const EditDetail_01({super.key});
@@ -246,7 +246,8 @@ class EditDetail_01 extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff828282),
+                                                    color:
+                                                        const Color(0xff828282),
                                                   ),
                                                 ),
                                                 const TextSpan(
@@ -261,7 +262,8 @@ class EditDetail_01 extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff828282),
+                                                    color:
+                                                        const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -273,7 +275,8 @@ class EditDetail_01 extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff1e1e1e),
+                                                    color:
+                                                        const Color(0xff1e1e1e),
                                                   ),
                                                 ),
                                               ],
@@ -328,7 +331,8 @@ class EditDetail_01 extends StatelessWidget {
                                                     fontWeight: FontWeight.w600,
                                                     height: 1.25 * ffem / fem,
                                                     letterSpacing: -0.2 * fem,
-                                                    color: const Color(0xff050505),
+                                                    color:
+                                                        const Color(0xff050505),
                                                   ),
                                                 ),
                                               ),
@@ -371,8 +375,8 @@ class EditDetail_01 extends StatelessWidget {
                                                         height: 1.3846153846 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff505050),
+                                                        color: const Color(
+                                                            0xff505050),
                                                       ),
                                                     ),
                                                   ],
@@ -394,7 +398,8 @@ class EditDetail_01 extends StatelessWidget {
                               width: double.infinity,
                               height: 63 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -479,7 +484,8 @@ class EditDetail_01 extends StatelessWidget {
                               width: double.infinity,
                               height: 63 * fem,
                               decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xfff2f2f2)),
+                                border:
+                                    Border.all(color: const Color(0xfff2f2f2)),
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,

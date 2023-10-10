@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
@@ -36,8 +37,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 Future<void> main() async {
+  var devices = ['754FD214F18DBD3A6DCD076B0593951E'];
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize;
   await Firebase.initializeApp();
+  RequestConfiguration requestConfiguration =
+      RequestConfiguration(testDeviceIds: devices);
+  MobileAds.instance.updateRequestConfiguration(requestConfiguration);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -360,7 +366,8 @@ class _PlayerHomeState extends State<PlayerHome>
         "type": "League"
       };
       navigateToLeagueDetail(detail);
-    } else if (deepLink.queryParameters["event_details"] == "tournament_details") {
+    } else if (deepLink.queryParameters["event_details"] ==
+        "tournament_details") {
       Map detail = {
         "id": int.parse(deepLink.queryParameters["pk"] ?? ''),
         "type": "Tournament"
@@ -410,7 +417,12 @@ class _PlayerHomeState extends State<PlayerHome>
         });
   }
 
-  final page = [const Home(), const NotificationEmpty(), ProfileScreen(msg: 'msg'), const More()];
+  final page = [
+    const Home(),
+    const NotificationEmpty(),
+    ProfileScreen(msg: 'msg'),
+    const More()
+  ];
 
   @override
   Widget build(BuildContext context) {

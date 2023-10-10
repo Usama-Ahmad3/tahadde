@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../homeFile/utility.dart';
 import '../../../network/network_calls.dart';
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class NotificationL extends StatefulWidget {
   const NotificationL({super.key});

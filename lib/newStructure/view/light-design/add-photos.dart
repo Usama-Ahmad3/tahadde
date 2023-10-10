@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class AddPhotos extends StatelessWidget {
   const AddPhotos({super.key});
@@ -402,8 +402,8 @@ class AddPhotos extends StatelessWidget {
                                   width: 155 * fem,
                                   height: double.infinity,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffcdcdcd)),
+                                    border: Border.all(
+                                        color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
@@ -451,8 +451,8 @@ class AddPhotos extends StatelessWidget {
                                       20 * fem, 20.5 * fem, 20 * fem),
                                   height: double.infinity,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffcdcdcd)),
+                                    border: Border.all(
+                                        color: const Color(0xffcdcdcd)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),

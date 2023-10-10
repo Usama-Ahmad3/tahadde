@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/slot_chart_screen5.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
@@ -152,14 +153,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
         onWillPop: () async => false,
         child: Scaffold(
           backgroundColor: MyAppState.mode == ThemeMode.light
-              ? Colors.white
-              : const Color(0xff686868),
+              ? AppColors.white
+              : AppColors.darkTheme,
           appBar: appBarForCreatingAcademy(
               size,
               context,
               AppLocalizations.of(context)!.createSession,
               true,
-              const Color(0XFF25A163),
+              AppColors.barLineColor,
               const Color(0xFFCBCBCB)),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniEndFloat,
@@ -171,13 +172,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                 AppLocalizations.of(context)!.addSession,
                 style: TextStyle(
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.white
-                        : Colors.black,
+                        ? AppColors.white
+                        : AppColors.black,
                     fontSize: 11),
               ),
               animationCurve: Curves.easeInOutCirc,
               backgroundColor: MyAppState.mode == ThemeMode.light
-                  ? const Color(0xff686868)
+                  ? AppColors.darkTheme
                   : Colors.tealAccent.shade100,
               onPress: () {
                 _holiday = false;
@@ -188,13 +189,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         context: context,
                         builder: (context) => AlertDialog(
                               elevation: 2,
-                              backgroundColor: Colors.grey.shade200,
+                              backgroundColor: AppColors.grey200,
                               shape: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12)),
                               title: Text(AppLocalizations.of(context)!.copy),
                               content: Text(
                                 AppLocalizations.of(context)!.copySession,
-                                style: const TextStyle(color: Colors.red),
+                                style:   TextStyle(color: AppColors.red),
                               ),
                               actions: [
                                 InkWell(
@@ -206,13 +207,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: Colors.black,
+                                      color: AppColors.black,
                                     ),
                                     child: Center(
                                       child: Text(
                                         AppLocalizations.of(context)!.no,
-                                        style: const TextStyle(
-                                            color: Colors.white),
+                                        style:  TextStyle(
+                                            color: AppColors.white),
                                       ),
                                     ),
                                   ),
@@ -244,15 +245,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: Colors.transparent,
+                                      color: AppColors.transparent,
                                       border: Border.all(
-                                          width: 1, color: Colors.red),
+                                          width: 1, color: AppColors.red),
                                     ),
                                     child: Center(
                                       child: Text(
                                         AppLocalizations.of(context)!.yes,
                                         style:
-                                            const TextStyle(color: Colors.red),
+                                             TextStyle(color: AppColors.red),
                                       ),
                                     ),
                                   ),
@@ -267,15 +268,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
               child: Icon(
                 Icons.add,
                 color: MyAppState.mode == ThemeMode.light
-                    ? Colors.white
-                    : Colors.black,
+                    ? AppColors.white
+                    : AppColors.black,
                 size: size.height * 0.03,
               ),
             ),
           ),
           body: _isLoading
               ? Container(
-                  color: Colors.black,
+                  color: AppColors.black,
                   child: Container(
                     width: size.width,
                     height: size.height,
@@ -283,8 +284,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         EdgeInsets.symmetric(horizontal: size.width * 0.033),
                     decoration: BoxDecoration(
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.white
-                            : const Color(0xff686868),
+                            ? AppColors.white
+                            : AppColors.darkTheme,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
@@ -293,7 +294,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                     ),
                   ))
               : Container(
-                  color: Colors.black,
+                  color: AppColors.black,
                   child: Container(
                     width: size.width,
                     height: size.height,
@@ -301,8 +302,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         EdgeInsets.symmetric(horizontal: size.width * 0.033),
                     decoration: BoxDecoration(
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.white
-                            : const Color(0xff686868),
+                            ? AppColors.white
+                            : AppColors.darkTheme,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
@@ -348,20 +349,19 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               .isHoliday!
                                                           ? Colors.redAccent
                                                               .shade200
-                                                          : const Color(
-                                                              0xffffc300)
+                                                          : AppColors.appThemeColor
                                                       : widget.createdTag
                                                           ? Colors.redAccent
                                                               .shade200
-                                                          : Colors
-                                                              .grey.shade200,
+                                                          : AppColors
+                                                              .grey200,
                                                 ),
                                                 child: Text(
                                                   _weakList[index]
                                                       .name
                                                       .substring(0, 3),
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
+                                                  style:   TextStyle(
+                                                      color: AppColors.black,
                                                       fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w500),
@@ -372,7 +372,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               "assets/images/bar_icon.png",
                                               width: size.width * 0.22,
                                               height: size.height * 0.018,
-                                              color: Colors.grey,
+                                              color: AppColors.grey,
                                             )
                                           ],
                                         ),
@@ -405,11 +405,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           .isHoliday!
                                                       ? Colors
                                                           .redAccent.shade200
-                                                      : const Color(0xffffc300)
+                                                      : AppColors.appThemeColor
                                                   : widget.createdTag
                                                       ? Colors
                                                           .redAccent.shade200
-                                                      : Colors.grey.shade200,
+                                                      : AppColors.grey200,
                                             ),
                                             child: Text(
                                               _weakList[index]
@@ -561,8 +561,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 decoration: BoxDecoration(
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.grey.shade200
-                                                        : Colors.black12,
+                                                        ? AppColors.grey200
+                                                        : AppColors.containerColorB,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             13)),
@@ -575,7 +575,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     ),
                                                     Image.asset(
                                                       "assets/images/delete_icon.png",
-                                                      color: Colors.red,
+                                                      color: AppColors.red,
                                                       height: 20,
                                                       width: 20,
                                                     ),
@@ -597,8 +597,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   decoration: BoxDecoration(
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? Colors.grey.shade200
-                                                          : Colors.black12,
+                                                          ? AppColors.grey200
+                                                          : AppColors.containerColorB,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               13)),
@@ -653,7 +653,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
                                                                   .center,
-                                                          children: <Widget>[
+                                                          children:[
                                                             Text(
                                                                 DateFormat.Hm(
                                                                         'en_US')
@@ -662,7 +662,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                         .startTime!),
                                                                 style: const TextStyle(
                                                                     color:
-                                                                        appThemeColor,
+                                                                    AppColors.appThemeColor,
                                                                     fontSize:
                                                                         16,
                                                                     fontWeight:
@@ -673,7 +673,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                             const Text(" - ",
                                                                 style: TextStyle(
                                                                     color:
-                                                                        appThemeColor,
+                                                                        AppColors.appThemeColor,
                                                                     fontSize:
                                                                         16,
                                                                     fontWeight:
@@ -690,7 +690,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                       .endTime!),
                                                               style: const TextStyle(
                                                                   color:
-                                                                      appThemeColor,
+                                                                      AppColors.appThemeColor,
                                                                   fontSize: 16,
                                                                   fontWeight:
                                                                       FontWeight
@@ -747,8 +747,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                           child: _isSession
                               ? ButtonWidget(
                                   onTaped: () {},
-                                  title: const CircularProgressIndicator(
-                                    color: Colors.white,
+                                  title:   CircularProgressIndicator(
+                                    color: AppColors.white,
                                   ),
                                   isLoading: _isLoading,
                                 )
@@ -948,7 +948,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     SessionDetail sessionDetail = SessionDetail();
     copyDaysIndex = 0;
     return showModalBottomSheet(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         context: context,
         isScrollControlled: true,
         isDismissible: true,
@@ -960,18 +960,18 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                 child: _holiday
                     ? Scaffold(
                         backgroundColor: MyAppState.mode == ThemeMode.light
-                            ? Colors.white
-                            : const Color(0xff686868),
+                            ? AppColors.white
+                            : AppColors.darkTheme,
                         appBar: appBarForCreatingAcademy(
                             size,
                             context,
                             AppLocalizations.of(context)!.createSession,
                             true,
-                            const Color(0XFF25A163),
+                            AppColors.barLineColor,
                             const Color(0XFFCBCBCB)),
                         body: SingleChildScrollView(
                           child: Container(
-                            color: Colors.black,
+                            color: AppColors.black,
                             child: Container(
                               width: size.width,
                               height: size.height * 0.85,
@@ -979,8 +979,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                   horizontal: size.width * 0.033),
                               decoration: BoxDecoration(
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.white
-                                      : const Color(0xff686868),
+                                      ? AppColors.white
+                                      : AppColors.darkTheme,
                                   borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(20),
                                       topRight: Radius.circular(20))),
@@ -995,8 +995,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         decoration: BoxDecoration(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1005,12 +1005,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 ListTileTitleAlignment.center,
                                             tileColor: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             onTap: () {},
                                             shape: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.white12),
+                                                borderSide:   BorderSide(
+                                                    color: AppColors.containerColorW12),
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             titleTextStyle: const TextStyle(
@@ -1023,8 +1023,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               style: TextStyle(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
-                                                      ? Colors.black
-                                                      : Colors.white,
+                                                      ? AppColors.black
+                                                      : AppColors.white,
                                                   fontSize: 14),
                                             ),
                                             trailing: GestureDetector(
@@ -1084,14 +1084,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         ))
                     : Scaffold(
                         backgroundColor: MyAppState.mode == ThemeMode.light
-                            ? Colors.white
-                            : const Color(0xff686868),
+                            ? AppColors.white
+                            : AppColors.darkTheme,
                         appBar: appBarForCreatingAcademy(
                             size,
                             context,
                             AppLocalizations.of(context)!.createSession,
                             true,
-                            const Color(0XFF25A163),
+                            AppColors.barLineColor,
                             const Color(0XFFCBCBCB)),
                         body: SingleChildScrollView(
                           child: Container(
@@ -1110,8 +1110,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                   horizontal: size.width * 0.033),
                               decoration: BoxDecoration(
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.white
-                                      : const Color(0xff686868),
+                                      ? AppColors.white
+                                      : AppColors.darkTheme,
                                   borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(20),
                                       topRight: Radius.circular(20))),
@@ -1128,8 +1128,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         decoration: BoxDecoration(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1138,12 +1138,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 ListTileTitleAlignment.center,
                                             tileColor: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             onTap: () {},
                                             shape: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.white12),
+                                                borderSide:   BorderSide(
+                                                    color: AppColors.containerColorW12),
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             titleTextStyle: const TextStyle(
@@ -1156,8 +1156,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               style: TextStyle(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
-                                                      ? Colors.black
-                                                      : Colors.white,
+                                                      ? AppColors.black
+                                                      : AppColors.white,
                                                   fontSize: 14),
                                             ),
                                             trailing: GestureDetector(
@@ -1233,12 +1233,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 backgroundColor:
                                                     MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.grey.shade200
-                                                        : Colors.white12,
+                                                        ? AppColors.grey200
+                                                        : AppColors.containerColorW12,
                                                 primaryColor: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Colors.black
-                                                    : Colors.white,
+                                                    ? AppColors.black
+                                                    : AppColors.white,
                                               ),
                                               dropdownStyle: DropdownStyle(
                                                 borderRadius:
@@ -1248,8 +1248,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     const EdgeInsets.all(5),
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Colors.grey.shade200
-                                                    : Colors.black12,
+                                                    ? AppColors.grey200
+                                                    : AppColors.containerColorB,
                                               ),
                                               items: _copyDays
                                                   .asMap()
@@ -1274,8 +1274,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                     style: TextStyle(
                                                                         color: MyAppState.mode ==
                                                                                 ThemeMode.light
-                                                                            ? Colors.black
-                                                                            : Colors.white),
+                                                                            ? AppColors.black
+                                                                            : AppColors.white),
                                                                   )
                                                                 : const SizedBox
                                                                     .shrink(),
@@ -1307,13 +1307,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                       style: TextStyle(
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : Colors.white),
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white),
                                     ),
                                     SizedBox(
                                       height: size.height * 0.01,
                                     ),
-                                    textFieldWidget(
+                                    TextFieldWidget(
                                         controller: _nameController,
                                         hintText:
                                             AppLocalizations.of(context)!.name,
@@ -1334,24 +1334,24 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           return '';
                                         },
                                         border: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
+                                            borderSide:   BorderSide(
+                                                color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         enableBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
+                                            borderSide:   BorderSide(
+                                                color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         focusBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
+                                            borderSide:   BorderSide(
+                                                color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12))),
                                     SizedBox(
                                       height: size.height * 0.01,
                                     ),
-                                    textFieldWidget(
+                                    TextFieldWidget(
                                         controller: _nameControllerArabic,
                                         hintText:
                                             AppLocalizations.of(context)!.nameA,
@@ -1368,18 +1368,18 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           return '';
                                         },
                                         border: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
+                                            borderSide:   BorderSide(
+                                                color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         enableBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
+                                            borderSide:   BorderSide(
+                                                color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         focusBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
+                                            borderSide:   BorderSide(
+                                                color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12))),
                                     flaxibleGap(1),
@@ -1393,8 +1393,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         decoration: BoxDecoration(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1403,8 +1403,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   ListTileTitleAlignment.center,
                                               tileColor: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.grey.shade200
-                                                  : Colors.black12,
+                                                  ? AppColors.grey200
+                                                  : AppColors.containerColorB,
                                               onTap: () {
                                                 var time = 20;
                                                 showDialog(
@@ -1472,8 +1472,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                      color: Colors.white12),
+                                                  borderSide:   BorderSide(
+                                                      color: AppColors.containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -1487,8 +1487,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 style: TextStyle(
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.black
-                                                        : Colors.white,
+                                                        ? AppColors.black
+                                                        : AppColors.white,
                                                     fontSize: 14),
                                               ),
                                               trailing: sessionDetail
@@ -1505,8 +1505,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               .keyboard_arrow_left,
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? Colors.black
-                                                          : Colors.white,
+                                                          ? AppColors.black
+                                                          : AppColors.white,
                                                     )
                                                   : Text(
                                                       '${sessionDetail.slotDuration} min')),
@@ -1523,8 +1523,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         decoration: BoxDecoration(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1533,8 +1533,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   ListTileTitleAlignment.center,
                                               tileColor: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.grey.shade200
-                                                  : Colors.black12,
+                                                  ? AppColors.grey200
+                                                  : AppColors.containerColorB,
                                               onTap: () {
                                                 var time = 20;
                                                 showDialog(
@@ -1603,8 +1603,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                      color: Colors.white12),
+                                                  borderSide:   BorderSide(
+                                                      color: AppColors.containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -1618,8 +1618,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 style: TextStyle(
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.black
-                                                        : Colors.white,
+                                                        ? AppColors.black
+                                                        : AppColors.white,
                                                     fontSize: 14),
                                               ),
                                               trailing: sessionDetail
@@ -1636,8 +1636,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               .keyboard_arrow_left,
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? Colors.black
-                                                          : Colors.white,
+                                                          ? AppColors.black
+                                                          : AppColors.white,
                                                     )
                                                   : Text(
                                                       '${sessionDetail.graceTime} min')),
@@ -1654,8 +1654,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         decoration: BoxDecoration(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1664,8 +1664,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   ListTileTitleAlignment.center,
                                               tileColor: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.grey.shade200
-                                                  : Colors.black12,
+                                                  ? AppColors.grey200
+                                                  : AppColors.containerColorB,
                                               onTap: () {
                                                 var time;
                                                 showDialog(
@@ -1722,8 +1722,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                      color: Colors.white12),
+                                                  borderSide:   BorderSide(
+                                                      color: AppColors.containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -1737,8 +1737,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 style: TextStyle(
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.black
-                                                        : Colors.white,
+                                                        ? AppColors.black
+                                                        : AppColors.white,
                                                     fontSize: 14),
                                               ),
                                               trailing: sessionDetail
@@ -1771,8 +1771,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         decoration: BoxDecoration(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.grey.shade200
-                                                : Colors.black12,
+                                                ? AppColors.grey200
+                                                : AppColors.containerColorB,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1781,8 +1781,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   ListTileTitleAlignment.center,
                                               tileColor: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.grey.shade200
-                                                  : Colors.black12,
+                                                  ? AppColors.grey200
+                                                  : AppColors.containerColorB,
                                               onTap: () {
                                                 var time;
                                                 showDialog(
@@ -1838,8 +1838,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                      color: Colors.white12),
+                                                  borderSide:  BorderSide(
+                                                      color: AppColors.containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -1853,8 +1853,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 style: TextStyle(
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.black
-                                                        : Colors.white,
+                                                        ? AppColors.black
+                                                        : AppColors.white,
                                                     fontSize: 14),
                                               ),
                                               trailing: sessionDetail.endTime ==
@@ -1870,8 +1870,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               .keyboard_arrow_left,
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? Colors.black
-                                                          : Colors.white,
+                                                          ? AppColors.black
+                                                          : AppColors.white,
                                                     )
                                                   : Text(
                                                       '${sessionDetail.endTime!.hour}:${sessionDetail.endTime!.minute}')),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app_colors/app_colors.dart';
+
 
 class ButtonWidget extends StatefulWidget {
   VoidCallback onTaped;
@@ -12,7 +14,7 @@ class ButtonWidget extends StatefulWidget {
       required this.onTaped,
       required this.title,
       required this.isLoading,
-      this.color = const Color(0xff1d7e55)});
+      this.color = AppColors.appThemeColor});
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -34,8 +36,8 @@ class _ButtonWidgetState extends State<ButtonWidget> {
           height: height * 0.06,
           child: Center(
               child: widget.isLoading
-                  ? const CircularProgressIndicator(
-                      color: Colors.white,
+                  ? CircularProgressIndicator(
+                      color: AppColors.white,
                     )
                   : widget.title),
         ),

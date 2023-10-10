@@ -17,6 +17,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -84,7 +85,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           fontSize: 15)),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisGalleryPicturesUploadImage),
-                                  actions: <Widget>[
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
@@ -136,7 +137,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           fontSize: 15)),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisPicturesUploadImage),
-                                  actions: <Widget>[
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
@@ -213,7 +214,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
@@ -265,23 +265,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return _internet
         ? Scaffold(
             backgroundColor: MyAppState.mode == ThemeMode.light
-                ? Colors.white
-                : const Color(0xff686868),
+                ? AppColors.white
+                : AppColors.darkTheme,
             appBar: appBarWidget(width, height, context,
                 AppLocalizations.of(context)!.editProfile, true),
             body: DefaultTextStyle(
                 style: TextStyle(
                     fontSize: height * 0.02,
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.grey
-                        : Colors.white),
+                        ? AppColors.grey
+                        : AppColors.white),
                 child: Container(
-                  color: Colors.black,
+                  color: AppColors.black,
                   child: Container(
                     decoration: BoxDecoration(
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.white
-                            : const Color(0xff686868),
+                            ? AppColors.white
+                            : AppColors.darkTheme,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
@@ -341,7 +341,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                             "assets/images/profile.png"),
                                                         fit: BoxFit.cover),
                                                 border: Border.all(
-                                                  color: const Color(0xff1d7e55),
+                                                  color:
+                                                      AppColors.appThemeColor,
                                                 )),
                                           ),
                                         ),
@@ -364,8 +365,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     .copyWith(
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white),
+                                                ? AppColors.black
+                                                : AppColors.white),
                               ),
                               SizedBox(height: height * 0.01),
                               Text(
@@ -376,7 +377,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               SizedBox(
                                 height: height * 0.062,
-                                child: textFieldWidget(
+                                child: TextFieldWidget(
                                   controller: firstNameController,
                                   hintText:
                                       AppLocalizations.of(context)!.tahaddi,
@@ -384,19 +385,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   fillColor: Colors.transparent,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   onSubmitted: (value) {
                                     UtilsSign.focusChange(lastFocus, context);
@@ -420,28 +421,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               SizedBox(
                                 height: height * 0.062,
-                                child: textFieldWidget(
+                                child: TextFieldWidget(
                                   controller: _lastName,
                                   focus: lastFocus,
                                   hintText: AppLocalizations.of(context)!
                                       .pleaseenterLastName,
                                   suffixIcon: Icons.edit_outlined,
-                                  fillColor: Colors.transparent,
+                                  fillColor: AppColors.transparent,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   onSubmitted: (value) {
                                     UtilsSign.focusChange(emailFocus, context);
@@ -466,28 +467,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               SizedBox(
                                 height: height * 0.062,
-                                child: textFieldWidget(
+                                child: TextFieldWidget(
                                   controller: emailController,
                                   focus: emailFocus,
                                   hintText: AppLocalizations.of(context)!
                                       .pleaseEnterEmail,
                                   suffixIcon: Icons.edit_outlined,
-                                  fillColor: Colors.transparent,
+                                  fillColor: AppColors.transparent,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   onSubmitted: (value) {
                                     UtilsSign.focusChange(phoneFocus, context);
@@ -521,8 +522,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           decoration: TextDecoration.none,
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : Colors.white,
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white,
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14),
                                     ),
@@ -543,15 +544,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         child: Icon(Icons.calendar_today,
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white))
+                                                ? AppColors.black
+                                                : AppColors.white))
                                   ],
                                 ),
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
                                 AppLocalizations.of(context)!.contacts,
-                                style: const TextStyle(),
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -564,8 +564,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           textStyle: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : Colors.white,
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12),
                                           onChanged: (value) {
@@ -625,8 +625,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           textStyle: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : Colors.white,
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12),
                                           onChanged: (value) {
@@ -716,7 +716,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   },
                                   title: Text(
                                     AppLocalizations.of(context)!.saveChanges,
-                                    style: const TextStyle(color: Colors.black),
+                                    style: TextStyle(color: AppColors.black),
                                   ))
                             ],
                           ),

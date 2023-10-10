@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/venue_detail.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/view_all.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/enterYourDetailPitch.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
@@ -380,7 +381,7 @@ class RouterPage {
       case RouteNames.enterDetailPitch:
         var deatil = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EnterDetailPitch(detail: deatil));
+            builder: (_) => EnterDetailPitchScreen(detail: deatil));
       case RouteNames.verifiedPitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
@@ -486,7 +487,8 @@ class RouterPage {
       case RouteNames.selectLocation:
         return MaterialPageRoute(builder: (_) => const SelectYourLocation());
       case RouteNames.permissionPriming:
-        return MaterialPageRoute(builder: (_) => const PermissionPrimingScreen());
+        return MaterialPageRoute(
+            builder: (_) => const PermissionPrimingScreen());
 
       default:
         return MaterialPageRoute(

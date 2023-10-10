@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class FilterSearch extends StatelessWidget {
   const FilterSearch({super.key});
@@ -293,8 +293,8 @@ class FilterSearch extends StatelessWidget {
                                                         height: 1.3846153846 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff828282),
+                                                        color: const Color(
+                                                            0xff828282),
                                                       ),
                                                     ),
                                                   ],
@@ -339,8 +339,8 @@ class FilterSearch extends StatelessWidget {
                                                         height: 1.3846153846 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff050505),
+                                                        color: const Color(
+                                                            0xff050505),
                                                       ),
                                                     ),
                                                   ],
@@ -466,8 +466,8 @@ class FilterSearch extends StatelessWidget {
                                                         height: 1.3846153846 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff828282),
+                                                        color: const Color(
+                                                            0xff828282),
                                                       ),
                                                     ),
                                                   ],
@@ -512,8 +512,8 @@ class FilterSearch extends StatelessWidget {
                                                         height: 1.3846153846 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff050505),
+                                                        color: const Color(
+                                                            0xff050505),
                                                       ),
                                                     ),
                                                   ],
@@ -639,8 +639,8 @@ class FilterSearch extends StatelessWidget {
                                                         height: 1.3846153846 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff828282),
+                                                        color: const Color(
+                                                            0xff828282),
                                                       ),
                                                     ),
                                                   ],
@@ -685,8 +685,8 @@ class FilterSearch extends StatelessWidget {
                                                         height: 1.3846153846 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xff050505),
+                                                        color: const Color(
+                                                            0xff050505),
                                                       ),
                                                     ),
                                                   ],

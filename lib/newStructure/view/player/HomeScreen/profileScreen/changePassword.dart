@@ -11,6 +11,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../widgets/buttonWidget.dart';
 import '../widgets/textFormField.dart';
 
@@ -62,8 +63,8 @@ class _ChangePasswordState extends State<ChangePassword> {
     return _internet
         ? Scaffold(
             backgroundColor: MyAppState.mode == ThemeMode.light
-                ? Colors.white
-                : const Color(0xff686868),
+                ? AppColors.white
+                : AppColors.darkTheme,
             appBar: PreferredSize(
               preferredSize: Size(width, height * 0.105),
               child: AppBar(
@@ -72,10 +73,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
-                      .copyWith(color: Colors.white),
+                      .copyWith(color: AppColors.white),
                 ),
                 centerTitle: true,
-                backgroundColor: Colors.black,
+                backgroundColor: AppColors.black,
                 leadingWidth: width * 0.18,
                 leading: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -86,12 +87,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                     child: Container(
                         padding: EdgeInsets.all(height * 0.008),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(color: AppColors.grey),
                             shape: BoxShape.circle),
-                        child: const Center(
+                        child: Center(
                           child: FaIcon(
                             FontAwesomeIcons.close,
-                            color: Colors.white,
+                            color: AppColors.white,
                           ),
                         )),
                   ),
@@ -102,15 +103,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                 style: TextStyle(
                     fontSize: height * 0.02,
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.grey
-                        : Colors.white),
+                        ? AppColors.grey
+                        : AppColors.white),
                 child: Container(
-                  color: Colors.black,
+                  color: AppColors.black,
                   child: Container(
                     decoration: BoxDecoration(
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.white
-                            : const Color(0xff686868),
+                            ? AppColors.white
+                            : AppColors.darkTheme,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
@@ -132,29 +133,29 @@ class _ChangePasswordState extends State<ChangePassword> {
                               ),
                               SizedBox(
                                 height: height * 0.062,
-                                child: textFieldWidget(
+                                child: TextFieldWidget(
                                   controller: currentController,
                                   hintText: AppLocalizations.of(context)!
                                       .pleaseenterCurrentPassword,
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
-                                  fillColor: Colors.transparent,
+                                  fillColor: AppColors.transparent,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   onValidate: (value) {
                                     if (value.isEmpty) {
@@ -178,7 +179,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               ),
                               SizedBox(
                                 height: height * 0.062,
-                                child: textFieldWidget(
+                                child: TextFieldWidget(
                                   controller: newController,
                                   focus: newNode,
                                   hintText: AppLocalizations.of(context)!
@@ -186,22 +187,22 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
-                                  fillColor: Colors.transparent,
+                                  fillColor: AppColors.transparent,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   onValidate: (value) {
                                     if (value.isEmpty) {
@@ -219,14 +220,13 @@ class _ChangePasswordState extends State<ChangePassword> {
                               SizedBox(height: height * 0.02),
                               Text(
                                 AppLocalizations.of(context)!.confermpassword,
-                                style: const TextStyle(),
                               ),
                               SizedBox(
                                 height: height * 0.02,
                               ),
                               SizedBox(
                                 height: height * 0.062,
-                                child: textFieldWidget(
+                                child: TextFieldWidget(
                                   controller: confirmController,
                                   focus: confirmNode,
                                   hintText: AppLocalizations.of(context)!
@@ -234,22 +234,22 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
-                                  fillColor: Colors.transparent,
+                                  fillColor: AppColors.transparent,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   onValidate: (e) {
                                     return validateConfirmPassword(
@@ -321,7 +321,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .center,
-                                                      children: <Widget>[
+                                                      children: [
                                                         flaxibleGap(
                                                           15,
                                                         ),
@@ -382,7 +382,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   },
                                   title: Text(
                                     AppLocalizations.of(context)!.saveChanges,
-                                    style: const TextStyle(color: Colors.black),
+                                    style: TextStyle(color: AppColors.black),
                                   )),
                             ],
                           ),

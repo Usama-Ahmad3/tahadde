@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../main.dart';
+import '../../../../app_colors/app_colors.dart';
 
 class PasswordSecurity extends StatelessWidget {
   IconData prefixIcon;
@@ -27,7 +28,7 @@ class PasswordSecurity extends StatelessWidget {
         decoration: BoxDecoration(
           color: MyAppState.mode == ThemeMode.light
               ? const Color(0xffffffff)
-              : Colors.black12,
+              : AppColors.containerColorB,
           borderRadius: BorderRadius.circular(height * 0.01),
           border: Border.all(
               color: MyAppState.mode == ThemeMode.light
@@ -44,13 +45,13 @@ class PasswordSecurity extends StatelessWidget {
                   child: CircleAvatar(
                     radius: height * 0.023,
                     backgroundColor: MyAppState.mode == ThemeMode.light
-                        ? Colors.grey.shade200
-                        : Colors.grey,
+                        ? AppColors.grey200
+                        : AppColors.grey,
                     child: Icon(
                       prefixIcon,
                       color: MyAppState.mode == ThemeMode.light
                           ? const Color(0xff050505)
-                          : Colors.white,
+                          : AppColors.white,
                     ),
                   ),
                 ),
@@ -61,7 +62,7 @@ class PasswordSecurity extends StatelessWidget {
                     fontSize: height * 0.018,
                     color: MyAppState.mode == ThemeMode.light
                         ? const Color(0xff050505)
-                        : Colors.white,
+                        : AppColors.white,
                   ),
                 )
               ],
@@ -70,7 +71,7 @@ class PasswordSecurity extends StatelessWidget {
               (suffixIcon),
               color: MyAppState.mode == ThemeMode.light
                   ? const Color(0xff050505)
-                  : Colors.white,
+                  : AppColors.white,
             )
           ],
         ),

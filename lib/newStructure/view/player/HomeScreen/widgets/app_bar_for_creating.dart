@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../homeFile/utility.dart';
+import '../../../../app_colors/app_colors.dart';
 
 PreferredSize appBarForCreatingAcademy(
     size, context, title, back, color4, color5) {
@@ -14,10 +15,10 @@ PreferredSize appBarForCreatingAcademy(
           style: Theme.of(context)
               .textTheme
               .titleMedium!
-              .copyWith(color: Colors.white),
+              .copyWith(color: AppColors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.black,
         leadingWidth: size.width * 0.18,
         leading: back
             ? Padding(
@@ -29,12 +30,12 @@ PreferredSize appBarForCreatingAcademy(
                   child: Container(
                       padding: EdgeInsets.all(size.height * 0.008),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
+                          border: Border.all(color: AppColors.grey),
                           shape: BoxShape.circle),
-                      child: const Center(
+                      child: Center(
                         child: FaIcon(
                           FontAwesomeIcons.close,
-                          color: Colors.white,
+                          color: AppColors.white,
                         ),
                       )),
                 ),

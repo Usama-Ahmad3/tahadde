@@ -12,6 +12,7 @@ import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../../../owner/home_screens/HomePitchOwnerScreen.dart';
 import '../playerHomeScreen.dart';
 
@@ -63,7 +64,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               description,
               style: const TextStyle(color: Colors.red),
             ),
-            actions: <Widget>[
+            actions: [
               InkWell(
                 onTap: () {
                   Navigator.pop(context);
@@ -73,12 +74,12 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: AppColors.black,
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.no,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -136,13 +137,13 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.transparent,
-                    border: Border.all(width: 1, color: Colors.red),
+                    color: AppColors.transparent,
+                    border: Border.all(width: 1, color: AppColors.red),
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.yes,
-                      style: const TextStyle(color: Colors.red),
+                      style: TextStyle(color: AppColors.red),
                     ),
                   ),
                 ),
@@ -158,8 +159,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: MyAppState.mode == ThemeMode.light
-          ? Colors.white
-          : const Color(0xff686868),
+          ? AppColors.white
+          : AppColors.darkTheme,
       body: AnimatedContainer(
         duration: const Duration(microseconds: 300),
         curve: Curves.elasticInOut,
@@ -169,8 +170,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             child: DefaultTextStyle(
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.grey
-                      : Colors.white54),
+                      ? AppColors.grey
+                      : AppColors.containerColor54),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -189,10 +190,10 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                     )));
                     },
                     child: CircleAvatar(
-                        backgroundColor: Colors.grey.shade200,
-                        child: const Icon(
+                        backgroundColor: AppColors.grey200,
+                        child: Icon(
                           Icons.close,
-                          color: Colors.black,
+                          color: AppColors.black,
                         )),
                   ),
                   Row(
@@ -208,8 +209,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                 .titleMedium!
                                 .copyWith(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white),
+                                        ? AppColors.black
+                                        : AppColors.white),
                           ),
                           Text(
                             widget.position,
@@ -300,17 +301,17 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                   },
                                 titleAlignment: ListTileTitleAlignment.center,
                                 tileColor: MyAppState.mode == ThemeMode.light
-                                    ? Colors.grey.shade200
-                                    : Colors.black12,
+                                    ? AppColors.grey200
+                                    : AppColors.containerColorB,
                                 shape: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.white12),
+                                    borderSide: BorderSide(
+                                        color: AppColors.containerColorW12),
                                     borderRadius: BorderRadius.circular(10)),
                                 leading: Icon(
                                   icon[index],
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? AppColors.black
+                                      : AppColors.white,
                                 ),
                                 titleTextStyle: const TextStyle(
                                     leadingDistribution:
@@ -319,8 +320,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   title[index],
                                   style: TextStyle(
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                       fontSize: 14),
                                 ),
                                 subtitle: Text(
@@ -328,16 +329,16 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   style: TextStyle(
                                       fontSize: 12,
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white),
+                                          ? AppColors.black
+                                          : AppColors.white),
                                 ),
                                 trailing: Icon(
                                   AppLocalizations.of(context)!.locale == 'en'
                                       ? Icons.keyboard_arrow_right
                                       : Icons.keyboard_arrow_left,
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? AppColors.black
+                                      : AppColors.white,
                                 ),
                               ),
                             )
@@ -364,17 +365,17 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                           },
                                 titleAlignment: ListTileTitleAlignment.center,
                                 tileColor: MyAppState.mode == ThemeMode.light
-                                    ? Colors.grey.shade200
-                                    : Colors.black12,
+                                    ? AppColors.grey200
+                                    : AppColors.containerColorB,
                                 shape: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.white12),
+                                    borderSide: BorderSide(
+                                        color: AppColors.containerColorW12),
                                     borderRadius: BorderRadius.circular(10)),
                                 leading: Icon(
                                   ownerIcon[index],
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? AppColors.black
+                                      : AppColors.white,
                                 ),
                                 titleTextStyle: const TextStyle(
                                     leadingDistribution:
@@ -383,8 +384,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   ownerTitle[index],
                                   style: TextStyle(
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                          ? AppColors.black
+                                          : AppColors.white,
                                       fontSize: 14),
                                 ),
                                 subtitle: Text(
@@ -392,16 +393,16 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   style: TextStyle(
                                       fontSize: 12,
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white),
+                                          ? AppColors.black
+                                          : AppColors.white),
                                 ),
                                 trailing: Icon(
                                   AppLocalizations.of(context)!.locale == 'en'
                                       ? Icons.keyboard_arrow_right
                                       : Icons.keyboard_arrow_left,
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? AppColors.black
+                                      : AppColors.white,
                                 ),
                               ),
                             )),
@@ -417,19 +418,20 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                     child: ListTile(
                       titleAlignment: ListTileTitleAlignment.center,
                       tileColor: MyAppState.mode == ThemeMode.light
-                          ? Colors.grey.shade200
-                          : Colors.black12,
+                          ? AppColors.grey200
+                          : AppColors.containerColorB,
                       onTap: () {
                         BottomSheett.settingModalBottomSheet(context, height);
                       },
                       shape: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white12),
+                          borderSide:
+                              BorderSide(color: AppColors.containerColorW12),
                           borderRadius: BorderRadius.circular(10)),
                       leading: Icon(
                         Icons.help,
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.black
-                            : Colors.white,
+                            ? AppColors.black
+                            : AppColors.white,
                       ),
                       style: ListTileStyle.list,
                       titleTextStyle: const TextStyle(
@@ -438,8 +440,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                         AppLocalizations.of(context)!.help,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? Colors.black
-                                : Colors.white,
+                                ? AppColors.black
+                                : AppColors.white,
                             fontSize: 14),
                       ),
                       trailing: Icon(
@@ -447,8 +449,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                             ? Icons.keyboard_arrow_right
                             : Icons.keyboard_arrow_left,
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.black
-                            : Colors.white,
+                            ? AppColors.black
+                            : AppColors.white,
                       ),
                     ),
                   ),
@@ -467,8 +469,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                             child: ListTile(
                               titleAlignment: ListTileTitleAlignment.center,
                               tileColor: MyAppState.mode == ThemeMode.light
-                                  ? Colors.grey.shade200
-                                  : Colors.black12,
+                                  ? AppColors.grey200
+                                  : AppColors.containerColorB,
                               onTap: index == 0
                                   ? () {
                                       privacyPolicy("terms_and_conditions_url");
@@ -483,8 +485,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                               leading: Icon(
                                 iconList[index],
                                 color: MyAppState.mode == ThemeMode.light
-                                    ? Colors.black
-                                    : Colors.white,
+                                    ? AppColors.black
+                                    : AppColors.white,
                               ),
                               style: ListTileStyle.list,
                               titleTextStyle: const TextStyle(
@@ -494,8 +496,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                 listTitle[index],
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white,
+                                        ? AppColors.black
+                                        : AppColors.white,
                                     fontSize: 14),
                               ),
                               trailing: Icon(
@@ -503,8 +505,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                     ? Icons.keyboard_arrow_right
                                     : Icons.keyboard_arrow_left,
                                 color: MyAppState.mode == ThemeMode.light
-                                    ? Colors.black
-                                    : Colors.white,
+                                    ? AppColors.black
+                                    : AppColors.white,
                               ),
                             ),
                           )),
@@ -516,14 +518,15 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                     child: ListTile(
                       titleAlignment: ListTileTitleAlignment.center,
                       tileColor: MyAppState.mode == ThemeMode.light
-                          ? Colors.grey.shade200
-                          : Colors.black12,
+                          ? AppColors.grey200
+                          : AppColors.containerColorB,
                       shape: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white12),
+                          borderSide:
+                              BorderSide(color: AppColors.containerColorW12),
                           borderRadius: BorderRadius.circular(10)),
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.logout_sharp,
-                        color: Colors.red,
+                        color: AppColors.red,
                       ),
                       onTap: () {
                         onWillPop(
@@ -534,15 +537,15 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                           leadingDistribution: TextLeadingDistribution.even),
                       title: Text(
                         AppLocalizations.of(context)!.logout,
-                        style: const TextStyle(color: Colors.red, fontSize: 16),
+                        style: TextStyle(color: AppColors.red, fontSize: 16),
                       ),
                       trailing: Icon(
                         AppLocalizations.of(context)!.locale == 'en'
                             ? Icons.keyboard_arrow_right
                             : Icons.keyboard_arrow_left,
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.black
-                            : Colors.white,
+                            ? AppColors.black
+                            : AppColors.white,
                       ),
                     ),
                   ),
@@ -559,7 +562,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   }
 
   void navigateToMyPitches() {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => const MyPitches()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => const MyPitches()));
     // Navigator.pushNamed(context, RouteNames.myVenues);
   }
 

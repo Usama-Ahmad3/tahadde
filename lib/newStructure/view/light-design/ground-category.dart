@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class GroundCategory extends StatelessWidget {
   const GroundCategory({super.key});
@@ -271,8 +271,8 @@ class GroundCategory extends StatelessWidget {
                                   width: double.infinity,
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xfff2f2f2)),
+                                    border: Border.all(
+                                        color: const Color(0xfff2f2f2)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -342,8 +342,8 @@ class GroundCategory extends StatelessWidget {
                                   width: double.infinity,
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xfff2f2f2)),
+                                    border: Border.all(
+                                        color: const Color(0xfff2f2f2)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),
@@ -413,8 +413,8 @@ class GroundCategory extends StatelessWidget {
                                   width: double.infinity,
                                   height: 56 * fem,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xfff2f2f2)),
+                                    border: Border.all(
+                                        color: const Color(0xfff2f2f2)),
                                     borderRadius:
                                         BorderRadius.circular(12 * fem),
                                   ),

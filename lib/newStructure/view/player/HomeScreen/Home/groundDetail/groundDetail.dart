@@ -21,6 +21,7 @@ import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
 import '../../../../../../modelClass/venue_detail_model_class.dart';
 import '../../../../../../network/network_calls.dart';
+import '../../../../../app_colors/app_colors.dart';
 import 'carousel.dart';
 import 'facilities.dart';
 
@@ -194,8 +195,8 @@ class GroundDetailState extends State<GroundDetail>
                   activeChild: Icon(
                     Icons.close,
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.white
-                        : Colors.black,
+                        ? AppColors.white
+                        : AppColors.black,
                     size: height * 0.035,
                   ),
                   animationCurve: Curves.easeInOutCirc,
@@ -206,7 +207,7 @@ class GroundDetailState extends State<GroundDetail>
                   closeManually: true,
                   isOpenOnStart: false,
                   backgroundColor: MyAppState.mode == ThemeMode.light
-                      ? const Color(0xff686868)
+                      ? AppColors.darkTheme
                       : Colors.tealAccent.shade100,
                   renderOverlay: false,
                   onPress: () {
@@ -219,15 +220,15 @@ class GroundDetailState extends State<GroundDetail>
                         ? SpeedDialChild(
                             visible: true,
                             backgroundColor: MyAppState.mode == ThemeMode.light
-                                ? const Color(0xff686868)
+                                ? AppColors.darkTheme
                                 : Colors.tealAccent.shade100,
                             child: Icon(
                               privateVenueDetail.isFavourite
                                   ? Icons.favorite
                                   : Icons.favorite_border,
                               color: MyAppState.mode == ThemeMode.light
-                                  ? Colors.white
-                                  : Colors.black,
+                                  ? AppColors.white
+                                  : AppColors.black,
                             ),
                             onTap: () {
                               _networkCalls.checkInternetConnectivity(
@@ -251,13 +252,13 @@ class GroundDetailState extends State<GroundDetail>
                     SpeedDialChild(
                         visible: true,
                         backgroundColor: MyAppState.mode == ThemeMode.light
-                            ? const Color(0xff686868)
+                            ? AppColors.darkTheme
                             : Colors.tealAccent.shade100,
                         child: Icon(
                           Icons.share,
                           color: MyAppState.mode == ThemeMode.light
-                              ? Colors.white
-                              : Colors.black,
+                              ? AppColors.white
+                              : AppColors.black,
                         ),
                         onTap: () {
                           Share.share(
@@ -267,13 +268,13 @@ class GroundDetailState extends State<GroundDetail>
                     SpeedDialChild(
                         visible: true,
                         backgroundColor: MyAppState.mode == ThemeMode.light
-                            ? const Color(0xff686868)
+                            ? AppColors.darkTheme
                             : Colors.tealAccent.shade100,
                         child: Icon(
                           Icons.email_outlined,
                           color: MyAppState.mode == ThemeMode.light
-                              ? Colors.white
-                              : Colors.black,
+                              ? AppColors.white
+                              : AppColors.black,
                         ),
                         onTap: () async {
                           launch("mailto:info@tahadde.com");
@@ -282,8 +283,8 @@ class GroundDetailState extends State<GroundDetail>
                   child: Icon(
                     Icons.add,
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.white
-                        : Colors.black,
+                        ? AppColors.white
+                        : AppColors.black,
                     size: height * 0.04,
                   ),
                 ),
@@ -308,12 +309,12 @@ class GroundDetailState extends State<GroundDetail>
                         child: Column(
                           children: [
                             Container(
-                              color: Colors.black,
+                              color: AppColors.black,
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.white
-                                        : const Color(0xff686868),
+                                        ? AppColors.white
+                                        : AppColors.darkTheme,
                                     borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(20),
                                         topLeft: Radius.circular(20))),
@@ -334,15 +335,15 @@ class GroundDetailState extends State<GroundDetail>
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: height * 0.026,
-                                                  color: Colors.white,
+                                                  color: AppColors.white,
                                                   fontFamily: "Poppins",
                                                   decoration:
                                                       TextDecoration.none),
-                                              gradient: const LinearGradient(
+                                              gradient: LinearGradient(
                                                   colors: [
                                                     Colors.black38,
                                                     Colors.black45,
-                                                    Colors.black54
+                                                    AppColors.containerColor54
                                                   ]),
                                             )
                                           : SizedBox(
@@ -367,8 +368,8 @@ class GroundDetailState extends State<GroundDetail>
                                             fontWeight: FontWeight.bold,
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white),
+                                                ? AppColors.black
+                                                : AppColors.white),
                                       ),
                                       SizedBox(
                                         height: height * 0.02,
@@ -382,13 +383,13 @@ class GroundDetailState extends State<GroundDetail>
                                         lessStyle: TextStyle(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.black
+                                                ? AppColors.black
                                                 : Colors.yellowAccent,
                                             fontWeight: FontWeight.bold),
                                         moreStyle: TextStyle(
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.black
+                                                ? AppColors.black
                                                 : Colors.yellowAccent,
                                             fontWeight: FontWeight.bold),
                                         trimCollapsedText: 'See More',
@@ -396,8 +397,8 @@ class GroundDetailState extends State<GroundDetail>
                                         style: TextStyle(
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white,
+                                                  ? AppColors.black
+                                                  : AppColors.white,
                                         ),
                                       ),
                                       SizedBox(
@@ -412,8 +413,8 @@ class GroundDetailState extends State<GroundDetail>
                                               fontSize: height * 0.03,
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white)),
+                                                  ? AppColors.black
+                                                  : AppColors.white)),
                                       ...List.generate(
                                           3,
                                           (index) => Padding(
@@ -427,11 +428,11 @@ class GroundDetailState extends State<GroundDetail>
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10),
-                                                      boxShadow: const [
+                                                      boxShadow:  [
                                                         BoxShadow(
-                                                          color: Colors.black12,
+                                                          color: AppColors.containerColorB,
                                                           spreadRadius: 1,
-                                                          offset: Offset(0, 1),
+                                                          offset: const Offset(0, 1),
                                                           blurStyle:
                                                               BlurStyle.outer,
                                                         )
@@ -471,8 +472,8 @@ class GroundDetailState extends State<GroundDetail>
                                                                       .mode ==
                                                                   ThemeMode
                                                                       .light
-                                                              ? Colors.black
-                                                              : Colors.white,
+                                                              ? AppColors.black
+                                                              : AppColors.white,
                                                         ),
                                                       ),
                                                       SizedBox(
@@ -516,8 +517,8 @@ class GroundDetailState extends State<GroundDetail>
                                               fontSize: height * 0.03,
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white),
+                                                  ? AppColors.black
+                                                  : AppColors.white),
                                         ),
                                       ),
                                       GestureDetector(
@@ -585,7 +586,7 @@ class GroundDetailState extends State<GroundDetail>
                                               ),
                                               Material(
                                                 elevation: 1,
-                                                color: Colors.white,
+                                                color: AppColors.white,
                                                 borderRadius: const BorderRadius
                                                     .only(
                                                     bottomRight:
@@ -630,10 +631,10 @@ class GroundDetailState extends State<GroundDetail>
                                                                         TextOverflow
                                                                             .ellipsis,
                                                                     maxLines: 5,
-                                                                    style: const TextStyle(
+                                                                    style:  TextStyle(
                                                                         fontSize:
                                                                             14,
-                                                                        color: Colors
+                                                                        color: AppColors
                                                                             .black,
                                                                         fontWeight:
                                                                             FontWeight
@@ -691,8 +692,8 @@ class GroundDetailState extends State<GroundDetail>
                                             fontSize: height * 0.03,
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white,
+                                                ? AppColors.black
+                                                : AppColors.white,
                                           ),
                                         ),
                                       ),
@@ -718,7 +719,7 @@ class GroundDetailState extends State<GroundDetail>
                                                           radius:
                                                               height * 0.0065,
                                                           backgroundColor:
-                                                              Colors.grey,
+                                                          AppColors.grey,
                                                         ),
                                                         Padding(
                                                           padding: EdgeInsets
@@ -733,9 +734,9 @@ class GroundDetailState extends State<GroundDetail>
                                                                             .mode ==
                                                                         ThemeMode
                                                                             .light
-                                                                    ? Colors
+                                                                    ? AppColors
                                                                         .black
-                                                                    : Colors
+                                                                    : AppColors
                                                                         .white,
                                                                 overflow:
                                                                     TextOverflow

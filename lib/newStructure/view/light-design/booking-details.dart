@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class BookingDetail extends StatelessWidget {
   const BookingDetail({super.key});
@@ -540,7 +540,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -577,7 +578,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -628,7 +630,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -665,7 +668,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   height:
                                                       1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -759,7 +763,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3846153846 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -800,7 +805,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3846153846 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -856,7 +862,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3846153846 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -897,7 +904,8 @@ class BookingDetail extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3846153846 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],

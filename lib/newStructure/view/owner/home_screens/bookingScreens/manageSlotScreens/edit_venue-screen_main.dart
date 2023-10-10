@@ -19,6 +19,7 @@ import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../modelClass/specific_pitch_model_class.dart';
 import '../../../../../../network/network_calls.dart';
+import '../../../../../app_colors/app_colors.dart';
 
 class EditVenuesScreen extends StatefulWidget {
   final Map detail;
@@ -99,7 +100,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
           return AlertDialog(
             title: Text(
               AppLocalizations.of(context)!.uploadprofilepicture,
-              style: const TextStyle(color: Colors.black),
+              style:   TextStyle(color: AppColors.black),
             ),
             content: SingleChildScrollView(
               child: ListBody(
@@ -121,7 +122,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                       .galleryPermission),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisGalleryPicturesUploadImage),
-                                  actions: <Widget>[
+                                  actions:  [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny),
@@ -138,14 +139,14 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                       }
                     },
                     child: Text(AppLocalizations.of(context)!.choosefromlibrary,
-                        style: const TextStyle(color: Colors.black)),
+                        style:   TextStyle(color: AppColors.black)),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
-                        style: const TextStyle(color: Colors.black)),
+                        style:   TextStyle(color: AppColors.black)),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -162,7 +163,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                       .cameraPermission),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisPicturesUploadImage),
-                                  actions: <Widget>[
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny),
@@ -206,7 +207,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.black,
       appBar: PreferredSize(
           preferredSize: Size(width, height * 0.105),
           child: AppBar(
@@ -215,10 +216,10 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
-                  .copyWith(color: Colors.white),
+                  .copyWith(color: AppColors.white),
             ),
             centerTitle: true,
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.black,
             leadingWidth: width * 0.18,
             leading: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -229,12 +230,12 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                 child: Container(
                     padding: EdgeInsets.all(height * 0.008),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
+                        border: Border.all(color: AppColors.grey),
                         shape: BoxShape.circle),
-                    child: const Center(
+                    child:   Center(
                       child: FaIcon(
                         FontAwesomeIcons.close,
-                        color: Colors.white,
+                        color: AppColors.white,
                       ),
                     )),
               ),
@@ -247,14 +248,14 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : const Color(0xff686868),
+                      ? AppColors.white
+                      : AppColors.darkTheme,
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               child: const Center(
                 child: CircularProgressIndicator(
-                  color: appThemeColor,
+                  color: AppColors.appThemeColor,
                 ),
               ),
             )
@@ -265,8 +266,8 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                   padding: EdgeInsets.symmetric(horizontal: width * 0.033),
                   decoration: BoxDecoration(
                       color: MyAppState.mode == ThemeMode.light
-                          ? Colors.white
-                          : const Color(0xff686868),
+                          ? AppColors.white
+                          : AppColors.darkTheme,
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20))),
@@ -333,8 +334,8 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                           Container(
                                             height: height * 0.11,
                                             width: width * 0.25,
-                                            decoration: const BoxDecoration(
-                                                color: Colors.white,
+                                            decoration:   BoxDecoration(
+                                                color: AppColors.white,
                                                 shape: BoxShape.circle),
                                             child: ClipRRect(
                                               borderRadius:

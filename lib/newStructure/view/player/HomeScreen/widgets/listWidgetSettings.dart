@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
@@ -22,24 +23,24 @@ class ListWidgetSettings extends StatelessWidget {
         height: height * 0.09,
         decoration: BoxDecoration(
             color: MyAppState.mode == ThemeMode.light
-                ? Colors.grey.shade200
-                : Colors.black12,
+                ? AppColors.grey200
+                : AppColors.containerColorB,
             borderRadius: BorderRadius.circular(13)),
         child: Center(
           child: ListTile(
             titleAlignment: ListTileTitleAlignment.center,
             tileColor: MyAppState.mode == ThemeMode.light
-                ? Colors.grey.shade200
-                : Colors.black12,
+                ? AppColors.grey200
+                : AppColors.containerColorB,
             onTap: callback,
             shape: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.white12),
+                borderSide: BorderSide(color: AppColors.containerColorW12),
                 borderRadius: BorderRadius.circular(10)),
             leading: Icon(
               icon,
               color: MyAppState.mode == ThemeMode.light
-                  ? Colors.black
-                  : Colors.white,
+                  ? AppColors.black
+                  : AppColors.white,
             ),
             titleTextStyle: const TextStyle(
                 leadingDistribution: TextLeadingDistribution.even),
@@ -47,8 +48,8 @@ class ListWidgetSettings extends StatelessWidget {
               title,
               style: TextStyle(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.black
-                      : Colors.white,
+                      ? AppColors.black
+                      : AppColors.white,
                   fontSize: 14),
             ),
             trailing: Icon(
@@ -56,8 +57,8 @@ class ListWidgetSettings extends StatelessWidget {
                   ? Icons.keyboard_arrow_right
                   : Icons.keyboard_arrow_left,
               color: MyAppState.mode == ThemeMode.light
-                  ? Colors.black
-                  : Colors.white,
+                  ? AppColors.black
+                  : AppColors.white,
             ),
           ),
         ),

@@ -9,6 +9,7 @@ import '../../../../constant.dart';
 import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
+import '../../../app_colors/app_colors.dart';
 import 'events/events.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
@@ -42,7 +43,8 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
         "type": "League"
       };
       navigateToLeagueDetail(detail);
-    } else if (deepLink.queryParameters["event_details"] == "tournament_details") {
+    } else if (deepLink.queryParameters["event_details"] ==
+        "tournament_details") {
       Map detail = {
         "id": int.parse(deepLink.queryParameters["pk"] ?? ''),
         "type": "Tournament"
@@ -58,12 +60,12 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
         builder: (BuildContext cntext) {
           return AlertDialog(
             elevation: 2,
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: AppColors.grey200,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
-              style: const TextStyle(color: Colors.red),
+              style: TextStyle(color: AppColors.red),
             ),
             actions: <Widget>[
               InkWell(
@@ -80,7 +82,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.no,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -98,12 +100,12 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.transparent,
-                    border: Border.all(width: 1, color: Colors.red),
+                    border: Border.all(width: 1, color: AppColors.red),
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.yes,
-                      style: const TextStyle(color: Colors.red),
+                      style: TextStyle(color: AppColors.red),
                     ),
                   ),
                 ),
@@ -132,7 +134,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
           return onWillPop();
         },
         child: Material(
-            color: appThemeColor,
+            color: AppColors.themeColor,
             child: Scaffold(
               bottomNavigationBar: SalomonBottomBar(
                 currentIndex: widget.index,
@@ -140,8 +142,8 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   widget.index = index;
                   setState(() {});
                 },
-                selectedItemColor: const Color(0xff1d7e55),
-                backgroundColor: Colors.black,
+                selectedItemColor: AppColors.appThemeColor,
+                backgroundColor: AppColors.black,
                 selectedColorOpacity: 1,
                 curve: Curves.bounceInOut,
                 items: [
@@ -151,14 +153,14 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.home,
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: AppColors.black),
                     ),
-                    activeIcon: const Icon(
+                    activeIcon: Icon(
                       Icons.home,
-                      color: Colors.black,
+                      color: AppColors.black,
                     ),
-                    unselectedColor: Colors.grey,
-                    selectedColor: const Color(0xff1d7e55),
+                    unselectedColor: AppColors.grey,
+                    selectedColor: AppColors.appThemeColor,
                   ),
                   SalomonBottomBarItem(
                     icon: SizedBox(
@@ -166,23 +168,23 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                       width: 23,
                       child: Image.asset(
                         'assets/images/booking2.png',
-                        color: Colors.grey,
+                        color: AppColors.grey,
                       ),
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.booking,
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: AppColors.black),
                     ),
                     activeIcon: SizedBox(
                       height: 23,
                       width: 23,
                       child: Image.asset(
                         'assets/images/file.png',
-                        color: Colors.black,
+                        color: AppColors.black,
                       ),
                     ),
-                    selectedColor: const Color(0xff1d7e55),
-                    unselectedColor: Colors.grey,
+                    selectedColor: AppColors.appThemeColor,
+                    unselectedColor: AppColors.grey,
                   ),
                   SalomonBottomBarItem(
                     icon: const Icon(
@@ -190,14 +192,14 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.more,
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: AppColors.black),
                     ),
-                    activeIcon: const Icon(
+                    activeIcon: Icon(
                       Icons.settings,
-                      color: Colors.black,
+                      color: AppColors.black,
                     ),
-                    selectedColor: const Color(0xff1d7e55),
-                    unselectedColor: Colors.grey,
+                    selectedColor: AppColors.appThemeColor,
+                    unselectedColor: AppColors.grey,
                   ),
                   SalomonBottomBarItem(
                     icon: const Icon(
@@ -205,14 +207,14 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.personalDetail,
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: AppColors.black),
                     ),
-                    activeIcon: const Icon(
+                    activeIcon: Icon(
                       Icons.person,
-                      color: Colors.black,
+                      color: AppColors.black,
                     ),
-                    selectedColor: const Color(0xff1d7e55),
-                    unselectedColor: Colors.grey,
+                    selectedColor: AppColors.appThemeColor,
+                    unselectedColor: AppColors.grey,
                   ),
                 ],
               ),

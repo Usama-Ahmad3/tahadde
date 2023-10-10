@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/viewMoreBookPitch.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
-import '../../../utils.dart';
+import '../../../../utils/utils.dart';
 
 class VanueList extends StatefulWidget {
   var bookPitchData;
@@ -86,7 +87,7 @@ class _VanueListState extends State<VanueList> {
                               fontWeight: FontWeight.w400,
                               height: 1.3846153846 * ffem / fem,
                               color: mode == ThemeMode.light
-                                  ? const Color(0xff686868)
+                                  ? AppColors.darkTheme
                                   : Colors.white70,
                             ),
                           ),
@@ -108,8 +109,8 @@ class _VanueListState extends State<VanueList> {
                             AppLocalizations.of(context)!.noAcademy,
                             style: TextStyle(
                               color: MyAppState.mode == ThemeMode.light
-                                  ? Colors.black
-                                  : Colors.white,
+                                  ? AppColors.black
+                                  : AppColors.white,
                             ),
                           ),
                         ),
@@ -208,7 +209,7 @@ class _VanueListState extends State<VanueList> {
                                       fontSize: 13 * ffem,
                                       fontWeight: FontWeight.w400,
                                       height: 1.3846153846 * ffem / fem,
-                                      color: const Color(0xff686868),
+                                      color: AppColors.darkTheme,
                                     ),
                                   ),
                                 ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class GroundDetails extends StatelessWidget {
   const GroundDetails({super.key});
@@ -8,10 +8,7 @@ class GroundDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
-    double fem = MediaQuery
-        .of(context)
-        .size
-        .width / baseWidth;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return SizedBox(
       width: double.infinity,
@@ -202,7 +199,7 @@ class GroundDetails extends StatelessWidget {
                                     width: double.infinity,
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           // frame1000006400UVP (326:21244)
@@ -213,7 +210,7 @@ class GroundDetails extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             color: const Color(0xfff2f2f2),
                                             borderRadius:
-                                            BorderRadius.circular(20 * fem),
+                                                BorderRadius.circular(20 * fem),
                                           ),
                                           child: Center(
                                             child: Text(
@@ -249,7 +246,7 @@ class GroundDetails extends StatelessWidget {
                                     width: double.infinity,
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           // textBHK (326:21061)
@@ -278,13 +275,13 @@ class GroundDetails extends StatelessWidget {
                                                 fontSize: 15 * ffem,
                                                 fontWeight: FontWeight.w400,
                                                 height:
-                                                1.3333333333 * ffem / fem,
+                                                    1.3333333333 * ffem / fem,
                                                 color: const Color(0xff828282),
                                               ),
                                               children: [
                                                 TextSpan(
                                                   text:
-                                                  'The biggest and the most famous national football tournament is The Hover football tournament Cup',
+                                                      'The biggest and the most famous national football tournament is The Hover football tournament Cup',
                                                   style: SafeGoogleFont(
                                                     'Inter',
                                                     fontSize: 15 * ffem,
@@ -292,7 +289,8 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff828282),
+                                                    color:
+                                                        const Color(0xff828282),
                                                   ),
                                                 ),
                                                 const TextSpan(
@@ -307,7 +305,8 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff828282),
+                                                    color:
+                                                        const Color(0xff828282),
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -319,7 +318,8 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.3333333333 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff1e1e1e),
+                                                    color:
+                                                        const Color(0xff1e1e1e),
                                                   ),
                                                 ),
                                               ],
@@ -360,7 +360,7 @@ class GroundDetails extends StatelessWidget {
                                     width: double.infinity,
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Container(
                                           // groundlistselectionSgR (326:21153)
@@ -373,19 +373,19 @@ class GroundDetails extends StatelessWidget {
                                                 color: const Color(0xfff2f2f2)),
                                             color: const Color(0xffffffff),
                                             borderRadius:
-                                            BorderRadius.circular(12 * fem),
+                                                BorderRadius.circular(12 * fem),
                                             boxShadow: [
                                               BoxShadow(
                                                 color: const Color(0x1408091e),
                                                 offset:
-                                                Offset(0 * fem, 40 * fem),
+                                                    Offset(0 * fem, 40 * fem),
                                                 blurRadius: 30 * fem,
                                               ),
                                             ],
                                           ),
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // imageandtextua1 (I326:21153;137:9503)
@@ -397,23 +397,23 @@ class GroundDetails extends StatelessWidget {
                                                 height: double.infinity,
                                                 child: Row(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                       // rectangle40162aRF (I326:21153;137:9506;137:9495)
                                                       margin:
-                                                      EdgeInsets.fromLTRB(
-                                                          0 * fem,
-                                                          0 * fem,
-                                                          8 * fem,
-                                                          0 * fem),
+                                                          EdgeInsets.fromLTRB(
+                                                              0 * fem,
+                                                              0 * fem,
+                                                              8 * fem,
+                                                              0 * fem),
                                                       width: 54 * fem,
                                                       height: 50 * fem,
                                                       child: ClipRRect(
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                            8 * fem),
+                                                            BorderRadius
+                                                                .circular(
+                                                                    8 * fem),
                                                         child: Image.asset(
                                                           'assets/light-design/images/rectangle-40162-mxV.png',
                                                           fit: BoxFit.cover,
@@ -423,40 +423,40 @@ class GroundDetails extends StatelessWidget {
                                                     Container(
                                                       // textfxV (I326:21153;137:9498)
                                                       margin:
-                                                      EdgeInsets.fromLTRB(
-                                                          0 * fem,
-                                                          1.5 * fem,
-                                                          0 * fem,
-                                                          1.5 * fem),
+                                                          EdgeInsets.fromLTRB(
+                                                              0 * fem,
+                                                              1.5 * fem,
+                                                              0 * fem,
+                                                              1.5 * fem),
                                                       width: 136 * fem,
                                                       height: double.infinity,
                                                       child: Column(
                                                         crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           Container(
                                                             // captionyTP (I326:21153;137:9496)
                                                             margin: EdgeInsets
                                                                 .fromLTRB(
-                                                                0 * fem,
-                                                                0 * fem,
-                                                                0 * fem,
-                                                                4 * fem),
+                                                                    0 * fem,
+                                                                    0 * fem,
+                                                                    0 * fem,
+                                                                    4 * fem),
                                                             child: Text(
                                                               'Main Ground',
                                                               style:
-                                                              SafeGoogleFont(
+                                                                  SafeGoogleFont(
                                                                 'Inter',
                                                                 fontSize:
-                                                                17 * ffem,
+                                                                    17 * ffem,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .w600,
+                                                                    FontWeight
+                                                                        .w600,
                                                                 height:
-                                                                1.4705882353 *
-                                                                    ffem /
-                                                                    fem,
+                                                                    1.4705882353 *
+                                                                        ffem /
+                                                                        fem,
                                                                 color: const Color(
                                                                     0xff050505),
                                                               ),
@@ -465,24 +465,24 @@ class GroundDetails extends StatelessWidget {
                                                           SizedBox(
                                                             // frame1000006382gsb (I326:21153;306:12554)
                                                             width:
-                                                            double.infinity,
+                                                                double.infinity,
                                                             child: Row(
                                                               crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
+                                                                  CrossAxisAlignment
+                                                                      .center,
                                                               children: [
                                                                 Container(
                                                                   // clockDcd (I326:21153;306:12476)
                                                                   margin: EdgeInsets
                                                                       .fromLTRB(
-                                                                      0 * fem,
-                                                                      0 * fem,
-                                                                      4 * fem,
-                                                                      0 * fem),
+                                                                          0 * fem,
+                                                                          0 * fem,
+                                                                          4 * fem,
+                                                                          0 * fem),
                                                                   width:
-                                                                  16 * fem,
+                                                                      16 * fem,
                                                                   height:
-                                                                  16 * fem,
+                                                                      16 * fem,
                                                                   child: Image
                                                                       .asset(
                                                                     'assets/light-design/images/clock-LHo.png',
@@ -496,18 +496,18 @@ class GroundDetails extends StatelessWidget {
                                                                   // minimumhours03LSM (I326:21153;137:9497)
                                                                   'Minimum Hours 03',
                                                                   style:
-                                                                  SafeGoogleFont(
+                                                                      SafeGoogleFont(
                                                                     'Inter',
                                                                     fontSize:
-                                                                    13 *
-                                                                        ffem,
+                                                                        13 *
+                                                                            ffem,
                                                                     fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
+                                                                        FontWeight
+                                                                            .w400,
                                                                     height:
-                                                                    1.3846153846 *
-                                                                        ffem /
-                                                                        fem,
+                                                                        1.3846153846 *
+                                                                            ffem /
+                                                                            fem,
                                                                     color: const Color(
                                                                         0xffb4b4b4),
                                                                   ),
@@ -547,11 +547,11 @@ class GroundDetails extends StatelessWidget {
                                             border: Border.all(
                                                 color: const Color(0xffe6e6e6)),
                                             borderRadius:
-                                            BorderRadius.circular(12 * fem),
+                                                BorderRadius.circular(12 * fem),
                                           ),
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // imageandtextGUR (I326:21154;137:9503)
@@ -563,23 +563,23 @@ class GroundDetails extends StatelessWidget {
                                                 height: double.infinity,
                                                 child: Row(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                       // rectangle40164Aph (I326:21154;137:9506;137:9510)
                                                       margin:
-                                                      EdgeInsets.fromLTRB(
-                                                          0 * fem,
-                                                          0 * fem,
-                                                          8 * fem,
-                                                          0 * fem),
+                                                          EdgeInsets.fromLTRB(
+                                                              0 * fem,
+                                                              0 * fem,
+                                                              8 * fem,
+                                                              0 * fem),
                                                       width: 54 * fem,
                                                       height: 50 * fem,
                                                       child: ClipRRect(
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                            8 * fem),
+                                                            BorderRadius
+                                                                .circular(
+                                                                    8 * fem),
                                                         child: Image.asset(
                                                           'assets/light-design/images/rectangle-40164-TBf.png',
                                                           fit: BoxFit.cover,
@@ -589,40 +589,40 @@ class GroundDetails extends StatelessWidget {
                                                     Container(
                                                       // textH8d (I326:21154;137:9498)
                                                       margin:
-                                                      EdgeInsets.fromLTRB(
-                                                          0 * fem,
-                                                          1.5 * fem,
-                                                          0 * fem,
-                                                          1.5 * fem),
+                                                          EdgeInsets.fromLTRB(
+                                                              0 * fem,
+                                                              1.5 * fem,
+                                                              0 * fem,
+                                                              1.5 * fem),
                                                       width: 134 * fem,
                                                       height: double.infinity,
                                                       child: Column(
                                                         crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           Container(
                                                             // captionQyw (I326:21154;137:9496)
                                                             margin: EdgeInsets
                                                                 .fromLTRB(
-                                                                0 * fem,
-                                                                0 * fem,
-                                                                0 * fem,
-                                                                4 * fem),
+                                                                    0 * fem,
+                                                                    0 * fem,
+                                                                    0 * fem,
+                                                                    4 * fem),
                                                             child: Text(
                                                               'Futsal Ground',
                                                               style:
-                                                              SafeGoogleFont(
+                                                                  SafeGoogleFont(
                                                                 'Inter',
                                                                 fontSize:
-                                                                17 * ffem,
+                                                                    17 * ffem,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .w600,
+                                                                    FontWeight
+                                                                        .w600,
                                                                 height:
-                                                                1.4705882353 *
-                                                                    ffem /
-                                                                    fem,
+                                                                    1.4705882353 *
+                                                                        ffem /
+                                                                        fem,
                                                                 color: const Color(
                                                                     0xff050505),
                                                               ),
@@ -631,24 +631,24 @@ class GroundDetails extends StatelessWidget {
                                                           SizedBox(
                                                             // frame1000006382ufo (I326:21154;306:12554)
                                                             width:
-                                                            double.infinity,
+                                                                double.infinity,
                                                             child: Row(
                                                               crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
+                                                                  CrossAxisAlignment
+                                                                      .center,
                                                               children: [
                                                                 Container(
                                                                   // clockf9B (I326:21154;306:12476)
                                                                   margin: EdgeInsets
                                                                       .fromLTRB(
-                                                                      0 * fem,
-                                                                      0 * fem,
-                                                                      4 * fem,
-                                                                      0 * fem),
+                                                                          0 * fem,
+                                                                          0 * fem,
+                                                                          4 * fem,
+                                                                          0 * fem),
                                                                   width:
-                                                                  16 * fem,
+                                                                      16 * fem,
                                                                   height:
-                                                                  16 * fem,
+                                                                      16 * fem,
                                                                   child: Image
                                                                       .asset(
                                                                     'assets/light-design/images/clock-gDP.png',
@@ -662,18 +662,18 @@ class GroundDetails extends StatelessWidget {
                                                                   // minimumhours03BdK (I326:21154;137:9497)
                                                                   'Minimum Hours 01',
                                                                   style:
-                                                                  SafeGoogleFont(
+                                                                      SafeGoogleFont(
                                                                     'Inter',
                                                                     fontSize:
-                                                                    13 *
-                                                                        ffem,
+                                                                        13 *
+                                                                            ffem,
                                                                     fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
+                                                                        FontWeight
+                                                                            .w400,
                                                                     height:
-                                                                    1.3846153846 *
-                                                                        ffem /
-                                                                        fem,
+                                                                        1.3846153846 *
+                                                                            ffem /
+                                                                            fem,
                                                                     color: const Color(
                                                                         0xffb4b4b4),
                                                                   ),
@@ -713,11 +713,11 @@ class GroundDetails extends StatelessWidget {
                                             border: Border.all(
                                                 color: const Color(0xffe6e6e6)),
                                             borderRadius:
-                                            BorderRadius.circular(12 * fem),
+                                                BorderRadius.circular(12 * fem),
                                           ),
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // imageandtextVnR (I326:21155;137:9503)
@@ -729,23 +729,23 @@ class GroundDetails extends StatelessWidget {
                                                 height: double.infinity,
                                                 child: Row(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                       // rectangle40163EV7 (I326:21155;137:9506;137:9509)
                                                       margin:
-                                                      EdgeInsets.fromLTRB(
-                                                          0 * fem,
-                                                          0 * fem,
-                                                          8 * fem,
-                                                          0 * fem),
+                                                          EdgeInsets.fromLTRB(
+                                                              0 * fem,
+                                                              0 * fem,
+                                                              8 * fem,
+                                                              0 * fem),
                                                       width: 54 * fem,
                                                       height: 50 * fem,
                                                       child: ClipRRect(
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                            8 * fem),
+                                                            BorderRadius
+                                                                .circular(
+                                                                    8 * fem),
                                                         child: Image.asset(
                                                           'assets/light-design/images/rectangle-40163-pUZ.png',
                                                           fit: BoxFit.cover,
@@ -755,40 +755,40 @@ class GroundDetails extends StatelessWidget {
                                                     Container(
                                                       // textXUD (I326:21155;137:9498)
                                                       margin:
-                                                      EdgeInsets.fromLTRB(
-                                                          0 * fem,
-                                                          1.5 * fem,
-                                                          0 * fem,
-                                                          1.5 * fem),
+                                                          EdgeInsets.fromLTRB(
+                                                              0 * fem,
+                                                              1.5 * fem,
+                                                              0 * fem,
+                                                              1.5 * fem),
                                                       width: 136 * fem,
                                                       height: double.infinity,
                                                       child: Column(
                                                         crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           Container(
                                                             // captionFv1 (I326:21155;137:9496)
                                                             margin: EdgeInsets
                                                                 .fromLTRB(
-                                                                0 * fem,
-                                                                0 * fem,
-                                                                0 * fem,
-                                                                4 * fem),
+                                                                    0 * fem,
+                                                                    0 * fem,
+                                                                    0 * fem,
+                                                                    4 * fem),
                                                             child: Text(
                                                               'Tennis Ground',
                                                               style:
-                                                              SafeGoogleFont(
+                                                                  SafeGoogleFont(
                                                                 'Inter',
                                                                 fontSize:
-                                                                17 * ffem,
+                                                                    17 * ffem,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .w600,
+                                                                    FontWeight
+                                                                        .w600,
                                                                 height:
-                                                                1.4705882353 *
-                                                                    ffem /
-                                                                    fem,
+                                                                    1.4705882353 *
+                                                                        ffem /
+                                                                        fem,
                                                                 color: const Color(
                                                                     0xff050505),
                                                               ),
@@ -797,24 +797,24 @@ class GroundDetails extends StatelessWidget {
                                                           SizedBox(
                                                             // frame1000006382nYZ (I326:21155;306:12554)
                                                             width:
-                                                            double.infinity,
+                                                                double.infinity,
                                                             child: Row(
                                                               crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
+                                                                  CrossAxisAlignment
+                                                                      .center,
                                                               children: [
                                                                 Container(
                                                                   // clock8sK (I326:21155;306:12476)
                                                                   margin: EdgeInsets
                                                                       .fromLTRB(
-                                                                      0 * fem,
-                                                                      0 * fem,
-                                                                      4 * fem,
-                                                                      0 * fem),
+                                                                          0 * fem,
+                                                                          0 * fem,
+                                                                          4 * fem,
+                                                                          0 * fem),
                                                                   width:
-                                                                  16 * fem,
+                                                                      16 * fem,
                                                                   height:
-                                                                  16 * fem,
+                                                                      16 * fem,
                                                                   child: Image
                                                                       .asset(
                                                                     'assets/light-design/images/clock-SRP.png',
@@ -828,18 +828,18 @@ class GroundDetails extends StatelessWidget {
                                                                   // minimumhours034W5 (I326:21155;137:9497)
                                                                   'Minimum Hours 03',
                                                                   style:
-                                                                  SafeGoogleFont(
+                                                                      SafeGoogleFont(
                                                                     'Inter',
                                                                     fontSize:
-                                                                    13 *
-                                                                        ffem,
+                                                                        13 *
+                                                                            ffem,
                                                                     fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
+                                                                        FontWeight
+                                                                            .w400,
                                                                     height:
-                                                                    1.3846153846 *
-                                                                        ffem /
-                                                                        fem,
+                                                                        1.3846153846 *
+                                                                            ffem /
+                                                                            fem,
                                                                     color: const Color(
                                                                         0xffb4b4b4),
                                                                   ),
@@ -915,7 +915,7 @@ class GroundDetails extends StatelessWidget {
                                     height: 36 * fem,
                                     child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Container(
                                           // iconandcaptionB6q (326:21207)
@@ -924,7 +924,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // icontmw (326:21208)
@@ -949,8 +949,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -961,7 +962,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // icon5bX (326:21212)
@@ -986,8 +987,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1004,7 +1006,7 @@ class GroundDetails extends StatelessWidget {
                                     height: 37.93 * fem,
                                     child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           // iconandcaptionqj7 (326:21216)
@@ -1012,7 +1014,7 @@ class GroundDetails extends StatelessWidget {
                                               0 * fem, 11 * fem, 1.93 * fem),
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // iconn8Z (326:21217)
@@ -1037,8 +1039,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1049,7 +1052,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // iconbLu (326:21226)
@@ -1074,8 +1077,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1129,7 +1133,7 @@ class GroundDetails extends StatelessWidget {
                                     height: 20 * fem,
                                     child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Container(
                                           // iconandcaptionJHF (326:21248)
@@ -1138,7 +1142,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // icon1xM (326:21249)
@@ -1150,10 +1154,11 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffcdcdcd),
+                                                  color:
+                                                      const Color(0xffcdcdcd),
                                                   borderRadius:
-                                                  BorderRadius.circular(
-                                                      16 * fem),
+                                                      BorderRadius.circular(
+                                                          16 * fem),
                                                 ),
                                               ),
                                               Text(
@@ -1164,8 +1169,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1176,7 +1182,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // iconRmB (326:21253)
@@ -1188,10 +1194,11 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffcdcdcd),
+                                                  color:
+                                                      const Color(0xffcdcdcd),
                                                   borderRadius:
-                                                  BorderRadius.circular(
-                                                      16 * fem),
+                                                      BorderRadius.circular(
+                                                          16 * fem),
                                                 ),
                                               ),
                                               Text(
@@ -1202,8 +1209,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1223,7 +1231,7 @@ class GroundDetails extends StatelessWidget {
                                     height: 20 * fem,
                                     child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Container(
                                           // iconandcaptionBNy (326:21257)
@@ -1232,7 +1240,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // iconiNu (326:21258)
@@ -1244,10 +1252,11 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffcdcdcd),
+                                                  color:
+                                                      const Color(0xffcdcdcd),
                                                   borderRadius:
-                                                  BorderRadius.circular(
-                                                      16 * fem),
+                                                      BorderRadius.circular(
+                                                          16 * fem),
                                                 ),
                                               ),
                                               Text(
@@ -1258,8 +1267,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1270,7 +1280,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 // iconjJ1 (326:21267)
@@ -1282,10 +1292,11 @@ class GroundDetails extends StatelessWidget {
                                                 width: 12 * fem,
                                                 height: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffcdcdcd),
+                                                  color:
+                                                      const Color(0xffcdcdcd),
                                                   borderRadius:
-                                                  BorderRadius.circular(
-                                                      16 * fem),
+                                                      BorderRadius.circular(
+                                                          16 * fem),
                                                 ),
                                               ),
                                               Text(
@@ -1296,8 +1307,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 15 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3333333333 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3333333333 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ],
@@ -1317,7 +1329,7 @@ class GroundDetails extends StatelessWidget {
                                     height: 20 * fem,
                                     child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Container(
                                           // iconUeu (326:21284)
@@ -1328,7 +1340,7 @@ class GroundDetails extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             color: const Color(0xffcdcdcd),
                                             borderRadius:
-                                            BorderRadius.circular(16 * fem),
+                                                BorderRadius.circular(16 * fem),
                                           ),
                                         ),
                                         Text(
@@ -1458,9 +1470,10 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 13 * ffem,
                                                   fontWeight: FontWeight.w500,
                                                   height:
-                                                  1.3846153846 * ffem / fem,
+                                                      1.3846153846 * ffem / fem,
                                                   letterSpacing: -0.2 * fem,
-                                                  color: const Color(0xff9b9b9b),
+                                                  color:
+                                                      const Color(0xff9b9b9b),
                                                 ),
                                               ),
                                             ],
@@ -1506,7 +1519,7 @@ class GroundDetails extends StatelessWidget {
                                     height: double.infinity,
                                     child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Container(
                                           // imageQ8Z (327:21328)
@@ -1516,7 +1529,7 @@ class GroundDetails extends StatelessWidget {
                                           height: 40 * fem,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(20 * fem),
+                                                BorderRadius.circular(20 * fem),
                                             border: Border.all(
                                                 color: const Color(0xffffffff)),
                                             image: const DecorationImage(
@@ -1532,7 +1545,7 @@ class GroundDetails extends StatelessWidget {
                                           height: double.infinity,
                                           child: Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Container(
                                                 // lesliealexanderbiq (327:21330)
@@ -1550,7 +1563,8 @@ class GroundDetails extends StatelessWidget {
                                                     height: 1.4705882353 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff050505),
+                                                    color:
+                                                        const Color(0xff050505),
                                                   ),
                                                 ),
                                               ),
@@ -1562,8 +1576,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 11 * ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height:
-                                                  1.3636363636 * ffem / fem,
-                                                  color: const Color(0xff696969),
+                                                      1.3636363636 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff696969),
                                                 ),
                                               ),
                                             ],
@@ -1660,8 +1675,9 @@ class GroundDetails extends StatelessWidget {
                                                   fontSize: 13 * ffem,
                                                   fontWeight: FontWeight.w500,
                                                   height:
-                                                  1.3846153846 * ffem / fem,
-                                                  color: const Color(0xff050505),
+                                                      1.3846153846 * ffem / fem,
+                                                  color:
+                                                      const Color(0xff050505),
                                                 ),
                                               ),
                                             ),

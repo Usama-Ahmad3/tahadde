@@ -5,6 +5,7 @@ import '../../../../../constant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 
 class SpecificSportsListScreen extends StatefulWidget {
   final Map? detail;
@@ -74,7 +75,7 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                   Container(
                     height: 180,
                     width: size.width,
-                    color: Colors.white,
+                    color: AppColors.white,
                     child: Column(
                       children: [
                         cachedNetworkImage(
@@ -126,7 +127,7 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
               ? const Expanded(
                   child: Center(
                   child: CircularProgressIndicator(
-                    color: appThemeColor,
+                    color: AppColors.themeColor,
                   ),
                 ))
               : _bookPitchData.isNotEmpty

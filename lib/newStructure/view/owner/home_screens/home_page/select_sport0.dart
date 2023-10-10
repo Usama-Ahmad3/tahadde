@@ -5,6 +5,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'document_screen_both.dart';
 
@@ -54,8 +55,8 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: MyAppState.mode == ThemeMode.light
-          ? Colors.white
-          : const Color(0xff686868),
+          ? AppColors.white
+          : AppColors.darkTheme,
       appBar: appBarForCreatingAcademy(
         size,
         context,
@@ -68,7 +69,7 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
         padding: EdgeInsets.symmetric(horizontal: size.height * 0.02),
         child: ButtonWidget(
           title: Text(AppLocalizations.of(context)!.continu),
-          color: indexItem != null ? const Color(0xff1d7e55) : Colors.grey,
+          color: indexItem != null ? AppColors.barLineColor : AppColors.grey,
           onTaped: () {
             indexItem != null
                 ? navigateToDocuments(SportsModel(
@@ -83,33 +84,33 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
       ),
       body: _isLoading
           ? Container(
-              color: Colors.black,
+              color: AppColors.black,
               child: Container(
                 width: size.width,
                 height: size.height,
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.033),
                 decoration: BoxDecoration(
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.white
-                        : const Color(0xff686868),
+                        ? AppColors.white
+                        : AppColors.darkTheme,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
                 child: const Center(
                   child: CircularProgressIndicator(
-                    color: Color(0xff1d7e55),
+                    color: AppColors.appThemeColor,
                   ),
                 ),
               ))
           : Container(
-              color: Colors.black,
+              color: AppColors.black,
               child: Container(
                 width: size.width,
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.033),
                 decoration: BoxDecoration(
                     color: MyAppState.mode == ThemeMode.light
-                        ? Colors.white
-                        : const Color(0xff686868),
+                        ? AppColors.white
+                        : AppColors.darkTheme,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
@@ -122,8 +123,8 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                       Text(AppLocalizations.of(context)!.selecttypeofSport,
                           style: TextStyle(
                               color: MyAppState.mode == ThemeMode.light
-                                  ? Colors.black
-                                  : Colors.white,
+                                  ? AppColors.black
+                                  : AppColors.white,
                               fontSize: 15)),
                       SizedBox(
                         height: size.height * 0.01,
@@ -137,11 +138,11 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                                   decoration: BoxDecoration(
                                       color: MyAppState.mode == ThemeMode.light
                                           ? selected == index
-                                              ? const Color(0xff1d7e55)
-                                              : Colors.grey.shade200
+                                              ? AppColors.appThemeColor
+                                              : AppColors.grey200
                                           : selected == index
-                                              ? const Color(0xff1d7e55)
-                                              : Colors.black12,
+                                              ? AppColors.appThemeColor
+                                              : AppColors.containerColorB,
                                       borderRadius: BorderRadius.circular(10)),
                                   child: ListTile(
                                     onTap: () {
@@ -152,8 +153,8 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                                     titleAlignment:
                                         ListTileTitleAlignment.center,
                                     shape: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.white12),
+                                        borderSide: BorderSide(
+                                            color: AppColors.containerColorW12),
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     title: Text(
@@ -166,10 +167,10 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                                       style: TextStyle(
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
+                                                  ? AppColors.black
                                                   : selected == index
-                                                      ? Colors.black
-                                                      : Colors.white,
+                                                      ? AppColors.black
+                                                      : AppColors.white,
                                           fontSize: 14),
                                     ),
                                     leading: cachedNetworkImage(
@@ -179,10 +180,10 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                                         width: size.width * 0.1,
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? Colors.black
+                                                ? AppColors.black
                                                 : selected == index
-                                                    ? Colors.black
-                                                    : Colors.white,
+                                                    ? AppColors.black
+                                                    : AppColors.white,
                                         imageFit: BoxFit.fill),
                                     trailing: Icon(
                                       AppLocalizations.of(context)!.locale ==
@@ -190,10 +191,10 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                                           ? Icons.keyboard_arrow_right
                                           : Icons.keyboard_arrow_left,
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
+                                          ? AppColors.black
                                           : selected == index
-                                              ? Colors.black
-                                              : Colors.white,
+                                              ? AppColors.black
+                                              : AppColors.white,
                                     ),
                                   ),
                                 ),

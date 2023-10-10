@@ -12,6 +12,7 @@ import '../../../../../main.dart';
 import '../../../../../modelClass/slot_model_class.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/textFormField.dart';
 
 class SlotChartScreen extends StatefulWidget {
@@ -88,25 +89,25 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: MyAppState.mode == ThemeMode.light
-            ? Colors.white
-            : const Color(0xff686868),
+            ? AppColors.white
+            : AppColors.darkTheme,
         appBar: appBarForCreatingAcademy(
             size,
             context,
             AppLocalizations.of(context)!.slotChart,
             false,
-            const Color(0XFF25A163),
-            const Color(0XFF25A163)),
+            AppColors.barLineColor,
+            AppColors.barLineColor,),
         body: Container(
-          color: Colors.black,
+          color: AppColors.black,
           child: Container(
             height: size.height,
             width: size.width,
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.033),
             decoration: BoxDecoration(
                 color: MyAppState.mode == ThemeMode.light
-                    ? Colors.white
-                    : const Color(0xff686868),
+                    ? AppColors.white
+                    : AppColors.darkTheme,
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20))),
@@ -143,11 +144,11 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                 BorderRadius.circular(25),
                                             color: slotList.isEmpty
                                                 ? Colors.redAccent.shade200
-                                                : const Color(0xffffc300)),
+                                                : AppColors.appThemeColor),
                                         child: Text(
                                           _weakList[index].name.substring(0, 3),
-                                          style: const TextStyle(
-                                              color: Colors.black,
+                                          style: TextStyle(
+                                              color: AppColors.black,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500),
                                         ),
@@ -157,7 +158,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                       "assets/images/bar_icon.png",
                                       width: size.width * 0.22,
                                       height: size.height * 0.018,
-                                      color: Colors.grey,
+                                      color: AppColors.grey,
                                     )
                                   ],
                                 ),
@@ -178,7 +179,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(25),
-                                      color: Colors.grey.shade200,
+                                      color: AppColors.grey200,
                                     ),
                                     child: Text(
                                       _weakList[index].name.substring(0, 3),
@@ -198,7 +199,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                     ? const Expanded(
                         child: Center(
                             child: CircularProgressIndicator(
-                        color: Color(0XFF25A163),
+                        color: AppColors.barLineColor,
                       )))
                     : slotList.isNotEmpty
                         ? Expanded(
@@ -221,8 +222,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                 fontSize: 14,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Colors.black
-                                                    : Colors.white),
+                                                    ? AppColors.black
+                                                    : AppColors.white),
                                           ),
                                         ),
                                         GridView.builder(
@@ -275,13 +276,13 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                   decoration: BoxDecoration(
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? Colors.grey.shade200
-                                                          : Colors.black12,
+                                                          ? AppColors.grey200
+                                                          : AppColors.containerColorB,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10),
                                                       border: Border.all(
-                                                          color: Colors.grey)),
+                                                          color: AppColors.grey)),
                                                   child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -303,8 +304,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                         .mode ==
                                                                     ThemeMode
                                                                         .light
-                                                                ? Colors.black
-                                                                : Colors.white),
+                                                                ? AppColors.black
+                                                                : AppColors.white),
                                                       ),
                                                       slotList[0].sports ==
                                                               "swimming"
@@ -436,19 +437,19 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                 Container(
                                   height: size.height * .005,
                                   width: size.width * .17,
-                                  color: const Color(0XFF25A163),
+                                  color: AppColors.barLineColor,
                                 ),
                                 flaxibleGap(1),
                                 Container(
                                   height: size.height * .005,
                                   width: size.width * .17,
-                                  color: const Color(0XFF25A163),
+                                  color: AppColors.barLineColor,
                                 ),
                                 flaxibleGap(1),
                                 Container(
                                   height: size.height * .005,
                                   width: size.width * .17,
-                                  color: const Color(0XFF25A163),
+                                  color: AppColors.barLineColor,
                                 ),
                                 flaxibleGap(1),
                                 Container(
@@ -469,7 +470,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                       )),
                   body: SingleChildScrollView(
                     child: Container(
-                      color: Colors.black,
+                      color: AppColors.black,
                       child: Container(
                         height: size.height * 0.85,
                         width: size.width,
@@ -477,8 +478,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                             horizontal: size.width * 0.033),
                         decoration: BoxDecoration(
                             color: MyAppState.mode == ThemeMode.light
-                                ? Colors.white
-                                : const Color(0xff686868),
+                                ? AppColors.white
+                                : AppColors.darkTheme,
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
@@ -494,7 +495,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                   style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
-                                      color: appThemeColor,
+                                      color: AppColors.appThemeColor,
                                       fontFamily: "Poppins"),
                                 ),
                               ),
@@ -506,12 +507,12 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: appThemeColor),
+                                          color: AppColors.appThemeColor),
                                     ),
                               flaxibleGap(1),
                               slotList[0].sports == "swimming"
                                   ? const SizedBox.shrink()
-                                  : textFieldWidget(
+                                  : TextFieldWidget(
                                       controller: _venuePriceController,
                                       hintText: '',
                                       type: TextInputType.number,
@@ -543,18 +544,18 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                         return null;
                                       },
                                       border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
+                                          borderSide:  BorderSide(
+                                              color: AppColors.grey),
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                       enableBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
+                                          borderSide:  BorderSide(
+                                              color: AppColors.grey),
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                       focusBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
+                                          borderSide:   BorderSide(
+                                              color: AppColors.grey),
                                           borderRadius:
                                               BorderRadius.circular(12))),
                               flaxibleGap(2),
@@ -563,10 +564,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
-                                    color: appThemeColor),
+                                    color: AppColors.appThemeColor),
                               ),
                               flaxibleGap(1),
-                              textFieldWidget(
+                              TextFieldWidget(
                                   controller: _playerPriceController,
                                   hintText: '',
                                   focus: focusNode,
@@ -595,15 +596,15 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                   },
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                           BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                            BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                            BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12))),
                               flaxibleGap(20),
                               ButtonWidget(

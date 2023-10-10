@@ -242,7 +242,7 @@ class _SocialDetailState extends State<SocialDetail> {
                                   : Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        textFieldWidget(
+                        TextFieldWidget(
                           controller: _emailController,
                           hintText: '',
                           enable: false,

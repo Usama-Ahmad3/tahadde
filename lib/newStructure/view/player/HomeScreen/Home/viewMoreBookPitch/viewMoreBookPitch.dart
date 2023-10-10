@@ -11,7 +11,8 @@ import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
 import '../../../../../../network/network_calls.dart';
-import '../../../../utils.dart';
+import '../../../../../app_colors/app_colors.dart';
+import '../../../../../utils/utils.dart';
 
 class ViewMoreBookPitchScreen extends StatefulWidget {
   Map pitchType;
@@ -99,7 +100,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
         ? _buildShimmer(sizeWidth, sizeHeight)
         : _internet
             ? Scaffold(
-                backgroundColor: Colors.black,
+                backgroundColor: AppColors.black,
                 appBar: PreferredSize(
                   preferredSize: Size(sizeWidth, sizeHeight * 0.08),
                   child: AppBar(
@@ -108,10 +109,10 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
-                          .copyWith(color: Colors.white),
+                          .copyWith(color: AppColors.white),
                     ),
                     centerTitle: true,
-                    backgroundColor: Colors.black,
+                    backgroundColor: AppColors.black,
                     leadingWidth: sizeWidth * 0.18,
                     leading: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -122,12 +123,12 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                         child: Container(
                             padding: EdgeInsets.all(sizeHeight * 0.008),
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
+                                border: Border.all(color: AppColors.grey),
                                 shape: BoxShape.circle),
-                            child: const Center(
+                            child:  Center(
                               child: FaIcon(
                                 FontAwesomeIcons.close,
-                                color: Colors.white,
+                                color: AppColors.white,
                               ),
                             )),
                       ),
@@ -157,9 +158,9 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
 
   Widget _buildShimmer(sizeWidth, sizeHeight) {
     return Material(
-      color: Colors.white,
+      color: AppColors.white,
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.black,
         appBar: PreferredSize(
           preferredSize: Size(sizeWidth, sizeHeight * 0.105),
           child: AppBar(
@@ -168,10 +169,10 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
-                  .copyWith(color: Colors.white),
+                  .copyWith(color: AppColors.white),
             ),
             centerTitle: true,
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.black,
             leadingWidth: sizeWidth * 0.18,
             leading: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -182,12 +183,12 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                 child: Container(
                     padding: EdgeInsets.all(sizeHeight * 0.008),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
+                        border: Border.all(color: AppColors.grey),
                         shape: BoxShape.circle),
-                    child: const Center(
+                    child: Center(
                       child: FaIcon(
                         FontAwesomeIcons.close,
-                        color: Colors.white,
+                        color: AppColors.white,
                       ),
                     )),
               ),
@@ -198,7 +199,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
           height: sizeHeight,
           decoration: BoxDecoration(
               color: MyAppState.mode == ThemeMode.light
-                  ? Colors.white
+                  ? AppColors.white
                   : const Color(0xff5A5C60),
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20))),

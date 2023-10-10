@@ -7,7 +7,8 @@ import '../../../../../common_widgets/internet_loss.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
-import '../../../utils.dart';
+import '../../../../app_colors/app_colors.dart';
+import '../../../../utils/utils.dart';
 import 'notificationShimmer.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -111,7 +112,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           );
         },
         child: Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: AppColors.black,
           body: _isLoading
               ? Padding(
                   padding: EdgeInsets.only(top: 120.0 * fem),
@@ -145,12 +146,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                 EdgeInsets.all(height * 0.008),
                                             decoration: BoxDecoration(
                                                 border: Border.all(
-                                                    color: Colors.grey),
+                                                    color: AppColors.grey),
                                                 shape: BoxShape.circle),
-                                            child: const Center(
+                                            child: Center(
                                               child: FaIcon(
                                                 FontAwesomeIcons.close,
-                                                color: Colors.white,
+                                                color: AppColors.white,
                                               ),
                                             )),
                                       )
@@ -189,7 +190,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                       height: 400 * fem,
                                       width: double.infinity,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                           borderRadius:
                                               BorderRadius.circular(30)),
                                       child: Column(
@@ -231,7 +232,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                     // ignore: prefer_const_constructors
                                     color: mode == ThemeMode.light
                                         ? const Color(0xfff2f2f2)
-                                        : const Color(0xff686868),
+                                        : AppColors.darkTheme,
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.only(top: 8.0 * fem),
@@ -258,7 +259,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                   height:
                                                       1.3333333333 * ffem / fem,
                                                   color: mode == ThemeMode.light
-                                                      ? const Color(0xff686868)
+                                                      ? AppColors.darkTheme
                                                       : const Color(0xffffffff),
                                                 ),
                                               ),
@@ -295,13 +296,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                       .light
                                                               ? const Color(
                                                                   0xffffffff)
-                                                              : Colors.grey),
+                                                              : AppColors.grey),
                                                       color: mode ==
                                                               ThemeMode.light
                                                           ? const Color(
                                                               0xffffffff)
-                                                          : const Color(
-                                                              0xff686868),
+                                                          : AppColors.darkTheme,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15 * fem),
@@ -497,9 +497,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                             .mode ==
                                                                         ThemeMode
                                                                             .light
-                                                                    ? const Color(
-                                                                        0xff686868)
-                                                                    : Colors
+                                                                    ? AppColors.darkTheme
+                                                                    : AppColors
                                                                         .white,
                                                               ),
                                                             ),

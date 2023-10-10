@@ -21,6 +21,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
+import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/app_bar.dart';
 
 // ignore: must_be_immutable
@@ -113,14 +114,14 @@ class _DocumentScreenState extends State<DocumentScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.uploadprofilepicture,
-                style: const TextStyle(color: Colors.black)),
+                style: TextStyle(color: AppColors.black)),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
                   GestureDetector(
-                    child: const Text('Upload Pdf',
+                    child: Text('Upload Pdf',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: AppColors.black,
                             fontWeight: FontWeight.normal)),
                     onTap: () async {
                       var status = await Permission.photos.status;
@@ -137,27 +138,25 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   title: Text(
                                       AppLocalizations.of(context)!
                                           .galleryPermission,
-                                      style:
-                                          const TextStyle(color: Colors.black)),
+                                      style: TextStyle(color: AppColors.black)),
                                   content: Text(
                                       AppLocalizations.of(context)!
                                           .thisGalleryPicturesUploadImage,
-                                      style:
-                                          const TextStyle(color: Colors.black)),
-                                  actions: <Widget>[
+                                      style: TextStyle(color: AppColors.black)),
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
-                                          style: const TextStyle(
-                                              color: Colors.black)),
+                                          style: TextStyle(
+                                              color: AppColors.black)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
                                     ),
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.setting,
-                                          style: const TextStyle(
-                                              color: Colors.black)),
+                                          style: TextStyle(
+                                              color: AppColors.black)),
                                       onPressed: () => openAppSettings(),
                                     ),
                                   ],
@@ -170,8 +169,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.choosefromlibrary,
-                        style: const TextStyle(
-                            color: Colors.black,
+                        style: TextStyle(
+                            color: AppColors.black,
                             fontWeight: FontWeight.normal)),
                     onTap: () async {
                       var status = await Permission.photos.status;
@@ -188,27 +187,25 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   title: Text(
                                       AppLocalizations.of(context)!
                                           .galleryPermission,
-                                      style:
-                                          const TextStyle(color: Colors.black)),
+                                      style: TextStyle(color: AppColors.black)),
                                   content: Text(
                                       AppLocalizations.of(context)!
                                           .thisGalleryPicturesUploadImage,
-                                      style:
-                                          const TextStyle(color: Colors.black)),
-                                  actions: <Widget>[
+                                      style: TextStyle(color: AppColors.black)),
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
-                                          style: const TextStyle(
-                                              color: Colors.black)),
+                                          style: TextStyle(
+                                              color: AppColors.black)),
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
                                     ),
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.setting,
-                                          style: const TextStyle(
-                                              color: Colors.black)),
+                                          style: TextStyle(
+                                              color: AppColors.black)),
                                       onPressed: () => openAppSettings(),
                                     ),
                                   ],
@@ -222,8 +219,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   GestureDetector(
                     child: Text(
                       AppLocalizations.of(context)!.takephoto,
-                      style: const TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.normal),
+                      style: TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.normal),
                     ),
                     onTap: () async {
                       var status = await Permission.camera.status;
@@ -241,7 +239,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                       .cameraPermission),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisPicturesUploadImage),
-                                  actions: <Widget>[
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny),
@@ -350,7 +348,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 title: Text(AppLocalizations.of(context)!.locationPermission),
                 content: Text(AppLocalizations.of(context)!
                     .thislocationPicturesUploadImage),
-                actions: <Widget>[
+                actions: [
                   CupertinoDialogAction(
                     child: Text(AppLocalizations.of(context)!.deny),
                     onPressed: () => Navigator.of(context).pop(),
@@ -375,7 +373,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
         builder: (BuildContext context, Widget? child) {
           return Theme(
             data: ThemeData.light().copyWith(
-              colorScheme: const ColorScheme.light(primary: Color(0XFF032040)),
+              colorScheme:
+                  const ColorScheme.light(primary: AppColors.themeColor),
               buttonTheme:
                   const ButtonThemeData(textTheme: ButtonTextTheme.primary),
             ),
@@ -421,7 +420,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
     var size = MediaQuery.of(context).size;
     return loading
         ? Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.black,
             appBar: appBarWidget(
               sizeWidth,
               sizeHeight,
@@ -435,14 +434,14 @@ class _DocumentScreenState extends State<DocumentScreen> {
               padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
               decoration: BoxDecoration(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : const Color(0xff686868),
+                      ? AppColors.white
+                      : AppColors.darkTheme,
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               child: const Center(
                 child: CircularProgressIndicator(
-                  color: Color(0xff1d7e55),
+                  color: AppColors.appThemeColor,
                 ),
               ),
             ),
@@ -452,7 +451,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 appBar: PreferredSize(
                     preferredSize: const Size.fromHeight(0),
                     child: AppBar(
-                      backgroundColor: const Color(0XFF032040),
+                      backgroundColor: AppColors.themeColor,
                     )),
                 body: Stack(
                   alignment: Alignment.bottomCenter,
@@ -538,9 +537,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
                     Container(
                       height: 200,
                       width: sizeWidth,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(40),
                             topLeft: Radius.circular(40)),
                       ),
@@ -566,11 +565,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 width: sizeWidth,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4),
-                                  color: const Color(0XFF25A163),
+                                  color: AppColors.barLineColor,
                                   //color: Color(color),
                                 ),
                                 child: InkWell(
-                                  splashColor: Colors.black,
+                                  splashColor: AppColors.black,
                                   child: button(
                                       name: AppLocalizations.of(context)!
                                           .confirm),
@@ -627,8 +626,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
                 child: Scaffold(
                   backgroundColor: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : const Color(0xff686868),
+                      ? AppColors.white
+                      : AppColors.darkTheme,
                   appBar: appBarForCreatingAcademy(
                     size,
                     context,
@@ -639,15 +638,15 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   ),
                   body: SingleChildScrollView(
                     child: Container(
-                      color: Colors.black,
+                      color: AppColors.black,
                       child: Container(
                         width: sizeWidth,
                         padding:
                             EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
                         decoration: BoxDecoration(
                             color: MyAppState.mode == ThemeMode.light
-                                ? Colors.white
-                                : const Color(0xff686868),
+                                ? AppColors.white
+                                : AppColors.darkTheme,
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
@@ -668,7 +667,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                         height: sizeHeight * .2,
                                         width: sizeWidth,
                                         decoration: BoxDecoration(
-                                            color: const Color(0XFF032040),
+                                            color: AppColors.themeColor,
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         child: Lottie.asset(
@@ -858,7 +857,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                   _showChoiceDialog(context);
                                                 },
                                                 child: Column(
-                                                  children: <Widget>[
+                                                  children: [
                                                     flaxibleGap(
                                                       1,
                                                     ),
@@ -868,7 +867,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                               ThemeMode.light
                                                           ? const Color(
                                                               0XFF9B9B9B)
-                                                          : Colors.white,
+                                                          : AppColors.white,
                                                       size: 50,
                                                     ),
                                                     flaxibleGap(
@@ -885,7 +884,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                                         .light
                                                                 ? const Color(
                                                                     0XFF9B9B9B)
-                                                                : Colors.white,
+                                                                : AppColors
+                                                                    .white,
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -919,13 +919,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 AppLocalizations.of(context)!.documentName,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? const Color(0XFF032040)
-                                        : Colors.white),
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
                               ),
                               SizedBox(
                                 height: sizeHeight * 0.01,
                               ),
-                              textFieldWidget(
+                              TextFieldWidget(
                                   controller: _nameController,
                                   hintText: AppLocalizations.of(context)!
                                       .documentName,
@@ -944,15 +944,15 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   },
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12))),
                               SizedBox(
                                 height: sizeHeight * 0.02,
@@ -961,13 +961,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 AppLocalizations.of(context)!.licenceName,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? const Color(0XFF032040)
-                                        : Colors.white),
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
                               ),
                               SizedBox(
                                 height: sizeHeight * 0.01,
                               ),
-                              textFieldWidget(
+                              TextFieldWidget(
                                   controller: _licenceController,
                                   hintText:
                                       AppLocalizations.of(context)!.licenceName,
@@ -986,15 +986,15 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   },
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12))),
                               SizedBox(
                                 height: sizeHeight * 0.02,
@@ -1003,8 +1003,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 AppLocalizations.of(context)!.expiryDate,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? const Color(0XFF032040)
-                                        : Colors.white),
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
                               ),
                               SizedBox(
                                 height: sizeHeight * 0.01,
@@ -1024,7 +1024,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                     });
                                   }
                                 },
-                                child: textFieldWidget(
+                                child: TextFieldWidget(
                                   controller: _expiryDate,
                                   hintText: 'Expiry Document Date',
                                   enable: false,
@@ -1037,15 +1037,15 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   },
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                 ),
                               ),
@@ -1060,8 +1060,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                       style: TextStyle(
                                           color:
                                               MyAppState.mode == ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : Colors.white),
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white),
                                     )
                                   : const SizedBox.shrink(),
                               SizedBox(
@@ -1096,15 +1096,15 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                             FocusScope.of(context).unfocus();
                                             _getLocationPermission();
                                           },
-                                          child: textFieldWidget(
+                                          child: TextFieldWidget(
                                             controller: locationController,
                                             hintText: locationController.text,
                                             suffixIcon:
                                                 Icons.location_searching,
                                             suffixIconColor: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white,
+                                                ? AppColors.black
+                                                : AppColors.white,
                                             enable: false,
                                             onValidate: (value) {
                                               if (value.isEmpty) {
@@ -1115,18 +1115,18 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                               return null;
                                             },
                                             border: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.grey),
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
                                                 borderRadius:
                                                     BorderRadius.circular(12)),
                                             enableBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.grey),
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
                                                 borderRadius:
                                                     BorderRadius.circular(12)),
                                             focusBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.grey),
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
                                                 borderRadius:
                                                     BorderRadius.circular(12)),
                                           ),

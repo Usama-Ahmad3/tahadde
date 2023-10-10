@@ -8,6 +8,7 @@ import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
 import '../../../../../../network/network_calls.dart';
 import '../../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
+import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/widgets/buttonWidget.dart';
 import '../../../../player/HomeScreen/widgets/textFormField.dart';
 
@@ -107,8 +108,8 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
           backgroundColor: MyAppState.mode == ThemeMode.light
-              ? Colors.white
-              : const Color(0xff686868),
+              ? AppColors.white
+              : AppColors.darkTheme,
           appBar: PreferredSize(
               preferredSize: Size(sizeWidth, sizeHeight * 0.105),
               child: AppBar(
@@ -117,10 +118,10 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
-                      .copyWith(color: Colors.white),
+                      .copyWith(color: AppColors.white),
                 ),
                 centerTitle: true,
-                backgroundColor: Colors.black,
+                backgroundColor: AppColors.black,
                 leadingWidth: sizeWidth * 0.18,
                 leading: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -129,12 +130,12 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                     child: Container(
                         padding: EdgeInsets.all(sizeHeight * 0.008),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(color: AppColors.grey),
                             shape: BoxShape.circle),
-                        child: const Center(
+                        child: Center(
                           child: FaIcon(
                             FontAwesomeIcons.close,
-                            color: Colors.white,
+                            color: AppColors.white,
                           ),
                         )),
                   ),
@@ -149,19 +150,19 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         Container(
                           height: sizeHeight * .005,
                           width: sizeWidth * .17,
-                          color: const Color(0XFF25A163),
+                          color: AppColors.barLineColor,
                         ),
                         flaxibleGap(1),
                         Container(
                           height: sizeHeight * .005,
                           width: sizeWidth * .17,
-                          color: const Color(0XFF25A163),
+                          color: AppColors.barLineColor,
                         ),
                         flaxibleGap(1),
                         Container(
                           height: sizeHeight * .005,
                           width: sizeWidth * .17,
-                          color: const Color(0XFF25A163),
+                          color: AppColors.barLineColor,
                         ),
                         flaxibleGap(1),
                         Container(
@@ -187,8 +188,8 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
               padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
               decoration: BoxDecoration(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : const Color(0xff686868),
+                      ? AppColors.white
+                      : AppColors.darkTheme,
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
@@ -205,13 +206,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         AppLocalizations.of(context)!.academyName,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
                       ),
-                      textFieldWidget(
+                      TextFieldWidget(
                           controller: _nameController,
                           hintText: AppLocalizations.of(context)!.academyName,
                           onChanged: (value) {
@@ -231,13 +232,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -246,13 +247,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         AppLocalizations.of(context)!.academyNameA,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
                       ),
-                      textFieldWidget(
+                      TextFieldWidget(
                           controller: _nameControllerArabic,
                           hintText: AppLocalizations.of(context)!.venueNameA,
                           focus: arabicFocus,
@@ -272,13 +273,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -287,13 +288,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         AppLocalizations.of(context)!.code,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
                       ),
-                      textFieldWidget(
+                      TextFieldWidget(
                           controller: _codeControllerArabic,
                           hintText: AppLocalizations.of(context)!.code,
                           focus: codeFocus,
@@ -307,13 +308,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                             return '';
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -322,8 +323,8 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         AppLocalizations.of(context)!.description,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
@@ -350,13 +351,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -365,8 +366,8 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         AppLocalizations.of(context)!.descriptionA,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
@@ -388,13 +389,13 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -403,7 +404,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 40, vertical: 10),
                         child: Row(
-                          children: <Widget>[
+                          children: [
                             flaxibleGap(
                               3,
                             ),
@@ -450,7 +451,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                               style: indoor
                                   ? const TextStyle(
                                       fontSize: 12,
-                                      color: appThemeColor,
+                                      color: AppColors.appThemeColor,
                                       fontWeight: FontWeight.w600)
                                   : const TextStyle(
                                       fontSize: 12,
@@ -501,7 +502,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                               style: outdoor
                                   ? const TextStyle(
                                       fontSize: 12,
-                                      color: appThemeColor,
+                                      color: AppColors.appThemeColor,
                                       fontWeight: FontWeight.w600)
                                   : const TextStyle(
                                       fontSize: 12,
@@ -518,8 +519,8 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                         AppLocalizations.of(context)!.chooseFacilitiesProvided,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF032040)
-                                : Colors.white),
+                                ? AppColors.themeColor
+                                : AppColors.white),
                       ),
                       SizedBox(
                         height: sizeHeight * 0.01,
@@ -554,11 +555,11 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                                 color: const Color(0XFFA3A3A3)),
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: const Color(0XFF25A163)
+                                            color: AppColors.barLineColor
                                                 .withOpacity(.3),
                                           ),
                                           child: Column(
-                                            children: <Widget>[
+                                            children: [
                                               flaxibleGap(
                                                 2,
                                               ),
@@ -606,7 +607,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                                 color: const Color(0XFFA3A3A3)),
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: Colors.white,
+                                            color: AppColors.white,
                                           ),
                                           child: Column(
                                             children: <Widget>[

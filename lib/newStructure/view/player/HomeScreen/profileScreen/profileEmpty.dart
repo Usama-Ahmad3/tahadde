@@ -5,6 +5,7 @@ import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart'
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
+import '../../../../app_colors/app_colors.dart';
 
 class ProfileEmptyScreen extends StatefulWidget {
   const ProfileEmptyScreen({super.key});
@@ -21,7 +22,7 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
     var sizeWidth = MediaQuery.of(context).size.width;
     return Material(
       child: Scaffold(
-        backgroundColor: Colors.black54,
+        backgroundColor: AppColors.containerColor54,
         appBar: PreferredSize(
           preferredSize: Size(sizeWidth, sizeHeight * 0.1),
           child: AppBar(
@@ -30,24 +31,24 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
-                  .copyWith(color: Colors.white),
+                  .copyWith(color: AppColors.white),
             ),
             centerTitle: true,
             automaticallyImplyLeading: false,
           ),
         ),
         body: Column(
-          children: <Widget>[
+          children: [
             Expanded(
               child: Container(
-                color: Colors.black54,
+                color: AppColors.containerColor54,
                 child: Container(
                   height: sizeHeight,
                   width: sizeWidth,
                   decoration: BoxDecoration(
                       color: MyAppState.mode == ThemeMode.light
                           ? const Color(0XFFD6D6D6)
-                          : const Color(0xff686868),
+                          : AppColors.darkTheme,
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20))),
@@ -65,7 +66,7 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
                               borderRadius: BorderRadius.circular(12)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
+                            children: [
                               flaxibleGap(1),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -109,7 +110,7 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
                                       navigateToDetaillogin(2);
                                     },
                                     child: Row(
-                                      children: <Widget>[
+                                      children: [
                                         flaxibleGap(4),
                                         Text(
                                             AppLocalizations.of(context)!

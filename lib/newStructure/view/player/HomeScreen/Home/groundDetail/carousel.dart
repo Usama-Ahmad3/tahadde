@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../common_widgets/story_view.dart';
 import '../../../../../../homeFile/utility.dart';
+import '../../../../../app_colors/app_colors.dart';
 import 'groundDetail.dart';
 
 class Carousel extends StatefulWidget {
@@ -118,7 +119,7 @@ class _CarouselState extends State<Carousel> {
             position: _currentIndexPage.toInt(),
             decorator: DotsDecorator(
               activeSize: const Size(20.0, 10.0),
-              color: Colors.grey,
+              color: AppColors.grey,
               activeColor: const Color(0xFF25A163),
               activeShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0)),

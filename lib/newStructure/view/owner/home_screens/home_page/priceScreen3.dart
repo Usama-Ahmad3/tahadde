@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/createSession4.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
@@ -139,14 +140,14 @@ class _PriceScreenViewState extends State<PriceScreenView> {
       child: _isLoading
           ? const Center(
               child: CircularProgressIndicator(
-                color: Color(0xff1d7e55),
+                color: AppColors.appThemeColor,
               ),
             )
           : _internet
               ? Scaffold(
                   backgroundColor: MyAppState.mode == ThemeMode.light
-                      ? Colors.white
-                      : const Color(0xff686868),
+                      ? AppColors.white
+                      : AppColors.darkTheme,
                   appBar: appBarForCreatingAcademy(
                     size,
                     context,
@@ -156,7 +157,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                     const Color(0XFFCBCBCB),
                   ),
                   body: Container(
-                    color: Colors.black,
+                    color: AppColors.black,
                     child: Container(
                       width: size.width,
                       height: size.height,
@@ -164,8 +165,8 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                           EdgeInsets.symmetric(horizontal: size.width * 0.033),
                       decoration: BoxDecoration(
                           color: MyAppState.mode == ThemeMode.light
-                              ? Colors.white
-                              : const Color(0xff686868),
+                              ? AppColors.white
+                              : AppColors.darkTheme,
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20))),
@@ -182,7 +183,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 width: size.width,
                                 height: size.height * 0.06,
                                 decoration: BoxDecoration(
-                                    color: const Color(0xff1d7e55),
+                                    color: AppColors.appThemeColor,
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -198,7 +199,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                     ),
                                     Text(widget.detail.sportsName!,
                                         style: const TextStyle(
-                                            color: Color(0XFF032040),
+                                            color: AppColors.themeColor,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                             fontFamily: "Poppins")),
@@ -212,13 +213,13 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 AppLocalizations.of(context)!.subAcademyName,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? const Color(0XFF032040)
-                                        : Colors.white),
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
                               ),
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
-                              textFieldWidget(
+                              TextFieldWidget(
                                   controller: _vanueController,
                                   hintText: AppLocalizations.of(context)!
                                       .subAcademyName,
@@ -240,15 +241,15 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                   },
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12))),
                               // SizedBox(
                               //   height: size.height * 0.02,
@@ -326,7 +327,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                               widget.detail.sportsType == "swimming"
                                   ? SizedBox(
                                       height: size.height * 0.07,
-                                      child: textFieldWidget(
+                                      child: TextFieldWidget(
                                         onChanged: (value) {
                                           if (value != null) {
                                             indexItem =
@@ -353,8 +354,8 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                             borderSide: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? BorderSide.none
-                                                : const BorderSide(
-                                                    color: Colors.white,
+                                                : BorderSide(
+                                                    color: AppColors.white,
                                                     width: 1),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
@@ -362,8 +363,8 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                             borderSide: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? BorderSide.none
-                                                : const BorderSide(
-                                                    color: Colors.white,
+                                                : BorderSide(
+                                                    color: AppColors.white,
                                                     width: 1),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
@@ -371,8 +372,8 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                             borderSide: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? BorderSide.none
-                                                : const BorderSide(
-                                                    color: Colors.white,
+                                                : BorderSide(
+                                                    color: AppColors.white,
                                                     width: 1),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
@@ -395,13 +396,13 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                           style: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : Colors.white),
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white),
                                         ),
                                         SizedBox(
                                           height: size.height * 0.01,
                                         ),
-                                        textFieldWidget(
+                                        TextFieldWidget(
                                             controller: _priceController,
                                             hintText: '',
                                             type: TextInputType.number,
@@ -433,18 +434,18 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                               return null;
                                             },
                                             border: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.grey),
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
                                                 borderRadius:
                                                     BorderRadius.circular(12)),
                                             enableBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.grey),
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
                                                 borderRadius:
                                                     BorderRadius.circular(12)),
                                             focusBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color: Colors.grey),
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
                                                 borderRadius:
                                                     BorderRadius.circular(12))),
                                       ],
@@ -456,13 +457,13 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 AppLocalizations.of(context)!.pricePerPlayer,
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? const Color(0XFF032040)
-                                        : Colors.white),
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
                               ),
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
-                              textFieldWidget(
+                              TextFieldWidget(
                                   controller: _pricePerPlayer,
                                   hintText: '',
                                   type: TextInputType.number,
@@ -494,15 +495,15 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                   },
                                   border: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                          const BorderSide(color: Colors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12))),
                               SizedBox(
                                 height: size.height * 0.02,
@@ -512,6 +513,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 children: <Widget>[
                                   Checkbox(
                                     autofocus: true,
+                                    activeColor: AppColors.appThemeColor,
                                     value: monVal,
                                     onChanged: (bool? value) {
                                       setState(() {
@@ -540,7 +542,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                                     "terms_and_conditions_url");
                                               },
                                             style: const TextStyle(
-                                              color: Color(0XFF25A163),
+                                              color: AppColors.barLineColor,
                                               fontSize: 15,
                                               // decoration: TextDecoration.underline
                                             ),
@@ -561,7 +563,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                               monVal
                                   ? _isVenueLoading
                                       ? ButtonWidget(
-                                          color: Colors.grey,
+                                          color: AppColors.grey,
                                           onTaped: () {},
                                           title: Text(
                                               AppLocalizations.of(context)!

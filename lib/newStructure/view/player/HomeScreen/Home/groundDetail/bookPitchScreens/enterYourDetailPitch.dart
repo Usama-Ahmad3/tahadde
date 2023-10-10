@@ -1,25 +1,24 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/common_widgets/internet_loss.dart';
+import 'package:flutter_tahaddi/homeFile/routingConstant.dart';
+import 'package:flutter_tahaddi/homeFile/utility.dart';
+import 'package:flutter_tahaddi/localizations.dart';
+import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../common_widgets/internet_loss.dart';
-import '../../homeFile/routingConstant.dart';
-import '../../homeFile/utility.dart';
-import '../../localizations.dart';
-import '../../main.dart';
-import '../../network/network_calls.dart';
-
-class EnterDetailPitch extends StatefulWidget {
+class EnterDetailPitchScreen extends StatefulWidget {
   final dynamic detail;
-  const EnterDetailPitch({super.key, this.detail});
+  const EnterDetailPitchScreen({super.key, this.detail});
 
   @override
-  State<EnterDetailPitch> createState() => _EnterDetailPitch();
+  State<EnterDetailPitchScreen> createState() => _EnterDetailPitchScreen();
 }
 
-class _EnterDetailPitch extends State<EnterDetailPitch> {
+class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
   final focus = FocusNode();
   late bool internet;
   final GlobalKey _textKey = GlobalKey();
@@ -1214,7 +1213,7 @@ class _EnterDetailPitch extends State<EnterDetailPitch> {
         "player_count": widget.detail["player_count"],
         "slug": widget.detail["slug"]
       };
-      // Navigator.pushNamed(context, RouteNames.payment, arguments: detial);
+      Navigator.pushNamed(context, RouteNames.payment, arguments: detial);
     }
   }
 }

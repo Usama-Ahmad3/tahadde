@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class Cancel extends StatelessWidget {
   const Cancel({super.key});
@@ -328,8 +328,8 @@ class Cancel extends StatelessWidget {
                                     width: double.infinity,
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xffe6e6e6)),
+                                      border: Border.all(
+                                          color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -370,7 +370,8 @@ class Cancel extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: const Color(0xff0a0c0e),
+                                                  color:
+                                                      const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
@@ -399,8 +400,8 @@ class Cancel extends StatelessWidget {
                                     width: double.infinity,
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xffe6e6e6)),
+                                      border: Border.all(
+                                          color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -441,7 +442,8 @@ class Cancel extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: const Color(0xff0a0c0e),
+                                                  color:
+                                                      const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
@@ -518,7 +520,8 @@ class Cancel extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: const Color(0xff0a0c0e),
+                                                  color:
+                                                      const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],

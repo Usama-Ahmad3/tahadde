@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class Splash3 extends StatelessWidget {
   const Splash3({super.key});
@@ -137,7 +137,8 @@ class Splash3 extends StatelessWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           6.4894800186 * fem),
-                                                  color: const Color(0xffd9d9d9),
+                                                  color:
+                                                      const Color(0xffd9d9d9),
                                                 ),
                                               ),
                                               Container(
@@ -148,7 +149,8 @@ class Splash3 extends StatelessWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           6.4894800186 * fem),
-                                                  color: const Color(0xfff2f2f2),
+                                                  color:
+                                                      const Color(0xfff2f2f2),
                                                 ),
                                               ),
                                             ],
@@ -457,11 +459,13 @@ class Splash3 extends StatelessWidget {
                                                       12.77 * fem),
                                                   height: double.infinity,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xfff2f2f2),
+                                                    color:
+                                                        const Color(0xfff2f2f2),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.3586387634 * fem),
-                                                    image: const DecorationImage(
+                                                    image:
+                                                        const DecorationImage(
                                                       fit: BoxFit.cover,
                                                       image: AssetImage(
                                                         'assets/light-design/images/rectangle-40162-bg.png',
@@ -511,8 +515,8 @@ class Splash3 extends StatelessWidget {
                                                               BorderRadius.circular(
                                                                   6.4894800186 *
                                                                       fem),
-                                                          color:
-                                                              const Color(0xffd9d9d9),
+                                                          color: const Color(
+                                                              0xffd9d9d9),
                                                         ),
                                                       ),
                                                       Container(
@@ -525,8 +529,8 @@ class Splash3 extends StatelessWidget {
                                                               BorderRadius.circular(
                                                                   6.4894800186 *
                                                                       fem),
-                                                          color:
-                                                              const Color(0xffd9d9d9),
+                                                          color: const Color(
+                                                              0xffd9d9d9),
                                                         ),
                                                       ),
                                                     ],
@@ -576,11 +580,13 @@ class Splash3 extends StatelessWidget {
                                                       12.77 * fem),
                                                   height: double.infinity,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xfff2f2f2),
+                                                    color:
+                                                        const Color(0xfff2f2f2),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.3586387634 * fem),
-                                                    image: const DecorationImage(
+                                                    image:
+                                                        const DecorationImage(
                                                       fit: BoxFit.cover,
                                                       image: AssetImage(
                                                         'assets/light-design/images/rectangle-40162-bg-bVj.png',
@@ -630,8 +636,8 @@ class Splash3 extends StatelessWidget {
                                                               BorderRadius.circular(
                                                                   6.4894800186 *
                                                                       fem),
-                                                          color:
-                                                              const Color(0xffd9d9d9),
+                                                          color: const Color(
+                                                              0xffd9d9d9),
                                                         ),
                                                       ),
                                                       Container(
@@ -644,8 +650,8 @@ class Splash3 extends StatelessWidget {
                                                               BorderRadius.circular(
                                                                   6.4894800186 *
                                                                       fem),
-                                                          color:
-                                                              const Color(0xffd9d9d9),
+                                                          color: const Color(
+                                                              0xffd9d9d9),
                                                         ),
                                                       ),
                                                     ],
@@ -693,11 +699,13 @@ class Splash3 extends StatelessWidget {
                                                       12.77 * fem),
                                                   height: double.infinity,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xfff2f2f2),
+                                                    color:
+                                                        const Color(0xfff2f2f2),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.3586387634 * fem),
-                                                    image: const DecorationImage(
+                                                    image:
+                                                        const DecorationImage(
                                                       fit: BoxFit.cover,
                                                       image: AssetImage(
                                                         'assets/light-design/images/rectangle-40162-bg-iqX.png',
@@ -747,8 +755,8 @@ class Splash3 extends StatelessWidget {
                                                               BorderRadius.circular(
                                                                   6.4894800186 *
                                                                       fem),
-                                                          color:
-                                                              const Color(0xffd9d9d9),
+                                                          color: const Color(
+                                                              0xffd9d9d9),
                                                         ),
                                                       ),
                                                       Container(
@@ -761,8 +769,8 @@ class Splash3 extends StatelessWidget {
                                                               BorderRadius.circular(
                                                                   6.4894800186 *
                                                                       fem),
-                                                          color:
-                                                              const Color(0xffd9d9d9),
+                                                          color: const Color(
+                                                              0xffd9d9d9),
                                                         ),
                                                       ),
                                                     ],

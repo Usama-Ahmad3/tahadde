@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class Splash2 extends StatelessWidget {
   const Splash2({super.key});

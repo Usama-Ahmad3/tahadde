@@ -5,6 +5,7 @@ import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -13,7 +14,8 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../modelClass/territory_model_class.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
-import '../../../utils.dart';
+import '../../../../app_colors/app_colors.dart';
+import '../../../../utils/utils.dart';
 import '../widgets/textFormField.dart';
 import 'shimmerWidgets.dart';
 
@@ -21,10 +23,10 @@ class HomeScreenView extends StatefulWidget {
   const HomeScreenView({super.key});
 
   @override
-  State<HomeScreenView> createState() => _HomeScreenViewState();
+  State<HomeScreenView> createState() => HomeScreenViewState();
 }
 
-class _HomeScreenViewState extends State<HomeScreenView> {
+class HomeScreenViewState extends State<HomeScreenView> {
   List<TerritoryModelClass> territoryData = [];
   String? country;
   String? city;
@@ -355,6 +357,22 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     );
   }
 
+  static late BannerAd myBanner;
+  static bool loaded = false;
+  static loading() {
+    myBanner = BannerAd(
+        size: AdSize.mediumRectangle,
+        adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+        request: const AdRequest(),
+        listener: BannerAdListener(onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+          print("error${error.toString()}");
+        }, onAdLoaded: (e) {
+          loaded = true;
+        }));
+    myBanner.load();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -365,6 +383,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         loadTerritories();
         getSports();
         loadVenues();
+        loading();
       } else {
         if (mounted) {
           setState(() {
@@ -450,8 +469,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                           SizedBox(
                               height: height * 0.057,
                               width: width * 0.7,
-                              child: textFieldWidget(
-                                  textColor: Colors.white,
+                              child: TextFieldWidget(
+                                  textColor: AppColors.white,
                                   controller: searchController,
                                   hintText:
                                       AppLocalizations.of(context)!.search,
@@ -465,7 +484,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                     });
                                     return null;
                                   },
-                                  prefixIconColor: Colors.grey,
+                                  prefixIconColor: AppColors.grey,
                                   enableBorder: UnderlineInputBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   focusBorder: UnderlineInputBorder(
@@ -486,8 +505,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                           decoration: BoxDecoration(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.white
-                                                  : const Color(0xff686868),
+                                                  ? AppColors.white
+                                                  : AppColors.darkTheme,
                                               borderRadius:
                                                   BorderRadius.circular(20)),
                                           child: Column(
@@ -502,8 +521,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                                     fontSize: height * 0.02,
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Colors.black
-                                                        : Colors.white),
+                                                        ? AppColors.black
+                                                        : AppColors.white),
                                               ),
                                               SizedBox(
                                                 height: height * 0.02,
@@ -544,9 +563,9 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                                                           30,
                                                                       backgroundColor: isSelected ==
                                                                               index
-                                                                          ? Colors
+                                                                          ? AppColors
                                                                               .white
-                                                                          : Colors
+                                                                          : AppColors
                                                                               .grey,
                                                                       child: Image.network(_sportsList[index]
                                                                           .image
@@ -555,7 +574,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                                                           index
                                                                       ? const Color(
                                                                           0xff7b61ff)
-                                                                      : Colors
+                                                                      : AppColors
                                                                           .black,
                                                                   elevation: 2,
                                                                   padding:
@@ -569,8 +588,8 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                                                     style: TextStyle(
                                                                         color: isSelected ==
                                                                                 index
-                                                                            ? Colors.white
-                                                                            : const Color(0xff686868)),
+                                                                            ? AppColors.white
+                                                                            : AppColors.darkTheme),
                                                                   )),
                                                             ),
                                                           ))
@@ -585,11 +604,11 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                               height: height * 0.05,
                               width: width * 0.12,
                               decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: AppColors.blue,
                                   borderRadius: BorderRadius.circular(12)),
                               child: Icon(
                                 Icons.list,
-                                color: Colors.white,
+                                color: AppColors.white,
                                 size: height * 0.044,
                               ),
                             ),
@@ -610,7 +629,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                     child: territoryData.isNotEmpty
                         ? CupertinoPicker(
                             itemExtent: 20,
-                            backgroundColor: Colors.black,
+                            backgroundColor: AppColors.black,
                             looping: true,
                             useMagnifier: true,
                             magnification: 1,
@@ -692,14 +711,14 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                                                   .toString(),
                                           style: TextStyle(
                                               fontSize: 17 * fem,
-                                              color: Colors.white),
+                                              color: AppColors.white),
                                         ),
                                       ),
                                     );
                             }))
                         : const Center(
                             child: CircularProgressIndicator(
-                            color: Color(0xff1d7e55),
+                            color:AppColors.appThemeColor,
                           )),
                   ),
                   InkWell(
@@ -714,7 +733,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       backgroundColor: Colors.white10,
                       child: Icon(
                         Icons.search,
-                        color: Colors.white,
+                        color: AppColors.white,
                         size: 23 * fem,
                       ),
                     ),
@@ -723,12 +742,12 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                     onTap: () {
                       NavigateToNotification();
                     },
-                    child: const CircleAvatar(
+                    child: CircleAvatar(
                       radius: 23,
                       backgroundColor: Colors.white10,
                       child: Icon(
                         Icons.notifications_none,
-                        color: Colors.white,
+                        color: AppColors.white,
                         size: 23,
                       ),
                     ),
@@ -753,15 +772,11 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                               padding:
                                   EdgeInsets.symmetric(horizontal: fem * 22.0),
                               child: SizedBox(
-                                height: fem * 150,
-                                width: double.infinity,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.network(
-                                      'https://tse1.mm.bing.net/th?id=OIP.ryflAnaIc1o2L2arTk4z1gHaEv&pid=Api&rs=1&c=1&qlt=95&w=163&h=104',
-                                      fit: BoxFit.fill),
-                                ),
-                              ),
+                                  height: fem * 160,
+                                  width: double.infinity,
+                                  child: loaded
+                                      ? AdWidget(ad: myBanner)
+                                      : Placeholder()),
                             ),
 
                             ///category

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class Confirmed extends StatelessWidget {
   const Confirmed({super.key});
@@ -328,8 +328,8 @@ class Confirmed extends StatelessWidget {
                                     width: double.infinity,
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xffe6e6e6)),
+                                      border: Border.all(
+                                          color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -370,7 +370,8 @@ class Confirmed extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: const Color(0xff0a0c0e),
+                                                  color:
+                                                      const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
@@ -399,8 +400,8 @@ class Confirmed extends StatelessWidget {
                                     width: double.infinity,
                                     height: 72 * fem,
                                     decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xffe6e6e6)),
+                                      border: Border.all(
+                                          color: const Color(0xffe6e6e6)),
                                       borderRadius:
                                           BorderRadius.circular(16 * fem),
                                     ),
@@ -441,7 +442,8 @@ class Confirmed extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: const Color(0xff0a0c0e),
+                                                  color:
+                                                      const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
@@ -518,7 +520,8 @@ class Confirmed extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   height:
                                                       1.4705882353 * ffem / fem,
-                                                  color: const Color(0xff0a0c0e),
+                                                  color:
+                                                      const Color(0xff0a0c0e),
                                                 ),
                                               ),
                                             ],
@@ -737,7 +740,8 @@ class Confirmed extends StatelessWidget {
                                                     height: 1.3636363636 *
                                                         ffem /
                                                         fem,
-                                                    color: const Color(0xff505050),
+                                                    color:
+                                                        const Color(0xff505050),
                                                   ),
                                                   children: [
                                                     const TextSpan(
@@ -753,8 +757,8 @@ class Confirmed extends StatelessWidget {
                                                         height: 1.3636363636 *
                                                             ffem /
                                                             fem,
-                                                        color:
-                                                            const Color(0xffb4b4b4),
+                                                        color: const Color(
+                                                            0xffb4b4b4),
                                                       ),
                                                     ),
                                                     const TextSpan(

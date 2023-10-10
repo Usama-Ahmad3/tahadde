@@ -8,6 +8,7 @@ import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/UtilsSignin
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import '../../../../network/network_calls.dart';
+import '../../../app_colors/app_colors.dart';
 import '../HomeScreen/widgets/textFormField.dart';
 import 'login.dart';
 
@@ -83,7 +84,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
       padding: EdgeInsets.symmetric(
           horizontal: width * 0.06, vertical: height * 0.01),
       child: DefaultTextStyle(
-        style: TextStyle(fontSize: height * 0.02, color: Colors.black),
+        style: TextStyle(fontSize: height * 0.02, color: AppColors.black),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -91,15 +92,15 @@ class SignUpWidgetState extends State<SignUpWidget> {
               AppLocalizations.of(context)!.name,
               style: TextStyle(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.black
-                      : Colors.white),
+                      ? AppColors.black
+                      : AppColors.white),
             ),
             SizedBox(
               height: height * 0.015,
             ),
             SizedBox(
               height: height * 0.07,
-              child: textFieldWidget(
+              child: TextFieldWidget(
                 controller: widget.nameController,
                 onSubmitted: (value) {
                   FocusScope.of(context).requestFocus(lastnameFocus);
@@ -115,17 +116,17 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 focusBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 border: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
               ),
             ),
@@ -136,15 +137,15 @@ class SignUpWidgetState extends State<SignUpWidget> {
               AppLocalizations.of(context)!.lastName,
               style: TextStyle(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.black
-                      : Colors.white),
+                      ? AppColors.black
+                      : AppColors.white),
             ),
             SizedBox(
               height: height * 0.015,
             ),
             SizedBox(
               height: height * 0.07,
-              child: textFieldWidget(
+              child: TextFieldWidget(
                 onSubmitted: (value) {
                   FocusScope.of(context).requestFocus(emailFocus);
                   return null;
@@ -161,17 +162,17 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 focusBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 border: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
               ),
             ),
@@ -182,15 +183,15 @@ class SignUpWidgetState extends State<SignUpWidget> {
               AppLocalizations.of(context)!.email,
               style: TextStyle(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.black
-                      : Colors.white),
+                      ? AppColors.black
+                      : AppColors.white),
             ),
             SizedBox(
               height: height * 0.015,
             ),
             SizedBox(
               height: height * 0.07,
-              child: textFieldWidget(
+              child: TextFieldWidget(
                 onSubmitted: (value) {
                   FocusScope.of(context).requestFocus(passwordFocus);
                   return null;
@@ -208,17 +209,17 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 focusBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 border: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
               ),
             ),
@@ -229,15 +230,15 @@ class SignUpWidgetState extends State<SignUpWidget> {
               AppLocalizations.of(context)!.password,
               style: TextStyle(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.black
-                      : Colors.white),
+                      ? AppColors.black
+                      : AppColors.white),
             ),
             SizedBox(
               height: height * 0.02,
             ),
             SizedBox(
               height: height * 0.07,
-              child: textFieldWidget(
+              child: TextFieldWidget(
                 onSubmitted: (value) {
                   UtilsSign.focusChange(confirmFocus, context);
                   return null;
@@ -248,7 +249,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 obscure: true,
                 suffixIcon: Icons.visibility_off,
                 hideIcon: Icons.visibility,
-                suffixIconColor: Colors.grey,
+                suffixIconColor: AppColors.grey,
                 onValidate: (value) {
                   if (value.isEmpty) {
                     return AppLocalizations.of(context)!.pleaseenterPassword;
@@ -258,17 +259,17 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 focusBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 border: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
               ),
             ),
@@ -279,15 +280,15 @@ class SignUpWidgetState extends State<SignUpWidget> {
               AppLocalizations.of(context)!.confermpassword,
               style: TextStyle(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.black
-                      : Colors.white),
+                      ? AppColors.black
+                      : AppColors.white),
             ),
             SizedBox(
               height: height * 0.02,
             ),
             SizedBox(
               height: height * 0.07,
-              child: textFieldWidget(
+              child: TextFieldWidget(
                 onSubmitted: (value) {
                   UtilsSign.focusChange(phoneFocus, context);
                   return null;
@@ -302,21 +303,21 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 hintText: 'tahadde123456',
                 suffixIcon: Icons.visibility_off,
                 hideIcon: Icons.visibility,
-                suffixIconColor: Colors.grey,
+                suffixIconColor: AppColors.grey,
                 focusBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
                 border: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
-                        : const BorderSide(color: Colors.white, width: 1),
+                        : BorderSide(color: AppColors.white, width: 1),
                     borderRadius: BorderRadius.circular(12)),
               ),
             ),
@@ -327,8 +328,8 @@ class SignUpWidgetState extends State<SignUpWidget> {
               AppLocalizations.of(context)!.phoneNumber,
               style: TextStyle(
                   color: MyAppState.mode == ThemeMode.light
-                      ? Colors.black
-                      : Colors.white),
+                      ? AppColors.black
+                      : AppColors.white),
             ),
             SizedBox(
               height: height * 0.015,
@@ -343,7 +344,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                         textStyle: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
                                 ? const Color(0XFF032040)
-                                : Colors.white,
+                                : AppColors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 12),
                         onChanged: widget.onChanged,
@@ -391,7 +392,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                         textStyle: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
                                 ? const Color(0XFF032040)
-                                : Colors.white,
+                                : AppColors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 12),
                         onChanged: widget.onChanged,
@@ -427,8 +428,8 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           value: player,
                           hint: Text(
                             AppLocalizations.of(context)!.chooseAccount,
-                            style: const TextStyle(
-                                color: Colors.grey,
+                            style: TextStyle(
+                                color: AppColors.grey,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12),
                           ),
@@ -441,7 +442,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                                           color:
                                               MyAppState.mode == ThemeMode.light
                                                   ? const Color(0XFF032040)
-                                                  : Colors.white,
+                                                  : AppColors.white,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -468,7 +469,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                             style: TextStyle(
                                 color: MyAppState.mode == ThemeMode.light
                                     ? const Color(0XFF032040)
-                                    : Colors.white,
+                                    : AppColors.white,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12),
                           ),
@@ -481,7 +482,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                                           color:
                                               MyAppState.mode == ThemeMode.light
                                                   ? const Color(0XFF032040)
-                                                  : Colors.white,
+                                                  : AppColors.white,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12),
                                     ),
@@ -507,7 +508,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                         fontSize: 12,
                         color: MyAppState.mode == ThemeMode.light
                             ? const Color(0XFF7A7A7A)
-                            : Colors.white),
+                            : AppColors.white),
                     children: <TextSpan>[
                       TextSpan(
                         text: AppLocalizations.of(context)!.termsofUse,
@@ -525,7 +526,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           style: TextStyle(
                               color: MyAppState.mode == ThemeMode.light
                                   ? const Color(0XFF7A7A7A)
-                                  : Colors.white)),
+                                  : AppColors.white)),
                       TextSpan(
                           text: AppLocalizations.of(context)!.privacyPolicy,
                           recognizer: TapGestureRecognizer()

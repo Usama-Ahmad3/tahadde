@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../app_colors/app_colors.dart';
+
 PreferredSize appBarWidget(sizeWidth, sizeHeight, context, title, back) {
   return PreferredSize(
       preferredSize: Size(sizeWidth, sizeHeight * 0.105),
@@ -11,10 +13,10 @@ PreferredSize appBarWidget(sizeWidth, sizeHeight, context, title, back) {
           style: Theme.of(context)
               .textTheme
               .titleMedium!
-              .copyWith(color: Colors.white),
+              .copyWith(color: AppColors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.black,
         leadingWidth: back ? sizeWidth * 0.18 : 0,
         leading: back
             ? Padding(
@@ -26,12 +28,12 @@ PreferredSize appBarWidget(sizeWidth, sizeHeight, context, title, back) {
                   child: Container(
                       padding: EdgeInsets.all(sizeHeight * 0.008),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
+                          border: Border.all(color: AppColors.grey),
                           shape: BoxShape.circle),
-                      child: const Center(
+                      child: Center(
                         child: FaIcon(
                           FontAwesomeIcons.close,
-                          color: Colors.white,
+                          color: AppColors.white,
                         ),
                       )),
                 ),

@@ -4,6 +4,7 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundD
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
+import '../../../../../app_colors/app_colors.dart';
 
 class Facilities extends StatelessWidget {
   const Facilities({super.key});
@@ -20,8 +21,8 @@ class Facilities extends StatelessWidget {
           style: TextStyle(
             fontSize: height * 0.03,
             color: MyAppState.mode == ThemeMode.light
-                ? Colors.black
-                : Colors.white,
+                ? AppColors.black
+                : AppColors.white,
           ),
         ),
         Wrap(
@@ -52,8 +53,8 @@ class Facilities extends StatelessWidget {
                                       "",
                                   imageFit: BoxFit.contain,
                                   color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white),
+                                      ? AppColors.black
+                                      : AppColors.white),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(
@@ -67,8 +68,8 @@ class Facilities extends StatelessWidget {
                                     "",
                                 style: TextStyle(
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Colors.black
-                                        : Colors.white,
+                                        ? AppColors.black
+                                        : AppColors.white,
                                     overflow: TextOverflow.ellipsis),
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: true,

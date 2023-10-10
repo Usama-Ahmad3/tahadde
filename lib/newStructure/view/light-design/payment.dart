@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
+import '../../utils/utils.dart';
 
 class Payment extends StatelessWidget {
   const Payment({super.key});
@@ -319,8 +319,8 @@ class Payment extends StatelessWidget {
                                   width: double.infinity,
                                   height: 72 * fem,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffe6e6e6)),
+                                    border: Border.all(
+                                        color: const Color(0xffe6e6e6)),
                                     borderRadius:
                                         BorderRadius.circular(16 * fem),
                                   ),
@@ -390,8 +390,8 @@ class Payment extends StatelessWidget {
                                   width: double.infinity,
                                   height: 72 * fem,
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xffe6e6e6)),
+                                    border: Border.all(
+                                        color: const Color(0xffe6e6e6)),
                                     borderRadius:
                                         BorderRadius.circular(16 * fem),
                                   ),

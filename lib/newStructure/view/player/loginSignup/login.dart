@@ -19,6 +19,7 @@ import '../../../../localizations.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import '../../../../network/network_calls.dart';
 import '../../../../player/loginSignup/signup.dart';
+import '../../../app_colors/app_colors.dart';
 import 'loginWidget.dart';
 import 'signUpWidget.dart';
 
@@ -347,8 +348,8 @@ class LoginScreenState extends State<LoginScreen> {
     if (_internet) {
       return Scaffold(
         backgroundColor: MyAppState.mode == ThemeMode.light
-            ? Colors.white
-            : const Color(0xff686868),
+            ? AppColors.white
+            : AppColors.darkTheme,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -366,12 +367,12 @@ class LoginScreenState extends State<LoginScreen> {
                     ))),
             SliverToBoxAdapter(
               child: Container(
-                color: Colors.black,
+                color: AppColors.black,
                 child: Container(
                   decoration: BoxDecoration(
                       color: MyAppState.mode == ThemeMode.light
-                          ? Colors.white
-                          : const Color(0xff686868),
+                          ? AppColors.white
+                          : AppColors.darkTheme,
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20))),
@@ -389,7 +390,7 @@ class LoginScreenState extends State<LoginScreen> {
                             height: height * 0.065,
                             width: width,
                             decoration: BoxDecoration(
-                                color: Colors.black12,
+                                color: AppColors.containerColorB,
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -405,8 +406,8 @@ class LoginScreenState extends State<LoginScreen> {
                                     width: width * 0.44,
                                     decoration: BoxDecoration(
                                         color: widget.clicked == 1
-                                            ? Colors.indigoAccent
-                                            : Colors.transparent,
+                                            ? AppColors.indigoAccent
+                                            : AppColors.transparent,
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: Center(
@@ -417,11 +418,12 @@ class LoginScreenState extends State<LoginScreen> {
                                                 .titleMedium!
                                                 .copyWith(
                                                     color: widget.clicked == 1
-                                                        ? Colors.white
+                                                        ? AppColors.white
                                                         : MyAppState.mode ==
                                                                 ThemeMode.light
-                                                            ? Colors.black
-                                                            : Colors.white))),
+                                                            ? AppColors.black
+                                                            : AppColors
+                                                                .white))),
                                   ),
                                 ),
                                 InkWell(
@@ -435,8 +437,8 @@ class LoginScreenState extends State<LoginScreen> {
                                     width: width * 0.44,
                                     decoration: BoxDecoration(
                                         color: widget.clicked == 2
-                                            ? Colors.indigoAccent
-                                            : Colors.transparent,
+                                            ? AppColors.indigoAccent
+                                            : AppColors.transparent,
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: Center(
@@ -445,11 +447,11 @@ class LoginScreenState extends State<LoginScreen> {
                                           .createYourAccount,
                                       style: TextStyle(
                                           color: widget.clicked == 2
-                                              ? Colors.white
+                                              ? AppColors.white
                                               : MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ? Colors.black
-                                                  : Colors.white),
+                                                  ? AppColors.black
+                                                  : AppColors.white),
                                     )),
                                   ),
                                 ),
@@ -717,11 +719,11 @@ class LoginScreenState extends State<LoginScreen> {
                             child: AppLocalizations.of(context)!.locale == "en"
                                 ? Text(
                                     "${_packageInfo.version}(${_packageInfo.buildNumber})",
-                                    style: const TextStyle(color: Colors.grey),
+                                    style: TextStyle(color: AppColors.grey),
                                   )
                                 : Text(
                                     "${_packageInfo.version.split('').reversed.join()}(${_packageInfo.buildNumber})",
-                                    style: const TextStyle(color: Colors.grey),
+                                    style: TextStyle(color: AppColors.grey),
                                   ),
                           ),
                         ),

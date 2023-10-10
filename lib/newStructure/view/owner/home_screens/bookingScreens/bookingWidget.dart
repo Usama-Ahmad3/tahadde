@@ -5,6 +5,7 @@ import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../modelClass/bookingModelClass.dart';
+import '../../../../app_colors/app_colors.dart';
 
 // ignore: must_be_immutable
 class BookingsWidget extends StatefulWidget {
@@ -22,7 +23,7 @@ class _BookingsWidgetState extends State<BookingsWidget> {
     return Scaffold(
       backgroundColor: MyAppState.mode == ThemeMode.light
           ? const Color(0XFFF7F7F7)
-          : const Color(0xff686868),
+          : AppColors.darkTheme,
       body: widget.bookingDetail == null || widget.bookingDetail!.isEmpty
           ? Column(
               children: [
@@ -39,7 +40,7 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                     style: TextStyle(
                         color: MyAppState.mode == ThemeMode.light
                             ? const Color(0XFF424242)
-                            : Colors.white,
+                            : AppColors.white,
                         fontFamily: "Poppins",
                         fontSize: 18)),
                 flaxibleGap(1),
@@ -76,8 +77,8 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                           Radius.circular(5.0),
                         ),
                         color: MyAppState.mode == ThemeMode.light
-                            ? Colors.grey.shade200
-                            : Colors.black12,
+                            ? AppColors.grey200
+                            : AppColors.containerColorB,
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,8 +110,8 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                                       .toString(),
                                   style: TextStyle(
                                       color: MyAppState.mode == ThemeMode.light
-                                          ? const Color(0XFF032040)
-                                          : Colors.white,
+                                          ? AppColors.themeColor
+                                          : AppColors.white,
                                       fontWeight: FontWeight.w700,
                                       fontFamily: "Poppins",
                                       fontSize: 16)),
@@ -119,14 +120,14 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                                   style: TextStyle(
                                       color: MyAppState.mode == ThemeMode.light
                                           ? const Color(0XFF696969)
-                                          : Colors.grey,
+                                          : AppColors.grey,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: "Poppins",
                                       fontSize: 12)),
                               widget.bookingDetail![index].booking_cancelled!
                                   ? Text(AppLocalizations.of(context)!.canceled,
                                       style: const TextStyle(
-                                          color: Color(0XFF25A163),
+                                          color: AppColors.barLineColor,
                                           fontWeight: FontWeight.w600,
                                           fontFamily: "Poppins",
                                           fontSize: 10))
@@ -155,9 +156,8 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                                                   style: TextStyle(
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF25A163)
-                                                          : Colors.white,
+                                                          ? AppColors.barLineColor
+                                                          : AppColors.white,
                                                       fontSize: 10));
                                             },
                                           ),
