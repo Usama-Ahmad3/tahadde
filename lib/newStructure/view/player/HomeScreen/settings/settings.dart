@@ -73,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: Text(AppLocalizations.of(context)!.logout),
             content: Text(
               description,
-              style: TextStyle(color: AppColors.red),
+              style: TextStyle(color: AppColors.appThemeColor),
             ),
             actions: <Widget>[
               InkWell(
@@ -85,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: AppColors.black,
+                    color: AppColors.appThemeColor,
                   ),
                   child: Center(
                     child: Text(
@@ -150,13 +150,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: AppColors.transparent,
-                    border: Border.all(width: 1, color: AppColors.red),
+                    color: AppColors.appThemeColor,
+                    border: Border.all(width: 1, color: AppColors.white),
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.yes,
-                      style: TextStyle(color: AppColors.red),
+                      style: TextStyle(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -452,8 +452,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             },
                                             activeColor:
                                                 const Color(0xff1d7e55),
-                                            inactiveThumbColor:
-                                                AppColors.grey,
+                                            inactiveThumbColor: AppColors.grey,
                                           ),
                                           Text('On',
                                               style: TextStyle(

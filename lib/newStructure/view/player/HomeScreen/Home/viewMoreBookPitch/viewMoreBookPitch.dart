@@ -125,7 +125,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                             decoration: BoxDecoration(
                                 border: Border.all(color: AppColors.grey),
                                 shape: BoxShape.circle),
-                            child:  Center(
+                            child: Center(
                               child: FaIcon(
                                 FontAwesomeIcons.close,
                                 color: AppColors.white,
@@ -271,7 +271,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                                     width: 24,
                                     height: 24,
                                     child: Image.asset(
-                                      'assets/light-design/images/icon-bus.png',
+                                      'assets/images/icon-kVX.png',
                                       width: 24,
                                       height: 24,
                                     ),

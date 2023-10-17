@@ -36,11 +36,15 @@ class ViewMoreVenueScreen extends StatelessWidget {
                       SizedBox(
                         height: sizeHeight * 0.01,
                       ),
-                      ...List.generate(
-                        venues.length,
-                        (index) => Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: sizeHeight * 0.01),
+                      ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: venues.length,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: sizeHeight * 0.01,
+                              horizontal: sizeWidth * 0.06),
                           child: Container(
                             width: sizeWidth * 0.9,
                             decoration: BoxDecoration(

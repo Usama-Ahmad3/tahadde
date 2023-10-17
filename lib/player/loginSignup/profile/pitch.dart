@@ -48,7 +48,7 @@ class _PitchState extends State<Pitch> {
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: const Text("You are going to cancel your booking."),
-            actions: <Widget>[
+            actions: [
               TextButton(
                 child: Text(AppLocalizations.of(context)!.no),
                 onPressed: () {

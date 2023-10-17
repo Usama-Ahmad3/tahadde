@@ -399,7 +399,8 @@ class _PlayerHomeState extends State<PlayerHome>
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(AppLocalizations.of(context)!.youGoingExit),
-            actions: <Widget>[
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+            actions: [
               TextButton(
                 child: Text(AppLocalizations.of(context)!.no),
                 onPressed: () {

@@ -54,12 +54,13 @@ class _BookingScreenViewState extends State<BookingScreenView> {
         context: context,
         builder: (BuildContext cntext) {
           return AlertDialog(
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             content: Text(
               AppLocalizations.of(context)!.toReserve,
               style: TextStyle(
                   color: AppColors.black, fontWeight: FontWeight.normal),
             ),
-            actions: <Widget>[
+            actions: [
               TextButton(
                 child: Text(
                   AppLocalizations.of(context)!.cancel,
@@ -404,7 +405,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                             });
                                                           },
                                                     child: Container(
-                                                      width: width * 0.44,
+                                                      width: width * 0.89,
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
@@ -447,81 +448,81 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    width: width * 0.01,
-                                                  ),
-                                                  InkWell(
-                                                    onTap: !isPerPlayer
-                                                        ? null
-                                                        : () {
-                                                            if (GroundDetailState
-                                                                    .privateVenueDetail
-                                                                    .sports!
-                                                                    .sportSlug ==
-                                                                "swimming") {
-                                                              showMessage(
-                                                                  "${AppLocalizations.of(context)!.perAcademy} ${AppLocalizations.of(context)!.unavailable} for ${GroundDetailState.privateVenueDetail.sports!.name}");
-                                                            } else {
-                                                              setState(() {
-                                                                _slotTime
-                                                                    .clear();
-                                                                _slotPrice
-                                                                    .pricePerPlayer
-                                                                    .clear();
-                                                                _slotPrice
-                                                                    .pricePerVenue
-                                                                    .clear();
-                                                                slotInformation =
-                                                                    {};
-                                                                isPerPlayer =
-                                                                    false;
-                                                              });
-                                                            }
-                                                          },
-                                                    child: Container(
-                                                      width: width * 0.44,
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
-                                                      alignment:
-                                                          Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                        color: isPerPlayer
-                                                            ? AppColors.white
-                                                            : MyAppState.mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? AppColors.grey
-                                                                : Colors
-                                                                    .indigoAccent,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        border: Border.all(
-                                                          color: isPerPlayer
-                                                              ? AppColors
-                                                                  .blueGrey
-                                                              : AppColors
-                                                                  .white24,
-                                                          style:
-                                                              BorderStyle.solid,
-                                                        ),
-                                                      ),
-                                                      child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .perAcademy,
-                                                        style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors.black
-                                                              : AppColors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  )
+                                                  // SizedBox(
+                                                  //   width: width * 0.01,
+                                                  // ),
+                                                  // InkWell(
+                                                  //   onTap: !isPerPlayer
+                                                  //       ? null
+                                                  //       : () {
+                                                  //           if (GroundDetailState
+                                                  //                   .privateVenueDetail
+                                                  //                   .sports!
+                                                  //                   .sportSlug ==
+                                                  //               "swimming") {
+                                                  //             showMessage(
+                                                  //                 "${AppLocalizations.of(context)!.perAcademy} ${AppLocalizations.of(context)!.unavailable} for ${GroundDetailState.privateVenueDetail.sports!.name}");
+                                                  //           } else {
+                                                  //             setState(() {
+                                                  //               _slotTime
+                                                  //                   .clear();
+                                                  //               _slotPrice
+                                                  //                   .pricePerPlayer
+                                                  //                   .clear();
+                                                  //               _slotPrice
+                                                  //                   .pricePerVenue
+                                                  //                   .clear();
+                                                  //               slotInformation =
+                                                  //                   {};
+                                                  //               isPerPlayer =
+                                                  //                   false;
+                                                  //             });
+                                                  //           }
+                                                  //         },
+                                                  //   child: Container(
+                                                  //     width: width * 0.44,
+                                                  //     padding:
+                                                  //         const EdgeInsets.all(
+                                                  //             10.0),
+                                                  //     alignment:
+                                                  //         Alignment.center,
+                                                  //     decoration: BoxDecoration(
+                                                  //       color: isPerPlayer
+                                                  //           ? AppColors.white
+                                                  //           : MyAppState.mode ==
+                                                  //                   ThemeMode
+                                                  //                       .light
+                                                  //               ? AppColors.grey
+                                                  //               : Colors
+                                                  //                   .indigoAccent,
+                                                  //       borderRadius:
+                                                  //           BorderRadius
+                                                  //               .circular(8),
+                                                  //       border: Border.all(
+                                                  //         color: isPerPlayer
+                                                  //             ? AppColors
+                                                  //                 .blueGrey
+                                                  //             : AppColors
+                                                  //                 .white24,
+                                                  //         style:
+                                                  //             BorderStyle.solid,
+                                                  //       ),
+                                                  //     ),
+                                                  //     child: Text(
+                                                  //       AppLocalizations.of(
+                                                  //               context)!
+                                                  //           .perAcademy,
+                                                  //       style: TextStyle(
+                                                  //         color: MyAppState
+                                                  //                     .mode ==
+                                                  //                 ThemeMode
+                                                  //                     .light
+                                                  //             ? AppColors.black
+                                                  //             : AppColors.grey,
+                                                  //       ),
+                                                  //     ),
+                                                  //   ),
+                                                  // )
                                                 ],
                                               ),
                                             )
@@ -646,90 +647,155 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                     ],
                                   ),
                                 ),
-                                !isPerPlayer
-                                    ? const SizedBox.shrink()
-                                    : listMaxPlayer.isNotEmpty
-                                        ? IgnorePointer(
-                                            ignoring: !isPerPlayer,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: width * .04,
-                                                  vertical: height * 0.01),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .selectnumberofplayer,
-                                                    style: TextStyle(
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? AppColors
-                                                                .themeColor
-                                                            : AppColors.white,
-                                                        fontSize:
-                                                            height * 0.017),
-                                                  ),
-                                                  SizedBox(
-                                                    width: width * 0.4,
-                                                    child: TextFieldWidget(
-                                                        enableBorder: OutlineInputBorder(
-                                                            borderSide: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? BorderSide
-                                                                    .none
-                                                                : BorderSide(
-                                                                    color: AppColors
-                                                                        .white,
-                                                                    width: 1)),
-                                                        border: OutlineInputBorder(
-                                                            borderSide: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? BorderSide
-                                                                    .none
-                                                                : BorderSide(
-                                                                    color: AppColors
-                                                                        .white,
-                                                                    width: 1)),
-                                                        focusBorder: OutlineInputBorder(
-                                                            borderSide: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? BorderSide.none
-                                                                : BorderSide(color: AppColors.white, width: 1)),
-                                                        prefix: null,
-                                                        type: TextInputType.number,
-                                                        onChanged: (value) {
-                                                          if (value != null) {
-                                                            if (value !=
-                                                                indexItem - 1) {
-                                                              setState(() {
-                                                                indexItem =
-                                                                    int.parse(
-                                                                        value);
-                                                              });
-                                                              print(indexItem);
-                                                            }
-                                                          }
-                                                          return null;
-                                                        },
-                                                        controller: playerController,
-                                                        hintText: '00'),
-                                                  ),
-                                                ],
+                                IgnorePointer(
+                                  ignoring: !isPerPlayer,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: width * .04,
+                                        vertical: height * 0.01),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .selectnumber,
+                                          style: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white,
+                                              fontSize: height * 0.02),
+                                        ),
+                                        Container(
+                                          height: height * 0.055,
+                                          width: width * 0.4,
+                                          decoration: BoxDecoration(
+                                              color: AppColors.grey
+                                                  .withOpacity(0.4),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.fromBorderSide(
+                                                  MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? BorderSide.none
+                                                      : BorderSide(
+                                                          color:
+                                                              AppColors.white,
+                                                          width: 1))),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  if (indexItem != 1) {
+                                                    indexItem = indexItem - 1;
+                                                  }
+                                                  playerController.text =
+                                                      indexItem.toString();
+                                                  setState(() {});
+                                                },
+                                                child: const Icon(
+                                                  FontAwesomeIcons.minus,
+                                                  color:
+                                                      AppColors.appThemeColor,
+                                                ),
                                               ),
-                                            ),
-                                          )
-                                        : const SizedBox.shrink(),
+                                              SizedBox(
+                                                width: width * 0.009,
+                                              ),
+                                              Text(
+                                                indexItem.toString(),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium,
+                                              ),
+                                              SizedBox(
+                                                width: width * 0.009,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  indexItem = indexItem + 1;
+                                                  playerController.text =
+                                                      indexItem.toString();
+                                                  setState(() {});
+                                                },
+                                                child: Icon(
+                                                  Icons.add,
+                                                  color:
+                                                      AppColors.appThemeColor,
+                                                  size: height * 0.045,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        // TextFieldWidget(
+                                        //     enableBorder: OutlineInputBorder(
+                                        //         borderSide: MyAppState
+                                        //                     .mode ==
+                                        //                 ThemeMode
+                                        //                     .light
+                                        //             ? BorderSide
+                                        //                 .none
+                                        //             : BorderSide(
+                                        //                 color: AppColors
+                                        //                     .white,
+                                        //                 width: 1)),
+                                        //     border: OutlineInputBorder(
+                                        //         borderSide: MyAppState
+                                        //                     .mode ==
+                                        //                 ThemeMode
+                                        //                     .light
+                                        //             ? BorderSide
+                                        //                 .none
+                                        //             : BorderSide(
+                                        //                 color: AppColors
+                                        //                     .white,
+                                        //                 width: 1)),
+                                        //     focusBorder: OutlineInputBorder(
+                                        //         borderSide: MyAppState
+                                        //                     .mode ==
+                                        //                 ThemeMode
+                                        //                     .light
+                                        //             ? BorderSide.none
+                                        //             : BorderSide(color: AppColors.white, width: 1)),
+                                        //     prefix: null,
+                                        //     suffixIcon: Icons.add,
+                                        //     enable: false,
+                                        //     onTap: () {
+                                        //       indexItem =
+                                        //           indexItem + 1;
+                                        //       playerController
+                                        //               .text =
+                                        //           indexItem
+                                        //               .toString();
+                                        //       setState(() {
+                                        //
+                                        //       });
+                                        //     },
+                                        //     type: TextInputType.number,
+                                        //     onChanged: (value) {
+                                        //       if (value != null) {
+                                        //         if (value !=
+                                        //             indexItem - 1) {
+                                        //           setState(() {
+                                        //             indexItem =
+                                        //                 int.parse(
+                                        //                     value);
+                                        //           });
+                                        //           print(indexItem);
+                                        //         }
+                                        //       }
+                                        //       return null;
+                                        //     },
+                                        //     controller: playerController,
+                                        //     hintText: '00'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
 
                                 /// slot Selecting
                                 slotModelClass.isEmpty
@@ -874,13 +940,13 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                               ? slotModelClass[index].slotDetail![slotIndex]!.maximumPlayers.toString()
                                                                               : (slotModelClass[index].slotDetail![slotIndex]!.maximumPlayers! - slotModelClass[index].slotDetail![slotIndex]!.bookedPlayersCount!.toInt()).toString(),
                                                                           style: TextStyle(
-                                                                              color: AppColors.white,
+                                                                              color: AppColors.black,
                                                                               fontWeight: FontWeight.w600),
                                                                         ),
                                                                         alignment:
                                                                             Alignment.topRight,
                                                                         backgroundColor:
-                                                                            AppColors.blueGrey,
+                                                                            AppColors.white,
                                                                         isLabelVisible:
                                                                             isPerPlayer,
                                                                         child:
@@ -891,7 +957,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                               width * 0.43,
                                                                           decoration: BoxDecoration(
                                                                               color: _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id)
-                                                                                  ? Colors.indigoAccent
+                                                                                  ? AppColors.appThemeColor
                                                                                   : MyAppState.mode == ThemeMode.light
                                                                                       ? AppColors.blueGrey
                                                                                       : Colors.white10,
@@ -908,7 +974,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                               Container(
                                                                                 height: height * 0.022,
                                                                                 width: width * 0.042,
-                                                                                decoration: BoxDecoration(border: Border.all(color: _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id) ? AppColors.transparent : AppColors.blueGrey, style: BorderStyle.solid, width: 1), color: _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id) ? const Color(0xff1d7e55) : Colors.transparent, shape: BoxShape.circle),
+                                                                                decoration: BoxDecoration(border: Border.all(color: _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id) ? AppColors.transparent : AppColors.blueGrey, style: BorderStyle.solid, width: 1), color: _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id) ? AppColors.white : Colors.transparent, shape: BoxShape.circle),
                                                                               )
                                                                             ],
                                                                           ),

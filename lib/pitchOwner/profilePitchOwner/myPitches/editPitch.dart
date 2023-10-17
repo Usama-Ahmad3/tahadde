@@ -152,7 +152,7 @@ class _EditPitchState extends State<EditPitch> {
                   fontWeight: FontWeight.w700,
                   fontSize: 14),
             ),
-            actions: <Widget>[
+            actions: [
               TextButton(
                 child: Container(
                     decoration: BoxDecoration(
@@ -1772,7 +1772,8 @@ class _EditPitchState extends State<EditPitch> {
                                                                               .center,
                                                                       child:
                                                                           Text(
-                                                                        _pitchType[blockIdx],
+                                                                        _pitchType[
+                                                                            blockIdx],
                                                                         style: const TextStyle(
                                                                             decoration: TextDecoration
                                                                                 .none,
@@ -1807,7 +1808,8 @@ class _EditPitchState extends State<EditPitch> {
                                                                               .center,
                                                                       child:
                                                                           Text(
-                                                                        _pitchType[blockIdx],
+                                                                        _pitchType[
+                                                                            blockIdx],
                                                                         style: const TextStyle(
                                                                             decoration: TextDecoration
                                                                                 .none,

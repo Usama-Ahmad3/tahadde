@@ -163,7 +163,8 @@ class _BookPitchState extends State<BookPitch> {
           return AlertDialog(
             //title: Text('Are you sure?'),
             content: Text(AppLocalizations.of(context)!.toReserve),
-            actions: <Widget>[
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+            actions: [
               TextButton(
                 child: Text(AppLocalizations.of(context)!.cancel),
                 onPressed: () {

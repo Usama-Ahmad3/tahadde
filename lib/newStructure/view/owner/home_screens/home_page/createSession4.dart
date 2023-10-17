@@ -41,6 +41,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
   bool _isLoading = true;
   bool _isSession = false;
   int firstTime = 0;
+  bool firstTimeTag = true;
   var focusNode = FocusNode();
   List<String> _copyDays = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -195,7 +196,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                               title: Text(AppLocalizations.of(context)!.copy),
                               content: Text(
                                 AppLocalizations.of(context)!.copySession,
-                                style:   TextStyle(color: AppColors.red),
+                                style: TextStyle(color: AppColors.red),
                               ),
                               actions: [
                                 InkWell(
@@ -207,13 +208,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: AppColors.black,
+                                      color: AppColors.appThemeColor,
                                     ),
                                     child: Center(
                                       child: Text(
                                         AppLocalizations.of(context)!.no,
-                                        style:  TextStyle(
-                                            color: AppColors.white),
+                                        style:
+                                            TextStyle(color: AppColors.white),
                                       ),
                                     ),
                                   ),
@@ -245,15 +246,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: AppColors.transparent,
+                                      color: AppColors.appThemeColor,
                                       border: Border.all(
-                                          width: 1, color: AppColors.red),
+                                          width: 1, color: AppColors.white),
                                     ),
                                     child: Center(
                                       child: Text(
                                         AppLocalizations.of(context)!.yes,
                                         style:
-                                             TextStyle(color: AppColors.red),
+                                            TextStyle(color: AppColors.white),
                                       ),
                                     ),
                                   ),
@@ -349,18 +350,18 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               .isHoliday!
                                                           ? Colors.redAccent
                                                               .shade200
-                                                          : AppColors.appThemeColor
+                                                          : AppColors
+                                                              .appThemeColor
                                                       : widget.createdTag
                                                           ? Colors.redAccent
                                                               .shade200
-                                                          : AppColors
-                                                              .grey200,
+                                                          : AppColors.grey200,
                                                 ),
                                                 child: Text(
                                                   _weakList[index]
                                                       .name
                                                       .substring(0, 3),
-                                                  style:   TextStyle(
+                                                  style: TextStyle(
                                                       color: AppColors.black,
                                                       fontSize: 14,
                                                       fontWeight:
@@ -382,7 +383,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           setState(() {
                                             _weakIndex = index;
                                             if (firstTime == 0) {
-                                              firstTime = 1;
+                                              firstTimeTag
+                                                  ? firstTime = 1
+                                                  : firstTime = 0;
+                                              firstTimeTag = false;
                                             } else {
                                               firstTime = 0;
                                             }
@@ -562,7 +566,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
                                                         ? AppColors.grey200
-                                                        : AppColors.containerColorB,
+                                                        : AppColors
+                                                            .containerColorB,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             13)),
@@ -598,7 +603,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
                                                           ? AppColors.grey200
-                                                          : AppColors.containerColorB,
+                                                          : AppColors
+                                                              .containerColorB,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               13)),
@@ -653,7 +659,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
                                                                   .center,
-                                                          children:[
+                                                          children: [
                                                             Text(
                                                                 DateFormat.Hm(
                                                                         'en_US')
@@ -661,8 +667,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                             index]
                                                                         .startTime!),
                                                                 style: const TextStyle(
-                                                                    color:
-                                                                    AppColors.appThemeColor,
+                                                                    color: AppColors
+                                                                        .appThemeColor,
                                                                     fontSize:
                                                                         16,
                                                                     fontWeight:
@@ -672,8 +678,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                         "Poppins")),
                                                             const Text(" - ",
                                                                 style: TextStyle(
-                                                                    color:
-                                                                        AppColors.appThemeColor,
+                                                                    color: AppColors
+                                                                        .appThemeColor,
                                                                     fontSize:
                                                                         16,
                                                                     fontWeight:
@@ -689,8 +695,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                               .slug]![index]
                                                                       .endTime!),
                                                               style: const TextStyle(
-                                                                  color:
-                                                                      AppColors.appThemeColor,
+                                                                  color: AppColors
+                                                                      .appThemeColor,
                                                                   fontSize: 16,
                                                                   fontWeight:
                                                                       FontWeight
@@ -747,7 +753,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                           child: _isSession
                               ? ButtonWidget(
                                   onTaped: () {},
-                                  title:   CircularProgressIndicator(
+                                  title: CircularProgressIndicator(
                                     color: AppColors.white,
                                   ),
                                   isLoading: _isLoading,
@@ -838,81 +844,83 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           // }
                                         }
                                       : () {
-                                          // if (_sessionMap.length < 7) {
-                                          //   showMessage(
-                                          //       "Please create session for ${(7 - _sessionMap.length).toString()} more days");
-                                          // } else {
-                                          setState(() {
-                                            _isSession = true;
-                                          });
-                                          String id = widget
-                                              .pitchData["book_pitch_id"]
-                                              .toString();
-                                          List<Map<dynamic, dynamic>>
-                                              sessionsPayload = [];
-
-                                          _sessionMap.forEach((k, v) {
+                                          if (_sessionMap.length < 7) {
+                                            showMessage(
+                                                "Please create session for ${(7 - _sessionMap.length).toString()} more days");
+                                          } else {
+                                            setState(() {
+                                              _isSession = true;
+                                            });
+                                            String id = widget
+                                                .pitchData["book_pitch_id"]
+                                                .toString();
                                             List<Map<dynamic, dynamic>>
-                                                sessionsData = [];
-                                            if (!v[0].isHoliday!) {
-                                              for (var element in v) {
-                                                Map detail = {
-                                                  "session_name":
-                                                      element.sessionName,
-                                                  "session_name_arabic":
-                                                      element.sessionNameAr,
-                                                  "start_time": DateFormat.Hms()
-                                                      .format(
-                                                          element.startTime!),
-                                                  "end_time": DateFormat.Hms()
-                                                      .format(element.endTime!),
-                                                  "slot_time":
-                                                      element.slotDuration,
-                                                  "grace_peroid":
-                                                      element.graceTime,
-                                                  "slot_price": 0
+                                                sessionsPayload = [];
+
+                                            _sessionMap.forEach((k, v) {
+                                              List<Map<dynamic, dynamic>>
+                                                  sessionsData = [];
+                                              if (!v[0].isHoliday!) {
+                                                for (var element in v) {
+                                                  Map detail = {
+                                                    "session_name":
+                                                        element.sessionName,
+                                                    "session_name_arabic":
+                                                        element.sessionNameAr,
+                                                    "start_time":
+                                                        DateFormat.Hms().format(
+                                                            element.startTime!),
+                                                    "end_time": DateFormat.Hms()
+                                                        .format(
+                                                            element.endTime!),
+                                                    "slot_time":
+                                                        element.slotDuration,
+                                                    "grace_peroid":
+                                                        element.graceTime,
+                                                    "slot_price": 0
+                                                  };
+                                                  sessionsData.add(detail);
+                                                }
+                                                Map<dynamic, dynamic> detail = {
+                                                  "weekday": k,
+                                                  "sessions_data": sessionsData
                                                 };
-                                                sessionsData.add(detail);
+                                                sessionsPayload.add(detail);
                                               }
-                                              Map<dynamic, dynamic> detail = {
-                                                "weekday": k,
-                                                "sessions_data": sessionsData
-                                              };
-                                              sessionsPayload.add(detail);
-                                            }
-                                          });
+                                            });
 
-                                          Map detail = {
-                                            "pitchtype_id": widget
-                                                .pitchData["pitch_type_id"],
-                                            "sessions_payload": sessionsPayload
-                                          };
-                                          _networkCalls.createSession(
-                                              onSuccess: (onSuccess) {
-                                                Map detail = {
-                                                  "id": widget.pitchData[
-                                                          "book_pitch_id"]
-                                                      .toString(),
-                                                  "subPitchId": widget
-                                                      .pitchData[
-                                                          "pitch_type_id"]
-                                                      .toString()
-                                                };
-                                                _isSession = false;
-
-                                                navigateToSlotScreen(detail);
-                                              },
-                                              detail: detail,
-                                              id: id,
-                                              onFailure: (onFailure) {
-                                                showMessage(
-                                                    "Please create session properly ");
-                                                setState(() {
+                                            Map detail = {
+                                              "pitchtype_id": widget
+                                                  .pitchData["pitch_type_id"],
+                                              "sessions_payload":
+                                                  sessionsPayload
+                                            };
+                                            _networkCalls.createSession(
+                                                onSuccess: (onSuccess) {
+                                                  Map detail = {
+                                                    "id": widget.pitchData[
+                                                            "book_pitch_id"]
+                                                        .toString(),
+                                                    "subPitchId": widget
+                                                        .pitchData[
+                                                            "pitch_type_id"]
+                                                        .toString()
+                                                  };
                                                   _isSession = false;
-                                                });
-                                              },
-                                              tokenExpire: () {});
-                                          // }
+
+                                                  navigateToSlotScreen(detail);
+                                                },
+                                                detail: detail,
+                                                id: id,
+                                                onFailure: (onFailure) {
+                                                  showMessage(
+                                                      "Please create session properly ");
+                                                  setState(() {
+                                                    _isSession = false;
+                                                  });
+                                                },
+                                                tokenExpire: () {});
+                                          }
                                         },
                                   title: Text(
                                       AppLocalizations.of(context)!.continu),
@@ -1009,8 +1017,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 : AppColors.containerColorB,
                                             onTap: () {},
                                             shape: OutlineInputBorder(
-                                                borderSide:   BorderSide(
-                                                    color: AppColors.containerColorW12),
+                                                borderSide: BorderSide(
+                                                    color: AppColors
+                                                        .containerColorW12),
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             titleTextStyle: const TextStyle(
@@ -1142,8 +1151,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 : AppColors.containerColorB,
                                             onTap: () {},
                                             shape: OutlineInputBorder(
-                                                borderSide:   BorderSide(
-                                                    color: AppColors.containerColorW12),
+                                                borderSide: BorderSide(
+                                                    color: AppColors
+                                                        .containerColorW12),
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             titleTextStyle: const TextStyle(
@@ -1234,7 +1244,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     MyAppState.mode ==
                                                             ThemeMode.light
                                                         ? AppColors.grey200
-                                                        : AppColors.containerColorW12,
+                                                        : AppColors
+                                                            .containerColorW12,
                                                 primaryColor: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? AppColors.black
@@ -1334,17 +1345,17 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           return '';
                                         },
                                         border: OutlineInputBorder(
-                                            borderSide:   BorderSide(
+                                            borderSide: BorderSide(
                                                 color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         enableBorder: OutlineInputBorder(
-                                            borderSide:   BorderSide(
+                                            borderSide: BorderSide(
                                                 color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         focusBorder: OutlineInputBorder(
-                                            borderSide:   BorderSide(
+                                            borderSide: BorderSide(
                                                 color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12))),
@@ -1368,17 +1379,17 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           return '';
                                         },
                                         border: OutlineInputBorder(
-                                            borderSide:   BorderSide(
+                                            borderSide: BorderSide(
                                                 color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         enableBorder: OutlineInputBorder(
-                                            borderSide:   BorderSide(
+                                            borderSide: BorderSide(
                                                 color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12)),
                                         focusBorder: OutlineInputBorder(
-                                            borderSide:   BorderSide(
+                                            borderSide: BorderSide(
                                                 color: AppColors.grey),
                                             borderRadius:
                                                 BorderRadius.circular(12))),
@@ -1472,8 +1483,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide:   BorderSide(
-                                                      color: AppColors.containerColorW12),
+                                                  borderSide: BorderSide(
+                                                      color: AppColors
+                                                          .containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -1603,8 +1615,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide:   BorderSide(
-                                                      color: AppColors.containerColorW12),
+                                                  borderSide: BorderSide(
+                                                      color: AppColors
+                                                          .containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -1722,8 +1735,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide:   BorderSide(
-                                                      color: AppColors.containerColorW12),
+                                                  borderSide: BorderSide(
+                                                      color: AppColors
+                                                          .containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -1838,8 +1852,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 );
                                               },
                                               shape: OutlineInputBorder(
-                                                  borderSide:  BorderSide(
-                                                      color: AppColors.containerColorW12),
+                                                  borderSide: BorderSide(
+                                                      color: AppColors
+                                                          .containerColorW12),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),

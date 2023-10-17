@@ -21,8 +21,7 @@ class ProfileShimmer {
                     width: double.infinity,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(
-                                'assets/light-design/images/bg-image.png'),
+                            image: AssetImage('assets/images/bg-image.png'),
                             fit: BoxFit.fitWidth)),
                   ),
                   SizedBox(

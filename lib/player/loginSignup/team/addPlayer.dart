@@ -56,7 +56,7 @@ class _AddPlayerState extends State<AddPlayer>
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(AppLocalizations.of(context)!.doyouwanttoleaveteam),
-            actions: <Widget>[
+            actions: [
               TextButton(
                 child: Text(AppLocalizations.of(context)!.no),
                 onPressed: () {

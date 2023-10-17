@@ -362,7 +362,7 @@ class LoginScreenState extends State<LoginScreen> {
                     titlePadding:
                         const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
                     background: Image.asset(
-                      'assets/light-design/images/image-bzH.png',
+                      'assets/images/image-7z1.png',
                       fit: BoxFit.fill,
                     ))),
             SliverToBoxAdapter(
@@ -406,7 +406,7 @@ class LoginScreenState extends State<LoginScreen> {
                                     width: width * 0.44,
                                     decoration: BoxDecoration(
                                         color: widget.clicked == 1
-                                            ? AppColors.indigoAccent
+                                            ? AppColors.appThemeColor
                                             : AppColors.transparent,
                                         borderRadius:
                                             BorderRadius.circular(15)),
@@ -437,21 +437,23 @@ class LoginScreenState extends State<LoginScreen> {
                                     width: width * 0.44,
                                     decoration: BoxDecoration(
                                         color: widget.clicked == 2
-                                            ? AppColors.indigoAccent
+                                            ? AppColors.appThemeColor
                                             : AppColors.transparent,
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: Center(
                                         child: Text(
-                                      AppLocalizations.of(context)!
-                                          .createYourAccount,
-                                      style: TextStyle(
-                                          color: widget.clicked == 2
-                                              ? AppColors.white
-                                              : MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? AppColors.black
-                                                  : AppColors.white),
+                                      AppLocalizations.of(context)!.register,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .copyWith(
+                                              color: widget.clicked == 2
+                                                  ? AppColors.white
+                                                  : MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.black
+                                                      : AppColors.white),
                                     )),
                                   ),
                                 ),

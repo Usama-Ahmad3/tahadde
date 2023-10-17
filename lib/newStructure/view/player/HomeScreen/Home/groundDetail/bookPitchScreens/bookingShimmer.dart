@@ -293,8 +293,7 @@ class BookingShimmer {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!
-                                  .selectnumberofplayer,
+                              AppLocalizations.of(context)!.selectnumber,
                               style: TextStyle(
                                   color: appThemeColor,
                                   fontSize: height * 0.017),
@@ -323,8 +322,7 @@ class BookingShimmer {
                                   onChange: (e, int) {},
                                   child: const Text('',
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: appThemeColor))),
+                                      style: TextStyle(color: appThemeColor))),
                             ),
                           ],
                         ),

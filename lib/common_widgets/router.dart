@@ -208,7 +208,7 @@ class RouterPage {
       case RouteNames.more:
         return MaterialPageRoute(
             builder: (_) => PlayerHome(
-                  index: 3,
+                  index: 2,
                 ));
       case RouteNames.team:
         return MaterialPageRoute(builder: (_) => PlayerHome(index: 1));

@@ -145,7 +145,6 @@ class GroundDetailState extends State<GroundDetail>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     checkAuth();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
@@ -339,12 +338,11 @@ class GroundDetailState extends State<GroundDetail>
                                                   fontFamily: "Poppins",
                                                   decoration:
                                                       TextDecoration.none),
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    Colors.black38,
-                                                    Colors.black45,
-                                                    AppColors.containerColor54
-                                                  ]),
+                                              gradient: LinearGradient(colors: [
+                                                Colors.black38,
+                                                Colors.black45,
+                                                AppColors.containerColor54
+                                              ]),
                                             )
                                           : SizedBox(
                                               height: height * 0.028,
@@ -428,11 +426,13 @@ class GroundDetailState extends State<GroundDetail>
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10),
-                                                      boxShadow:  [
+                                                      boxShadow: [
                                                         BoxShadow(
-                                                          color: AppColors.containerColorB,
+                                                          color: AppColors
+                                                              .containerColorB,
                                                           spreadRadius: 1,
-                                                          offset: const Offset(0, 1),
+                                                          offset: const Offset(
+                                                              0, 1),
                                                           blurStyle:
                                                               BlurStyle.outer,
                                                         )
@@ -631,7 +631,7 @@ class GroundDetailState extends State<GroundDetail>
                                                                         TextOverflow
                                                                             .ellipsis,
                                                                     maxLines: 5,
-                                                                    style:  TextStyle(
+                                                                    style: TextStyle(
                                                                         fontSize:
                                                                             14,
                                                                         color: AppColors
@@ -683,81 +683,81 @@ class GroundDetailState extends State<GroundDetail>
                                       ),
 
                                       ///popularFeature
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: height * 0.013),
-                                        child: Text(
-                                          AppLocalizations.of(context)!.popular,
-                                          style: TextStyle(
-                                            fontSize: height * 0.03,
-                                            color: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? AppColors.black
-                                                : AppColors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      Wrap(
-                                        crossAxisAlignment:
-                                            WrapCrossAlignment.center,
-                                        children: [
-                                          ...List.generate(
-                                              5,
-                                              (index) => Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical:
-                                                                height * .008,
-                                                            horizontal:
-                                                                width * 0.008),
-                                                    child: Wrap(
-                                                      crossAxisAlignment:
-                                                          WrapCrossAlignment
-                                                              .center,
-                                                      children: [
-                                                        CircleAvatar(
-                                                          radius:
-                                                              height * 0.0065,
-                                                          backgroundColor:
-                                                          AppColors.grey,
-                                                        ),
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      width *
-                                                                          0.02),
-                                                          child: Text(
-                                                            popular[index],
-                                                            style: TextStyle(
-                                                                color: MyAppState
-                                                                            .mode ==
-                                                                        ThemeMode
-                                                                            .light
-                                                                    ? AppColors
-                                                                        .black
-                                                                    : AppColors
-                                                                        .white,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                fontSize:
-                                                                    height *
-                                                                        0.02),
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            softWrap: true,
-                                                            textWidthBasis:
-                                                                TextWidthBasis
-                                                                    .parent,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ))
-                                        ],
-                                      ),
+                                      // Padding(
+                                      //   padding: EdgeInsets.symmetric(
+                                      //       vertical: height * 0.013),
+                                      //   child: Text(
+                                      //     AppLocalizations.of(context)!.popular,
+                                      //     style: TextStyle(
+                                      //       fontSize: height * 0.03,
+                                      //       color: MyAppState.mode ==
+                                      //               ThemeMode.light
+                                      //           ? AppColors.black
+                                      //           : AppColors.white,
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      // Wrap(
+                                      //   crossAxisAlignment:
+                                      //       WrapCrossAlignment.center,
+                                      //   children: [
+                                      //     ...List.generate(
+                                      //         5,
+                                      //         (index) => Padding(
+                                      //               padding:
+                                      //                   EdgeInsets.symmetric(
+                                      //                       vertical:
+                                      //                           height * .008,
+                                      //                       horizontal:
+                                      //                           width * 0.008),
+                                      //               child: Wrap(
+                                      //                 crossAxisAlignment:
+                                      //                     WrapCrossAlignment
+                                      //                         .center,
+                                      //                 children: [
+                                      //                   CircleAvatar(
+                                      //                     radius:
+                                      //                         height * 0.0065,
+                                      //                     backgroundColor:
+                                      //                     AppColors.grey,
+                                      //                   ),
+                                      //                   Padding(
+                                      //                     padding: EdgeInsets
+                                      //                         .symmetric(
+                                      //                             horizontal:
+                                      //                                 width *
+                                      //                                     0.02),
+                                      //                     child: Text(
+                                      //                       popular[index],
+                                      //                       style: TextStyle(
+                                      //                           color: MyAppState
+                                      //                                       .mode ==
+                                      //                                   ThemeMode
+                                      //                                       .light
+                                      //                               ? AppColors
+                                      //                                   .black
+                                      //                               : AppColors
+                                      //                                   .white,
+                                      //                           overflow:
+                                      //                               TextOverflow
+                                      //                                   .ellipsis,
+                                      //                           fontSize:
+                                      //                               height *
+                                      //                                   0.02),
+                                      //                       overflow:
+                                      //                           TextOverflow
+                                      //                               .ellipsis,
+                                      //                       softWrap: true,
+                                      //                       textWidthBasis:
+                                      //                           TextWidthBasis
+                                      //                               .parent,
+                                      //                     ),
+                                      //                   ),
+                                      //                 ],
+                                      //               ),
+                                      //             ))
+                                      //   ],
+                                      // ),
 
                                       ///BookButton
                                       ButtonWidget(

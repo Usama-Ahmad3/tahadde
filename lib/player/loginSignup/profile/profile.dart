@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(description),
-            actions: <Widget>[
+            actions: [
               TextButton(
                 child: Text(AppLocalizations.of(context)!.no),
                 onPressed: () {
@@ -239,7 +239,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                                   AppLocalizations.of(context)!
                                                               .locale ==
                                                           "en"
-                                                      ? "${profileDetail!['countryCode'] ?? ""}" "${profileDetail!['contact_number'] ?? ""}"
+                                                      ? "${profileDetail!['countryCode'] ?? ""}"
+                                                          "${profileDetail!['contact_number'] ?? ""}"
                                                       : "${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(1)}${profileDetail!['contact_number'] ?? ""}${profileDetail!['countryCode'] == null ? "" : profileDetail!['countryCode'].substring(0, 1)}",
                                                   style: TextStyle(
                                                       fontSize:

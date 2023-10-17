@@ -239,8 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CREATE A TEAM NOW"),
         "createTournament":
             MessageLookupByLibrary.simpleMessage("Create Tournament"),
-        "createYourAccount":
-            MessageLookupByLibrary.simpleMessage("Create your account"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
         "createYourLeagueHere":
             MessageLookupByLibrary.simpleMessage("Click to create league"),
         "createYourOwnChallenge":
@@ -621,8 +620,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectUserType": MessageLookupByLibrary.simpleMessage(
             "Select a user type to proceed and explore venue and games"),
         "selected": MessageLookupByLibrary.simpleMessage("Selected"),
-        "selectnumberofplayer":
-            MessageLookupByLibrary.simpleMessage("Select number of player"),
+        "selectnumber": MessageLookupByLibrary.simpleMessage("Select Players"),
         "selectonefieldtoenterwithotherteam":
             MessageLookupByLibrary.simpleMessage(
                 "Select your tahadde team available"),
@@ -656,7 +654,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "slots": MessageLookupByLibrary.simpleMessage("SLOTS"),
         "socialTitle": MessageLookupByLibrary.simpleMessage("Social Title"),
         "sorryYouEditReview": MessageLookupByLibrary.simpleMessage(
-            "Sorry, you can’t edit your venue when it's in review."),
+            "Sorry, you can’t edit your Academy when it's in review."),
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
         "sports": MessageLookupByLibrary.simpleMessage("Sports"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),

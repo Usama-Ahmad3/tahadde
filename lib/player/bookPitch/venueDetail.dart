@@ -1790,7 +1790,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
                           children: [
                             Text(
                               AppLocalizations.of(context)!
-                                  .selectnumberofplayer,
+                                  .selectnumber,
                               style: const TextStyle(
                                   color: appThemeColor),
                             ),

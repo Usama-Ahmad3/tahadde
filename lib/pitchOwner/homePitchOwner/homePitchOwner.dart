@@ -48,17 +48,19 @@ class _HomePitchOwnerState extends State<HomePitchOwner>
                 onTap: () {
                   Navigator.of(context).pop(false);
                 },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
-                  ),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.no,
-                      style: const TextStyle(color: Colors.white),
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.black,
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.no,
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
@@ -70,18 +72,20 @@ class _HomePitchOwnerState extends State<HomePitchOwner>
                 onTap: () {
                   Navigator.of(context).pop(true);
                 },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.transparent,
-                    border: Border.all(width: 1, color: Colors.red),
-                  ),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.yes,
-                      style: const TextStyle(color: Colors.red),
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.transparent,
+                      border: Border.all(width: 1, color: Colors.red),
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.yes,
+                        style: const TextStyle(color: Colors.red),
+                      ),
                     ),
                   ),
                 ),
@@ -97,7 +101,12 @@ class _HomePitchOwnerState extends State<HomePitchOwner>
     super.dispose();
   }
 
-  final page = [const PitchOwnerHome(), const Booking(), NotificationScreen(), const Account()];
+  final page = [
+    const PitchOwnerHome(),
+    const Booking(),
+    NotificationScreen(),
+    const Account()
+  ];
 
   @override
   Widget build(BuildContext context) {

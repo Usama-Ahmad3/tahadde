@@ -513,8 +513,8 @@ class AppLocalizations {
     return Intl.message('sendEmail', name: 'sendEmail');
   }
 
-  String get createYourAccount {
-    return Intl.message('createYourAccount', name: 'createYourAccount');
+  String get register {
+    return Intl.message('register', name: 'Register');
   }
 
   String get phoneNumber {
@@ -2044,8 +2044,8 @@ class AppLocalizations {
     return Intl.message('perPlayer', name: 'perPlayer');
   }
 
-  String get selectnumberofplayer {
-    return Intl.message('selectnumberofplayer', name: 'selectnumberofplayer');
+  String get selectnumber {
+    return Intl.message('Select Players', name: 'selectnumber');
   }
 
   String get thisDayHoliday {

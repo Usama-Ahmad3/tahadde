@@ -59,7 +59,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         if (mounted) {
           msg
               ? _auth!
-                  ? loadNotification()
+                  ? await loadNotification()
                   : {
                       if (mounted)
                         setState(() {
@@ -94,7 +94,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               if (mounted) {
                 msg
                     ? _auth!
-                        ? loadNotification()
+                        ? await loadNotification()
                         : {
                             if (mounted)
                               setState(() {
@@ -267,10 +267,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           ),
                                           ...List.generate(
                                               detail![0]["currentNotification"]
-                                                      .length +
-                                                  detail![0][
-                                                          "previousNotfication"]
-                                                      .length, (index) {
+                                                          .length +
+                                                      detail![0][
+                                                              "previousNotfication"]
+                                                          .length ??
+                                                  0, (index) {
                                             int current = detail![0]
                                                     ["currentNotification"]
                                                 .length;
@@ -325,10 +326,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                       .circular(
                                                                           50.0),
                                                               child: detail![0]["previousNotfication"]
-                                                                              [index - current]
+                                                                              [index == 0 ? 0 : index - current]
                                                                           ['notificationFor'] ==
                                                                       'team'
-                                                                  ? detail![0]["previousNotfication"][index - current]["image"]["filePath"] == null
+                                                                  ? detail![0]["previousNotfication"][index == 0 ? 0 : index - current]["image"]["filePath"] == null
                                                                       ? Image.asset(
                                                                           "assets/images/profile.png",
                                                                           fit: BoxFit
@@ -338,25 +339,25 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                           width:
                                                                               .06 * fem,
                                                                         )
-                                                                      : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index - current]["image"]["filePath"])
-                                                                  : current == 0 || index >= current
-                                                                      ? Image.asset(
-                                                                          "assets/images/profile.png",
-                                                                          fit: BoxFit
-                                                                              .fill,
-                                                                          height:
-                                                                              .06 * fem,
-                                                                          width:
-                                                                              .06 * fem,
-                                                                        )
-                                                                      : detail![0]["previousNotfication"][index]["image"][0]["filePath"] == null
+                                                                      : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"]["filePath"] ?? '')
+                                                                  // : current == 0 || index >= current
+                                                                  //     ? Image.asset(
+                                                                  //         "assets/images/profile.png",
+                                                                  //         fit: BoxFit
+                                                                  //             .fill,
+                                                                  //         height:
+                                                                  //             .06 * fem,
+                                                                  //         width:
+                                                                  //             .06 * fem,
+                                                                  //       )
+                                                                      : detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] == null
                                                                           ? Image.asset(
                                                                               "assets/images/profile.png",
                                                                               fit: BoxFit.fill,
                                                                               height: .06 * fem,
                                                                               width: .06 * fem,
                                                                             )
-                                                                          : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index]["image"][0]["filePath"])),
+                                                                          : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] ?? '')),
                                                         ),
                                                         Container(
                                                           margin:
@@ -386,12 +387,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                               ),
                                                               children: [
                                                                 TextSpan(
-                                                                  text: detail![0]["previousNotfication"][index - current]
+                                                                  text: detail![0]["previousNotfication"][index == 0 ? 0:index - current]
                                                                               [
                                                                               "notificationMessage"] ==
                                                                           null
                                                                       ? ""
-                                                                      : detail![0]["previousNotfication"][index - current]["notificationMessage"]
+                                                                      : detail![0]["previousNotfication"][index == 0 ? 0:index - current]["notificationMessage"]
                                                                               [
                                                                               "message"] ??
                                                                           "",
@@ -424,14 +425,16 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                         Text(
                                                           detail![0]["previousNotfication"]
                                                                           [
-                                                                          index -
+                                                          index == 0 ? 0:index -
                                                                               current]
                                                                       [
                                                                       "createdDatetime"] ==
                                                                   null
                                                               ? ""
+
+                                                              ///6
                                                               : detail![0]["previousNotfication"]
-                                                                          [
+                                                                          [index == 0 ? 0:
                                                                           index -
                                                                               current]
                                                                       [
@@ -497,7 +500,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                             .mode ==
                                                                         ThemeMode
                                                                             .light
-                                                                    ? AppColors.darkTheme
+                                                                    ? AppColors
+                                                                        .darkTheme
                                                                     : AppColors
                                                                         .white,
                                                               ),

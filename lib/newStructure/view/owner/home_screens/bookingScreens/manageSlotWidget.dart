@@ -130,7 +130,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                   // navigateToManageSlotsDetail(pitchDetail[index]);
                                 }
                               : () => showMessage(
-                                  "Sorry, you can not edit verified and in-review venue"),
+                                  "Sorry, you can not edit verified and in-review Academy"),
                           child: Padding(
                             padding: EdgeInsets.only(
                                 left: sizeWidth * .04,
@@ -179,7 +179,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                           style: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
-                                                  ?AppColors.themeColor
+                                                  ? AppColors.themeColor
                                                   : AppColors.white,
                                               fontWeight: FontWeight.w700,
                                               fontFamily: "Poppins",

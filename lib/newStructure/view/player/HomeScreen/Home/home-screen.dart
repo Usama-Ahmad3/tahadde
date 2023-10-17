@@ -172,89 +172,48 @@ class HomeScreenViewState extends State<HomeScreenView> {
                   Wrap(
                     children: [
                       ...List.generate(
-                        2,
+                        _bookPitchData.length,
                         (index) => _sportsList.isEmpty
                             ? const SizedBox.shrink()
-                            : _sportsList[index]
-                                    .name
-                                    .toString()
-                                    .toLowerCase()
-                                    .contains(
-                                        searchController.text.toLowerCase())
-                                ? InkWell(
-                                    onTap: () async {
-                                      Map detail = {
-                                        "slug": _sportsList[index].slug,
-                                        "bannerImage":
-                                            _sportsList[index].bannerImage,
-                                        "sportName":
-                                            AppLocalizations.of(context)!
-                                                        .locale ==
-                                                    "en"
-                                                ? _sportsList[index].name
-                                                : _sportsList[index].nameArabic
-                                      };
-                                      removeOverlay();
-                                      searchFlag = false;
-                                      searchController.clear();
-                                      // ignore: use_build_context_synchronously
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  SpecificSportsListScreen(
-                                                    detail: detail,
-                                                  )));
-                                      setState(() {});
-                                      SharedPreferences prefs =
-                                          await SharedPreferences.getInstance();
-                                      history.add(
-                                          _sportsList[index].name.toString());
-                                      prefs.setStringList('history', history);
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: width * 0.025,
-                                          vertical: height * 0.01),
-                                      child: Chip(
-                                          avatar: CircleAvatar(
-                                              radius: 30,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              child: Image.network(
-                                                  _sportsList[index]
-                                                      .image
-                                                      .toString())),
-                                          backgroundColor: Colors.transparent,
-                                          elevation: 2,
-                                          padding: const EdgeInsets.all(10),
-                                          label: Text(
-                                            _sportsList[index].name!,
-                                            style: const TextStyle(
-                                                color: Colors.black),
-                                          )),
-                                    ),
-                                  )
-                                : _bookPitchData[index]['name']
+                            : _sportsList.length > index
+                                ? _sportsList[index]
+                                        .name
                                         .toString()
                                         .toLowerCase()
                                         .contains(
                                             searchController.text.toLowerCase())
                                     ? InkWell(
-                                        onTap: () {
-                                          dynamic detail = {
-                                            "pitchId": _bookPitchData[index]
-                                                    ["id"] ??
-                                                0,
-                                            "subPitchId": _bookPitchData[index]
-                                                    ["pitchType"][0] ??
-                                                0
+                                        onTap: () async {
+                                          Map detail = {
+                                            "slug": _sportsList[index].slug,
+                                            "bannerImage":
+                                                _sportsList[index].bannerImage,
+                                            "sportName":
+                                                AppLocalizations.of(context)!
+                                                            .locale ==
+                                                        "en"
+                                                    ? _sportsList[index].name
+                                                    : _sportsList[index]
+                                                        .nameArabic
                                           };
+                                          removeOverlay();
+                                          searchFlag = false;
+                                          searchController.clear();
+                                          // ignore: use_build_context_synchronously
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (_) => GroundDetail(
-                                                      detail: detail)));
+                                                  builder: (_) =>
+                                                      SpecificSportsListScreen(
+                                                        detail: detail,
+                                                      )));
+                                          setState(() {});
+                                          SharedPreferences prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          // history.add(
+                                          //     _sportsList[index].name.toString());
+                                          // prefs.setStringList('history', history);
                                         },
                                         child: Padding(
                                           padding: EdgeInsets.symmetric(
@@ -266,22 +225,110 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   child: Image.network(
-                                                      _bookPitchData[index][
-                                                                  "bookpitchfiles"]
-                                                              ["files"][0]
-                                                          ["filePath"])),
+                                                      _sportsList[index]
+                                                          .image
+                                                          .toString())),
                                               backgroundColor:
                                                   Colors.transparent,
                                               elevation: 2,
                                               padding: const EdgeInsets.all(10),
                                               label: Text(
-                                                _bookPitchData[index]['name']!,
+                                                _sportsList[index].name!,
                                                 style: const TextStyle(
                                                     color: Colors.black),
                                               )),
                                         ),
                                       )
-                                    : Container(),
+                                    : _bookPitchData[index]['name']
+                                            .toString()
+                                            .toLowerCase()
+                                            .contains(searchController.text
+                                                .toLowerCase())
+                                        ? InkWell(
+                                            onTap: () {
+                                              dynamic detail = {
+                                                "pitchId": _bookPitchData[index]
+                                                        ["id"] ??
+                                                    0,
+                                                "subPitchId":
+                                                    _bookPitchData[index]
+                                                            ["pitchType"][0] ??
+                                                        0
+                                              };
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          GroundDetail(
+                                                              detail: detail)));
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: width * 0.025,
+                                                  vertical: height * 0.01),
+                                              child: Chip(
+                                                  avatar: CircleAvatar(
+                                                      radius: 30,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      child: Image.network(
+                                                          _bookPitchData[index][
+                                                                      "bookpitchfiles"]
+                                                                  ["files"][0]
+                                                              ["filePath"])),
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  elevation: 2,
+                                                  padding:
+                                                      const EdgeInsets.all(10),
+                                                  label: Text(
+                                                    _bookPitchData[index]
+                                                        ['name']!,
+                                                    style: const TextStyle(
+                                                        color: Colors.black),
+                                                  )),
+                                            ),
+                                          )
+                                        : Container()
+                                : InkWell(
+                                    onTap: () {
+                                      dynamic detail = {
+                                        "pitchId":
+                                            _bookPitchData[index]["id"] ?? 0,
+                                        "subPitchId": _bookPitchData[index]
+                                                ["pitchType"][0] ??
+                                            0
+                                      };
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => GroundDetail(
+                                                  detail: detail)));
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: width * 0.025,
+                                          vertical: height * 0.01),
+                                      child: Chip(
+                                          avatar: CircleAvatar(
+                                              radius: 30,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              child: Image.network(
+                                                  _bookPitchData[index]
+                                                              ["bookpitchfiles"]
+                                                          ["files"][0]
+                                                      ["filePath"])),
+                                          backgroundColor: Colors.transparent,
+                                          elevation: 2,
+                                          padding: const EdgeInsets.all(10),
+                                          label: Text(
+                                            _bookPitchData[index]['name']!,
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                          )),
+                                    ),
+                                  ),
                       ),
                     ],
                   )
@@ -604,7 +651,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                               height: height * 0.05,
                               width: width * 0.12,
                               decoration: BoxDecoration(
-                                  color: AppColors.blue,
+                                  color: AppColors.appThemeColor,
                                   borderRadius: BorderRadius.circular(12)),
                               child: Icon(
                                 Icons.list,
@@ -718,7 +765,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                             }))
                         : const Center(
                             child: CircularProgressIndicator(
-                            color:AppColors.appThemeColor,
+                            color: AppColors.appThemeColor,
                           )),
                   ),
                   InkWell(
@@ -759,52 +806,58 @@ class HomeScreenViewState extends State<HomeScreenView> {
           body: _isLoading
               ? ShimmerWidgets().buildShimmer(fem, context, _bookPitchData)
               : _internet!
-                  ? ListView(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ///top widget
-                            SizedBox(
-                              height: 10 * fem,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: fem * 22.0),
-                              child: SizedBox(
-                                  height: fem * 160,
-                                  width: double.infinity,
+                  ? CustomScrollView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      slivers: [
+                          SliverAppBar(
+                            pinned: true,
+                            expandedHeight: height * 0.23,
+                            automaticallyImplyLeading: false,
+                            flexibleSpace: FlexibleSpaceBar(
+                              collapseMode: CollapseMode.pin,
+                              centerTitle: false,
+                              titlePadding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 0),
+                              background: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: fem * 22.0),
                                   child: loaded
                                       ? AdWidget(ad: myBanner)
-                                      : Placeholder()),
+                                      : const Placeholder()),
                             ),
-
-                            ///category
-                            // _sportsList.isEmpty
-                            //     ? const SizedBox.shrink()
-                            //     : SportList(
-                            //         isSelected: isSelected,
-                            //         sportsList: _sportsList,
-                            //       ),
-                            isSelected != -1
-                                ? bookSpecific != null &&
-                                        bookSpecific.isNotEmpty
-                                    ? VanueList(
-                                        bookPitchData: bookSpecific,
-                                        searchflag: searchFlag)
-                                    : VanueList(
-                                        bookPitchData: bookSpecific,
-                                        empty: true,
-                                        searchflag: searchFlag)
-                                : _bookPitchData != null
-                                    ? VanueList(
-                                        bookPitchData: _bookPitchData,
-                                        searchflag: searchFlag)
-                                    : const SizedBox.shrink()
-                          ],
-                        ),
-                      ],
-                    )
+                          ),
+                          SliverToBoxAdapter(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ///category
+                                // _sportsList.isEmpty
+                                //     ? const SizedBox.shrink()
+                                //     : SportList(
+                                //         isSelected: isSelected,
+                                //         sportsList: _sportsList,
+                                //       ),
+                                isSelected != -1
+                                    ? bookSpecific != null &&
+                                            bookSpecific.isNotEmpty
+                                        ? VanueList(
+                                            bookPitchData: bookSpecific,
+                                            searchflag: searchFlag)
+                                        : VanueList(
+                                            bookPitchData: bookSpecific,
+                                            empty: true,
+                                            searchflag: searchFlag)
+                                    : _bookPitchData != null
+                                        ? VanueList(
+                                            bookPitchData: _bookPitchData,
+                                            searchflag: searchFlag)
+                                        : const SizedBox.shrink()
+                              ],
+                            ),
+                          ),
+                        ])
                   : SingleChildScrollView(
                       child: Column(
                         children: [

@@ -92,12 +92,13 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
             ? AppColors.white
             : AppColors.darkTheme,
         appBar: appBarForCreatingAcademy(
-            size,
-            context,
-            AppLocalizations.of(context)!.slotChart,
-            false,
-            AppColors.barLineColor,
-            AppColors.barLineColor,),
+          size,
+          context,
+          AppLocalizations.of(context)!.slotChart,
+          true,
+          AppColors.barLineColor,
+          AppColors.barLineColor,
+        ),
         body: Container(
           color: AppColors.black,
           child: Container(
@@ -277,12 +278,14 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
                                                           ? AppColors.grey200
-                                                          : AppColors.containerColorB,
+                                                          : AppColors
+                                                              .containerColorB,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10),
                                                       border: Border.all(
-                                                          color: AppColors.grey)),
+                                                          color:
+                                                              AppColors.grey)),
                                                   child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -304,8 +307,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                         .mode ==
                                                                     ThemeMode
                                                                         .light
-                                                                ? AppColors.black
-                                                                : AppColors.white),
+                                                                ? AppColors
+                                                                    .black
+                                                                : AppColors
+                                                                    .white),
                                                       ),
                                                       slotList[0].sports ==
                                                               "swimming"
@@ -544,18 +549,18 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                         return null;
                                       },
                                       border: OutlineInputBorder(
-                                          borderSide:  BorderSide(
-                                              color: AppColors.grey),
+                                          borderSide:
+                                              BorderSide(color: AppColors.grey),
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                       enableBorder: OutlineInputBorder(
-                                          borderSide:  BorderSide(
-                                              color: AppColors.grey),
+                                          borderSide:
+                                              BorderSide(color: AppColors.grey),
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                       focusBorder: OutlineInputBorder(
-                                          borderSide:   BorderSide(
-                                              color: AppColors.grey),
+                                          borderSide:
+                                              BorderSide(color: AppColors.grey),
                                           borderRadius:
                                               BorderRadius.circular(12))),
                               flaxibleGap(2),
@@ -596,15 +601,15 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                   },
                                   border: OutlineInputBorder(
                                       borderSide:
-                                           BorderSide(color: AppColors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   enableBorder: OutlineInputBorder(
                                       borderSide:
-                                            BorderSide(color: AppColors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12)),
                                   focusBorder: OutlineInputBorder(
                                       borderSide:
-                                            BorderSide(color: AppColors.grey),
+                                          BorderSide(color: AppColors.grey),
                                       borderRadius: BorderRadius.circular(12))),
                               flaxibleGap(20),
                               ButtonWidget(

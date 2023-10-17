@@ -29,28 +29,29 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
-              style: TextStyle(color: AppColors.red),
+              style: const TextStyle(color: AppColors.appThemeColor),
             ),
-            actions: <Widget>[
+            actions: [
               InkWell(
-                onTap: () {
-                  Navigator.of(context).pop(false);
-                },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.black,
-                  ),
+                  onTap: () {
+                    Navigator.of(context).pop(false);
+                  },
                   child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.no,
-                      style: TextStyle(color: AppColors.white),
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.appThemeColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.no,
+                          style: TextStyle(color: AppColors.white),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
+                  )),
               const SizedBox(
                 height: 10,
               ),
@@ -58,18 +59,20 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                 onTap: () {
                   Navigator.of(context).pop(true);
                 },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.transparent,
-                    border: Border.all(width: 1, color: AppColors.red),
-                  ),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.yes,
-                      style: TextStyle(color: AppColors.red),
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.appThemeColor,
+                      border: Border.all(width: 1, color: AppColors.white),
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.yes,
+                        style: TextStyle(color: AppColors.white),
+                      ),
                     ),
                   ),
                 ),
@@ -118,11 +121,11 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.home,
-                        style: TextStyle(color: AppColors.black),
+                        style: TextStyle(color: AppColors.white),
                       ),
-                      activeIcon:  Icon(
+                      activeIcon: Icon(
                         Icons.home,
-                        color: AppColors.black,
+                        color: AppColors.white,
                       ),
                       unselectedColor: AppColors.grey,
                       selectedColor: AppColors.appThemeColor,
@@ -138,14 +141,14 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.booking,
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: AppColors.white),
                       ),
                       activeIcon: SizedBox(
                         height: 23,
                         width: 23,
                         child: Image.asset(
                           'assets/images/file.png',
-                          color: Colors.black,
+                          color: AppColors.white,
                         ),
                       ),
                       selectedColor: const Color(0xff1d7e55),
@@ -157,11 +160,11 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.notification,
-                        style: TextStyle(color: AppColors.black),
+                        style: TextStyle(color: AppColors.white),
                       ),
                       activeIcon: Icon(
                         Icons.notifications_sharp,
-                        color: AppColors.black,
+                        color: AppColors.white,
                       ),
                       selectedColor: AppColors.appThemeColor,
                       unselectedColor: AppColors.grey,
@@ -172,13 +175,13 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.account,
-                        style:  TextStyle(color: AppColors.black),
+                        style: TextStyle(color: AppColors.white),
                       ),
                       activeIcon: Icon(
                         Icons.person,
-                        color: AppColors.black,
+                        color: AppColors.white,
                       ),
-                      selectedColor:  AppColors.appThemeColor,
+                      selectedColor: AppColors.appThemeColor,
                       unselectedColor: AppColors.grey,
                     ),
                   ],

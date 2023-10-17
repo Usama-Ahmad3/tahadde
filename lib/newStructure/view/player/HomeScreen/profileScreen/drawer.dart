@@ -62,7 +62,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             title: Text(AppLocalizations.of(context)!.logout),
             content: Text(
               description,
-              style: const TextStyle(color: Colors.red),
+              style: const TextStyle(color: AppColors.appThemeColor),
             ),
             actions: [
               InkWell(
@@ -74,7 +74,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: AppColors.black,
+                    color: AppColors.appThemeColor,
                   ),
                   child: Center(
                     child: Text(
@@ -137,13 +137,13 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: AppColors.transparent,
-                    border: Border.all(width: 1, color: AppColors.red),
+                    color: AppColors.appThemeColor,
+                    border: Border.all(width: 1, color: AppColors.white),
                   ),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.yes,
-                      style: TextStyle(color: AppColors.red),
+                      style: TextStyle(color: AppColors.white),
                     ),
                   ),
                 ),

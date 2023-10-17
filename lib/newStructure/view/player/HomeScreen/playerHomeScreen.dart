@@ -65,24 +65,26 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
-              style: TextStyle(color: AppColors.red),
+              style: const TextStyle(color: AppColors.appThemeColor),
             ),
-            actions: <Widget>[
+            actions: [
               InkWell(
                 onTap: () {
                   Navigator.of(context).pop(false);
                 },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
-                  ),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.no,
-                      style: TextStyle(color: AppColors.white),
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.appThemeColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.no,
+                        style: TextStyle(color: AppColors.white),
+                      ),
                     ),
                   ),
                 ),
@@ -94,18 +96,21 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 onTap: () {
                   Navigator.of(context).pop(true);
                 },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.transparent,
-                    border: Border.all(width: 1, color: AppColors.red),
-                  ),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.yes,
-                      style: TextStyle(color: AppColors.red),
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.appThemeColor,
+                      border:
+                          Border.all(width: 1, color: AppColors.transparent),
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.yes,
+                        style: TextStyle(color: AppColors.white),
+                      ),
                     ),
                   ),
                 ),

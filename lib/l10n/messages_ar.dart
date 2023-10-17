@@ -228,8 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createTeamNow":
             MessageLookupByLibrary.simpleMessage("إنشاء فريق الآن"),
         "createTournament": MessageLookupByLibrary.simpleMessage("أنشئ بطولة"),
-        "createYourAccount":
-            MessageLookupByLibrary.simpleMessage("انشئ حساب جديد"),
+        "register": MessageLookupByLibrary.simpleMessage("يسجل"),
         "createYourLeagueHere":
             MessageLookupByLibrary.simpleMessage("اضغط لإنشاء الدوري"),
         "createYourOwnChallenge":
@@ -606,8 +605,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectUserType": MessageLookupByLibrary.simpleMessage(
             "حدد نوع المستخدم للمتابعة واستكشاف الملعب والألعاب"),
         "selected": MessageLookupByLibrary.simpleMessage("المحدد"),
-        "selectnumberofplayer":
-            MessageLookupByLibrary.simpleMessage("حدد عدد اللاعبين للحجز"),
+        "selectnumber": MessageLookupByLibrary.simpleMessage("حدد اللاعبين"),
         "selectonefieldtoenterwithotherteam":
             MessageLookupByLibrary.simpleMessage("اختر فريق التحدي الخاص بك"),
         "selectonefieldtoenterwithotheryourtahadditeam":
@@ -638,7 +636,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "slots": MessageLookupByLibrary.simpleMessage("الآوقات المتاحة :"),
         "socialTitle": MessageLookupByLibrary.simpleMessage("تفاصيلي"),
         "sorryYouEditReview": MessageLookupByLibrary.simpleMessage(
-            "عذرًا ، لا يمكنك تعديل المكان عندما يكون قيد المراجعة"),
+            "عذرًا، لا يمكنك تعديل أكاديميتك عندما تكون قيد المراجعة."),
         "sortBy": MessageLookupByLibrary.simpleMessage("صنف حسب"),
         "sports": MessageLookupByLibrary.simpleMessage("بقع"),
         "start": MessageLookupByLibrary.simpleMessage("بداية"),

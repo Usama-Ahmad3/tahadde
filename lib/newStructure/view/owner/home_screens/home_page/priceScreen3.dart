@@ -324,132 +324,132 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                       height: size.height * 0.02,
                                     )
                                   : const SizedBox.shrink(),
-                              widget.detail.sportsType == "swimming"
-                                  ? SizedBox(
-                                      height: size.height * 0.07,
-                                      child: TextFieldWidget(
-                                        onChanged: (value) {
-                                          if (value != null) {
-                                            indexItem =
-                                                int.parse(value.toString());
-                                          }
-                                          return null;
-                                        },
-                                        onValidate: (value) {
-                                          if (int.parse(value) > 10) {
-                                            return 'Enter between 1 to 10 ';
-                                          }
-                                          return null;
-                                        },
-                                        onSubmitted: (value) {
-                                          FocusScope.of(context)
-                                              .requestFocus(pricePer);
-                                          return null;
-                                        },
-                                        focus: focusNode,
-                                        controller: maxPlayers,
-                                        type: TextInputType.number,
-                                        hintText: '10',
-                                        enableBorder: OutlineInputBorder(
-                                            borderSide: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? BorderSide.none
-                                                : BorderSide(
-                                                    color: AppColors.white,
-                                                    width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(12)),
-                                        focusBorder: OutlineInputBorder(
-                                            borderSide: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? BorderSide.none
-                                                : BorderSide(
-                                                    color: AppColors.white,
-                                                    width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(12)),
-                                        border: OutlineInputBorder(
-                                            borderSide: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? BorderSide.none
-                                                : BorderSide(
-                                                    color: AppColors.white,
-                                                    width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(12)),
-                                      ),
-                                    )
-                                  : const SizedBox.shrink(),
+                              // widget.detail.sportsType == "swimming"
+                              //     ? SizedBox(
+                              //         height: size.height * 0.07,
+                              //         child: TextFieldWidget(
+                              //           onChanged: (value) {
+                              //             if (value != null) {
+                              //               indexItem =
+                              //                   int.parse(value.toString());
+                              //             }
+                              //             return null;
+                              //           },
+                              //           onValidate: (value) {
+                              //             if (int.parse(value) > 10) {
+                              //               return 'Enter between 1 to 10 ';
+                              //             }
+                              //             return null;
+                              //           },
+                              //           onSubmitted: (value) {
+                              //             FocusScope.of(context)
+                              //                 .requestFocus(pricePer);
+                              //             return null;
+                              //           },
+                              //           focus: focusNode,
+                              //           controller: maxPlayers,
+                              //           type: TextInputType.number,
+                              //           hintText: '10',
+                              //           enableBorder: OutlineInputBorder(
+                              //               borderSide: MyAppState.mode ==
+                              //                       ThemeMode.light
+                              //                   ? BorderSide.none
+                              //                   : BorderSide(
+                              //                       color: AppColors.white,
+                              //                       width: 1),
+                              //               borderRadius:
+                              //                   BorderRadius.circular(12)),
+                              //           focusBorder: OutlineInputBorder(
+                              //               borderSide: MyAppState.mode ==
+                              //                       ThemeMode.light
+                              //                   ? BorderSide.none
+                              //                   : BorderSide(
+                              //                       color: AppColors.white,
+                              //                       width: 1),
+                              //               borderRadius:
+                              //                   BorderRadius.circular(12)),
+                              //           border: OutlineInputBorder(
+                              //               borderSide: MyAppState.mode ==
+                              //                       ThemeMode.light
+                              //                   ? BorderSide.none
+                              //                   : BorderSide(
+                              //                       color: AppColors.white,
+                              //                       width: 1),
+                              //               borderRadius:
+                              //                   BorderRadius.circular(12)),
+                              //         ),
+                              //       )
+                              //     : const SizedBox.shrink(),
                               widget.detail.sportsType == "swimming"
                                   ? const SizedBox.shrink()
                                   : SizedBox(
                                       height: size.height * 0.02,
                                     ),
-                              widget.detail.sportsType == "swimming"
-                                  ? const SizedBox.shrink()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          AppLocalizations.of(context)!.price,
-                                          style: TextStyle(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? AppColors.themeColor
-                                                  : AppColors.white),
-                                        ),
-                                        SizedBox(
-                                          height: size.height * 0.01,
-                                        ),
-                                        TextFieldWidget(
-                                            controller: _priceController,
-                                            hintText: '',
-                                            type: TextInputType.number,
-                                            focus: pricePer,
-                                            prefix: const Text(
-                                              "Amount: ",
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            suffix: const Text(
-                                              " AED",
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            onSubmitted: (value) {
-                                              // FocusScope.of(context).requestFocus(arabicFocus);
-                                              return null;
-                                            },
-                                            onChanged: (value) {
-                                              venuePrice = value;
-                                              return '';
-                                            },
-                                            onValidate: (value) {
-                                              if (value!.isEmpty) {
-                                                return "Please enter amount";
-                                              }
-                                              return null;
-                                            },
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: AppColors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(12)),
-                                            enableBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: AppColors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(12)),
-                                            focusBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: AppColors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(12))),
-                                      ],
-                                    ),
+                              // widget.detail.sportsType == "swimming"
+                              //     ? const SizedBox.shrink()
+                              //     : Column(
+                              //         crossAxisAlignment:
+                              //             CrossAxisAlignment.start,
+                              //         children: [
+                              //           Text(
+                              //             AppLocalizations.of(context)!.price,
+                              //             style: TextStyle(
+                              //                 color: MyAppState.mode ==
+                              //                         ThemeMode.light
+                              //                     ? AppColors.themeColor
+                              //                     : AppColors.white),
+                              //           ),
+                              //           SizedBox(
+                              //             height: size.height * 0.01,
+                              //           ),
+                              //           TextFieldWidget(
+                              //               controller: _priceController,
+                              //               hintText: '',
+                              //               type: TextInputType.number,
+                              //               focus: pricePer,
+                              //               prefix: const Text(
+                              //                 "Amount: ",
+                              //                 style: TextStyle(
+                              //                     fontSize: 12,
+                              //                     fontWeight: FontWeight.w500),
+                              //               ),
+                              //               suffix: const Text(
+                              //                 " AED",
+                              //                 style: TextStyle(
+                              //                     fontSize: 14,
+                              //                     fontWeight: FontWeight.w600),
+                              //               ),
+                              //               onSubmitted: (value) {
+                              //                 // FocusScope.of(context).requestFocus(arabicFocus);
+                              //                 return null;
+                              //               },
+                              //               onChanged: (value) {
+                              //                 venuePrice = value;
+                              //                 return '';
+                              //               },
+                              //               onValidate: (value) {
+                              //                 if (value!.isEmpty) {
+                              //                   return "Please enter amount";
+                              //                 }
+                              //                 return null;
+                              //               },
+                              //               border: OutlineInputBorder(
+                              //                   borderSide: BorderSide(
+                              //                       color: AppColors.grey),
+                              //                   borderRadius:
+                              //                       BorderRadius.circular(12)),
+                              //               enableBorder: OutlineInputBorder(
+                              //                   borderSide: BorderSide(
+                              //                       color: AppColors.grey),
+                              //                   borderRadius:
+                              //                       BorderRadius.circular(12)),
+                              //               focusBorder: OutlineInputBorder(
+                              //                   borderSide: BorderSide(
+                              //                       color: AppColors.grey),
+                              //                   borderRadius:
+                              //                       BorderRadius.circular(12))),
+                              //         ],
+                              //       ),
                               SizedBox(
                                 height: size.height * 0.02,
                               ),

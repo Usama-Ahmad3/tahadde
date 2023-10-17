@@ -34,18 +34,16 @@ class _VanueListState extends State<VanueList> {
     double ffem = fem * 0.97;
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: widget.tagForView
-          ? widget.searchflag!
-              ? 450 * fem
-              : 480 * fem
-          : MediaQuery.of(context).size.height,
+      height: widget.bookPitchData.length <= 2 ? 495 * fem : null,
       margin: EdgeInsets.only(top: 24 * fem),
-      padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 0),
+      padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 15 * fem),
       decoration: BoxDecoration(
         color: mode == ThemeMode.light
             ? const Color(0xffffffff)
             : const Color(0xff5A5C60),
-        borderRadius: BorderRadius.circular(24 * fem),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24 * fem),
+            topRight: Radius.circular(24 * fem)),
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -196,7 +194,7 @@ class _VanueListState extends State<VanueList> {
                                     width: 24 * fem,
                                     height: 24 * fem,
                                     child: Image.asset(
-                                      'assets/light-design/images/icon-bus.png',
+                                      'assets/images/icon-kVX.png',
                                       width: 24 * fem,
                                       height: 24 * fem,
                                     ),

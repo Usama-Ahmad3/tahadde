@@ -971,6 +971,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   controller: _licenceController,
                                   hintText:
                                       AppLocalizations.of(context)!.licenceName,
+                                  type: TextInputType.number,
                                   onChanged: (value) {
                                     widget.detail.documentModel!.licenceNumber =
                                         value;

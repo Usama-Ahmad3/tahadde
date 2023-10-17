@@ -129,7 +129,7 @@ class _SignupPageState extends State<SignupPage> {
                 backgroundColor: const Color(0XFFFFFFFF),
                 appBar: appBar(
                   language: AppLocalizations.of(context)!.locale,
-                  title: AppLocalizations.of(context)!.createYourAccount,
+                  title: AppLocalizations.of(context)!.register,
                   onTap: () {
                     Navigator.of(context).pop();
                   },
