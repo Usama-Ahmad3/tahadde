@@ -73,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: Text(AppLocalizations.of(context)!.logout),
             content: Text(
               description,
-              style: TextStyle(color: AppColors.appThemeColor),
+              style: const TextStyle(color: AppColors.appThemeColor),
             ),
             actions: <Widget>[
               InkWell(
@@ -82,7 +82,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
                 child: Container(
                   height: 50,
-                  width: double.infinity,
+                  width: MediaQuery.of(context).size.width * 0.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: AppColors.appThemeColor,

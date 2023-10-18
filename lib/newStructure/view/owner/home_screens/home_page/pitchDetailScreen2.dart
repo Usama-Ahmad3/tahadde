@@ -8,6 +8,7 @@ import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/p
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart' hide Marker;
 import 'package:permission_handler/permission_handler.dart';
@@ -62,8 +63,9 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                   GestureDetector(
                     child: Text(
                       AppLocalizations.of(context)!.choosefromlibrary,
-                      style:   TextStyle(
-                          color: AppColors.black, fontWeight: FontWeight.normal),
+                      style: TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.normal),
                     ),
                     onTap: () async {
                       var status = await Permission.photos.status;
@@ -81,20 +83,20 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                   title: Text(
                                       AppLocalizations.of(context)!
                                           .galleryPermission,
-                                      style:   TextStyle(
+                                      style: TextStyle(
                                           color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   content: Text(
                                       AppLocalizations.of(context)!
                                           .thisGalleryPicturesUploadImage,
-                                      style:   TextStyle(
+                                      style: TextStyle(
                                           color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
-                                          style:   TextStyle(
+                                          style: TextStyle(
                                               color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () =>
@@ -103,7 +105,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.setting,
-                                          style:   TextStyle(
+                                          style: TextStyle(
                                               color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () => openAppSettings(),
@@ -118,7 +120,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
-                        style:   TextStyle(
+                        style: TextStyle(
                             color: AppColors.black,
                             fontWeight: FontWeight.normal)),
                     onTap: () async {
@@ -136,20 +138,20 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                   title: Text(
                                       AppLocalizations.of(context)!
                                           .cameraPermission,
-                                      style:   TextStyle(
+                                      style: TextStyle(
                                           color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   content: Text(
                                       AppLocalizations.of(context)!
                                           .thisPicturesUploadImage,
-                                      style:   TextStyle(
+                                      style: TextStyle(
                                           color: AppColors.black,
                                           fontWeight: FontWeight.normal)),
                                   actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny,
-                                          style:   TextStyle(
+                                          style: TextStyle(
                                               color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () =>
@@ -158,7 +160,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.setting,
-                                          style:   TextStyle(
+                                          style: TextStyle(
                                               color: AppColors.black,
                                               fontWeight: FontWeight.normal)),
                                       onPressed: () => openAppSettings(),
@@ -312,13 +314,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -353,13 +355,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -403,7 +405,7 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                         AppLocalizations.of(context)!.description,
                         style: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
-                                ?AppColors.themeColor
+                                ? AppColors.themeColor
                                 : AppColors.white),
                       ),
                       SizedBox(
@@ -432,13 +434,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -471,13 +473,13 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                             return null;
                           },
                           border: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           enableBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12)),
                           focusBorder: OutlineInputBorder(
-                              borderSide:   BorderSide(color: AppColors.grey),
+                              borderSide: BorderSide(color: AppColors.grey),
                               borderRadius: BorderRadius.circular(12))),
                       SizedBox(
                         height: sizeHeight * 0.02,
@@ -495,11 +497,18 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                   ? SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
-                                      child: Image.asset(
-                                        "assets/images/Rectangle.png",
-                                        fit: BoxFit.fill,
-                                      ),
-                                    )
+                                      child: Container(
+                                        width: sizeWidth * 0.11,
+                                        height: sizeHeight * 0.04,
+                                        decoration: BoxDecoration(
+                                            color: AppColors.appThemeColor,
+                                            borderRadius: BorderRadius.circular(
+                                                sizeHeight * 0.005)),
+                                        child: Icon(
+                                          FontAwesomeIcons.check,
+                                          color: AppColors.white,
+                                        ),
+                                      ))
                                   : SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
@@ -548,11 +557,18 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                   ? SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
-                                      child: Image.asset(
-                                        "assets/images/Rectangle.png",
-                                        fit: BoxFit.fill,
-                                      ),
-                                    )
+                                      child: Container(
+                                        width: sizeWidth * 0.11,
+                                        height: sizeHeight * 0.04,
+                                        decoration: BoxDecoration(
+                                            color: AppColors.appThemeColor,
+                                            borderRadius: BorderRadius.circular(
+                                                sizeHeight * 0.005)),
+                                        child: Icon(
+                                          FontAwesomeIcons.check,
+                                          color: AppColors.white,
+                                        ),
+                                      ))
                                   : SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
@@ -634,8 +650,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                                 color: const Color(0XFFA3A3A3)),
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: AppColors.barLineColor
-                                                .withOpacity(.3),
+                                            color: AppColors.appThemeColor
+                                                .withOpacity(0.7),
                                           ),
                                           child: Column(
                                             children: [

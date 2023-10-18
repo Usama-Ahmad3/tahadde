@@ -21,5 +21,5 @@ class AppColors {
   static Color white24 = Colors.white24;
   static const themeColor = Color(0XFF032040);
   static const appThemeColor = Color(0xff1d7e55);
-  static const barLineColor = Color(0XFF25A163);
+  static const barLineColor = Color(0xff1d7e55);
 }

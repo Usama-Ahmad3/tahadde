@@ -151,7 +151,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                           color: AppColors.white,
                         ),
                       ),
-                      selectedColor: const Color(0xff1d7e55),
+                      selectedColor: AppColors.appThemeColor,
                       unselectedColor: Colors.grey,
                     ),
                     SalomonBottomBarItem(

@@ -565,7 +565,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 width: sizeWidth,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4),
-                                  color: AppColors.barLineColor,
+                                  color: AppColors.appThemeColor,
                                   //color: Color(color),
                                 ),
                                 child: InkWell(

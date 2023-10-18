@@ -96,8 +96,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
           context,
           AppLocalizations.of(context)!.slotChart,
           true,
-          AppColors.barLineColor,
-          AppColors.barLineColor,
+          AppColors.appThemeColor,
+          AppColors.appThemeColor,
         ),
         body: Container(
           color: AppColors.black,
@@ -200,7 +200,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                     ? const Expanded(
                         child: Center(
                             child: CircularProgressIndicator(
-                        color: AppColors.barLineColor,
+                        color: AppColors.appThemeColor,
                       )))
                     : slotList.isNotEmpty
                         ? Expanded(
@@ -442,19 +442,19 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                 Container(
                                   height: size.height * .005,
                                   width: size.width * .17,
-                                  color: AppColors.barLineColor,
+                                  color: AppColors.appThemeColor,
                                 ),
                                 flaxibleGap(1),
                                 Container(
                                   height: size.height * .005,
                                   width: size.width * .17,
-                                  color: AppColors.barLineColor,
+                                  color: AppColors.appThemeColor,
                                 ),
                                 flaxibleGap(1),
                                 Container(
                                   height: size.height * .005,
                                   width: size.width * .17,
-                                  color: AppColors.barLineColor,
+                                  color: AppColors.appThemeColor,
                                 ),
                                 flaxibleGap(1),
                                 Container(

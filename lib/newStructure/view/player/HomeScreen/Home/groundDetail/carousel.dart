@@ -119,7 +119,7 @@ class _CarouselState extends State<Carousel> {
             decorator: DotsDecorator(
               activeSize: const Size(20.0, 10.0),
               color: AppColors.grey,
-              activeColor: const Color(0xFF25A163),
+              activeColor: AppColors.appThemeColor,
               activeShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0)),
             ),

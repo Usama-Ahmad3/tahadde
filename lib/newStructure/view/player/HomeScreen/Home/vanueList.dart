@@ -13,10 +13,12 @@ class VanueList extends StatefulWidget {
   bool tagForView;
   bool empty;
   bool? searchflag;
+  String text;
 
   VanueList(
       {super.key,
       this.searchflag = false,
+      required this.text,
       required this.bookPitchData,
       this.tagForView = true,
       this.empty = false});
@@ -34,8 +36,8 @@ class _VanueListState extends State<VanueList> {
     double ffem = fem * 0.97;
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: widget.bookPitchData.length <= 2 ? 495 * fem : null,
-      margin: EdgeInsets.only(top: 24 * fem),
+      height: widget.bookPitchData.length <= 2 ? 720 * fem : null,
+      // margin: EdgeInsets.only(top: 24 * fem),
       padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 15 * fem),
       decoration: BoxDecoration(
         color: mode == ThemeMode.light
@@ -61,7 +63,7 @@ class _VanueListState extends State<VanueList> {
                             navigateToViewMorePitch(details);
                           },
                           child: Text(
-                            AppLocalizations.of(context)!.academy,
+                            widget.text,
                             style: SafeGoogleFont('Inter',
                                 fontSize: 20 * ffem,
                                 fontWeight: FontWeight.w600,

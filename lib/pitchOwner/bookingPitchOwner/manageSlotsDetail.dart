@@ -437,7 +437,7 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                   )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
                       Container(
                         color: const Color(0XFFBCBCBC).withOpacity(.2),
                         child: Padding(
@@ -446,7 +446,7 @@ class _ManageSlotsDetailState extends State<ManageSlotsDetail> {
                               vertical: sizeHeight * .01),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
+                            children: [
                               GestureDetector(
                                 onTap: () async {
                                   final selectDate =

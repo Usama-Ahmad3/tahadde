@@ -1,3 +1,4 @@
+
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScree
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../../../constant.dart';
 import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
@@ -95,6 +95,8 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
               InkWell(
                 onTap: () {
                   Navigator.of(context).pop(true);
+                  ///close the app
+                  // exit(0);
                 },
                 child: Center(
                   child: Container(
@@ -158,11 +160,11 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.home,
-                      style: TextStyle(color: AppColors.black),
+                      style: TextStyle(color: AppColors.white),
                     ),
                     activeIcon: Icon(
                       Icons.home,
-                      color: AppColors.black,
+                      color: AppColors.white,
                     ),
                     unselectedColor: AppColors.grey,
                     selectedColor: AppColors.appThemeColor,
@@ -178,14 +180,14 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.booking,
-                      style: TextStyle(color: AppColors.black),
+                      style: TextStyle(color: AppColors.white),
                     ),
                     activeIcon: SizedBox(
                       height: 23,
                       width: 23,
                       child: Image.asset(
                         'assets/images/file.png',
-                        color: AppColors.black,
+                        color: AppColors.white,
                       ),
                     ),
                     selectedColor: AppColors.appThemeColor,
@@ -197,11 +199,11 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.more,
-                      style: TextStyle(color: AppColors.black),
+                      style: TextStyle(color: AppColors.white),
                     ),
                     activeIcon: Icon(
                       Icons.settings,
-                      color: AppColors.black,
+                      color: AppColors.white,
                     ),
                     selectedColor: AppColors.appThemeColor,
                     unselectedColor: AppColors.grey,
@@ -212,11 +214,11 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     title: Text(
                       AppLocalizations.of(context)!.personalDetail,
-                      style: TextStyle(color: AppColors.black),
+                      style: TextStyle(color: AppColors.white),
                     ),
                     activeIcon: Icon(
                       Icons.person,
-                      color: AppColors.black,
+                      color: AppColors.white,
                     ),
                     selectedColor: AppColors.appThemeColor,
                     unselectedColor: AppColors.grey,

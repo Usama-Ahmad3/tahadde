@@ -10,7 +10,6 @@ import '../../../../../../localizations.dart';
 import '../../../../../../modelClass/my_venue_list_model_class.dart';
 import '../../../../../../network/network_calls.dart';
 import '../../../../../app_colors/app_colors.dart';
-import '../../../../player/HomeScreen/Home/home-screen.dart';
 import '../../../../player/HomeScreen/Home/shimmerWidgets.dart';
 import '../../../../../utils/utils.dart';
 
@@ -203,45 +202,46 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                         : Placeholder()),
                               ),
                               Material(
+                                  color: AppColors.transparent,
                                   child: Container(
-                                height: sizeHeight * 0.07,
-                                color: AppColors.black,
-                                constraints: BoxConstraints(
-                                    maxHeight: sizeHeight * 0.06),
-                                child: TabBar(
-                                  indicatorSize: TabBarIndicatorSize.tab,
-                                  unselectedLabelColor: AppColors.grey,
-                                  dividerColor: AppColors.red,
-                                  isScrollable: true,
-                                  physics: AlwaysScrollableScrollPhysics(),
-                                  // indicator: BoxDecoration(
-                                  //   color: Color(0xff1d7e55),
-                                  //   borderRadius: BorderRadius.circular(8),
-                                  // ),
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: sizeHeight * 0.003),
-                                  tabs: [
-                                    Center(
-                                        child: Padding(
-                                      padding:
-                                          EdgeInsets.all(sizeHeight * 0.012),
-                                      child: Text(
-                                        AppLocalizations.of(context)!
-                                            .academyOnly,
-                                      ),
-                                    )),
-                                    Center(
-                                        child: Padding(
-                                      padding:
-                                          EdgeInsets.all(sizeHeight * 0.012),
-                                      child: Text(
-                                        AppLocalizations.of(context)!
-                                            .innovative,
-                                      ),
-                                    )),
-                                  ],
-                                ),
-                              )),
+                                    height: sizeHeight * 0.07,
+                                    color: AppColors.black,
+                                    constraints: BoxConstraints(
+                                        maxHeight: sizeHeight * 0.06),
+                                    child: TabBar(
+                                      indicatorSize: TabBarIndicatorSize.tab,
+                                      unselectedLabelColor: AppColors.grey,
+                                      dividerColor: AppColors.red,
+                                      isScrollable: true,
+                                      physics: AlwaysScrollableScrollPhysics(),
+                                      // indicator: BoxDecoration(
+                                      //   color: Color(0xff1d7e55),
+                                      //   borderRadius: BorderRadius.circular(8),
+                                      // ),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: sizeHeight * 0.003),
+                                      tabs: [
+                                        Center(
+                                            child: Padding(
+                                          padding: EdgeInsets.all(
+                                              sizeHeight * 0.012),
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                .academyOnly,
+                                          ),
+                                        )),
+                                        Center(
+                                            child: Padding(
+                                          padding: EdgeInsets.all(
+                                              sizeHeight * 0.012),
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                .innovative,
+                                          ),
+                                        )),
+                                      ],
+                                    ),
+                                  )),
                               ConstrainedBox(
                                 constraints: BoxConstraints(
                                     maxHeight: constraints.maxHeight * 0.75),
@@ -289,6 +289,42 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                   horizontal: sizeWidth * 0.01),
                                               child: Column(
                                                 children: [
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        bottom: 12 * fem,
+                                                        top: 12 * fem),
+                                                    width: double.infinity,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        var details = {
+                                                          "bool": false
+                                                        };
+                                                      },
+                                                      child: Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .academy,
+                                                        style: SafeGoogleFont(
+                                                            'Inter',
+                                                            fontSize: 20 * ffem,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            height: 1.25 *
+                                                                ffem /
+                                                                fem,
+                                                            letterSpacing:
+                                                                -0.2 * fem,
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0xff050505)
+                                                                : const Color(
+                                                                    0xffffffff)),
+                                                      ),
+                                                    ),
+                                                  ),
                                                   ...List.generate(
                                                     _pitchDetail.length > 2
                                                         ? 3
@@ -515,6 +551,42 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                             child: SingleChildScrollView(
                                               child: Column(
                                                 children: [
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        bottom: 12 * fem,
+                                                        top: 12 * fem),
+                                                    width: double.infinity,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        var details = {
+                                                          "bool": false
+                                                        };
+                                                      },
+                                                      child: Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .innovative,
+                                                        style: SafeGoogleFont(
+                                                            'Inter',
+                                                            fontSize: 20 * ffem,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            height: 1.25 *
+                                                                ffem /
+                                                                fem,
+                                                            letterSpacing:
+                                                                -0.2 * fem,
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0xff050505)
+                                                                : const Color(
+                                                                    0xffffffff)),
+                                                      ),
+                                                    ),
+                                                  ),
                                                   ...List.generate(
                                                     _pitchDetail.length > 2
                                                         ? 1

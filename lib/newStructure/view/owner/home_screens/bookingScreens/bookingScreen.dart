@@ -97,7 +97,8 @@ class _BookingScreenState extends State<BookingScreen> {
         builder: (BuildContext context, Widget? child) {
           return Theme(
             data: ThemeData.light().copyWith(
-              colorScheme:   const ColorScheme.light(primary: AppColors.themeColor),
+              colorScheme:
+                  const ColorScheme.light(primary: AppColors.themeColor),
               buttonTheme:
                   const ButtonThemeData(textTheme: ButtonTextTheme.primary),
             ),
@@ -178,7 +179,8 @@ class _BookingScreenState extends State<BookingScreen> {
                                                                       .mode ==
                                                                   ThemeMode
                                                                       .light
-                                                              ? AppColors.themeColor
+                                                              ? AppColors
+                                                                  .themeColor
                                                               : AppColors.white,
                                                           fontSize: 15,
                                                           fontWeight:
@@ -195,7 +197,8 @@ class _BookingScreenState extends State<BookingScreen> {
                                                                       .mode ==
                                                                   ThemeMode
                                                                       .light
-                                                              ? AppColors.themeColor
+                                                              ? AppColors
+                                                                  .themeColor
                                                               : AppColors.white,
                                                           fontSize: 15,
                                                           fontWeight:
@@ -259,7 +262,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .closed,
-                                                    style:  TextStyle(
+                                                    style: TextStyle(
                                                         fontSize: 8,
                                                         color: AppColors.black),
                                                   )
@@ -277,7 +280,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                         constraints: BoxConstraints(
                                             maxHeight: height * .06),
                                         child: TabBar(
-                                          labelColor: AppColors.barLineColor,
+                                          labelColor: AppColors.appThemeColor,
                                           //controller: tabController,
                                           labelStyle: const TextStyle(
                                               fontSize: 18,
@@ -290,7 +293,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                           indicatorPadding:
                                               const EdgeInsets.only(),
                                           indicatorColor:
-                                              AppColors.barLineColor,
+                                              AppColors.appThemeColor,
                                           indicatorWeight: 4,
 
                                           tabs: [

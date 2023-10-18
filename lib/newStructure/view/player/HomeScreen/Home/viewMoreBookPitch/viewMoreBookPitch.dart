@@ -136,6 +136,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                   ),
                 ),
                 body: VanueList(
+                  text: AppLocalizations.of(context)!.academy,
                   bookPitchData: bookPitchData,
                   tagForView: false,
                 ))

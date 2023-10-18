@@ -341,7 +341,7 @@ class GroundDetailState extends State<GroundDetail>
                                               gradient: LinearGradient(colors: [
                                                 Colors.black38,
                                                 Colors.black45,
-                                                AppColors.containerColor54
+                                                AppColors.containerColorB54
                                               ]),
                                             )
                                           : SizedBox(
@@ -349,7 +349,7 @@ class GroundDetailState extends State<GroundDetail>
                                               width: width * 0.04,
                                               child:
                                                   const CircularProgressIndicator(
-                                                color: Colors.greenAccent,
+                                                color: AppColors.appThemeColor,
                                                 strokeAlign: 1,
                                                 strokeWidth: 2,
                                               ),
@@ -482,8 +482,8 @@ class GroundDetailState extends State<GroundDetail>
                                                       Checkbox(
                                                           shape:
                                                               const CircleBorder(),
-                                                          activeColor: Colors
-                                                              .greenAccent,
+                                                          activeColor: AppColors
+                                                              .appThemeColor,
                                                           value:
                                                               selectedIndex ==
                                                                       index

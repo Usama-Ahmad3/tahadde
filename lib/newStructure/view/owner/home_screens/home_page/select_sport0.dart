@@ -69,7 +69,7 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
         padding: EdgeInsets.symmetric(horizontal: size.height * 0.02),
         child: ButtonWidget(
           title: Text(AppLocalizations.of(context)!.continu),
-          color: indexItem != null ? AppColors.barLineColor : AppColors.grey,
+          color: indexItem != null ? AppColors.appThemeColor : AppColors.grey,
           onTaped: () {
             indexItem != null
                 ? navigateToDocuments(SportsModel(

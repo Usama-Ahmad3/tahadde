@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../../constant.dart';
@@ -52,7 +54,12 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
             "id": widget.detail["id"],
             "name": _nameController.text
           };
-          navigateToEditVenues(detail);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditVenuesScreen(detail: detail),
+              ));
+          // navigateToEditVenues(detail);
         }
       },
       onFailure: (msg) {
@@ -104,83 +111,20 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
+    var size = MediaQuery.of(context).size;
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
           backgroundColor: MyAppState.mode == ThemeMode.light
               ? AppColors.white
               : AppColors.darkTheme,
-          appBar: PreferredSize(
-              preferredSize: Size(sizeWidth, sizeHeight * 0.105),
-              child: AppBar(
-                title: Text(
-                  AppLocalizations.of(context)!.documents,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: AppColors.white),
-                ),
-                centerTitle: true,
-                backgroundColor: AppColors.black,
-                leadingWidth: sizeWidth * 0.18,
-                leading: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                        padding: EdgeInsets.all(sizeHeight * 0.008),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.grey),
-                            shape: BoxShape.circle),
-                        child: Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.close,
-                            color: AppColors.white,
-                          ),
-                        )),
-                  ),
-                ),
-                bottom: PreferredSize(
-                  preferredSize: Size(sizeWidth, 10),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: sizeWidth * 0.035),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: sizeHeight * .005,
-                          width: sizeWidth * .17,
-                          color: AppColors.barLineColor,
-                        ),
-                        flaxibleGap(1),
-                        Container(
-                          height: sizeHeight * .005,
-                          width: sizeWidth * .17,
-                          color: AppColors.barLineColor,
-                        ),
-                        flaxibleGap(1),
-                        Container(
-                          height: sizeHeight * .005,
-                          width: sizeWidth * .17,
-                          color: AppColors.barLineColor,
-                        ),
-                        flaxibleGap(1),
-                        Container(
-                          height: sizeHeight * .005,
-                          width: sizeWidth * .17,
-                          color: const Color(0XFFCBCBCB),
-                        ),
-                        flaxibleGap(1),
-                        Container(
-                          height: sizeHeight * .005,
-                          width: sizeWidth * .17,
-                          color: const Color(0XFFCBCBCB),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              )),
+          appBar: appBarForCreatingAcademy(
+              size,
+              context,
+              AppLocalizations.of(context)!.document,
+              true,
+              const Color(0XFFCBCBCB),
+              const Color(0XFFCBCBCB)),
           body: Container(
             color: Colors.black,
             child: Container(
@@ -413,11 +357,18 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                   ? SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
-                                      child: Image.asset(
-                                        "assets/images/Rectangle.png",
-                                        fit: BoxFit.fill,
-                                      ),
-                                    )
+                                      child: Container(
+                                        width: sizeWidth * 0.11,
+                                        height: sizeHeight * 0.04,
+                                        decoration: BoxDecoration(
+                                            color: AppColors.appThemeColor,
+                                            borderRadius: BorderRadius.circular(
+                                                sizeHeight * 0.005)),
+                                        child: Icon(
+                                          FontAwesomeIcons.check,
+                                          color: AppColors.white,
+                                        ),
+                                      ))
                                   : SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
@@ -466,11 +417,18 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                   ? SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
-                                      child: Image.asset(
-                                        "assets/images/Rectangle.png",
-                                        fit: BoxFit.fill,
-                                      ),
-                                    )
+                                      child: Container(
+                                        width: sizeWidth * 0.11,
+                                        height: sizeHeight * 0.04,
+                                        decoration: BoxDecoration(
+                                            color: AppColors.appThemeColor,
+                                            borderRadius: BorderRadius.circular(
+                                                sizeHeight * 0.005)),
+                                        child: Icon(
+                                          FontAwesomeIcons.check,
+                                          color: AppColors.white,
+                                        ),
+                                      ))
                                   : SizedBox(
                                       height: sizeHeight * .03,
                                       width: sizeWidth * .055,
@@ -555,8 +513,8 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                                 color: const Color(0XFFA3A3A3)),
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: AppColors.barLineColor
-                                                .withOpacity(.3),
+                                            color: AppColors.appThemeColor
+                                                .withOpacity(0.7),
                                           ),
                                           child: Column(
                                             children: [

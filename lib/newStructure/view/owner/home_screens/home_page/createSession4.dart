@@ -8,7 +8,6 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../constant.dart';
 import '../../../../../drop_down_file.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
@@ -203,18 +202,21 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                   onTap: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Container(
-                                    height: 50,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: AppColors.appThemeColor,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        AppLocalizations.of(context)!.no,
-                                        style:
-                                            TextStyle(color: AppColors.white),
+                                  child: Center(
+                                    child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: AppColors.appThemeColor,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          AppLocalizations.of(context)!.no,
+                                          style:
+                                              TextStyle(color: AppColors.white),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -241,20 +243,23 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     Navigator.pop(context);
                                     setState(() {});
                                   },
-                                  child: Container(
-                                    height: 50,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: AppColors.appThemeColor,
-                                      border: Border.all(
-                                          width: 1, color: AppColors.white),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        AppLocalizations.of(context)!.yes,
-                                        style:
-                                            TextStyle(color: AppColors.white),
+                                  child: Center(
+                                    child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: AppColors.appThemeColor,
+                                        border: Border.all(
+                                            width: 1, color: AppColors.white),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          AppLocalizations.of(context)!.yes,
+                                          style:
+                                              TextStyle(color: AppColors.white),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -1100,7 +1105,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             context,
                             AppLocalizations.of(context)!.createSession,
                             true,
-                            AppColors.barLineColor,
+                            AppColors.appThemeColor,
                             const Color(0XFFCBCBCB)),
                         body: SingleChildScrollView(
                           child: Container(

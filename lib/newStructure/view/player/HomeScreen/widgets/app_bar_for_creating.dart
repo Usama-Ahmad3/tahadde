@@ -48,22 +48,20 @@ PreferredSize appBarForCreatingAcademy(
             child: Row(
               children: [
                 Container(
-                  height: size.height * .005,
-                  width: size.width * .17,
-                  color: const Color(0XFF25A163),
-                ),
+                    height: size.height * .005,
+                    width: size.width * .17,
+                    color: AppColors.appThemeColor),
                 flaxibleGap(1),
                 Container(
                   height: size.height * .005,
                   width: size.width * .17,
-                  color: const Color(0XFF25A163),
+                  color: AppColors.appThemeColor,
                 ),
                 flaxibleGap(1),
                 Container(
-                  height: size.height * .005,
-                  width: size.width * .17,
-                  color: const Color(0XFF25A163),
-                ),
+                    height: size.height * .005,
+                    width: size.width * .17,
+                    color: AppColors.appThemeColor),
                 flaxibleGap(1),
                 Container(
                   height: size.height * .005,

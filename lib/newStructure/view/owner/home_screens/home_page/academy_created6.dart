@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
@@ -50,10 +51,17 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Image.asset(
-                        "assets/images/checks.png",
-                        height: 60,
-                        width: 60,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.appThemeColor),
+                        child: Icon(
+                          FontAwesomeIcons.check,
+                          color: AppColors.white,
+                          size: MediaQuery.of(context).size.height * 0.06,
+                        ),
                       ),
                     ),
                     flaxibleGap(

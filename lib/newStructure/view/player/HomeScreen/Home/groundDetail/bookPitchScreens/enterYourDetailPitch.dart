@@ -6,6 +6,7 @@ import 'package:flutter_tahaddi/homeFile/utility.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/network/network_calls.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:shimmer/shimmer.dart';
@@ -683,7 +684,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                               left: sizewidth * .05, right: sizewidth * .05),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
+                            children: [
                               Container(
                                 height: sizeheight * .02,
                               ),
@@ -722,7 +723,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                       Text(
                                         widget.detail["apiDetail"]["date"],
                                         style: const TextStyle(
-                                            color: Color(0XFF25A163),
+                                            color: AppColors.appThemeColor,
                                             fontSize: 13,
                                             fontFamily: "Poppins"),
                                       ),
@@ -736,11 +737,12 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                             return Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: <Widget>[
+                                              children: [
                                                 Text(
-                                                  " ${AppLocalizations.of(context)!.sessionName} ${session[index]}",
+                                                  "${AppLocalizations.of(context)!.sessionName} ${session[index]}",
                                                   style: const TextStyle(
-                                                      color: Color(0XFF25A163)),
+                                                      color: AppColors
+                                                          .appThemeColor),
                                                 ),
                                                 SizedBox(
                                                   height: 40,
@@ -765,8 +767,8 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                           alignment:
                                                               Alignment.center,
                                                           decoration: BoxDecoration(
-                                                              color:
-                                                                  Colors.green,
+                                                              color: AppColors
+                                                                  .appThemeColor,
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
@@ -826,7 +828,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: <Widget>[
+                                      children: [
                                         Flexible(
                                           flex: 3,
                                           child: Container(),
@@ -898,7 +900,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                         ),
                                         flaxibleGap(2),
                                         Row(
-                                          children: <Widget>[
+                                          children: [
                                             Text(
                                               AppLocalizations.of(context)!
                                                   .subTotal,
@@ -978,7 +980,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                   Checkbox(
                                     focusNode: focus,
                                     autofocus: true,
-                                    activeColor: Colors.green,
+                                    activeColor: AppColors.appThemeColor,
                                     value: monVal,
                                     onChanged: (bool? value) {
                                       setState(() {
@@ -1011,7 +1013,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                     "terms_and_conditions_url");
                                               },
                                             style: const TextStyle(
-                                              color: Color(0XFF25A163),
+                                              color: AppColors.appThemeColor,
                                               fontSize: 15,
                                               // decoration: TextDecoration.underline
                                             ),

@@ -87,7 +87,7 @@ class _PaymentSuccess extends State<PaymentSuccess> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
+                children: [
                   Flexible(
                     flex: 15,
                     child: Container(),

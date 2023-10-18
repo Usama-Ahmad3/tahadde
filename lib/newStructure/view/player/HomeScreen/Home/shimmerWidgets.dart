@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -25,7 +26,7 @@ class ShimmerWidgets {
                     vertical: 16 * size,
                   ),
                   width: double.infinity,
-                  height: 150 * size,
+                  height: 175 * size,
                   decoration: BoxDecoration(
                     color: const Color(0xff1e1e1e),
                     borderRadius: BorderRadius.circular(16 * size),
@@ -56,7 +57,10 @@ class ShimmerWidgets {
                 left: 0,
                 right: 0,
                 child: SizedBox(
-                    height: 500 * size, child: VanueList(bookPitchData: const [])))
+                    height: 450 * size,
+                    child: VanueList(
+                        text: AppLocalizations.of(context)!.innovative,
+                        bookPitchData: const [])))
           ],
         ),
       ),
