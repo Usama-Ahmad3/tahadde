@@ -14,7 +14,7 @@ class AccountSetting extends StatefulWidget {
 }
 
 class _AccountSettingState extends State<AccountSetting> {
-  String baseUrl = RestApis.BASE_URL;
+  String baseUrl = RestApis.BASEURL;
   final NetworkCalls _networkCalls = NetworkCalls();
 
   @override
@@ -32,7 +32,7 @@ class _AccountSettingState extends State<AccountSetting> {
               child: InkWell(
                 splashColor: Colors.black,
                 onTap: () {
-                  RestApis.BASE_URL = baseUrl;
+                  RestApis.BASEURL = baseUrl;
                   _networkCalls.saveBaseUrl(onSuccess: (msg) {
                     navigateToHome();
                   });

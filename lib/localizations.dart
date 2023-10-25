@@ -514,7 +514,7 @@ class AppLocalizations {
   }
 
   String get register {
-    return Intl.message('register', name: 'Register');
+    return Intl.message('Register', name: 'register');
   }
 
   String get phoneNumber {
@@ -894,7 +894,7 @@ class AppLocalizations {
   }
 
   String get addPitchImage {
-    return Intl.message('addPitchImage', name: 'addPitchImage');
+    return Intl.message('Add Academy Image', name: 'addPitchImage');
   }
 
   String get pitchName {

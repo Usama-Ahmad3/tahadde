@@ -127,12 +127,16 @@ class _EventsScreenState extends State<EventsScreen> {
                               ),
                               Text(
                                   AppLocalizations.of(context)!.noBookingsFound,
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? const Color(0XFF424242)
-                                          : AppColors.white,
-                                      fontFamily: "Poppins",
-                                      fontSize: 18)),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? const Color(0XFF424242)
+                                                : AppColors.white,
+                                        fontFamily: "Poppins",
+                                      )),
                               flaxibleGap(
                                 32,
                               ),
@@ -197,64 +201,74 @@ class _EventsScreenState extends State<EventsScreen> {
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
-                                                        children: <Widget>[
+                                                        children: [
                                                           flaxibleGap(
                                                             2,
                                                           ),
                                                           Text(
                                                             '${events[index].user!.first_name}${events[index].user!.last_name}',
-                                                            style: const TextStyle(
-                                                                color: AppColors
-                                                                    .themeColor,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .titleMedium!
+                                                                .copyWith(
+                                                                    color: AppColors
+                                                                        .appThemeColor,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
                                                           ),
                                                           flaxibleGap(
                                                             1,
                                                           ),
                                                           Text(
                                                               "${events[index].event!.name}",
-                                                              style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFF424242),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      15)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: Color(
+                                                                          0XFF424242),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600)),
                                                           Text(
-                                                              DateFormat
-                                                                      .yMMMMd(
-                                                                          'en_US')
+                                                              DateFormat.yMMMMd(
+                                                                      'en_US')
                                                                   .format(DateTime.parse(events[
                                                                           index]
                                                                       .event!
                                                                       .startDate
                                                                       .toString())),
-                                                              style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFF25A163),
-                                                                  fontSize: 15,
-                                                                  fontFamily:
-                                                                      "Poppins",
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: Color(
+                                                                          0XFF25A163),
+                                                                      fontFamily:
+                                                                          "Poppins",
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600)),
                                                           flaxibleGap(
                                                             2,
                                                           ),
                                                           Text(
                                                               "${AppLocalizations.of(context)!.tranjectionId} : ${events[index].transactionId}",
-                                                              style: const TextStyle(
-                                                                  color: AppColors
-                                                                      .themeColor,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      15)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    color: AppColors
+                                                                        .appThemeColor,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  )),
                                                           flaxibleGap(
                                                             2,
                                                           ),
@@ -289,27 +303,33 @@ class _EventsScreenState extends State<EventsScreen> {
                                                             AppLocalizations.of(
                                                                     context)!
                                                                 .paidTotal,
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0XFFFFFFFF),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontFamily:
-                                                                    "Poppins"),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    color: Color(
+                                                                        0XFFFFFFFF),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontFamily:
+                                                                        "Poppins"),
                                                           ),
                                                           Text(
                                                             'د.إ${events[index].paidTotal}',
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0XFFFFFFFF),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontFamily:
-                                                                    "Poppins"),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    color: Color(
+                                                                        0XFFFFFFFF),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontFamily:
+                                                                        "Poppins"),
                                                           ),
                                                         ],
                                                       ),
@@ -325,7 +345,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: <Widget>[
+                                                children: [
                                                   Container(
                                                     height: sizeHeight * .03,
                                                   ),
@@ -335,17 +355,23 @@ class _EventsScreenState extends State<EventsScreen> {
                                                             events[index]
                                                                 .transactionMadeon
                                                                 .toString())),
-                                                    style: TextStyle(
-                                                        fontFamily: "Poppins",
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? AppColors
-                                                                .themeColor
-                                                            : AppColors.white,
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w600),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            fontFamily:
+                                                                "Poppins",
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? AppColors
+                                                                    .themeColor
+                                                                : AppColors
+                                                                    .white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
                                                   ),
                                                   Container(
                                                     height: sizeHeight * .01,
@@ -383,58 +409,67 @@ class _EventsScreenState extends State<EventsScreen> {
                                                           ),
                                                           Text(
                                                             '${events[index].user!.first_name} ${events[index].user!.last_name}',
-                                                            style: const TextStyle(
-                                                                color: AppColors
-                                                                    .themeColor,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    color: AppColors
+                                                                        .themeColor,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
                                                           ),
                                                           flaxibleGap(
                                                             1,
                                                           ),
                                                           Text(
                                                               "${events[index].event!.name}",
-                                                              style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFF424242),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      15)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: Color(
+                                                                          0XFF424242),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600)),
                                                           Text(
-                                                              DateFormat
-                                                                      .yMMMMd(
-                                                                          'en_US')
+                                                              DateFormat.yMMMMd(
+                                                                      'en_US')
                                                                   .format(DateTime.parse(events[
                                                                           index]
                                                                       .event!
                                                                       .startDate
                                                                       .toString())),
-                                                              style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFF25A163),
-                                                                  fontSize: 15,
-                                                                  fontFamily:
-                                                                      "Poppins",
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: Color(
+                                                                          0XFF25A163),
+                                                                      fontFamily:
+                                                                          "Poppins",
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600)),
                                                           flaxibleGap(
                                                             2,
                                                           ),
                                                           Text(
                                                               "${AppLocalizations.of(context)!.tranjectionId} : ${events[index].transactionId}",
-                                                              style: const TextStyle(
-                                                                  color: AppColors
-                                                                      .themeColor,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      15)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: AppColors
+                                                                          .appThemeColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600)),
                                                           flaxibleGap(
                                                             2,
                                                           ),
@@ -446,7 +481,7 @@ class _EventsScreenState extends State<EventsScreen> {
                                                     height: sizeHeight * .08,
                                                     decoration: const BoxDecoration(
                                                         color: AppColors
-                                                            .themeColor,
+                                                            .appThemeColor,
                                                         borderRadius:
                                                             BorderRadius.only(
                                                                 bottomRight:
@@ -470,27 +505,33 @@ class _EventsScreenState extends State<EventsScreen> {
                                                             AppLocalizations.of(
                                                                     context)!
                                                                 .paidTotal,
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0XFFFFFFFF),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontFamily:
-                                                                    "Poppins"),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    color: Color(
+                                                                        0XFFFFFFFF),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontFamily:
+                                                                        "Poppins"),
                                                           ),
                                                           Text(
                                                             'د.إ${events[index].paidTotal}',
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0XFFFFFFFF),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontFamily:
-                                                                    "Poppins"),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    color: Color(
+                                                                        0XFFFFFFFF),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontFamily:
+                                                                        "Poppins"),
                                                           ),
                                                         ],
                                                       ),

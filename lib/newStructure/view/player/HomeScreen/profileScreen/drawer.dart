@@ -170,7 +170,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
         curve: Curves.elasticInOut,
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            padding: EdgeInsets.symmetric(horizontal: width * 0.02),
             child: DefaultTextStyle(
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: MyAppState.mode == ThemeMode.light
@@ -193,368 +193,439 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                       index: 3,
                                     )));
                     },
-                    child: CircleAvatar(
-                        backgroundColor: AppColors.grey200,
-                        child: Icon(
-                          Icons.close,
-                          color: AppColors.black,
-                        )),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.black
-                                        : AppColors.white),
-                          ),
-                          Text(
-                            widget.position,
-                            style: const TextStyle(fontSize: 11),
-                          ),
-                        ],
-                      ),
-                      widget.profileImage.isNotEmpty
-                          ? InkWell(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => CupertinoAlertDialog(
-                                    content: Container(
-                                      height: height * 0.25,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: NetworkImage(
-                                                  widget.profileImage))),
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: CircleAvatar(
-                                  radius: height * 0.06,
-                                  backgroundImage:
-                                      NetworkImage(widget.profileImage)),
-                            )
-                          : CircleAvatar(
-                              radius: height * 0.06,
-                              backgroundImage:
-                                  const AssetImage("assets/images/profile.png"),
-                            )
-                    ],
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Text(AppLocalizations.of(context)!.account),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  ...List.generate(
-                      widget.playerTag ? 5 : 3,
-                      (index) => widget.playerTag
-                          ? Padding(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: height * 0.01),
-                              child: ListTile(
-                                onTap: index == 0
-                                    ? () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    const EditProfileScreen()));
-                                      }
-                                    : index == 1
-                                        ? () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        EventsScreen(
-                                                          bookingTag: true,
-                                                        )));
-                                          }
-                                        : index == 2
-                                            ? () {
-                                                Navigator.pushNamed(context,
-                                                    RouteNames.myInterest);
-                                              }
-                                            : index == 3
-                                                ? () {
-                                                    Navigator.pushNamed(context,
-                                                        RouteNames.rate);
-                                                  }
-                                                : () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (_) =>
-                                                                SettingsScreen(
-                                                                  bookingTag:
-                                                                      true,
-                                                                )));
-                                                  },
-                                titleAlignment: ListTileTitleAlignment.center,
-                                tileColor: MyAppState.mode == ThemeMode.light
-                                    ? AppColors.grey200
-                                    : AppColors.containerColorB,
-                                shape: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.containerColorW12),
-                                    borderRadius: BorderRadius.circular(10)),
-                                leading: Icon(
-                                  icon[index],
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? AppColors.black
-                                      : AppColors.white,
-                                ),
-                                titleTextStyle: const TextStyle(
-                                    leadingDistribution:
-                                        TextLeadingDistribution.even),
-                                title: Text(
-                                  title[index],
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.black
-                                          : AppColors.white,
-                                      fontSize: 14),
-                                ),
-                                subtitle: Text(
-                                  subtitle[index],
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.black
-                                          : AppColors.white),
-                                ),
-                                trailing: Icon(
-                                  AppLocalizations.of(context)!.locale == 'en'
-                                      ? Icons.keyboard_arrow_right
-                                      : Icons.keyboard_arrow_left,
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? AppColors.black
-                                      : AppColors.white,
-                                ),
-                              ),
-                            )
-                          : Padding(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: height * 0.01),
-                              child: ListTile(
-                                onTap: index == 0
-                                    ? () {
-                                        navigateToBankDetail();
-                                      }
-                                    : index == 1
-                                        ? () {
-                                            navigateToMyPitches();
-                                          }
-                                        : () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        SettingsScreen(
-                                                          bookingTag: true,
-                                                        )));
-                                          },
-                                titleAlignment: ListTileTitleAlignment.center,
-                                tileColor: MyAppState.mode == ThemeMode.light
-                                    ? AppColors.grey200
-                                    : AppColors.containerColorB,
-                                shape: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.containerColorW12),
-                                    borderRadius: BorderRadius.circular(10)),
-                                leading: Icon(
-                                  ownerIcon[index],
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? AppColors.black
-                                      : AppColors.white,
-                                ),
-                                titleTextStyle: const TextStyle(
-                                    leadingDistribution:
-                                        TextLeadingDistribution.even),
-                                title: Text(
-                                  ownerTitle[index],
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.black
-                                          : AppColors.white,
-                                      fontSize: 14),
-                                ),
-                                subtitle: Text(
-                                  ownerSubtitle[index],
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.black
-                                          : AppColors.white),
-                                ),
-                                trailing: Icon(
-                                  AppLocalizations.of(context)!.locale == 'en'
-                                      ? Icons.keyboard_arrow_right
-                                      : Icons.keyboard_arrow_left,
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? AppColors.black
-                                      : AppColors.white,
-                                ),
-                              ),
-                            )),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Text(AppLocalizations.of(context)!.support),
-                  SizedBox(
-                    height: height * 0.01,
+                    child: SizedBox(
+                      height: height * 0.06,
+                      child: Image.asset('assets/images/back.png'),
+                    ),
+                    // child: CircleAvatar(
+                    //   backgroundColor: AppColors.grey200,
+                    //   backgroundImage: NetworkImage(
+                    //       'https://icon-library.com/images/ios-back-icon/ios-back-icon-17.jpg'),
+                    //   // child: Icon(
+                    //   //   Icons.close,
+                    //   //   color: AppColors.black,
+                    //   // )
+                    // ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: height * 0.01),
-                    child: ListTile(
-                      titleAlignment: ListTileTitleAlignment.center,
-                      tileColor: MyAppState.mode == ThemeMode.light
-                          ? AppColors.grey200
-                          : AppColors.containerColorB,
-                      onTap: () {
-                        BottomSheett.settingModalBottomSheet(context, height);
-                      },
-                      shape: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.containerColorW12),
-                          borderRadius: BorderRadius.circular(10)),
-                      leading: Icon(
-                        Icons.help,
-                        color: MyAppState.mode == ThemeMode.light
-                            ? AppColors.black
-                            : AppColors.white,
-                      ),
-                      style: ListTileStyle.list,
-                      titleTextStyle: const TextStyle(
-                          leadingDistribution: TextLeadingDistribution.even),
-                      title: Text(
-                        AppLocalizations.of(context)!.help,
-                        style: TextStyle(
-                            color: MyAppState.mode == ThemeMode.light
-                                ? AppColors.black
-                                : AppColors.white,
-                            fontSize: 14),
-                      ),
-                      trailing: Icon(
-                        AppLocalizations.of(context)!.locale == 'en'
-                            ? Icons.keyboard_arrow_right
-                            : Icons.keyboard_arrow_left,
-                        color: MyAppState.mode == ThemeMode.light
-                            ? AppColors.black
-                            : AppColors.white,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Text(AppLocalizations.of(context)!.legal),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  ...List.generate(
-                      2,
-                      (index) => Padding(
-                            padding:
-                                EdgeInsets.symmetric(vertical: height * 0.01),
-                            child: ListTile(
-                              titleAlignment: ListTileTitleAlignment.center,
-                              tileColor: MyAppState.mode == ThemeMode.light
-                                  ? AppColors.grey200
-                                  : AppColors.containerColorB,
-                              onTap: index == 0
-                                  ? () {
-                                      privacyPolicy("terms_and_conditions_url");
-                                    }
-                                  : () {
-                                      privacyPolicy("privacy_policy_url");
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.039),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.black
+                                                  : AppColors.white),
+                                ),
+                                Text(
+                                  widget.position,
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
+                              ],
+                            ),
+                            widget.profileImage.isNotEmpty
+                                ? InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) =>
+                                            CupertinoAlertDialog(
+                                          content: Container(
+                                            height: height * 0.25,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    fit: BoxFit.fill,
+                                                    image: NetworkImage(
+                                                        widget.profileImage))),
+                                          ),
+                                        ),
+                                      );
                                     },
-                              shape: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.white12),
-                                  borderRadius: BorderRadius.circular(10)),
-                              leading: Icon(
-                                iconList[index],
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? AppColors.black
-                                    : AppColors.white,
-                              ),
-                              style: ListTileStyle.list,
-                              titleTextStyle: const TextStyle(
-                                  leadingDistribution:
-                                      TextLeadingDistribution.even),
-                              title: Text(
-                                listTitle[index],
-                                style: TextStyle(
+                                    child: CircleAvatar(
+                                        radius: height * 0.06,
+                                        backgroundImage:
+                                            NetworkImage(widget.profileImage)),
+                                  )
+                                : CircleAvatar(
+                                    radius: height * 0.06,
+                                    backgroundImage: const AssetImage(
+                                        "assets/images/profile.png"),
+                                  )
+                          ],
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Text(AppLocalizations.of(context)!.account),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        ...List.generate(
+                            widget.playerTag ? 5 : 3,
+                            (index) => widget.playerTag
+                                ? Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: height * 0.01),
+                                    child: ListTile(
+                                      onTap: index == 0
+                                          ? () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const EditProfileScreen()));
+                                            }
+                                          : index == 1
+                                              ? () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              EventsScreen(
+                                                                bookingTag:
+                                                                    true,
+                                                              )));
+                                                }
+                                              : index == 2
+                                                  ? () {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          RouteNames
+                                                              .myInterest);
+                                                    }
+                                                  : index == 3
+                                                      ? () {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              RouteNames.rate);
+                                                        }
+                                                      : () {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (_) =>
+                                                                      SettingsScreen(
+                                                                        bookingTag:
+                                                                            true,
+                                                                      )));
+                                                        },
+                                      titleAlignment:
+                                          ListTileTitleAlignment.center,
+                                      tileColor:
+                                          MyAppState.mode == ThemeMode.light
+                                              ? AppColors.grey200
+                                              : AppColors.containerColorB,
+                                      shape: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color:
+                                                  AppColors.containerColorW12),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      leading: Icon(
+                                        icon[index],
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? AppColors.black
+                                                : AppColors.white,
+                                      ),
+                                      titleTextStyle: const TextStyle(
+                                          leadingDistribution:
+                                              TextLeadingDistribution.even),
+                                      title: Text(
+                                        title[index],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.black
+                                                    : AppColors.white,
+                                                fontSize: 14),
+                                      ),
+                                      subtitle: Text(
+                                        subtitle[index],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.black
+                                                    : AppColors.white),
+                                      ),
+                                      trailing: Icon(
+                                        AppLocalizations.of(context)!.locale ==
+                                                'en'
+                                            ? Icons.keyboard_arrow_right
+                                            : Icons.keyboard_arrow_left,
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? AppColors.black
+                                                : AppColors.white,
+                                      ),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: height * 0.01),
+                                    child: ListTile(
+                                      onTap: index == 0
+                                          ? () {
+                                              navigateToBankDetail();
+                                            }
+                                          : index == 1
+                                              ? () {
+                                                  navigateToMyPitches();
+                                                }
+                                              : () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              SettingsScreen(
+                                                                bookingTag:
+                                                                    true,
+                                                              )));
+                                                },
+                                      titleAlignment:
+                                          ListTileTitleAlignment.center,
+                                      tileColor:
+                                          MyAppState.mode == ThemeMode.light
+                                              ? AppColors.grey200
+                                              : AppColors.containerColorB,
+                                      shape: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color:
+                                                  AppColors.containerColorW12),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      leading: Icon(
+                                        ownerIcon[index],
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? AppColors.black
+                                                : AppColors.white,
+                                      ),
+                                      titleTextStyle: const TextStyle(
+                                          leadingDistribution:
+                                              TextLeadingDistribution.even),
+                                      title: Text(
+                                        ownerTitle[index],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.black
+                                                    : AppColors.white,
+                                                fontSize: 14),
+                                      ),
+                                      subtitle: Text(
+                                        ownerSubtitle[index],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.black
+                                                    : AppColors.white),
+                                      ),
+                                      trailing: Icon(
+                                        AppLocalizations.of(context)!.locale ==
+                                                'en'
+                                            ? Icons.keyboard_arrow_right
+                                            : Icons.keyboard_arrow_left,
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? AppColors.black
+                                                : AppColors.white,
+                                      ),
+                                    ),
+                                  )),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Text(AppLocalizations.of(context)!.support),
+                        SizedBox(
+                          height: height * 0.01,
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: height * 0.01),
+                          child: ListTile(
+                            titleAlignment: ListTileTitleAlignment.center,
+                            tileColor: MyAppState.mode == ThemeMode.light
+                                ? AppColors.grey200
+                                : AppColors.containerColorB,
+                            onTap: () {
+                              BottomSheett.settingModalBottomSheet(
+                                  context, height);
+                            },
+                            shape: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColors.containerColorW12),
+                                borderRadius: BorderRadius.circular(10)),
+                            leading: Icon(
+                              Icons.help,
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? AppColors.black
+                                  : AppColors.white,
+                            ),
+                            style: ListTileStyle.list,
+                            titleTextStyle: const TextStyle(
+                                leadingDistribution:
+                                    TextLeadingDistribution.even),
+                            title: Text(
+                              AppLocalizations.of(context)!.help,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
                                     color: MyAppState.mode == ThemeMode.light
                                         ? AppColors.black
                                         : AppColors.white,
-                                    fontSize: 14),
-                              ),
-                              trailing: Icon(
-                                AppLocalizations.of(context)!.locale == 'en'
-                                    ? Icons.keyboard_arrow_right
-                                    : Icons.keyboard_arrow_left,
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? AppColors.black
-                                    : AppColors.white,
-                              ),
+                                  ),
                             ),
-                          )),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: height * 0.01),
-                    child: ListTile(
-                      titleAlignment: ListTileTitleAlignment.center,
-                      tileColor: MyAppState.mode == ThemeMode.light
-                          ? AppColors.grey200
-                          : AppColors.containerColorB,
-                      shape: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.containerColorW12),
-                          borderRadius: BorderRadius.circular(10)),
-                      leading: Icon(
-                        Icons.logout_sharp,
-                        color: AppColors.red,
-                      ),
-                      onTap: () {
-                        onWillPop(
-                            AppLocalizations.of(context)!.areYouSure, true);
-                      },
-                      style: ListTileStyle.list,
-                      titleTextStyle: const TextStyle(
-                          leadingDistribution: TextLeadingDistribution.even),
-                      title: Text(
-                        AppLocalizations.of(context)!.logout,
-                        style: TextStyle(color: AppColors.red, fontSize: 16),
-                      ),
-                      trailing: Icon(
-                        AppLocalizations.of(context)!.locale == 'en'
-                            ? Icons.keyboard_arrow_right
-                            : Icons.keyboard_arrow_left,
-                        color: MyAppState.mode == ThemeMode.light
-                            ? AppColors.black
-                            : AppColors.white,
-                      ),
+                            trailing: Icon(
+                              AppLocalizations.of(context)!.locale == 'en'
+                                  ? Icons.keyboard_arrow_right
+                                  : Icons.keyboard_arrow_left,
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? AppColors.black
+                                  : AppColors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Text(AppLocalizations.of(context)!.legal),
+                        SizedBox(
+                          height: height * 0.01,
+                        ),
+                        ...List.generate(
+                            2,
+                            (index) => Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: height * 0.01),
+                                  child: ListTile(
+                                    titleAlignment:
+                                        ListTileTitleAlignment.center,
+                                    tileColor:
+                                        MyAppState.mode == ThemeMode.light
+                                            ? AppColors.grey200
+                                            : AppColors.containerColorB,
+                                    onTap: index == 0
+                                        ? () {
+                                            privacyPolicy(
+                                                "terms_and_conditions_url");
+                                          }
+                                        : () {
+                                            privacyPolicy("privacy_policy_url");
+                                          },
+                                    shape: OutlineInputBorder(
+                                        borderSide: const BorderSide(
+                                            color: Colors.white12),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    leading: Icon(
+                                      iconList[index],
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.black
+                                          : AppColors.white,
+                                    ),
+                                    style: ListTileStyle.list,
+                                    titleTextStyle: const TextStyle(
+                                        leadingDistribution:
+                                            TextLeadingDistribution.even),
+                                    title: Text(
+                                      listTitle[index],
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? AppColors.black
+                                                  : AppColors.white,
+                                              fontSize: 14),
+                                    ),
+                                    trailing: Icon(
+                                      AppLocalizations.of(context)!.locale ==
+                                              'en'
+                                          ? Icons.keyboard_arrow_right
+                                          : Icons.keyboard_arrow_left,
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.black
+                                          : AppColors.white,
+                                    ),
+                                  ),
+                                )),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: height * 0.01),
+                          child: ListTile(
+                            titleAlignment: ListTileTitleAlignment.center,
+                            tileColor: MyAppState.mode == ThemeMode.light
+                                ? AppColors.grey200
+                                : AppColors.containerColorB,
+                            shape: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColors.containerColorW12),
+                                borderRadius: BorderRadius.circular(10)),
+                            leading: Icon(
+                              Icons.logout_sharp,
+                              color: AppColors.red,
+                            ),
+                            onTap: () {
+                              onWillPop(
+                                  AppLocalizations.of(context)!.areYouSure,
+                                  true);
+                            },
+                            style: ListTileStyle.list,
+                            titleTextStyle: const TextStyle(
+                                leadingDistribution:
+                                    TextLeadingDistribution.even),
+                            title: Text(
+                              AppLocalizations.of(context)!.logout,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: AppColors.red),
+                            ),
+                            trailing: Icon(
+                              AppLocalizations.of(context)!.locale == 'en'
+                                  ? Icons.keyboard_arrow_right
+                                  : Icons.keyboard_arrow_left,
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? AppColors.black
+                                  : AppColors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        )
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
                   )
                 ],
               ),

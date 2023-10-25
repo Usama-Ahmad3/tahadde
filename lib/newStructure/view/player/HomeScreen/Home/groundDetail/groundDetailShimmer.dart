@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:readmore/readmore.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -27,6 +28,19 @@ class GroundShimmer {
           SliverAppBar(
             pinned: true,
             centerTitle: false,
+            automaticallyImplyLeading: false,
+            leadingWidth: width * 0.013,
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: SizedBox(
+                  height: height * 0.03,
+                  child: Image.asset(
+                    'assets/images/back.png',
+                    color: AppColors.white,
+                  )),
+            ),
             expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.pin,
@@ -36,7 +50,7 @@ class GroundShimmer {
                 background: Shimmer.fromColors(
                     baseColor: Colors.grey.shade100,
                     highlightColor: Colors.grey.shade300,
-                    child: const Carousel())),
+                    child: Carousel())),
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(

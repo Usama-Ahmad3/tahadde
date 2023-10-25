@@ -18,7 +18,9 @@ class ListWidgetSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: height * 0.01),
+      padding: EdgeInsets.symmetric(
+        vertical: height * 0.01,
+      ),
       child: Container(
         height: height * 0.09,
         decoration: BoxDecoration(

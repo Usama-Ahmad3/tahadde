@@ -18,12 +18,11 @@ class Facilities extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context)!.facilitiesProvided,
-          style: TextStyle(
-            fontSize: height * 0.03,
-            color: MyAppState.mode == ThemeMode.light
-                ? AppColors.black
-                : AppColors.white,
-          ),
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                color: MyAppState.mode == ThemeMode.light
+                    ? AppColors.black
+                    : AppColors.white,
+              ),
         ),
         Wrap(
           children: [
@@ -35,16 +34,16 @@ class Facilities extends StatelessWidget {
                 (index) => Padding(
                       padding: EdgeInsets.symmetric(vertical: height * .008),
                       child: SizedBox(
-                        width: width * 0.44,
+                        width: width * 0.41,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             CircleAvatar(
-                              radius: height * 0.028,
+                              radius: height * 0.024,
                               backgroundColor: Colors.transparent,
                               child: cachedNetworkImage(
-                                  height: height * .07,
-                                  width: width * .18,
+                                  height: height * .065,
+                                  width: width * .15,
                                   cuisineImageUrl: GroundDetailState
                                           .privateVenueDetail
                                           .venueDetails
@@ -66,11 +65,16 @@ class Facilities extends StatelessWidget {
                                         ?.facilities![index]
                                         ?.name ??
                                     "",
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.black
-                                        : AppColors.white,
-                                    overflow: TextOverflow.ellipsis),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontWeight: FontWeight.normal,
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? AppColors.black
+                                                : AppColors.white,
+                                        overflow: TextOverflow.ellipsis),
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: true,
                                 textWidthBasis: TextWidthBasis.parent,

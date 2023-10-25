@@ -154,7 +154,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: width * .05,
+                                          horizontal: width * .059,
                                           vertical: height * .01),
                                       child: Row(
                                         mainAxisAlignment:
@@ -174,17 +174,21 @@ class _BookingScreenState extends State<BookingScreen> {
                                                               DateTime.parse(
                                                                   date["currentDate"] ??
                                                                       '')),
-                                                      style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors
-                                                                  .themeColor
-                                                              : AppColors.white,
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.w700),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? AppColors
+                                                                      .themeColor
+                                                                  : AppColors
+                                                                      .white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700),
                                                     )
                                                   : Text(
                                                       DateFormat.yMMMMEEEEd(
@@ -192,29 +196,37 @@ class _BookingScreenState extends State<BookingScreen> {
                                                           .format(BookingDate ??
                                                               DateTime.parse(date[
                                                                   "currentDate"])),
-                                                      style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors
-                                                                  .themeColor
-                                                              : AppColors.white,
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.w700),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? AppColors
+                                                                      .themeColor
+                                                                  : AppColors
+                                                                      .white,
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700),
                                                     ),
                                               Text(
                                                 "${date["bookings"]} ${AppLocalizations.of(context)!.booking}",
-                                                style: TextStyle(
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? const Color(
-                                                            0XFF858585)
-                                                        : AppColors.white,
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w700),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? const Color(
+                                                                0XFF858585)
+                                                            : AppColors.white,
+                                                        fontWeight:
+                                                            FontWeight.w700),
                                               ),
                                             ],
                                           ),
@@ -262,9 +274,12 @@ class _BookingScreenState extends State<BookingScreen> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .closed,
-                                                    style: TextStyle(
-                                                        fontSize: 8,
-                                                        color: AppColors.black),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleSmall!
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .black),
                                                   )
                                                 ],
                                               ),
@@ -282,10 +297,12 @@ class _BookingScreenState extends State<BookingScreen> {
                                         child: TabBar(
                                           labelColor: AppColors.appThemeColor,
                                           //controller: tabController,
-                                          labelStyle: const TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: "Poppins"),
+                                          labelStyle: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: "Poppins"),
                                           unselectedLabelColor:
                                               const Color(0XFFADADAD),
                                           indicatorSize:
@@ -309,12 +326,15 @@ class _BookingScreenState extends State<BookingScreen> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .booking,
-                                                    style: const TextStyle(
-                                                        //color: Color(0XFF032040),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontFamily: "Poppins")),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            //color: Color(0XFF032040),
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontFamily:
+                                                                "Poppins")),
                                               ),
                                             )),
                                             Tab(
@@ -329,12 +349,15 @@ class _BookingScreenState extends State<BookingScreen> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .manageSlots,
-                                                    style: const TextStyle(
-                                                        // color: Color(0XFF032040),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontFamily: "Poppins"),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            // color: Color(0XFF032040),
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontFamily:
+                                                                "Poppins"),
                                                   ),
                                                 ),
                                               ),

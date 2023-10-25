@@ -37,13 +37,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 Future<void> main() async {
-  var devices = ['754FD214F18DBD3A6DCD076B0593951E'];
+  // var devices = ['754FD214F18DBD3A6DCD076B0593951E'];
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize;
+  // MobileAds.instance.initialize;
   await Firebase.initializeApp();
-  RequestConfiguration requestConfiguration =
-      RequestConfiguration(testDeviceIds: devices);
-  MobileAds.instance.updateRequestConfiguration(requestConfiguration);
+  // RequestConfiguration requestConfiguration =
+  //     RequestConfiguration(testDeviceIds: devices);
+  // MobileAds.instance.updateRequestConfiguration(requestConfiguration);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -91,7 +91,7 @@ class _SplaceVedioState extends State<SplaceVedio> {
   loadLanguage() async {
     pref = await SharedPreferences.getInstance();
     setState(() {
-      RestApis.BASE_URL = pref.get("baseUrl").toString() ?? RestApis.BASE_URL;
+      RestApis.BASEURL = pref.get("baseUrl").toString() ?? RestApis.BASEURL;
       _language = pref.get("lang").toString();
       _role = pref.get("role").toString();
       _walk = pref.get("walk").toString();
@@ -174,6 +174,14 @@ class MyAppState extends State<MyApp> {
         brightness: currentSystemBrightness,
         fontFamily: 'Poppins',
         textTheme: TextTheme(
+            titleSmall: TextStyle(
+              fontSize: 13 * ffem,
+              fontWeight: FontWeight.w400,
+            ),
+            bodyMedium: TextStyle(
+              fontSize: 15 * ffem,
+              fontWeight: FontWeight.w500,
+            ),
             titleMedium: TextStyle(
                 color: mode == ThemeMode.light ? Colors.black : Colors.white,
                 fontSize: 20 * ffem,

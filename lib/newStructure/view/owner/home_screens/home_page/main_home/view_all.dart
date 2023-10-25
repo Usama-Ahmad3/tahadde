@@ -83,6 +83,11 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                             children: [
                                               Text(
                                                 '${AppLocalizations.of(context)!.status}:',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: AppColors.black),
                                               ),
                                               Text(
                                                 venues[index].isVerified!
@@ -96,8 +101,12 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                                         : AppLocalizations.of(
                                                                 context)!
                                                             .inReview,
-                                                style: const TextStyle(
-                                                    color: Colors.redAccent),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .redAccent),
                                               ),
                                             ],
                                           ),
@@ -140,6 +149,11 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                               venues[index]
                                                   .venueName
                                                   .toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: AppColors.black),
                                             ),
                                           ],
                                         ),
@@ -149,6 +163,11 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                               left: sizeWidth * 0.007),
                                           child: Text(
                                             venues[index].location!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: AppColors.black),
                                           ),
                                         ),
                                       ],

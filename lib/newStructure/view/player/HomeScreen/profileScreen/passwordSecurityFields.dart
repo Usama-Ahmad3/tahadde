@@ -20,7 +20,7 @@ class PasswordSecurity extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: width * 0.06, vertical: height * 0.012),
+          horizontal: width * 0.059, vertical: height * 0.012),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 2),
         width: double.infinity,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
 
 import '../../../../app_colors/app_colors.dart';
 
@@ -19,6 +20,7 @@ class TextFieldWidget extends StatefulWidget {
   IconData? suffixIcon;
   Color? prefixIconColor;
   bool obscure;
+  bool searchTag;
   IconData? hideIcon;
   Color? suffixIconColor;
   Color? fillColor;
@@ -26,18 +28,22 @@ class TextFieldWidget extends StatefulWidget {
   FormFieldValidator? onValidate;
   FormFieldValidator? onChanged;
   VoidCallback? onTap;
+  Widget? searchTap;
 
   TextFieldWidget(
-      {super.key, required this.controller,
+      {super.key,
+      required this.controller,
       required this.hintText,
       this.onValidate,
       this.onTap,
+      this.searchTag = false,
       this.enable = true,
       this.textColor,
       this.suffix,
       this.prefix,
       this.onChanged,
       this.border,
+      this.searchTap,
       this.obscure = false,
       this.enableBorder,
       this.suffixIconColor,
@@ -89,18 +95,21 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                   ? AppColors.grey
                   : AppColors.white),
           border: widget.border,
-          suffixIcon: widget.suffixIcon != null
-              ? widget.hideIcon != null
-                  ? InkWell(
-                      onTap: () {
-                        setState(() {
-                          widget.obscure = !widget.obscure;
-                        });
-                      },
-                      child: Icon(
-                          widget.obscure ? widget.hideIcon : widget.suffixIcon))
-                  : Icon(widget.suffixIcon)
-              : null,
+          suffixIcon: widget.searchTag
+              ? widget.searchTap
+              : widget.suffixIcon != null
+                  ? widget.hideIcon != null
+                      ? InkWell(
+                          onTap: () {
+                            setState(() {
+                              widget.obscure = !widget.obscure;
+                            });
+                          },
+                          child: Icon(widget.obscure
+                              ? widget.hideIcon
+                              : widget.suffixIcon))
+                      : Icon(widget.suffixIcon)
+                  : null,
           suffixIconColor: widget.suffixIconColor,
           prefixIcon:
               widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
@@ -139,7 +148,8 @@ class textFieldWidgetMulti extends StatefulWidget {
   int? maxLines;
 
   textFieldWidgetMulti(
-      {super.key, required this.controller,
+      {super.key,
+      required this.controller,
       required this.hintText,
       this.onValidate,
       this.onTap,

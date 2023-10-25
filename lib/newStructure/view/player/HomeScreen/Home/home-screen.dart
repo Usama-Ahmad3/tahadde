@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -15,7 +16,6 @@ import '../../../../../modelClass/territory_model_class.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../../app_colors/app_colors.dart';
-import '../../../../utils/utils.dart';
 import '../widgets/textFormField.dart';
 import 'shimmerWidgets.dart';
 
@@ -44,7 +44,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
   var _bookPitchData;
   final List<SportsList> _sportsList = [];
   var searchController = TextEditingController();
-  bool searchFlag = false;
+  static bool searchFlag = false;
   var bookSpecific;
 
   getSports() async {
@@ -119,7 +119,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                       Material(
                         child: Text(
                           'Recent Search',
-                          style: TextStyle(fontSize: height * 0.025),
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                       CloseButton(
@@ -153,8 +153,9 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                       padding: const EdgeInsets.all(5),
                                       label: Text(
                                         showHistory![index],
-                                        style: const TextStyle(
-                                            color: Colors.black),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
                                       )),
                                 ),
                               )),
@@ -166,7 +167,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                   Material(
                     child: Text(
                       AppLocalizations.of(context)!.search,
-                      style: TextStyle(fontSize: height * 0.025),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                   Wrap(
@@ -234,8 +235,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               padding: const EdgeInsets.all(10),
                                               label: Text(
                                                 _sportsList[index].name!,
-                                                style: const TextStyle(
-                                                    color: Colors.black),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: Colors.black),
                                               )),
                                         ),
                                       )
@@ -284,8 +288,12 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   label: Text(
                                                     _bookPitchData[index]
                                                         ['name']!,
-                                                    style: const TextStyle(
-                                                        color: Colors.black),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.black),
                                                   )),
                                             ),
                                           )
@@ -324,8 +332,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                           padding: const EdgeInsets.all(10),
                                           label: Text(
                                             _bookPitchData[index]['name']!,
-                                            style: const TextStyle(
-                                                color: Colors.black),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(color: Colors.black),
                                           )),
                                     ),
                                   ),
@@ -404,22 +414,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
     );
   }
 
-  static late BannerAd myBanner;
-  static bool loaded = false;
-  static loading() {
-    myBanner = BannerAd(
-        size: AdSize.mediumRectangle,
-        adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-        request: const AdRequest(),
-        listener: BannerAdListener(onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-          print("error${error.toString()}");
-        }, onAdLoaded: (e) {
-          loaded = true;
-        }));
-    myBanner.load();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -430,7 +424,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
         loadTerritories();
         getSports();
         loadVenues();
-        loading();
       } else {
         if (mounted) {
           setState(() {
@@ -446,7 +439,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
     super.dispose();
     searchController.dispose();
     searchFlag = false;
-    myBanner.dispose();
   }
 
   @override
@@ -489,21 +481,19 @@ class HomeScreenViewState extends State<HomeScreenView> {
                       width: 40 * fem,
                       child: Image.asset(
                         'assets/images/T.png',
-                        color: Colors.greenAccent,
+                        color: AppColors.white,
                       )),
                   SizedBox(
                     width: width * 0.001,
                   ),
                   Text(
                     AppLocalizations.of(context)!.tahaddi,
-                    style: SafeGoogleFont(
-                      'Inter',
-                      fontSize: 22 * ffem,
-                      fontWeight: FontWeight.w600,
-                      height: 1.25 * ffem / fem,
-                      letterSpacing: -0.2 * fem,
-                      color: const Color(0xffffffff),
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          height: 1.25 * ffem / fem,
+                          letterSpacing: -0.2 * fem,
+                          color: const Color(0xffffffff),
+                        ),
                   ),
                 ],
               ),
@@ -526,6 +516,18 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         AppLocalizations.of(context)!.search,
                                     fillColor: Colors.white24,
                                     prefixIcon: Icons.search,
+                                    suffixIcon: FontAwesomeIcons.close,
+                                    searchTap: InkWell(
+                                      onTap: () {
+                                        removeOverlay();
+                                        searchFlag = !searchFlag;
+                                        searchController.clear();
+                                        setState(() {});
+                                      },
+                                      child: Icon(FontAwesomeIcons.close),
+                                    ),
+                                    suffixIconColor: AppColors.white,
+                                    searchTag: true,
                                     onChanged: (e) {
                                       setState(() {
                                         searchController.text.isEmpty
@@ -554,98 +556,86 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               left: width * 0.2,
                                               top: height * 0.12,
                                               bottom: height * 0.089),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.white
-                                                    : AppColors.darkTheme,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
+                                          child: SingleChildScrollView(
                                             child: Column(
                                               children: [
-                                                SizedBox(
-                                                  height: height * 0.01,
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .filterBy,
-                                                  style: TextStyle(
-                                                      fontSize: height * 0.02,
+                                                Container(
+                                                  height: height * 0.45,
+                                                  decoration: BoxDecoration(
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? AppColors.black
-                                                          : AppColors.white),
+                                                          ? AppColors
+                                                              .containerColorB
+                                                          : AppColors.darkTheme,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: Column(
+                                                    children: [
+                                                      SizedBox(
+                                                        height: height * 0.01,
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .filterBy,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                color: AppColors
+                                                                    .white),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.02,
+                                                      ),
+                                                      Wrap(
+                                                        children: [
+                                                          ...List.generate(
+                                                              _sportsList
+                                                                  .length,
+                                                              (index) =>
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      if (isSelected ==
+                                                                          index) {
+                                                                        isSelected =
+                                                                            -1;
+                                                                      } else {
+                                                                        isSelected =
+                                                                            index;
+                                                                        sportName = _sportsList[index]
+                                                                            .slug
+                                                                            .toString();
+                                                                        loadVenuesSpecific();
+                                                                      }
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsets.symmetric(
+                                                                          horizontal:
+                                                                              MediaQuery.of(context).size.width * 0.02),
+                                                                      child: Chip(
+                                                                          avatar: CircleAvatar(radius: 30, backgroundColor: isSelected == index ? AppColors.white : AppColors.grey, child: Image.network(_sportsList[index].image.toString())),
+                                                                          backgroundColor: isSelected == index ? AppColors.appThemeColor : AppColors.black,
+                                                                          elevation: 2,
+                                                                          padding: const EdgeInsets.all(10),
+                                                                          label: Text(
+                                                                            _sportsList[index].name!,
+                                                                            style:
+                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: isSelected == index ? AppColors.white : AppColors.white),
+                                                                          )),
+                                                                    ),
+                                                                  ))
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
-                                                SizedBox(
-                                                  height: height * 0.02,
-                                                ),
-                                                Wrap(
-                                                  children: [
-                                                    ...List.generate(
-                                                        _sportsList.length,
-                                                        (index) => InkWell(
-                                                              onTap: () {
-                                                                if (isSelected ==
-                                                                    index) {
-                                                                  isSelected =
-                                                                      -1;
-                                                                } else {
-                                                                  isSelected =
-                                                                      index;
-                                                                  sportName = _sportsList[
-                                                                          index]
-                                                                      .slug
-                                                                      .toString();
-                                                                  loadVenuesSpecific();
-                                                                }
-                                                                Navigator.pop(
-                                                                    context);
-                                                                setState(() {});
-                                                              },
-                                                              child: Padding(
-                                                                padding: EdgeInsets.symmetric(
-                                                                    horizontal: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width *
-                                                                        0.02),
-                                                                child: Chip(
-                                                                    avatar: CircleAvatar(
-                                                                        radius:
-                                                                            30,
-                                                                        backgroundColor: isSelected == index
-                                                                            ? AppColors
-                                                                                .white
-                                                                            : AppColors
-                                                                                .grey,
-                                                                        child: Image.network(_sportsList[index]
-                                                                            .image
-                                                                            .toString())),
-                                                                    backgroundColor: isSelected ==
-                                                                            index
-                                                                        ? AppColors
-                                                                            .appThemeColor
-                                                                        : AppColors
-                                                                            .black,
-                                                                    elevation:
-                                                                        2,
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                            .all(
-                                                                            10),
-                                                                    label: Text(
-                                                                      _sportsList[
-                                                                              index]
-                                                                          .name!,
-                                                                      style: TextStyle(
-                                                                          color: isSelected == index
-                                                                              ? AppColors.white
-                                                                              : AppColors.darkTheme),
-                                                                    )),
-                                                              ),
-                                                            ))
-                                                  ],
-                                                )
                                               ],
                                             ),
                                           ),
@@ -761,9 +751,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                     .city!
                                                     .nameArabic
                                                     .toString(),
-                                            style: TextStyle(
-                                                fontSize: 17 * fem,
-                                                color: AppColors.white),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: AppColors.white),
                                           ),
                                         ),
                                       );
@@ -818,30 +810,129 @@ class HomeScreenViewState extends State<HomeScreenView> {
                             physics: const AlwaysScrollableScrollPhysics(),
                             slivers: [
                               SliverAppBar(
-                                pinned: true,
-                                expandedHeight: height * 0.27,
+                                pinned: false,
+                                expandedHeight: height * 0.32,
                                 automaticallyImplyLeading: false,
                                 stretch: true,
+                                backgroundColor:
+                                    Colors.transparent.withOpacity(0.0),
                                 flexibleSpace: FlexibleSpaceBar(
-                                  collapseMode: CollapseMode.pin,
-                                  centerTitle: false,
+                                  collapseMode: CollapseMode.none,
                                   background: Column(
                                     children: [
+                                      ///category
+                                      _sportsList.isEmpty
+                                          ? const SizedBox.shrink()
+                                          : SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 13.0),
+                                                child: Row(
+                                                  children: [
+                                                    ...List.generate(
+                                                      _sportsList.length,
+                                                      (index) => InkWell(
+                                                        // onTap: () {
+                                                        //   widget.isSelected = index;
+                                                        //   Map detail = {
+                                                        //     "slug": widget.sportsList[index].slug,
+                                                        //     "bannerImage": widget.sportsList[index].bannerImage,
+                                                        //     "sportName": AppLocalizations.of(context)!.locale == "en"
+                                                        //         ? widget.sportsList[index].name
+                                                        //         : widget.sportsList[index].nameArabic
+                                                        //   };
+                                                        //   Navigator.push(
+                                                        //       context,
+                                                        //       MaterialPageRoute(
+                                                        //           builder: (context) =>
+                                                        //               SpecificSportsListScreen(detail: detail)));
+                                                        //   setState(() {});
+                                                        // },
+                                                        onTap: () {
+                                                          if (isSelected ==
+                                                              index) {
+                                                            isSelected = -1;
+                                                          } else {
+                                                            isSelected = index;
+                                                            sportName =
+                                                                _sportsList[
+                                                                        index]
+                                                                    .slug
+                                                                    .toString();
+                                                            loadVenuesSpecific();
+                                                          }
+                                                          setState(() {});
+                                                        },
+                                                        child: Padding(
+                                                          padding: EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.02),
+                                                          child: Chip(
+                                                              avatar: CircleAvatar(
+                                                                  radius: 30,
+                                                                  backgroundColor: isSelected == index
+                                                                      ? AppColors
+                                                                          .white
+                                                                      : AppColors
+                                                                          .grey,
+                                                                  child: Image.network(
+                                                                      _sportsList[
+                                                                              index]
+                                                                          .image
+                                                                          .toString())),
+                                                              backgroundColor:
+                                                                  isSelected ==
+                                                                          index
+                                                                      ? AppColors
+                                                                          .appThemeColor
+                                                                      : AppColors
+                                                                          .black,
+                                                              elevation: 2,
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(10),
+                                                              label: Text(
+                                                                _sportsList[
+                                                                        index]
+                                                                    .name!,
+                                                                style: TextStyle(
+                                                                    color: isSelected ==
+                                                                            index
+                                                                        ? AppColors
+                                                                            .white
+                                                                        : AppColors
+                                                                            .white),
+                                                              )),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
                                       SizedBox(
-                                          width: width,
-                                          height: height * 0.2,
-                                          child: loaded
-                                              ? Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: fem * 22.0),
-                                                  child: AdWidget(ad: myBanner),
-                                                )
-                                              : const Placeholder()),
+                                        height: height * 0.005,
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.2,
+                                        width: width,
+                                        child: Carousel(image: const [
+                                          'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
+                                          'https://tse1.mm.bing.net/th?id=OIP.ptX0bcAkl4cTcMWe9JvyhgHaEK&pid=Api&P=0&h=220',
+                                          'https://sp.yimg.com/ib/th?id=OIP.ioIpvjaAIPNY7QduhbyCnAHaE8&pid=Api&w=148&h=148&c=7&rs=1'
+                                        ]),
+                                      ),
                                       Material(
                                           color: AppColors.transparent,
                                           child: ConstrainedBox(
                                             constraints: BoxConstraints(
-                                                maxHeight: height * 0.06,
+                                                maxHeight: height * 0.05,
                                                 maxWidth: width),
                                             child: TabBar(
                                               indicatorSize:
@@ -851,15 +942,14 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               dividerColor: AppColors.red,
                                               isScrollable: true,
                                               physics:
-                                                  AlwaysScrollableScrollPhysics(),
+                                                  const AlwaysScrollableScrollPhysics(),
                                               tabAlignment: TabAlignment.center,
-
                                               // indicator: BoxDecoration(
                                               //   color: Color(0xff1d7e55),
                                               //   borderRadius: BorderRadius.circular(8),
                                               // ),
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: height * 0.003),
+                                              // padding: EdgeInsets.symmetric(
+                                              //     vertical: height * 0.004),
                                               tabs: [
                                                 SizedBox(
                                                   width: width * 0.4,
@@ -868,6 +958,12 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .academyOnly,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .white),
                                                   )),
                                                 ),
                                                 SizedBox(
@@ -877,11 +973,17 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .innovative,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .white),
                                                   )),
                                                 ),
                                               ],
                                             ),
-                                          ))
+                                          )),
                                     ],
                                   ),
                                 ),
@@ -896,13 +998,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          ///category
-                                          // _sportsList.isEmpty
-                                          //     ? const SizedBox.shrink()
-                                          //     : SportList(
-                                          //         isSelected: isSelected,
-                                          //         sportsList: _sportsList,
-                                          //       ),
                                           isSelected != -1
                                               ? bookSpecific != null &&
                                                       bookSpecific.isNotEmpty

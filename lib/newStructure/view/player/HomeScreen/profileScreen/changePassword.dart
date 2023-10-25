@@ -77,25 +77,17 @@ class _ChangePasswordState extends State<ChangePassword> {
                 ),
                 centerTitle: true,
                 backgroundColor: AppColors.black,
-                leadingWidth: width * 0.18,
-                leading: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(height * 0.008),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.grey),
-                            shape: BoxShape.circle),
-                        child: Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.close,
-                            color: AppColors.white,
-                          ),
-                        )),
-                  ),
+                leadingWidth: width * 0.13,
+                leading: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: SizedBox(
+                      height: height * 0.03,
+                      child: Image.asset(
+                        'assets/images/back.png',
+                        color: AppColors.white,
+                      )),
                 ),
               ),
             ),
@@ -103,7 +95,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 style: TextStyle(
                     fontSize: height * 0.02,
                     color: MyAppState.mode == ThemeMode.light
-                        ? AppColors.grey
+                        ? AppColors.black
                         : AppColors.white),
                 child: Container(
                   color: AppColors.black,
@@ -117,7 +109,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             topRight: Radius.circular(20))),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.06, vertical: height * 0.02),
+                          horizontal: width * 0.059, vertical: height * 0.02),
                       child: SingleChildScrollView(
                         child: Form(
                           key: _formKey,
@@ -299,12 +291,21 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                         title: Text(
                                                             AppLocalizations.of(
                                                                     context)!
-                                                                .viewProfile),
+                                                                .viewProfile,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium),
                                                         isLoading: isLoading)
                                                   ],
-                                                  title: Text(AppLocalizations
-                                                          .of(context)!
-                                                      .passwordhasbeenchanged),
+                                                  title: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .passwordhasbeenchanged,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium,
+                                                  ),
                                                   shape: OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -333,13 +334,16 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                           AppLocalizations.of(
                                                                   context)!
                                                               .resetPassword,
-                                                          style: const TextStyle(
-                                                              color: Color(
-                                                                  0XFF2F2F2F),
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                  color: Color(
+                                                                      0XFF2F2F2F),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
                                                         ),
                                                         Text(
                                                           AppLocalizations.of(
@@ -347,9 +351,13 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                               .youHaveSuccessfully,
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style: const TextStyle(
-                                                              color: Color(
-                                                                  0XFF898989)),
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                  color: Color(
+                                                                      0XFF898989)),
                                                         ),
                                                       ],
                                                     ),
@@ -382,7 +390,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   },
                                   title: Text(
                                     AppLocalizations.of(context)!.saveChanges,
-                                    style: TextStyle(color: AppColors.black),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(color: AppColors.white),
                                   )),
                             ],
                           ),

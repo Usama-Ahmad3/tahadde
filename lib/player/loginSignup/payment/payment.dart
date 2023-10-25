@@ -172,8 +172,7 @@ class _PaymentState extends State<Payment> {
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               child: Padding(
-                  padding: EdgeInsets.only(
-                      left: sizewidth * .05, right: sizewidth * .05),
+                  padding: EdgeInsets.symmetric(horizontal: sizewidth * .059),
                   child: ListView.builder(
                       itemCount: 10,
                       itemBuilder: (BuildContext ctxt, int index) {
@@ -246,7 +245,7 @@ class _PaymentState extends State<Payment> {
                                                         : Colors.grey.shade300,
                                               ),
                                               child: Row(
-                                                children:[
+                                                children: [
                                                   const SizedBox(
                                                     width: 10,
                                                   ),
@@ -298,8 +297,11 @@ class _PaymentState extends State<Payment> {
                                                           paymentMethods[index]
                                                               .paymentMethodEn
                                                               .toString(),
-                                                          style:
-                                                              const TextStyle(
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
                                                                   color: Colors
                                                                       .black),
                                                         )
@@ -307,8 +309,11 @@ class _PaymentState extends State<Payment> {
                                                           paymentMethods[index]
                                                               .paymentMethodAr
                                                               .toString(),
-                                                          style:
-                                                                TextStyle(
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
                                                                   color: AppColors
                                                                       .black),
                                                         ),
@@ -332,16 +337,19 @@ class _PaymentState extends State<Payment> {
                                         MainAxisAlignment.spaceAround,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    children: <Widget>[
+                                    children: [
                                       Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: <Widget>[
+                                        children: [
                                           Text(
                                             '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
-                                            style: const TextStyle(
-                                                color: Color(0XFFFFFFFF),
-                                                fontSize: 20),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                  color: Color(0XFFFFFFFF),
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -394,8 +402,12 @@ class _PaymentState extends State<Payment> {
                                           child: Text(
                                             AppLocalizations.of(context)!
                                                 .payNow,
-                                            style: const TextStyle(
-                                                color: AppColors.barLineColor),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color:
+                                                        AppColors.barLineColor),
                                           ),
                                         ),
                                       )

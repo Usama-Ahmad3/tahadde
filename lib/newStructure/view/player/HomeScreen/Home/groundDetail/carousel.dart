@@ -10,7 +10,8 @@ import '../../../../../app_colors/app_colors.dart';
 import 'groundDetail.dart';
 
 class Carousel extends StatefulWidget {
-  const Carousel({super.key});
+  List? image;
+  Carousel({super.key, this.image});
 
   @override
   State<Carousel> createState() => _CarouselState();
@@ -73,23 +74,28 @@ class _CarouselState extends State<Carousel> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => StoryPage(
                       files:
-                          GroundDetailState.privateVenueDetail.images!.files!,
+                          GroundDetailState.privateVenueDetail.images!.files! ??
+                              [],
                     )));
           },
           child: CarouselSlider.builder(
               carouselController: nextPageController,
-              itemCount: GroundDetailState.privateVenueDetail.images == null
-                  ? 5
-                  : GroundDetailState.privateVenueDetail.images!.files!.length,
+              itemCount: widget.image == null
+                  ? GroundDetailState.privateVenueDetail.images == null
+                      ? 5
+                      : GroundDetailState
+                          .privateVenueDetail.images!.files!.length
+                  : widget.image!.length,
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) {
                 return cachedNetworkImage(
                   height: height * 0.3,
                   imageFit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
-                  cuisineImageUrl: GroundDetailState.privateVenueDetail.images
-                          ?.files![itemIndex]!.filePath ??
-                      "",
+                  cuisineImageUrl: widget.image == null
+                      ? GroundDetailState.privateVenueDetail.images
+                          ?.files![itemIndex]!.filePath
+                      : widget.image![itemIndex],
                 );
               },
               options: CarouselOptions(
@@ -112,9 +118,11 @@ class _CarouselState extends State<Carousel> {
           right: 0.0,
           bottom: 0.0,
           child: DotsIndicator(
-            dotsCount: GroundDetailState.privateVenueDetail.images == null
-                ? 5
-                : GroundDetailState.privateVenueDetail.images!.files!.length,
+            dotsCount: widget.image == null
+                ? GroundDetailState.privateVenueDetail.images == null
+                    ? 5
+                    : GroundDetailState.privateVenueDetail.images!.files!.length
+                : widget.image!.length,
             position: _currentIndexPage.toInt(),
             decorator: DotsDecorator(
               activeSize: const Size(20.0, 10.0),

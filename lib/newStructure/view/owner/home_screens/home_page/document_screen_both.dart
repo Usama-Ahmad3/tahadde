@@ -72,7 +72,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   Future<void> _pickDocument() async {
-    pdfClicked = true;
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         allowCompression: true,
@@ -81,6 +80,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
       );
 
       if (result != null) {
+        pdfClicked = true;
         documentFilePath = File(result.files.single.path.toString());
         print(documentFilePath);
         setState(() {
@@ -558,7 +558,10 @@ class _DocumentScreenState extends State<DocumentScreen> {
                               ),
                             ),
                             fixedGap(height: 10.0),
-                            Text(locationController.text),
+                            Text(
+                              locationController.text,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                             flaxibleGap(1),
                             Material(
                               child: Ink(
@@ -571,8 +574,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 child: InkWell(
                                   splashColor: AppColors.black,
                                   child: button(
-                                      name: AppLocalizations.of(context)!
-                                          .confirm),
+                                    name: AppLocalizations.of(context)!.confirm,
+                                  ),
                                   onTap: () {
                                     setState(() {
                                       isAddressLoading = false;
@@ -642,7 +645,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                       child: Container(
                         width: sizeWidth,
                         padding:
-                            EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
+                            EdgeInsets.symmetric(horizontal: sizeWidth * 0.059),
                         decoration: BoxDecoration(
                             color: MyAppState.mode == ThemeMode.light
                                 ? AppColors.white
@@ -652,561 +655,609 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 topRight: Radius.circular(20))),
                         child: Form(
                           key: _formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: sizeHeight * 0.008,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizeWidth * .009,
-                                    vertical: sizeHeight * .02),
-                                child: _isImageLoading
-                                    ? Container(
-                                        height: sizeHeight * .2,
-                                        width: sizeWidth,
-                                        decoration: BoxDecoration(
-                                            color: AppColors.themeColor,
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        child: Lottie.asset(
-                                          'assets/lottiefiles/profile.json',
-                                        ),
-                                      )
-                                    : SizedBox(
-                                        height: sizeHeight * .2,
-                                        width: sizeWidth,
-                                        child: image != null ||
-                                                documentFilePath != null
-                                            ?
-                                            // doc.isNotEmpty
-                                            //         ? ListView.builder(
-                                            //             itemCount: doc.length + 1,
-                                            //             scrollDirection:
-                                            //                 Axis.horizontal,
-                                            //             itemBuilder:
-                                            //                 (context, index) {
-                                            //               return Padding(
-                                            //                 padding:
-                                            //                     const EdgeInsets
-                                            //                         .all(5.0),
-                                            //                 child: index == 0
-                                            //                     ? widget.detail
-                                            //                             .isEdit!
-                                            //                         ? const SizedBox
-                                            //                             .shrink()
-                                            //                         : GestureDetector(
-                                            //                             onTap: () {
-                                            //                               setState(
-                                            //                                   () {
-                                            //                                 checkIndex =
-                                            //                                     -1;
-                                            //                                 _nameController.text =
-                                            //                                     "";
-                                            //                                 _licenceController.text =
-                                            //                                     "";
-                                            //                                 _expiryDate.text =
-                                            //                                     '';
-                                            //                                 _apiExpiryDate =
-                                            //                                     null;
-                                            //                                 _showChoiceDialog(
-                                            //                                     context);
-                                            //                               });
-                                            //                             },
-                                            //                             child:
-                                            //                                 Container(
-                                            //                               height:
-                                            //                                   sizeHeight *
-                                            //                                       .3,
-                                            //                               width:
-                                            //                                   150,
-                                            //                               decoration: BoxDecoration(
-                                            //                                   color: MyAppState.mode == ThemeMode.light
-                                            //                                       ? Colors.grey.shade200
-                                            //                                       : Colors.white,
-                                            //                                   borderRadius: BorderRadius.circular(10)),
-                                            //                               child:
-                                            //                                   Padding(
-                                            //                                 padding: const EdgeInsets
-                                            //                                     .all(
-                                            //                                     50.0),
-                                            //                                 child: Image
-                                            //                                     .asset(
-                                            //                                   "assets/images/add_doc.png",
-                                            //                                   height:
-                                            //                                       50,
-                                            //                                 ),
-                                            //                               ),
-                                            //                             ),
-                                            //                           )
-                                            //                     : GestureDetector(
-                                            //                         onTap: () {
-                                            //                           if (checkIndex ==
-                                            //                               index) {
-                                            //                             setState(
-                                            //                                 () {
-                                            //                               checkIndex =
-                                            //                                   -1;
-                                            //                               _nameController
-                                            //                                   .text = "";
-                                            //                               _licenceController
-                                            //                                   .text = "";
-                                            //                               _expiryDate
-                                            //                                   .text = '';
-                                            //                               _apiExpiryDate =
-                                            //                                   null;
-                                            //                               pitch_Id =
-                                            //                                   null;
-                                            //                             });
-                                            //                           } else {
-                                            //                             setState(
-                                            //                                 () {
-                                            //                               checkIndex =
-                                            //                                   index;
-                                            //                               _nameController
-                                            //                                       .text =
-                                            //                                   doc[checkIndex - 1].docName ??
-                                            //                                       "";
-                                            //                               _licenceController
-                                            //                                   .text = doc[checkIndex -
-                                            //                                       1]
-                                            //                                   .licenceNumber!;
-                                            //                               if (doc[checkIndex - 1]
-                                            //                                       .expiryDate !=
-                                            //                                   null) {
-                                            //                                 _expiryDate
-                                            //                                     .text = formatter.format(DateTime.parse(doc[checkIndex -
-                                            //                                         1]
-                                            //                                     .expiryDate!));
-                                            //                                 _apiExpiryDate =
-                                            //                                     apiFormatter.format(DateTime.parse(doc[checkIndex - 1].expiryDate!));
-                                            //                                 pitch_Id =
-                                            //                                     doc[checkIndex - 1].id;
-                                            //                               } else {
-                                            //                                 _expiryDate.text =
-                                            //                                     '';
-                                            //                                 _apiExpiryDate =
-                                            //                                     null;
-                                            //                                 pitch_Id =
-                                            //                                     null;
-                                            //                               }
-                                            //                             });
-                                            //                           }
-                                            //                         },
-                                            //                         child: Stack(
-                                            //                           children: [
-                                            //                             ClipRRect(
-                                            //                               borderRadius:
-                                            //                                   BorderRadius.circular(
-                                            //                                       10),
-                                            //                               child: cachedNetworkImage(
-                                            //                                   height: sizeHeight *
-                                            //                                       .2,
-                                            //                                   width: sizeWidth *
-                                            //                                       0.45,
-                                            //                                   cuisineImageUrl: doc[index - 1]
-                                            //                                       .docImage,
-                                            //                                   imageFit:
-                                            //                                       BoxFit.fill),
-                                            //                             ),
-                                            //                             checkIndex ==
-                                            //                                     index
-                                            //                                 ? Container(
-                                            //                                     height:
-                                            //                                         sizeHeight * .2,
-                                            //                                     width:
-                                            //                                         sizeWidth * 0.45,
-                                            //                                     decoration:
-                                            //                                         BoxDecoration(color: Colors.white.withOpacity(.2), borderRadius: BorderRadius.circular(10)),
-                                            //                                   )
-                                            //                                 : const SizedBox
-                                            //                                     .shrink(),
-                                            //                             checkIndex ==
-                                            //                                     index
-                                            //                                 ? SizedBox(
-                                            //                                     height:
-                                            //                                         sizeHeight * .2,
-                                            //                                     width:
-                                            //                                         sizeWidth * 0.45,
-                                            //                                     child:
-                                            //                                         Padding(
-                                            //                                       padding: const EdgeInsets.all(50.0),
-                                            //                                       child: Image.asset(
-                                            //                                         "assets/images/check.png",
-                                            //                                         height: 50,
-                                            //                                       ),
-                                            //                                     ),
-                                            //                                   )
-                                            //                                 : const SizedBox
-                                            //                                     .shrink(),
-                                            //                           ],
-                                            //                         ),
-                                            //                       ),
-                                            //               );
-                                            //             }) :
-                                            GestureDetector(
-                                                onTap: () {
-                                                  _showChoiceDialog(context);
-                                                },
-                                                child: pdfClicked
-                                                    ? _decidePdfView()
-                                                    : _decideImageview())
-                                            : GestureDetector(
-                                                onTap: () {
-                                                  _showChoiceDialog(context);
-                                                },
-                                                child: Column(
-                                                  children: [
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                    Icon(
-                                                      Icons.add_circle,
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF9B9B9B)
-                                                          : AppColors.white,
-                                                      size: 50,
-                                                    ),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                    Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .uploadDocument,
-                                                        style: TextStyle(
-                                                            color: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? const Color(
-                                                                    0XFF9B9B9B)
-                                                                : AppColors
-                                                                    .white,
-                                                            fontSize: 15,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontFamily:
-                                                                "Poppins")),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                    Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .weNeedAccount,
-                                                        style: TextStyle(
-                                                            color: const Color(
-                                                                    0XFF9B9B9B)
-                                                                .withOpacity(
-                                                                    .5),
-                                                            fontSize: 10,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontFamily:
-                                                                "Poppins")),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                  ],
-                                                ),
-                                              )),
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.documentName,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.themeColor
-                                        : AppColors.white),
-                              ),
-                              SizedBox(
-                                height: sizeHeight * 0.01,
-                              ),
-                              TextFieldWidget(
-                                  controller: _nameController,
-                                  hintText: AppLocalizations.of(context)!
-                                      .documentName,
-                                  enable: widget.detail.isEdit! ? false : true,
-                                  onChanged: (value) {
-                                    widget.detail.documentModel =
-                                        DocumentModel(documentName: value!);
-                                    return '';
-                                  },
-                                  onValidate: (value) {
-                                    if (value.toString().isEmpty) {
-                                      return AppLocalizations.of(context)!
-                                          .pleaseentername;
-                                    }
-                                    return null;
-                                  },
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  enableBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  focusBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12))),
-                              SizedBox(
-                                height: sizeHeight * 0.02,
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.licenceName,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.themeColor
-                                        : AppColors.white),
-                              ),
-                              SizedBox(
-                                height: sizeHeight * 0.01,
-                              ),
-                              TextFieldWidget(
-                                  controller: _licenceController,
-                                  hintText:
-                                      AppLocalizations.of(context)!.licenceName,
-                                  type: TextInputType.number,
-                                  onChanged: (value) {
-                                    widget.detail.documentModel!.licenceNumber =
-                                        value;
-                                    return '';
-                                  },
-                                  enable: widget.detail.isEdit! ? false : true,
-                                  onValidate: (value) {
-                                    if (value.isEmpty) {
-                                      return AppLocalizations.of(context)!
-                                          .pleaseenterPitchName;
-                                    }
-                                    return null;
-                                  },
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  enableBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  focusBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12))),
-                              SizedBox(
-                                height: sizeHeight * 0.02,
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.expiryDate,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.themeColor
-                                        : AppColors.white),
-                              ),
-                              SizedBox(
-                                height: sizeHeight * 0.01,
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  final selectDate =
-                                      await slecteDtateTime(context);
-                                  if (selectDate != null) {
-                                    setState(() {
-                                      _expiryDate.text = formatter
-                                          .format((selectDate))
-                                          .toString();
-                                      _apiExpiryDate = apiFormatter
-                                          .format((selectDate))
-                                          .toString();
-                                    });
-                                  }
-                                },
-                                child: TextFieldWidget(
-                                  controller: _expiryDate,
-                                  hintText: 'Expiry Document Date',
-                                  enable: false,
-                                  onValidate: (value) {
-                                    if (value.isEmpty) {
-                                      return AppLocalizations.of(context)!
-                                          .expriyDate;
-                                    }
-                                    return null;
-                                  },
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  enableBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  focusBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
+                          child: DefaultTextStyle(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: sizeHeight * 0.008,
                                 ),
-                              ),
-                              SizedBox(
-                                height: sizeHeight * 0.02,
-                              ),
-                              locationController.text.isNotEmpty &&
-                                      !widget.detail.isEdit!
-                                  ? Text(
-                                      AppLocalizations.of(context)!
-                                          .academyLocation,
-                                      style: TextStyle(
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? AppColors.themeColor
-                                                  : AppColors.white),
-                                    )
-                                  : const SizedBox.shrink(),
-                              SizedBox(
-                                height: sizeHeight * 0.01,
-                              ),
-                              widget.detail.isEdit!
-                                  ? const SizedBox.shrink()
-                                  : isAddressLoading
-                                      ? GestureDetector(
-                                          onTap: () {
-                                            _permission();
-                                          },
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              shimmer(width: sizeWidth),
-                                              SizedBox(
-                                                height: sizeHeight * 0.013,
-                                              ),
-                                              shimmer(width: sizeWidth * .8),
-                                              SizedBox(
-                                                height: sizeHeight * 0.013,
-                                              ),
-                                              shimmer(width: sizeWidth),
-                                            ],
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: sizeWidth * .009,
+                                      vertical: sizeHeight * .02),
+                                  child: _isImageLoading
+                                      ? Container(
+                                          height: sizeHeight * .2,
+                                          width: sizeWidth,
+                                          decoration: BoxDecoration(
+                                              color: AppColors.themeColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Lottie.asset(
+                                            'assets/lottiefiles/profile.json',
                                           ),
                                         )
-                                      : InkWell(
-                                          onTap: () {
-                                            isAddressLoading = true;
-                                            FocusScope.of(context).unfocus();
-                                            _getLocationPermission();
-                                          },
-                                          child: TextFieldWidget(
-                                            controller: locationController,
-                                            hintText: locationController.text,
-                                            suffixIcon:
-                                                Icons.location_searching,
-                                            suffixIconColor: MyAppState.mode ==
+                                      : SizedBox(
+                                          height: sizeHeight * .2,
+                                          width: sizeWidth,
+                                          child: image != null ||
+                                                  documentFilePath != null
+                                              ?
+                                              // doc.isNotEmpty
+                                              //         ? ListView.builder(
+                                              //             itemCount: doc.length + 1,
+                                              //             scrollDirection:
+                                              //                 Axis.horizontal,
+                                              //             itemBuilder:
+                                              //                 (context, index) {
+                                              //               return Padding(
+                                              //                 padding:
+                                              //                     const EdgeInsets
+                                              //                         .all(5.0),
+                                              //                 child: index == 0
+                                              //                     ? widget.detail
+                                              //                             .isEdit!
+                                              //                         ? const SizedBox
+                                              //                             .shrink()
+                                              //                         : GestureDetector(
+                                              //                             onTap: () {
+                                              //                               setState(
+                                              //                                   () {
+                                              //                                 checkIndex =
+                                              //                                     -1;
+                                              //                                 _nameController.text =
+                                              //                                     "";
+                                              //                                 _licenceController.text =
+                                              //                                     "";
+                                              //                                 _expiryDate.text =
+                                              //                                     '';
+                                              //                                 _apiExpiryDate =
+                                              //                                     null;
+                                              //                                 _showChoiceDialog(
+                                              //                                     context);
+                                              //                               });
+                                              //                             },
+                                              //                             child:
+                                              //                                 Container(
+                                              //                               height:
+                                              //                                   sizeHeight *
+                                              //                                       .3,
+                                              //                               width:
+                                              //                                   150,
+                                              //                               decoration: BoxDecoration(
+                                              //                                   color: MyAppState.mode == ThemeMode.light
+                                              //                                       ? Colors.grey.shade200
+                                              //                                       : Colors.white,
+                                              //                                   borderRadius: BorderRadius.circular(10)),
+                                              //                               child:
+                                              //                                   Padding(
+                                              //                                 padding: const EdgeInsets
+                                              //                                     .all(
+                                              //                                     50.0),
+                                              //                                 child: Image
+                                              //                                     .asset(
+                                              //                                   "assets/images/add_doc.png",
+                                              //                                   height:
+                                              //                                       50,
+                                              //                                 ),
+                                              //                               ),
+                                              //                             ),
+                                              //                           )
+                                              //                     : GestureDetector(
+                                              //                         onTap: () {
+                                              //                           if (checkIndex ==
+                                              //                               index) {
+                                              //                             setState(
+                                              //                                 () {
+                                              //                               checkIndex =
+                                              //                                   -1;
+                                              //                               _nameController
+                                              //                                   .text = "";
+                                              //                               _licenceController
+                                              //                                   .text = "";
+                                              //                               _expiryDate
+                                              //                                   .text = '';
+                                              //                               _apiExpiryDate =
+                                              //                                   null;
+                                              //                               pitch_Id =
+                                              //                                   null;
+                                              //                             });
+                                              //                           } else {
+                                              //                             setState(
+                                              //                                 () {
+                                              //                               checkIndex =
+                                              //                                   index;
+                                              //                               _nameController
+                                              //                                       .text =
+                                              //                                   doc[checkIndex - 1].docName ??
+                                              //                                       "";
+                                              //                               _licenceController
+                                              //                                   .text = doc[checkIndex -
+                                              //                                       1]
+                                              //                                   .licenceNumber!;
+                                              //                               if (doc[checkIndex - 1]
+                                              //                                       .expiryDate !=
+                                              //                                   null) {
+                                              //                                 _expiryDate
+                                              //                                     .text = formatter.format(DateTime.parse(doc[checkIndex -
+                                              //                                         1]
+                                              //                                     .expiryDate!));
+                                              //                                 _apiExpiryDate =
+                                              //                                     apiFormatter.format(DateTime.parse(doc[checkIndex - 1].expiryDate!));
+                                              //                                 pitch_Id =
+                                              //                                     doc[checkIndex - 1].id;
+                                              //                               } else {
+                                              //                                 _expiryDate.text =
+                                              //                                     '';
+                                              //                                 _apiExpiryDate =
+                                              //                                     null;
+                                              //                                 pitch_Id =
+                                              //                                     null;
+                                              //                               }
+                                              //                             });
+                                              //                           }
+                                              //                         },
+                                              //                         child: Stack(
+                                              //                           children: [
+                                              //                             ClipRRect(
+                                              //                               borderRadius:
+                                              //                                   BorderRadius.circular(
+                                              //                                       10),
+                                              //                               child: cachedNetworkImage(
+                                              //                                   height: sizeHeight *
+                                              //                                       .2,
+                                              //                                   width: sizeWidth *
+                                              //                                       0.45,
+                                              //                                   cuisineImageUrl: doc[index - 1]
+                                              //                                       .docImage,
+                                              //                                   imageFit:
+                                              //                                       BoxFit.fill),
+                                              //                             ),
+                                              //                             checkIndex ==
+                                              //                                     index
+                                              //                                 ? Container(
+                                              //                                     height:
+                                              //                                         sizeHeight * .2,
+                                              //                                     width:
+                                              //                                         sizeWidth * 0.45,
+                                              //                                     decoration:
+                                              //                                         BoxDecoration(color: Colors.white.withOpacity(.2), borderRadius: BorderRadius.circular(10)),
+                                              //                                   )
+                                              //                                 : const SizedBox
+                                              //                                     .shrink(),
+                                              //                             checkIndex ==
+                                              //                                     index
+                                              //                                 ? SizedBox(
+                                              //                                     height:
+                                              //                                         sizeHeight * .2,
+                                              //                                     width:
+                                              //                                         sizeWidth * 0.45,
+                                              //                                     child:
+                                              //                                         Padding(
+                                              //                                       padding: const EdgeInsets.all(50.0),
+                                              //                                       child: Image.asset(
+                                              //                                         "assets/images/check.png",
+                                              //                                         height: 50,
+                                              //                                       ),
+                                              //                                     ),
+                                              //                                   )
+                                              //                                 : const SizedBox
+                                              //                                     .shrink(),
+                                              //                           ],
+                                              //                         ),
+                                              //                       ),
+                                              //               );
+                                              //             }) :
+                                              GestureDetector(
+                                                  onTap: () {
+                                                    _showChoiceDialog(context);
+                                                  },
+                                                  child: pdfClicked
+                                                      ? _decidePdfView()
+                                                      : _decideImageview())
+                                              : GestureDetector(
+                                                  onTap: () {
+                                                    _showChoiceDialog(context);
+                                                  },
+                                                  child: Column(
+                                                    children: [
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                      Icon(
+                                                        Icons.add_circle,
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? const Color(
+                                                                0XFF9B9B9B)
+                                                            : AppColors.white,
+                                                        size: 50,
+                                                      ),
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                      Text(
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .uploadDocument,
+                                                          style: Theme
+                                                                  .of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? const Color(
+                                                                          0XFF9B9B9B)
+                                                                      : AppColors
+                                                                          .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      "Poppins")),
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                      Text(
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .weNeedAccount,
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .titleSmall!
+                                                              .copyWith(
+                                                                  color: const Color(
+                                                                          0XFF9B9B9B)
+                                                                      .withOpacity(
+                                                                          .5),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      "Poppins")),
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )),
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.documentName,
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.themeColor
+                                          : AppColors.white),
+                                ),
+                                SizedBox(
+                                  height: sizeHeight * 0.01,
+                                ),
+                                TextFieldWidget(
+                                    controller: _nameController,
+                                    hintText: AppLocalizations.of(context)!
+                                        .documentName,
+                                    enable:
+                                        widget.detail.isEdit! ? false : true,
+                                    onChanged: (value) {
+                                      widget.detail.documentModel =
+                                          DocumentModel(documentName: value!);
+                                      return '';
+                                    },
+                                    onValidate: (value) {
+                                      if (value.toString().isEmpty) {
+                                        return AppLocalizations.of(context)!
+                                            .pleaseentername;
+                                      }
+                                      return null;
+                                    },
+                                    border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    enableBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    focusBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12))),
+                                SizedBox(
+                                  height: sizeHeight * 0.02,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.licenceName,
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.themeColor
+                                          : AppColors.white),
+                                ),
+                                SizedBox(
+                                  height: sizeHeight * 0.01,
+                                ),
+                                TextFieldWidget(
+                                    controller: _licenceController,
+                                    hintText: AppLocalizations.of(context)!
+                                        .licenceName,
+                                    type: TextInputType.number,
+                                    onChanged: (value) {
+                                      widget.detail.documentModel!
+                                          .licenceNumber = value;
+                                      return '';
+                                    },
+                                    enable:
+                                        widget.detail.isEdit! ? false : true,
+                                    onValidate: (value) {
+                                      if (value.isEmpty) {
+                                        return AppLocalizations.of(context)!
+                                            .pleaseenterPitchName;
+                                      }
+                                      return null;
+                                    },
+                                    border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    enableBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    focusBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12))),
+                                SizedBox(
+                                  height: sizeHeight * 0.02,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.expiryDate,
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.themeColor
+                                          : AppColors.white),
+                                ),
+                                SizedBox(
+                                  height: sizeHeight * 0.01,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    final selectDate =
+                                        await slecteDtateTime(context);
+                                    if (selectDate != null) {
+                                      setState(() {
+                                        _expiryDate.text = formatter
+                                            .format((selectDate))
+                                            .toString();
+                                        _apiExpiryDate = apiFormatter
+                                            .format((selectDate))
+                                            .toString();
+                                      });
+                                    }
+                                  },
+                                  child: TextFieldWidget(
+                                    controller: _expiryDate,
+                                    hintText: 'Expiry Document Date',
+                                    enable: false,
+                                    onValidate: (value) {
+                                      if (value.isEmpty) {
+                                        return AppLocalizations.of(context)!
+                                            .expriyDate;
+                                      }
+                                      return null;
+                                    },
+                                    border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    enableBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    focusBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: sizeHeight * 0.02,
+                                ),
+                                locationController.text.isNotEmpty &&
+                                        !widget.detail.isEdit!
+                                    ? Text(
+                                        AppLocalizations.of(context)!
+                                            .academyLocation,
+                                        style: TextStyle(
+                                            color: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? AppColors.black
-                                                : AppColors.white,
-                                            enable: false,
-                                            onValidate: (value) {
-                                              if (value.isEmpty) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .expriyDate;
-                                              }
-                                              return null;
+                                                ? AppColors.themeColor
+                                                : AppColors.white),
+                                      )
+                                    : const SizedBox.shrink(),
+                                SizedBox(
+                                  height: sizeHeight * 0.01,
+                                ),
+                                widget.detail.isEdit!
+                                    ? const SizedBox.shrink()
+                                    : isAddressLoading
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              _permission();
                                             },
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: AppColors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(12)),
-                                            enableBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: AppColors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(12)),
-                                            focusBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: AppColors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(12)),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                shimmer(width: sizeWidth),
+                                                SizedBox(
+                                                  height: sizeHeight * 0.013,
+                                                ),
+                                                shimmer(width: sizeWidth * .8),
+                                                SizedBox(
+                                                  height: sizeHeight * 0.013,
+                                                ),
+                                                shimmer(width: sizeWidth),
+                                              ],
+                                            ),
+                                          )
+                                        : InkWell(
+                                            onTap: () {
+                                              isAddressLoading = true;
+                                              FocusScope.of(context).unfocus();
+                                              _getLocationPermission();
+                                            },
+                                            child: TextFieldWidget(
+                                              controller: locationController,
+                                              hintText: locationController.text,
+                                              suffixIcon:
+                                                  Icons.location_searching,
+                                              suffixIconColor:
+                                                  MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.black
+                                                      : AppColors.white,
+                                              enable: false,
+                                              onValidate: (value) {
+                                                if (value.isEmpty) {
+                                                  return AppLocalizations.of(
+                                                          context)!
+                                                      .expriyDate;
+                                                }
+                                                return null;
+                                              },
+                                              border: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: AppColors.grey),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12)),
+                                              enableBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: AppColors.grey),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12)),
+                                              focusBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: AppColors.grey),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12)),
+                                            ),
                                           ),
-                                        ),
-                              SizedBox(
-                                height: sizeHeight * 0.02,
-                              ),
-                              pitch_Id != null &&
-                                      pitchLong != null &&
-                                      locationController.text != '' &&
-                                      _expiryDate.text != '' &&
-                                      _nameController.text != "" &&
-                                      !widget.detail.isEdit!
-                                  ? ButtonWidget(
-                                      onTaped: () {
-                                        if (_formKey.currentState!.validate()) {
-                                          _formKey.currentState!.save();
-                                          if (widget.detail.isEdit!) {
-                                            Map detail = {
-                                              "location":
-                                                  locationController.text,
-                                              "documentId": pitch_Id,
-                                              "document_name": widget.detail
-                                                  .documentModel!.documentName,
-                                              "documents_expiry_date":
-                                                  _apiExpiryDate,
-                                              "document_code": widget.detail
-                                                  .documentModel!.licenceNumber,
-                                              "country": country,
-                                              "pitchLatitude": pitchLat,
-                                              "pitchLongitude": pitchLong,
-                                            };
-                                            editVenue(detail);
-                                          } else {
-                                            widget.detail.documentModel?.lat =
-                                                pitchLat;
-                                            widget.detail.documentModel?.long =
-                                                pitchLong;
-                                            widget.detail.documentModel != null
-                                                ? widget.detail.documentModel!
-                                                        .address =
-                                                    locationController.text
-                                                : widget.detail.documentModel
-                                                        ?.address =
-                                                    locationController.text;
-                                            widget.detail.documentModel != null
-                                                ? widget.detail.documentModel!
-                                                    .documentImageId = pitch_Id
-                                                : widget.detail.documentModel
-                                                        ?.documentImageId =
-                                                    pitch_Id;
-                                            widget.detail.documentModel != null
-                                                ? widget.detail.documentModel!
-                                                    .expiryDate = _apiExpiryDate
-                                                : widget.detail.documentModel
-                                                        ?.expiryDate =
-                                                    _apiExpiryDate;
-                                            widget.detail.documentModel != null
-                                                ? widget.detail.documentModel!
-                                                    .country = country
-                                                : widget.detail.documentModel
-                                                    ?.country = country;
-                                            navigateToDocuments(widget.detail);
+                                SizedBox(
+                                  height: sizeHeight * 0.02,
+                                ),
+                                pitch_Id != null &&
+                                        pitchLong != null &&
+                                        locationController.text != '' &&
+                                        _expiryDate.text != '' &&
+                                        _nameController.text != "" &&
+                                        !widget.detail.isEdit!
+                                    ? ButtonWidget(
+                                        onTaped: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            _formKey.currentState!.save();
+                                            if (widget.detail.isEdit!) {
+                                              Map detail = {
+                                                "location":
+                                                    locationController.text,
+                                                "documentId": pitch_Id,
+                                                "document_name": widget
+                                                    .detail
+                                                    .documentModel!
+                                                    .documentName,
+                                                "documents_expiry_date":
+                                                    _apiExpiryDate,
+                                                "document_code": widget
+                                                    .detail
+                                                    .documentModel!
+                                                    .licenceNumber,
+                                                "country": country,
+                                                "pitchLatitude": pitchLat,
+                                                "pitchLongitude": pitchLong,
+                                              };
+                                              editVenue(detail);
+                                            } else {
+                                              widget.detail.documentModel?.lat =
+                                                  pitchLat;
+                                              widget.detail.documentModel
+                                                  ?.long = pitchLong;
+                                              widget.detail.documentModel !=
+                                                      null
+                                                  ? widget.detail.documentModel!
+                                                          .address =
+                                                      locationController.text
+                                                  : widget.detail.documentModel
+                                                          ?.address =
+                                                      locationController.text;
+                                              widget.detail.documentModel !=
+                                                      null
+                                                  ? widget.detail.documentModel!
+                                                          .documentImageId =
+                                                      pitch_Id
+                                                  : widget.detail.documentModel
+                                                          ?.documentImageId =
+                                                      pitch_Id;
+                                              widget.detail.documentModel !=
+                                                      null
+                                                  ? widget.detail.documentModel!
+                                                          .expiryDate =
+                                                      _apiExpiryDate
+                                                  : widget.detail.documentModel
+                                                          ?.expiryDate =
+                                                      _apiExpiryDate;
+                                              widget.detail.documentModel !=
+                                                      null
+                                                  ? widget.detail.documentModel!
+                                                      .country = country
+                                                  : widget.detail.documentModel
+                                                      ?.country = country;
+                                              navigateToDocuments(
+                                                  widget.detail);
+                                            }
                                           }
-                                        }
-                                      },
-                                      title: Text(AppLocalizations.of(context)!
-                                          .continu),
-                                      isLoading: loading)
-                                  : ButtonWidget(
-                                      color: const Color(0XFFBCBCBC),
-                                      onTaped: () {},
-                                      title: Text(AppLocalizations.of(context)!
-                                          .continu),
-                                      isLoading: false),
-                              SizedBox(
-                                height: sizeHeight * 0.01,
-                              )
-                            ],
+                                        },
+                                        title: Text(
+                                          AppLocalizations.of(context)!.continu,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(color: AppColors.white),
+                                        ),
+                                        isLoading: loading)
+                                    : ButtonWidget(
+                                        color: const Color(0XFFBCBCBC),
+                                        onTaped: () {},
+                                        title: Text(
+                                            AppLocalizations.of(context)!
+                                                .continu),
+                                        isLoading: false),
+                                SizedBox(
+                                  height: sizeHeight * 0.01,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -17,26 +17,18 @@ PreferredSize appBarWidget(sizeWidth, sizeHeight, context, title, back) {
         ),
         centerTitle: true,
         backgroundColor: AppColors.black,
-        leadingWidth: back ? sizeWidth * 0.18 : 0,
+        leadingWidth: back ? sizeWidth * 0.13 : 0,
         leading: back
-            ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                      padding: EdgeInsets.all(sizeHeight * 0.008),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.grey),
-                          shape: BoxShape.circle),
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.close,
-                          color: AppColors.white,
-                        ),
-                      )),
-                ),
+            ? InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: SizedBox(
+                    height: sizeHeight * 0.03,
+                    child: Image.asset(
+                      'assets/images/back.png',
+                      color: AppColors.white,
+                    )),
               )
             : null,
       ));

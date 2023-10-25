@@ -1,14 +1,17 @@
 class RestApis {
-  static String BASE_URL = "https://powerhouse.tahadde.ae";
+  // static String BASEURL = "http://54.173.21.116:8000";
+  static String BASEURL = "https://powerhouse.tahadde.ae";
   // static String BASE_URL ="https://tahadi.theclientdemos.com";
 
   //login, signup & logout api
-  static String SIGNUP = "/api/v1/user/signup/?language=";
+  // static String SIGNUP = "/api/v1/user/signup/?language=";
+  static String SIGNUP = "/api/v1/user/signup/";
   static String LOGIN = "/api/v1/user/login/";
   static String LOGINFACEBOOK = "/api/v1/user/facebook-login/";
   static String LOGINAPPLE = "/api/v1/user/apple-login/";
   static String LOGINGOOGLE = "/api/v1/user/google-login/";
   static String LOGOUT = "/api/v1/user/logout/";
+  // static String PHONENUMBER = "/api/v1/user/verifycontactnumber/";
   static String PHONENUMBER = "/api/v1/user/verifycontactnumber/";
   static String FORGOT_PASSWORD = "/api/v1/user/forgetpassword/";
   static String CHANGEPASSWORD = "/api/v1/user/changepassword/";

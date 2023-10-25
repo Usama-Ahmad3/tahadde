@@ -113,9 +113,12 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                   padding: const EdgeInsets.only(top: 10.0),
                                   child: Text(
                                     AppLocalizations.of(context)!.profile,
-                                    style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: height * 0.026),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                          color: AppColors.white,
+                                        ),
                                   ),
                                 )),
                               ),
@@ -137,7 +140,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: width * 0.06),
+                                            horizontal: width * 0.059),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,

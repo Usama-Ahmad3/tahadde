@@ -148,10 +148,12 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                 : AppColors.appThemeColor),
                                         child: Text(
                                           _weakList[index].name.substring(0, 3),
-                                          style: TextStyle(
-                                              color: AppColors.black,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color: AppColors.black,
+                                                  fontWeight: FontWeight.w500),
                                         ),
                                       ),
                                     ),
@@ -184,10 +186,12 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                     ),
                                     child: Text(
                                       _weakList[index].name.substring(0, 3),
-                                      style: const TextStyle(
-                                          color: Color(0XFFA3A3A3),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              color: const Color(0XFFA3A3A3),
+                                              fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ),
@@ -218,13 +222,15 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                               vertical: 10.0),
                                           child: Text(
                                             "${slotList[index].session_name} ( ${slotList[index].slotDetail![0]!.sport_slot_time.toString()} mins Slot )",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14,
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.black
-                                                    : AppColors.white),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors.black
+                                                        : AppColors.white),
                                           ),
                                         ),
                                         GridView.builder(
@@ -299,42 +305,52 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                             .slotDetail![ind]!
                                                             .startTime!
                                                             .substring(0, 5),
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 16,
-                                                            color: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? AppColors
-                                                                    .black
-                                                                : AppColors
-                                                                    .white),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 16,
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? AppColors
+                                                                        .black
+                                                                    : AppColors
+                                                                        .white),
                                                       ),
                                                       slotList[0].sports ==
                                                               "swimming"
                                                           ? Text(
                                                               "${slotList[index].slotDetail![ind]!.pricePerPlayer.toString()} AED",
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 12,
-                                                                  color: Color(
-                                                                      0XFF25A163)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .titleSmall!
+                                                                  .copyWith(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: const Color(
+                                                                          0XFF25A163)),
                                                             )
                                                           : Text(
                                                               AppLocalizations.of(
                                                                       context)!
                                                                   .multipleRates,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 12,
-                                                                  color: Color(
-                                                                      0XFF25A163)),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .titleSmall!
+                                                                  .copyWith(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: const Color(
+                                                                          0XFF25A163)),
                                                             ),
                                                     ],
                                                   ),
@@ -350,17 +366,26 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                             child: Center(
                             child: Text(
                               "Marked as holiday for ${_weakList[_weakIndex].name} ",
-                              style: TextStyle(
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? Colors.black
-                                      : Colors.white),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white),
                             ),
                           )),
                 ButtonWidget(
                     onTaped: () {
                       navigateToVenueCreated();
                     },
-                    title: Text(AppLocalizations.of(context)!.continu),
+                    title: Text(
+                      AppLocalizations.of(context)!.continu,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: AppColors.white),
+                    ),
                     isLoading: _isLoading),
                 SizedBox(
                   height: size.height * 0.01,

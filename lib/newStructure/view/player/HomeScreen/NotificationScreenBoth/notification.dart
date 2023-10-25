@@ -132,41 +132,30 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           left: 0,
                           right: 0,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 18.0, vertical: 55),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: widget.player?13.0:height * 0.078, vertical: 55),
                             child: Row(
                               children: [
                                 widget.player
                                     ? InkWell(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Container(
-                                            padding:
-                                                EdgeInsets.all(height * 0.008),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: AppColors.grey),
-                                                shape: BoxShape.circle),
-                                            child: Center(
-                                              child: FaIcon(
-                                                FontAwesomeIcons.close,
-                                                color: AppColors.white,
-                                              ),
-                                            )),
-                                      )
+                                    onTap: () {
+                                       Navigator.pop(context);
+                                    },
+                                    child: SizedBox(
+                                         height: height * 0.06,
+                                         child: Image.asset(
+                                              'assets/images/back.png',
+                                               color: AppColors.white,
+                                    )),
+                                       )
                                     : const SizedBox.shrink(),
                                 SizedBox(
-                                  width: height * 0.116,
+                                  width: height * 0.09,
                                 ),
                                 Text(
                                   AppLocalizations.of(context)!.notificationC,
                                   textAlign: TextAlign.center,
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 17 * ffem,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.4705882353 * ffem / fem,
+                                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                     color: const Color(0xffffffff),
                                   ),
                                 ),
@@ -207,9 +196,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           Text(
                                             AppLocalizations.of(context)!
                                                 .notificationDec,
-                                            style: const TextStyle(
-                                                fontSize: 14,
-                                                color: Color(0XFFB7B7B7),
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                color: const Color(0XFFB7B7B7),
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           flaxibleGap(5),
@@ -245,16 +233,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 12 * fem,
-                                                horizontal: 24 * fem),
+                                                horizontal: MediaQuery.of(context).size.width * 0.062),
                                             child: Align(
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 AppLocalizations.of(context)!
                                                     .newC,
                                                 textAlign: TextAlign.center,
-                                                style: SafeGoogleFont(
-                                                  'Inter',
-                                                  fontSize: 15 * ffem,
+                                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                                   fontWeight: FontWeight.w500,
                                                   height:
                                                       1.3333333333 * ffem / fem,
@@ -371,10 +357,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                           child: RichText(
                                                             text: TextSpan(
                                                               style:
-                                                                  SafeGoogleFont(
-                                                                'Inter',
-                                                                fontSize:
-                                                                    15 * ffem,
+                                                                  Theme.of(context).textTheme.titleSmall!.copyWith(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
@@ -397,11 +380,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                               "message"] ??
                                                                           "",
                                                                   style:
-                                                                      SafeGoogleFont(
-                                                                    'Inter',
-                                                                    fontSize:
-                                                                        13 *
-                                                                            ffem,
+                                                                      Theme.of(context).textTheme.titleSmall!.copyWith(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
@@ -485,10 +464,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                   TextAlign
                                                                       .center,
                                                               style:
-                                                                  SafeGoogleFont(
-                                                                'Inter',
-                                                                fontSize:
-                                                                    15 * ffem,
+                                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,

@@ -22,7 +22,7 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
     var sizeWidth = MediaQuery.of(context).size.width;
     return Material(
       child: Scaffold(
-        backgroundColor: AppColors.containerColor54,
+        backgroundColor: AppColors.black,
         appBar: PreferredSize(
           preferredSize: Size(sizeWidth, sizeHeight * 0.1),
           child: AppBar(

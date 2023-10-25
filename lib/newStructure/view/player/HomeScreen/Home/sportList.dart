@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/homeFile/utility.dart';
+import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 
 import '../../../../../localizations.dart';
 import '../../../../app_colors/app_colors.dart';
+import 'home-screen.dart';
 
 class SportList extends StatefulWidget {
   dynamic sportsList;
@@ -20,26 +23,38 @@ class _SportListState extends State<SportList> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22.0),
+        padding: const EdgeInsets.symmetric(horizontal: 13.0),
         child: Row(
           children: [
             ...List.generate(
               widget.sportsList.length,
               (index) => InkWell(
+                // onTap: () {
+                //   widget.isSelected = index;
+                //   Map detail = {
+                //     "slug": widget.sportsList[index].slug,
+                //     "bannerImage": widget.sportsList[index].bannerImage,
+                //     "sportName": AppLocalizations.of(context)!.locale == "en"
+                //         ? widget.sportsList[index].name
+                //         : widget.sportsList[index].nameArabic
+                //   };
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) =>
+                //               SpecificSportsListScreen(detail: detail)));
+                //   setState(() {});
+                // },
                 onTap: () {
-                  widget.isSelected = index;
-                  Map detail = {
-                    "slug": widget.sportsList[index].slug,
-                    "bannerImage": widget.sportsList[index].bannerImage,
-                    "sportName": AppLocalizations.of(context)!.locale == "en"
-                        ? widget.sportsList[index].name
-                        : widget.sportsList[index].nameArabic
-                  };
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              SpecificSportsListScreen(detail: detail)));
+                  if (widget.isSelected == index) {
+                    widget.isSelected = -1;
+                  } else {
+                    widget.isSelected = index;
+                    // HomeScreenViewState.sportName =
+                    //     widget.sportsList[index].slug.toString();
+                    // loadVenuesSpecific();
+                  }
+                  Navigator.pop(context);
                   setState(() {});
                 },
                 child: Padding(

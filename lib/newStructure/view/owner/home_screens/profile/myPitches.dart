@@ -358,7 +358,7 @@ class _MyPitchesState extends State<MyPitches> {
                       child: Container(
                         height: sizeHeight * .2,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(5.0),
                               //
                             ),
@@ -453,11 +453,14 @@ class _MyPitchesState extends State<MyPitches> {
                                 SizedBox(
                                   width: sizeWidth * .5,
                                   child: Text("${pitchDetail[index].venueName}",
-                                      style: const TextStyle(
-                                          color: AppColors.themeColor,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Poppins",
-                                          fontSize: 15)),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            color: AppColors.themeColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontFamily: "Poppins",
+                                          )),
                                 ),
                                 flaxibleGap(
                                   1,
@@ -475,11 +478,14 @@ class _MyPitchesState extends State<MyPitches> {
                                       width: sizeWidth * .45,
                                       child: Text(
                                         "${pitchDetail[index].location}",
-                                        style: const TextStyle(
-                                            color: Color(0XFF646464),
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: "Poppins",
-                                            fontSize: 12),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(
+                                              color: const Color(0XFF646464),
+                                              fontWeight: FontWeight.w500,
+                                              fontFamily: "Poppins",
+                                            ),
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 5,
                                       ),

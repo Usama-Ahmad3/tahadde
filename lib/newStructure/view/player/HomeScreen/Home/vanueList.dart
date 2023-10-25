@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/viewMoreBookPitch.dart';
@@ -36,7 +37,11 @@ class _VanueListState extends State<VanueList> {
     double ffem = fem * 0.97;
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: widget.bookPitchData.length <= 2 ? 720 * fem : null,
+      height: widget.bookPitchData != null
+          ? widget.bookPitchData.length <= 2
+              ? 720 * fem
+              : null
+          : null,
       // margin: EdgeInsets.only(top: 24 * fem),
       padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 15 * fem),
       decoration: BoxDecoration(
@@ -64,14 +69,16 @@ class _VanueListState extends State<VanueList> {
                           },
                           child: Text(
                             widget.text,
-                            style: SafeGoogleFont('Inter',
-                                fontSize: 20 * ffem,
-                                fontWeight: FontWeight.w600,
-                                height: 1.25 * ffem / fem,
-                                letterSpacing: -0.2 * fem,
-                                color: mode == ThemeMode.light
-                                    ? const Color(0xff050505)
-                                    : const Color(0xffffffff)),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.25 * ffem / fem,
+                                    letterSpacing: -0.2 * fem,
+                                    color: mode == ThemeMode.light
+                                        ? const Color(0xff050505)
+                                        : const Color(0xffffffff)),
                           ),
                         ),
                         InkWell(
@@ -81,15 +88,16 @@ class _VanueListState extends State<VanueList> {
                           },
                           child: Text(
                             AppLocalizations.of(context)!.viewAll,
-                            style: SafeGoogleFont(
-                              'Inter',
-                              fontSize: 13 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.3846153846 * ffem / fem,
-                              color: mode == ThemeMode.light
-                                  ? AppColors.darkTheme
-                                  : Colors.white70,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.3846153846 * ffem / fem,
+                                  color: mode == ThemeMode.light
+                                      ? AppColors.darkTheme
+                                      : Colors.white70,
+                                ),
                           ),
                         ),
                       ],
@@ -99,23 +107,47 @@ class _VanueListState extends State<VanueList> {
             ...List.generate(
               widget.empty == false ? widget.bookPitchData.length : 1,
               (index) => widget.empty
-                  ? Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.2,
-                        ),
-                        Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.noAcademy,
-                            style: TextStyle(
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? AppColors.black
-                                  : AppColors.white,
+                  ? Padding(
+                      padding: EdgeInsets.only(bottom: 16 * fem),
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 16 * fem),
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height * 0.75,
+                        decoration: BoxDecoration(
+                          color: mode == ThemeMode.light
+                              ? const Color(0xffffffff)
+                              : const Color(0xff373737),
+                          borderRadius: BorderRadius.circular(15 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0x0f050818),
+                              offset: Offset(10 * fem, 40 * fem),
+                              blurRadius: 30 * fem,
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    )
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                AppLocalizations.of(context)!.noAcademy,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.black
+                                          : AppColors.white,
+                                    ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            )
+                          ],
+                        ),
+                      ))
                   : InkWell(
                       onTap: () {
                         dynamic detail = {
@@ -202,8 +234,7 @@ class _VanueListState extends State<VanueList> {
                                     ),
                                   ),
                                   Text(
-                                    AppLocalizations.of(context)!
-                                        .showDirections,
+                                    "${widget.bookPitchData[index]['location'].toString().substring(1, 20)} ...",
                                     style: SafeGoogleFont(
                                       'Inter',
                                       fontSize: 13 * ffem,

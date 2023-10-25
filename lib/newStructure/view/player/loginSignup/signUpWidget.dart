@@ -494,7 +494,13 @@ class SignUpWidgetState extends State<SignUpWidget> {
             ButtonWidget(
                 isLoading: widget.loading,
                 onTaped: widget.signUp,
-                title: Text(AppLocalizations.of(context)!.signUp)),
+                title: Text(
+                  AppLocalizations.of(context)!.signUp,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: AppColors.white),
+                )),
             SizedBox(
               height: height * 0.015,
             ),

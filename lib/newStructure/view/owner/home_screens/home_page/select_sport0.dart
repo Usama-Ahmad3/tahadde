@@ -68,7 +68,12 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.height * 0.02),
         child: ButtonWidget(
-          title: Text(AppLocalizations.of(context)!.continu),
+          title: Text(
+            AppLocalizations.of(context)!.continu,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: indexItem != null ? AppColors.white : AppColors.black,
+                ),
+          ),
           color: indexItem != null ? AppColors.appThemeColor : AppColors.grey,
           onTaped: () {
             indexItem != null
@@ -121,11 +126,12 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                         height: size.height * 0.02,
                       ),
                       Text(AppLocalizations.of(context)!.selecttypeofSport,
-                          style: TextStyle(
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? AppColors.black
-                                  : AppColors.white,
-                              fontSize: 15)),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? AppColors.black
+                                        : AppColors.white,
+                                  )),
                       SizedBox(
                         height: size.height * 0.01,
                       ),
@@ -133,7 +139,8 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                           _sportsList.length,
                           (index) => Padding(
                                 padding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.01),
+                                    vertical: size.height * 0.01,
+                                    horizontal: size.width * 0.03),
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: MyAppState.mode == ThemeMode.light
@@ -164,14 +171,16 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                                           : _sportsList[index]
                                               .nameArabic!
                                               .toString(),
-                                      style: TextStyle(
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
                                                   ? AppColors.black
                                                   : selected == index
                                                       ? AppColors.black
-                                                      : AppColors.white,
-                                          fontSize: 14),
+                                                      : AppColors.white),
                                     ),
                                     leading: cachedNetworkImage(
                                         cuisineImageUrl:

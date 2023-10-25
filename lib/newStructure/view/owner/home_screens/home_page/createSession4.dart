@@ -133,6 +133,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     super.initState();
     _networkCalls.weekList(
         onSuccess: (detail) {
+          print(detail);
           detail.forEach((element) {
             setState(() {
               _weakList
@@ -170,11 +171,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
               elevation: 3,
               label: Text(
                 AppLocalizations.of(context)!.addSession,
-                style: TextStyle(
-                    color: MyAppState.mode == ThemeMode.light
-                        ? AppColors.white
-                        : AppColors.black,
-                    fontSize: 11),
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: MyAppState.mode == ThemeMode.light
+                          ? AppColors.white
+                          : AppColors.black,
+                    ),
               ),
               animationCurve: Curves.easeInOutCirc,
               backgroundColor: MyAppState.mode == ThemeMode.light
@@ -195,7 +196,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                               title: Text(AppLocalizations.of(context)!.copy),
                               content: Text(
                                 AppLocalizations.of(context)!.copySession,
-                                style: TextStyle(color: AppColors.red),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(color: AppColors.red),
                               ),
                               actions: [
                                 InkWell(
@@ -366,11 +370,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   _weakList[index]
                                                       .name
                                                       .substring(0, 3),
-                                                  style: TextStyle(
-                                                      color: AppColors.black,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                          color:
+                                                              AppColors.black,
+                                                          fontWeight:
+                                                              FontWeight.w500),
                                                 ),
                                               ),
                                             ),
@@ -424,10 +431,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               _weakList[index]
                                                   .name
                                                   .substring(0, 3),
-                                              style: const TextStyle(
-                                                  color: Color(0XFFA3A3A3),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          0XFFA3A3A3),
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                             ),
                                           ),
                                         ),
@@ -539,7 +550,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         itemBuilder: (context, index) {
                                           return Padding(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: size.height * .01),
+                                                vertical: size.height * .01,
+                                                horizontal: size.width * 0.02),
                                             child: Dismissible(
                                               key: UniqueKey(),
                                               direction:
@@ -626,27 +638,33 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           children: [
                                                             Text(
                                                               "${_sessionMap[_weakList[_weakIndex].slug]![index].sessionName} Session",
-                                                              style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFFA3A3A3),
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontFamily:
-                                                                      "Poppins"),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: const Color(
+                                                                          0XFFA3A3A3),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontFamily:
+                                                                          "Poppins"),
                                                             ),
                                                             Text(
                                                               "( ${_sessionMap[_weakList[_weakIndex].slug]![index].slotDuration.toString()} min slot )",
-                                                              style: const TextStyle(
-                                                                  color: Color(
-                                                                      0XFFA3A3A3),
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontFamily:
-                                                                      "Poppins"),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: const Color(
+                                                                          0XFFA3A3A3),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontFamily:
+                                                                          "Poppins"),
                                                             ),
                                                           ],
                                                         ),
@@ -671,16 +689,18 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                     .format(_sessionMap[_weakList[_weakIndex].slug]![
                                                                             index]
                                                                         .startTime!),
-                                                                style: const TextStyle(
-                                                                    color: AppColors
-                                                                        .appThemeColor,
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        "Poppins")),
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                        color: AppColors
+                                                                            .appThemeColor,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        fontFamily:
+                                                                            "Poppins")),
                                                             const Text(" - ",
                                                                 style: TextStyle(
                                                                     color: AppColors
@@ -699,15 +719,18 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                           _weakList[_weakIndex]
                                                                               .slug]![index]
                                                                       .endTime!),
-                                                              style: const TextStyle(
-                                                                  color: AppColors
-                                                                      .appThemeColor,
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontFamily:
-                                                                      "Poppins"),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: AppColors
+                                                                          .appThemeColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontFamily:
+                                                                          "Poppins"),
                                                             ),
                                                           ],
                                                         ),
@@ -727,32 +750,35 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         .isNotEmpty
                                 ? Expanded(
                                     child: SizedBox(
-                                        height: size.height * .4,
-                                        child: Center(
-                                            child:
-                                                Text(AppLocalizations.of(context)!.markAsHoliday,
-                                                    style: TextStyle(
-                                                        fontSize: size.height *
-                                                            0.025)))))
+                                      height: size.height * .4,
+                                      child: Center(
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .markAsHoliday,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium),
+                                      ),
+                                    ),
+                                  )
                                 : widget.createdTag
                                     ? Expanded(
                                         child: SizedBox(
                                             height: size.height * .4,
                                             child: Center(
                                                 child: Text(
-                                                    AppLocalizations.of(context)!.markAsHoliday,
-                                                    style: TextStyle(fontSize: size.height * 0.025)))))
+                                                    AppLocalizations.of(context)!
+                                                        .markAsHoliday,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium))))
                                     : Expanded(
                                         child: SizedBox(
                                             height: size.height * .4,
                                             child: Center(
                                                 child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .noSession,
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      size.height * 0.025),
-                                            )))),
+                                                    AppLocalizations.of(context)!.noSession,
+                                                    style: Theme.of(context).textTheme.bodyMedium)))),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: _isSession
@@ -928,7 +954,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           }
                                         },
                                   title: Text(
-                                      AppLocalizations.of(context)!.continu),
+                                    AppLocalizations.of(context)!.continu,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(color: AppColors.white),
+                                  ),
                                   isLoading: _isLoading,
                                 ),
                         ),
@@ -1034,12 +1065,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             title: Text(
                                               AppLocalizations.of(context)!
                                                   .markAsHoliday,
-                                              style: TextStyle(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? AppColors.black
-                                                      : AppColors.white,
-                                                  fontSize: 14),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors.black
+                                                        : AppColors.white,
+                                                  ),
                                             ),
                                             trailing: GestureDetector(
                                               child: _holiday
@@ -1074,7 +1108,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     Expanded(
                                       child: Center(
                                         child: Text(
-                                            "${AppLocalizations.of(context)!.markAsHoliday} for ${_weakList[_weakIndex].name} "),
+                                          "${AppLocalizations.of(context)!.markAsHoliday} for ${_weakList[_weakIndex].name} ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
                                       ),
                                     ),
                                     ButtonWidget(
@@ -1087,8 +1125,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           onTap();
                                         },
                                         title: Text(
-                                            AppLocalizations.of(context)!
-                                                .continueW),
+                                          AppLocalizations.of(context)!
+                                              .continueW,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(color: AppColors.white),
+                                        ),
                                         isLoading: false)
                                   ],
                                 ),
@@ -1168,12 +1211,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             title: Text(
                                               AppLocalizations.of(context)!
                                                   .markAsHoliday,
-                                              style: TextStyle(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? AppColors.black
-                                                      : AppColors.white,
-                                                  fontSize: 14),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors.black
+                                                        : AppColors.white,
+                                                  ),
                                             ),
                                             trailing: GestureDetector(
                                               child: _holiday
@@ -2076,8 +2122,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           onTap();
                                         },
                                         title: Text(
-                                            AppLocalizations.of(context)!
-                                                .continu),
+                                          AppLocalizations.of(context)!.continu,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(color: AppColors.white),
+                                        ),
                                         isLoading: false)
                                   ],
                                 ),

@@ -29,7 +29,10 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
             title: Text(AppLocalizations.of(context)!.areYouSure),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
-              style: const TextStyle(color: AppColors.appThemeColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: AppColors.appThemeColor),
             ),
             actions: [
               InkWell(
@@ -47,7 +50,10 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       child: Center(
                         child: Text(
                           AppLocalizations.of(context)!.no,
-                          style: TextStyle(color: AppColors.white),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: AppColors.white),
                         ),
                       ),
                     ),
@@ -71,7 +77,10 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                     child: Center(
                       child: Text(
                         AppLocalizations.of(context)!.yes,
-                        style: TextStyle(color: AppColors.white),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(color: AppColors.white),
                       ),
                     ),
                   ),

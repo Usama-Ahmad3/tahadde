@@ -19,7 +19,7 @@ class EmailContactDOB extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: width * 0.06, vertical: height * 0.012),
+          horizontal: width * 0.059, vertical: height * 0.012),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -17,7 +17,7 @@ class NotificationShimmer {
               ),
         ),
         child: Row(
-          children: <Widget>[
+          children: [
             Shimmer.fromColors(
               baseColor: Colors.grey.shade300,
               highlightColor: Colors.grey.shade100,

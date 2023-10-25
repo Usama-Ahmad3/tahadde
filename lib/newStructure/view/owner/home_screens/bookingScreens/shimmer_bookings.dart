@@ -17,6 +17,7 @@ class ShimmerBookings {
           appBar: PreferredSize(
               preferredSize: Size(sizeWidth, sizeHeight * 0.105),
               child: AppBar(
+                automaticallyImplyLeading: false,
                 title: Text(
                   AppLocalizations.of(context)!.academyBook,
                   style: Theme.of(context)

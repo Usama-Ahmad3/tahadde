@@ -40,7 +40,10 @@ class _OverlayWidgetState extends State<OverlayWidget> {
                 Material(
                   child: Text(
                     AppLocalizations.of(context)!.search,
-                    style: TextStyle(fontSize: height * 0.025),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontSize: height * 0.025),
                   ),
                 ),
                 CloseButton(onPressed: widget.onTap),

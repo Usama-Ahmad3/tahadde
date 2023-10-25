@@ -91,21 +91,25 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                             )),
                         flaxibleGap(4),
                         Text(AppLocalizations.of(context)!.noBookingsFound,
-                            style: TextStyle(
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? const Color(0XFF424242)
-                                    : AppColors.white,
-                                fontFamily: "Poppins",
-                                fontSize: 18)),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? const Color(0XFF424242)
+                                      : AppColors.white,
+                                  fontFamily: "Poppins",
+                                )),
                         flaxibleGap(1),
                         Text(
                           AppLocalizations.of(context)!.youHaveBooked,
-                          style: TextStyle(
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF7A7A7A)
-                                  : Colors.white38,
-                              fontFamily: "Poppins",
-                              fontSize: 14),
+                          style:
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? const Color(0XFF7A7A7A)
+                                        : Colors.white38,
+                                    fontFamily: "Poppins",
+                                  ),
                         ),
                         flaxibleGap(30),
                       ],
@@ -121,20 +125,15 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                     "id": pitchDetail[index].id,
                                     "name": pitchDetail[index].venueName
                                   };
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => EditVenuesScreen(
-                                              detail: detail)));
-                                  // navigateToEditVenues(detail);
+                                  navigateToEditVenues(detail);
                                   // navigateToManageSlotsDetail(pitchDetail[index]);
                                 }
                               : () => showMessage(
                                   "Sorry, you can not edit verified and in-review Academy"),
                           child: Padding(
                             padding: EdgeInsets.only(
-                                left: sizeWidth * .04,
-                                right: sizeWidth * .04,
+                                left: sizeWidth * .059,
+                                right: sizeWidth * .059,
                                 top: sizeHeight * .02),
                             child: Container(
                               height: sizeHeight * .1,
@@ -149,9 +148,9 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
+                                children: [
                                   Padding(
-                                    padding: EdgeInsets.all(sizeHeight * .01),
+                                    padding: EdgeInsets.all(sizeHeight * .007),
                                     child: Container(
                                         decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.all(
@@ -176,28 +175,34 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                     children: <Widget>[
                                       flaxibleGap(1),
                                       Text("${pitchDetail[index].venueName}",
-                                          style: TextStyle(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? AppColors.themeColor
-                                                  : AppColors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontFamily: "Poppins",
-                                              fontSize: 16)),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.themeColor
+                                                    : AppColors.white,
+                                                fontWeight: FontWeight.w700,
+                                                fontFamily: "Poppins",
+                                              )),
                                       SizedBox(
                                         width: sizeWidth * .7,
                                         child: Text(
                                             " ${pitchDetail[index].location}",
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFF646464)
-                                                    : AppColors.grey,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Poppins",
-                                                fontSize: 12)),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF646464)
+                                                      : AppColors.grey,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontFamily: "Poppins",
+                                                )),
                                       ),
                                       flaxibleGap(1),
                                     ],
@@ -319,6 +324,8 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
   }
 
   void navigateToEditVenues(Map detail) {
-    Navigator.pushNamed(context, RouteNames.editVenues, arguments: detail);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => EditVenuesScreen(detail: detail)));
+    // Navigator.pushNamed(context, RouteNames.editVenues, arguments: detail);
   }
 }

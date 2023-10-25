@@ -52,11 +52,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
     try {
       verificationCompleted(PhoneAuthCredential phoneAuthCredential) async {
         await _auth.signInWithCredential(phoneAuthCredential);
+        print("SSS$errorMessage");
         showMessage(AppLocalizations().verified);
       }
 
       verificationFailed(FirebaseAuthException authException) {
-        showMessage("${authException.message}");
+        showMessage("EEE${authException.message}");
       }
 
       codeSent(String verificationId, [int? forceResendingToken]) {
@@ -66,9 +67,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
       }
 
       codeAutoRetrievalTimeout(String verificationId) {
-        showMessage(verificationId.toString());
+        showMessage("Time${verificationId.toString()}");
       }
 
+      print('on');
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNo,
         verificationCompleted: verificationCompleted,
@@ -76,8 +78,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
         codeSent: codeSent,
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
       );
+      print('off');
     } catch (e) {
-      showMessage(e.toString());
+      showMessage("$e");
+      print('of$e');
     }
   }
 
@@ -95,7 +99,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
       }
       final User? currentUser = userCredential.user;
       if (currentUser != null) {
+        print('SignUp Calling');
         signup();
+        print('SignUp Calling End');
         setState(() {
           loading = true;
         });
@@ -105,7 +111,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         loading = false;
         showMessage(AppLocalizations.of(context)!.invalidOTPCode);
         if (kDebugMode) {
-          print(e.toString());
+          print("catch$e");
         }
       });
       if (kDebugMode) {
@@ -129,6 +135,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       "deviceToken": widget.detail.fcmToken,
       "gender": "male"
     };
+    print(details);
     if (position != null) {
       details["longitude"] = position!.longitude;
       details["latitude"] = position!.latitude;
@@ -156,12 +163,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
   void initState() {
     print(widget.detail.player);
     phoneNo = "${widget.detail.countryCode}${widget.detail.phoneNumber}";
+    print(phoneNo);
     super.initState();
+    signup();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) async {
       internet = msg;
       if (msg == true) {
-        _signInWithPhoneNumber();
-        location();
+        // _signInWithPhoneNumber();
+        // location();
       } else {
         setState(() {
           loading = false;
@@ -182,11 +191,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
     var width = MediaQuery.of(context).size.width;
     return internet
         ? Scaffold(
-            backgroundColor: AppColors.black,
             appBar: PreferredSize(
               preferredSize: Size(width, height * 0.13),
               child: AppBar(
-                title: Text(AppLocalizations.of(context)!.verifyOTP),
+                title: Text(
+                  AppLocalizations.of(context)!.verifyOTP,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: AppColors.white),
+                ),
                 centerTitle: true,
                 backgroundColor: AppColors.black,
                 leadingWidth: width * 0.18,
@@ -212,215 +226,243 @@ class _VerificationScreenState extends State<VerificationScreen> {
               ),
             ),
             body: Container(
-              height: height,
-              width: width,
-              decoration: BoxDecoration(
-                  color: MyAppState.mode == ThemeMode.light
-                      ? AppColors.white
-                      : AppColors.containerColorW),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * .55,
-                      width: MediaQuery.of(context).size.width,
-                      color: MyAppState.mode == ThemeMode.light
-                          ? AppColors.white
-                          : AppColors.containerColorW,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * .08,
-                          right: MediaQuery.of(context).size.width * .08,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.03,
-                                  vertical: height * 0.01),
-                              child: Text(
+              color: AppColors.black,
+              child: Container(
+                width: width,
+                height: height,
+                padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+                decoration: BoxDecoration(
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.white
+                        : AppColors.darkTheme,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .55,
+                        width: MediaQuery.of(context).size.width,
+                        color: MyAppState.mode == ThemeMode.light
+                            ? AppColors.white
+                            : AppColors.containerColorW,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * .08,
+                            right: MediaQuery.of(context).size.width * .08,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
+                              Text(
                                 AppLocalizations.of(context)!.enterCode,
-                                style: TextStyle(
-                                    backgroundColor: AppColors.transparent,
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.black
-                                        : AppColors.white,
-                                    fontSize: height * 0.03),
-                              ),
-                            ),
-                            flaxibleGap(
-                              2,
-                            ),
-                            AppLocalizations.of(context)!.locale == "en"
-                                ? Text(
-                                    '${AppLocalizations.of(context)!.pleaseEnter}${widget.detail.countryCode}${widget.detail.phoneNumber}',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(
+                                        backgroundColor: AppColors.transparent,
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? const Color(0XFF595959)
-                                                : AppColors.white),
-                                  )
-                                : Text(
-                                    '${AppLocalizations.of(context)!.pleaseEnter}${widget.detail.countryCode!.substring(1)}${widget.detail.phoneNumber}${widget.detail.countryCode!.substring(0, 1)}',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                                ? AppColors.black
+                                                : AppColors.white,
+                                        fontSize: height * 0.03),
+                              ),
+                              flaxibleGap(
+                                2,
+                              ),
+                              AppLocalizations.of(context)!.locale == "en"
+                                  ? Text(
+                                      '${AppLocalizations.of(context)!.pleaseEnter}${widget.detail.countryCode}${widget.detail.phoneNumber}',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!
+                                          .copyWith(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF595959)
+                                                  : AppColors.white),
+                                    )
+                                  : Text(
+                                      '${AppLocalizations.of(context)!.pleaseEnter}${widget.detail.countryCode!.substring(1)}${widget.detail.phoneNumber}${widget.detail.countryCode!.substring(0, 1)}',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!
+                                          .copyWith(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF595959)
+                                                  : AppColors.white),
+                                    ),
+                              flaxibleGap(
+                                2,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.enterCode,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
                                         color:
                                             MyAppState.mode == ThemeMode.light
-                                                ? const Color(0XFF595959)
+                                                ? AppColors.black
                                                 : AppColors.white),
-                                  ),
-                            flaxibleGap(
-                              2,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.enterCode,
-                              style: TextStyle(
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? AppColors.black
-                                      : AppColors.white),
-                            ),
-                            flaxibleGap(
-                              1,
-                            ),
-                            PinCodeTextField(
-                              appContext: context,
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              length: 6,
-                              pinTheme: PinTheme(
-                                shape: PinCodeFieldShape.box,
-                                // Change the shape to box or underline
-                                borderRadius: BorderRadius.circular(5),
-                                fieldHeight: 50,
-                                fieldWidth: 40,
-                                inactiveColor:
-                                    MyAppState.mode == ThemeMode.light
-                                        ? AppColors.containerColorB
-                                        : AppColors.white,
-                                activeColor: const Color(0xff1d7e55),
-                                selectedColor: AppColors.grey,
-                                borderWidth: 2,
                               ),
-                              controller: controllerPin,
-                              obscureText: false,
-                              animationType: AnimationType.scale,
-                              enablePinAutofill: true,
-                              keyboardType: TextInputType.number,
-                              animationDuration:
-                                  const Duration(milliseconds: 300),
-                              onChanged: (value) {
-                                setState(() {
-                                  smsOTP = value;
-                                  pin = value;
-                                  smsOTP!.length < 6
-                                      ? color1 = 0XFFAEAEAE
-                                      : color1 = 0XFF25A163;
-                                });
-                              },
-                            ),
-                            flaxibleGap(
-                              1,
-                            ),
-                            InkWell(
-                              splashColor: Colors.black,
-                              onTap: () {
-                                _networkCalls.checkInternetConnectivity(
-                                    onSuccess: (msg) async {
-                                  internet = msg;
-                                  if (msg == true) {
-                                    _signInWithPhoneNumber();
-                                  } else {
-                                    if (mounted) {
-                                      showMessage(AppLocalizations.of(context)!
-                                          .noInternetConnection);
-                                    }
-                                  }
-                                });
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.resendOTP,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.black
-                                        : AppColors.white),
+                              flaxibleGap(
+                                1,
                               ),
-                            ),
-                            flaxibleGap(
-                              3,
-                            ),
-                            ButtonWidget(
-                                isLoading: loading,
-                                onTaped: () {
+                              PinCodeTextField(
+                                appContext: context,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                length: 6,
+                                pinTheme: PinTheme(
+                                  shape: PinCodeFieldShape.box,
+                                  // Change the shape to box or underline
+                                  borderRadius: BorderRadius.circular(5),
+                                  fieldHeight: 50,
+                                  fieldWidth: 40,
+                                  inactiveColor:
+                                      MyAppState.mode == ThemeMode.light
+                                          ? AppColors.containerColorB
+                                          : AppColors.white,
+                                  activeColor: const Color(0xff1d7e55),
+                                  selectedColor: AppColors.grey,
+                                  borderWidth: 2,
+                                ),
+                                controller: controllerPin,
+                                obscureText: false,
+                                animationType: AnimationType.scale,
+                                enablePinAutofill: true,
+                                keyboardType: TextInputType.number,
+                                animationDuration:
+                                    const Duration(milliseconds: 300),
+                                onChanged: (value) {
                                   setState(() {
-                                    loading = true;
+                                    smsOTP = value;
+                                    pin = value;
+                                    smsOTP!.length < 6
+                                        ? color1 = 0XFFAEAEAE
+                                        : color1 = 0XFF25A163;
                                   });
+                                },
+                              ),
+                              flaxibleGap(
+                                1,
+                              ),
+                              InkWell(
+                                splashColor: Colors.black,
+                                onTap: () {
                                   _networkCalls.checkInternetConnectivity(
-                                      onSuccess: (msg) {
+                                      onSuccess: (msg) async {
+                                    internet = msg;
                                     if (msg == true) {
-                                      if (pin.length < 6) {
-                                        setState(() {
-                                          loading = true;
-                                        });
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                  title: Text(
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .pin),
-                                                  content: Text(AppLocalizations
-                                                          .of(context)!
-                                                      .enterthedigitcodewhichsentonregisteredphonenumber),
-                                                  actions: [
-                                                    TextButton(
-                                                      child: Text(
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .ok),
-                                                      onPressed: () {
-                                                        Navigator.of(context)
-                                                            .pop(false);
-                                                      },
-                                                    ),
-                                                  ]);
-                                            });
-                                      } else {
-                                        setState(() {
-                                          loading = true;
-                                          _verifyPhoneNumberWithCode(
-                                              controllerPin.text);
-                                        });
-                                      }
+                                      _signInWithPhoneNumber();
                                     } else {
                                       if (mounted) {
                                         showMessage(
                                             AppLocalizations.of(context)!
                                                 .noInternetConnection);
-                                        setState(() {
-                                          loading = true;
-                                        });
                                       }
                                     }
                                   });
                                 },
-                                title:
-                                    Text(AppLocalizations.of(context)!.done)),
-                            flaxibleGap(
-                              6,
-                            ),
-                          ],
+                                child: Text(
+                                  AppLocalizations.of(context)!.resendOTP,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.black
+                                                  : AppColors.white),
+                                ),
+                              ),
+                              flaxibleGap(
+                                3,
+                              ),
+                              ButtonWidget(
+                                  isLoading: loading,
+                                  onTaped: () {
+                                    setState(() {
+                                      loading = true;
+                                    });
+                                    _networkCalls.checkInternetConnectivity(
+                                        onSuccess: (msg) {
+                                      if (msg == true) {
+                                        if (pin.length < 6) {
+                                          setState(() {
+                                            loading = true;
+                                          });
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                    title: Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .pin),
+                                                    content: Text(AppLocalizations
+                                                            .of(context)!
+                                                        .enterthedigitcodewhichsentonregisteredphonenumber),
+                                                    actions: [
+                                                      TextButton(
+                                                        child: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .ok),
+                                                        onPressed: () {
+                                                          loading = false;
+                                                          Navigator.of(context)
+                                                              .pop(false);
+                                                        },
+                                                      ),
+                                                    ]);
+                                              });
+                                        } else {
+                                          setState(() {
+                                            loading = true;
+                                            _verifyPhoneNumberWithCode(
+                                                controllerPin.text);
+                                          });
+                                        }
+                                      } else {
+                                        if (mounted) {
+                                          showMessage(
+                                              AppLocalizations.of(context)!
+                                                  .noInternetConnection);
+                                          setState(() {
+                                            loading = true;
+                                          });
+                                        }
+                                      }
+                                    });
+                                  },
+                                  title: Text(
+                                      AppLocalizations.of(context)!.done,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(color: AppColors.white))),
+                              flaxibleGap(
+                                6,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          )
+            ))
         : InternetLoss(
             onChange: () {
               _networkCalls.checkInternetConnectivity(onSuccess: (msg) {

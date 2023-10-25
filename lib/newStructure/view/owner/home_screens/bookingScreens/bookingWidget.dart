@@ -37,21 +37,21 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                     )),
                 flaxibleGap(4),
                 Text(AppLocalizations.of(context)!.noBookingsFound,
-                    style: TextStyle(
-                        color: MyAppState.mode == ThemeMode.light
-                            ? const Color(0XFF424242)
-                            : AppColors.white,
-                        fontFamily: "Poppins",
-                        fontSize: 18)),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? const Color(0XFF424242)
+                              : AppColors.white,
+                          fontFamily: "Poppins",
+                        )),
                 flaxibleGap(1),
                 Text(
                   AppLocalizations.of(context)!.youHaveBooked,
-                  style: TextStyle(
-                      color: MyAppState.mode == ThemeMode.light
-                          ? const Color(0XFF7A7A7A)
-                          : Colors.white38,
-                      fontFamily: "Poppins",
-                      fontSize: 14),
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        color: MyAppState.mode == ThemeMode.light
+                            ? const Color(0XFF7A7A7A)
+                            : Colors.white38,
+                        fontFamily: "Poppins",
+                      ),
                 ),
                 flaxibleGap(30),
               ],
@@ -66,8 +66,8 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                   },
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: sizeWidth * .05,
-                        right: sizeWidth * .05,
+                        left: sizeWidth * .059,
+                        right: sizeWidth * .059,
                         top: sizeHeight * .02),
                     child: Container(
                       height: sizeHeight * .1,
@@ -108,38 +108,52 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                               Text(
                                   widget.bookingDetail![index].user!.name
                                       .toString(),
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.themeColor
-                                          : AppColors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "Poppins",
-                                      fontSize: 16)),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? AppColors.themeColor
+                                                : AppColors.white,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins",
+                                      )),
                               Text(
                                   "${widget.bookingDetail![index].pitchType!.area} ${widget.bookingDetail![index].pitchType!.name}",
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? const Color(0XFF696969)
-                                          : AppColors.grey,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Poppins",
-                                      fontSize: 12)),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .copyWith(
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? const Color(0XFF696969)
+                                                : AppColors.grey,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "Poppins",
+                                      )),
                               widget.bookingDetail![index].booking_cancelled!
                                   ? Text(AppLocalizations.of(context)!.canceled,
-                                      style: const TextStyle(
-                                          color: AppColors.barLineColor,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: "Poppins",
-                                          fontSize: 10))
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
+                                            color: AppColors.barLineColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontFamily: "Poppins",
+                                          ))
                                   : Row(
                                       children: [
                                         Text(
                                             "${AppLocalizations.of(context)!.slots}: ",
-                                            style: const TextStyle(
-                                                color: Color(0XFFADADAD),
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Poppins",
-                                                fontSize: 10)),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                  color: Color(0XFFADADAD),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontFamily: "Poppins",
+                                                )),
                                         SizedBox(
                                           height: 15,
                                           child: ListView.builder(
@@ -153,12 +167,17 @@ class _BookingsWidgetState extends State<BookingsWidget> {
                                             itemBuilder: (context, blockindex) {
                                               return Text(
                                                   '(${timing(x: int.parse(widget.bookingDetail![index].slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookingDetail![index].slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
-                                                  style: TextStyle(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? AppColors.barLineColor
-                                                          : AppColors.white,
-                                                      fontSize: 10));
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? AppColors
+                                                                .barLineColor
+                                                            : AppColors.white,
+                                                      ));
                                             },
                                           ),
                                         ),

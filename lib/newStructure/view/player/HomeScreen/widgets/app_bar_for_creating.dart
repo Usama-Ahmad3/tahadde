@@ -19,26 +19,18 @@ PreferredSize appBarForCreatingAcademy(
         ),
         centerTitle: true,
         backgroundColor: AppColors.black,
-        leadingWidth: size.width * 0.18,
+        leadingWidth: size.width * 0.13,
         leading: back
-            ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                      padding: EdgeInsets.all(size.height * 0.008),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.grey),
-                          shape: BoxShape.circle),
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.close,
-                          color: AppColors.white,
-                        ),
-                      )),
-                ),
+            ? InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: SizedBox(
+                    height: size.height * 0.03,
+                    child: Image.asset(
+                      'assets/images/back.png',
+                      color: AppColors.white,
+                    )),
               )
             : null,
         bottom: PreferredSize(

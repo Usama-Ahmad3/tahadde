@@ -292,15 +292,29 @@ class GroundDetailState extends State<GroundDetail>
                   scrollDirection: Axis.vertical,
                   physics: const AlwaysScrollableScrollPhysics(),
                   slivers: [
-                    const SliverAppBar(
+                    SliverAppBar(
                       pinned: true,
                       centerTitle: false,
                       expandedHeight: 200.0,
+                      leading: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: SizedBox(
+                            height: height * 0.03,
+                            child: Image.asset(
+                              'assets/images/back.png',
+                              color: AppColors.white,
+                            )),
+                      ),
+                      leadingWidth: width * 0.13,
+                      backgroundColor: AppColors.transparent,
+                      automaticallyImplyLeading: false,
                       flexibleSpace: FlexibleSpaceBar(
                           collapseMode: CollapseMode.pin,
                           centerTitle: false,
-                          titlePadding:
-                              EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                          titlePadding: const EdgeInsets.symmetric(
+                              vertical: 16, horizontal: 0),
                           background: Carousel()),
                     ),
                     SliverToBoxAdapter(
@@ -319,7 +333,7 @@ class GroundDetailState extends State<GroundDetail>
                                         topLeft: Radius.circular(20))),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: height * 0.024,
+                                      horizontal: height * 0.033,
                                       vertical: height * 0.033),
                                   child: Column(
                                     crossAxisAlignment:
@@ -360,15 +374,16 @@ class GroundDetailState extends State<GroundDetail>
 
                                       ///description
                                       Text(
-                                        AppLocalizations.of(context)!
-                                            .descriptionS,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? AppColors.black
-                                                : AppColors.white),
-                                      ),
+                                          AppLocalizations.of(context)!
+                                              .descriptionS,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.black
+                                                      : AppColors.white)),
                                       SizedBox(
                                         height: height * 0.02,
                                       ),
@@ -392,12 +407,15 @@ class GroundDetailState extends State<GroundDetail>
                                             fontWeight: FontWeight.bold),
                                         trimCollapsedText: 'See More',
                                         trimExpandedText: 'See Less',
-                                        style: TextStyle(
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
                                                   ? AppColors.black
                                                   : AppColors.white,
-                                        ),
+                                            ),
                                       ),
                                       SizedBox(
                                         height: height * 0.025,
@@ -407,36 +425,39 @@ class GroundDetailState extends State<GroundDetail>
                                       Text(
                                           AppLocalizations.of(context)!
                                               .academyList,
-                                          style: TextStyle(
-                                              fontSize: height * 0.03,
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? AppColors.black
-                                                  : AppColors.white)),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.black
+                                                      : AppColors.white)),
                                       ...List.generate(
                                           3,
                                           (index) => Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                    horizontal: width * 0.01,
                                                     vertical: height * 0.01),
                                                 child: Container(
                                                   height: height * 0.08,
                                                   decoration: BoxDecoration(
-                                                      color: Colors.white70,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: AppColors
-                                                              .containerColorB,
-                                                          spreadRadius: 1,
-                                                          offset: const Offset(
-                                                              0, 1),
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black38
+                                                              .withOpacity(
+                                                                  0.17),
                                                           blurStyle:
-                                                              BlurStyle.outer,
-                                                        )
-                                                      ]),
+                                                              BlurStyle.normal,
+                                                          offset: const Offset(
+                                                              1, 1),
+                                                          blurRadius: 12,
+                                                          spreadRadius: 2)
+                                                    ],
+                                                  ),
                                                   child: Row(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
@@ -450,7 +471,7 @@ class GroundDetailState extends State<GroundDetail>
                                                       ),
                                                       Container(
                                                         height: height * 0.06,
-                                                        width: width * 0.12,
+                                                        width: width * 0.13,
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
@@ -467,14 +488,19 @@ class GroundDetailState extends State<GroundDetail>
                                                       ),
                                                       Text(
                                                         ground[index],
-                                                        style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors.black
-                                                              : AppColors.white,
-                                                        ),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? AppColors
+                                                                      .black
+                                                                  : AppColors
+                                                                      .white,
+                                                            ),
                                                       ),
                                                       SizedBox(
                                                         width: width * 0.2,
@@ -502,25 +528,107 @@ class GroundDetailState extends State<GroundDetail>
 
                                       ///facilities
                                       SizedBox(
-                                        height: height * 0.01,
+                                        height: height * 0.015,
                                       ),
                                       const Facilities(),
+                                      SizedBox(
+                                        height: height * 0.02,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .reviews,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .copyWith(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(
+                                                            0xff050505)
+                                                        : const Color(
+                                                            0xffffffff)),
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              navigateToReviews();
+                                            },
+                                            child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .viewAll,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall!
+                                                  .copyWith(
+                                                    fontWeight: FontWeight.w400,
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors.darkTheme
+                                                        : Colors.white70,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.015,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: Colors.amberAccent,
+                                            size: height * 0.04,
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.01,
+                                          ),
+                                          Text('4.8 ',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.black
+                                                          : AppColors.white)),
+                                          Text('(810)',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.grey
+                                                              .withOpacity(0.5)
+                                                          : AppColors.white)),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.02,
+                                      ),
 
                                       ///location
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: height * 0.008),
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .location,
-                                          style: TextStyle(
-                                              fontSize: height * 0.03,
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? AppColors.black
-                                                  : AppColors.white),
-                                        ),
-                                      ),
+                                      // Padding(
+                                      //   padding: EdgeInsets.symmetric(
+                                      //       vertical: height * 0.008),
+                                      //   child: Text(
+                                      //     AppLocalizations.of(context)!
+                                      //         .location,
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .titleMedium!
+                                      //         .copyWith(
+                                      //             color: MyAppState.mode ==
+                                      //                     ThemeMode.light
+                                      //                 ? AppColors.black
+                                      //                 : AppColors.white),
+                                      //   ),
+                                      // ),
                                       GestureDetector(
                                         onTap: () {
                                           openMapsSheet(context);
@@ -622,6 +730,10 @@ class GroundDetailState extends State<GroundDetail>
                                                                 ),
                                                                 SizedBox(
                                                                   width: width *
+                                                                      0.002,
+                                                                ),
+                                                                SizedBox(
+                                                                  width: width *
                                                                       .6,
                                                                   child: Text(
                                                                     AppLocalizations.of(
@@ -631,16 +743,14 @@ class GroundDetailState extends State<GroundDetail>
                                                                         TextOverflow
                                                                             .ellipsis,
                                                                     maxLines: 5,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: AppColors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w500,
-                                                                        decoration:
-                                                                            TextDecoration.none),
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          color:
+                                                                              AppColors.black,
+                                                                        ),
                                                                   ),
                                                                 ),
                                                               ],
@@ -657,17 +767,14 @@ class GroundDetailState extends State<GroundDetail>
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 maxLines: 2,
-                                                                style: const TextStyle(
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: Color(
-                                                                        0XFF8B8B8B),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none),
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .titleSmall!
+                                                                    .copyWith(
+                                                                      color: const Color(
+                                                                          0XFF8B8B8B),
+                                                                    ),
                                                               ),
                                                             ),
                                                           ],
@@ -681,6 +788,23 @@ class GroundDetailState extends State<GroundDetail>
                                           ),
                                         ),
                                       ),
+
+                                      ///BookButton
+                                      ButtonWidget(
+                                          isLoading: false,
+                                          onTaped: () {
+                                            navigateToBookingScreen(
+                                                widget.detail);
+                                          },
+                                          title: Text(
+                                            AppLocalizations.of(context)!
+                                                .bookNowS,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: AppColors.white),
+                                          )),
 
                                       ///popularFeature
                                       // Padding(
@@ -758,17 +882,6 @@ class GroundDetailState extends State<GroundDetail>
                                       //             ))
                                       //   ],
                                       // ),
-
-                                      ///BookButton
-                                      ButtonWidget(
-                                          isLoading: false,
-                                          onTaped: () {
-                                            navigateToBookingScreen(
-                                                widget.detail);
-                                          },
-                                          title: Text(
-                                              AppLocalizations.of(context)!
-                                                  .bookNowS)),
                                     ],
                                   ),
                                 ),
@@ -812,5 +925,9 @@ class GroundDetailState extends State<GroundDetail>
 
   void navigateToDetail1() {
     Navigator.pushNamed(context, RouteNames.login);
+  }
+
+  void navigateToReviews() {
+    Navigator.pushNamed(context, RouteNames.rate);
   }
 }

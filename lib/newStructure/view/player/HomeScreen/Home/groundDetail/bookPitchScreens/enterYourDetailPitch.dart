@@ -121,19 +121,24 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                   ),
                                   Text(
                                     AppLocalizations.of(context)!.slotDetails,
-                                    style: const TextStyle(
-                                        color: Color(0XFF032040),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                          color: const Color(0XFF032040),
+                                        ),
                                   ),
                                   Container(
                                     height: sizeheight * .01,
                                   ),
                                   Text(
                                       "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
-                                      style: const TextStyle(
-                                          color: Color(0XFF424242),
-                                          fontWeight: FontWeight.w600)),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            color: const Color(0XFF424242),
+                                          )),
                                   Text("${widget.detail["pitchType"]}",
                                       style: const TextStyle(
                                           color: Color(0XFF898989))),
@@ -368,7 +373,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: <Widget>[
+                                    children: [
                                       Flexible(
                                         flex: 3,
                                         child: Container(),
@@ -376,9 +381,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                       Text(
                                         AppLocalizations.of(context)!
                                             .bookingUser,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            color: Color(0XFF898989)),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                color: const Color(0XFF898989)),
                                       ),
                                       flaxibleGap(1),
                                       Shimmer.fromColors(
@@ -680,8 +687,8 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                               topLeft: Radius.circular(20))),
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: EdgeInsets.only(
-                              left: sizewidth * .05, right: sizewidth * .05),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: sizewidth * .059),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -707,25 +714,33 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                       Text(
                                         AppLocalizations.of(context)!
                                             .slotDetails,
-                                        style: const TextStyle(
-                                            color: Color(0XFF032040),
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(
+                                              color: const Color(0XFF032040),
+                                            ),
                                       ),
                                       Container(
                                         height: sizeheight * .01,
                                       ),
                                       Text(
                                           "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
-                                          style: const TextStyle(
-                                              color: Color(0XFF424242),
-                                              fontWeight: FontWeight.w600)),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color:
+                                                      const Color(0XFF424242),
+                                                  fontWeight: FontWeight.w600)),
                                       Text(
                                         widget.detail["apiDetail"]["date"],
-                                        style: const TextStyle(
-                                            color: AppColors.appThemeColor,
-                                            fontSize: 13,
-                                            fontFamily: "Poppins"),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                color: AppColors.appThemeColor,
+                                                fontFamily: "Poppins"),
                                       ),
                                       ListView.separated(
                                           separatorBuilder: (context, index) {
@@ -740,9 +755,12 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                               children: [
                                                 Text(
                                                   "${AppLocalizations.of(context)!.sessionName} ${session[index]}",
-                                                  style: const TextStyle(
-                                                      color: AppColors
-                                                          .appThemeColor),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                          color: AppColors
+                                                              .appThemeColor),
                                                 ),
                                                 SizedBox(
                                                   height: 40,
@@ -788,13 +806,16 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                                     .substring(
                                                                         0, 5) ??
                                                                 "",
-                                                            style: const TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 16,
-                                                                color: Colors
-                                                                    .white),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    color: Colors
+                                                                        .white),
                                                           ),
                                                         ),
                                                       );
@@ -836,35 +857,50 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                         Text(
                                           AppLocalizations.of(context)!
                                               .bookingUser,
-                                          style: const TextStyle(
-                                              color: Color(0XFF032040),
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  color:
+                                                      const Color(0XFF032040),
+                                                  fontWeight: FontWeight.w500),
                                         ),
                                         flaxibleGap(1),
                                         Text(
                                           profileDetail != null
                                               ? '${profileDetail['first_name']} ${profileDetail['last_name']}'
                                               : '',
-                                          style: const TextStyle(
-                                              color: Color(0XFF424242),
-                                              fontWeight: FontWeight.w600),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color:
+                                                      const Color(0XFF424242),
+                                                  fontWeight: FontWeight.w600),
                                         ),
                                         flaxibleGap(1),
                                         Text(
                                             profileDetail != null
                                                 ? profileDetail['email']
                                                 : '',
-                                            style: const TextStyle(
-                                                color: Color(0XFF898989))),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: const Color(
+                                                        0XFF898989))),
                                         Text(
                                             profileDetail != null
                                                 ? profileDetail[
                                                         'contact_number'] ??
                                                     ""
                                                 : '',
-                                            style: const TextStyle(
-                                                color: Color(0XFF898989))),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: const Color(
+                                                        0XFF898989))),
                                         flaxibleGap(6),
                                       ],
                                     ),
@@ -893,10 +929,13 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                         Text(
                                           AppLocalizations.of(context)!
                                               .paymentSummary,
-                                          style: const TextStyle(
-                                              color: Color(0XFF032040),
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  color:
+                                                      const Color(0XFF032040),
+                                                  fontWeight: FontWeight.w600),
                                         ),
                                         flaxibleGap(2),
                                         Row(
@@ -904,26 +943,40 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                             Text(
                                               AppLocalizations.of(context)!
                                                   .subTotal,
-                                              style: const TextStyle(
-                                                  color: Color(0XFF424242),
-                                                  fontWeight: FontWeight.w600),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          0XFF424242),
+                                                      fontWeight:
+                                                          FontWeight.w600),
                                             ),
                                             flaxibleGap(18),
                                             Text(
                                               '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
-                                              style: const TextStyle(
-                                                  color: Color(0XFF7A7A7A)),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          0XFF7A7A7A)),
                                             ),
                                             flaxibleGap(1),
                                           ],
                                         ),
                                         Row(
-                                          children: <Widget>[
+                                          children: [
                                             Text(
                                               AppLocalizations.of(context)!.tex,
-                                              style: const TextStyle(
-                                                  color: Color(0XFF424242),
-                                                  fontWeight: FontWeight.w600),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          0XFF424242),
+                                                      fontWeight:
+                                                          FontWeight.w600),
                                             ),
                                             flaxibleGap(18),
                                             // widget.detail["detail"].tax != null
@@ -935,8 +988,12 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                             //     :
                                             Text(
                                               "${AppLocalizations.of(context)!.currency} 00 ",
-                                              style: const TextStyle(
-                                                  color: Color(0XFF7A7A7A)),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          0XFF7A7A7A)),
                                             ),
                                             flaxibleGap(1),
                                           ],
@@ -948,13 +1005,18 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                         ),
                                         flaxibleGap(1),
                                         Row(
-                                          children: <Widget>[
+                                          children: [
                                             Text(
                                               AppLocalizations.of(context)!
                                                   .grandTotal,
-                                              style: const TextStyle(
-                                                  color: Color(0XFF424242),
-                                                  fontWeight: FontWeight.bold),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          0XFF424242),
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                             ),
                                             flaxibleGap(18),
                                             Text(
@@ -976,7 +1038,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
+                                children: [
                                   Checkbox(
                                     focusNode: focus,
                                     autofocus: true,
@@ -989,7 +1051,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                     },
                                   ),
                                   SizedBox(
-                                    width: sizewidth * .76,
+                                    width: sizewidth * .7,
                                     child: RichText(
                                       key: _textKey,
                                       text: TextSpan(
@@ -997,12 +1059,15 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .iAgree,
-                                            style: TextStyle(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFFADADAD)
-                                                    : Colors.white,
-                                                fontSize: 15),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .copyWith(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFFADADAD)
+                                                      : Colors.white,
+                                                ),
                                           ),
                                           TextSpan(
                                             text:
@@ -1012,21 +1077,27 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                 privacyPolicy(
                                                     "terms_and_conditions_url");
                                               },
-                                            style: const TextStyle(
-                                              color: AppColors.appThemeColor,
-                                              fontSize: 15,
-                                              // decoration: TextDecoration.underline
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                  color:
+                                                      AppColors.appThemeColor,
+                                                  // decoration: TextDecoration.underline
+                                                ),
                                           ),
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .ofCompany,
-                                            style: TextStyle(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFFADADAD)
-                                                    : Colors.white,
-                                                fontSize: 15),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .copyWith(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFFADADAD)
+                                                      : Colors.white,
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -1042,11 +1113,15 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                     const EdgeInsets.symmetric(horizontal: 5),
                                 child: Text(
                                   "Cancellations made within 24 hours will not receive a refund.",
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? const Color(0XFFADADAD)
-                                          : Colors.white,
-                                      fontSize: 11),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? const Color(0XFFADADAD)
+                                                  : Colors.white,
+                                          fontSize: 11),
                                 ),
                               ),
                               fixedGap(
@@ -1071,13 +1146,16 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                     MainAxisAlignment.center,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: <Widget>[
+                                                children: [
                                                   Text(
                                                     '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
-                                                    style: const TextStyle(
-                                                        color:
-                                                            Color(0XFFFFFFFF),
-                                                        fontSize: 16),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                          color: const Color(
+                                                              0XFFFFFFFF),
+                                                        ),
                                                   ),
                                                 ],
                                               ),
@@ -1101,9 +1179,12 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .proceed,
-                                                    style: const TextStyle(
-                                                      color: Colors.black,
-                                                    ),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                          color: Colors.black,
+                                                        ),
                                                   ),
                                                 ),
                                               )

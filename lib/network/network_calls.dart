@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-// import 'package:connectivity/connectivity.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
@@ -61,9 +60,11 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode({"email": email});
+    print({"email": email});
     try {
       response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae/api/v1/user/verifyemail/"),
+          Uri.parse(
+              "http://ahmad223.pythonanywhere.com/${RestApis.VERIFY_EMAIL}"),
           headers: header(
             prefs,
             body,
@@ -71,6 +72,7 @@ class NetworkCalls {
           ),
           body: body);
       print(response.body);
+      print("${RestApis.BASEURL}${RestApis.VERIFY_EMAIL}");
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp["success"]);
@@ -96,14 +98,14 @@ class NetworkCalls {
     var body = json.encode({"email": email});
     try {
       response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.VERIFY_EMAIL}"),
+          Uri.parse("${RestApis.BASEURL}${RestApis.VERIFY_EMAIL}"),
           headers: header(
             prefs,
             body,
             HttpMethod.POST,
           ),
           body: body);
-      // print(response.body);
+      print(response.body);
       if (response.statusCode == 409) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp["error"]);
@@ -132,7 +134,8 @@ class NetworkCalls {
     var body = json.encode({"contact_number": phone});
     try {
       response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.PHONENUMBER}"),
+          Uri.parse(
+              "http://ahmad223.pythonanywhere.com/${RestApis.PHONENUMBER}"),
           headers: header(prefs, body, HttpMethod.POST),
           body: body);
       print(response.body);
@@ -161,7 +164,7 @@ class NetworkCalls {
     try {
       response = await http.post(
         Uri.parse(
-            "${(prefs.get("baseUrl") ?? RestApis.BASE_URL)}${RestApis.VERIFY_PITCH}?language=${prefs.get("lang")}"),
+            "${(prefs.get("baseUrl") ?? RestApis.BASEURL)}${RestApis.VERIFY_PITCH}?language=${prefs.get("lang")}"),
         headers: headerWithToken(prefs, "{}", HttpMethod.POST),
       );
       if (response.statusCode == 200) {
@@ -262,8 +265,9 @@ class NetworkCalls {
     var body = json.encode(signupDetail);
     try {
       response = await http.post(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.SIGNUP}${prefs.get("lang")}"),
+          Uri.parse("http://ahmad223.pythonanywhere.com${RestApis.SIGNUP}"
+              // "${prefs.get("lang")}"
+              ),
           headers: header(prefs, body, HttpMethod.POST),
           body: body);
       print(response.body);
@@ -332,8 +336,8 @@ class NetworkCalls {
   saveBaseUrl({required OnSuccess onSuccess}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs
-        .setString("baseUrl", RestApis.BASE_URL)
-        .then((value) => onSuccess(RestApis.BASE_URL));
+        .setString("baseUrl", RestApis.BASEURL)
+        .then((value) => onSuccess(RestApis.BASEURL));
   }
 
   clearToken({String? key}) async {
@@ -532,6 +536,7 @@ class NetworkCalls {
     try {
       var baseUrl = 'https://powerhouse.tahadde.ae';
       var url = baseUrl + RestApis.LOGIN;
+      // var url = "http://ahmad223.pythonanywhere.com${RestApis.LOGIN}";
       response = await http.post(Uri.parse(url),
           headers: header(prefs, body, HttpMethod.POST), body: body);
       print(response.body);

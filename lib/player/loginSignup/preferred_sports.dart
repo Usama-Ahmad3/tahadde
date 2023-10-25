@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 
 import '../../constant.dart';
 import '../../homeFile/routingConstant.dart';
@@ -137,13 +139,9 @@ class _PreferredSportsState extends State<PreferredSports> {
                             const SizedBox(
                               height: 20.0,
                             ),
-                            const Text(
+                            Text(
                               "Select Your Preferred Sports",
-                              style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  color: appThemeColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                             const SizedBox(
                               height: 30.0,
@@ -163,7 +161,8 @@ class _PreferredSportsState extends State<PreferredSports> {
                                                               .contains(
                                                                   _sportsList[index]
                                                                       .slug)
-                                                          ? appThemeColor
+                                                          ? AppColors
+                                                              .appThemeColor
                                                           : const Color(
                                                               0XFFEBEBEB),
                                                       textStyle: _sportsListSlug.contains(
@@ -199,13 +198,9 @@ class _PreferredSportsState extends State<PreferredSports> {
                             const SizedBox(
                               height: 60.0,
                             ),
-                            const Text(
+                            Text(
                               "Select your experience",
-                              style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  color: appThemeColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                             const SizedBox(
                               height: 40.0,
@@ -236,7 +231,8 @@ class _PreferredSportsState extends State<PreferredSports> {
                                                       color: _expertList[index]
                                                                   .slug ==
                                                               _expertListSlug
-                                                          ? appThemeColor
+                                                          ? AppColors
+                                                              .appThemeColor
                                                           : const Color(
                                                               0XFFEBEBEB),
                                                       child: Padding(
@@ -295,8 +291,11 @@ class _PreferredSportsState extends State<PreferredSports> {
   }
 
   void navigateToDetail() {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteNames.profileDetail, (Route<dynamic> route) => false);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => PlayerHomeScreen(index: 3),
+        ),
+        (Route<dynamic> route) => false);
   }
 }
 

@@ -54,7 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPitchDetails":
             MessageLookupByLibrary.simpleMessage("Add new Venue Details"),
         "addPitchImage":
-            MessageLookupByLibrary.simpleMessage("Add Venue \n image"),
+            MessageLookupByLibrary.simpleMessage("Add Academy \n image"),
         "addPlayerC": MessageLookupByLibrary.simpleMessage("ADD PLAYER"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("Add Players"),
         "academyCreated":
@@ -764,7 +764,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Build your own team,\nSend friend requests,\nSearch for player around you."),
         "wallets": MessageLookupByLibrary.simpleMessage("Wallets"),
         "weNeedAccount": MessageLookupByLibrary.simpleMessage(
-            "We need your venue license to verify your account"),
+            "We need your academy license to verify your account"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
         "withTahaddi": MessageLookupByLibrary.simpleMessage(

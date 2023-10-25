@@ -75,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               description,
               style: const TextStyle(color: AppColors.appThemeColor),
             ),
-            actions: <Widget>[
+            actions: [
               InkWell(
                 onTap: () {
                   Navigator.pop(context);
@@ -214,7 +214,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             topRight: Radius.circular(20))),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.06, vertical: height * 0.02),
+                          horizontal: width * 0.059, vertical: height * 0.02),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -527,9 +527,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                           .even),
                                               title: Text(
                                                 accountTitle[index],
-                                                style: TextStyle(
-                                                    color: AppColors.red,
-                                                    fontSize: 16),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      color: AppColors.red,
+                                                    ),
                                               ),
                                               trailing: Icon(
                                                 AppLocalizations.of(context)!

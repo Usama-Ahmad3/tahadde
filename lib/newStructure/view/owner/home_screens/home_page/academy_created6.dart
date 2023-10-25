@@ -69,8 +69,7 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                     ),
                     Text(
                       "Thank you for creating a Academy.",
-                      style: TextStyle(
-                          fontSize: 18,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontWeight: FontWeight.w600,
                           color: MyAppState.mode == ThemeMode.light
                               ? AppColors.black
@@ -81,8 +80,7 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                     ),
                     Text(
                       "It is under review.\n We will notify you once it’s done.",
-                      style: TextStyle(
-                          fontSize: 16,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontWeight: FontWeight.w400,
                           color: MyAppState.mode == ThemeMode.light
                               ? AppColors.black
@@ -96,7 +94,13 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                         onTaped: () {
                           navigateToHome();
                         },
-                        title: Text(AppLocalizations.of(context)!.home),
+                        title: Text(
+                          AppLocalizations.of(context)!.home,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(color: AppColors.white),
+                        ),
                         isLoading: false),
                     SizedBox(
                       height: size.height * 0.01,

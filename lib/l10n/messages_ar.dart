@@ -44,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPitchDetails":
             MessageLookupByLibrary.simpleMessage("إضافة تفاصيل الملعب الجديد"),
         "addPitchImage":
-            MessageLookupByLibrary.simpleMessage("أضف صورة الملعب"),
+            MessageLookupByLibrary.simpleMessage("إضافة صورة الأكاديمية"),
         "addPlayerC": MessageLookupByLibrary.simpleMessage("إضافة لاعب"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("أضف لاعبين"),
         "addSession": MessageLookupByLibrary.simpleMessage("أضف الجلسة"),
@@ -746,7 +746,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "كوّن فريقك، \n ارسل لأصدقاءك طلبات انضمام لفريقك، \n ابحث عن لاعبين في منطقتك."),
         "wallets": MessageLookupByLibrary.simpleMessage("محافظ"),
         "weNeedAccount": MessageLookupByLibrary.simpleMessage(
-            "نحن بحاجة الي رخصة الملعب للتحقق من حسابك"),
+            "نحتاج إلى ترخيص الأكاديمية الخاص بك للتحقق من حسابك"),
         "wednesday": MessageLookupByLibrary.simpleMessage("الأربعاء"),
         "whatsapp": MessageLookupByLibrary.simpleMessage("واتساب"),
         "withTahaddi":

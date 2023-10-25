@@ -143,7 +143,13 @@ class _LogInWidgetState extends State<LogInWidget> {
             ButtonWidget(
                 isLoading: widget.loading,
                 onTaped: widget.onTap,
-                title: Text(AppLocalizations.of(context)!.login)),
+                title: Text(
+                  AppLocalizations.of(context)!.login,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: AppColors.white),
+                )),
             SizedBox(
               height: height * 0.015,
             ),

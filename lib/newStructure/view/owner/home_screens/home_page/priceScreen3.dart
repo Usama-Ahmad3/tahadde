@@ -173,514 +173,557 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                       child: SingleChildScrollView(
                         child: Form(
                           key: _formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-                              Container(
-                                width: size.width,
-                                height: size.height * 0.06,
-                                decoration: BoxDecoration(
-                                    color: AppColors.appThemeColor,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    cachedNetworkImage(
-                                        cuisineImageUrl:
-                                            widget.detail.sportsImage,
-                                        height: 20,
-                                        width: 20,
-                                        imageFit: BoxFit.fill),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(widget.detail.sportsName!,
-                                        style: const TextStyle(
-                                            color: AppColors.themeColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            fontFamily: "Poppins")),
-                                  ],
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.03),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: size.height * 0.01,
                                 ),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.subAcademyName,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.themeColor
-                                        : AppColors.white),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-                              TextFieldWidget(
-                                  controller: _vanueController,
-                                  hintText: AppLocalizations.of(context)!
-                                      .subAcademyName,
-                                  onSubmitted: (value) {
-                                    FocusScope.of(context)
-                                        .requestFocus(focusNode);
-                                    return null;
-                                  },
-                                  onChanged: (value) {
-                                    subVenue = value;
-                                    return '';
-                                  },
-                                  onValidate: (value) {
-                                    if (value!.isEmpty) {
-                                      return AppLocalizations.of(context)!
-                                          .pleaseentername;
-                                    }
-                                    return null;
-                                  },
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  enableBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  focusBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12))),
-                              // SizedBox(
-                              //   height: size.height * 0.02,
-                              // ),
-                              // widget.detail.sportsType == "swimming"
-                              //     ? const SizedBox.shrink()
-                              //     : Container(
-                              //         width: size.width,
-                              //         child: CustomDropdown(
-                              //           leadingIcon: false,
-                              //           icon: Image.asset(
-                              //             "assets/images/drop_down.png",
-                              //             height: 8,
-                              //           ),
-                              //           onChange: (int value, int index) =>
-                              //               setState(() {
-                              //             pitchTypeIndex = index;
-                              //           }),
-                              //           dropdownButtonStyle:
-                              //               DropdownButtonStyle(
-                              //             width: 170,
-                              //             height: 45,
-                              //             elevation: 1,
-                              //             backgroundColor:
-                              //                 MyAppState.mode == ThemeMode.light
-                              //                     ? Colors.grey.shade200
-                              //                     : Colors.white,
-                              //             primaryColor: Colors.black87,
-                              //           ),
-                              //           dropdownStyle: DropdownStyle(
-                              //             borderRadius:
-                              //                 BorderRadius.circular(0),
-                              //             elevation: 6,
-                              //             padding: const EdgeInsets.all(5),
-                              //           ),
-                              //           items: _pitchType
-                              //               .asMap()
-                              //               .entries
-                              //               .map(
-                              //                 (item) => DropdownItem(
-                              //                   value: item.key + 1,
-                              //                   child: Column(
-                              //                     mainAxisAlignment:
-                              //                         MainAxisAlignment.end,
-                              //                     children: [
-                              //                       Row(
-                              //                         mainAxisAlignment:
-                              //                             MainAxisAlignment
-                              //                                 .center,
-                              //                         children: [
-                              //                           Text(item.value.name),
-                              //                         ],
-                              //                       ),
-                              //                       const Divider()
-                              //                     ],
-                              //                   ),
-                              //                 ),
-                              //               )
-                              //               .toList(),
-                              //           child: Text(
-                              //             _pitchType[pitchTypeIndex].name,
-                              //           ),
-                              //         ),
-                              //       ),
-                              // widget.detail.sportsType == "swimming"
-                              //     ? const SizedBox.shrink()
-                              //     : SizedBox(
-                              //         height: size.height * 0.02,
-                              //       ),
-                              widget.detail.sportsType == "swimming"
-                                  ? SizedBox(
-                                      height: size.height * 0.02,
-                                    )
-                                  : const SizedBox.shrink(),
-                              // widget.detail.sportsType == "swimming"
-                              //     ? SizedBox(
-                              //         height: size.height * 0.07,
-                              //         child: TextFieldWidget(
-                              //           onChanged: (value) {
-                              //             if (value != null) {
-                              //               indexItem =
-                              //                   int.parse(value.toString());
-                              //             }
-                              //             return null;
-                              //           },
-                              //           onValidate: (value) {
-                              //             if (int.parse(value) > 10) {
-                              //               return 'Enter between 1 to 10 ';
-                              //             }
-                              //             return null;
-                              //           },
-                              //           onSubmitted: (value) {
-                              //             FocusScope.of(context)
-                              //                 .requestFocus(pricePer);
-                              //             return null;
-                              //           },
-                              //           focus: focusNode,
-                              //           controller: maxPlayers,
-                              //           type: TextInputType.number,
-                              //           hintText: '10',
-                              //           enableBorder: OutlineInputBorder(
-                              //               borderSide: MyAppState.mode ==
-                              //                       ThemeMode.light
-                              //                   ? BorderSide.none
-                              //                   : BorderSide(
-                              //                       color: AppColors.white,
-                              //                       width: 1),
-                              //               borderRadius:
-                              //                   BorderRadius.circular(12)),
-                              //           focusBorder: OutlineInputBorder(
-                              //               borderSide: MyAppState.mode ==
-                              //                       ThemeMode.light
-                              //                   ? BorderSide.none
-                              //                   : BorderSide(
-                              //                       color: AppColors.white,
-                              //                       width: 1),
-                              //               borderRadius:
-                              //                   BorderRadius.circular(12)),
-                              //           border: OutlineInputBorder(
-                              //               borderSide: MyAppState.mode ==
-                              //                       ThemeMode.light
-                              //                   ? BorderSide.none
-                              //                   : BorderSide(
-                              //                       color: AppColors.white,
-                              //                       width: 1),
-                              //               borderRadius:
-                              //                   BorderRadius.circular(12)),
-                              //         ),
-                              //       )
-                              //     : const SizedBox.shrink(),
-                              widget.detail.sportsType == "swimming"
-                                  ? const SizedBox.shrink()
-                                  : SizedBox(
-                                      height: size.height * 0.02,
-                                    ),
-                              // widget.detail.sportsType == "swimming"
-                              //     ? const SizedBox.shrink()
-                              //     : Column(
-                              //         crossAxisAlignment:
-                              //             CrossAxisAlignment.start,
-                              //         children: [
-                              //           Text(
-                              //             AppLocalizations.of(context)!.price,
-                              //             style: TextStyle(
-                              //                 color: MyAppState.mode ==
-                              //                         ThemeMode.light
-                              //                     ? AppColors.themeColor
-                              //                     : AppColors.white),
-                              //           ),
-                              //           SizedBox(
-                              //             height: size.height * 0.01,
-                              //           ),
-                              //           TextFieldWidget(
-                              //               controller: _priceController,
-                              //               hintText: '',
-                              //               type: TextInputType.number,
-                              //               focus: pricePer,
-                              //               prefix: const Text(
-                              //                 "Amount: ",
-                              //                 style: TextStyle(
-                              //                     fontSize: 12,
-                              //                     fontWeight: FontWeight.w500),
-                              //               ),
-                              //               suffix: const Text(
-                              //                 " AED",
-                              //                 style: TextStyle(
-                              //                     fontSize: 14,
-                              //                     fontWeight: FontWeight.w600),
-                              //               ),
-                              //               onSubmitted: (value) {
-                              //                 // FocusScope.of(context).requestFocus(arabicFocus);
-                              //                 return null;
-                              //               },
-                              //               onChanged: (value) {
-                              //                 venuePrice = value;
-                              //                 return '';
-                              //               },
-                              //               onValidate: (value) {
-                              //                 if (value!.isEmpty) {
-                              //                   return "Please enter amount";
-                              //                 }
-                              //                 return null;
-                              //               },
-                              //               border: OutlineInputBorder(
-                              //                   borderSide: BorderSide(
-                              //                       color: AppColors.grey),
-                              //                   borderRadius:
-                              //                       BorderRadius.circular(12)),
-                              //               enableBorder: OutlineInputBorder(
-                              //                   borderSide: BorderSide(
-                              //                       color: AppColors.grey),
-                              //                   borderRadius:
-                              //                       BorderRadius.circular(12)),
-                              //               focusBorder: OutlineInputBorder(
-                              //                   borderSide: BorderSide(
-                              //                       color: AppColors.grey),
-                              //                   borderRadius:
-                              //                       BorderRadius.circular(12))),
-                              //         ],
-                              //       ),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.pricePerPlayer,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.themeColor
-                                        : AppColors.white),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-                              TextFieldWidget(
-                                  controller: _pricePerPlayer,
-                                  hintText: '',
-                                  type: TextInputType.number,
-                                  prefix: const Text(
-                                    "Amount: ",
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500),
+                                Container(
+                                  width: size.width,
+                                  height: size.height * 0.06,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.appThemeColor,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      cachedNetworkImage(
+                                          cuisineImageUrl:
+                                              widget.detail.sportsImage,
+                                          height: 20,
+                                          width: 20,
+                                          imageFit: BoxFit.fill),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(widget.detail.sportsName!,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  color: AppColors.white,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: "Poppins")),
+                                    ],
                                   ),
-                                  suffix: const Text(
-                                    " AED",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  onSubmitted: (value) {
-                                    // FocusScope.of(context).requestFocus(arabicFocus);
-                                    return null;
-                                  },
-                                  onChanged: (value) {
-                                    playerPrice = value;
-                                    return '';
-                                  },
-                                  onValidate: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please enter amount";
-                                    }
-                                    return null;
-                                  },
-                                  border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  enableBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  focusBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: AppColors.grey),
-                                      borderRadius: BorderRadius.circular(12))),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Checkbox(
-                                    autofocus: true,
-                                    activeColor: AppColors.appThemeColor,
-                                    value: monVal,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        monVal = value!;
-                                      });
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.subAcademyName,
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.themeColor
+                                          : AppColors.white),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.01,
+                                ),
+                                TextFieldWidget(
+                                    controller: _vanueController,
+                                    hintText: AppLocalizations.of(context)!
+                                        .subAcademyName,
+                                    onSubmitted: (value) {
+                                      FocusScope.of(context)
+                                          .requestFocus(focusNode);
+                                      return null;
                                     },
-                                  ),
-                                  SizedBox(
-                                    width: size.width * .76,
-                                    child: RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .iAgree,
-                                            style: const TextStyle(
-                                                color: Color(0XFFADADAD),
-                                                fontSize: 15),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                " ${AppLocalizations.of(context)!.term} ",
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                privacyPolicy(
-                                                    "terms_and_conditions_url");
-                                              },
-                                            style: const TextStyle(
-                                              color: AppColors.barLineColor,
-                                              fontSize: 15,
-                                              // decoration: TextDecoration.underline
+                                    onChanged: (value) {
+                                      subVenue = value;
+                                      return '';
+                                    },
+                                    onValidate: (value) {
+                                      if (value!.isEmpty) {
+                                        return AppLocalizations.of(context)!
+                                            .pleaseentername;
+                                      }
+                                      return null;
+                                    },
+                                    border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    enableBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    focusBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12))),
+                                // SizedBox(
+                                //   height: size.height * 0.02,
+                                // ),
+                                // widget.detail.sportsType == "swimming"
+                                //     ? const SizedBox.shrink()
+                                //     : Container(
+                                //         width: size.width,
+                                //         child: CustomDropdown(
+                                //           leadingIcon: false,
+                                //           icon: Image.asset(
+                                //             "assets/images/drop_down.png",
+                                //             height: 8,
+                                //           ),
+                                //           onChange: (int value, int index) =>
+                                //               setState(() {
+                                //             pitchTypeIndex = index;
+                                //           }),
+                                //           dropdownButtonStyle:
+                                //               DropdownButtonStyle(
+                                //             width: 170,
+                                //             height: 45,
+                                //             elevation: 1,
+                                //             backgroundColor:
+                                //                 MyAppState.mode == ThemeMode.light
+                                //                     ? Colors.grey.shade200
+                                //                     : Colors.white,
+                                //             primaryColor: Colors.black87,
+                                //           ),
+                                //           dropdownStyle: DropdownStyle(
+                                //             borderRadius:
+                                //                 BorderRadius.circular(0),
+                                //             elevation: 6,
+                                //             padding: const EdgeInsets.all(5),
+                                //           ),
+                                //           items: _pitchType
+                                //               .asMap()
+                                //               .entries
+                                //               .map(
+                                //                 (item) => DropdownItem(
+                                //                   value: item.key + 1,
+                                //                   child: Column(
+                                //                     mainAxisAlignment:
+                                //                         MainAxisAlignment.end,
+                                //                     children: [
+                                //                       Row(
+                                //                         mainAxisAlignment:
+                                //                             MainAxisAlignment
+                                //                                 .center,
+                                //                         children: [
+                                //                           Text(item.value.name),
+                                //                         ],
+                                //                       ),
+                                //                       const Divider()
+                                //                     ],
+                                //                   ),
+                                //                 ),
+                                //               )
+                                //               .toList(),
+                                //           child: Text(
+                                //             _pitchType[pitchTypeIndex].name,
+                                //           ),
+                                //         ),
+                                //       ),
+                                // widget.detail.sportsType == "swimming"
+                                //     ? const SizedBox.shrink()
+                                //     : SizedBox(
+                                //         height: size.height * 0.02,
+                                //       ),
+                                widget.detail.sportsType == "swimming"
+                                    ? SizedBox(
+                                        height: size.height * 0.02,
+                                      )
+                                    : const SizedBox.shrink(),
+                                // widget.detail.sportsType == "swimming"
+                                //     ? SizedBox(
+                                //         height: size.height * 0.07,
+                                //         child: TextFieldWidget(
+                                //           onChanged: (value) {
+                                //             if (value != null) {
+                                //               indexItem =
+                                //                   int.parse(value.toString());
+                                //             }
+                                //             return null;
+                                //           },
+                                //           onValidate: (value) {
+                                //             if (int.parse(value) > 10) {
+                                //               return 'Enter between 1 to 10 ';
+                                //             }
+                                //             return null;
+                                //           },
+                                //           onSubmitted: (value) {
+                                //             FocusScope.of(context)
+                                //                 .requestFocus(pricePer);
+                                //             return null;
+                                //           },
+                                //           focus: focusNode,
+                                //           controller: maxPlayers,
+                                //           type: TextInputType.number,
+                                //           hintText: '10',
+                                //           enableBorder: OutlineInputBorder(
+                                //               borderSide: MyAppState.mode ==
+                                //                       ThemeMode.light
+                                //                   ? BorderSide.none
+                                //                   : BorderSide(
+                                //                       color: AppColors.white,
+                                //                       width: 1),
+                                //               borderRadius:
+                                //                   BorderRadius.circular(12)),
+                                //           focusBorder: OutlineInputBorder(
+                                //               borderSide: MyAppState.mode ==
+                                //                       ThemeMode.light
+                                //                   ? BorderSide.none
+                                //                   : BorderSide(
+                                //                       color: AppColors.white,
+                                //                       width: 1),
+                                //               borderRadius:
+                                //                   BorderRadius.circular(12)),
+                                //           border: OutlineInputBorder(
+                                //               borderSide: MyAppState.mode ==
+                                //                       ThemeMode.light
+                                //                   ? BorderSide.none
+                                //                   : BorderSide(
+                                //                       color: AppColors.white,
+                                //                       width: 1),
+                                //               borderRadius:
+                                //                   BorderRadius.circular(12)),
+                                //         ),
+                                //       )
+                                //     : const SizedBox.shrink(),
+                                widget.detail.sportsType == "swimming"
+                                    ? const SizedBox.shrink()
+                                    : SizedBox(
+                                        height: size.height * 0.02,
+                                      ),
+                                // widget.detail.sportsType == "swimming"
+                                //     ? const SizedBox.shrink()
+                                //     : Column(
+                                //         crossAxisAlignment:
+                                //             CrossAxisAlignment.start,
+                                //         children: [
+                                //           Text(
+                                //             AppLocalizations.of(context)!.price,
+                                //             style: TextStyle(
+                                //                 color: MyAppState.mode ==
+                                //                         ThemeMode.light
+                                //                     ? AppColors.themeColor
+                                //                     : AppColors.white),
+                                //           ),
+                                //           SizedBox(
+                                //             height: size.height * 0.01,
+                                //           ),
+                                //           TextFieldWidget(
+                                //               controller: _priceController,
+                                //               hintText: '',
+                                //               type: TextInputType.number,
+                                //               focus: pricePer,
+                                //               prefix: const Text(
+                                //                 "Amount: ",
+                                //                 style: TextStyle(
+                                //                     fontSize: 12,
+                                //                     fontWeight: FontWeight.w500),
+                                //               ),
+                                //               suffix: const Text(
+                                //                 " AED",
+                                //                 style: TextStyle(
+                                //                     fontSize: 14,
+                                //                     fontWeight: FontWeight.w600),
+                                //               ),
+                                //               onSubmitted: (value) {
+                                //                 // FocusScope.of(context).requestFocus(arabicFocus);
+                                //                 return null;
+                                //               },
+                                //               onChanged: (value) {
+                                //                 venuePrice = value;
+                                //                 return '';
+                                //               },
+                                //               onValidate: (value) {
+                                //                 if (value!.isEmpty) {
+                                //                   return "Please enter amount";
+                                //                 }
+                                //                 return null;
+                                //               },
+                                //               border: OutlineInputBorder(
+                                //                   borderSide: BorderSide(
+                                //                       color: AppColors.grey),
+                                //                   borderRadius:
+                                //                       BorderRadius.circular(12)),
+                                //               enableBorder: OutlineInputBorder(
+                                //                   borderSide: BorderSide(
+                                //                       color: AppColors.grey),
+                                //                   borderRadius:
+                                //                       BorderRadius.circular(12)),
+                                //               focusBorder: OutlineInputBorder(
+                                //                   borderSide: BorderSide(
+                                //                       color: AppColors.grey),
+                                //                   borderRadius:
+                                //                       BorderRadius.circular(12))),
+                                //         ],
+                                //       ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.pricePerPlayer,
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.themeColor
+                                          : AppColors.white),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.01,
+                                ),
+                                TextFieldWidget(
+                                    controller: _pricePerPlayer,
+                                    hintText: '',
+                                    type: TextInputType.number,
+                                    prefix: const Text(
+                                      "Amount: ",
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    suffix: const Text(
+                                      " AED",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    onSubmitted: (value) {
+                                      // FocusScope.of(context).requestFocus(arabicFocus);
+                                      return null;
+                                    },
+                                    onChanged: (value) {
+                                      playerPrice = value;
+                                      return '';
+                                    },
+                                    onValidate: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please enter amount";
+                                      }
+                                      return null;
+                                    },
+                                    border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    enableBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    focusBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: AppColors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(12))),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Checkbox(
+                                      autofocus: true,
+                                      activeColor: AppColors.appThemeColor,
+                                      value: monVal,
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          monVal = value!;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: size.width * .7,
+                                      child: RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  AppLocalizations.of(context)!
+                                                      .iAgree,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall!
+                                                  .copyWith(
+                                                    color: Color(0XFFADADAD),
+                                                  ),
                                             ),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .ofCompany,
-                                            style: const TextStyle(
-                                                color: Color(0XFFADADAD),
-                                                fontSize: 15),
-                                          ),
-                                        ],
+                                            TextSpan(
+                                              text:
+                                                  " ${AppLocalizations.of(context)!.term} ",
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () {
+                                                  privacyPolicy(
+                                                      "terms_and_conditions_url");
+                                                },
+                                              style: const TextStyle(
+                                                color: AppColors.barLineColor,
+                                                fontSize: 15,
+                                                // decoration: TextDecoration.underline
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  AppLocalizations.of(context)!
+                                                      .ofCompany,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall!
+                                                  .copyWith(
+                                                    color: Color(0XFFADADAD),
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              monVal
-                                  ? _isVenueLoading
-                                      ? ButtonWidget(
-                                          color: AppColors.grey,
-                                          onTaped: () {},
-                                          title: Text(
+                                  ],
+                                ),
+                                monVal
+                                    ? _isVenueLoading
+                                        ? ButtonWidget(
+                                            color: AppColors.grey,
+                                            onTaped: () {},
+                                            title: Text(
                                               AppLocalizations.of(context)!
-                                                  .continu),
-                                          isLoading: true)
-                                      : ButtonWidget(
-                                          onTaped: () {
-                                            if (_formKey.currentState!
-                                                .validate()) {
-                                              _formKey.currentState!.save();
-                                              Map pitchTypeDetail = {
-                                                "subpitchtypeName":
-                                                    _vanueController.text,
-                                                "payment":
-                                                    _priceController.text,
-                                                "area":
-                                                    _pitchType[pitchTypeIndex]
-                                                        .name,
-                                                "pitchtypeSlug":
-                                                    _pitchType[pitchTypeIndex]
-                                                        .slug,
-                                                "price_per_player": int.parse(
-                                                    _pricePerPlayer.text),
-                                                "max_no_of_players": widget
-                                                            .detail
-                                                            .sportsType ==
-                                                        "swimming"
-                                                    ? int.parse(
-                                                        _numberPlayerList[
-                                                            indexItem])
-                                                    : maxPlayer(_pitchType[
-                                                            pitchTypeIndex]
-                                                        .name)
-                                              };
-                                              Map detail = {
-                                                "sport_slug":
-                                                    widget.detail.sportsType,
-                                                "pitchName": widget
-                                                    .detail
-                                                    .pitchDetailModel!
-                                                    .pitchName,
-                                                "pitchNamearabic": widget
-                                                    .detail
-                                                    .pitchDetailModel!
-                                                    .pitchNameAr,
-                                                "pitchLocation": widget.detail
-                                                    .documentModel?.address,
-                                                "pitchDescription": widget
-                                                    .detail
-                                                    .pitchDetailModel!
-                                                    .description,
-                                                "pitchDescriptionarabic": widget
-                                                    .detail
-                                                    .pitchDetailModel!
-                                                    .descriptionAr,
-                                                "gameplaySlug": widget.detail
-                                                    .pitchDetailModel!.gamePlay,
-                                                "facilitiesSlug": widget.detail
-                                                    .pitchDetailModel!.facility,
-                                                "pitchLatitude": widget
-                                                    .detail.documentModel?.lat,
-                                                "pitchLongitude": widget
-                                                    .detail.documentModel?.long,
-                                                "pitchimageId": widget
-                                                    .detail
-                                                    .pitchDetailModel!
-                                                    .pitchImageId,
-                                                "pitchdocId": widget
-                                                    .detail
-                                                    .documentModel!
-                                                    .documentImageId,
-                                                "document_code": widget
-                                                    .detail
-                                                    .documentModel!
-                                                    .licenceNumber,
-                                                "pitchtypeDetails": [
-                                                  pitchTypeDetail
-                                                ],
-                                                "document_name": widget
-                                                    .detail
-                                                    .documentModel!
-                                                    .documentName,
-                                                "documents_expiry_date": widget
-                                                    .detail
-                                                    .documentModel!
-                                                    .expiryDate,
-                                                "code": widget.detail
-                                                    .pitchDetailModel!.code,
-                                                "country": widget.detail
-                                                    .documentModel!.country,
-                                              };
-                                              setState(() {
-                                                _isVenueLoading = true;
-                                              });
-                                              _networkCalls.createVenue(
-                                                  detail: detail,
-                                                  onSuccess: (detail) {
-                                                    setState(() {
-                                                      navigateToSession(detail);
-                                                      _isVenueLoading = false;
-                                                    });
-                                                  },
-                                                  onFailure: (onFailure) {},
-                                                  tokenExpire: () {});
-                                            }
-                                          },
-                                          title: Text(
+                                                  .continu,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium,
+                                            ),
+                                            isLoading: true)
+                                        : ButtonWidget(
+                                            onTaped: () {
+                                              if (_formKey.currentState!
+                                                  .validate()) {
+                                                _formKey.currentState!.save();
+                                                Map pitchTypeDetail = {
+                                                  "subpitchtypeName":
+                                                      _vanueController.text,
+                                                  "payment":
+                                                      _priceController.text,
+                                                  "area":
+                                                      _pitchType[pitchTypeIndex]
+                                                          .name,
+                                                  "pitchtypeSlug":
+                                                      _pitchType[pitchTypeIndex]
+                                                          .slug,
+                                                  "price_per_player": int.parse(
+                                                      _pricePerPlayer.text),
+                                                  "max_no_of_players": widget
+                                                              .detail
+                                                              .sportsType ==
+                                                          "swimming"
+                                                      ? int.parse(
+                                                          _numberPlayerList[
+                                                              indexItem])
+                                                      : maxPlayer(_pitchType[
+                                                              pitchTypeIndex]
+                                                          .name)
+                                                };
+                                                Map detail = {
+                                                  "sport_slug":
+                                                      widget.detail.sportsType,
+                                                  "pitchName": widget
+                                                      .detail
+                                                      .pitchDetailModel!
+                                                      .pitchName,
+                                                  "pitchNamearabic": widget
+                                                      .detail
+                                                      .pitchDetailModel!
+                                                      .pitchNameAr,
+                                                  "pitchLocation": widget.detail
+                                                      .documentModel?.address,
+                                                  "pitchDescription": widget
+                                                      .detail
+                                                      .pitchDetailModel!
+                                                      .description,
+                                                  "pitchDescriptionarabic":
+                                                      widget
+                                                          .detail
+                                                          .pitchDetailModel!
+                                                          .descriptionAr,
+                                                  "gameplaySlug": widget
+                                                      .detail
+                                                      .pitchDetailModel!
+                                                      .gamePlay,
+                                                  "facilitiesSlug": widget
+                                                      .detail
+                                                      .pitchDetailModel!
+                                                      .facility,
+                                                  "pitchLatitude": widget.detail
+                                                      .documentModel?.lat,
+                                                  "pitchLongitude": widget
+                                                      .detail
+                                                      .documentModel
+                                                      ?.long,
+                                                  "pitchimageId": widget
+                                                      .detail
+                                                      .pitchDetailModel!
+                                                      .pitchImageId,
+                                                  "pitchdocId": widget
+                                                      .detail
+                                                      .documentModel!
+                                                      .documentImageId,
+                                                  "document_code": widget
+                                                      .detail
+                                                      .documentModel!
+                                                      .licenceNumber,
+                                                  "pitchtypeDetails": [
+                                                    pitchTypeDetail
+                                                  ],
+                                                  "document_name": widget
+                                                      .detail
+                                                      .documentModel!
+                                                      .documentName,
+                                                  "documents_expiry_date":
+                                                      widget
+                                                          .detail
+                                                          .documentModel!
+                                                          .expiryDate,
+                                                  "code": widget.detail
+                                                      .pitchDetailModel!.code,
+                                                  "country": widget.detail
+                                                      .documentModel!.country,
+                                                };
+                                                setState(() {
+                                                  _isVenueLoading = true;
+                                                });
+                                                _networkCalls.createVenue(
+                                                    detail: detail,
+                                                    onSuccess: (detail) {
+                                                      setState(() {
+                                                        navigateToSession(
+                                                            detail);
+                                                        _isVenueLoading = false;
+                                                      });
+                                                    },
+                                                    onFailure: (onFailure) {},
+                                                    tokenExpire: () {});
+                                              }
+                                            },
+                                            title: Text(
                                               AppLocalizations.of(context)!
-                                                  .continu),
-                                          isLoading: _isLoading)
-                                  : ButtonWidget(
-                                      color: const Color(0XFFBCBCBC),
-                                      onTaped: () {},
-                                      title: Text(AppLocalizations.of(context)!
-                                          .continu),
-                                      isLoading: _isLoading)
-                            ],
+                                                  .continu,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: AppColors.white),
+                                            ),
+                                            isLoading: _isLoading)
+                                    : ButtonWidget(
+                                        color: const Color(0XFFBCBCBC),
+                                        onTaped: () {},
+                                        title: Text(
+                                          AppLocalizations.of(context)!.continu,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                        isLoading: _isLoading)
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
@@ -51,22 +52,6 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
     );
   }
 
-  static late BannerAd myBanner;
-  static bool loaded = false;
-  static loading() {
-    myBanner = BannerAd(
-        size: AdSize.mediumRectangle,
-        adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-        request: const AdRequest(),
-        listener: BannerAdListener(onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-          print("error${error.toString()}");
-        }, onAdLoaded: (e) {
-          loaded = true;
-        }));
-    myBanner.load();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -75,7 +60,6 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
       if (_internet == true) {
         _isLoading = false;
         loadMyPitch();
-        loading();
       } else {
         setState(() {
           _isLoading = false;
@@ -188,18 +172,17 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                             BoxConstraints(maxHeight: constraints.maxHeight),
                         child: SingleChildScrollView(
                           child: Column(
-                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: fem * 22.0,
-                                    vertical: sizeHeight * 0.01),
-                                child: SizedBox(
-                                    height: fem * 160,
-                                    width: double.infinity,
-                                    child: loaded
-                                        ? AdWidget(ad: myBanner)
-                                        : Placeholder()),
+                              SizedBox(
+                                height: sizeHeight * 0.21,
+                                width: sizeWidth,
+                                child: Carousel(image: const [
+                                  'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
+                                  'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
+                                ]),
+                              ),
+                              SizedBox(
+                                height: sizeHeight * 0.01,
                               ),
                               Material(
                                   color: AppColors.transparent,
@@ -223,11 +206,16 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                       tabs: [
                                         Center(
                                             child: Padding(
-                                          padding: EdgeInsets.all(
-                                              sizeHeight * 0.012),
+                                          padding:
+                                              EdgeInsets.all(sizeHeight * 0.01),
                                           child: Text(
                                             AppLocalizations.of(context)!
                                                 .academyOnly,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: AppColors.white),
                                           ),
                                         )),
                                         Center(
@@ -237,6 +225,11 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                           child: Text(
                                             AppLocalizations.of(context)!
                                                 .innovative,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: AppColors.white),
                                           ),
                                         )),
                                       ],
@@ -270,7 +263,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                           height: sizeHeight * 0.7,
                                           width: sizeWidth,
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: sizeWidth * 0.033),
+                                              horizontal: sizeWidth * 0.039),
                                           decoration: BoxDecoration(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
@@ -286,7 +279,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
                                                   vertical: sizeHeight * 0.01,
-                                                  horizontal: sizeWidth * 0.01),
+                                                  horizontal:
+                                                      sizeWidth * 0.014),
                                               child: Column(
                                                 children: [
                                                   Container(
@@ -304,24 +298,21 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                         AppLocalizations.of(
                                                                 context)!
                                                             .academy,
-                                                        style: SafeGoogleFont(
-                                                            'Inter',
-                                                            fontSize: 20 * ffem,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            height: 1.25 *
-                                                                ffem /
-                                                                fem,
-                                                            letterSpacing:
-                                                                -0.2 * fem,
-                                                            color: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? const Color(
-                                                                    0xff050505)
-                                                                : const Color(
-                                                                    0xffffffff)),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleMedium!
+                                                            .copyWith(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0xff050505)
+                                                                    : const Color(
+                                                                        0xffffffff)),
                                                       ),
                                                     ),
                                                   ),
@@ -398,7 +389,10 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
                                                                           Text(
-                                                                              '${AppLocalizations.of(context)!.status}:'),
+                                                                            '${AppLocalizations.of(context)!.status}:',
+                                                                            style:
+                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.black),
+                                                                          ),
                                                                           Text(
                                                                             _pitchDetail[index].isVerified!
                                                                                 ? AppLocalizations.of(context)!.verified
@@ -406,7 +400,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                                     ? AppLocalizations.of(context)!.rejected
                                                                                     : AppLocalizations.of(context)!.inReview,
                                                                             style:
-                                                                                TextStyle(color: AppColors.redAccent),
+                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
                                                                           ),
                                                                         ],
                                                                       ),
@@ -452,9 +446,15 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                           width:
                                                                               sizeWidth * 0.01,
                                                                         ),
-                                                                        Text(_pitchDetail[index]
-                                                                            .venueName
-                                                                            .toString()),
+                                                                        Text(
+                                                                          _pitchDetail[index]
+                                                                              .venueName
+                                                                              .toString(),
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(color: AppColors.black),
+                                                                        ),
                                                                       ],
                                                                     ),
                                                                     Padding(
@@ -463,9 +463,15 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                               0.008,
                                                                           left: sizeWidth *
                                                                               0.007),
-                                                                      child: Text(
-                                                                          _pitchDetail[index]
-                                                                              .location!),
+                                                                      child:
+                                                                          Text(
+                                                                        _pitchDetail[index]
+                                                                            .location!,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .titleSmall!
+                                                                            .copyWith(color: AppColors.black),
+                                                                      ),
                                                                     ),
                                                                   ],
                                                                 ),
@@ -479,22 +485,32 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                   SizedBox(
                                                     height: sizeHeight * 0.01,
                                                   ),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.bottomLeft,
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        navigateToVenuesViewMore(
-                                                            _pitchDetail);
-                                                      },
-                                                      child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .viewMore,
-                                                        style: SafeGoogleFont(
-                                                          'Inter',
-                                                          color:
-                                                              AppColors.green,
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal:
+                                                                sizeWidth *
+                                                                    0.01),
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.bottomLeft,
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          navigateToVenuesViewMore(
+                                                              _pitchDetail);
+                                                        },
+                                                        child: Text(
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .viewAll,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleSmall!
+                                                                  .copyWith(
+                                                                    color: AppColors
+                                                                        .green,
+                                                                  ),
                                                         ),
                                                       ),
                                                     ),
@@ -532,7 +548,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                           height: sizeHeight,
                                           width: sizeWidth,
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: sizeWidth * 0.033),
+                                              horizontal: sizeWidth * 0.039),
                                           decoration: BoxDecoration(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
@@ -547,7 +563,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: sizeHeight * 0.01,
-                                                horizontal: sizeWidth * 0.01),
+                                                horizontal: sizeWidth * 0.014),
                                             child: SingleChildScrollView(
                                               child: Column(
                                                 children: [
@@ -563,28 +579,25 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                         };
                                                       },
                                                       child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .innovative,
-                                                        style: SafeGoogleFont(
-                                                            'Inter',
-                                                            fontSize: 20 * ffem,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            height: 1.25 *
-                                                                ffem /
-                                                                fem,
-                                                            letterSpacing:
-                                                                -0.2 * fem,
-                                                            color: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? const Color(
-                                                                    0xff050505)
-                                                                : const Color(
-                                                                    0xffffffff)),
-                                                      ),
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .innovative,
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .titleMedium!
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? const Color(
+                                                                          0xff050505)
+                                                                      : const Color(
+                                                                          0xffffffff))),
                                                     ),
                                                   ),
                                                   ...List.generate(
@@ -634,17 +647,14 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                             12)),
                                                                 child:
                                                                     DefaultTextStyle(
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: MyAppState.mode ==
-                                                                              ThemeMode
-                                                                                  .light
-                                                                          ? AppColors
-                                                                              .black
-                                                                          : AppColors
-                                                                              .white),
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                          color: MyAppState.mode == ThemeMode.light
+                                                                              ? AppColors.black
+                                                                              : AppColors.white),
                                                                   child: Column(
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
@@ -667,7 +677,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                             Text('${AppLocalizations.of(context)!.status}:'),
                                                                             Text(
                                                                               _pitchDetail[index].isVerified! ? AppLocalizations.of(context)!.verified : AppLocalizations.of(context)!.inReview,
-                                                                              style: TextStyle(color: AppColors.redAccent),
+                                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
                                                                             ),
                                                                           ],
                                                                         ),
@@ -722,7 +732,10 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                             left:
                                                                                 sizeWidth * 0.007),
                                                                         child: Text(
-                                                                            _pitchDetail[index].location!),
+                                                                            _pitchDetail[index]
+                                                                                .location!,
+                                                                            style:
+                                                                                Theme.of(context).textTheme.titleSmall),
                                                                       ),
                                                                     ],
                                                                   ),

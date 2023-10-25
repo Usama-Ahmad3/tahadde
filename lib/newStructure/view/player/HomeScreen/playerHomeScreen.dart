@@ -1,4 +1,3 @@
-
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
@@ -95,6 +94,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
               InkWell(
                 onTap: () {
                   Navigator.of(context).pop(true);
+
                   ///close the app
                   // exit(0);
                 },
@@ -141,7 +141,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
           return onWillPop();
         },
         child: Material(
-            color: AppColors.themeColor,
+            color: AppColors.appThemeColor,
             child: Scaffold(
               bottomNavigationBar: SalomonBottomBar(
                 currentIndex: widget.index,

@@ -356,6 +356,20 @@ class LoginScreenState extends State<LoginScreen> {
                 pinned: true,
                 centerTitle: false,
                 expandedHeight: 250.0,
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: SizedBox(
+                      height: height * 0.03,
+                      child: Image.asset(
+                        'assets/images/back.png',
+                        color: AppColors.white,
+                      )),
+                ),
+                leadingWidth: width * 0.13,
+                backgroundColor: AppColors.transparent,
                 flexibleSpace: FlexibleSpaceBar(
                     collapseMode: CollapseMode.pin,
                     centerTitle: false,
@@ -562,7 +576,8 @@ class LoginScreenState extends State<LoginScreen> {
                                                                 isLoading =
                                                                     false;
                                                               });
-                                                              print(logDetail);
+                                                              print(logDetail
+                                                                  .phoneNumber);
                                                               navigateToVerification(
                                                                   logDetail);
                                                             },
@@ -779,6 +794,7 @@ class LoginScreenState extends State<LoginScreen> {
           isLoading = true;
         });
       }
+      isLoading = false;
     });
   }
 

@@ -115,7 +115,7 @@ class _EditVenuesState extends State<EditVenues> {
                                       .galleryPermission),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisGalleryPicturesUploadImage),
-                                  actions: <Widget>[
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny),
@@ -340,8 +340,10 @@ class _EditVenuesState extends State<EditVenues> {
                                                                   index - 1);
                                                           List<int> imageList =
                                                               [];
-                                                          for (var element in specificPitchScreen
-                                                              .images!.files!) {
+                                                          for (var element
+                                                              in specificPitchScreen
+                                                                  .images!
+                                                                  .files!) {
                                                             imageList.add(
                                                                 element!.id!);
                                                           }
@@ -437,8 +439,9 @@ class _EditVenuesState extends State<EditVenues> {
                                                         .images!.files!
                                                         .removeAt(index - 1);
                                                     List<int> imageList = [];
-                                                    for (var element in specificPitchScreen
-                                                        .images!.files!) {
+                                                    for (var element
+                                                        in specificPitchScreen
+                                                            .images!.files!) {
                                                       imageList
                                                           .add(element!.id!);
                                                     }

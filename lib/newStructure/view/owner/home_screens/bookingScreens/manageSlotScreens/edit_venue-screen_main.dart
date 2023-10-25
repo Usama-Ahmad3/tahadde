@@ -7,6 +7,7 @@ import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/c
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/document_screen_both.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/slot_chart_screen5.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -100,7 +101,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
           return AlertDialog(
             title: Text(
               AppLocalizations.of(context)!.uploadprofilepicture,
-              style:   TextStyle(color: AppColors.black),
+              style: TextStyle(color: AppColors.black),
             ),
             content: SingleChildScrollView(
               child: ListBody(
@@ -122,7 +123,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                       .galleryPermission),
                                   content: Text(AppLocalizations.of(context)!
                                       .thisGalleryPicturesUploadImage),
-                                  actions:  [
+                                  actions: [
                                     CupertinoDialogAction(
                                       child: Text(
                                           AppLocalizations.of(context)!.deny),
@@ -139,14 +140,14 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                       }
                     },
                     child: Text(AppLocalizations.of(context)!.choosefromlibrary,
-                        style:   TextStyle(color: AppColors.black)),
+                        style: TextStyle(color: AppColors.black)),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
-                        style:   TextStyle(color: AppColors.black)),
+                        style: TextStyle(color: AppColors.black)),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -208,39 +209,13 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.black,
-      appBar: PreferredSize(
-          preferredSize: Size(width, height * 0.105),
-          child: AppBar(
-            title: Text(
-              AppLocalizations.of(context)!.pitchBookings,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: AppColors.white),
-            ),
-            centerTitle: true,
-            backgroundColor: AppColors.black,
-            leadingWidth: width * 0.18,
-            leading: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                    padding: EdgeInsets.all(height * 0.008),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.grey),
-                        shape: BoxShape.circle),
-                    child:   Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.close,
-                        color: AppColors.white,
-                      ),
-                    )),
-              ),
-            ),
-          )),
+      appBar: appBarWidget(
+        width,
+        height,
+        context,
+        AppLocalizations.of(context)!.academyBook,
+        true,
+      ),
       body: _isLoading
           ? Container(
               height: height,
@@ -306,17 +281,20 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                                   1,
                                                 ),
                                                 Text(
-                                                    AppLocalizations.of(
-                                                            context)!
+                                                    AppLocalizations
+                                                            .of(context)!
                                                         .addPitchImage,
                                                     textAlign: TextAlign.center,
-                                                    style: const TextStyle(
-                                                        color:
-                                                            Color(0XFFB3B3B3),
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontFamily: "Poppins")),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleSmall!
+                                                        .copyWith(
+                                                            color: const Color(
+                                                                0XFFB3B3B3),
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontFamily:
+                                                                "Poppins")),
                                                 flaxibleGap(
                                                   1,
                                                 ),
@@ -334,7 +312,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                           Container(
                                             height: height * 0.11,
                                             width: width * 0.25,
-                                            decoration:   BoxDecoration(
+                                            decoration: BoxDecoration(
                                                 color: AppColors.white,
                                                 shape: BoxShape.circle),
                                             child: ClipRRect(
@@ -401,38 +379,44 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                       ),
                       ...List.generate(
                         4,
-                        (index) => ListWidgetSettings(
-                            callback: index == 0
-                                ? () {
-                                    navigateToDocuments(SportsModel(
-                                        isEdit: true,
-                                        id: widget.detail["id"],
-                                        venueType: venueType));
-                                  }
-                                : index == 1
-                                    ? () {
-                                        navigateToPitchDetail(
-                                            specificPitchScreen);
-                                      }
-                                    : index == 2
-                                        ? () {
-                                            Map detail = {
-                                              "id": specificPitchScreen.id
-                                                  .toString(),
-                                              "subPitchId": specificPitchScreen
-                                                  .venueDetails!
-                                                  .pitchType![0]!
-                                                  .id
-                                                  .toString(),
-                                              "back": true
-                                            };
-                                            navigateToSlotScreen(detail);
-                                          }
-                                        : () {
-                                            navigateToEditSession();
-                                          },
-                            title: title[index],
-                            icon: icon[index]),
+                        (index) => Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: width * 0.025,
+                              vertical: height * 0.001),
+                          child: ListWidgetSettings(
+                              callback: index == 0
+                                  ? () {
+                                      navigateToDocuments(SportsModel(
+                                          isEdit: true,
+                                          id: widget.detail["id"],
+                                          venueType: venueType));
+                                    }
+                                  : index == 1
+                                      ? () {
+                                          navigateToPitchDetail(
+                                              specificPitchScreen);
+                                        }
+                                      : index == 2
+                                          ? () {
+                                              Map detail = {
+                                                "id": specificPitchScreen.id
+                                                    .toString(),
+                                                "subPitchId":
+                                                    specificPitchScreen
+                                                        .venueDetails!
+                                                        .pitchType![0]!
+                                                        .id
+                                                        .toString(),
+                                                "back": true
+                                              };
+                                              navigateToSlotScreen(detail);
+                                            }
+                                          : () {
+                                              navigateToEditSession();
+                                            },
+                              title: title[index],
+                              icon: icon[index]),
+                        ),
                       ),
                       // Padding(
                       //   padding: const EdgeInsets.all(5.0),

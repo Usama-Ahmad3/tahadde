@@ -147,7 +147,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                         ///Top Widget
                         Padding(
                           padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.07,
+                            horizontal: width * 0.02,
                             vertical: height * 0.07,
                           ),
                           child: Row(
@@ -157,22 +157,15 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                 onTap: () {
                                   Navigator.pop(context);
                                 },
-                                child: Container(
-                                    padding: EdgeInsets.all(height * 0.008),
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: AppColors.grey),
-                                        shape: BoxShape.circle),
-                                    // ignore: prefer_const_constructors
-                                    child: Center(
-                                      child: FaIcon(
-                                        FontAwesomeIcons.close,
-                                        color: AppColors.white,
-                                      ),
+                                child: SizedBox(
+                                    height: height * 0.06,
+                                    child: Image.asset(
+                                      'assets/images/back.png',
+                                      color: AppColors.white,
                                     )),
                               ),
                               SizedBox(
-                                width: width * 0.12,
+                                width: width * 0.1,
                               ),
                               Text(
                                 AppLocalizations.of(context)!.bookingGround,
@@ -240,18 +233,24 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                     .add(Duration(days: index))
                                                     .day
                                                     .toString(),
-                                                style: TextStyle(
-                                                    color: date == index
-                                                        ? AppColors.black
-                                                        : AppColors.grey)),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: date == index
+                                                            ? AppColors.black
+                                                            : AppColors.grey)),
                                             Text(
                                               DateFormat('E').format(
                                                   DateTime.now().add(
                                                       Duration(days: index))),
-                                              style: TextStyle(
-                                                  color: date == index
-                                                      ? AppColors.black
-                                                      : AppColors.grey),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: date == index
+                                                          ? AppColors.black
+                                                          : AppColors.grey),
                                             ),
                                           ],
                                         ),
@@ -280,40 +279,43 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                   topRight: Radius.circular(height * 0.03))),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: width * 0.03,
+                                horizontal: height * 0.03,
                                 vertical: height * 0.02),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ///ground List
                                 Text(AppLocalizations.of(context)!.academyList,
-                                    style: TextStyle(
-                                      fontSize: height * 0.03,
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.black
-                                          : AppColors.white,
-                                    )),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.black
+                                                  : AppColors.white,
+                                        )),
                                 ...List.generate(
                                     3,
                                     (index) => Padding(
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: width * 0.01,
                                               vertical: height * 0.01),
                                           child: Container(
                                             height: height * 0.08,
                                             decoration: BoxDecoration(
-                                                color: Colors.white70,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: AppColors
-                                                        .containerColorB,
-                                                    spreadRadius: 1,
-                                                    offset: const Offset(0, 1),
-                                                    blurStyle: BlurStyle.outer,
-                                                  )
-                                                ]),
+                                              color: AppColors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.black38
+                                                        .withOpacity(0.17),
+                                                    blurStyle: BlurStyle.normal,
+                                                    offset: const Offset(1, 1),
+                                                    blurRadius: 12,
+                                                    spreadRadius: 2)
+                                              ],
+                                            ),
                                             child: Row(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
@@ -341,14 +343,20 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                 ),
                                                 Text(
                                                   ground[index],
-                                                  style: TextStyle(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? AppColors.black
-                                                          : AppColors.white),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors.black
+                                                              : AppColors
+                                                                  .white),
                                                 ),
                                                 SizedBox(
-                                                  width: width * 0.3,
+                                                  width: width * 0.25,
                                                 ),
                                                 Checkbox(
                                                     shape: const CircleBorder(),
@@ -371,232 +379,171 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                 ),
 
                                 ///select area,player
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.02),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      AppLocalizations.of(context)!.locale ==
-                                              "en"
-                                          ? SizedBox(
-                                              height: 40,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: isPerPlayer
-                                                        ? null
-                                                        : () {
-                                                            setState(() {
-                                                              _slotTime.clear();
-                                                              _slotPrice
-                                                                  .pricePerPlayer
-                                                                  .clear();
-                                                              _slotPrice
-                                                                  .pricePerVenue
-                                                                  .clear();
-                                                              slotInformation =
-                                                                  {};
-                                                              isPerPlayer =
-                                                                  true;
-                                                            });
-                                                          },
-                                                    child: Container(
-                                                      width: width * 0.89,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
-                                                      decoration: BoxDecoration(
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    AppLocalizations.of(context)!.locale == "en"
+                                        ? SizedBox(
+                                            height: 40,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                InkWell(
+                                                  onTap: isPerPlayer
+                                                      ? null
+                                                      : () {
+                                                          setState(() {
+                                                            _slotTime.clear();
+                                                            _slotPrice
+                                                                .pricePerPlayer
+                                                                .clear();
+                                                            _slotPrice
+                                                                .pricePerVenue
+                                                                .clear();
+                                                            slotInformation =
+                                                                {};
+                                                            isPerPlayer = true;
+                                                          });
+                                                        },
+                                                  child: Container(
+                                                    width: width * 0.86,
+                                                    alignment: Alignment.center,
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10.0),
+                                                    decoration: BoxDecoration(
+                                                      color: AppColors
+                                                          .appThemeColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                      border: Border.all(
                                                         color: isPerPlayer
-                                                            ? MyAppState.mode ==
+                                                            ? AppColors.white24
+                                                            : AppColors
+                                                                .blueGrey,
+                                                        style:
+                                                            BorderStyle.solid,
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .perPlayer,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                            color: MyAppState
+                                                                        .mode ==
                                                                     ThemeMode
                                                                         .light
-                                                                ? AppColors.grey
-                                                                : Colors
-                                                                    .indigoAccent
-                                                            : AppColors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        border: Border.all(
-                                                          color: isPerPlayer
-                                                              ? AppColors
-                                                                  .white24
-                                                              : AppColors
-                                                                  .blueGrey,
-                                                          style:
-                                                              BorderStyle.solid,
-                                                        ),
-                                                      ),
-                                                      child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .perPlayer,
-                                                        style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors.black
-                                                              : AppColors.grey,
-                                                        ),
-                                                      ),
+                                                                ? AppColors
+                                                                    .white
+                                                                : AppColors
+                                                                    .grey,
+                                                          ),
                                                     ),
                                                   ),
-                                                  // SizedBox(
-                                                  //   width: width * 0.01,
-                                                  // ),
-                                                  // InkWell(
-                                                  //   onTap: !isPerPlayer
-                                                  //       ? null
-                                                  //       : () {
-                                                  //           if (GroundDetailState
-                                                  //                   .privateVenueDetail
-                                                  //                   .sports!
-                                                  //                   .sportSlug ==
-                                                  //               "swimming") {
-                                                  //             showMessage(
-                                                  //                 "${AppLocalizations.of(context)!.perAcademy} ${AppLocalizations.of(context)!.unavailable} for ${GroundDetailState.privateVenueDetail.sports!.name}");
-                                                  //           } else {
-                                                  //             setState(() {
-                                                  //               _slotTime
-                                                  //                   .clear();
-                                                  //               _slotPrice
-                                                  //                   .pricePerPlayer
-                                                  //                   .clear();
-                                                  //               _slotPrice
-                                                  //                   .pricePerVenue
-                                                  //                   .clear();
-                                                  //               slotInformation =
-                                                  //                   {};
-                                                  //               isPerPlayer =
-                                                  //                   false;
-                                                  //             });
-                                                  //           }
-                                                  //         },
-                                                  //   child: Container(
-                                                  //     width: width * 0.44,
-                                                  //     padding:
-                                                  //         const EdgeInsets.all(
-                                                  //             10.0),
-                                                  //     alignment:
-                                                  //         Alignment.center,
-                                                  //     decoration: BoxDecoration(
-                                                  //       color: isPerPlayer
-                                                  //           ? AppColors.white
-                                                  //           : MyAppState.mode ==
-                                                  //                   ThemeMode
-                                                  //                       .light
-                                                  //               ? AppColors.grey
-                                                  //               : Colors
-                                                  //                   .indigoAccent,
-                                                  //       borderRadius:
-                                                  //           BorderRadius
-                                                  //               .circular(8),
-                                                  //       border: Border.all(
-                                                  //         color: isPerPlayer
-                                                  //             ? AppColors
-                                                  //                 .blueGrey
-                                                  //             : AppColors
-                                                  //                 .white24,
-                                                  //         style:
-                                                  //             BorderStyle.solid,
-                                                  //       ),
-                                                  //     ),
-                                                  //     child: Text(
-                                                  //       AppLocalizations.of(
-                                                  //               context)!
-                                                  //           .perAcademy,
-                                                  //       style: TextStyle(
-                                                  //         color: MyAppState
-                                                  //                     .mode ==
-                                                  //                 ThemeMode
-                                                  //                     .light
-                                                  //             ? AppColors.black
-                                                  //             : AppColors.grey,
-                                                  //       ),
-                                                  //     ),
-                                                  //   ),
-                                                  // )
-                                                ],
-                                              ),
-                                            )
-                                          : SizedBox(
-                                              height: 40,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: isPerPlayer
-                                                        ? null
-                                                        : () {
-                                                            if (GroundDetailState
-                                                                    .privateVenueDetail
-                                                                    .sports!
-                                                                    .sportSlug ==
-                                                                "swimming") {
-                                                              showMessage(
-                                                                  "${AppLocalizations.of(context)!.perAcademy} ${AppLocalizations.of(context)!.unavailable} for ${GroundDetailState.privateVenueDetail.sports!.name}");
-                                                            } else {
-                                                              setState(() {
-                                                                _slotTime
-                                                                    .clear();
-                                                                _slotPrice
-                                                                    .pricePerPlayer
-                                                                    .clear();
-                                                                _slotPrice
-                                                                    .pricePerVenue
-                                                                    .clear();
-                                                                slotInformation =
-                                                                    {};
-                                                                isPerPlayer =
-                                                                    false;
-                                                              });
-                                                            }
-                                                          },
-                                                    child: Container(
-                                                      width: width * 0.44,
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
-                                                      alignment:
-                                                          Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                        color: isPerPlayer
-                                                            ? AppColors.white
-                                                            : AppColors.grey,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        border: Border.all(
-                                                          color: isPerPlayer
-                                                              ? AppColors
-                                                                  .blueGrey
-                                                              : AppColors
-                                                                  .white24,
-                                                          style:
-                                                              BorderStyle.solid,
-                                                        ),
-                                                      ),
-                                                      child: Text(
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .perAcademy),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: width * 0.01,
-                                                  ),
-                                                  InkWell(
-                                                    onTap: isPerPlayer
-                                                        ? null
-                                                        : () {
+                                                ),
+                                                // SizedBox(
+                                                //   width: width * 0.01,
+                                                // ),
+                                                // InkWell(
+                                                //   onTap: !isPerPlayer
+                                                //       ? null
+                                                //       : () {
+                                                //           if (GroundDetailState
+                                                //                   .privateVenueDetail
+                                                //                   .sports!
+                                                //                   .sportSlug ==
+                                                //               "swimming") {
+                                                //             showMessage(
+                                                //                 "${AppLocalizations.of(context)!.perAcademy} ${AppLocalizations.of(context)!.unavailable} for ${GroundDetailState.privateVenueDetail.sports!.name}");
+                                                //           } else {
+                                                //             setState(() {
+                                                //               _slotTime
+                                                //                   .clear();
+                                                //               _slotPrice
+                                                //                   .pricePerPlayer
+                                                //                   .clear();
+                                                //               _slotPrice
+                                                //                   .pricePerVenue
+                                                //                   .clear();
+                                                //               slotInformation =
+                                                //                   {};
+                                                //               isPerPlayer =
+                                                //                   false;
+                                                //             });
+                                                //           }
+                                                //         },
+                                                //   child: Container(
+                                                //     width: width * 0.44,
+                                                //     padding:
+                                                //         const EdgeInsets.all(
+                                                //             10.0),
+                                                //     alignment:
+                                                //         Alignment.center,
+                                                //     decoration: BoxDecoration(
+                                                //       color: isPerPlayer
+                                                //           ? AppColors.white
+                                                //           : MyAppState.mode ==
+                                                //                   ThemeMode
+                                                //                       .light
+                                                //               ? AppColors.grey
+                                                //               : Colors
+                                                //                   .indigoAccent,
+                                                //       borderRadius:
+                                                //           BorderRadius
+                                                //               .circular(8),
+                                                //       border: Border.all(
+                                                //         color: isPerPlayer
+                                                //             ? AppColors
+                                                //                 .blueGrey
+                                                //             : AppColors
+                                                //                 .white24,
+                                                //         style:
+                                                //             BorderStyle.solid,
+                                                //       ),
+                                                //     ),
+                                                //     child: Text(
+                                                //       AppLocalizations.of(
+                                                //               context)!
+                                                //           .perAcademy,
+                                                //       style: TextStyle(
+                                                //         color: MyAppState
+                                                //                     .mode ==
+                                                //                 ThemeMode
+                                                //                     .light
+                                                //             ? AppColors.black
+                                                //             : AppColors.grey,
+                                                //       ),
+                                                //     ),
+                                                //   ),
+                                                // )
+                                              ],
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            height: 40,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                InkWell(
+                                                  onTap: isPerPlayer
+                                                      ? null
+                                                      : () {
+                                                          if (GroundDetailState
+                                                                  .privateVenueDetail
+                                                                  .sports!
+                                                                  .sportSlug ==
+                                                              "swimming") {
+                                                            showMessage(
+                                                                "${AppLocalizations.of(context)!.perAcademy} ${AppLocalizations.of(context)!.unavailable} for ${GroundDetailState.privateVenueDetail.sports!.name}");
+                                                          } else {
                                                             setState(() {
                                                               _slotTime.clear();
                                                               _slotPrice
@@ -608,50 +555,52 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                               slotInformation =
                                                                   {};
                                                               isPerPlayer =
-                                                                  true;
+                                                                  false;
                                                             });
-                                                          },
-                                                    child: Container(
-                                                      width: width * 0.44,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
-                                                      decoration: BoxDecoration(
+                                                          }
+                                                        },
+                                                  child: Container(
+                                                    width: width * 0.89,
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10.0),
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                      color: AppColors
+                                                          .appThemeColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                      border: Border.all(
                                                         color: isPerPlayer
-                                                            ? AppColors.grey
-                                                            : AppColors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        border: Border.all(
-                                                          color: isPerPlayer
-                                                              ? AppColors
-                                                                  .white24
-                                                              : AppColors
-                                                                  .blueGrey,
-                                                          style:
-                                                              BorderStyle.solid,
-                                                        ),
+                                                            ? AppColors.blueGrey
+                                                            : AppColors.white24,
+                                                        style:
+                                                            BorderStyle.solid,
                                                       ),
-                                                      child: Text(
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .perPlayer),
+                                                    ),
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .perAcademy,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: AppColors
+                                                                  .white),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
-                                    ],
-                                  ),
+                                          ),
+                                  ],
                                 ),
                                 IgnorePointer(
                                   ignoring: !isPerPlayer,
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: width * .04,
                                         vertical: height * 0.01),
                                     child: Row(
                                       mainAxisAlignment:
@@ -660,16 +609,19 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                         Text(
                                           AppLocalizations.of(context)!
                                               .selectnumber,
-                                          style: TextStyle(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? AppColors.themeColor
-                                                  : AppColors.white,
-                                              fontSize: height * 0.02),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.themeColor
+                                                    : AppColors.white,
+                                              ),
                                         ),
                                         Container(
                                           height: height * 0.055,
-                                          width: width * 0.4,
+                                          width: width * 0.45,
                                           decoration: BoxDecoration(
                                               color: AppColors.grey
                                                   .withOpacity(0.4),
@@ -703,16 +655,16 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: width * 0.009,
+                                                width: width * 0.01,
                                               ),
                                               Text(
                                                 indexItem.toString(),
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .titleMedium,
+                                                    .bodyMedium,
                                               ),
                                               SizedBox(
-                                                width: width * 0.009,
+                                                width: width * 0.01,
                                               ),
                                               InkWell(
                                                 onTap: () {
@@ -725,7 +677,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                   Icons.add,
                                                   color:
                                                       AppColors.appThemeColor,
-                                                  size: height * 0.045,
+                                                  size: height * 0.04,
                                                 ),
                                               )
                                             ],
@@ -805,11 +757,14 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                           child: Text(
                                             AppLocalizations.of(context)!
                                                 .thisDayHoliday,
-                                            style: TextStyle(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.black
-                                                    : AppColors.white),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors.black
+                                                        : AppColors.white),
                                           ),
                                         ),
                                       )
@@ -827,19 +782,25 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                         AppLocalizations.of(
                                                                 context)!
                                                             .noSlotsAvailable,
-                                                        style: TextStyle(
-                                                            color: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? AppColors
-                                                                    .black
-                                                                : AppColors
-                                                                    .white),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? AppColors
+                                                                        .black
+                                                                    : AppColors
+                                                                        .white),
                                                       ),
                                                     ),
                                                   )
                                                 : Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Padding(
                                                         padding: EdgeInsets
@@ -848,18 +809,20 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                     height *
                                                                         0.02),
                                                         child: Text(
-                                                          "${AppLocalizations.of(context)!.select} ${slotModelClass[index].sessionName} ( ${slotModelClass[index].slotDetail![0]!.sportSlotTime.toString()} mins Slot )",
-                                                          style: TextStyle(
-                                                              color: MyAppState
-                                                                          .mode ==
-                                                                      ThemeMode
-                                                                          .light
-                                                                  ? AppColors
-                                                                      .black
-                                                                  : AppColors
-                                                                      .white,
-                                                              fontSize: height *
-                                                                  0.02),
+                                                          "${AppLocalizations.of(context)!.select} ${slotModelClass[index].sessionName}( ${slotModelClass[index].slotDetail![0]!.sportSlotTime.toString()} mins Slot )",
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? AppColors
+                                                                          .black
+                                                                      : AppColors
+                                                                          .white),
                                                         ),
                                                       ),
                                                       Wrap(
@@ -928,10 +891,10 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                     child:
                                                                         Padding(
                                                                       padding: EdgeInsets.symmetric(
-                                                                          horizontal: width *
-                                                                              0.02,
-                                                                          vertical:
-                                                                              height * 0.01),
+                                                                          vertical: height *
+                                                                              0.01,
+                                                                          horizontal:
+                                                                              width * 0.01),
                                                                       child:
                                                                           Badge(
                                                                         label:
@@ -939,9 +902,10 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                           _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id)
                                                                               ? slotModelClass[index].slotDetail![slotIndex]!.maximumPlayers.toString()
                                                                               : (slotModelClass[index].slotDetail![slotIndex]!.maximumPlayers! - slotModelClass[index].slotDetail![slotIndex]!.bookedPlayersCount!.toInt()).toString(),
-                                                                          style: TextStyle(
-                                                                              color: AppColors.black,
-                                                                              fontWeight: FontWeight.w600),
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .titleSmall!
+                                                                              .copyWith(color: AppColors.black, fontWeight: FontWeight.w600),
                                                                         ),
                                                                         alignment:
                                                                             Alignment.topRight,
@@ -954,7 +918,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                           height:
                                                                               height * 0.06,
                                                                           width:
-                                                                              width * 0.43,
+                                                                              width * 0.4,
                                                                           decoration: BoxDecoration(
                                                                               color: _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id)
                                                                                   ? AppColors.appThemeColor
@@ -969,7 +933,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                             children: [
                                                                               Text(
                                                                                 _slotTime.contains(slotModelClass[index].slotDetail![slotIndex]!.id) ? slotModelClass[index].slotDetail![slotIndex]!.startTime!.substring(0, 5) ?? "" : slotModelClass[index].slotDetail![slotIndex]!.startTime!.substring(0, 5) ?? "",
-                                                                                style: TextStyle(fontSize: height * 0.02, color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.grey),
+                                                                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.grey),
                                                                               ),
                                                                               Container(
                                                                                 height: height * 0.022,
@@ -983,9 +947,6 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                     ))
                                                                 : Padding(
                                                                     padding: EdgeInsets.symmetric(
-                                                                        horizontal:
-                                                                            width *
-                                                                                0.02,
                                                                         vertical:
                                                                             height *
                                                                                 0.01),
@@ -1013,7 +974,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                                 ? slotModelClass[index].slotDetail![slotIndex]!.startTime!.substring(0, 5) ?? ""
                                                                                 : slotModelClass[index].slotDetail![slotIndex]!.startTime!.substring(0, 5) ?? "",
                                                                             style:
-                                                                                TextStyle(fontSize: height * 0.02, color: !slotModelClass[index].slotDetail![slotIndex]!.isAvailable! ? Colors.grey : Colors.black),
+                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: !slotModelClass[index].slotDetail![slotIndex]!.isAvailable! ? Colors.grey : Colors.black),
                                                                           ),
                                                                           Radio(
                                                                               value: null,
@@ -1088,6 +1049,11 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                           context)!
                                                       .bookNowS
                                                   : "${AppLocalizations.of(context)!.slotPrice}: ${(slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round().toString()} AED",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: AppColors.white),
                                             ),
                                           )
                                         : Center(
@@ -1097,6 +1063,11 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                           context)!
                                                       .bookNowS
                                                   : "${AppLocalizations.of(context)!.slotPrice}: ${slotPriceCalculation(_slotPrice.pricePerVenue).round().toString()} AED",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(
+                                                      color: AppColors.white),
                                             ),
                                           )),
                               ],
