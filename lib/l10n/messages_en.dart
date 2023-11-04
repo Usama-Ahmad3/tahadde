@@ -405,8 +405,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No Player Requests"),
         "noSlotsAvailable":
             MessageLookupByLibrary.simpleMessage("No slots available"),
-        "noVenuesAvailable":
-            MessageLookupByLibrary.simpleMessage("No Venues Available"),
+        "noAcademiesAvailable":
+            MessageLookupByLibrary.simpleMessage("No Academies Available"),
         "noplayershavebeenaddedyet": MessageLookupByLibrary.simpleMessage(
             "No players have been added yet"),
         "noplayershavebeenfoundnearyou": MessageLookupByLibrary.simpleMessage(

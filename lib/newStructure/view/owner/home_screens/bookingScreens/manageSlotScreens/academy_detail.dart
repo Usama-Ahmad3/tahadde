@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
+import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -16,8 +16,8 @@ import '../../../../player/HomeScreen/widgets/textFormField.dart';
 
 class EditPitchDetailScreen extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final detail;
-  const EditPitchDetailScreen({super.key, this.detail});
+  var detail;
+  EditPitchDetailScreen({super.key, required this.detail});
   @override
   State<EditPitchDetailScreen> createState() => _EditPitchDetailScreenState();
 }
@@ -43,29 +43,46 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
   final _formKey = GlobalKey<FormState>();
   PitchDetailModel? detailSportsModel;
   List<String> indexList = [];
-  editVenue(Map detail) async {
-    await _networkCalls.editVenue(
-      id: widget.detail["id"].toString(),
-      venueDetail: detail,
-      venueType: widget.detail["venueType"],
+  // editVenue(Map detail) async {
+  //   await _networkCalls.editVenue(
+  //     id: widget.detail["id"].toString(),
+  //     venueDetail: detail,
+  //     venueType: widget.detail["venueType"],
+  //     onSuccess: (event) {
+  //       if (mounted) {
+  //         Map detail = {
+  //           "id": widget.detail["id"],
+  //           "name": _nameController.text
+  //         };
+  //         Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => EditVenuesScreen(detail: detail),
+  //             ));
+  //         // navigateToEditVenues(detail);
+  //       }
+  //     },
+  //     onFailure: (msg) {
+  //       if (mounted)
+  //         // ignore: curly_braces_in_flow_control_structures
+  //         showMessage(msg);
+  //     },
+  //     tokenExpire: () {
+  //       if (mounted) on401(context);
+  //     },
+  //   );
+  // }
+  editAcademy(Map detail) async {
+    await _networkCalls.editAcademy(
+      id: widget.detail.academyId.toString(),
+      academyDetail: detail,
       onSuccess: (event) {
         if (mounted) {
-          Map detail = {
-            "id": widget.detail["id"],
-            "name": _nameController.text
-          };
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditVenuesScreen(detail: detail),
-              ));
-          // navigateToEditVenues(detail);
+          showMessage('success');
         }
       },
       onFailure: (msg) {
-        if (mounted)
-          // ignore: curly_braces_in_flow_control_structures
-          showMessage(msg);
+        if (mounted) showMessage(msg);
       },
       tokenExpire: () {
         if (mounted) on401(context);
@@ -76,14 +93,11 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController.text = widget.detail["detail"].venueDetails.nameEnglish;
-    _nameControllerArabic.text =
-        widget.detail["detail"].venueDetails.nameArabic;
-    _description.text = widget.detail["detail"].venueDetails.descriptionEnglish;
-    _descriptionArabic.text =
-        widget.detail["detail"].venueDetails.descriptionArabic;
-    _codeControllerArabic.text = widget.detail["detail"].code;
-    gamePlay = widget.detail["detail"].venueDetails.gamePlay.slug;
+    _nameController.text = widget.detail.academyNameEnglish.toString();
+    _nameControllerArabic.text = widget.detail.academyNameArabic.toString();
+    _description.text = widget.detail.descriptionEnglish.toString();
+    _descriptionArabic.text = widget.detail.descriptionArabic.toString();
+    gamePlay = widget.detail.gameplaySlug.toString();
     if (gamePlay == "both") {
       indoor = true;
       outdoor = true;
@@ -92,8 +106,12 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
     } else {
       outdoor = true;
     }
-    widget.detail["detail"].venueDetails.facility
-        .forEach((element) => indexList.add(element.slug));
+    List facilitySlugD =
+        widget.detail.facilitySlug!.split(',').map((e) => e.trim()).toList();
+    facilitySlugD.forEach((element) => indexList.add(element));
+    print(facility);
+    // widget.detail["detail"].venueDetails.facility
+    //     .forEach((element) => indexList.add(element.slug));
   }
 
   @override
@@ -227,16 +245,6 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                             focusBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: AppColors.grey),
                                 borderRadius: BorderRadius.circular(12))),
-                        SizedBox(
-                          height: sizeHeight * 0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.code,
-                          style: TextStyle(
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? AppColors.themeColor
-                                  : AppColors.white),
-                        ),
                         SizedBox(
                           height: sizeHeight * 0.01,
                         ),
@@ -593,7 +601,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                               color: AppColors.white,
                                             ),
                                             child: Column(
-                                              children: <Widget>[
+                                              children: [
                                                 flaxibleGap(
                                                   2,
                                                 ),
@@ -668,25 +676,42 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                     } else {
                                       gamePlayApi = "outdoor";
                                     }
-                                    detailSportsModel?.gamePlay = gamePlayApi;
-                                    Map detailApi = {
-                                      "nameEnglish":
-                                          detailSportsModel?.pitchName,
-                                      "nameArabic":
-                                          detailSportsModel?.pitchNameAr,
-                                      "descriptionArabic":
-                                          detailSportsModel?.descriptionAr,
-                                      "location": widget.detail["detail"]
-                                          .venueDetails.location,
-                                      "descriptionEnglish":
-                                          detailSportsModel?.description,
-                                      "code": detailSportsModel?.code,
-                                      "gameplay_slug":
-                                          detailSportsModel?.gamePlay,
-                                      "facilities_slug_list":
-                                          detailSportsModel?.facility,
+                                    Map academyDetail = {
+                                      "academydetail": {
+                                        "Academy_NameEnglish":
+                                            _nameController.text,
+                                        "Academy_NameArabic":
+                                            _nameControllerArabic.text,
+                                        "descriptionEnglish": _description.text,
+                                        "descriptionArabic":
+                                            _descriptionArabic.text,
+                                        "facilitySlug": facility,
+                                        "gameplaySlug": gamePlayApi,
+                                      },
                                     };
-                                    editVenue(detailApi);
+                                    editAcademy(academyDetail);
+                                    Navigator.pop(context);
+                                    // print(academyDetail);
+                                    // detailSportsModel?.gamePlay = gamePlayApi;
+                                    // Map detailApi = {
+                                    //   "nameEnglish":
+                                    //       detailSportsModel?.pitchName,
+                                    //   "nameArabic":
+                                    //       detailSportsModel?.pitchNameAr,
+                                    //   "descriptionArabic":
+                                    //       detailSportsModel?.descriptionAr,
+                                    //   "location": widget.detail["detail"]
+                                    //       .venueDetails.location,
+                                    //   "descriptionEnglish":
+                                    //       detailSportsModel?.description,
+                                    //   "code": detailSportsModel?.code,
+                                    //   "gameplay_slug":
+                                    //       detailSportsModel?.gamePlay,
+                                    //   "facilities_slug_list":
+                                    //       detailSportsModel?.facility,
+                                    // };
+                                    // print(detailApi);
+                                    // editVenue(detailApi);
                                   }
                                 },
                                 title: Text(

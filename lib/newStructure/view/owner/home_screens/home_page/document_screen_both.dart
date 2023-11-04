@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -27,7 +28,8 @@ import '../../../player/HomeScreen/widgets/app_bar.dart';
 // ignore: must_be_immutable
 class DocumentScreen extends StatefulWidget {
   SportsModel detail;
-  DocumentScreen({super.key, required this.detail});
+  int? specificAcademyId;
+  DocumentScreen({super.key, required this.detail, this.specificAcademyId});
   @override
   State<DocumentScreen> createState() => _DocumentScreenState();
 }
@@ -35,10 +37,10 @@ class DocumentScreen extends StatefulWidget {
 class _DocumentScreenState extends State<DocumentScreen> {
   final DateFormat formatter = DateFormat('dd MMM yyyy', 'en_US');
   final DateFormat apiFormatter = DateFormat('yyyy-MM-dd', 'en_US');
-  final _nameController = TextEditingController(text: '');
-  final _licenceController = TextEditingController(text: "");
-  final _expiryDate = TextEditingController();
-  final locationController = TextEditingController();
+  var _nameController = TextEditingController(text: '');
+  var _licenceController = TextEditingController(text: "");
+  var _expiryDate = TextEditingController();
+  var locationController = TextEditingController();
   var _apiExpiryDate;
   GoogleMapController? mapController;
   String? country;
@@ -55,10 +57,12 @@ class _DocumentScreenState extends State<DocumentScreen> {
   Position? position;
   double? pitchLat;
   double? pitchLong;
+  String documentImage = '';
   final NetworkCalls _networkCalls = NetworkCalls();
   final _formKey = GlobalKey<FormState>();
   List<Marker> allMarkers = [];
   List<DocumentResponse> doc = [];
+  SpecificAcademy _specificAcademy = SpecificAcademy();
   addMarker() {
     allMarkers.clear();
     allMarkers.add(Marker(
@@ -81,17 +85,18 @@ class _DocumentScreenState extends State<DocumentScreen> {
 
       if (result != null) {
         pdfClicked = true;
+        checkIndex = -1;
         documentFilePath = File(result.files.single.path.toString());
         print(documentFilePath);
         setState(() {
           var detail = {"profile_image": documentFilePath, "type": "bookpitch"};
-          _networkCalls.helperProfile(
-            profileDetail: detail,
+          _networkCalls.helperMultiImageDocument(
+            pitchImage: documentFilePath,
             onSuccess: (msg) {
               setState(() {
                 pitch_Id = msg;
+                documentImage = msg;
                 print(msg);
-
                 _isImageLoading = false;
               });
             },
@@ -263,11 +268,39 @@ class _DocumentScreenState extends State<DocumentScreen> {
         });
   }
 
-  editVenue(Map detail) async {
-    await _networkCalls.editVenue(
-      id: widget.detail.id.toString(),
-      venueDetail: detail,
-      venueType: widget.detail.venueType!,
+  loadSpecific() async {
+    print('kks');
+    await _networkCalls.specificAcademy(
+      id: widget.specificAcademyId.toString(),
+      onSuccess: (event) {
+        _specificAcademy = event;
+        if (mounted) {
+          setState(() {
+            // if (specificPitchScreen.isDeclined!) {
+            //   venueType = "declined";
+            // } else if (specificPitchScreen.isVerified!) {
+            //   venueType = "verified";
+            // } else {
+            //   venueType = "inreview";
+            // }
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          showMessage(msg);
+        }
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
+  editAcademy(Map detail) async {
+    await _networkCalls.editAcademy(
+      id: widget.specificAcademyId.toString(),
+      academyDetail: detail,
       onSuccess: (event) {
         if (mounted) backToEdit();
       },
@@ -281,6 +314,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   defaultLocation() async {
+    print(await _networkCalls.getKey('token'));
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((value) {
       position = value;
@@ -290,6 +324,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
         "latitude": pitchLat.toString(),
         "longitude": pitchLong.toString(),
       };
+      print(latlong);
       _networkCalls.getAddress(
           LatLong: latlong,
           onSuccess: (msg) {
@@ -388,29 +423,45 @@ class _DocumentScreenState extends State<DocumentScreen> {
     super.initState();
     _permission();
     _getLocationPermission();
-    loadDocument();
+    widget.specificAcademyId != null ? loadSpecific() : null;
+    widget.specificAcademyId != null ? loadDocument() : null;
+    widget.specificAcademyId != null ? null : loading = false;
   }
 
   loadDocument() {
-    _networkCalls.availableDoc(
-        onSuccess: (detail) {
-          detail.forEach((element) {
-            doc.add(DocumentResponse(
-              id: element["document"]["id"],
-              expiryDate: element["documents_expiry_date"],
-              docImage: element["document"]["filePath"],
-              docName: element["document_name"],
-              licenceNumber: element["document_code"],
-            ));
-          });
-          setState(() {
-            loading = false;
-          });
-        },
-        onFailure: (msg) {},
-        tokenExpire: () {
-          if (mounted) on401(context);
-        });
+    Future.delayed(const Duration(seconds: 1), () {
+      print(_specificAcademy.documents![0].documentName);
+      _nameController.text =
+          _specificAcademy.documents![0].documentName.toString() ?? '';
+      _licenceController.text =
+          _specificAcademy.documents![0].licenseNumber.toString() ?? '';
+      _expiryDate.text =
+          _specificAcademy.documents![0].expiryDate.toString() ?? '';
+      image = File(_specificAcademy.documents![0].file.toString()) ?? File('');
+      checkIndex = 1;
+      setState(() {
+        loading = false;
+      });
+    });
+    // _networkCalls.availableDoc(
+    //     onSuccess: (detail) {
+    //       detail.forEach((element) {
+    //         doc.add(DocumentResponse(
+    //           id: element["id"],
+    //           expiryDate: element["Expiry_Date"],
+    //           docImage: element["file"],
+    //           docName: element["Document_Name"],
+    //           licenceNumber: element["License_Number"],
+    //         ));
+    //       });
+    //       setState(() {
+    //         loading = false;
+    //       });
+    //     },
+    //     onFailure: (msg) {},
+    //     tokenExpire: () {
+    //       if (mounted) on401(context);
+    //     });
   }
 
   @override
@@ -640,6 +691,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                     const Color(0XFFCBCBCB),
                   ),
                   body: SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     child: Container(
                       color: AppColors.black,
                       child: Container(
@@ -857,9 +910,16 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                   onTap: () {
                                                     _showChoiceDialog(context);
                                                   },
-                                                  child: pdfClicked
-                                                      ? _decidePdfView()
-                                                      : _decideImageview())
+                                                  child: checkIndex == 1
+                                                      ? cachedNetworkImage(
+                                                          height:
+                                                              sizeHeight * .2,
+                                                          width: sizeWidth,
+                                                          cuisineImageUrl:
+                                                              image!.path)
+                                                      : pdfClicked
+                                                          ? _decidePdfView()
+                                                          : _decideImageview())
                                               : GestureDetector(
                                                   onTap: () {
                                                     _showChoiceDialog(context);
@@ -1037,8 +1097,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 ),
                                 InkWell(
                                   onTap: () async {
-                                    final selectDate =
-                                        await slecteDtateTime(context);
+                                    var selectDate;
+                                    selectDate =
+                                        widget.specificAcademyId != null
+                                            ? null
+                                            : await slecteDtateTime(context);
                                     if (selectDate != null) {
                                       setState(() {
                                         _expiryDate.text = formatter
@@ -1082,7 +1145,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   height: sizeHeight * 0.02,
                                 ),
                                 locationController.text.isNotEmpty &&
-                                        !widget.detail.isEdit!
+                                        widget.specificAcademyId == null
                                     ? Text(
                                         AppLocalizations.of(context)!
                                             .academyLocation,
@@ -1096,7 +1159,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 SizedBox(
                                   height: sizeHeight * 0.01,
                                 ),
-                                widget.detail.isEdit!
+                                widget.specificAcademyId != null
                                     ? const SizedBox.shrink()
                                     : isAddressLoading
                                         ? GestureDetector(
@@ -1167,37 +1230,85 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                 SizedBox(
                                   height: sizeHeight * 0.02,
                                 ),
-                                pitch_Id != null &&
-                                        pitchLong != null &&
-                                        locationController.text != '' &&
+                                locationController.text != '' &&
                                         _expiryDate.text != '' &&
-                                        _nameController.text != "" &&
-                                        !widget.detail.isEdit!
+                                        _nameController.text != ""
                                     ? ButtonWidget(
                                         onTaped: () {
                                           if (_formKey.currentState!
                                               .validate()) {
                                             _formKey.currentState!.save();
-                                            if (widget.detail.isEdit!) {
-                                              Map detail = {
-                                                "location":
-                                                    locationController.text,
-                                                "documentId": pitch_Id,
-                                                "document_name": widget
-                                                    .detail
-                                                    .documentModel!
-                                                    .documentName,
-                                                "documents_expiry_date":
-                                                    _apiExpiryDate,
-                                                "document_code": widget
-                                                    .detail
-                                                    .documentModel!
-                                                    .licenceNumber,
-                                                "country": country,
-                                                "pitchLatitude": pitchLat,
-                                                "pitchLongitude": pitchLong,
-                                              };
-                                              editVenue(detail);
+                                            if (widget.specificAcademyId !=
+                                                null) {
+                                              print('Document $documentImage');
+                                              print('Image $image');
+                                              showMessage(
+                                                  "You can't update your document");
+                                              Navigator.pop(context);
+                                              // List<Sessions> mondaySessions =
+                                              //     _specificAcademy.sessions!
+                                              //         .where((session) =>
+                                              //             session.weekday ==
+                                              //             'monday')
+                                              //         .toList();
+                                              // List<Sessions> tuesdaySessions =
+                                              //     _specificAcademy.sessions!
+                                              //         .where((session) =>
+                                              //             session.weekday ==
+                                              //             'tuesday')
+                                              //         .toList();
+                                              // List<Sessions> wednesdaySessions =
+                                              //     _specificAcademy.sessions!
+                                              //         .where((session) =>
+                                              //             session.weekday ==
+                                              //             'wednesday')
+                                              //         .toList();
+                                              // List<Sessions> thursdaySessions =
+                                              //     _specificAcademy.sessions!
+                                              //         .where((session) =>
+                                              //             session.weekday ==
+                                              //             'thursday')
+                                              //         .toList();
+                                              // List<Sessions> fridaySessions =
+                                              //     _specificAcademy.sessions!
+                                              //         .where((session) =>
+                                              //             session.weekday ==
+                                              //             'friday')
+                                              //         .toList();
+                                              // List<Sessions> saturdaySessions =
+                                              //     _specificAcademy.sessions!
+                                              //         .where((session) =>
+                                              //             session.weekday ==
+                                              //             'saturday')
+                                              //         .toList();
+                                              // List<Sessions> sundaySessions =
+                                              //     _specificAcademy.sessions!
+                                              //         .where((session) =>
+                                              //             session.weekday ==
+                                              //             'sunday')
+                                              //         .toList();
+                                              // for (int i = 0;
+                                              //     i < mondaySessions.length;
+                                              //     i++) {
+                                              //   print(mondaySessions[i].name);
+                                              // }
+                                              // Map detailS = {
+                                              //   "weekday":
+                                              //       mondaySessions[0].weekday,
+                                              //   "sessions": mondaySessions
+                                              // };
+                                              // print(detailS);
+                                              // _specificAcademy.documents![0]
+                                              //     .file = documentImage;
+                                              // _specificAcademy.documents![0]
+                                              //         .expiryDate =
+                                              //     _expiryDate.text;
+                                              // Map documentDetail =
+                                              //     ModelToMapEditAcademy
+                                              //         .editAcademy(
+                                              //             _specificAcademy);
+                                              // print(documentDetail);
+                                              // editAcademy(documentDetail);
                                             } else {
                                               widget.detail.documentModel?.lat =
                                                   pitchLat;
@@ -1211,14 +1322,14 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                   : widget.detail.documentModel
                                                           ?.address =
                                                       locationController.text;
-                                              widget.detail.documentModel !=
-                                                      null
-                                                  ? widget.detail.documentModel!
-                                                          .documentImageId =
-                                                      pitch_Id
-                                                  : widget.detail.documentModel
-                                                          ?.documentImageId =
-                                                      pitch_Id;
+                                              // widget.detail.documentModel !=
+                                              //         null
+                                              //     ? widget.detail.documentModel!
+                                              //             .documentImageId =
+                                              //         pitch_Id
+                                              //     : widget.detail.documentModel
+                                              //             ?.documentImageId =
+                                              //         pitch_Id;
                                               widget.detail.documentModel !=
                                                       null
                                                   ? widget.detail.documentModel!
@@ -1233,6 +1344,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                       .country = country
                                                   : widget.detail.documentModel
                                                       ?.country = country;
+                                              widget.detail.documentModel!
+                                                      .documentImage =
+                                                  documentImage;
+                                              print(widget.detail.documentModel!
+                                                  .documentImage);
                                               navigateToDocuments(
                                                   widget.detail);
                                             }
@@ -1268,6 +1384,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   void navigateToDocuments(SportsModel detail) {
+    print("Details$detail");
     Navigator.pushNamed(context, RouteNames.pitchDetail, arguments: detail);
   }
 
@@ -1278,18 +1395,20 @@ class _DocumentScreenState extends State<DocumentScreen> {
   _openGallery(BuildContext context) async {
     var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
+      print('ddj');
       _isImageLoading = true;
       image = File(picture!.path);
+      checkIndex = -1;
       print('Image$image');
       var detail = {"profile_image": image, "type": "bookpitch"};
-      _networkCalls.helperProfile(
-        profileDetail: detail,
+      _networkCalls.helperMultiImageDocument(
+        pitchImage: image,
         onSuccess: (msg) {
+          _isImageLoading = false;
           setState(() {
             pitch_Id = msg;
+            documentImage = msg;
             print(msg);
-
-            _isImageLoading = false;
           });
         },
         onFailure: (msg) {},
@@ -1309,12 +1428,14 @@ class _DocumentScreenState extends State<DocumentScreen> {
     setState(() {
       _isImageLoading = true;
       image = File(picture!.path);
+      checkIndex = -1;
       var detail = {"profile_image": image, "type": "bookpitch"};
-      _networkCalls.helperProfile(
-        profileDetail: detail,
+      _networkCalls.helperMultiImageDocument(
+        pitchImage: image,
         onSuccess: (msg) {
           setState(() {
             pitch_Id = msg;
+            documentImage = msg;
             print(msg);
             _isImageLoading = false;
           });
@@ -1359,3 +1480,31 @@ class DocumentResponse {
       this.licenceNumber,
       this.docName});
 }
+
+List<Map<String, dynamic>> sessions = [
+  {
+    "session_id": 500,
+    "Holiday": false,
+    "Name": "xcc",
+    "Name_Arabic": "cccvht",
+    "Slot_duration": 30,
+    "Extra_slot": 10,
+    "Start_time": "13:00:00",
+    "End_time": "13:00:00",
+    "Weekday": "monday",
+  },
+  {
+    "session_id": 501,
+    "Holiday": false,
+    "Name": "xcc",
+    "Name_Arabic": "cccvht",
+    "Slot_duration": 30,
+    "Extra_slot": 10,
+    "Start_time": "13:00:00",
+    "End_time": "13:00:00",
+    "Weekday": "wednesday",
+  },
+  // Add more sessions here
+];
+
+// Filter sessions with "Weekday" equal to "Monday"

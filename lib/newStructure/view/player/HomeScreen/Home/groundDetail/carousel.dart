@@ -73,29 +73,20 @@ class _CarouselState extends State<Carousel> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => StoryPage(
-                      files:
-                          GroundDetailState.privateVenueDetail.images!.files! ??
-                              [],
+                      files: widget.image ?? [],
                     )));
           },
           child: CarouselSlider.builder(
               carouselController: nextPageController,
-              itemCount: widget.image == null
-                  ? GroundDetailState.privateVenueDetail.images == null
-                      ? 5
-                      : GroundDetailState
-                          .privateVenueDetail.images!.files!.length
-                  : widget.image!.length,
+              itemCount: widget.image == null ? 5 : widget.image!.length,
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) {
                 return cachedNetworkImage(
                   height: height * 0.3,
                   imageFit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
-                  cuisineImageUrl: widget.image == null
-                      ? GroundDetailState.privateVenueDetail.images
-                          ?.files![itemIndex]!.filePath
-                      : widget.image![itemIndex],
+                  cuisineImageUrl:
+                      widget.image == null ? '' : widget.image![itemIndex],
                 );
               },
               options: CarouselOptions(
@@ -118,11 +109,7 @@ class _CarouselState extends State<Carousel> {
           right: 0.0,
           bottom: 0.0,
           child: DotsIndicator(
-            dotsCount: widget.image == null
-                ? GroundDetailState.privateVenueDetail.images == null
-                    ? 5
-                    : GroundDetailState.privateVenueDetail.images!.files!.length
-                : widget.image!.length,
+            dotsCount: widget.image == null ? 5 : widget.image!.length,
             position: _currentIndexPage.toInt(),
             decorator: DotsDecorator(
               activeSize: const Size(20.0, 10.0),

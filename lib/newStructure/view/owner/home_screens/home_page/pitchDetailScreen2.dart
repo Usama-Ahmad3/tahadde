@@ -188,6 +188,12 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
   }
 
   @override
+  void initState() {
+    _networkCalls.getKey('token');
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
@@ -842,20 +848,27 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                           "profile_image": image,
                                           "type": "bookpitch"
                                         };
-                                        await _networkCalls.helperMultiImage(
-                                          pitchImage: detail,
+                                        print('+++++++++++');
+                                        print(widget.detail.pitchDetailModel!
+                                            .facility = _facility);
+                                        print(widget.detail.pitchDetailModel!
+                                            .gamePlay = gamePlay);
+                                        print('============');
+                                        // await _networkCalls.upload(image);
+                                        // navigateToPriceScreen(widget.detail);
+                                        await _networkCalls.helperMultiImage2(
+                                          pitchImage: image,
                                           onSuccess: (msg) {
+                                            if (widget.detail.pitchDetailModel!
+                                                    .pitchImageId ==
+                                                null) {
+                                              widget.detail.pitchDetailModel!
+                                                  .pitchImageId = [];
+                                            }
+                                            print("msg $msg");
                                             widget.detail.pitchDetailModel!
-                                                .pitchImageId = msg;
-                                            setState(() {
-                                              loading = false;
-                                            });
-
-                                            navigateToPriceScreen(
-                                                widget.detail);
-                                            // print(widget
-                                            //     .detail.documentModel!.expiryDate);
-                                            // print(widget.detail.documentModel!.lat);
+                                                .pitchImageId!
+                                                .add(msg);
                                           },
                                           onFailure: (msg) {
                                             showMessage(msg);
@@ -870,6 +883,10 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                             });
                                           },
                                         );
+                                        navigateToPriceScreen(widget.detail);
+                                        setState(() {
+                                          loading = false;
+                                        });
                                       }
                                     },
                                   )

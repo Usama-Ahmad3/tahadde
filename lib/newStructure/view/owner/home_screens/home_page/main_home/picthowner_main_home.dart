@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
 import '../../../../../../homeFile/routingConstant.dart';
@@ -13,6 +14,7 @@ import '../../../../../../network/network_calls.dart';
 import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/Home/shimmerWidgets.dart';
 import '../../../../../utils/utils.dart';
+import 'view_all.dart';
 
 class PitchOwnerMainHome extends StatefulWidget {
   const PitchOwnerMainHome({super.key});
@@ -25,17 +27,42 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;
   List<MyVenueModelClass> _pitchDetail = [];
+  List<AcademyModel> _academyDetail = [];
   bool _internet = true;
   int initial = 0;
   int clicked = 1;
 
   loadMyPitch() async {
+    print(await _networkCalls.getKey('token'));
     await _networkCalls.myVenues(
       onSuccess: (event) {
         if (mounted) {
           setState(() {
-            _isLoading = false;
+            // _isLoading = false;
             _pitchDetail = event;
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
+  loadAllAcademies() async {
+    await _networkCalls.allAcademies(
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+            _academyDetail = event;
           });
         }
       },
@@ -60,6 +87,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
       if (_internet == true) {
         _isLoading = false;
         loadMyPitch();
+        loadAllAcademies();
+        print(_academyDetail.length);
       } else {
         setState(() {
           _isLoading = false;
@@ -196,7 +225,8 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                       unselectedLabelColor: AppColors.grey,
                                       dividerColor: AppColors.red,
                                       isScrollable: true,
-                                      physics: AlwaysScrollableScrollPhysics(),
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(),
                                       // indicator: BoxDecoration(
                                       //   color: Color(0xff1d7e55),
                                       //   borderRadius: BorderRadius.circular(8),
@@ -252,6 +282,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                             });
                                           }
                                           loadMyPitch();
+                                          loadAllAcademies();
                                         } else {
                                           setState(() {});
                                         }
@@ -317,9 +348,9 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                     ),
                                                   ),
                                                   ...List.generate(
-                                                    _pitchDetail.length > 2
+                                                    _academyDetail.length > 2
                                                         ? 3
-                                                        : _pitchDetail.length,
+                                                        : _academyDetail.length,
                                                     (index) => Padding(
                                                       padding:
                                                           EdgeInsets.symmetric(
@@ -393,18 +424,18 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                             style:
                                                                                 Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.black),
                                                                           ),
+
+                                                                          ///status
                                                                           Text(
-                                                                            _pitchDetail[index].isVerified!
-                                                                                ? AppLocalizations.of(context)!.verified
-                                                                                : _pitchDetail[index].isDecline!
-                                                                                    ? AppLocalizations.of(context)!.rejected
-                                                                                    : AppLocalizations.of(context)!.inReview,
+                                                                            _academyDetail[index].status.toString(),
                                                                             style:
                                                                                 Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
                                                                           ),
                                                                         ],
                                                                       ),
                                                                     ),
+
+                                                                    ///image
                                                                     ClipRRect(
                                                                       borderRadius:
                                                                           BorderRadius.circular(
@@ -419,7 +450,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                             .size
                                                                             .width,
                                                                         cuisineImageUrl:
-                                                                            _pitchDetail[index].pitchImage.toString() ??
+                                                                            _academyDetail[index].academyImage![0] ??
                                                                                 "",
                                                                       ),
                                                                     ),
@@ -440,15 +471,15 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                           width:
                                                                               sizeWidth * 0.05,
                                                                           cuisineImageUrl:
-                                                                              _pitchDetail[index].sportImage.toString() ?? "",
+                                                                              _academyDetail[index].sportImage ?? "",
                                                                         ),
                                                                         SizedBox(
                                                                           width:
                                                                               sizeWidth * 0.01,
                                                                         ),
                                                                         Text(
-                                                                          _pitchDetail[index]
-                                                                              .venueName
+                                                                          _academyDetail[index]
+                                                                              .academyNameEnglish
                                                                               .toString(),
                                                                           style: Theme.of(context)
                                                                               .textTheme
@@ -465,8 +496,9 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                               0.007),
                                                                       child:
                                                                           Text(
-                                                                        _pitchDetail[index]
-                                                                            .location!,
+                                                                        _academyDetail[index]
+                                                                            .academyLocation
+                                                                            .toString(),
                                                                         style: Theme.of(context)
                                                                             .textTheme
                                                                             .titleSmall!
@@ -497,7 +529,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                       child: InkWell(
                                                         onTap: () {
                                                           navigateToVenuesViewMore(
-                                                              _pitchDetail);
+                                                              _academyDetail);
                                                         },
                                                         child: Text(
                                                           AppLocalizations.of(
@@ -894,7 +926,12 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
   }
 
   void navigateToVenuesViewMore(event) {
-    Navigator.pushNamed(context, RouteNames.viewMoreVenue, arguments: event);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) =>
+                ViewMoreVenueScreen(venues: event as List<AcademyModel>)));
+    // Navigator.pushNamed(context, RouteNames.viewMoreVenue, arguments: event);
   }
 
   void navigateToSports() {

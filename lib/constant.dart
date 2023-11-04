@@ -11,7 +11,7 @@ const List<String> facilitySlug = [
   "train-station",
   "refree",
   "parking-free",
-  "mosque",
+  "masjid",
   "market",
 ];
 const List<String> genderEn = ["Male", "Female"];
@@ -24,7 +24,7 @@ const List<String> facility = [
   "Metro Station",
   "Refree",
   "Free Parking",
-  "Mosque",
+  "Masjid",
   "Market",
 ];
 const List<String> facilityAr = [

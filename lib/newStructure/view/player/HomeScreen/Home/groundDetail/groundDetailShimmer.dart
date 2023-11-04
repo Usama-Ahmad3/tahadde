@@ -175,7 +175,7 @@ class GroundShimmer {
                                     )),
 
                             ///facilities
-                            const Facilities(),
+                            Facilities(facility: []),
 
                             ///location
                             Padding(

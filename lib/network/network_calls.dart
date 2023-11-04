@@ -3,6 +3,9 @@ import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_tahaddi/homeFile/utility.dart';
+import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,7 +28,6 @@ import '../modelClass/turnamentModelClass.dart';
 import '../modelClass/venue_detail_model_class.dart';
 import '../modelClass/venue_slot_model_class.dart';
 import '../modelClass/yourTahaddiBookPitch.dart';
-import '../modelClass/yourTahaddiModelClass.dart';
 
 typedef OnSuccess<T> = void Function(T value);
 typedef OnFailure<T> = void Function(T newValue);
@@ -47,10 +49,15 @@ class NetworkCalls {
       SharedPreferences pref, String data, HttpMethod method) {
     Map<String, String> headers = header(pref, data, method);
     if (pref.get('token') != null) {
-      headers.addAll({"Authorization": "Token ${pref.get('token')}"});
+      headers.addAll({
+        "Authorization": "token ${pref.get('token')}",
+        'Content-Type': 'application/json',
+      });
     }
     return headers;
   }
+
+  String baseUrl = 'http://ahmad223.pythonanywhere.com';
 
   checkAvailabilityOfEmail(
       {required String email,
@@ -62,9 +69,7 @@ class NetworkCalls {
     var body = json.encode({"email": email});
     print({"email": email});
     try {
-      response = await http.post(
-          Uri.parse(
-              "http://ahmad223.pythonanywhere.com/${RestApis.VERIFY_EMAIL}"),
+      response = await http.post(Uri.parse("$baseUrl${RestApis.VERIFY_EMAIL}"),
           headers: header(
             prefs,
             body,
@@ -133,12 +138,8 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode({"contact_number": phone});
     try {
-      response = await http.post(
-          Uri.parse(
-              "http://ahmad223.pythonanywhere.com/${RestApis.PHONENUMBER}"),
-          headers: header(prefs, body, HttpMethod.POST),
-          body: body);
-      print(response.body);
+      response = await http.post(Uri.parse("$baseUrl${RestApis.PHONENUMBER}"),
+          headers: header(prefs, body, HttpMethod.POST), body: body);
       print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -265,12 +266,12 @@ class NetworkCalls {
     var body = json.encode(signupDetail);
     try {
       response = await http.post(
-          Uri.parse("http://ahmad223.pythonanywhere.com${RestApis.SIGNUP}"
+          Uri.parse("$baseUrl${RestApis.SIGNUP}"
               // "${prefs.get("lang")}"
               ),
           headers: header(prefs, body, HttpMethod.POST),
           body: body);
-      print(response.body);
+      print("Signup Response ${response.body}");
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp["success"]);
@@ -298,27 +299,30 @@ class NetworkCalls {
 
   saveRole(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print("ll$token");
     prefs.setString("role", token);
   }
 
   authorizationSave(bool auth) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool("auth", auth);
+    print(auth);
+    await prefs.setBool("auth", auth);
   }
 
-  saveToken(String token) async {
+  void saveToken(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("token", token);
+    print(token);
+    await prefs.setString("token", token);
   }
 
   saveKeys(String key, String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(key, value);
+    await prefs.setString(key, value);
   }
 
   saveLanguage(String lang) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("lang", lang);
+    await prefs.setString("lang", lang);
   }
 
   getToken() async {
@@ -353,13 +357,17 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.GET_PROFILE}?language=${prefs.get('lang')}";
+        "$baseUrl${RestApis.GET_PROFILE}?language=${prefs.get('lang')}";
+    print(url);
     try {
       response = await http.get(
         Uri.parse(url),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
-      // print(response.body);
+      // player token = 484613c64499586646fee0bbf69886f08e741ba5
+      // owner token = 5916de5550f5564f94533ec7171696ff53a7cd73
+
+      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -385,10 +393,10 @@ class NetworkCalls {
 
     try {
       response = await http.post(
-        Uri.parse("https://powerhouse.tahadde.ae${RestApis.LOGOUT}"),
+        Uri.parse("$baseUrl${RestApis.LOGOUT}"),
         headers: headerWithToken(prefs, "{}", HttpMethod.POST),
       );
-
+      print('logout${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp['detail']);
@@ -425,8 +433,7 @@ class NetworkCalls {
       dio.options.headers.addAll(
           {"Signing-Key": AppSigning.signature("{}", HttpMethod.POST, prefs)});
       var response = await dio.post(
-        Uri.encodeFull(
-            "https://powerhouse.tahadde.ae${RestApis.HELPERPROFILE}"),
+        Uri.encodeFull("$baseUrl${RestApis.HELPERPROFILE}"),
         data: formData,
       );
       print("response$response");
@@ -443,6 +450,39 @@ class NetworkCalls {
     } catch (e) {
       print("error$e");
       onFailure("fail to load image");
+    }
+  }
+
+  upload(image) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    for (int i = 0; i < image.length; i++) {
+      try {
+        const url =
+            'https://ahmad223.pythonanywhere.com/api/v1/acadmies/multiupload/'; // Replace with your server's upload URL.
+        var headers = {
+          "Authorization": "token ${prefs.get('token')}",
+        };
+        final request = http.MultipartRequest('POST', Uri.parse(url));
+        request.headers.addAll(headers);
+
+        // Add the image file to the request
+        request.files
+            .add(await http.MultipartFile.fromPath('file', image[i].path));
+
+        // Send the request and get the response
+        final response = await request.send();
+        if (response.statusCode == 200) {
+          // Image uploaded successfully.
+          print('Image uploaded successfully.');
+        } else {
+          // Failed to upload the image.
+          print(
+              'Failed to upload the image. Status code: ${response.statusCode}');
+        }
+      } catch (e) {
+        // Handle any exceptions.
+        print('Error uploading image: $e');
+      }
     }
   }
 
@@ -474,9 +514,11 @@ class NetworkCalls {
       dio.options.headers.addAll(
           {"Signing-Key": AppSigning.signature("{}", HttpMethod.POST, prefs)});
       var response = await dio.post(
-        Uri.encodeFull("https://powerhouse.tahadde.ae${RestApis.MULTIIMAGE}"),
-        data: formData,
+        Uri.encodeFull("$baseUrl${RestApis.image}"),
+        data: formData.files,
       );
+      print("$baseUrl${RestApis.MULTIIMAGE}");
+      print(response.data);
 
       if (response.statusCode == 200) {
         var fileId = response.data["fileId"];
@@ -489,6 +531,95 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('error $e');
+      onFailure("fail to load image");
+    }
+  }
+
+  helperMultiImage2(
+      {required List pitchImage,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    for (int i = 0; i < pitchImage.length; i++) {
+      try {
+        const url =
+            'https://ahmad223.pythonanywhere.com/api/v1/acadmies/multiupload/'; // Replace with your server's upload URL.
+        var headers = {
+          "Authorization": "token ${prefs.get('token')}",
+        };
+        final request = http.MultipartRequest('POST', Uri.parse(url));
+        request.headers.addAll(headers);
+
+        /// Add the image file to the request
+        request.files
+            .add(await http.MultipartFile.fromPath('file', pitchImage[i].path));
+
+        /// Send the request and get the response
+        final response = await request.send();
+        final responseStream = await response.stream.toBytes();
+        final responseBody = String.fromCharCodes(responseStream);
+        var json = jsonDecode(responseBody);
+        print(responseBody);
+        print(response.statusCode);
+        print("$baseUrl${RestApis.MULTIIMAGE}");
+        if (response.statusCode == 200) {
+          String urls;
+          urls = json['file_urls'][0];
+          onSuccess(urls);
+        } else if (response.statusCode == tokenExpireStatus) {
+          tokenExpire();
+        } else {
+          onFailure("fail to load image");
+        }
+      } on SocketException catch (_) {
+        onFailure(internetStatus);
+      } catch (e) {
+        print('error Hais$e');
+        onFailure("fail to load image");
+      }
+    }
+  }
+
+  helperMultiImageDocument(
+      {required var pitchImage,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      const url =
+          'https://ahmad223.pythonanywhere.com/api/v1/acadmies/multiupload/'; // Replace with your server's upload URL.
+      var headers = {
+        "Authorization": "token ${prefs.get('token')}",
+      };
+      final request = http.MultipartRequest('POST', Uri.parse(url));
+      request.headers.addAll(headers);
+
+      /// Add the image file to the request
+      request.files
+          .add(await http.MultipartFile.fromPath('file', pitchImage.path));
+
+      /// Send the request and get the response
+      final response = await request.send();
+      final responseStream = await response.stream.toBytes();
+      final responseBody = String.fromCharCodes(responseStream);
+      var json = jsonDecode(responseBody);
+      print(responseBody);
+      if (response.statusCode == 200) {
+        dynamic url;
+        url = json['file_urls'][0];
+        onSuccess(url);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure("fail to load image");
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('error Hais$e');
       onFailure("fail to load image");
     }
   }
@@ -504,8 +635,7 @@ class NetworkCalls {
 
     try {
       response = await http.put(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.EDIT_USER_PROFILE}"),
+          Uri.parse("$baseUrl${RestApis.EDIT_USER_PROFILE}"),
           headers: headerWithToken(prefs, body, HttpMethod.PUT),
           body: body);
 
@@ -534,12 +664,11 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(loginDetail);
     try {
-      var baseUrl = 'https://powerhouse.tahadde.ae';
-      var url = baseUrl + RestApis.LOGIN;
-      // var url = "http://ahmad223.pythonanywhere.com${RestApis.LOGIN}";
+      // var baseUrl = 'https://powerhouse.tahadde.ae';
+      // var url = baseUrl + RestApis.LOGIN;
+      var url = "$baseUrl${RestApis.LOGIN}";
       response = await http.post(Uri.parse(url),
           headers: header(prefs, body, HttpMethod.POST), body: body);
-      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp["role"]);
@@ -565,10 +694,8 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(loginDetail);
     try {
-      response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.LOGINFACEBOOK}"),
-          headers: header(prefs, body, HttpMethod.POST),
-          body: body);
+      response = await http.post(Uri.parse("$baseUrl${RestApis.LOGINFACEBOOK}"),
+          headers: header(prefs, body, HttpMethod.POST), body: body);
 
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -598,7 +725,7 @@ class NetworkCalls {
     var body = json.encode(loginDetail);
     try {
       response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae/api/v1/user/google-login/"),
+          Uri.parse("$baseUrl/api/v1/user/google-login/"),
           headers: header(prefs, body, HttpMethod.POST),
           body: body);
       if (response.statusCode == 200) {
@@ -630,10 +757,8 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(loginDetail);
     try {
-      response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.LOGINAPPLE}"),
-          headers: header(prefs, body, HttpMethod.POST),
-          body: body);
+      response = await http.post(Uri.parse("$baseUrl${RestApis.LOGINAPPLE}"),
+          headers: header(prefs, body, HttpMethod.POST), body: body);
 
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -663,7 +788,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.DASHBOARDFILTER}?moduletype_slug=${detail["category"]}${detail["type"]}${detail["facility"]}&language=$language";
+        "$baseUrl${RestApis.DASHBOARDFILTER}?moduletype_slug=${detail["category"]}${detail["type"]}${detail["facility"]}&language=$language";
     try {
       print(url);
       response = await http.get(Uri.parse(url),
@@ -732,7 +857,7 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       response = await http.get(
-        Uri.parse("https://powerhouse.tahadde.ae${RestApis.VERIFIED_PITCH}"),
+        Uri.parse("$baseUrl${RestApis.VERIFIED_PITCH}"),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
       var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -801,7 +926,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.YOURTAHADDI + id.toString()}/?tahaddis_for=$event&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.YOURTAHADDI + id.toString()}/?tahaddis_for=$event&language=${prefs.get("lang")}";
     try {
       response = await http.get(
         Uri.parse(url),
@@ -834,7 +959,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.YOURTAHADDI + id.toString()}/?tahaddis_for=$event&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.YOURTAHADDI + id.toString()}/?tahaddis_for=$event&language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -866,7 +991,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.YOURTAHADDI + id.toString()}/?tahaddis_for=$event&pitchtype_id=$ids&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.YOURTAHADDI + id.toString()}/?tahaddis_for=$event&pitchtype_id=$ids&language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -893,44 +1018,44 @@ class NetworkCalls {
     }
   }
 
-  yourTahaddi(
-      {required OnSuccess onSuccess,
-      required OnFailure onFailure,
-      required TokenExpire tokenExpire}) async {
-    http.Response response;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    try {
-      response = await http.get(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.YOURTAHADDI}?language=${prefs.get("lang")}"),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
-      if (response.statusCode == 200) {
-        var resp = json.decode(utf8.decode(response.bodyBytes));
-        List<YourTahaddi> tahaddi = [];
-        for (int i = 0; i < resp.length; i++) {
-          tahaddi.add(YourTahaddi.fromJson(resp[i]));
-        }
-        onSuccess(tahaddi);
-      } else if (response.statusCode == 404) {
-        List<YourTahaddi> tahaddi = [];
-        onSuccess(tahaddi);
-      }
-      // else if (response.statusCode == 400) {
-      //   var resp = json.decode(utf8.decode(response.bodyBytes));
-      //   print(resp);
-      //
-      // }
-      else if (response.statusCode == tokenExpireStatus) {
-        tokenExpire();
-      } else {
-        onFailure(throw Exception('Failed to load your tahaddi'));
-      }
-    } on SocketException catch (_) {
-      onFailure(internetStatus);
-    } catch (e) {
-      onFailure('Failed to load your tahaddi');
-    }
-  }
+  // yourTahaddi(
+  //     {required OnSuccess onSuccess,
+  //     required OnFailure onFailure,
+  //     required TokenExpire tokenExpire}) async {
+  //   http.Response response;
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   try {
+  //     response = await http.get(
+  //         Uri.parse(
+  //             "$baseUrl${RestApis.YOURTAHADDI}?language=${prefs.get("lang")}"),
+  //         headers: headerWithToken(prefs, "", HttpMethod.GET));
+  //     if (response.statusCode == 200) {
+  //       var resp = json.decode(utf8.decode(response.bodyBytes));
+  //       List<YourTahaddi> tahaddi = [];
+  //       for (int i = 0; i < resp.length; i++) {
+  //         tahaddi.add(YourTahaddi.fromJson(resp[i]));
+  //       }
+  //       onSuccess(tahaddi);
+  //     } else if (response.statusCode == 404) {
+  //       List<YourTahaddi> tahaddi = [];
+  //       onSuccess(tahaddi);
+  //     }
+  //     // else if (response.statusCode == 400) {
+  //     //   var resp = json.decode(utf8.decode(response.bodyBytes));
+  //     //   print(resp);
+  //     //
+  //     // }
+  //     else if (response.statusCode == tokenExpireStatus) {
+  //       tokenExpire();
+  //     } else {
+  //       onFailure(throw Exception('Failed to load your tahaddi'));
+  //     }
+  //   } on SocketException catch (_) {
+  //     onFailure(internetStatus);
+  //   } catch (e) {
+  //     onFailure('Failed to load your tahaddi');
+  //   }
+  // }
 
   league(
       {required String urldetail,
@@ -973,7 +1098,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.LEAGUE}${id.toString()}/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.LEAGUE}${id.toString()}/?language=${prefs.get("lang")}";
 
     try {
       response = await http.get(Uri.parse(url),
@@ -1008,8 +1133,8 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(filter == true
-              ? "https://powerhouse.tahadde.ae${RestApis.HOMELEAGUE}${prefs.get("lang")}"
-              : "https://powerhouse.tahadde.ae${RestApis.HOMELEAGUESORT}${prefs.get("lang")}"),
+              ? "$baseUrl${RestApis.HOMELEAGUE}${prefs.get("lang")}"
+              : "$baseUrl${RestApis.HOMELEAGUESORT}${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
 
       if (response.statusCode == 200) {
@@ -1041,7 +1166,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.LEAGUEDETAIL}$id/pitchowner/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.LEAGUEDETAIL}$id/pitchowner/?language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1068,7 +1193,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.LEAGUEDETAIL}${id.toString()}/pitchowner/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.LEAGUEDETAIL}${id.toString()}/pitchowner/?language=${prefs.get("lang")}";
     var body = json.encode(bodyDetail);
     try {
       response = await http.put(Uri.parse(url),
@@ -1102,7 +1227,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.TOURNAMENTDETAIL}$id/pitchowner/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.TOURNAMENTDETAIL}$id/pitchowner/?language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1130,7 +1255,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.TOURNAMENTDETAIL}${id.toString()}/pitchowner/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.TOURNAMENTDETAIL}${id.toString()}/pitchowner/?language=${prefs.get("lang")}";
     var body = json.encode(bodyDetail);
     try {
       response = await http.put(Uri.parse(url),
@@ -1166,8 +1291,8 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(filter == true
-              ? "https://powerhouse.tahadde.ae${RestApis.HOMETOURNAMENT}${prefs.get("lang")}"
-              : "https://powerhouse.tahadde.ae${RestApis.HOMETOURNAMENTSORT}${prefs.get("lang")}"),
+              ? "$baseUrl${RestApis.HOMETOURNAMENT}${prefs.get("lang")}"
+              : "$baseUrl${RestApis.HOMETOURNAMENTSORT}${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
 
       if (response.statusCode == 200) {
@@ -1197,7 +1322,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.TOURNAMENT}?pitchtype_slug=$urldetail&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.TOURNAMENT}?pitchtype_slug=$urldetail&language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1229,7 +1354,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.TOURNAMENT}${id.toString()}/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.TOURNAMENT}${id.toString()}/?language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1268,8 +1393,50 @@ class NetworkCalls {
       url = "$url&sport_slug=$urldetail";
     }
     try {
+      response = await http.get(Uri.parse(url), headers: {
+        "Authorization": "token 484613c64499586646fee0bbf69886f08e741ba5",
+        'Content-Type': 'application/json',
+      });
+      // headerWithToken(prefs, "", HttpMethod.GET));
+      // print('Academy${response.body}');
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load Book Pitch'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong$e");
+      print(e);
+    }
+  }
+
+  loadVerifiedAcademies(
+      {required String sport,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    ///
+    String url = sport == ''
+        ? "$baseUrl${RestApis.verifiedAcademies}"
+        : "$baseUrl${RestApis.verifiedAcademies}/$sport/";
+    try {
       response = await http.get(Uri.parse(url),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+          headers:
+              // {
+              //   "Authorization": "token 484613c64499586646fee0bbf69886f08e741ba5",
+              //   'Content-Type': 'application/json',
+              // });
+              headerWithToken(prefs, "", HttpMethod.GET));
+      print(url);
+      print('Academy${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -1294,7 +1461,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.BOOKPITCH}${urldetail["id"].toString()}/?language=${urldetail["language"]}";
+        "$baseUrl${RestApis.BOOKPITCH}${urldetail["id"].toString()}/?language=${urldetail["language"]}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1328,7 +1495,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.MY_VENUES}&language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.MY_VENUES}&language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -1360,7 +1527,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT} +${detail["id"]}/?pitch=${detail["pitch"]}${detail["language"]}";
+        "$baseUrl${RestApis.MANAGESLOT} +${detail["id"]}/?pitch=${detail["pitch"]}${detail["language"]}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1391,8 +1558,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}$id/subpitchtype/";
+    String url = "$baseUrl${RestApis.MANAGESLOT}$id/subpitchtype/";
     // print(url);
     var body = json.encode(bodydata);
     try {
@@ -1426,7 +1592,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}$id/subpitchtype/?pitchtype_id=$pitchTypeId";
+        "$baseUrl${RestApis.MANAGESLOT}$id/subpitchtype/?pitchtype_id=$pitchTypeId";
     try {
       response = await http.delete(
         Uri.parse(url),
@@ -1460,7 +1626,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.INREVIEW}&language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.INREVIEW}&language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -1490,7 +1656,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.BOOKPITCHSLOT}${urlDetail["id"]}/slot/?year=${urlDetail["year"]}&month=${urlDetail["month"]}&pitchtype_id=${urlDetail["ids"]}";
+        "$baseUrl${RestApis.BOOKPITCHSLOT}${urlDetail["id"]}/slot/?year=${urlDetail["year"]}&month=${urlDetail["month"]}&pitchtype_id=${urlDetail["ids"]}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1520,7 +1686,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.SLOTCHECK}${urlDetail["id"]}/see-specific-slot/?year=${urlDetail["year"]}&month=${urlDetail["month"]}&day=${urlDetail["day"]}&pitchtype_id=${urlDetail["idsPitch"]}&slot_ids=${urlDetail["ids"]}&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.SLOTCHECK}${urlDetail["id"]}/see-specific-slot/?year=${urlDetail["year"]}&month=${urlDetail["month"]}&day=${urlDetail["day"]}&pitchtype_id=${urlDetail["idsPitch"]}&slot_ids=${urlDetail["ids"]}&language=${prefs.get("lang")}";
     print(url);
     try {
       response = await http.get(Uri.parse(url),
@@ -1551,7 +1717,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url = "https://powerhouse.tahadde.ae${RestApis.BOOKPITCHSLOT}$slug";
+    String url = "$baseUrl${RestApis.BOOKPITCHSLOT}$slug";
     var body = json.encode(urlDetail);
     try {
       response = await http.post(Uri.parse(url),
@@ -1581,7 +1747,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae/api/v1/user/favourite/pitch/?language=${prefs.get("lang")}";
+        "$baseUrl/api/v1/user/favourite/pitch/?language=${prefs.get("lang")}";
     var body = json.encode(detail);
     try {
       response = await http.put(Uri.parse(url),
@@ -1615,7 +1781,7 @@ class NetworkCalls {
     try {
       response = await http.post(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.FORGOT_PASSWORD}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.FORGOT_PASSWORD}?language=${prefs.get("lang")}"),
           headers: header(
             prefs,
             body,
@@ -1649,7 +1815,7 @@ class NetworkCalls {
     try {
       response = await http.put(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.CHANGEPASSWORD}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.CHANGEPASSWORD}?language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, body, HttpMethod.PUT),
           body: body);
 
@@ -1679,7 +1845,7 @@ class NetworkCalls {
     try {
       response = await http.put(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.RESETPASSWORD}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.RESETPASSWORD}?language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, body, HttpMethod.PUT),
           body: body);
 
@@ -1705,10 +1871,8 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(token);
     try {
-      response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.TOKENSTATUS}"),
-          headers: headerWithToken(prefs, body, HttpMethod.POST),
-          body: body);
+      response = await http.post(Uri.parse("$baseUrl${RestApis.TOKENSTATUS}"),
+          headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);
 
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -1734,7 +1898,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.TRANSECTION}$id/?transaction_for=bookpitch&booking_as_per=$bookingPer&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.TRANSECTION}$id/?transaction_for=bookpitch&booking_as_per=$bookingPer&language=${prefs.get("lang")}";
     print("Url Bro $url");
     var body = json.encode(tarnsectiondetail);
     try {
@@ -1764,7 +1928,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url = "https://powerhouse.tahadde.ae${RestApis.CANCELBOOKING}";
+    String url = "$baseUrl${RestApis.CANCELBOOKING}";
     var body = json.encode(tarnsectiondetail);
     try {
       response = await http.post(Uri.parse(url),
@@ -1795,7 +1959,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.BOOKINGHISTORY}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.BOOKINGHISTORY}?language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -1828,7 +1992,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.BOOKINGHISTORYPITCH}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.BOOKINGHISTORYPITCH}?language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -1859,8 +2023,7 @@ class NetworkCalls {
       required String id}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "https://powerhouse.tahadde.ae${RestApis.VERIFYLEAGUETOURNAMENT}$id}";
+    String url = "$baseUrl${RestApis.VERIFYLEAGUETOURNAMENT}$id}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1902,8 +2065,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "https://powerhouse.tahadde.ae${RestApis.DASHBOARD}?language=${prefs.get("lang")}";
+    String url = "$baseUrl${RestApis.DASHBOARD}?language=${prefs.get("lang")}";
 
     try {
       response = await http.get(Uri.parse(url),
@@ -1933,7 +2095,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.PITCHTYPEDASHBOARD}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.PITCHTYPEDASHBOARD}?language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -1957,7 +2119,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.PLAYERPOSITION}?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.PLAYERPOSITION}?language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -1983,7 +2145,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.SPORTSMODERNS}?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.SPORTSMODERNS}?language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -2009,7 +2171,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.SPORTSTYPES}?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.SPORTSTYPES}?language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -2037,7 +2199,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.FACILITY}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.FACILITY}?language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -2064,8 +2226,12 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url = "https://powerhouse.tahadde.ae${RestApis.CURRENTDATE}$date";
     try {
-      response = await http.get(Uri.parse(url),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      response = await http.get(Uri.parse(url), headers: {
+        "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+        'Content-Type': 'application/json',
+      }
+          // headerWithToken(prefs, "", HttpMethod.GET)
+          );
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -2093,8 +2259,12 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url = "https://powerhouse.tahadde.ae${RestApis.BOOKING}$date";
     try {
-      response = await http.get(Uri.parse(url),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      response = await http.get(Uri.parse(url), headers: {
+        "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+        'Content-Type': 'application/json',
+      }
+          // headerWithToken(prefs, "", HttpMethod.GET)
+          );
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         List<BookingModelClass> pitch = [];
@@ -2125,7 +2295,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}${date["id"]}/manage-slot/?year=${date["year"]}&month=${date["month"]}&day=${date["day"]}&pitchtype_id=${date["pitchId"]}";
+        "$baseUrl${RestApis.MANAGESLOT}${date["id"]}/manage-slot/?year=${date["year"]}&month=${date["month"]}&day=${date["day"]}&pitchtype_id=${date["pitchId"]}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -2153,7 +2323,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}${date["id"]}/manage-slot/?slot_status=${date["status"]}&year=${date["year"]}&month=${date["month"]}&day=${date["day"]}&pitchtype_id=${date["pitchId"]}&slot_ids=${date["slotIds"]}";
+        "$baseUrl${RestApis.MANAGESLOT}${date["id"]}/manage-slot/?slot_status=${date["status"]}&year=${date["year"]}&month=${date["month"]}&day=${date["day"]}&pitchtype_id=${date["pitchId"]}&slot_ids=${date["slotIds"]}";
     try {
       response = await http.put(Uri.parse(url),
           headers: headerWithToken(prefs, "{}", HttpMethod.PUT));
@@ -2181,7 +2351,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}${urlDate["id"]}/closed-hour/?slot_status=${urlDate["status"]}&pitchtype_id=${urlDate["pitchtype_id"]}";
+        "$baseUrl${RestApis.MANAGESLOT}${urlDate["id"]}/closed-hour/?slot_status=${urlDate["status"]}&pitchtype_id=${urlDate["pitchtype_id"]}";
     var body = json.encode(bodyDate);
 
     try {
@@ -2213,7 +2383,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}${urlDate["id"]}/closed-hour/?pitchtype_id=${urlDate["pitchtype_id"]}";
+        "$baseUrl${RestApis.MANAGESLOT}${urlDate["id"]}/closed-hour/?pitchtype_id=${urlDate["pitchtype_id"]}";
 
     try {
       response = await http.get(
@@ -2251,7 +2421,7 @@ class NetworkCalls {
     var bodyData = json.encode(body);
     try {
       response = await http.post(
-        Uri.parse("https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}"),
+        Uri.parse("$baseUrl${RestApis.MANAGESLOT}"),
         headers: headerWithToken(prefs, bodyData, HttpMethod.POST),
         body: bodyData,
       );
@@ -2283,7 +2453,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.MANAGESLOT}${urlDetail['id']}/?pitch=${urlDetail['pitch']}&language=${urlDetail['language']}";
+        "$baseUrl${RestApis.MANAGESLOT}${urlDetail['id']}/?pitch=${urlDetail['pitch']}&language=${urlDetail['language']}";
     var bodyData = json.encode(body);
     try {
       response = await http.put(
@@ -2319,7 +2489,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.TEAMLISTING}?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.TEAMLISTING}?language=${prefs.get("lang")}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -2351,7 +2521,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.CREATTEAM}$teamType&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.CREATTEAM}$teamType&language=${prefs.get("lang")}";
     var body = json.encode(detail);
     try {
       response = await http.post(
@@ -2393,7 +2563,7 @@ class NetworkCalls {
       languageCode = "&language=";
     }
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.SEARCHPLAYER}$search$languageCode${prefs.get("lang")}";
+        "$baseUrl${RestApis.SEARCHPLAYER}$search$languageCode${prefs.get("lang")}";
     try {
       response = await http.get(
         Uri.parse(url),
@@ -2425,7 +2595,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        ("https://powerhouse.tahadde.ae${RestApis.TEAMINFO}$teamType&language=${prefs.get("lang")}");
+        ("$baseUrl${RestApis.TEAMINFO}$teamType&language=${prefs.get("lang")}");
 
     try {
       response = await http.get(
@@ -2461,7 +2631,7 @@ class NetworkCalls {
     try {
       response = await http.delete(
         Uri.parse(
-            "https://powerhouse.tahadde.ae${RestApis.CREATTEAM}?language=${prefs.get("lang")}"),
+            "$baseUrl${RestApis.CREATTEAM}?language=${prefs.get("lang")}"),
         headers: headerWithToken(prefs, "", HttpMethod.DELETE),
       );
       if (response.statusCode == 200) {
@@ -2488,9 +2658,10 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       response = await http.delete(
-        Uri.parse("https://powerhouse.tahadde.ae${RestApis.DELETEACCOUNT}"),
+        Uri.parse("$baseUrl${RestApis.DELETEACCOUNT}"),
         headers: headerWithToken(prefs, "", HttpMethod.DELETE),
       );
+      print('Delete Account ${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -2506,6 +2677,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('Delete User Error $e');
       throw Exception('Failed to delete team');
     }
   }
@@ -2519,10 +2691,8 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode({"member_id": id});
     try {
-      response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.ASSIGNCAPTAIN}"),
-          headers: headerWithToken(prefs, body, HttpMethod.POST),
-          body: body);
+      response = await http.post(Uri.parse("$baseUrl${RestApis.ASSIGNCAPTAIN}"),
+          headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -2549,7 +2719,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.PLAYERTEAM}$id/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.PLAYERTEAM}$id/?language=${prefs.get("lang")}";
     try {
       response = await http.delete(
         Uri.parse(url),
@@ -2587,7 +2757,7 @@ class NetworkCalls {
     try {
       response = await http.post(
         Uri.parse(
-            "https://powerhouse.tahadde.ae${RestApis.PLAYERINVITATIONSEND}?language=${prefs.get("lang")}"),
+            "$baseUrl${RestApis.PLAYERINVITATIONSEND}?language=${prefs.get("lang")}"),
         headers: headerWithToken(prefs, body, HttpMethod.POST),
         body: body,
       );
@@ -2619,7 +2789,7 @@ class NetworkCalls {
     try {
       response = await http.get(
         Uri.parse(
-            "https://powerhouse.tahadde.ae${RestApis.PLAYERINVITATIONSEND}?language=${prefs.get("lang")}"),
+            "$baseUrl${RestApis.PLAYERINVITATIONSEND}?language=${prefs.get("lang")}"),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
       if (response.statusCode == 200) {
@@ -2646,7 +2816,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.PLAYERINVITATIONSEND}${detail["id"]}/?invitation=${detail["type"]}&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.PLAYERINVITATIONSEND}${detail["id"]}/?invitation=${detail["type"]}&language=${prefs.get("lang")}";
 
     try {
       response = await http.put(
@@ -2678,8 +2848,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "https://powerhouse.tahadde.ae${RestApis.PLAYERTEAM}?language=${prefs.get("lang")}";
+    String url = "$baseUrl${RestApis.PLAYERTEAM}?language=${prefs.get("lang")}";
 
     try {
       response = await http.get(
@@ -2719,7 +2888,7 @@ class NetworkCalls {
     try {
       response = await http.get(
         Uri.parse(
-            "https://powerhouse.tahadde.ae${RestApis.CREATTEAM}?language=${prefs.get("lang")}"),
+            "$baseUrl${RestApis.CREATTEAM}?language=${prefs.get("lang")}"),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
 
@@ -2752,7 +2921,7 @@ class NetworkCalls {
     try {
       response = await http.get(
         Uri.parse(
-            "https://powerhouse.tahadde.ae${RestApis.CAPTAININVITATION}?language=${prefs.get("lang")}"),
+            "$baseUrl${RestApis.CAPTAININVITATION}?language=${prefs.get("lang")}"),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
 
@@ -2780,7 +2949,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.CAPTAININVITATION}${detail["id"]}/?invitation=${detail["type"]}&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.CAPTAININVITATION}${detail["id"]}/?invitation=${detail["type"]}&language=${prefs.get("lang")}";
 
     try {
       response = await http.put(
@@ -2816,7 +2985,7 @@ class NetworkCalls {
     try {
       response = await http.post(
         Uri.parse(
-            "https://powerhouse.tahadde.ae${RestApis.CAPTAININVITATION}?language=${prefs.get("lang")}"),
+            "$baseUrl${RestApis.CAPTAININVITATION}?language=${prefs.get("lang")}"),
         headers: headerWithToken(prefs, body, HttpMethod.POST),
         body: body,
       );
@@ -2848,7 +3017,7 @@ class NetworkCalls {
 
     try {
       response = await http.get(
-        Uri.parse("https://powerhouse.tahadde.ae${RestApis.MYINTEREST}"),
+        Uri.parse("$baseUrl${RestApis.MYINTEREST}"),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
 
@@ -2878,7 +3047,7 @@ class NetworkCalls {
 
     try {
       response = await http.get(
-        Uri.parse("https://powerhouse.tahadde.ae${RestApis.RATING}"),
+        Uri.parse("$baseUrl${RestApis.RATING}"),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
 
@@ -2908,8 +3077,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        ("https://powerhouse.tahadde.ae${RestApis.RATINGSEND}$id/rating/");
+    String url = ("$baseUrl${RestApis.RATINGSEND}$id/rating/");
     var body = json.encode(detail);
     try {
       response = await http.put(Uri.parse(url),
@@ -2939,8 +3107,7 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "https://powerhouse.tahadde.ae${RestApis.NOTIFICATION}${prefs.get("lang")}";
+    String url = "$baseUrl${RestApis.NOTIFICATION}${prefs.get("lang")}";
 
     try {
       response = await http.get(
@@ -2974,8 +3141,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      response = await http.get(
-          Uri.parse(("https://powerhouse.tahadde.ae${RestApis.ROLE}")),
+      response = await http.get(Uri.parse(("$baseUrl${RestApis.ROLE}")),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -3001,8 +3167,7 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       final response = await http.get(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.TRANSECTIONTOKEN}"),
+          Uri.parse("$baseUrl${RestApis.TRANSECTIONTOKEN}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       // print('Token${response.body}');
       if (response.statusCode == 200) {
@@ -3035,8 +3200,7 @@ class NetworkCalls {
     var body = json.encode(paymentId);
     try {
       response = await http.post(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.TRANSECTIONSTATUS}"),
+          Uri.parse("$baseUrl${RestApis.TRANSECTIONSTATUS}"),
           headers: headerWithToken(prefs, body, HttpMethod.POST),
           body: body);
       if (response.statusCode == 200) {
@@ -3072,7 +3236,7 @@ class NetworkCalls {
     var body = json.encode(LatLong);
     try {
       response = await http.post(
-        Uri.parse(("https://powerhouse.tahadde.ae${RestApis.LATLONG}")),
+        Uri.parse(("$baseUrl${RestApis.LATLONG}")),
         headers: headerWithToken(prefs, body, HttpMethod.POST),
         body: body,
       );
@@ -3107,8 +3271,7 @@ class NetworkCalls {
           ("https://powerhouse.tahadde.ae${RestApis.PRIVACYPOLICY}${prefs.get("lang")}");
       // print(url);
       response = await http.get(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.PRIVACYPOLICY}${prefs.get("lang")}"),
+          Uri.parse("$baseUrl${RestApis.PRIVACYPOLICY}${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       // print('${response.body}');
       if (response.statusCode == 200) {
@@ -3135,9 +3298,10 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       response = await http.get(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae/api/v1/helpers/sportslistmobile/?language=${prefs.get('lang')}"),
+          Uri.parse("$baseUrl/api/v1/helpers/sportslistmobile/"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
+      // print('Sports${response.body}');
+      // cbb65ad9f2c1882d300cb98662405cc585df16c8
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3163,7 +3327,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.SPORTS_ECPERIENCE_LIST}${prefs.get("lang")}"),
+              "$baseUrl${RestApis.SPORTS_ECPERIENCE_LIST}${prefs.get("lang")}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -3187,12 +3351,17 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print("$baseUrl${RestApis.WEEK_LIST}");
     try {
-      response = await http.get(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.WEEK_LIST}${prefs.get("lang")}"),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      response = await http.get(Uri.parse("$baseUrl${RestApis.WEEK_LIST}"),
+          headers:
+              // {
+              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+              //   'Content-Type': 'application/json',
+              // }
+              headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
+        print(response.body);
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
       } else if (response.statusCode == tokenExpireStatus) {
@@ -3204,6 +3373,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('RoleError Hai Bhai $e');
       throw Exception('Failed to load role');
     }
   }
@@ -3211,18 +3381,26 @@ class NetworkCalls {
   slotList(
       {required OnSuccess onSuccess,
       required String id,
-      required String subPitchId,
-      required String weekDay,
+      // required String subPitchId,
+      // required String weekDay,
       required OnFailure onFailure,
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       response = await http.get(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.SLOT_LIST}$id/manage-slot/?pitchtype_id=$subPitchId&weekday=$weekDay&language=${prefs.get("lang")}"),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+        Uri.parse('$baseUrl${RestApis.slotConfirm}$id/'
+            // "https://powerhouse.tahadde.ae${RestApis.SLOT_LIST}$id/manage-slot/?pitchtype_id=$subPitchId&weekday=$weekDay&language=${prefs.get("lang")}"
+            ),
+        headers:
+            // {
+            //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+            //   'Content-Type': 'application/json',
+            // }
+            headerWithToken(prefs, "", HttpMethod.GET),
+      );
       if (response.statusCode == 200) {
+        print(response.body);
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
       } else if (response.statusCode == tokenExpireStatus) {
@@ -3234,6 +3412,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('error$e');
       throw Exception('Failed to load role');
     }
   }
@@ -3247,13 +3426,25 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(detail);
+    print('body$body');
     try {
       response = await http.post(
-          Uri.parse(
-              "https://powerhouse.tahadde.ae${RestApis.CREATE_SESSION}$id/manage-slot/?language=${prefs.get("lang")}"),
+          Uri.parse('$baseUrl${RestApis.CREATE_ACADEMY}'
+              // "https://powerhouse.tahadde.ae${RestApis.CREATE_SESSION}$id/manage-slot/?language=${prefs.get("lang")}"
+              ),
           body: body,
-          headers: headerWithToken(prefs, body, HttpMethod.POST));
+          headers:
+              // {
+              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+              //   'Content-Type': 'application/json',
+              // }
+              headerWithToken(prefs, body, HttpMethod.POST));
+      print('${prefs.get('token')}');
+      print('$baseUrl${RestApis.CREATE_ACADEMY}');
+      print(response.statusCode);
+      print(response.body);
       if (response.statusCode == 200) {
+        print('CeateSession${response.body}');
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
       } else if (response.statusCode == 400) {
@@ -3268,6 +3459,8 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('Exception$e EEEEEEEEEEEE');
+      showMessage('it seems missing name field from sessions');
       throw Exception('Failed to load role');
     }
   }
@@ -3283,7 +3476,15 @@ class NetworkCalls {
       response = await http.get(
           Uri.parse(
               "https://powerhouse.tahadde.ae${RestApis.AVAILABLE_PITCH_TYPE}$sportTypeSlug"),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+          headers: {
+            "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+            'Content-Type': 'application/json',
+          }
+          // headerWithToken(prefs, "", HttpMethod.GET)
+          );
+      print(
+          "https://powerhouse.tahadde.ae${RestApis.AVAILABLE_PITCH_TYPE}$sportTypeSlug");
+      print("Avaliable Pitches ${response.body}");
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3296,6 +3497,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print("exception $e");
       throw Exception('Failed to load role');
     }
   }
@@ -3309,12 +3511,19 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(detail);
     print("Map$detail");
+    // print("Body $body");
     try {
       response = await http.post(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.CREATE_VENUE}"),
-          headers: headerWithToken(prefs, body, HttpMethod.POST),
+          Uri.parse("$baseUrl${RestApis.CREATE_ACADEMY}"),
+          headers:
+              // {
+              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+              //   'Content-Type': 'application/json',
+              // },
+              headerWithToken(prefs, body, HttpMethod.POST),
           body: body);
-      print("create Vanue${response.body}");
+      print("$baseUrl${RestApis.CREATE_ACADEMY}");
+      print("create Academy${response.body}");
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3332,7 +3541,7 @@ class NetworkCalls {
       onFailure(internetStatus);
     } catch (e) {
       onFailure("fail to create league");
-      print("ExceptionVaniue$e");
+      print("ExceptionVanue $e");
     }
   }
 
@@ -3343,9 +3552,10 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      response = await http.get(
-          Uri.parse("https://powerhouse.tahadde.ae${RestApis.AVAILABLE_DOC}"),
+      print("$baseUrl${RestApis.AVAILABLE_DOC}");
+      response = await http.get(Uri.parse("$baseUrl${RestApis.AVAILABLE_DOC}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print('Document${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3370,7 +3580,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.UPDATE_SLOT}?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.UPDATE_SLOT}?language=${prefs.get("lang")}";
     var body = json.encode(detail);
     try {
       response = await http.put(Uri.parse(url),
@@ -3404,12 +3614,55 @@ class NetworkCalls {
       response = await http.get(
           Uri.parse(
               "https://powerhouse.tahadde.ae${RestApis.MY_VENUES}?language=${prefs.get("lang")}"),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+          headers: {
+            "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+            'Content-Type': 'application/json',
+          }
+          // headerWithToken(prefs, "", HttpMethod.GET)
+          );
+      // print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         List<MyVenueModelClass> bookPitch = [];
         for (int i = 0; i < resp.length; i++) {
           bookPitch.add(MyVenueModelClass.fromJson(resp[i]));
+        }
+        onSuccess(bookPitch);
+      } else if (response.statusCode == 404) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else {
+        onFailure(throw Exception('Failed to load league'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong");
+    }
+  }
+
+  allAcademies(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(
+          Uri.parse('https://ahmad223.pythonanywhere.com/api/v1/user/academy/'),
+          // "$baseUrl${RestApis.allAcademies}?language=${prefs.get("lang")}"),
+          headers:
+              // {
+              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+              //   'Content-Type': 'application/json',
+              // }
+              headerWithToken(prefs, "", HttpMethod.GET));
+      // print("$baseUrl${RestApis.allAcademies}?language=${prefs.get("lang")}");
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        List<AcademyModel> bookPitch = [];
+        for (int i = 0; i < resp.length; i++) {
+          bookPitch.add(AcademyModel.fromJson(resp[i]));
         }
         onSuccess(bookPitch);
       } else if (response.statusCode == 404) {
@@ -3437,7 +3690,15 @@ class NetworkCalls {
       response = await http.get(
           Uri.parse(
               "https://powerhouse.tahadde.ae${RestApis.SPECIFIC_PITCH}$id/?language=${prefs.get("lang")}$subPitch"),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
+          headers: {
+            "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+            'Content-Type': 'application/json',
+          }
+          // headerWithToken(prefs, "", HttpMethod.GET)
+          );
+      print(
+          "https://powerhouse.tahadde.ae${RestApis.SPECIFIC_PITCH}$id/?language=${prefs.get("lang")}$subPitch");
+      print("Specific venue${response.body}");
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(SpecificModelClass.fromJson(resp));
@@ -3454,6 +3715,42 @@ class NetworkCalls {
     }
   }
 
+  specificAcademy(
+      {required String id,
+      String subPitch = "",
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      print("$baseUrl/api/v1/user/academy/$id/");
+      response = await http.get(
+          Uri.parse("$baseUrl${RestApis.specificAcademy}$id/"),
+          headers:
+              // {
+              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+              //   'Content-Type': 'application/json',
+              // }
+              headerWithToken(prefs, "", HttpMethod.GET));
+      print("Specific venue${response.body}");
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(SpecificAcademy.fromJson(resp));
+      } else if (response.statusCode == 404) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else {
+        onFailure(throw Exception('Failed to load league'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('Error $e');
+      onFailure("Something went wrong");
+    }
+  }
+
   deletePitch(
       {required String id,
       required OnSuccess onSuccess,
@@ -3462,7 +3759,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.DELETE_PITCH}$id/?language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.DELETE_PITCH}$id/?language=${prefs.get("lang")}";
 
     try {
       response = await http.put(
@@ -3499,6 +3796,7 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
         "https://powerhouse.tahadde.ae${RestApis.EDIT_VENUE}$id/?pitch=$venueType&language=${prefs.get("lang")}";
+    print(url);
     var body = json.encode(venueDetail);
     try {
       response = await http.put(Uri.parse(url),
@@ -3522,6 +3820,42 @@ class NetworkCalls {
     }
   }
 
+  editAcademy(
+      {required String id,
+      required Map academyDetail,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url = "$baseUrl/api/v1/user/edit_academy/$id/";
+    print(url);
+    var body = json.encode(academyDetail);
+    print('ji');
+    try {
+      response = await http.post(Uri.parse(url),
+          headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        print(response.body);
+        // var resp = json.decode(utf8.decode(response.bodyBytes));
+        // onSuccess(SpecificModelClass.fromJson(resp));
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load league'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('Error $e');
+      onFailure("Something went wrong");
+    }
+  }
+
   editSession(
       {required String id,
       required String venueType,
@@ -3532,7 +3866,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.UPDATE_SESSIONS}$id/?pitch=$venueType&language=${prefs.get("lang")}";
+        "$baseUrl${RestApis.UPDATE_SESSIONS}$id/?pitch=$venueType&language=${prefs.get("lang")}";
     var body = json.encode(venueDetail);
     try {
       response = await http.put(Uri.parse(url),
@@ -3566,11 +3900,13 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
         "https://powerhouse.tahadde.ae/api/v1/bookpitch/pitchowner/pitch/player_available_pitches_list_details/?pitch_id=$id&subpitch_id=$subPitchId&language=${prefs.get("lang")}";
-    // print(url);
+    print(url);
     try {
-      response = await http.get(Uri.parse(url),
-          headers: headerWithToken(prefs, "", HttpMethod.GET));
-
+      response = await http.get(Uri.parse(url), headers: {
+        "Authorization": "token 484613c64499586646fee0bbf69886f08e741ba5",
+        'Content-Type': 'application/json',
+      });
+      // headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
         // print("Response${response.body}");
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -3598,7 +3934,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.SLOT_DETAIL}$id/players_see_specific_pitch_slots/?pitchtype_id=$subPitchId&booked_for_date=$date&language=${prefs.get("lang")}$dateTime";
+        "$baseUrl${RestApis.SLOT_DETAIL}$id/players_see_specific_pitch_slots/?pitchtype_id=$subPitchId&booked_for_date=$date&language=${prefs.get("lang")}$dateTime";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -3630,7 +3966,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.PROMOTION}${prefs.get("lang")}&city_id=${prefs.get("cityId")}";
+        "$baseUrl${RestApis.PROMOTION}${prefs.get("lang")}&city_id=${prefs.get("cityId")}";
     try {
       // print(url);
       response = await http.get(Uri.parse(url),
@@ -3662,7 +3998,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae${RestApis.PROMOTION}${prefs.get("lang")}&promotional_event_id=$id";
+        "$baseUrl${RestApis.PROMOTION}${prefs.get("lang")}&promotional_event_id=$id";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -3692,18 +4028,16 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
-        "https://powerhouse.tahadde.ae/api/v1/dashboard/territory/list/?language=${prefs.get('lang')}";
+        "$baseUrl/api/v1/dashboard/territory/list/?language=${prefs.get('lang')}";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
-      // print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
-        List<TerritoryModelClass> slotModelClass = [];
-        for (int i = 0; i < resp.length; i++) {
-          slotModelClass.add(TerritoryModelClass.fromJson(resp[i]));
-        }
-        onSuccess(slotModelClass);
+        // TerritoryModelClass slotModelClass;
+        // print("Response ${response.body}");
+        //   slotModelClass.fromJson(response.body);
+        onSuccess(TerritoryModelClass.fromJson(resp));
       } else if (response.statusCode == tokenExpireStatus) {
         tokenExpire();
       } else {
@@ -3712,6 +4046,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print(e);
       onFailure("Something went wrong");
     }
   }

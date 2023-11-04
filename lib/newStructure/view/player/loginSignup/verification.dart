@@ -67,7 +67,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       }
 
       codeAutoRetrievalTimeout(String verificationId) {
-        showMessage("Time${verificationId.toString()}");
+        // showMessage("Time${verificationId.toString()}");
       }
 
       print('on');
@@ -99,9 +99,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
       }
       final User? currentUser = userCredential.user;
       if (currentUser != null) {
-        print('SignUp Calling');
+        // print('SignUp Calling');
         signup();
-        print('SignUp Calling End');
+        // print('SignUp Calling End');
         setState(() {
           loading = true;
         });
@@ -165,12 +165,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
     phoneNo = "${widget.detail.countryCode}${widget.detail.phoneNumber}";
     print(phoneNo);
     super.initState();
-    signup();
+    // signup();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) async {
       internet = msg;
       if (msg == true) {
-        // _signInWithPhoneNumber();
-        // location();
+        _signInWithPhoneNumber();
+        location();
       } else {
         setState(() {
           loading = false;

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/viewMoreBookPitch.dart';
@@ -10,7 +9,7 @@ import '../../../../../main.dart';
 import '../../../../utils/utils.dart';
 
 class VanueList extends StatefulWidget {
-  var bookPitchData;
+  var academyDetail;
   bool tagForView;
   bool empty;
   bool? searchflag;
@@ -20,7 +19,7 @@ class VanueList extends StatefulWidget {
       {super.key,
       this.searchflag = false,
       required this.text,
-      required this.bookPitchData,
+      required this.academyDetail,
       this.tagForView = true,
       this.empty = false});
 
@@ -30,6 +29,11 @@ class VanueList extends StatefulWidget {
 
 class _VanueListState extends State<VanueList> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var mode = MyAppState.mode;
     double baseWidth = 375;
@@ -37,8 +41,8 @@ class _VanueListState extends State<VanueList> {
     double ffem = fem * 0.97;
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: widget.bookPitchData != null
-          ? widget.bookPitchData.length <= 2
+      height: widget.academyDetail != null
+          ? widget.academyDetail.length <= 2
               ? 720 * fem
               : null
           : null,
@@ -105,7 +109,7 @@ class _VanueListState extends State<VanueList> {
                   )
                 : const SizedBox.shrink(),
             ...List.generate(
-              widget.empty == false ? widget.bookPitchData.length : 1,
+              widget.empty == false ? widget.academyDetail.length : 1,
               (index) => widget.empty
                   ? Padding(
                       padding: EdgeInsets.only(bottom: 16 * fem),
@@ -151,9 +155,26 @@ class _VanueListState extends State<VanueList> {
                   : InkWell(
                       onTap: () {
                         dynamic detail = {
-                          "pitchId": widget.bookPitchData[index]["id"] ?? 0,
-                          "subPitchId":
-                              widget.bookPitchData[index]["pitchType"][0] ?? 0
+                          "academy_id":
+                              widget.academyDetail[index]["academy_id"] ?? 0,
+                          "Academy_NameEnglish": widget.academyDetail[index]
+                              ["Academy_NameEnglish"],
+                          "Academy_NameArabic": widget.academyDetail[index]
+                              ["Academy_NameArabic"],
+                          "descriptionEnglish": widget.academyDetail[index]
+                              ["descriptionEnglish"],
+                          "descriptionArabic": widget.academyDetail[index]
+                              ["descriptionArabic"],
+                          "facilitySlug": widget.academyDetail[index]
+                              ["facilitySlug"],
+                          "gameplaySlug": widget.academyDetail[index]
+                              ["gameplaySlug"],
+                          "academy_image": widget.academyDetail[index]
+                              ["academy_image"],
+                          'latitude': widget.academyDetail[index]['latitude'],
+                          'longitude': widget.academyDetail[index]['longitude'],
+                          'Academy_Location': widget.academyDetail[index]
+                              ['Academy_Location']
                         };
                         navigateToGroundDetail(detail);
                       },
@@ -189,12 +210,11 @@ class _VanueListState extends State<VanueList> {
                                   ),
                                   child: cachedNetworkImage(
                                     cuisineImageUrl: widget
-                                            .bookPitchData[index]
-                                                ["bookpitchfiles"]["files"]
+                                            .academyDetail[index]
+                                                ["academy_image"]
                                             .isNotEmpty
-                                        ? widget.bookPitchData[index]
-                                                ["bookpitchfiles"]["files"][0]
-                                            ["filePath"]
+                                        ? widget.academyDetail[index]
+                                            ["academy_image"][0]
                                         : Container(),
                                     height: 150,
                                     width: fem,
@@ -207,7 +227,8 @@ class _VanueListState extends State<VanueList> {
                                 padding: EdgeInsets.only(
                                     left: 4.0 * fem, bottom: 2 * fem),
                                 child: Text(
-                                  widget.bookPitchData[index]["name"],
+                                  widget.academyDetail[index]
+                                      ["Academy_NameEnglish"],
                                   style: SafeGoogleFont(
                                     'Inter',
                                     fontSize: 20 * ffem,
@@ -234,7 +255,7 @@ class _VanueListState extends State<VanueList> {
                                     ),
                                   ),
                                   Text(
-                                    "${widget.bookPitchData[index]['location'].toString().substring(1, 20)} ...",
+                                    "${widget.academyDetail[0]['Academy_Location'].toString().substring(0, 40)} ...",
                                     style: SafeGoogleFont(
                                       'Inter',
                                       fontSize: 13 * ffem,

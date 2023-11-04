@@ -31,10 +31,12 @@ class RestApis {
   static String SPORTS_LIST = "/api/v1/helpers/sportslistmobile/?language=";
   static String SPORTS_ECPERIENCE_LIST =
       "/api/v1/helpers/availablemodernsmobile/?language=";
+  static String verifiedAcademies = '/api/v1/user/get_verified_academies/';
   static String AVAILABLE_PITCH_TYPE =
       "/api/v1/dashboard/sport_secific_pitch/?sport_slug=";
-  static String WEEK_LIST = "/api/v1/helpers/available_weekdays/?language=";
-  static String CREATE_SESSION = "/api/v1/bookpitch/pitchowner/pitch/";
+  static String WEEK_LIST = "/api/v1/helpers/available_weekdays/";
+  // static String CREATE_SESSION = "/api/v1/bookpitch/pitchowner/pitch/";
+  static String CREATE_SESSION = "/api/v1/user/create_sessions/";
   static String SLOT_LIST = "/api/v1/bookpitch/pitchowner/pitch/";
 
   //events api
@@ -69,6 +71,7 @@ class RestApis {
       "/api/v1/tournament/pitchowner/?sort_by=start_date&language=";
   static String HELPERPROFILE = "/api/v1/helpers/fileupload/";
   static String MULTIIMAGE = "/api/v1/helpers/multiplefileuploads/";
+  static String image = "/api/v1/acadmies/multiupload/";
   static String VERIFIEDPITCH =
       "/api/v1/bookpitch/pitchowner/pitch/?pitch=verified";
   static String INREVIEW = "/api/v1/bookpitch/pitchowner/pitch/?pitch=inreview";
@@ -109,18 +112,23 @@ class RestApis {
 
 //privacyPolicy
   static String PRIVACYPOLICY = "/api/v1/helpers/privact-policy/?language=";
-  static String CREATE_VENUE = "/api/v1/user/create_venue/";
+  static String CREATE_ACADEMY = "/api/v1/user/create_academy/";
+  static String slotConfirm = '/api/v1/user/academy/';
   static String UPDATE_SLOT =
       "/api/v1/bookpitch/pitchowner/pitch/updateslotprice/";
-  static String AVAILABLE_DOC = "/api/v1/user/get_pitchowner_docs/";
+  static String AVAILABLE_DOC = "/api/v1/acadmies/documents/";
   static String MY_VENUES =
       "/api/v1/bookpitch/pitchowner/pitch/specific_pitchowner_list_pitches/";
+  static String allAcademies =
+      "https://ahmad223.pythonanywhere.com/api/v1/user/academy/";
   static String DELETE_PITCH =
       "/api/v1/bookpitch/pitchowner/pitch/delete_specific_pitchowner_pitche/";
   static String SPECIFIC_PITCH =
       "/api/v1/bookpitch/pitchowner/pitch/specific_pitchowner_details_pitches/";
+  static String specificAcademy = '/api/v1/user/academy/';
   static String EDIT_VENUE =
       "/api/v1/bookpitch/pitchowner/pitch/specific_pitchowner_details_pitches/";
+  static String edit_academy = '/api/v1/user/edit_academy/';
   static String VENUE_DETAIL =
       "/api/v1/bookpitch/pitchowner/pitch/player_available_pitches_list_details/";
   static String SLOT_DETAIL = "/api/v1/bookpitch/pitchowner/pitch/";

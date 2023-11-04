@@ -56,14 +56,15 @@ Future<void> main() async {
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
-  runZonedGuarded(() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]).then((value) => runApp(const SplaceVedio()));
-  }, (error, stackTrace) {
-    FirebaseCrashlytics.instance.recordError(error, stackTrace);
-  });
+  runApp(const SplaceVedio());
+  // runZonedGuarded(() {
+  //   SystemChrome.setPreferredOrientations([
+  //     DeviceOrientation.portraitUp,
+  //     DeviceOrientation.portraitDown,
+  //   ]).then((value) => );
+  // }, (error, stackTrace) {
+  //   FirebaseCrashlytics.instance.recordError(error, stackTrace);
+  // });
 }
 
 class SplaceVedio extends StatefulWidget {
@@ -135,7 +136,6 @@ class MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _language = widget.language;
     _specificLocalizationDelegate =

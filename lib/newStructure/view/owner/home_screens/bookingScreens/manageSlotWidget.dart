@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_academy-screen_main.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -21,16 +22,16 @@ class ManageSlotsWidget extends StatefulWidget {
 
 class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
   final NetworkCalls _networkCalls = NetworkCalls();
-  List<MyVenueModelClass> pitchDetail = [];
+  List<AcademyModel> academyDetail = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isLoading = true;
   late bool _internet;
-  loadVerifiedPitch() async {
-    await _networkCalls.myVenues(
+  loadAllAcademies() async {
+    await _networkCalls.allAcademies(
       onSuccess: (event) {
         setState(() {
           _isLoading = false;
-          pitchDetail = event;
+          academyDetail = event;
         });
       },
       onFailure: (msg) {
@@ -50,7 +51,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
       if (msg == true) {
-        loadVerifiedPitch();
+        loadAllAcademies();
       } else {
         setState(() {
           _isLoading = false;
@@ -78,7 +79,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
               ),
             )
           : _internet
-              ? pitchDetail.isEmpty
+              ? academyDetail.isEmpty
                   ? Column(
                       children: [
                         flaxibleGap(30),
@@ -116,20 +117,21 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                     )
                   : ListView.builder(
                       scrollDirection: Axis.vertical,
-                      itemCount: pitchDetail.length,
+                      itemCount: academyDetail.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: pitchDetail[index].isDecline!
-                              ? () {
-                                  Map detail = {
-                                    "id": pitchDetail[index].id,
-                                    "name": pitchDetail[index].venueName
-                                  };
-                                  navigateToEditVenues(detail);
-                                  // navigateToManageSlotsDetail(pitchDetail[index]);
-                                }
-                              : () => showMessage(
-                                  "Sorry, you can not edit verified and in-review Academy"),
+                          onTap:
+                              // academyDetail[index].isDecline! ?
+                              () {
+                            Map detail = {
+                              "id": academyDetail[index].academyId,
+                              "name": academyDetail[index].academyNameEnglish
+                            };
+                            navigateToEditVenues(detail);
+                            // navigateToManageSlotsDetail(pitchDetail[index]);
+                          },
+                          // : () => showMessage(
+                          //   "Sorry, you can not edit verified and in-review Academy"),
                           child: Padding(
                             padding: EdgeInsets.only(
                                 left: sizeWidth * .059,
@@ -166,15 +168,16 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                                 height: sizeHeight * .08,
                                                 width: sizeWidth * .15,
                                                 cuisineImageUrl:
-                                                    pitchDetail[index]
-                                                        .pitchImage))),
+                                                    academyDetail[index]
+                                                        .academyImage![0]))),
                                   ),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       flaxibleGap(1),
-                                      Text("${pitchDetail[index].venueName}",
+                                      Text(
+                                          "${academyDetail[index].academyNameEnglish}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -189,7 +192,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                       SizedBox(
                                         width: sizeWidth * .7,
                                         child: Text(
-                                            " ${pitchDetail[index].location}",
+                                            " ${academyDetail[index].academyLocation}",
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: Theme.of(context)
@@ -219,7 +222,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
                       _internet = msg;
                       if (msg == true) {
-                        loadVerifiedPitch();
+                        loadAllAcademies();
                       }
                     });
                   },
@@ -324,6 +327,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
   }
 
   void navigateToEditVenues(Map detail) {
+    print(detail);
     Navigator.push(context,
         MaterialPageRoute(builder: (_) => EditVenuesScreen(detail: detail)));
     // Navigator.pushNamed(context, RouteNames.editVenues, arguments: detail);

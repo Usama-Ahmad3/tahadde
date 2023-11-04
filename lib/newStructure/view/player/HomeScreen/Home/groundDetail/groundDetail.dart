@@ -45,9 +45,11 @@ class GroundDetailState extends State<GroundDetail>
   bool _auth = false;
   List<int> listMaxPlayer = [];
   int? selectedIndex;
+  List facilitySlugD = [];
   bool? favoriteState;
   final itemSize = 100.0;
   List<Marker> allMarkers = [];
+  List indexList = [];
   var id = 0;
   int date = 0;
 
@@ -59,11 +61,11 @@ class GroundDetailState extends State<GroundDetail>
     await _networkCalls.favorite(
       detail: detail,
       onSuccess: (msg) {
-        venueDetail();
+        // venueDetail();
         print('Detail$detail');
       },
       onFailure: (msg) {
-        venueDetail();
+        // venueDetail();
         showMessage(msg);
       },
       tokenExpire: () {
@@ -79,15 +81,14 @@ class GroundDetailState extends State<GroundDetail>
           allMarkers.add(Marker(
             markerId: const MarkerId('myMarker'),
             icon: BitmapDescriptor.defaultMarker,
-            infoWindow:
-                InfoWindow(title: privateVenueDetail.venueDetails?.location),
+            infoWindow: InfoWindow(title: widget.detail['Academy_Location']),
             onTap: () {
               debugPrint('marker');
             },
             visible: true,
             flat: true,
-            position: LatLng(
-                privateVenueDetail.latitude!, privateVenueDetail.longitude!),
+            position:
+                LatLng(widget.detail['latitude']!, widget.detail['longitude']!),
           ));
         }));
   }
@@ -95,7 +96,7 @@ class GroundDetailState extends State<GroundDetail>
   openMapsSheet(context) async {
     try {
       final coords =
-          Coords(privateVenueDetail.latitude!, privateVenueDetail.longitude!);
+          Coords(widget.detail['latitude']!, widget.detail['longitude']!);
       const title = 'Dubai';
       final availableMaps = await MapLauncher.installedMaps;
       showModalBottomSheet(
@@ -145,12 +146,17 @@ class GroundDetailState extends State<GroundDetail>
 
   @override
   void initState() {
+    print(widget.detail);
+    facilitySlugD =
+        widget.detail['facilitySlug']!.split(',').map((e) => e.trim()).toList();
     super.initState();
     checkAuth();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
-        venueDetail();
+        isStateLoading = false;
+        // venueDetail();
+        setStateFun();
       } else {
         setState(() {
           isStateLoading = false;
@@ -159,27 +165,30 @@ class GroundDetailState extends State<GroundDetail>
     });
   }
 
-  venueDetail() async {
-    await _networkCalls.venueDetail(
-        id: widget.detail["pitchId"].toString(),
-        subPitchId: widget.detail["subPitchId"]["id"].toString(),
-        onSuccess: (detail) {
-          setState(() {
-            privateVenueDetail = detail;
-            allMarkers.add(Marker(
-                position: LatLng(privateVenueDetail.latitude!,
-                    privateVenueDetail.longitude!),
-                markerId: const MarkerId("0")));
-            isStateLoading = false;
-          });
-        },
-        onFailure: (msg) {
-          showMessage(msg);
-        },
-        tokenExpire: () {
-          if (mounted) on401(context);
-        });
+  setStateFun() {
+    setState(() {});
   }
+  // venueDetail() async {
+  //   await _networkCalls.venueDetail(
+  //       id: widget.detail["pitchId"].toString(),
+  //       subPitchId: widget.detail["subPitchId"]["id"].toString(),
+  //       onSuccess: (detail) {
+  //         setState(() {
+  //           privateVenueDetail = detail;
+  //           allMarkers.add(Marker(
+  //               position: LatLng(privateVenueDetail.latitude!,
+  //                   privateVenueDetail.longitude!),
+  //               markerId: const MarkerId("0")));
+  //           isStateLoading = false;
+  //         });
+  //       },
+  //       onFailure: (msg) {
+  //         showMessage(msg);
+  //       },
+  //       tokenExpire: () {
+  //         if (mounted) on401(context);
+  //       });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -315,7 +324,9 @@ class GroundDetailState extends State<GroundDetail>
                           centerTitle: false,
                           titlePadding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 0),
-                          background: Carousel()),
+                          background: Carousel(
+                            image: widget.detail['academy_image'],
+                          )),
                     ),
                     SliverToBoxAdapter(
                       child: SingleChildScrollView(
@@ -340,11 +351,16 @@ class GroundDetailState extends State<GroundDetail>
                                         CrossAxisAlignment.start,
                                     children: [
                                       ///titleName
-                                      privateVenueDetail.images != null
+                                      widget.detail['academy_image'] != null
                                           ? GradientText(
-                                              privateVenueDetail
-                                                      .venueDetails!.name ??
-                                                  "",
+                                              AppLocalizations.of(context)!
+                                                          .locale ==
+                                                      'en'
+                                                  ? widget.detail[
+                                                      'Academy_NameEnglish']
+                                                  : widget.detail[
+                                                          'Academy_NameArabic'] ??
+                                                      "",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: height * 0.026,
@@ -388,9 +404,13 @@ class GroundDetailState extends State<GroundDetail>
                                         height: height * 0.02,
                                       ),
                                       ReadMoreText(
-                                        privateVenueDetail
-                                                .venueDetails?.description ??
-                                            "",
+                                        AppLocalizations.of(context)!.locale ==
+                                                'en'
+                                            ? widget
+                                                .detail['descriptionEnglish']
+                                            : widget.detail[
+                                                    'descriptionArabic'] ??
+                                                "",
                                         trimLength: 2,
                                         trimMode: TrimMode.Line,
                                         lessStyle: TextStyle(
@@ -530,7 +550,7 @@ class GroundDetailState extends State<GroundDetail>
                                       SizedBox(
                                         height: height * 0.015,
                                       ),
-                                      const Facilities(),
+                                      Facilities(facility: facilitySlugD),
                                       SizedBox(
                                         height: height * 0.02,
                                       ),
@@ -680,10 +700,10 @@ class GroundDetailState extends State<GroundDetail>
                                                     initialCameraPosition:
                                                         CameraPosition(
                                                             target: LatLng(
-                                                                privateVenueDetail
-                                                                    .latitude!,
-                                                                privateVenueDetail
-                                                                    .longitude!),
+                                                                widget.detail[
+                                                                    'latitude'],
+                                                                widget.detail[
+                                                                    'longitude']),
                                                             zoom: 14.0),
                                                     // markers: Set.identity(),
                                                     markers:
@@ -759,9 +779,8 @@ class GroundDetailState extends State<GroundDetail>
                                                               width:
                                                                   width * .75,
                                                               child: Text(
-                                                                privateVenueDetail
-                                                                        .venueDetails
-                                                                        ?.location ??
+                                                                widget.detail[
+                                                                        'Academy_Location'] ??
                                                                     "",
                                                                 overflow:
                                                                     TextOverflow

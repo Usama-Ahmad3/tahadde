@@ -60,7 +60,7 @@ class ShimmerWidgets {
                     height: 450 * size,
                     child: VanueList(
                         text: AppLocalizations.of(context)!.innovative,
-                        bookPitchData: const [])))
+                        academyDetail: const [])))
           ],
         ),
       ),

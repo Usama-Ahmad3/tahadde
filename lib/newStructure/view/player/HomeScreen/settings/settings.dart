@@ -70,7 +70,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             elevation: 2,
             backgroundColor: AppColors.grey200,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            title: Text(AppLocalizations.of(context)!.logout),
+            title: Text(isLogout
+                ? AppLocalizations.of(context)!.logout
+                : AppLocalizations.of(context)!.deleteAccount),
             content: Text(
               description,
               style: const TextStyle(color: AppColors.appThemeColor),
@@ -80,17 +82,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Container(
-                  height: 50,
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.appThemeColor,
-                  ),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.no,
-                      style: TextStyle(color: AppColors.white),
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.appThemeColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.no,
+                        style: TextStyle(color: AppColors.white),
+                      ),
                     ),
                   ),
                 ),
@@ -145,18 +149,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     }
                   });
                 },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.appThemeColor,
-                    border: Border.all(width: 1, color: AppColors.white),
-                  ),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.yes,
-                      style: TextStyle(color: AppColors.white),
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.appThemeColor,
+                      border: Border.all(width: 1, color: AppColors.white),
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.yes,
+                        style: TextStyle(color: AppColors.white),
+                      ),
                     ),
                   ),
                 ),

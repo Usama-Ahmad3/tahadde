@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 
@@ -38,9 +40,7 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                 name: detail[i]["sport_name"],
                 nameArabic: detail[i]["sport_arabic_name"],
                 slug: detail[i]["sport_slug"],
-                image: detail[i]["sport_image"] == null
-                    ? ""
-                    : detail[i]["sport_image"]["filePath"]));
+                image: detail[i]["sport_image"] ?? ""));
           }
           setState(() {
             _isLoading = false;
@@ -244,6 +244,7 @@ class SportsModel {
 
 class DocumentModel {
   int? documentImageId;
+  dynamic documentImage;
   String? documentName;
   String? licenceNumber;
   String? expiryDate;
@@ -256,6 +257,7 @@ class DocumentModel {
       this.address,
       this.documentName,
       this.expiryDate,
+      this.documentImage,
       this.lat,
       this.long,
       this.licenceNumber,
@@ -263,7 +265,7 @@ class DocumentModel {
 }
 
 class PitchDetailModel {
-  List<dynamic>? pitchImageId;
+  List? pitchImageId;
   String? pitchName;
   String? pitchNameAr;
   String? description;

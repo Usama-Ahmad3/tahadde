@@ -49,7 +49,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
               if (mounted) showMessage(msg);
             },
             tokenExpire: () {
-              if (mounted) on401(context);
+              if (mounted) {
+                print('getProfile');
+                on401(context);
+              }
             },
           )
         : {

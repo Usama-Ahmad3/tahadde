@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/createSession4.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/document_screen_both.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
@@ -30,30 +31,34 @@ class EditVenuesScreen extends StatefulWidget {
 }
 
 class _EditVenuesScreenState extends State<EditVenuesScreen> {
-  late bool _internet;
-  bool _isLoading = true;
+  bool _internet = true;
+  bool _isLoading = false;
   String date = "name";
 
   late SpecificModelClass specificPitchScreen;
-  late String venueType;
+  SpecificAcademy? specificAcademy;
+  String venueType = '';
   final NetworkCalls _networkCalls = NetworkCalls();
   List<File> image = <File>[];
+  List academyImages = [];
 
   loadSpecific() async {
-    await _networkCalls.specificVenue(
+    print('kks');
+    await _networkCalls.specificAcademy(
       id: widget.detail["id"].toString(),
-      onSuccess: (event) {
+      onSuccess: (event) async {
+        specificAcademy = event;
         if (mounted) {
           setState(() {
-            specificPitchScreen = event;
-            if (specificPitchScreen.isDeclined!) {
-              venueType = "declined";
-            } else if (specificPitchScreen.isVerified!) {
-              venueType = "verified";
-            } else {
-              venueType = "inreview";
-            }
             _isLoading = false;
+            academyImages = specificAcademy!.academyImage!;
+            // if (specificPitchScreen.isDeclined!) {
+            //   venueType = "declined";
+            // } else if (specificPitchScreen.isVerified!) {
+            //   venueType = "verified";
+            // } else {
+            //   venueType = "inreview";
+            // }
           });
         }
       },
@@ -68,15 +73,15 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
     );
   }
 
-  editVenue(Map detail) async {
-    await _networkCalls.editVenue(
+  editAcademy(Map detail) async {
+    print('reaches');
+    await _networkCalls.editAcademy(
       id: widget.detail["id"].toString(),
-      venueDetail: detail,
-      venueType: venueType,
+      academyDetail: detail,
       onSuccess: (event) {
         if (mounted) {
           setState(() {
-            specificPitchScreen = event;
+            showMessage('Success');
           });
         }
       },
@@ -252,8 +257,9 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                       SizedBox(
                           height: 100,
                           child: ListView.builder(
-                            itemCount:
-                                specificPitchScreen.images!.files!.length + 1,
+                            itemCount: specificAcademy != null
+                                ? specificAcademy!.academyImage!.length + 1
+                                : 1,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: ((context, index) {
                               return index == 0
@@ -316,47 +322,39 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                                 color: AppColors.white,
                                                 shape: BoxShape.circle),
                                             child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(40),
-                                              child: cachedNetworkImage(
+                                                borderRadius:
+                                                    BorderRadius.circular(40),
+                                                child: cachedNetworkImage(
                                                   imageFit: BoxFit.fill,
                                                   cuisineImageUrl:
-                                                      specificPitchScreen
-                                                          .images!
-                                                          .files![index - 1]!
-                                                          .filePath),
-                                            ),
+                                                      specificAcademy!
+                                                                  .academyImage![
+                                                              index - 1] ??
+                                                          '',
+                                                )
+                                                // specificAcademy!
+                                                //     .images![index - 1]),
+                                                ),
                                           ),
                                           // _decideImageview(index-1),
-                                          specificPitchScreen
-                                                      .images!.files!.length >
+                                          specificAcademy!
+                                                      .academyImage!.length >
                                                   1
                                               ? Positioned(
                                                   top: 0,
                                                   right: 2,
                                                   child: GestureDetector(
                                                     onTap: () {
-                                                      setState(() {
-                                                        specificPitchScreen
-                                                            .images!.files!
-                                                            .removeAt(
-                                                                index - 1);
-                                                        List<int> imageList =
-                                                            [];
-                                                        for (var element
-                                                            in specificPitchScreen
-                                                                .images!
-                                                                .files!) {
-                                                          imageList.add(
-                                                              element!.id!);
-                                                        }
-                                                        Map<String, dynamic>
-                                                            detail = {
-                                                          "pitchimageId":
-                                                              imageList,
-                                                        };
-                                                        editVenue(detail);
-                                                      });
+                                                      specificAcademy!
+                                                          .academyImage!
+                                                          .removeAt(index - 1);
+                                                      Map detail = {
+                                                        "academy_image":
+                                                            specificAcademy!
+                                                                .academyImage
+                                                      };
+                                                      editAcademy(detail);
+                                                      setState(() {});
                                                     },
                                                     child: CircleAvatar(
                                                       radius: height * 0.012,
@@ -367,7 +365,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                                                     ),
                                                   ),
                                                 )
-                                              : const SizedBox.shrink(),
+                                              : SizedBox.shrink(),
                                         ],
                                       ),
                                     );
@@ -386,27 +384,25 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
                           child: ListWidgetSettings(
                               callback: index == 0
                                   ? () {
-                                      navigateToDocuments(SportsModel(
-                                          isEdit: true,
-                                          id: widget.detail["id"],
-                                          venueType: venueType));
+                                      navigateToDocuments(
+                                          detail: SportsModel(
+                                              isEdit: true,
+                                              id: widget.detail["id"],
+                                              venueType: venueType),
+                                          specificAcademyId: specificAcademy
+                                              ?.academyId!
+                                              .toInt());
                                     }
                                   : index == 1
                                       ? () {
                                           navigateToPitchDetail(
-                                              specificPitchScreen);
+                                              specificAcademy!);
                                         }
                                       : index == 2
                                           ? () {
                                               Map detail = {
-                                                "id": specificPitchScreen.id
+                                                "id": widget.detail["id"]
                                                     .toString(),
-                                                "subPitchId":
-                                                    specificPitchScreen
-                                                        .venueDetails!
-                                                        .pitchType![0]!
-                                                        .id
-                                                        .toString(),
                                                 "back": true
                                               };
                                               navigateToSlotScreen(detail);
@@ -492,22 +488,29 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
 
   _openGallery(BuildContext context) async {
     var picture = await ImagePicker().pickMultiImage();
+    File? imageIndex;
     for (int i = 0; i < picture.length; i++) {
-      File imageIndex = File(picture[i].path);
+      imageIndex = File(picture[i].path);
       image.add(imageIndex);
     }
     var detail = {"profile_image": image, "type": "bookpitch"};
-    await _networkCalls.helperMultiImage(
-      pitchImage: detail,
+    await _networkCalls.helperMultiImageDocument(
+      pitchImage: imageIndex,
       onSuccess: (msg) {
-        List<dynamic> pitchImageId = msg;
-        for (var element in specificPitchScreen.images!.files!) {
-          pitchImageId.add(element!.id);
-        }
-        Map<String, dynamic> detail = {
-          "pitchimageId": pitchImageId,
+        academyImages.add(msg);
+        // List<dynamic> pitchImageId = msg;
+        // for (var element in specificPitchScreen.images!.files!) {
+        //   pitchImageId.add(element!.id);
+        // }
+        // Map<String, dynamic> detail = {
+        //   "pitchimageId": pitchImageId,
+        // };
+        Map academyDetail = {
+          "academydetail": {"academy_image": academyImages},
         };
-        editVenue(detail);
+        print(academyDetail);
+        editAcademy(academyDetail);
+        setState(() {});
       },
       onFailure: (msg) {
         showMessage(msg);
@@ -525,17 +528,23 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
     var picture = await ImagePicker().pickImage(source: ImageSource.camera);
     image.add(File(picture!.path));
     var detail = {"profile_image": image, "type": "bookpitch"};
-    await _networkCalls.helperMultiImage(
-      pitchImage: detail,
+    await _networkCalls.helperMultiImageDocument(
+      pitchImage: image,
       onSuccess: (msg) {
-        List<dynamic> pitchImageId = msg;
-        for (var element in specificPitchScreen.images!.files!) {
-          pitchImageId.add(element!.id);
-        }
-        Map<String, dynamic> detail = {
-          "pitchimageId": pitchImageId,
+        academyImages.add(msg);
+        // List<dynamic> pitchImageId = msg;
+        // for (var element in specificPitchScreen.images!.files!) {
+        //   pitchImageId.add(element!.id);
+        // }
+        // Map<String, dynamic> detail = {
+        //   "pitchimageId": pitchImageId,
+        // };
+        Map academyDetail = {
+          "academydetail": {"academy_image": academyImages},
         };
-        editVenue(detail);
+        print(academyDetail);
+        editAcademy(academyDetail);
+        setState(() {});
       },
       onFailure: (msg) {
         showMessage(msg);
@@ -562,19 +571,19 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
     Icons.assessment_outlined
   ];
 
-  void navigateToDocuments(SportsModel detail) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (_) => DocumentScreen(detail: detail)));
+  void navigateToDocuments(
+      {required SportsModel detail, int? specificAcademyId}) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => DocumentScreen(
+                  detail: detail,
+                  specificAcademyId: specificAcademyId,
+                )));
   }
 
-  void navigateToPitchDetail(var detail) {
-    Map pitchDetail = {
-      "id": widget.detail["id"],
-      "venueType": venueType,
-      "detail": detail
-    };
-    Navigator.pushNamed(context, RouteNames.editPitchDetail,
-        arguments: pitchDetail);
+  void navigateToPitchDetail(SpecificAcademy detail) {
+    Navigator.pushNamed(context, RouteNames.editPitchDetail, arguments: detail);
   }
 
   void navigateToSlotScreen(Map detail) {
@@ -582,7 +591,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
         context,
         MaterialPageRoute(
             builder: (_) => SlotChartScreen(
-                  pitchDetail: detail,
+                  academyDetail: detail,
                   backTag: true,
                 )));
     // Navigator.pushNamed(context, RouteNames.slotChart, arguments: detail);
@@ -590,15 +599,13 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
 
   void navigateToEditSession() {
     Map detail = {
-      "id": specificPitchScreen.id.toString(),
-      "subPitchId":
-          specificPitchScreen.venueDetails!.pitchType![0]!.id.toString(),
+      "id": widget.detail["id"].toString(),
     };
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => CreateSessionScreen(
-                  pitchData: detail,
+                  academyData: detail,
                   createdTag: true,
                 )));
     // Navigator.pushNamed(context, RouteNames.editSession, arguments: detail);

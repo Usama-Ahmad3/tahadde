@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/territory_model_class.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
@@ -12,7 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../common_widgets/internet_loss.dart';
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
-import '../../../../../modelClass/territory_model_class.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../../app_colors/app_colors.dart';
@@ -27,7 +27,7 @@ class HomeScreenView extends StatefulWidget {
 }
 
 class HomeScreenViewState extends State<HomeScreenView> {
-  List<TerritoryModelClass> territoryData = [];
+  TerritoryModelClass? territoryData;
   String? country;
   String? city;
   String? arabicCountry;
@@ -39,6 +39,8 @@ class HomeScreenViewState extends State<HomeScreenView> {
   List<String> history = [];
   List<String>? showHistory = [];
   int isSelected = -1;
+  var _academyModel;
+  var academyModel;
 
   // ignore: prefer_typing_uninitialized_variables
   var _bookPitchData;
@@ -50,25 +52,26 @@ class HomeScreenViewState extends State<HomeScreenView> {
   getSports() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     showHistory = prefs.getStringList('history');
+    print(prefs.getString('token'));
     _networkCalls.sportsList(onSuccess: (detail) {
+      _isLoading = false;
       _sportsList.clear();
       for (int i = 0; i < detail.length; i++) {
         _sportsList.add(SportsList(
             name: detail[i]["sport_name"],
             nameArabic: detail[i]["sport_arabic_name"],
             slug: detail[i]["sport_slug"],
-            bannerImage: detail[i]["banner_image"] == null
-                ? ""
-                : detail[i]["banner_image"]["filePath"],
-            image: detail[i]["sport_image"] == null
-                ? ""
-                : detail[i]["sport_image"]["filePath"]));
+            bannerImage: detail[i]["banner_image"] ?? "",
+            image: detail[i]["sport_image"] ?? ""));
       }
       setState(() {});
     }, onFailure: (detail) {
       setState(() {});
     }, tokenExpire: () {
-      if (mounted) on401(context);
+      if (mounted) {
+        print('GetSports');
+        on401(context);
+      }
     });
   }
 
@@ -86,12 +89,16 @@ class HomeScreenViewState extends State<HomeScreenView> {
       onFailure: (msg) {
         if (mounted) {
           setState(() {
+            print(msg);
             _isLoading = false;
           });
         }
       },
       tokenExpire: () {
-        if (mounted) on401(context);
+        if (mounted) {
+          print('loadTeritory');
+          on401(context);
+        }
       },
     );
   }
@@ -173,7 +180,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                   Wrap(
                     children: [
                       ...List.generate(
-                        _bookPitchData.length,
+                        _academyModel.length,
                         (index) => _sportsList.isEmpty
                             ? const SizedBox.shrink()
                             : _sportsList.length > index
@@ -225,10 +232,15 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   radius: 30,
                                                   backgroundColor:
                                                       Colors.transparent,
-                                                  child: Image.network(
-                                                      _sportsList[index]
-                                                          .image
-                                                          .toString())),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    child: Image.network(
+                                                        _sportsList[index]
+                                                            .image
+                                                            .toString()),
+                                                  )),
                                               backgroundColor:
                                                   Colors.transparent,
                                               elevation: 2,
@@ -243,7 +255,8 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               )),
                                         ),
                                       )
-                                    : _bookPitchData[index]['name']
+                                    : _academyModel[index]
+                                                ['Academy_NameEnglish']
                                             .toString()
                                             .toLowerCase()
                                             .contains(searchController.text
@@ -251,13 +264,39 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         ? InkWell(
                                             onTap: () {
                                               dynamic detail = {
-                                                "pitchId": _bookPitchData[index]
-                                                        ["id"] ??
-                                                    0,
-                                                "subPitchId":
-                                                    _bookPitchData[index]
-                                                            ["pitchType"][0] ??
-                                                        0
+                                                "academy_id":
+                                                    _academyModel[index]
+                                                            ["academy_id"] ??
+                                                        0,
+                                                "Academy_NameEnglish":
+                                                    _academyModel[index]
+                                                        ["Academy_NameEnglish"],
+                                                "Academy_NameArabic":
+                                                    _academyModel[index]
+                                                        ["Academy_NameArabic"],
+                                                "descriptionEnglish":
+                                                    _academyModel[index]
+                                                        ["descriptionEnglish"],
+                                                "descriptionArabic":
+                                                    _academyModel[index]
+                                                        ["descriptionArabic"],
+                                                "facilitySlug":
+                                                    _academyModel[index]
+                                                        ["facilitySlug"],
+                                                "gameplaySlug":
+                                                    _academyModel[index]
+                                                        ["gameplaySlug"],
+                                                "academy_image":
+                                                    _academyModel[index]
+                                                        ["academy_image"],
+                                                'latitude': _academyModel[index]
+                                                    ['latitude'],
+                                                'longitude':
+                                                    _academyModel[index]
+                                                        ['longitude'],
+                                                'Academy_Location':
+                                                    _academyModel[index]
+                                                        ['Academy_Location']
                                               };
                                               Navigator.push(
                                                   context,
@@ -276,18 +315,17 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       child: Image.network(
-                                                          _bookPitchData[index][
-                                                                      "bookpitchfiles"]
-                                                                  ["files"][0]
-                                                              ["filePath"])),
+                                                          _academyModel[index][
+                                                                  "academy_image"]
+                                                              [0])),
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   elevation: 2,
                                                   padding:
                                                       const EdgeInsets.all(10),
                                                   label: Text(
-                                                    _bookPitchData[index]
-                                                        ['name']!,
+                                                    _academyModel[index][
+                                                        'Academy_NameEnglish']!,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyMedium!
@@ -301,11 +339,33 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                 : InkWell(
                                     onTap: () {
                                       dynamic detail = {
-                                        "pitchId":
-                                            _bookPitchData[index]["id"] ?? 0,
-                                        "subPitchId": _bookPitchData[index]
-                                                ["pitchType"][0] ??
-                                            0
+                                        "academy_id": _academyModel[index]
+                                                ["academy_id"] ??
+                                            0,
+                                        "Academy_NameEnglish":
+                                            _academyModel[index]
+                                                ["Academy_NameEnglish"],
+                                        "Academy_NameArabic":
+                                            _academyModel[index]
+                                                ["Academy_NameArabic"],
+                                        "descriptionEnglish":
+                                            _academyModel[index]
+                                                ["descriptionEnglish"],
+                                        "descriptionArabic":
+                                            _academyModel[index]
+                                                ["descriptionArabic"],
+                                        "facilitySlug": _academyModel[index]
+                                            ["facilitySlug"],
+                                        "gameplaySlug": _academyModel[index]
+                                            ["gameplaySlug"],
+                                        "academy_image": _academyModel[index]
+                                            ["academy_image"],
+                                        'latitude': _academyModel[index]
+                                            ['latitude'],
+                                        'longitude': _academyModel[index]
+                                            ['longitude'],
+                                        'Academy_Location': _academyModel[index]
+                                            ['Academy_Location']
                                       };
                                       Navigator.push(
                                           context,
@@ -323,15 +383,14 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               child: Image.network(
-                                                  _bookPitchData[index]
-                                                              ["bookpitchfiles"]
-                                                          ["files"][0]
-                                                      ["filePath"])),
+                                                  _academyModel[index]
+                                                      ["academy_image"][0])),
                                           backgroundColor: Colors.transparent,
                                           elevation: 2,
                                           padding: const EdgeInsets.all(10),
                                           label: Text(
-                                            _bookPitchData[index]['name']!,
+                                            _academyModel[index]
+                                                ['Academy_NameEnglish']!,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!
@@ -366,14 +425,44 @@ class HomeScreenViewState extends State<HomeScreenView> {
     setState(() {});
   }
 
-  loadVenues() async {
-    await _networkCalls.bookpitch(
-      urldetail: '',
-      onSuccess: (pitchInfo) {
+  // loadVenues() async {
+  //   await _networkCalls.bookpitch(
+  //     urldetail: '',
+  //     onSuccess: (pitchInfo) {
+  //       if (mounted) {
+  //         setState(() {
+  //           _isLoading = false;
+  //           _bookPitchData = pitchInfo;
+  //         });
+  //       }
+  //     },
+  //     onFailure: (msg) {
+  //       if (mounted) {
+  //         setState(() {
+  //           _isLoading = false;
+  //         });
+  //       }
+  //     },
+  //     tokenExpire: () {
+  //       if (mounted) {
+  //         print('loadVenues');
+  //         on401(context);
+  //       }
+  //     },
+  //   );
+  // }
+  loadAcademies() async {
+    await _networkCalls.loadVerifiedAcademies(
+      sport: '',
+      onSuccess: (academies) {
         if (mounted) {
           setState(() {
             _isLoading = false;
-            _bookPitchData = pitchInfo;
+            print('hi');
+            _academyModel = academies;
+            print('ok');
+            print(_academyModel);
+            print('kok');
           });
         }
       },
@@ -385,19 +474,22 @@ class HomeScreenViewState extends State<HomeScreenView> {
         }
       },
       tokenExpire: () {
-        if (mounted) on401(context);
+        if (mounted) {
+          print('loadVenues');
+          on401(context);
+        }
       },
     );
   }
 
-  loadVenuesSpecific() async {
-    await _networkCalls.bookpitch(
-      urldetail: sportName,
+  loadAcademiesSpecific() async {
+    await _networkCalls.loadVerifiedAcademies(
+      sport: sportName,
       onSuccess: (pitchInfo) {
         if (mounted) {
           setState(() {
             _isLoading = false;
-            bookSpecific = pitchInfo;
+            academyModel = pitchInfo;
           });
         }
       },
@@ -409,7 +501,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
         }
       },
       tokenExpire: () {
-        if (mounted) on401(context);
+        if (mounted) {
+          print('load Specific');
+          on401(context);
+        }
       },
     );
   }
@@ -423,7 +518,8 @@ class HomeScreenViewState extends State<HomeScreenView> {
         getAddress();
         loadTerritories();
         getSports();
-        loadVenues();
+        loadAcademies();
+        // loadVenues();
       } else {
         if (mounted) {
           setState(() {
@@ -459,9 +555,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                   _isLoading = true;
                 });
               }
-              loadVenues();
+              // loadVenues();
               getAddress();
               getSports();
+              loadAcademies();
             } else {
               setState(() {});
             }
@@ -524,7 +621,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         searchController.clear();
                                         setState(() {});
                                       },
-                                      child: Icon(FontAwesomeIcons.close),
+                                      child: const Icon(FontAwesomeIcons.close),
                                     ),
                                     suffixIconColor: AppColors.white,
                                     searchTag: true,
@@ -607,7 +704,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                                         sportName = _sportsList[index]
                                                                             .slug
                                                                             .toString();
-                                                                        loadVenuesSpecific();
+
+                                                                        ///commited
+                                                                        // loadVenuesSpecific();
+                                                                        loadAcademiesSpecific();
                                                                       }
                                                                       Navigator.pop(
                                                                           context);
@@ -620,7 +720,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                                           horizontal:
                                                                               MediaQuery.of(context).size.width * 0.02),
                                                                       child: Chip(
-                                                                          avatar: CircleAvatar(radius: 30, backgroundColor: isSelected == index ? AppColors.white : AppColors.grey, child: Image.network(_sportsList[index].image.toString())),
+                                                                          avatar: CircleAvatar(radius: 30, backgroundColor: isSelected == index ? AppColors.white : AppColors.grey, child: ClipRRect(borderRadius: BorderRadius.circular(20), child: Image.network(_sportsList[index].image.toString()))),
                                                                           backgroundColor: isSelected == index ? AppColors.appThemeColor : AppColors.black,
                                                                           elevation: 2,
                                                                           padding: const EdgeInsets.all(10),
@@ -667,7 +767,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                     SizedBox(
                       width: 100 * fem,
                       height: 40 * fem,
-                      child: territoryData.isNotEmpty
+                      child: territoryData?.countries! != null
                           ? CupertinoPicker(
                               itemExtent: 20,
                               backgroundColor: AppColors.black,
@@ -678,78 +778,62 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                 showMessage('Tap To Select');
                               },
                               children: List.generate(
-                                  territoryData[0].cities!.length, (index) {
-                                return territoryData[0]
-                                        .cities![index]!
-                                        .isDisable as bool
+                                  territoryData!.countries![0].cities!.length,
+                                  (index) {
+                                return territoryData!.countries![0]
+                                        .cities![index].isDisabled as bool
                                     ? const SizedBox.shrink()
                                     : InkWell(
                                         onTap: () async {
                                           await _networkCalls.saveKeys(
                                               "country",
-                                              territoryData[0]
-                                                  .country!
-                                                  .name
+                                              territoryData!.countries![0]
+                                                  .cities![index].name
                                                   .toString());
                                           await _networkCalls.saveKeys(
                                               "arabicCountry",
-                                              territoryData[0]
-                                                  .country!
-                                                  .nameArabic
+                                              territoryData!.countries![0]
+                                                  .cities![index].arabicName
                                                   .toString());
                                           await _networkCalls.saveKeys(
                                               "city",
-                                              territoryData[0]
-                                                  .cities![index]!
-                                                  .city!
-                                                  .name
+                                              territoryData!.countries![0]
+                                                  .cities![index].name
                                                   .toString());
                                           await _networkCalls.saveKeys(
                                               "arabicCity",
-                                              territoryData[0]
-                                                  .cities![index]!
-                                                  .city!
-                                                  .nameArabic
+                                              territoryData!.countries![0]
+                                                  .cities![index].arabicName
                                                   .toString());
                                           await _networkCalls.saveKeys(
                                               "cityId",
-                                              territoryData[0]
-                                                  .cities![index]!
-                                                  .city!
-                                                  .id
+                                              territoryData!.countries![0]
+                                                  .cities![index].id
                                                   .toString());
                                           await _networkCalls.saveKeys(
                                               "lat",
-                                              territoryData[0]
-                                                  .cities![index]!
-                                                  .city!
-                                                  .latitude
+                                              territoryData!.countries![0]
+                                                  .cities![index].latitude
                                                   .toString());
                                           await _networkCalls.saveKeys(
                                               "long",
-                                              territoryData[0]
-                                                  .cities![index]!
-                                                  .city!
-                                                  .longitude
+                                              territoryData!.countries![0]
+                                                  .cities![index].longitude
                                                   .toString());
                                           await getAddress();
                                           showMessage(
-                                              '${territoryData[0].cities![index]!.city!.name.toString()} Selected');
+                                              '${territoryData!.countries![0].cities![index].name.toString()} Selected');
                                         },
                                         child: Center(
                                           child: Text(
                                             AppLocalizations.of(context)!
                                                         .locale ==
                                                     "en"
-                                                ? territoryData[0]
-                                                    .cities![index]!
-                                                    .city!
-                                                    .name
+                                                ? territoryData!.countries![0]
+                                                    .cities![index].name
                                                     .toString()
-                                                : territoryData[0]
-                                                    .cities![index]!
-                                                    .city!
-                                                    .nameArabic
+                                                : territoryData!.countries![0]
+                                                    .cities![index].name
                                                     .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
@@ -861,7 +945,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                                         index]
                                                                     .slug
                                                                     .toString();
-                                                            loadVenuesSpecific();
+
+                                                            ///commited
+                                                            loadAcademiesSpecific();
+                                                            // loadVenuesSpecific();
                                                           }
                                                           setState(() {});
                                                         },
@@ -874,18 +961,24 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                                           .width *
                                                                       0.02),
                                                           child: Chip(
-                                                              avatar: CircleAvatar(
-                                                                  radius: 30,
-                                                                  backgroundColor: isSelected == index
-                                                                      ? AppColors
-                                                                          .white
-                                                                      : AppColors
-                                                                          .grey,
-                                                                  child: Image.network(
-                                                                      _sportsList[
-                                                                              index]
-                                                                          .image
-                                                                          .toString())),
+                                                              avatar:
+                                                                  CircleAvatar(
+                                                                      radius:
+                                                                          30,
+                                                                      backgroundColor: isSelected ==
+                                                                              index
+                                                                          ? AppColors
+                                                                              .white
+                                                                          : AppColors
+                                                                              .grey,
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20),
+                                                                        child: Image.network(_sportsList[index]
+                                                                            .image
+                                                                            .toString()),
+                                                                      )),
                                                               backgroundColor:
                                                                   isSelected ==
                                                                           index
@@ -999,31 +1092,31 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           isSelected != -1
-                                              ? bookSpecific != null &&
-                                                      bookSpecific.isNotEmpty
+                                              ? academyModel != null &&
+                                                      academyModel.isNotEmpty
                                                   ? VanueList(
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
-                                                      bookPitchData:
-                                                          bookSpecific,
+                                                      academyDetail:
+                                                          academyModel,
                                                       searchflag: searchFlag)
                                                   : VanueList(
                                                       text:
                                                           AppLocalizations
                                                                   .of(context)!
                                                               .academy,
-                                                      bookPitchData:
-                                                          bookSpecific,
+                                                      academyDetail:
+                                                          academyModel,
                                                       empty: true,
                                                       searchflag: searchFlag)
-                                              : _bookPitchData != null
+                                              : _academyModel != null
                                                   ? VanueList(
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
-                                                      bookPitchData:
-                                                          _bookPitchData,
+                                                      academyDetail:
+                                                          _academyModel,
                                                       searchflag: searchFlag)
                                                   : const SizedBox.shrink()
                                         ],
@@ -1034,38 +1127,32 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          ///category
-                                          // _sportsList.isEmpty
-                                          //     ? const SizedBox.shrink()
-                                          //     : SportList(
-                                          //         isSelected: isSelected,
-                                          //         sportsList: _sportsList,
-                                          //       ),
                                           isSelected != -1
-                                              ? bookSpecific != null &&
-                                                      bookSpecific.isNotEmpty
+                                              ? academyModel != null &&
+                                                      academyModel.isNotEmpty
                                                   ? VanueList(
                                                       text: AppLocalizations.of(
                                                               context)!
-                                                          .innovative,
-                                                      bookPitchData:
-                                                          bookSpecific,
+                                                          .academy,
+                                                      academyDetail:
+                                                          academyModel,
                                                       searchflag: searchFlag)
                                                   : VanueList(
-                                                      text: AppLocalizations.of(
-                                                              context)!
-                                                          .innovative,
-                                                      bookPitchData:
-                                                          bookSpecific,
+                                                      text:
+                                                          AppLocalizations
+                                                                  .of(context)!
+                                                              .academy,
+                                                      academyDetail:
+                                                          academyModel,
                                                       empty: true,
                                                       searchflag: searchFlag)
-                                              : _bookPitchData != null
+                                              : _academyModel != null
                                                   ? VanueList(
                                                       text: AppLocalizations.of(
                                                               context)!
-                                                          .innovative,
-                                                      bookPitchData:
-                                                          _bookPitchData,
+                                                          .academy,
+                                                      academyDetail:
+                                                          _academyModel,
                                                       searchflag: searchFlag)
                                                   : const SizedBox.shrink()
                                         ],
@@ -1093,7 +1180,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                           _isLoading = true;
                                         });
                                       }
-                                      loadVenues();
+                                      // loadVenues();
                                       getAddress();
                                       getSports();
                                     } else {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
@@ -8,7 +9,7 @@ import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/widgets/app_bar.dart';
 
 class ViewMoreVenueScreen extends StatelessWidget {
-  final List<MyVenueModelClass> venues;
+  final List<AcademyModel> venues;
   const ViewMoreVenueScreen({Key? key, required this.venues}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class ViewMoreVenueScreen extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: venues.length,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) => Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: sizeHeight * 0.01,
@@ -89,25 +90,27 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                                     .copyWith(
                                                         color: AppColors.black),
                                               ),
-                                              Text(
-                                                venues[index].isVerified!
-                                                    ? AppLocalizations.of(
-                                                            context)!
-                                                        .verified
-                                                    : venues[index].isDecline!
-                                                        ? AppLocalizations.of(
-                                                                context)!
-                                                            .rejected
-                                                        : AppLocalizations.of(
-                                                                context)!
-                                                            .inReview,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                        color: AppColors
-                                                            .redAccent),
-                                              ),
+
+                                              ///status
+                                              // Text(
+                                              //   venues[index].isVerified!
+                                              //       ? AppLocalizations.of(
+                                              //               context)!
+                                              //           .verified
+                                              //       : venues[index].isDecline!
+                                              //           ? AppLocalizations.of(
+                                              //                   context)!
+                                              //               .rejected
+                                              //           : AppLocalizations.of(
+                                              //                   context)!
+                                              //               .inReview,
+                                              //   style: Theme.of(context)
+                                              //       .textTheme
+                                              //       .bodyMedium!
+                                              //       .copyWith(
+                                              //           color: AppColors
+                                              //               .redAccent),
+                                              // ),
                                             ],
                                           ),
                                         ),
@@ -121,7 +124,8 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                                 .size
                                                 .width,
                                             cuisineImageUrl: venues[index]
-                                                    .pitchImage
+                                                    .documents![0]
+                                                    .file
                                                     .toString() ??
                                                 "",
                                           ),
@@ -147,7 +151,7 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                             ),
                                             Text(
                                               venues[index]
-                                                  .venueName
+                                                  .academyNameEnglish
                                                   .toString(),
                                               style: Theme.of(context)
                                                   .textTheme
@@ -162,7 +166,7 @@ class ViewMoreVenueScreen extends StatelessWidget {
                                               bottom: sizeHeight * 0.008,
                                               left: sizeWidth * 0.007),
                                           child: Text(
-                                            venues[index].location!,
+                                            venues[index].academyLocation!,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!

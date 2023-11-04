@@ -236,52 +236,6 @@ class BookingShimmer {
                                   ),
                             SizedBox(
                               width: width * .35,
-                              child: CustomDropdown(
-                                leadingIcon: false,
-                                icon: Image.asset(
-                                  "assets/images/drop_down.png",
-                                  height: 6,
-                                  color: appThemeColor,
-                                ),
-                                onChange: (int value, int index) {},
-                                dropdownButtonStyle: DropdownButtonStyle(
-                                  width: width * 0.03,
-                                  height: height * 0.05,
-                                  elevation: 1,
-                                  backgroundColor: Colors.white,
-                                ),
-                                dropdownStyle: DropdownStyle(
-                                  borderRadius: BorderRadius.circular(4),
-                                  elevation: 6,
-                                  padding: const EdgeInsets.all(5),
-                                ),
-                                items: GroundDetailState
-                                    .privateVenueDetail.venueDetails!.pitchType!
-                                    .asMap()
-                                    .entries
-                                    .map(
-                                      (item) => DropdownItem(
-                                        value: item.key + 1,
-                                        child: SizedBox(
-                                          height: height * 0.03,
-                                          child:
-                                              Text(item.value!.area.toString(),
-                                                  textAlign: TextAlign.center,
-                                                  style: const TextStyle(
-                                                    color: appThemeColor,
-                                                  )),
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
-                                child: Text(
-                                  GroundDetailState.privateVenueDetail
-                                      .venueDetails!.pitchType![0]!.area
-                                      .toString(),
-                                  style: const TextStyle(
-                                      fontSize: 12, color: appThemeColor),
-                                ),
-                              ),
                             ),
                           ],
                         ),

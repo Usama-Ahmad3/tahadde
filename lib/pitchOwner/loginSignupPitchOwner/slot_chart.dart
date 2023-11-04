@@ -104,8 +104,8 @@ class _SlotChartState extends State<SlotChart> {
   loadSlotList() {
     _networkCalls.slotList(
         id: widget.pitchDetail["id"],
-        subPitchId: widget.pitchDetail["subPitchId"],
-        weekDay: _weakList[_weakIndex].slug,
+        // subPitchId: widget.pitchDetail["subPitchId"],
+        // weekDay: _weakList[_weakIndex].slug,
         onSuccess: (detail) {
           slotList.clear();
           detail.forEach((slot) {

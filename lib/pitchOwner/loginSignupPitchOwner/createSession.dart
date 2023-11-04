@@ -68,7 +68,6 @@ class _CreateSessionState extends State<CreateSession> {
   ];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _networkCalls.weekList(
         onSuccess: (detail) {

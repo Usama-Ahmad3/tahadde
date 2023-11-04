@@ -2236,8 +2236,8 @@ class AppLocalizations {
     return Intl.message('selectLocation', name: 'selectLocation');
   }
 
-  String get noVenuesAvailable {
-    return Intl.message('noVenuesAvailable', name: 'noVenuesAvailable');
+  String get noAcademiesAvailable {
+    return Intl.message('no academies available', name: 'noAcademiesAvailable');
   }
 
   String get cancellationsMadeWithin {

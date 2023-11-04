@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/venue_detail.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/academy_detail.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/view_all.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/enterYourDetailPitch.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
@@ -453,10 +453,9 @@ class RouterPage {
       case RouteNames.sportExperience:
         return MaterialPageRoute(builder: (_) => const SportExperience());
       case RouteNames.editPitchDetail:
-        var detail = settings.arguments;
         return MaterialPageRoute(
             builder: (_) => EditPitchDetailScreen(
-                  detail: detail,
+                  detail: settings.arguments,
                 ));
       case RouteNames.venueDetailScreen:
         var detail = settings.arguments;
@@ -470,11 +469,11 @@ class RouterPage {
             builder: (_) => SpecificSportsScreen(
                   detail: detail as Map,
                 ));
-      case RouteNames.viewMoreVenue:
-        var detail = settings.arguments;
-        return MaterialPageRoute(
-            builder: (_) =>
-                ViewMoreVenueScreen(venues: detail as List<MyVenueModelClass>));
+      // case RouteNames.viewMoreVenue:
+      //   var detail = settings.arguments;
+      //   return MaterialPageRoute(
+      //       builder: (_) =>
+      //           ViewMoreVenueScreen(venues: detail as List<MyVenueModelClass>));
       case RouteNames.specificPromotionScreen:
         var detail = settings.arguments;
         return MaterialPageRoute(
@@ -484,8 +483,8 @@ class RouterPage {
         return MaterialPageRoute(
             builder: (_) =>
                 AssociationPromotion(detail: detail as PromotionModelClass));
-      case RouteNames.selectLocation:
-        return MaterialPageRoute(builder: (_) => const SelectYourLocation());
+      // case RouteNames.selectLocation:
+      //   return MaterialPageRoute(builder: (_) => const SelectYourLocation());
       case RouteNames.permissionPriming:
         return MaterialPageRoute(
             builder: (_) => const PermissionPrimingScreen());

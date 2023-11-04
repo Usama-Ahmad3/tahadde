@@ -77,8 +77,7 @@ class _SpecificSportsScreenState extends State<SpecificSportsScreen> {
                     child: Column(
                       children: [
                         cachedNetworkImage(
-                            cuisineImageUrl:
-                                widget.detail!["bannerImage"],
+                            cuisineImageUrl: widget.detail!["bannerImage"],
                             height: 150,
                             width: size.width,
                             imageFit: BoxFit.fill,
@@ -144,8 +143,8 @@ class _SpecificSportsScreenState extends State<SpecificSportsScreen> {
                     )
                   : Expanded(
                       child: Center(
-                      child:
-                          Text(AppLocalizations.of(context)!.noVenuesAvailable),
+                      child: Text(
+                          AppLocalizations.of(context)!.noAcademiesAvailable),
                     )),
         ],
       ),

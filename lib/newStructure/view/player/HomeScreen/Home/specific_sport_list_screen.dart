@@ -22,7 +22,7 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
   NetworkCalls _networkCalls = NetworkCalls();
 
   bool _isLoading = true;
-  var _bookPitchData;
+  var academyModel;
 
   loadVenues() async {
     await _networkCalls.bookpitch(
@@ -31,7 +31,7 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
         if (mounted) {
           setState(() {
             _isLoading = false;
-            _bookPitchData = pitchInfo;
+            // _bookPitchData = pitchInfo;
           });
         }
       },
@@ -48,10 +48,38 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
     );
   }
 
+  loadAcademiesSpecific() async {
+    await _networkCalls.loadVerifiedAcademies(
+      sport: widget.detail!['slug'],
+      onSuccess: (pitchInfo) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+            academyModel = pitchInfo;
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) {
+          print('load Specific');
+          on401(context);
+        }
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    loadVenues();
+    // loadVenues();
+    loadAcademiesSpecific();
   }
 
   @override
@@ -79,8 +107,7 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                     child: Column(
                       children: [
                         cachedNetworkImage(
-                            cuisineImageUrl:
-                                widget.detail!["bannerImage"],
+                            cuisineImageUrl: widget.detail!["bannerImage"],
                             height: 150,
                             width: size.width,
                             imageFit: BoxFit.fill,
@@ -130,10 +157,10 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                     color: AppColors.themeColor,
                   ),
                 ))
-              : _bookPitchData.isNotEmpty
+              : academyModel.isNotEmpty
                   ? Expanded(
                       child: ListView.separated(
-                          itemCount: _bookPitchData.length,
+                          itemCount: academyModel.length,
                           shrinkWrap: true,
                           physics: const ScrollPhysics(),
                           padding: const EdgeInsets.only(top: 20),
@@ -146,8 +173,8 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                     )
                   : Expanded(
                       child: Center(
-                      child:
-                          Text(AppLocalizations.of(context)!.noVenuesAvailable),
+                      child: Text(
+                          AppLocalizations.of(context)!.noAcademiesAvailable),
                     )),
         ],
       ),
@@ -157,11 +184,20 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
   Widget venuesWidget(double sizeWidth, int index) {
     return GestureDetector(
       onTap: () {
-        Map<String, dynamic> detail = {
-          "pitchId": _bookPitchData[index]["id"],
-          "subPitchId": _bookPitchData[index]["pitchType"][0]
+        dynamic detail = {
+          "academy_id": academyModel[index]["academy_id"] ?? 0,
+          "Academy_NameEnglish": academyModel[index]["Academy_NameEnglish"],
+          "Academy_NameArabic": academyModel[index]["Academy_NameArabic"],
+          "descriptionEnglish": academyModel[index]["descriptionEnglish"],
+          "descriptionArabic": academyModel[index]["descriptionArabic"],
+          "facilitySlug": academyModel[index]["facilitySlug"],
+          "gameplaySlug": academyModel[index]["gameplaySlug"],
+          "academy_image": academyModel[index]["academy_image"],
+          'latitude': academyModel[index]['latitude'],
+          'longitude': academyModel[index]['longitude'],
+          'Academy_Location': academyModel[index]['Academy_Location']
         };
-        navigateToBookPitchDetail(detail);
+        navigateToGroundDetail(detail);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -182,12 +218,10 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                       topRight: Radius.circular(20),
                     ),
                     child: cachedNetworkImage(
-                        cuisineImageUrl: _bookPitchData[index]["bookpitchfiles"]
-                                    ["files"]
-                                .isNotEmpty
-                            ? _bookPitchData[index]["bookpitchfiles"]["files"]
-                                [0]["filePath"]
-                            : null,
+                        cuisineImageUrl:
+                            academyModel[index]["academy_image"].isNotEmpty
+                                ? academyModel[index]["academy_image"][0]
+                                : null,
                         height: 150,
                         width: sizeWidth,
                         imageFit: BoxFit.fitWidth,
@@ -204,7 +238,7 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              _bookPitchData[index]["name"],
+                              academyModel[index]["Academy_NameEnglish"],
                               style: const TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 14,
@@ -231,14 +265,10 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                                 color: appThemeColor,
                                 borderRadius: BorderRadius.circular(50.0)),
                             child: cachedNetworkImage(
-                              cuisineImageUrl: _bookPitchData[index]
-                                          ["sports_types"] !=
-                                      null
-                                  ? _bookPitchData[index]["sport_image"] != null
-                                      ? _bookPitchData[index]["sports_types"]
-                                          ["sport_image"]["filePath"]
-                                      : null
-                                  : null,
+                              cuisineImageUrl:
+                                  academyModel[index]["sport_slug"] != null
+                                      ? academyModel[index]["sport_slug"]
+                                      : null,
                               height: 40,
                               width: 40,
                               color: Colors.white,
@@ -257,7 +287,7 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
     );
   }
 
-  void navigateToBookPitchDetail(Map detail) {
+  void navigateToGroundDetail(Map detail) {
     Navigator.push(context,
         MaterialPageRoute(builder: (_) => GroundDetail(detail: detail)));
   }

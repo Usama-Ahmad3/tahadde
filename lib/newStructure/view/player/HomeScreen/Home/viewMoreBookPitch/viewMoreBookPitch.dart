@@ -30,46 +30,35 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
   var bookPitchData;
   bool _isLoading = true;
   bool _internet = true;
+  var _academyModel;
 
-  loadBookPitch() async {
-    await _networkCalls.bookpitch(
-      onSuccess: (pitchInfo) {
+  loadAcademies() async {
+    await _networkCalls.loadVerifiedAcademies(
+      sport: '',
+      onSuccess: (academies) {
         if (mounted) {
           setState(() {
-            bookPitchData = pitchInfo;
             _isLoading = false;
+            print('hi');
+            _academyModel = academies;
+            print('ok');
+            print(_academyModel);
+            print('kok');
           });
         }
       },
       onFailure: (msg) {
-        if (mounted) showMessage(msg);
-      },
-      tokenExpire: () {
-        if (mounted) on401(context);
-      },
-      urldetail: '',
-    );
-  }
-
-  loadBookPitchFilter() async {
-    await _networkCalls.bookpitchFilter(
-      detail: widget.pitchType,
-      onSuccess: (pitchInfo) {
         if (mounted) {
           setState(() {
-            bookPitchData = pitchInfo;
             _isLoading = false;
           });
         }
       },
-      onFailure: (msg) {
-        if (mounted) showMessage(msg);
-        Timer(const Duration(seconds: 2), () {
-          Navigator.of(context).pop();
-        });
-      },
       tokenExpire: () {
-        if (mounted) on401(context);
+        if (mounted) {
+          print('loadVenues');
+          on401(context);
+        }
       },
     );
   }
@@ -81,7 +70,7 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
       _internet = msg;
       if (msg == true) {
         if (mounted) {
-          widget.pitchType["bool"] ? loadBookPitchFilter() : loadBookPitch();
+          loadAcademies();
         }
       } else {
         if (mounted) {
@@ -104,17 +93,24 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                 backgroundColor: AppColors.black,
                 appBar: appBarWidget(sizeWidth, sizeHeight, context,
                     AppLocalizations.of(context)!.academy, true),
-                body: VanueList(
-                  text: AppLocalizations.of(context)!.academy,
-                  bookPitchData: bookPitchData,
-                  tagForView: false,
-                ))
+                body: _academyModel != null
+                    ? VanueList(
+                        text: AppLocalizations.of(context)!.academy,
+                        academyDetail: _academyModel,
+                        tagForView: false,
+                      )
+                    : VanueList(
+                        text: AppLocalizations.of(context)!.academy,
+                        academyDetail: _academyModel,
+                        tagForView: false,
+                        empty: true,
+                      ))
             : InternetLoss(
                 onChange: () {
                   _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
                     _internet = msg;
                     if (msg == true) {
-                      loadBookPitch();
+                      loadAcademies();
                     }
                   });
                 },

@@ -114,13 +114,14 @@ class _BookingScreenViewState extends State<BookingScreenView> {
 
   @override
   void initState() {
+    isStateLoading = false;
     super.initState();
     dataTime = apiFormatter.format(DateTime.now());
     checkAuth();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
-        slotDetail();
+        // slotDetail();
       } else {
         setState(() {
           isStateLoading = false;
@@ -195,7 +196,6 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                           _slotTime.clear();
                                           playerController.clear();
                                           _slotPrice.pricePerPlayer.clear();
-                                          _slotPrice.pricePerVenue.clear();
                                           slotInformation = {};
                                           date = index;
                                           dataTime = apiFormatter.format(

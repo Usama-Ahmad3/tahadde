@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/academy_created6.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/emailContactsFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../constant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
@@ -16,9 +17,9 @@ import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/textFormField.dart';
 
 class SlotChartScreen extends StatefulWidget {
-  final Map pitchDetail;
+  final Map academyDetail;
   bool backTag;
-  SlotChartScreen({Key? key, required this.pitchDetail, this.backTag = false})
+  SlotChartScreen({Key? key, required this.academyDetail, this.backTag = false})
       : super(key: key);
 
   @override
@@ -38,6 +39,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isLoading = true;
   List<SessionResponse> slotList = [];
+  SpecificAcademy? slotVar;
   final List<WeekDays> _weakList = [];
   late OverlayEntry? overlayEntry;
 
@@ -45,6 +47,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
   void initState() {
     super.initState();
     loadSlot();
+    loadSlotList();
   }
 
   loadSlot() {
@@ -54,7 +57,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
             _weakList
                 .add(WeekDays(name: element["name"], slug: element["slug"]));
           });
-          loadSlotList();
+          // loadSlotList();
         },
         onFailure: (onFailure) {},
         tokenExpire: () {
@@ -63,16 +66,18 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
   }
 
   loadSlotList() {
+    print('Slotsss');
     _networkCalls.slotList(
-        id: widget.pitchDetail["id"],
-        subPitchId: widget.pitchDetail["subPitchId"],
-        weekDay: _weakList[_weakIndex].slug,
+        id: widget.academyDetail["id"],
+        // subPitchId: widget.pitchDetail["subPitchId"],
+        // weekDay: _weakList[_weakIndex].slug,
         onSuccess: (detail) {
-          slotList.clear();
-          detail.forEach((slot) {
-            slotList.add(SessionResponse.fromJson(slot));
-          });
+          slotVar = SpecificAcademy.fromJson(detail);
+
           setState(() {
+            print('object');
+            print(detail);
+            print(slotVar!.session![0].weekday);
             _isLoading = false;
           });
         },
@@ -143,9 +148,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(25),
-                                            color: slotList.isEmpty
-                                                ? Colors.redAccent.shade200
-                                                : AppColors.appThemeColor),
+                                            color: AppColors.appThemeColor),
                                         child: Text(
                                           _weakList[index].name.substring(0, 3),
                                           style: Theme.of(context)
@@ -206,175 +209,128 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                             child: CircularProgressIndicator(
                         color: AppColors.appThemeColor,
                       )))
-                    : slotList.isNotEmpty
+                    : slotVar!.session!.isNotEmpty
                         ? Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: ListView.builder(
-                                  itemCount: slotList.length,
-                                  itemBuilder: (context, index) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10.0),
-                                          child: Text(
-                                            "${slotList[index].session_name} ( ${slotList[index].slotDetail![0]!.sport_slot_time.toString()} mins Slot )",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    fontWeight: FontWeight.w600,
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? AppColors.black
-                                                        : AppColors.white),
-                                          ),
-                                        ),
-                                        GridView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: slotList[index]
-                                                .slotDetail!
-                                                .length,
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
-                                            gridDelegate:
-                                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                                                    maxCrossAxisExtent: 200,
-                                                    childAspectRatio: 4 / 2,
-                                                    crossAxisSpacing: 20,
-                                                    mainAxisSpacing: 20),
-                                            itemBuilder: (context, ind) {
-                                              return GestureDetector(
-                                                onTap: () {
-                                                  _venuePriceController.text =
-                                                      slotList[index]
-                                                          .slotDetail![ind]!
-                                                          .venuePrice!
-                                                          .round()
-                                                          .toString();
-                                                  _playerPriceController.text =
-                                                      slotList[index]
-                                                          .slotDetail![ind]!
-                                                          .pricePerPlayer!
-                                                          .round()
-                                                          .toString();
-
-                                                  bottomSheet(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          _isLoading = true;
-                                                          loadSlotList();
-                                                        });
-                                                      },
-                                                      id: slotList[index]
-                                                          .slotDetail![ind]!
-                                                          .id!
-                                                          .toInt(),
-                                                      slotTime: slotList[index]
-                                                          .slotDetail![ind]!
-                                                          .startTime!
-                                                          .substring(0, 5));
-                                                },
-                                                child: Container(
-                                                  height: size.height * 0.08,
-                                                  decoration: BoxDecoration(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? AppColors.grey200
-                                                          : AppColors
-                                                              .containerColorB,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      border: Border.all(
-                                                          color:
-                                                              AppColors.grey)),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        slotList[index]
-                                                            .slotDetail![ind]!
-                                                            .startTime!
-                                                            .substring(0, 5),
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 16,
-                                                                color: MyAppState
-                                                                            .mode ==
-                                                                        ThemeMode
-                                                                            .light
-                                                                    ? AppColors
-                                                                        .black
-                                                                    : AppColors
-                                                                        .white),
-                                                      ),
-                                                      slotList[0].sports ==
-                                                              "swimming"
-                                                          ? Text(
-                                                              "${slotList[index].slotDetail![ind]!.pricePerPlayer.toString()} AED",
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .titleSmall!
-                                                                  .copyWith(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      color: const Color(
-                                                                          0XFF25A163)),
-                                                            )
-                                                          : Text(
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .multipleRates,
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .titleSmall!
-                                                                  .copyWith(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      color: const Color(
-                                                                          0XFF25A163)),
-                                                            ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-                                            })
-                                      ],
-                                    );
-                                  }),
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Container(
+                                color: Colors.white,
+                                padding: const EdgeInsets.only(bottom: 5.0),
+                                child: ListView.builder(
+                                    itemCount: slotVar!.session!.length,
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          ...List.generate(
+                                              slotVar!.session![index].sessions!
+                                                  .length, (indexItem) {
+                                            slotVar!.session![index].weekday ==
+                                                    'wednesday'
+                                                ? print(slotVar!.session![index]
+                                                    .sessions!.length)
+                                                : null;
+                                            return Column(
+                                              children: [
+                                                _weakIndex == 0
+                                                    ? slotVar!.session![index]
+                                                            .weekday!
+                                                            .contains('monday')
+                                                        ? EmailContactDOB(
+                                                            editable:
+                                                                widget.backTag,
+                                                            constant:
+                                                                "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                            constantValue:
+                                                                '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                        : const SizedBox
+                                                            .shrink()
+                                                    : _weakIndex == 1
+                                                        ? slotVar!
+                                                                .session![index]
+                                                                .weekday!
+                                                                .contains(
+                                                                    'tuesday')
+                                                            ? EmailContactDOB(
+                                                                editable: widget
+                                                                    .backTag,
+                                                                constant:
+                                                                    "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                                constantValue:
+                                                                    '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                            : const SizedBox
+                                                                .shrink()
+                                                        : _weakIndex == 2
+                                                            ? slotVar!
+                                                                    .session![
+                                                                        index]
+                                                                    .weekday!
+                                                                    .contains(
+                                                                        'wednesday')
+                                                                ? EmailContactDOB(
+                                                                    editable: widget
+                                                                        .backTag,
+                                                                    constant:
+                                                                        "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                                    constantValue:
+                                                                        '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                : const SizedBox
+                                                                    .shrink()
+                                                            : _weakIndex == 3
+                                                                ? slotVar!.session![index].weekday!
+                                                                        .contains(
+                                                                            'thursday')
+                                                                    ? EmailContactDOB(
+                                                                        editable: widget
+                                                                            .backTag,
+                                                                        constant:
+                                                                            "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                                        constantValue:
+                                                                            '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                    : const SizedBox
+                                                                        .shrink()
+                                                                : _weakIndex ==
+                                                                        4
+                                                                    ? slotVar!.session![index].weekday!.contains(
+                                                                            'friday')
+                                                                        ? EmailContactDOB(
+                                                                            editable: widget.backTag,
+                                                                            constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                                            constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                        : const SizedBox.shrink()
+                                                                    : _weakIndex == 5
+                                                                        ? slotVar!.session![index].weekday!.contains('saturday')
+                                                                            ? EmailContactDOB(editable: widget.backTag, constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )", constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                            : const SizedBox.shrink()
+                                                                        : EmailContactDOB(editable: widget.backTag, constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )", constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )'),
+                                              ],
+                                            );
+                                          })
+                                        ],
+                                      );
+                                    }),
+                              ),
                             ),
                           )
                         : Expanded(
                             child: Center(
                             child: Text(
-                              "Marked as holiday for ${_weakList[_weakIndex].name} ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white),
-                            ),
+                                "Marked as holiday for ${_weakList[_weakIndex].name} "),
                           )),
+                // : Expanded(
+                //     child: Center(
+                //     child: Text(
+                //       "Marked as holiday for ${_weakList[_weakIndex].name} ",
+                //       style: Theme.of(context)
+                //           .textTheme
+                //           .bodyMedium!
+                //           .copyWith(
+                //               color: MyAppState.mode == ThemeMode.light
+                //                   ? Colors.black
+                //                   : Colors.white),
+                //     ),
+                //   )),
                 ButtonWidget(
                     onTaped: () {
                       navigateToVenueCreated();
@@ -530,65 +486,6 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                 ),
                               ),
                               flaxibleGap(2),
-                              slotList[0].sports == "swimming"
-                                  ? const SizedBox.shrink()
-                                  : const Text(
-                                      "Price Per Academy",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.appThemeColor),
-                                    ),
-                              flaxibleGap(1),
-                              slotList[0].sports == "swimming"
-                                  ? const SizedBox.shrink()
-                                  : TextFieldWidget(
-                                      controller: _venuePriceController,
-                                      hintText: '',
-                                      type: TextInputType.number,
-                                      prefix: const Text(
-                                        "Amount: ",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      suffix: const Text(
-                                        " AED",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      onSubmitted: (value) {
-                                        FocusScope.of(context)
-                                            .requestFocus(focusNode);
-                                        return null;
-                                      },
-                                      onChanged: (value) {
-                                        vanuePrice = value;
-                                        return '';
-                                      },
-                                      onValidate: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Please enter amount";
-                                        }
-                                        return null;
-                                      },
-                                      border: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: AppColors.grey),
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      enableBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: AppColors.grey),
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      focusBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: AppColors.grey),
-                                          borderRadius:
-                                              BorderRadius.circular(12))),
-                              flaxibleGap(2),
                               const Text(
                                 "Price Per Person",
                                 style: TextStyle(
@@ -707,3 +604,32 @@ class SessionDetail {
       this.endTime,
       this.isHoliday = false});
 }
+// onTap: () {
+//   _venuePriceController.text =
+//       slotList[index]
+//           .slotDetail![ind]!
+//           .venuePrice!
+//           .round()
+//           .toString();
+//   _playerPriceController.text =
+//       slotList[index]
+//           .slotDetail![ind]!
+//           .pricePerPlayer!
+//           .round()
+//           .toString();
+//   bottomSheet(
+//       onTap: () {
+//         setState(() {
+//           _isLoading = true;
+//           loadSlotList();
+//         });
+//       },
+//       id: slotList[index]
+//           .slotDetail![ind]!
+//           .id!
+//           .toInt(),
+//       slotTime: slotList[index]
+//           .slotDetail![ind]!
+//           .startTime!
+//           .substring(0, 5));
+// },

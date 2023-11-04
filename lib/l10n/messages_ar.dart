@@ -394,8 +394,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد لاعبين قيد الانتظار"),
         "noSlotsAvailable":
             MessageLookupByLibrary.simpleMessage("لا توجد فترات زمنية متاحة"),
-        "noVenuesAvailable":
-            MessageLookupByLibrary.simpleMessage("لا توجد اماكن متاحة"),
+        "noAcademiesAvailable":
+            MessageLookupByLibrary.simpleMessage("لا توجد أكاديميات متاحة"),
         "noplayershavebeenaddedyet": MessageLookupByLibrary.simpleMessage(
             "لم يتم إضافة أي لاعبين حتى الآن"),
         "noplayershavebeenfoundnearyou":

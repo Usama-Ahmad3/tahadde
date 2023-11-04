@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/createSession4.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import '../../../../../common_widgets/internet_loss.dart';
@@ -97,6 +98,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
   @override
   void initState() {
     super.initState();
+    print(widget.detail.pitchDetailModel!.pitchImageId);
     if (Platform.isIOS) {
       focusNode.addListener(() {
         bool hasFocus = focusNode.hasFocus;
@@ -107,21 +109,27 @@ class _PriceScreenViewState extends State<PriceScreenView> {
         }
       });
     }
-    _networkCalls.availablePitchType(
-        sportTypeSlug: widget.detail.sportsType!,
-        onSuccess: (detail) {
-          for (int i = 0; i < detail.length; i++) {
-            _pitchType.add(
-                AreaSlug(name: detail[i]["name"], slug: detail[i]["slug"]));
-          }
-          setState(() {
-            _isLoading = false;
-          });
-        },
-        onFailure: (onFailure) {},
-        tokenExpire: () {
-          if (mounted) on401(context);
-        });
+
+    // TODO: Later initState
+    // _networkCalls.availablePitchType(
+    //     sportTypeSlug: widget.detail.sportsType!,
+    //     onSuccess: (detail) {
+    //       for (int i = 0; i < detail.length; i++) {
+    //         _pitchType.add(
+    //             AreaSlug(name: detail[i]["name"], slug: detail[i]["slug"]));
+    //       }
+    //       setState(() {
+    //         _isLoading = false;
+    //       });
+    //     },
+    //     onFailure: (onFailure) {},
+    //     tokenExpire: () {
+    //       if (mounted) {
+    //         print('error');
+    //         on401(context);
+    //       }
+    //     });
+    _isLoading = false;
   }
 
   @override
@@ -138,9 +146,13 @@ class _PriceScreenViewState extends State<PriceScreenView> {
     return WillPopScope(
       onWillPop: () async => false,
       child: _isLoading
-          ? const Center(
-              child: CircularProgressIndicator(
-                color: AppColors.appThemeColor,
+          ? Scaffold(
+              appBar: appBarWidget(size.width, size.height, context,
+                  AppLocalizations.of(context)!.price, true),
+              body: const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.appThemeColor,
+                ),
               ),
             )
           : _internet
@@ -182,33 +194,41 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 SizedBox(
                                   height: size.height * 0.01,
                                 ),
-                                Container(
-                                  width: size.width,
-                                  height: size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.appThemeColor,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      cachedNetworkImage(
-                                          cuisineImageUrl:
-                                              widget.detail.sportsImage,
-                                          height: 20,
-                                          width: 20,
-                                          imageFit: BoxFit.fill),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(widget.detail.sportsName!,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium!
-                                              .copyWith(
-                                                  color: AppColors.white,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "Poppins")),
-                                    ],
+                                InkWell(
+                                  onTap: () {
+                                    print(widget
+                                        .detail.pitchDetailModel!.pitchImageId);
+                                  },
+                                  child: Container(
+                                    width: size.width,
+                                    height: size.height * 0.06,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.appThemeColor,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        cachedNetworkImage(
+                                            cuisineImageUrl:
+                                                widget.detail.sportsImage,
+                                            height: 20,
+                                            width: 20,
+                                            imageFit: BoxFit.fill),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(widget.detail.sportsName!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .copyWith(
+                                                    color: AppColors.white,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontFamily: "Poppins")),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
@@ -580,138 +600,179 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                   ],
                                 ),
                                 monVal
-                                    ? _isVenueLoading
-                                        ? ButtonWidget(
-                                            color: AppColors.grey,
-                                            onTaped: () {},
-                                            title: Text(
-                                              AppLocalizations.of(context)!
-                                                  .continu,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
-                                            ),
-                                            isLoading: true)
-                                        : ButtonWidget(
-                                            onTaped: () {
-                                              if (_formKey.currentState!
-                                                  .validate()) {
-                                                _formKey.currentState!.save();
-                                                Map pitchTypeDetail = {
-                                                  "subpitchtypeName":
-                                                      _vanueController.text,
-                                                  "payment":
-                                                      _priceController.text,
-                                                  "area":
-                                                      _pitchType[pitchTypeIndex]
-                                                          .name,
-                                                  "pitchtypeSlug":
-                                                      _pitchType[pitchTypeIndex]
-                                                          .slug,
-                                                  "price_per_player": int.parse(
-                                                      _pricePerPlayer.text),
-                                                  "max_no_of_players": widget
-                                                              .detail
-                                                              .sportsType ==
-                                                          "swimming"
-                                                      ? int.parse(
-                                                          _numberPlayerList[
-                                                              indexItem])
-                                                      : maxPlayer(_pitchType[
-                                                              pitchTypeIndex]
-                                                          .name)
-                                                };
-                                                Map detail = {
-                                                  "sport_slug":
-                                                      widget.detail.sportsType,
-                                                  "pitchName": widget
-                                                      .detail
-                                                      .pitchDetailModel!
-                                                      .pitchName,
-                                                  "pitchNamearabic": widget
-                                                      .detail
-                                                      .pitchDetailModel!
-                                                      .pitchNameAr,
-                                                  "pitchLocation": widget.detail
-                                                      .documentModel?.address,
-                                                  "pitchDescription": widget
-                                                      .detail
-                                                      .pitchDetailModel!
-                                                      .description,
-                                                  "pitchDescriptionarabic":
-                                                      widget
-                                                          .detail
-                                                          .pitchDetailModel!
-                                                          .descriptionAr,
-                                                  "gameplaySlug": widget
-                                                      .detail
-                                                      .pitchDetailModel!
-                                                      .gamePlay,
-                                                  "facilitiesSlug": widget
-                                                      .detail
-                                                      .pitchDetailModel!
-                                                      .facility,
-                                                  "pitchLatitude": widget.detail
-                                                      .documentModel?.lat,
-                                                  "pitchLongitude": widget
-                                                      .detail
-                                                      .documentModel
-                                                      ?.long,
-                                                  "pitchimageId": widget
-                                                      .detail
-                                                      .pitchDetailModel!
-                                                      .pitchImageId,
-                                                  "pitchdocId": widget
-                                                      .detail
-                                                      .documentModel!
-                                                      .documentImageId,
-                                                  "document_code": widget
-                                                      .detail
-                                                      .documentModel!
-                                                      .licenceNumber,
-                                                  "pitchtypeDetails": [
-                                                    pitchTypeDetail
-                                                  ],
-                                                  "document_name": widget
-                                                      .detail
-                                                      .documentModel!
-                                                      .documentName,
-                                                  "documents_expiry_date":
-                                                      widget
-                                                          .detail
-                                                          .documentModel!
-                                                          .expiryDate,
-                                                  "code": widget.detail
-                                                      .pitchDetailModel!.code,
-                                                  "country": widget.detail
-                                                      .documentModel!.country,
-                                                };
-                                                setState(() {
-                                                  _isVenueLoading = true;
-                                                });
-                                                _networkCalls.createVenue(
-                                                    detail: detail,
-                                                    onSuccess: (detail) {
-                                                      setState(() {
-                                                        navigateToSession(
-                                                            detail);
-                                                        _isVenueLoading = false;
-                                                      });
-                                                    },
-                                                    onFailure: (onFailure) {},
-                                                    tokenExpire: () {});
-                                              }
-                                            },
-                                            title: Text(
-                                              AppLocalizations.of(context)!
-                                                  .continu,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: AppColors.white),
-                                            ),
-                                            isLoading: _isLoading)
+                                    ?
+                                    // _isVenueLoading
+                                    //         ? ButtonWidget(
+                                    //             color: AppColors.grey,
+                                    //             onTaped: () {},
+                                    //             title: Text(
+                                    //               AppLocalizations.of(context)!
+                                    //                   .continu,
+                                    //               style: Theme.of(context)
+                                    //                   .textTheme
+                                    //                   .bodyMedium,
+                                    //             ),
+                                    //             isLoading: true) :
+                                    ButtonWidget(
+                                        onTaped: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            _formKey.currentState!.save();
+                                            // print(
+                                            // "pitchName${_pitchType[pitchTypeIndex].slug}");
+                                            print(
+                                                'price${int.parse(_pricePerPlayer.text)}');
+                                            Map pitchTypeDetail = {
+                                              "subpitchtypeName":
+                                                  _vanueController.text,
+                                              // "pitchtypeSlug":
+                                              //     _pitchType[0].slug,
+                                              "price_per_player": int.parse(
+                                                  _pricePerPlayer.text),
+                                            };
+                                            Map academydetail = {
+                                              'Academy_NameEnglish': widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .pitchName,
+                                              "Academy_NameArabic": widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .pitchNameAr,
+                                              'descriptionEnglish': widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .description,
+                                              'descriptionArabic': widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .pitchNameAr,
+                                              'Academy_Location': widget.detail
+                                                  .documentModel!.address,
+                                              'sport_slug':
+                                                  widget.detail.sportsType,
+                                              'Country': widget.detail
+                                                  .documentModel!.country,
+                                              'latitude': widget
+                                                  .detail.documentModel!.lat,
+                                              'longitude': widget
+                                                  .detail.documentModel!.long,
+                                              "facilitySlug": widget.detail
+                                                  .pitchDetailModel!.facility,
+                                              'gameplaySlug': widget.detail
+                                                  .pitchDetailModel!.gamePlay,
+                                              'academy_image': widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .pitchImageId,
+                                            };
+                                            Map document = {
+                                              'Document_Name': widget.detail
+                                                  .documentModel!.documentName,
+                                              'License_Number': widget.detail
+                                                  .documentModel!.licenceNumber,
+                                              'Expiry_Date': widget.detail
+                                                  .documentModel!.expiryDate,
+                                              'file': widget.detail
+                                                  .documentModel!.documentImage
+                                            };
+                                            Map price = {
+                                              'Sub_Academy':
+                                                  _vanueController.text,
+                                              'Price': int.parse(
+                                                  _pricePerPlayer.text)
+                                            };
+                                            Map newDetail = {
+                                              "academydetail": academydetail,
+                                              'document': [document],
+                                              "price": [price],
+                                              "images": widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .pitchImageId,
+                                            };
+                                            print("00000000000000");
+                                            print("academydetail$newDetail");
+                                            print('0000000000000');
+                                            Map detail = {
+                                              "sport_slug":
+                                                  widget.detail.sportsType,
+                                              "pitchName": widget.detail
+                                                  .pitchDetailModel!.pitchName,
+                                              "pitchNamearabic": widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .pitchNameAr,
+                                              "pitchLocation": widget.detail
+                                                  .documentModel?.address,
+                                              "pitchDescription": widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .description,
+                                              "pitchDescriptionarabic": widget
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .descriptionAr,
+                                              "gameplaySlug": widget
+
+                                                  ///indoor/outdoor
+                                                  .detail
+                                                  .pitchDetailModel!
+                                                  .gamePlay,
+                                              "facilitiesSlug": widget.detail
+                                                  .pitchDetailModel!.facility,
+                                              "pitchLatitude": widget
+                                                  .detail.documentModel?.lat,
+                                              "pitchLongitude": widget
+                                                  .detail.documentModel?.long,
+                                              "pitchdocId": widget
+                                                  .detail
+                                                  .documentModel!
+                                                  .documentImageId,
+                                              "document_code": widget.detail
+                                                  .documentModel!.licenceNumber,
+                                              "pitchtypeDetails": [
+                                                pitchTypeDetail
+                                              ],
+                                              "document_name": widget.detail
+                                                  .documentModel!.documentName,
+                                              "documents_expiry_date": widget
+                                                  .detail
+                                                  .documentModel!
+                                                  .expiryDate,
+                                              "code": widget.detail
+                                                  .pitchDetailModel!.code,
+                                              "country": widget.detail
+                                                  .documentModel!.country,
+                                            };
+                                            print('11111111111111');
+                                            print("detail$detail");
+                                            print('111111111111111');
+                                            setState(() {
+                                              _isVenueLoading = true;
+                                            });
+                                            navigateToSession(newDetail);
+                                            // _networkCalls.createVenue(
+                                            //     detail: newDetail,
+                                            //     onSuccess: (detail) {
+                                            //       setState(() {
+                                            //         navigateToSession(
+                                            //             detail);
+                                            //         _isVenueLoading = false;
+                                            //       });
+                                            //     },
+                                            //     onFailure: (onFailure) {},
+                                            //     tokenExpire: () {});
+                                          }
+                                        },
+                                        title: Text(
+                                          AppLocalizations.of(context)!.continu,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(color: AppColors.white),
+                                        ),
+                                        isLoading: false)
                                     : ButtonWidget(
                                         color: const Color(0XFFBCBCBC),
                                         onTaped: () {},
@@ -752,7 +813,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
     int idx = s.indexOf("x");
     String areaValue = s.substring(0, idx).trim();
     int areaInt = int.parse(areaValue);
-    print((areaInt * 2).toString());
+    // print((areaInt * 2).toString());
     return areaInt * 2;
   }
 
@@ -760,11 +821,12 @@ class _PriceScreenViewState extends State<PriceScreenView> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => CreateSessionScreen(pitchData: data)));
+            builder: (_) => CreateSessionScreen(academyData: data)));
     // Navigator.pushNamed(context, RouteNames.createSession, arguments: data);
   }
 }
 
+// TODO: Later Fixed
 class AreaSlug {
   String name;
   String slug;

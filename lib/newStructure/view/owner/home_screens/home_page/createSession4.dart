@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_venue-screen_main.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/edit_academy-screen_main.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/slot_chart_screen5.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -18,10 +19,10 @@ import '../../../player/HomeScreen/widgets/textFormField.dart';
 
 // ignore: must_be_immutable
 class CreateSessionScreen extends StatefulWidget {
-  Map pitchData;
+  Map academyData;
   bool createdTag;
   CreateSessionScreen(
-      {Key? key, required this.pitchData, this.createdTag = false})
+      {Key? key, required this.academyData, this.createdTag = false})
       : super(key: key);
 
   @override
@@ -79,12 +80,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     '100',
     '120',
   ];
+  SpecificAcademy? specificAcademy;
   late SpecificModelClass specificPitchScreen;
   late String venueType;
   loadSpecific() async {
     await _networkCalls.specificVenue(
-      id: widget.pitchData["id"],
-      subPitch: "&subpitch_id=${widget.pitchData["subPitchId"]}",
+      id: widget.academyData["id"],
+      subPitch: "&subpitch_id=${widget.academyData["subPitchId"]}",
       onSuccess: (event) {
         if (mounted) {
           setState(() {
@@ -128,12 +130,86 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     );
   }
 
+  editAcademy(Map detail, String academyId) async {
+    print('reaches');
+    await _networkCalls.editAcademy(
+      id: academyId,
+      academyDetail: detail,
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            showMessage('Success');
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = true;
+          });
+        }
+        loadSpecificAcademy();
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
+  loadSpecificAcademy() async {
+    print('kks');
+    await _networkCalls.specificAcademy(
+      id: widget.academyData["id"].toString(),
+      onSuccess: (event) async {
+        specificAcademy = event;
+        if (mounted) {
+          setState(() {
+            if (specificAcademy!.session!.isNotEmpty) {
+              specificAcademy!.session!.forEach((element) {
+                List<SessionDetail> sessionList = [];
+                element.sessions!.forEach((value) {
+                  sessionList.add(SessionDetail(
+                      sessionName: value.name,
+                      sessionNameAr: value.nameArabic,
+                      slotDuration: value.slotDuration as int,
+                      graceTime: value.extraSlot as int,
+                      startTime: DateFormat("yyyy-MM-dd hh:mm:ss")
+                          .parse("2022-10-32 ${value.startTime}"),
+                      endTime: DateFormat("yyyy-MM-dd hh:mm:ss")
+                          .parse("2022-10-32 ${value.endTime}")));
+                });
+                _sessionMap[element.weekday!] = sessionList;
+              });
+            }
+            _isLoading = false;
+            // if (specificPitchScreen.isDeclined!) {
+            //   venueType = "declined";
+            // } else if (specificPitchScreen.isVerified!) {
+            //   venueType = "verified";
+            // } else {
+            //   venueType = "inreview";
+            // }
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          showMessage(msg);
+        }
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
+    print('kk');
     _networkCalls.weekList(
         onSuccess: (detail) {
-          print(detail);
+          print("Session Week Detail $detail");
           detail.forEach((element) {
             setState(() {
               _weakList
@@ -144,7 +220,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
         },
         onFailure: (onFailure) {},
         tokenExpire: () {});
-    widget.createdTag ? loadSpecific() : null;
+    widget.createdTag ? loadSpecificAcademy() : null;
   }
 
   @override
@@ -430,6 +506,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             child: Text(
                                               _weakList[index]
                                                   .name
+                                                  .toString()
                                                   .substring(0, 3),
                                               style: Theme.of(context)
                                                   .textTheme
@@ -781,187 +858,180 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     style: Theme.of(context).textTheme.bodyMedium)))),
                         Align(
                           alignment: Alignment.bottomCenter,
-                          child: _isSession
-                              ? ButtonWidget(
-                                  onTaped: () {},
-                                  title: CircularProgressIndicator(
-                                    color: AppColors.white,
-                                  ),
-                                  isLoading: _isLoading,
-                                )
-                              : ButtonWidget(
-                                  onTaped: widget.createdTag
-                                      ? () {
-                                          // if (_sessionMap.length < 7) {
-                                          //   showMessage(
-                                          //     "Please create session for ${(7 - _sessionMap.length).toString()} more days",
-                                          //   );
-                                          // } else {
-                                          setState(() {
-                                            _isSession = true;
-                                          });
-                                          String id =
-                                              widget.pitchData["id"].toString();
-                                          List<Map<dynamic, dynamic>>
-                                              sessionsPayload = [];
+                          child:
+                              // _isSession ? ButtonWidget(
+                              //         onTaped: () {},
+                              //         title: CircularProgressIndicator(
+                              //           color: AppColors.white,
+                              //         ),
+                              //         isLoading: _isLoading,
+                              // ) :
+                              ButtonWidget(
+                            onTaped: widget.createdTag
+                                ? () {
+                                    // if (_sessionMap.length < 7) {
+                                    //   showMessage(
+                                    //     "Please create session for ${(7 - _sessionMap.length).toString()} more days",
+                                    //   );
+                                    // } else {
+                                    setState(() {
+                                      _isSession = true;
+                                    });
+                                    List<Map<dynamic, dynamic>>
+                                        sessionsPayload = [];
 
-                                          _sessionMap.forEach((k, v) {
-                                            List<Map<dynamic, dynamic>>
-                                                sessionsData = [];
-                                            if (!v[0].isHoliday!) {
-                                              for (var element in v) {
-                                                Map detail = {
-                                                  "session_name":
-                                                      element.sessionName,
-                                                  "session_name_arabic":
-                                                      element.sessionNameAr,
-                                                  "start_time": DateFormat.Hms()
-                                                      .format(
-                                                          element.startTime!),
-                                                  "end_time": DateFormat.Hms()
-                                                      .format(element.endTime!),
-                                                  "slot_time":
-                                                      element.slotDuration,
-                                                  "grace_peroid":
-                                                      element.graceTime,
-                                                  "slot_price": 0
-                                                };
-                                                sessionsData.add(detail);
-                                              }
-                                              Map<dynamic, dynamic> detail = {
-                                                "weekday": k,
-                                                "sessions_data": sessionsData
-                                              };
-                                              sessionsPayload.add(detail);
-                                            }
-                                          });
-
+                                    _sessionMap.forEach((k, v) {
+                                      List<Map<dynamic, dynamic>> sessionsData =
+                                          [];
+                                      if (!v[0].isHoliday!) {
+                                        for (var element in v) {
                                           Map detail = {
-                                            "pitchtype_id": int.parse(
-                                                widget.pitchData["subPitchId"]),
-                                            "sessions_payload": sessionsPayload
+                                            "Holiday":
+                                                SessionDetail().isHoliday,
+                                            "Name": element.sessionName,
+                                            "Name_Arabic":
+                                                element.sessionNameAr,
+                                            "Slot_duration":
+                                                element.slotDuration,
+                                            "Extra_slot": element.graceTime,
+                                            "Start_time": DateFormat.Hms()
+                                                .format(element.startTime!),
+                                            "End_time": DateFormat.Hms()
+                                                .format(element.endTime!),
                                           };
-                                          _networkCalls.editSession(
-                                              onSuccess: (onSuccess) {
-                                                _isSession = false;
-                                                if (mounted) {
-                                                  Map detail = {
-                                                    "id":
-                                                        widget.pitchData["id"],
-                                                    "name": AppLocalizations.of(
-                                                                    context)!
-                                                                .locale ==
-                                                            "en"
-                                                        ? specificPitchScreen
-                                                            .venueDetails!.name
-                                                        : specificPitchScreen
-                                                            .venueDetails!
-                                                            .nameArabic
-                                                  };
-                                                  navigateToEditVenues(detail);
-                                                }
-                                              },
-                                              venueDetail: detail,
-                                              id: id,
-                                              venueType: venueType,
-                                              onFailure: (onFailure) {
-                                                showMessage(
-                                                    "Please create session properly ");
-                                                setState(() {
-                                                  _isSession = false;
-                                                });
-                                              },
-                                              tokenExpire: () {});
-                                          // }
+                                          sessionsData.add(detail);
                                         }
-                                      : () {
-                                          if (_sessionMap.length < 7) {
-                                            showMessage(
-                                                "Please create session for ${(7 - _sessionMap.length).toString()} more days");
-                                          } else {
-                                            setState(() {
-                                              _isSession = true;
-                                            });
-                                            String id = widget
-                                                .pitchData["book_pitch_id"]
-                                                .toString();
-                                            List<Map<dynamic, dynamic>>
-                                                sessionsPayload = [];
+                                        Map<dynamic, dynamic> detail = {
+                                          "weekday": k,
+                                          "sessions": sessionsData
+                                        };
+                                        sessionsPayload.add(detail);
+                                      }
+                                    });
+                                    Map sessionsPay = {
+                                      "session": sessionsPayload
+                                    };
+                                    print('jjjjjjjjj');
+                                    print(sessionsPay);
+                                    editAcademy(sessionsPay,
+                                        specificAcademy!.academyId.toString());
+                                    Navigator.pop(context);
+                                    // _networkCalls.editSession(
+                                    //     onSuccess: (onSuccess) {
+                                    //       _isSession = false;
+                                    //       if (mounted) {
+                                    //         Map detail = {
+                                    //           "id": widget.academyData["id"],
+                                    //           "name":
+                                    //               AppLocalizations.of(context)!
+                                    //                           .locale ==
+                                    //                       "en"
+                                    //                   ? specificPitchScreen
+                                    //                       .venueDetails!.name
+                                    //                   : specificPitchScreen
+                                    //                       .venueDetails!
+                                    //                       .nameArabic
+                                    //         };
+                                    //         navigateToEditVenues(detail);
+                                    //       }
+                                    //     },
+                                    //     venueDetail: detail,
+                                    //     id: id,
+                                    //     venueType: venueType,
+                                    //     onFailure: (onFailure) {
+                                    //       showMessage(
+                                    //           "Please create session properly ");
+                                    //       setState(() {
+                                    //         _isSession = false;
+                                    //       });
+                                    //     },
+                                    //     tokenExpire: () {});
+                                    // // }
+                                  }
+                                : () {
+                                    if (_sessionMap.length < 7) {
+                                      showMessage(
+                                          "Please create session for ${(7 - _sessionMap.length).toString()} more days");
+                                    } else {
+                                      setState(() {
+                                        _isSession = true;
+                                      });
+                                      String id = widget
+                                          .academyData["book_pitch_id"]
+                                          .toString();
+                                      List<Map<dynamic, dynamic>>
+                                          sessionsPayload = [];
 
-                                            _sessionMap.forEach((k, v) {
-                                              List<Map<dynamic, dynamic>>
-                                                  sessionsData = [];
-                                              if (!v[0].isHoliday!) {
-                                                for (var element in v) {
-                                                  Map detail = {
-                                                    "session_name":
-                                                        element.sessionName,
-                                                    "session_name_arabic":
-                                                        element.sessionNameAr,
-                                                    "start_time":
-                                                        DateFormat.Hms().format(
-                                                            element.startTime!),
-                                                    "end_time": DateFormat.Hms()
-                                                        .format(
-                                                            element.endTime!),
-                                                    "slot_time":
-                                                        element.slotDuration,
-                                                    "grace_peroid":
-                                                        element.graceTime,
-                                                    "slot_price": 0
-                                                  };
-                                                  sessionsData.add(detail);
-                                                }
-                                                Map<dynamic, dynamic> detail = {
-                                                  "weekday": k,
-                                                  "sessions_data": sessionsData
-                                                };
-                                                sessionsPayload.add(detail);
-                                              }
-                                            });
-
+                                      _sessionMap.forEach((k, v) {
+                                        List<Map<dynamic, dynamic>>
+                                            sessionsData = [];
+                                        if (!v[0].isHoliday!) {
+                                          for (var element in v) {
                                             Map detail = {
-                                              "pitchtype_id": widget
-                                                  .pitchData["pitch_type_id"],
-                                              "sessions_payload":
-                                                  sessionsPayload
+                                              "Holiday":
+                                                  SessionDetail().isHoliday,
+                                              "Name": element.sessionName,
+                                              "Name_Arabic":
+                                                  element.sessionNameAr,
+                                              "Slot_duration":
+                                                  element.slotDuration,
+                                              "Extra_slot": element.graceTime,
+                                              "Start_time": DateFormat.Hms()
+                                                  .format(element.startTime!),
+                                              "End_time": DateFormat.Hms()
+                                                  .format(element.endTime!),
                                             };
-                                            _networkCalls.createSession(
-                                                onSuccess: (onSuccess) {
-                                                  Map detail = {
-                                                    "id": widget.pitchData[
-                                                            "book_pitch_id"]
-                                                        .toString(),
-                                                    "subPitchId": widget
-                                                        .pitchData[
-                                                            "pitch_type_id"]
-                                                        .toString()
-                                                  };
-                                                  _isSession = false;
-
-                                                  navigateToSlotScreen(detail);
-                                                },
-                                                detail: detail,
-                                                id: id,
-                                                onFailure: (onFailure) {
-                                                  showMessage(
-                                                      "Please create session properly ");
-                                                  setState(() {
-                                                    _isSession = false;
-                                                  });
-                                                },
-                                                tokenExpire: () {});
+                                            sessionsData.add(detail);
                                           }
-                                        },
-                                  title: Text(
-                                    AppLocalizations.of(context)!.continu,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(color: AppColors.white),
-                                  ),
-                                  isLoading: _isLoading,
-                                ),
+                                          Map<dynamic, dynamic> detail = {
+                                            "weekday": k,
+                                            "sessions": sessionsData
+                                          };
+                                          sessionsPayload.add(detail);
+                                        }
+                                      });
+                                      Map sessionsPay = {
+                                        "sessions": sessionsPayload
+                                      };
+                                      widget.academyData.addAll(sessionsPay);
+                                      // Map detail = {
+                                      //   widget.pitchData,
+                                      // };
+                                      // print(widget.pitchData);
+                                      _networkCalls.createSession(
+                                          detail: widget.academyData,
+                                          id: id,
+                                          onSuccess: (onSuccess) {
+                                            Map detail = {
+                                              "id": onSuccess['academy_id']
+                                                  .toString(),
+                                              "message": onSuccess['message']
+                                                  .toString()
+                                            };
+                                            print(detail);
+                                            _isSession = false;
+
+                                            navigateToSlotScreen(detail);
+                                          },
+                                          onFailure: (onFailure) {
+                                            showMessage(
+                                                "Please create session properly ");
+                                            setState(() {
+                                              _isSession = false;
+                                            });
+                                          },
+                                          tokenExpire: () {});
+                                    }
+                                  },
+                            title: Text(
+                              AppLocalizations.of(context)!.continu,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: AppColors.white),
+                            ),
+                            isLoading: false,
+                          ),
                         ),
                       ],
                     ),
@@ -974,7 +1044,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => SlotChartScreen(pitchDetail: detail)));
+            builder: (_) => SlotChartScreen(academyDetail: detail)));
     // Navigator.pushNamed(context, RouteNames.slotChart, arguments: detail);
   }
 
@@ -1014,6 +1084,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             AppColors.barLineColor,
                             const Color(0XFFCBCBCB)),
                         body: SingleChildScrollView(
+                          keyboardDismissBehavior:
+                              ScrollViewKeyboardDismissBehavior.onDrag,
                           child: Container(
                             color: AppColors.black,
                             child: Container(
@@ -1151,6 +1223,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             AppColors.appThemeColor,
                             const Color(0XFFCBCBCB)),
                         body: SingleChildScrollView(
+                          keyboardDismissBehavior:
+                              ScrollViewKeyboardDismissBehavior.onDrag,
                           child: Container(
                             color: Colors.black,
                             child: Container(
@@ -1556,7 +1630,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               ),
                                               trailing: sessionDetail
                                                           .slotDuration ==
-                                                      10
+                                                      0
                                                   ? Icon(
                                                       AppLocalizations.of(
                                                                       context)!
@@ -1688,7 +1762,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               ),
                                               trailing: sessionDetail
                                                           .graceTime ==
-                                                      10
+                                                      0
                                                   ? Icon(
                                                       AppLocalizations.of(
                                                                       context)!
