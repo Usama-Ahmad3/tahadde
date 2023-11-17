@@ -17,7 +17,8 @@ class RestApis {
   static String CHANGEPASSWORD = "/api/v1/user/changepassword/";
   static String RESETPASSWORD = "/api/v1/user/resetpassword/";
   static String TOKENSTATUS = "/api/v1/user/tokenstatus/";
-  static String DELETEACCOUNT = "/api/v1/user/account/delete/";
+  static String DELETEACCOUNT = "/api/v1/user/deleteusers/";
+  static String deleteAccount = "/api/v1/user/accounts/delete/";
 
   // profile api
   static String GET_PROFILE = "/api/v1/user/me/";
@@ -52,6 +53,7 @@ class RestApis {
   static String CANCELBOOKING = "/api/v1/user/cancelbookings/";
   static String BOOKINGHISTORY = "/api/v1/user/bookings/event/";
   static String BOOKINGHISTORYPITCH = "/api/v1/user/bookings/pitch/";
+  static String playerbookings = "/api/v1/user/bookings/";
   static String VERIFYLEAGUETOURNAMENT = "/api/v1/";
 
   //pitch owner side
@@ -119,8 +121,7 @@ class RestApis {
   static String AVAILABLE_DOC = "/api/v1/acadmies/documents/";
   static String MY_VENUES =
       "/api/v1/bookpitch/pitchowner/pitch/specific_pitchowner_list_pitches/";
-  static String allAcademies =
-      "https://ahmad223.pythonanywhere.com/api/v1/user/academy/";
+  static String allAcademies = "/api/v1/user/academy/";
   static String DELETE_PITCH =
       "/api/v1/bookpitch/pitchowner/pitch/delete_specific_pitchowner_pitche/";
   static String SPECIFIC_PITCH =

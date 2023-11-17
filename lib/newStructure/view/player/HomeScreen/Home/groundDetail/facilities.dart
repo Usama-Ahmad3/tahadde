@@ -41,32 +41,32 @@ class Facilities extends StatelessWidget {
                               radius: height * 0.024,
                               backgroundColor: Colors.transparent,
                               child: Image.asset(
-                                  facility[index] == 'bathroom'
+                                  facility[index] == "bathroom"
                                       ? facilityImageS[0]
                                       : facility[index] == 'bibs'
                                           ? facilityImageS[1]
                                           : facility[index] == 'car-parking'
-                                              ? facilityImageS[3]
+                                              ? facilityImageS[2]
                                               : facility[index] == 'locker'
-                                                  ? facilityImageS[4]
+                                                  ? facilityImageS[3]
                                                   : facility[index] ==
-                                                          'train-station'
-                                                      ? facilityImageS[5]
+                                                          'metro_station'
+                                                      ? facilityImageS[4]
                                                       : facility[index] ==
                                                               'refree'
-                                                          ? facilityImageS[6]
+                                                          ? facilityImageS[5]
                                                           : facility[index] ==
-                                                                  'parking-free'
+                                                                  'free_parking'
                                                               ? facilityImageS[
-                                                                  7]
+                                                                  6]
                                                               : facility[index] ==
                                                                       'masjid'
                                                                   ? facilityImageS[
-                                                                      8]
+                                                                      7]
                                                                   : facility[index] ==
                                                                           'market'
                                                                       ? facilityImageS[
-                                                                          9]
+                                                                          8]
                                                                       : '' ??
                                                                           "",
                                   height: height * .065,
@@ -88,7 +88,11 @@ class Facilities extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   horizontal: width * 0.015),
                               child: Text(
-                                facility[index] ?? "",
+                                AppLocalizations.of(context)!.locale == 'en'
+                                    ? facility[index].toString().length > 12
+                                        ? '${facility[index].toString().substring(0, 12)}..'
+                                        : facility[index]
+                                    : facilityAr[index] ?? "",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

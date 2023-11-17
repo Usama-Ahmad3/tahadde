@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../common_widgets/internet_loss.dart';
@@ -284,7 +285,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   void navigateToDetail({String? msg}) {
     Navigator.of(context).pop();
-    Navigator.pushReplacementNamed(context, RouteNames.login, arguments: msg);
+    // Navigator.pushReplacementNamed(context, RouteNames.signupPage,
+    //     arguments: msg);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(message: 'message', clicked: 1),
+        ));
   }
 
   void navigateToAccountSetting() {

@@ -96,8 +96,9 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
                                     },
                                     title: Center(
                                         child: Text(
-                                            AppLocalizations.of(context)!
-                                                .login)),
+                                      AppLocalizations.of(context)!.login,
+                                      style: TextStyle(color: AppColors.white),
+                                    )),
                                     isLoading: false),
                               ),
                               SizedBox(

@@ -29,7 +29,6 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   var firstNameController = TextEditingController();
   final _lastName = TextEditingController(text: '');
-  final _dob = TextEditingController();
   final emailController = TextEditingController();
   final _phoneNumber = TextEditingController(text: '');
   final FocusNode lastFocus = FocusNode();
@@ -176,12 +175,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             firstNameController.text = msg['first_name'];
             countryCode = msg["countryCode"];
             _lastName.text = msg['last_name'];
-            _dob.text = msg['dob'];
             emailController.text = msg['email'];
             _phoneNumber.text = msg['contact_number'];
-            images = msg['profile_pic'] == null
-                ? ''
-                : msg['profile_pic']['filePath'];
+            images = msg['profile_pic'];
             _networkCalls.playerPosition(
               onSuccess: (msg) {
                 if (mounted) {
@@ -252,7 +248,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _lastName.dispose();
     _phoneNumber.dispose();
     emailController.dispose();
-    _dob.dispose();
     lastFocus.dispose();
     emailFocus.dispose();
     phoneFocus.dispose();
@@ -470,6 +465,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 child: TextFieldWidget(
                                   controller: emailController,
                                   focus: emailFocus,
+                                  enable: false,
                                   hintText: AppLocalizations.of(context)!
                                       .pleaseEnterEmail,
                                   suffixIcon: Icons.edit_outlined,
@@ -506,50 +502,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               SizedBox(
                                 height: height * 0.02,
                               ),
-                              Text(AppLocalizations.of(context)!.dateofBirth),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: height * .015, bottom: height * .01),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      lastBookingDateApi ??
-                                          _dob.text ??
-                                          AppLocalizations.of(context)!
-                                              .choosedateofbirth,
-                                      style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          decoration: TextDecoration.none,
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? AppColors.themeColor
-                                                  : AppColors.white,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14),
-                                    ),
-                                    flaxibleGap(1),
-                                    GestureDetector(
-                                        onTap: () async {
-                                          final selectDate =
-                                              await slecteDtateTime(context);
-                                          if (selectDate != null) {
-                                            setState(() {
-                                              lastBookingDateApi = formatter
-                                                  .format((selectDate))
-                                                  .toString();
-                                            });
-                                          }
-                                          print(selectDate);
-                                        },
-                                        child: Icon(Icons.calendar_today,
-                                            color: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? AppColors.black
-                                                : AppColors.white))
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: height * 0.02),
                               Text(
                                 AppLocalizations.of(context)!.contacts,
                               ),
@@ -561,6 +513,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       ? CountryCodePicker(
                                           padding:
                                               const EdgeInsets.only(top: 5),
+                                          backgroundColor:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.white
+                                                  : AppColors.darkTheme,
+                                          dialogTextStyle: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : AppColors.black),
+                                          searchStyle:
+                                              TextStyle(color: AppColors.black),
                                           textStyle: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
@@ -622,6 +585,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       ? CountryCodePicker(
                                           padding:
                                               const EdgeInsets.only(top: 5),
+                                          backgroundColor:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.white
+                                                  : AppColors.darkTheme,
+                                          dialogTextStyle: TextStyle(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : AppColors.black),
+                                          searchStyle:
+                                              TextStyle(color: AppColors.black),
                                           textStyle: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
@@ -665,21 +639,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             "last_name": _lastName.text,
                                             "countryCode": countryCode,
                                             "contact_number": _phoneNumber.text,
-                                            "email": emailController.text
+                                            "email": emailController.text,
+                                            'profile_pic': images
                                           };
-                                          if (lastBookingDateApi != null) {
-                                            detail["dob"] = lastBookingDateApi;
-                                          } else {
-                                            detail['dob'] = formatter.format(
-                                                (DateTime.parse(
-                                                    '0000-00-00'.toString())));
-                                          }
-                                          if (profile_Id != null) {
-                                            detail["profile_pic_id"] =
-                                                profile_Id;
-                                          } else {
-                                            detail["profile_pic_id"] = 0;
-                                          }
+                                          print(detail);
                                           _networkCalls.editProfileNoPic(
                                             profileDetail: detail,
                                             onSuccess: (msg) {
@@ -750,11 +713,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         isImageLoade = true;
         image = File(picture.path);
         var detail = {"profile_image": image, "type": "user"};
-        _networkCalls.helperProfile(
-          profileDetail: detail,
+        _networkCalls.helperMultiImageDocument(
+          pitchImage: image,
           onSuccess: (msg) {
             if (mounted) {
               setState(() {
+                images = msg;
+                print("images$images");
                 profile_Id = msg;
                 isImageLoade = false;
               });

@@ -11,6 +11,8 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
+
 class EnterDetailPitchScreen extends StatefulWidget {
   final dynamic detail;
   const EnterDetailPitchScreen({super.key, this.detail});
@@ -27,6 +29,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
   bool loading = true;
   final scaffoldkey = GlobalKey<ScaffoldState>();
   late Map profileDetail;
+  List<int> sessionList = [];
 
   final NetworkCalls _networkCalls = NetworkCalls();
 
@@ -59,13 +62,21 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
     );
   }
 
+  List<SessionDetail> list = [];
   @override
   void initState() {
     super.initState();
+    print('lllllll');
+    print(widget.detail);
+    list = widget.detail['slotDetail'];
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
         loadProfile();
+        for (int i = 0; i < list.length; i++) {
+          sessionList.add(list[i].id!.toInt());
+          print(sessionList);
+        }
       } else {
         setState(() {
           loading = false;
@@ -78,7 +89,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-    List<String> session = widget.detail["slotDetail"].keys.toList();
+    List<SessionDetail> session = widget.detail["slotDetail"].toList();
     return Material(
         child: loading
             ? Scaffold(
@@ -725,7 +736,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                         height: sizeheight * .01,
                                       ),
                                       Text(
-                                          "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
+                                          "${AppLocalizations.of(context)!.academyOnly} (${widget.detail["academyName"]})",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -747,14 +758,15 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                             return const Divider();
                                           },
                                           shrinkWrap: true,
-                                          itemCount: session.length,
+                                          itemCount: widget
+                                              .detail['slotDetail'].length,
                                           itemBuilder: (context, index) {
                                             return Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "${AppLocalizations.of(context)!.sessionName} ${session[index]}",
+                                                  "${AppLocalizations.of(context)!.sessionName} ${session[index].sessionName}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyMedium!
@@ -763,65 +775,44 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                               .appThemeColor),
                                                 ),
                                                 SizedBox(
-                                                  height: 40,
-                                                  width: sizewidth,
-                                                  child: ListView.builder(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemCount: widget
-                                                        .detail["slotDetail"]
-                                                            [session[index]]
-                                                        .length,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            int childIdx) {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(5.0),
-                                                        child: Container(
-                                                          height: 30,
-                                                          width: 80,
-                                                          alignment:
-                                                              Alignment.center,
-                                                          decoration: BoxDecoration(
-                                                              color: AppColors
-                                                                  .appThemeColor,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              border: Border.all(
+                                                    height: 40,
+                                                    width: sizewidth * 0.5,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              5.0),
+                                                      child: Container(
+                                                        height: 30,
+                                                        width: 120,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        decoration: BoxDecoration(
+                                                            color: AppColors
+                                                                .appThemeColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade50)),
+                                                        child: Text(
+                                                          '${session[index].startTime.toString().substring(10, 19)} - ${session[index].endTime.toString().substring(10, 19)}' ??
+                                                              "",
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                   color: Colors
-                                                                      .grey
-                                                                      .shade50)),
-                                                          child: Text(
-                                                            widget.detail[
-                                                                        "slotDetail"]
-                                                                        [
-                                                                        session[
-                                                                            index]]
-                                                                        [
-                                                                        childIdx]
-                                                                    .substring(
-                                                                        0, 5) ??
-                                                                "",
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyMedium!
-                                                                .copyWith(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    color: Colors
-                                                                        .white),
-                                                          ),
+                                                                      .white),
                                                         ),
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
+                                                      ),
+                                                    )),
                                               ],
                                             );
                                           }),
@@ -1287,15 +1278,17 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
     } else {
       var detial = {
         "price": widget.detail["price"].round(),
-        "name": widget.detail["venueName"],
+        "name": widget.detail["academyName"],
+        'academy_id': widget.detail['academy_id'],
         "detail": widget.detail["slotDetail"],
         "apidetail": widget.detail["apiDetail"],
-        "pitchtype": widget.detail["pitchType"],
-        "ids": widget.detail["ids"],
-        "subPitchId": widget.detail["subPitchId"],
+        "id": profileDetail['id'],
+        'sessionId': sessionList,
+        'location': widget.detail['location'],
         "player_count": widget.detail["player_count"],
         "slug": widget.detail["slug"]
       };
+      print(detial);
       Navigator.pushNamed(context, RouteNames.payment, arguments: detial);
     }
   }

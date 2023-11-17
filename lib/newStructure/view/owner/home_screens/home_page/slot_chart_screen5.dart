@@ -6,6 +6,7 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScree
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
@@ -27,7 +28,7 @@ class SlotChartScreen extends StatefulWidget {
 }
 
 class _SlotChartScreenState extends State<SlotChartScreen> {
-  final _playerPriceController = TextEditingController(text: '');
+  final _playerPriceController = TextEditingController();
   final _venuePriceController = TextEditingController(text: '');
   final focusName = FocusNode();
   final NetworkCalls _networkCalls = NetworkCalls();
@@ -41,13 +42,15 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
   List<SessionResponse> slotList = [];
   SpecificAcademy? slotVar;
   final List<WeekDays> _weakList = [];
+  final Map<String, List<SessionDetail>> _sessionMap =
+      <String, List<SessionDetail>>{};
   late OverlayEntry? overlayEntry;
 
   @override
   void initState() {
     super.initState();
     loadSlot();
-    loadSlotList();
+    // loadSpecificAcademy();
   }
 
   loadSlot() {
@@ -57,7 +60,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
             _weakList
                 .add(WeekDays(name: element["name"], slug: element["slug"]));
           });
-          // loadSlotList();
+          loadSpecificAcademy();
         },
         onFailure: (onFailure) {},
         tokenExpire: () {
@@ -65,7 +68,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
         });
   }
 
-  loadSlotList() {
+  loadSpecificAcademy() {
     print('Slotsss');
     _networkCalls.slotList(
         id: widget.academyDetail["id"],
@@ -73,11 +76,33 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
         // weekDay: _weakList[_weakIndex].slug,
         onSuccess: (detail) {
           slotVar = SpecificAcademy.fromJson(detail);
-
+          if (slotVar!.session!.isNotEmpty) {
+            slotVar!.session!.forEach((element) {
+              List<SessionDetail> sessionList = [];
+              element.sessions!.forEach((value) {
+                sessionList.add(SessionDetail(
+                    sessionName: value.name,
+                    isHoliday: value.holiday,
+                    sessionNameAr: value.nameArabic,
+                    slotDuration: value.slotDuration.toString(),
+                    graceTime: DateTime.now(),
+                    startTime: value.startTime != null
+                        ? DateFormat("yyyy-MM-dd hh:mm:ss")
+                            .parse("2022-10-32 ${value.startTime}")
+                        : null,
+                    endTime: value.endTime != null
+                        ? DateFormat("yyyy-MM-dd hh:mm:ss")
+                            .parse("2022-10-32 ${value.endTime}")
+                        : null));
+              });
+              _sessionMap[element.weekday!] = sessionList;
+            });
+          }
           setState(() {
             print('object');
-            print(detail);
+            // print(detail);
             print(slotVar!.session![0].weekday);
+            _playerPriceController.text = slotVar!.prices![0].price.toString();
             _isLoading = false;
           });
         },
@@ -85,6 +110,32 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
         tokenExpire: () {
           if (mounted) on401(context);
         });
+  }
+
+  editAcademy(Map detail) async {
+    print('reaches');
+    await _networkCalls.editAcademy(
+      id: widget.academyDetail['id'].toString(),
+      academyDetail: detail,
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            showMessage('Success');
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = true;
+          });
+        }
+        loadSpecificAcademy();
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
   }
 
   @override
@@ -138,7 +189,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                         setState(() {
                                           _weakIndex = index;
                                           _isLoading = true;
-                                          loadSlotList();
+                                          loadSpecificAcademy();
                                         });
                                       },
                                       child: Container(
@@ -146,9 +197,17 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                         height: size.height * 0.05,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            color: AppColors.appThemeColor),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: _sessionMap.containsKey(
+                                                  _weakList[index].slug)
+                                              ? _sessionMap[_weakList[index]
+                                                          .slug]![0]
+                                                      .isHoliday!
+                                                  ? Colors.redAccent.shade200
+                                                  : AppColors.appThemeColor
+                                              : AppColors.red,
+                                        ),
                                         child: Text(
                                           _weakList[index].name.substring(0, 3),
                                           style: Theme.of(context)
@@ -174,7 +233,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                   setState(() {
                                     _weakIndex = index;
                                     _isLoading = true;
-                                    loadSlotList();
+                                    loadSpecificAcademy();
                                   });
                                 },
                                 child: Padding(
@@ -209,7 +268,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                             child: CircularProgressIndicator(
                         color: AppColors.appThemeColor,
                       )))
-                    : slotVar!.session!.isNotEmpty
+                    : _sessionMap.containsKey(_weakList[_weakIndex].slug) &&
+                            !_sessionMap[_weakList[_weakIndex].slug]![0]
+                                .isHoliday! &&
+                            _sessionMap[_weakList[_weakIndex].slug]!.isNotEmpty
                         ? Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(top: 20.0),
@@ -226,19 +288,57 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                           ...List.generate(
                                               slotVar!.session![index].sessions!
                                                   .length, (indexItem) {
-                                            slotVar!.session![index].weekday ==
-                                                    'wednesday'
-                                                ? print(slotVar!.session![index]
-                                                    .sessions!.length)
-                                                : null;
                                             return Column(
                                               children: [
                                                 _weakIndex == 0
                                                     ? slotVar!.session![index]
-                                                            .weekday!
-                                                            .contains('monday')
+                                                                .weekday!
+                                                                .contains(
+                                                                    'monday') &&
+                                                            slotVar!
+                                                                    .session![
+                                                                        index]
+                                                                    .sessions![
+                                                                        0]
+                                                                    .startTime !=
+                                                                null
                                                         ? EmailContactDOB(
-                                                            editable:
+                                                            onTap: () {
+                                                              Map detail = {
+                                                                "price_id":
+                                                                    slotVar!
+                                                                        .prices![
+                                                                            0]
+                                                                        .priceId,
+                                                                "Sub_Academy":
+                                                                    slotVar!
+                                                                        .prices![
+                                                                            0]
+                                                                        .subAcademy,
+                                                                "Price":
+                                                                    _playerPriceController
+                                                                        .text
+                                                              };
+                                                              Map priceDetail =
+                                                                  {
+                                                                "prices": [
+                                                                  detail
+                                                                ]
+                                                              };
+                                                              print(
+                                                                  priceDetail);
+                                                              showMessage(
+                                                                  "Can't do it right now!");
+
+                                                              /// do it later
+                                                              // editAcademy(
+                                                              //     priceDetail);
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            price:
+                                                                _playerPriceController,
+                                                            slotNavigate:
                                                                 widget.backTag,
                                                             constant:
                                                                 "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
@@ -247,13 +347,46 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                         : const SizedBox
                                                             .shrink()
                                                     : _weakIndex == 1
-                                                        ? slotVar!
-                                                                .session![index]
-                                                                .weekday!
-                                                                .contains(
-                                                                    'tuesday')
+                                                        ? slotVar!.session![index].weekday!
+                                                                    .contains(
+                                                                        'tuesday') &&
+                                                                slotVar!.session![index].sessions![0].startTime !=
+                                                                    null
                                                             ? EmailContactDOB(
-                                                                editable: widget
+                                                                onTap: () {
+                                                                  Map detail = {
+                                                                    "price_id": slotVar!
+                                                                        .prices![
+                                                                            0]
+                                                                        .priceId,
+                                                                    "Sub_Academy": slotVar!
+                                                                        .prices![
+                                                                            0]
+                                                                        .subAcademy,
+                                                                    "Price":
+                                                                        _playerPriceController
+                                                                            .text
+                                                                  };
+                                                                  Map priceDetail =
+                                                                      {
+                                                                    "prices": [
+                                                                      detail
+                                                                    ]
+                                                                  };
+                                                                  print(
+                                                                      priceDetail);
+                                                                  showMessage(
+                                                                      "Can't do it right now!");
+
+                                                                  /// do it later
+                                                                  // editAcademy(
+                                                                  //     priceDetail);
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                price:
+                                                                    _playerPriceController,
+                                                                slotNavigate: widget
                                                                     .backTag,
                                                                 constant:
                                                                     "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
@@ -262,48 +395,167 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                             : const SizedBox
                                                                 .shrink()
                                                         : _weakIndex == 2
-                                                            ? slotVar!
-                                                                    .session![
-                                                                        index]
-                                                                    .weekday!
-                                                                    .contains(
-                                                                        'wednesday')
+                                                            ? slotVar!.session![index].weekday!.contains(
+                                                                        'wednesday') &&
+                                                                    slotVar!.session![index].sessions![0].startTime !=
+                                                                        null
                                                                 ? EmailContactDOB(
-                                                                    editable: widget
-                                                                        .backTag,
+                                                                    onTap: () {
+                                                                      Map detail =
+                                                                          {
+                                                                        "price_id": slotVar!
+                                                                            .prices![0]
+                                                                            .priceId,
+                                                                        "Sub_Academy": slotVar!
+                                                                            .prices![0]
+                                                                            .subAcademy,
+                                                                        "Price":
+                                                                            _playerPriceController.text
+                                                                      };
+                                                                      Map priceDetail =
+                                                                          {
+                                                                        "prices":
+                                                                            [
+                                                                          detail
+                                                                        ]
+                                                                      };
+                                                                      print(
+                                                                          priceDetail);
+                                                                      showMessage(
+                                                                          "Can't do it right now!");
+
+                                                                      /// do it later
+                                                                      // editAcademy(
+                                                                      //     priceDetail);
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
+                                                                    price:
+                                                                        _playerPriceController,
+                                                                    slotNavigate:
+                                                                        widget
+                                                                            .backTag,
                                                                     constant:
                                                                         "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
                                                                     constantValue:
                                                                         '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
-                                                                : const SizedBox
-                                                                    .shrink()
+                                                                : const SizedBox.shrink()
                                                             : _weakIndex == 3
-                                                                ? slotVar!.session![index].weekday!
-                                                                        .contains(
-                                                                            'thursday')
+                                                                ? slotVar!.session![index].weekday!.contains('thursday') && slotVar!.session![index].sessions![0].startTime != null
                                                                     ? EmailContactDOB(
-                                                                        editable: widget
-                                                                            .backTag,
-                                                                        constant:
-                                                                            "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
-                                                                        constantValue:
-                                                                            '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
-                                                                    : const SizedBox
-                                                                        .shrink()
-                                                                : _weakIndex ==
-                                                                        4
-                                                                    ? slotVar!.session![index].weekday!.contains(
-                                                                            'friday')
+                                                                        onTap: () {
+                                                                          Map detail =
+                                                                              {
+                                                                            "price_id":
+                                                                                slotVar!.prices![0].priceId,
+                                                                            "Sub_Academy":
+                                                                                slotVar!.prices![0].subAcademy,
+                                                                            "Price":
+                                                                                _playerPriceController.text
+                                                                          };
+                                                                          Map priceDetail =
+                                                                              {
+                                                                            "prices":
+                                                                                [
+                                                                              detail
+                                                                            ]
+                                                                          };
+                                                                          print(
+                                                                              priceDetail);
+                                                                          showMessage(
+                                                                              "Can't do it right now!");
+
+                                                                          /// do it later
+                                                                          // editAcademy(
+                                                                          //     priceDetail);
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        },
+                                                                        price: _playerPriceController,
+                                                                        slotNavigate: widget.backTag,
+                                                                        constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                                        constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                    : const SizedBox.shrink()
+                                                                : _weakIndex == 4
+                                                                    ? slotVar!.session![index].weekday!.contains('friday') && slotVar!.session![index].sessions![0].startTime != null
                                                                         ? EmailContactDOB(
-                                                                            editable: widget.backTag,
+                                                                            onTap: () {
+                                                                              Map detail = {
+                                                                                "price_id": slotVar!.prices![0].priceId,
+                                                                                "Sub_Academy": slotVar!.prices![0].subAcademy,
+                                                                                "Price": _playerPriceController.text
+                                                                              };
+                                                                              Map priceDetail = {
+                                                                                "prices": [
+                                                                                  detail
+                                                                                ]
+                                                                              };
+                                                                              print(priceDetail);
+                                                                              showMessage("Can't do it right now!");
+
+                                                                              /// do it later
+                                                                              // editAcademy(
+                                                                              //     priceDetail);
+                                                                              Navigator.pop(context);
+                                                                            },
+                                                                            price: _playerPriceController,
+                                                                            slotNavigate: widget.backTag,
                                                                             constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
                                                                             constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
                                                                         : const SizedBox.shrink()
                                                                     : _weakIndex == 5
-                                                                        ? slotVar!.session![index].weekday!.contains('saturday')
-                                                                            ? EmailContactDOB(editable: widget.backTag, constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )", constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                        ? slotVar!.session![index].weekday!.contains('saturday') && slotVar!.session![index].sessions![0].startTime != null
+                                                                            ? EmailContactDOB(
+                                                                                onTap: () {
+                                                                                  Map detail = {
+                                                                                    "price_id": slotVar!.prices![0].priceId,
+                                                                                    "Sub_Academy": slotVar!.prices![0].subAcademy,
+                                                                                    "Price": _playerPriceController.text
+                                                                                  };
+                                                                                  Map priceDetail = {
+                                                                                    "prices": [
+                                                                                      detail
+                                                                                    ]
+                                                                                  };
+                                                                                  print(priceDetail);
+                                                                                  showMessage("Can't do it right now!");
+
+                                                                                  /// do it later
+                                                                                  // editAcademy(
+                                                                                  //     priceDetail);
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                                price: _playerPriceController,
+                                                                                slotNavigate: widget.backTag,
+                                                                                constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                                                constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
                                                                             : const SizedBox.shrink()
-                                                                        : EmailContactDOB(editable: widget.backTag, constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )", constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )'),
+                                                                        : slotVar!.session![index].weekday!.contains('saturday') && slotVar!.session![index].sessions![0].startTime != null
+                                                                            ? EmailContactDOB(
+                                                                                onTap: () {
+                                                                                  Map detail = {
+                                                                                    "price_id": slotVar!.prices![0].priceId,
+                                                                                    "Sub_Academy": slotVar!.prices![0].subAcademy,
+                                                                                    "Price": _playerPriceController.text
+                                                                                  };
+                                                                                  Map priceDetail = {
+                                                                                    "prices": [
+                                                                                      detail
+                                                                                    ]
+                                                                                  };
+                                                                                  print(priceDetail);
+                                                                                  showMessage("Can't do it right now!");
+
+                                                                                  /// do it later
+                                                                                  // editAcademy(
+                                                                                  //     priceDetail);
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                                price: _playerPriceController,
+                                                                                slotNavigate: widget.backTag,
+                                                                                constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
+                                                                                constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                            : const SizedBox.shrink(),
                                               ],
                                             );
                                           })
@@ -591,7 +843,7 @@ class SessionDetail {
   bool? isHoliday;
   String? sessionName;
   String? sessionNameAr;
-  DateTime? slotDuration;
+  String? slotDuration;
   DateTime? graceTime;
   DateTime? startTime;
   DateTime? endTime;

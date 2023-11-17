@@ -54,7 +54,6 @@ class SignUpWidgetState extends State<SignUpWidget> {
   static String? player;
   List<String> playerEn = ["player", "Owner"];
   List<String> playerAr = ["لاعب", "مالك"];
-  final GlobalKey<FormState> _form = GlobalKey<FormState>();
 
   privacyPolicy(String text) async {
     _networkCalls.privacyPolicy(
@@ -341,6 +340,14 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 AppLocalizations.of(context)!.locale == "en"
                     ? CountryCodePicker(
                         padding: const EdgeInsets.only(top: 5),
+                        backgroundColor: MyAppState.mode == ThemeMode.light
+                            ? AppColors.white
+                            : AppColors.darkTheme,
+                        dialogTextStyle: TextStyle(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? const Color(0XFF032040)
+                                : AppColors.black),
+                        searchStyle: TextStyle(color: AppColors.black),
                         textStyle: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
                                 ? const Color(0XFF032040)
@@ -389,6 +396,14 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 AppLocalizations.of(context)!.locale == "ar"
                     ? CountryCodePicker(
                         padding: const EdgeInsets.only(top: 5),
+                        backgroundColor: MyAppState.mode == ThemeMode.light
+                            ? AppColors.white
+                            : AppColors.darkTheme,
+                        dialogTextStyle: TextStyle(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? const Color(0XFF032040)
+                                : AppColors.black),
+                        searchStyle: TextStyle(color: AppColors.black),
                         textStyle: TextStyle(
                             color: MyAppState.mode == ThemeMode.light
                                 ? const Color(0XFF032040)
@@ -411,6 +426,8 @@ class SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(
               height: height * 0.02,
             ),
+
+            ///owner/player choose field
             AppLocalizations.of(context)!.locale == "en"
                 ? SizedBox(
                     height: height * .07,
@@ -421,11 +438,19 @@ class SignUpWidgetState extends State<SignUpWidget> {
                             height: 1,
                             color: const Color(0XFF9F9F9F),
                           ),
-                          dropdownColor: Colors.blueGrey,
+                          dropdownColor: MyAppState.mode == ThemeMode.light
+                              ? AppColors.white
+                              : AppColors.darkTheme,
                           iconEnabledColor: const Color(0XFF9B9B9B),
                           focusColor: const Color(0XFF9B9B9B),
+                          autofocus: true,
                           isExpanded: true,
                           value: player,
+                          borderRadius: BorderRadius.circular(height * 0.01),
+                          elevation: 2,
+                          alignment: Alignment.bottomCenter,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.03),
                           hint: Text(
                             AppLocalizations.of(context)!.chooseAccount,
                             style: TextStyle(
@@ -463,6 +488,14 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           iconEnabledColor: const Color(0XFF9B9B9B),
                           focusColor: const Color(0XFF9B9B9B),
                           isExpanded: true,
+                          borderRadius: BorderRadius.circular(height * 0.01),
+                          elevation: 2,
+                          alignment: Alignment.bottomCenter,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.03),
+                          dropdownColor: MyAppState.mode == ThemeMode.light
+                              ? AppColors.white
+                              : AppColors.darkTheme,
                           value: player,
                           hint: Text(
                             AppLocalizations.of(context)!.chooseAccount,

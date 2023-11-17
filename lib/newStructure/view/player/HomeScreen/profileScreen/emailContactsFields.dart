@@ -8,22 +8,25 @@ import '../widgets/textFormField.dart';
 class EmailContactDOB extends StatelessWidget {
   String constant;
   String constantValue;
-  bool editable;
+  bool slotNavigate;
+  VoidCallback? onTap;
+  TextEditingController? price;
 
   EmailContactDOB(
       {super.key,
+      this.onTap,
+      this.price,
       required this.constant,
       required this.constantValue,
-      this.editable = true});
+      this.slotNavigate = false});
 
   @override
   Widget build(BuildContext context) {
-    final _pricePerPlayer = TextEditingController();
     final controller = TextEditingController();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return InkWell(
-      onTap: editable
+      onTap: slotNavigate
           ? () {
               showDialog(
                   context: context,
@@ -51,7 +54,7 @@ class EmailContactDOB extends StatelessWidget {
                                 height: height * 0.01,
                               ),
                               TextFieldWidget(
-                                  controller: _pricePerPlayer,
+                                  controller: price!,
                                   hintText: '',
                                   type: TextInputType.number,
                                   prefix: const Text(
@@ -68,13 +71,6 @@ class EmailContactDOB extends StatelessWidget {
                                   ),
                                   onSubmitted: (value) {
                                     // FocusScope.of(context).requestFocus(arabicFocus);
-                                    return null;
-                                  },
-                                  onChanged: (value) {},
-                                  onValidate: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please enter amount";
-                                    }
                                     return null;
                                   },
                                   border: OutlineInputBorder(
@@ -121,9 +117,7 @@ class EmailContactDOB extends StatelessWidget {
                             height: 10,
                           ),
                           InkWell(
-                            onTap: () {
-                              Navigator.of(context).pop(true);
-                            },
+                            onTap: onTap,
                             child: Center(
                               child: Container(
                                 height: 50,
@@ -136,7 +130,7 @@ class EmailContactDOB extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    AppLocalizations.of(context)!.yes,
+                                    AppLocalizations.of(context)!.saveChanges,
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleSmall!
@@ -174,7 +168,7 @@ class EmailContactDOB extends StatelessWidget {
                 controller: controller,
                 enable: false,
                 hintText: constantValue,
-                suffixIcon: editable ? Icons.edit_outlined : null,
+                suffixIcon: slotNavigate ? Icons.edit_outlined : null,
                 fillColor: Colors.transparent,
                 suffixIconColor: MyAppState.mode == ThemeMode.light
                     ? AppColors.black

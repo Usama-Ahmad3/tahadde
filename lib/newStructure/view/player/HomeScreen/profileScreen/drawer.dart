@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/profile/myPitches.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/events/events.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/bookingWidget.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
@@ -40,7 +40,15 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   privacyPolicy(String text) async {
     NetworkCalls().privacyPolicy(
       onSuccess: (msg) {
-        launchInBrowser(msg[text]);
+        text == 'privacy_policy_url'
+            ? AppLocalizations().locale == 'en'
+                ? launchInBrowser(msg[text])
+                : launchInBrowser("https://ar.tahadde.ae/privacy-policy")
+
+            ///if terms and conditions
+            : AppLocalizations().locale == 'en'
+                ? launchInBrowser(msg[text])
+                : launchInBrowser("https://ar.tahadde.ae/terms-conditions");
       },
       onFailure: (msg) {
         showMessage(msg);
@@ -116,7 +124,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                             NetworkCalls().clearToken(key: 'token');
                             NetworkCalls().clearToken(key: 'role');
                             NetworkCalls().clearToken(key: "auth");
-                            // navigateToHome();
+                            navigateToHome();
                           },
                           onFailure: (msg) {
                             showMessage(msg);
@@ -195,7 +203,12 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                     },
                     child: SizedBox(
                       height: height * 0.06,
-                      child: Image.asset('assets/images/back.png'),
+                      child: Image.asset(
+                        'assets/images/back.png',
+                        color: MyAppState.mode == ThemeMode.light
+                            ? AppColors.black
+                            : AppColors.white,
+                      ),
                     ),
                     // child: CircleAvatar(
                     //   backgroundColor: AppColors.grey200,
@@ -230,8 +243,18 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                   : AppColors.white),
                                 ),
                                 Text(
-                                  widget.position,
-                                  style: Theme.of(context).textTheme.titleSmall,
+                                  widget.position == 'player'
+                                      ? AppLocalizations.of(context)!.player
+                                      : AppLocalizations.of(context)!
+                                          .academyOwner,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.black
+                                                  : AppColors.white),
                                 ),
                               ],
                             ),
@@ -293,7 +316,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (_) =>
-                                                              EventsScreen(
+                                                              PlayerBookingScreen(
                                                                 bookingTag:
                                                                     true,
                                                               )));
@@ -356,7 +379,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                 fontSize: 14),
                                       ),
                                       subtitle: Text(
-                                        subtitle[index],
+                                        subtitle[index].length > 24
+                                            ? "${subtitle[index].toString().substring(0, 25)}..."
+                                            : subtitle[index],
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleSmall!
@@ -384,7 +409,11 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                     child: ListTile(
                                       onTap: index == 0
                                           ? () {
-                                              navigateToBankDetail();
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const EditProfileScreen()));
                                             }
                                           : index == 1
                                               ? () {
@@ -435,7 +464,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                 fontSize: 14),
                                       ),
                                       subtitle: Text(
-                                        ownerSubtitle[index],
+                                        ownerSubtitle[index].length > 24
+                                            ? "${ownerSubtitle[index].toString().substring(0, 25)}..."
+                                            : ownerSubtitle[index],
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleSmall!
@@ -638,7 +669,11 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
 
   void navigateToMyPitches() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (_) => const MyPitches()));
+        context,
+        MaterialPageRoute(
+            builder: (_) => BookingWidget(
+                  fromDrawer: true,
+                )));
     // Navigator.pushNamed(context, RouteNames.myVenues);
   }
 
@@ -668,7 +703,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     AppLocalizations().setting
   ];
   List ownerTitle = [
-    AppLocalizations().bankDetails,
+    AppLocalizations().editProfile,
     AppLocalizations().myBooking,
     AppLocalizations().setting
   ];
@@ -680,7 +715,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     AppLocalizations().languageTheme
   ];
   List ownerSubtitle = [
-    AppLocalizations().paymentTransaction,
+    AppLocalizations().nameEmail,
     AppLocalizations().bookingAcademy,
     AppLocalizations().languageTheme
   ];

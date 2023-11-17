@@ -1,6 +1,7 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -9,7 +10,6 @@ import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import '../../../app_colors/app_colors.dart';
-import 'events/events.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
   int index;
@@ -124,7 +124,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
 
   final page = [
     const HomeScreenView(),
-    EventsScreen(bookingTag: false),
+    PlayerBookingScreen(bookingTag: false),
     SettingsScreen(bookingTag: false),
     // ignore: prefer_const_constructors
     ProfileDetailScreen()

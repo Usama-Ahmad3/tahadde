@@ -6,7 +6,7 @@ import 'package:flutter_tahaddi/modelClass/territory_model_class.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -139,7 +139,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
                   Wrap(
                     children: [
                       ...List.generate(
-                          showHistory!.length > 2 ? 2 : showHistory!.length,
+                          showHistory != null
+                              ? showHistory!.length > 2
+                                  ? 2
+                                  : showHistory!.length
+                              : 0,
                           (index) => InkWell(
                                 onTap: () async {
                                   searchController.text = showHistory![index];
@@ -246,7 +250,12 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               elevation: 2,
                                               padding: const EdgeInsets.all(10),
                                               label: Text(
-                                                _sportsList[index].name!,
+                                                AppLocalizations.of(context)!
+                                                            .locale ==
+                                                        'en'
+                                                    ? _sportsList[index].name!
+                                                    : _sportsList[index]
+                                                        .nameArabic!,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium!
@@ -324,8 +333,14 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   padding:
                                                       const EdgeInsets.all(10),
                                                   label: Text(
-                                                    _academyModel[index][
-                                                        'Academy_NameEnglish']!,
+                                                    AppLocalizations.of(
+                                                                    context)!
+                                                                .locale ==
+                                                            'en'
+                                                        ? _academyModel[index][
+                                                            'Academy_NameEnglish']!
+                                                        : _academyModel[index][
+                                                            'Academy_NameArabic']!,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyMedium!
@@ -389,8 +404,13 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                           elevation: 2,
                                           padding: const EdgeInsets.all(10),
                                           label: Text(
-                                            _academyModel[index]
-                                                ['Academy_NameEnglish']!,
+                                            AppLocalizations.of(context)!
+                                                        .locale ==
+                                                    'en'
+                                                ? _academyModel[index]
+                                                    ['Academy_NameEnglish']!
+                                                : _academyModel[index]
+                                                    ['Academy_NameArabic']!,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!
@@ -725,7 +745,9 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                                           elevation: 2,
                                                                           padding: const EdgeInsets.all(10),
                                                                           label: Text(
-                                                                            _sportsList[index].name!,
+                                                                            AppLocalizations.of(context)!.locale == 'en'
+                                                                                ? _sportsList[index].name!
+                                                                                : _sportsList[index].nameArabic.toString(),
                                                                             style:
                                                                                 Theme.of(context).textTheme.bodyMedium!.copyWith(color: isSelected == index ? AppColors.white : AppColors.white),
                                                                           )),
@@ -833,7 +855,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                     .cities![index].name
                                                     .toString()
                                                 : territoryData!.countries![0]
-                                                    .cities![index].name
+                                                    .cities![index].arabicName
                                                     .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
@@ -865,6 +887,9 @@ class HomeScreenViewState extends State<HomeScreenView> {
                           size: 23 * fem,
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      width: width * 0.01,
                     ),
                     InkWell(
                       onTap: () {
@@ -991,9 +1016,15 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                                   const EdgeInsets
                                                                       .all(10),
                                                               label: Text(
-                                                                _sportsList[
-                                                                        index]
-                                                                    .name!,
+                                                                AppLocalizations.of(context)!
+                                                                            .locale ==
+                                                                        'en'
+                                                                    ? _sportsList[
+                                                                            index]
+                                                                        .name!
+                                                                    : _sportsList[
+                                                                            index]
+                                                                        .nameArabic!,
                                                                 style: TextStyle(
                                                                     color: isSelected ==
                                                                             index
@@ -1094,14 +1125,14 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                           isSelected != -1
                                               ? academyModel != null &&
                                                       academyModel.isNotEmpty
-                                                  ? VanueList(
+                                                  ? AcademyList(
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
                                                       academyDetail:
                                                           academyModel,
                                                       searchflag: searchFlag)
-                                                  : VanueList(
+                                                  : AcademyList(
                                                       text:
                                                           AppLocalizations
                                                                   .of(context)!
@@ -1111,7 +1142,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       empty: true,
                                                       searchflag: searchFlag)
                                               : _academyModel != null
-                                                  ? VanueList(
+                                                  ? AcademyList(
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
@@ -1122,6 +1153,8 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         ],
                                       ),
                                     ),
+
+                                    ///innovative tab
                                     SingleChildScrollView(
                                       child: Column(
                                         crossAxisAlignment:
@@ -1130,27 +1163,26 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                           isSelected != -1
                                               ? academyModel != null &&
                                                       academyModel.isNotEmpty
-                                                  ? VanueList(
+                                                  ? AcademyList(
                                                       text: AppLocalizations.of(
                                                               context)!
-                                                          .academy,
+                                                          .innovative,
                                                       academyDetail:
                                                           academyModel,
                                                       searchflag: searchFlag)
-                                                  : VanueList(
-                                                      text:
-                                                          AppLocalizations
-                                                                  .of(context)!
-                                                              .academy,
+                                                  : AcademyList(
+                                                      text: AppLocalizations.of(
+                                                              context)!
+                                                          .innovative,
                                                       academyDetail:
                                                           academyModel,
                                                       empty: true,
                                                       searchflag: searchFlag)
                                               : _academyModel != null
-                                                  ? VanueList(
+                                                  ? AcademyList(
                                                       text: AppLocalizations.of(
                                                               context)!
-                                                          .academy,
+                                                          .innovative,
                                                       academyDetail:
                                                           _academyModel,
                                                       searchflag: searchFlag)

@@ -104,10 +104,11 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(
-              AppLocalizations.of(context)!.uploadprofilepicture,
-              style: TextStyle(color: AppColors.black),
-            ),
+            backgroundColor: AppColors.white,
+            elevation: 2,
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [

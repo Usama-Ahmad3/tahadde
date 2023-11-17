@@ -25,7 +25,7 @@ import 'signUpWidget.dart';
 
 class LoginScreen extends StatefulWidget {
   String message;
-  int clicked;
+  int? clicked;
 
   LoginScreen({super.key, required this.message, this.clicked = 1});
 
@@ -47,6 +47,7 @@ class LoginScreenState extends State<LoginScreen> {
   var signingIntoFirebase = false;
   var error;
   late OverlayEntry? overlayEntry;
+  int clicked = 0;
   static bool isLoading = false;
   bool _internet = true;
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -301,6 +302,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+    clicked = widget.clicked!.toInt();
     isLoading = false;
     _logOut();
     _getAppleSigninAvailability();
@@ -412,14 +414,14 @@ class LoginScreenState extends State<LoginScreen> {
                                 InkWell(
                                   onTap: () {
                                     setState(() {
-                                      widget.clicked = 1;
+                                      clicked = 1;
                                     });
                                   },
                                   child: Container(
                                     height: height * 0.065,
                                     width: width * 0.44,
                                     decoration: BoxDecoration(
-                                        color: widget.clicked == 1
+                                        color: clicked == 1
                                             ? AppColors.appThemeColor
                                             : AppColors.transparent,
                                         borderRadius:
@@ -431,7 +433,7 @@ class LoginScreenState extends State<LoginScreen> {
                                                 .textTheme
                                                 .titleMedium!
                                                 .copyWith(
-                                                    color: widget.clicked == 1
+                                                    color: clicked == 1
                                                         ? AppColors.white
                                                         : MyAppState.mode ==
                                                                 ThemeMode.light
@@ -443,14 +445,14 @@ class LoginScreenState extends State<LoginScreen> {
                                 InkWell(
                                   onTap: () {
                                     setState(() {
-                                      widget.clicked = 2;
+                                      clicked = 2;
                                     });
                                   },
                                   child: Container(
                                     height: height * 0.065,
                                     width: width * 0.44,
                                     decoration: BoxDecoration(
-                                        color: widget.clicked == 2
+                                        color: clicked == 2
                                             ? AppColors.appThemeColor
                                             : AppColors.transparent,
                                         borderRadius:
@@ -462,7 +464,7 @@ class LoginScreenState extends State<LoginScreen> {
                                           .textTheme
                                           .titleMedium!
                                           .copyWith(
-                                              color: widget.clicked == 2
+                                              color: clicked == 2
                                                   ? AppColors.white
                                                   : MyAppState.mode ==
                                                           ThemeMode.light
@@ -475,7 +477,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        widget.clicked == 1
+                        clicked == 1
                             ? LogInWidget(
                                 loading: isLoading,
                                 forgetTap: () {
@@ -490,7 +492,6 @@ class LoginScreenState extends State<LoginScreen> {
                                     _networkCalls.checkInternetConnectivity(
                                         onSuccess: (msg) {
                                       if (msg == true) {
-                                        isLoading = false;
                                         String encoded = base64.encode(utf8
                                             .encode(passwordController.text));
                                         var details = {
@@ -504,6 +505,9 @@ class LoginScreenState extends State<LoginScreen> {
                                         _networkCalls.login(
                                             loginDetail: details,
                                             onSuccess: (msg) {
+                                              setState(() {
+                                                isLoading = false;
+                                              });
                                               if (msg == "pitchowner") {
                                                 navigateToOwnerHome();
                                               } else {
@@ -511,20 +515,18 @@ class LoginScreenState extends State<LoginScreen> {
                                               }
                                             },
                                             onFailure: (msg) {
-                                              if (mounted) {
-                                                setState(() {
-                                                  isLoading = false;
-                                                  showMessage(msg);
-                                                });
-                                              }
+                                              setState(() {
+                                                isLoading = false;
+                                                showMessage(msg);
+                                              });
                                             });
                                       } else {
-                                        if (mounted) {
+                                        setState(() {
                                           isLoading = false;
-                                          showMessage(
-                                              AppLocalizations.of(context)!
-                                                  .noInternetConnection);
-                                        }
+                                        });
+                                        showMessage(
+                                            AppLocalizations.of(context)!
+                                                .noInternetConnection);
                                       }
                                     });
                                   }
@@ -534,15 +536,13 @@ class LoginScreenState extends State<LoginScreen> {
                               )
                             : SignUpWidget(
                                 player: (String? value) {
-                                  setState(() {
-                                    SignUpWidgetState.player = value;
-                                    logDetail.player = value;
-                                  });
+                                  SignUpWidgetState.player = value;
+                                  logDetail.player = value;
+                                  setState(() {});
                                 },
                                 loading: isLoading,
                                 signUp: () {
                                   if (_formKey.currentState!.validate()) {
-                                    _formKey.currentState!.save();
                                     setState(() {
                                       logDetail.phoneNumber =
                                           phoneController.text;
@@ -558,7 +558,7 @@ class LoginScreenState extends State<LoginScreen> {
                                     if (logDetail.phoneNumber != null) {
                                       _networkCalls.checkInternetConnectivity(
                                           onSuccess: (msg) {
-                                        if (mounted) _internet = msg;
+                                        _internet = msg;
                                         if (msg == true) {
                                           _networkCalls
                                               .checkAvailabilityOfEmail(
@@ -582,12 +582,10 @@ class LoginScreenState extends State<LoginScreen> {
                                                                   logDetail);
                                                             },
                                                             onFailure: (msg) {
-                                                              if (mounted) {
-                                                                setState(() {
-                                                                  isLoading =
-                                                                      false;
-                                                                });
-                                                              }
+                                                              setState(() {
+                                                                isLoading =
+                                                                    false;
+                                                              });
                                                               showMessage(
                                                                 msg,
                                                               );
@@ -615,12 +613,9 @@ class LoginScreenState extends State<LoginScreen> {
                                                     }
                                                   });
                                         } else {
-                                          if (mounted) {
-                                            showMessage(
-                                                AppLocalizations.of(context)!
-                                                    .noInternetConnection);
-                                            isLoading = false;
-                                          }
+                                          showMessage(
+                                              AppLocalizations.of(context)!
+                                                  .noInternetConnection);
                                           isLoading = false;
                                         }
                                       });
@@ -628,11 +623,9 @@ class LoginScreenState extends State<LoginScreen> {
                                   }
                                 },
                                 onChanged: (value) {
-                                  if (mounted) {
-                                    setState(() {
-                                      logDetail.countryCode = value.toString();
-                                    });
-                                  }
+                                  setState(() {
+                                    logDetail.countryCode = value.toString();
+                                  });
                                 },
                                 onChangedController: (value) {
                                   logDetail.phoneNumber = value;
@@ -645,6 +638,8 @@ class LoginScreenState extends State<LoginScreen> {
                                 nameController: nameController,
                                 phoneController: phoneController,
                               ),
+
+                        ///google facebook login
                         Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: height * 0.02, horizontal: width * 0.2),
@@ -723,6 +718,8 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                         ),
+
+                        ///package info last
                         Padding(
                           padding: AppLocalizations.of(context)!.locale == "en"
                               ? EdgeInsets.only(right: width * 0.09)

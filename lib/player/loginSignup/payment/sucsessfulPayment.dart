@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -41,23 +43,25 @@ class _PaymentSuccess extends State<PaymentSuccess> {
   }
 
   loadStatus() {
-    Map paymentId = {"payment_id": price["tranjectionId"]};
-    _networkCalls.transectionStatus(
-        onSuccess: (result) {
-          setState(() {
-            price["status"] =
-                result["Data"]["InvoiceTransactions"][0]['TransactionStatus'];
-            _isLoading = false;
-            if (result["Data"]["InvoiceTransactions"][0]['TransactionStatus'] ==
-                "InProgress") {
-              loadStatus();
-            }
-          });
-        },
-        onFailure: (msg) {
-          showMessage(msg);
-        },
-        paymentId: paymentId);
+    Map paymentId = {"payment_id": widget.price["tranjectionId"]};
+    _isLoading = false;
+    setState(() {});
+    // _networkCalls.transectionStatus(
+    //     onSuccess: (result) {
+    //       setState(() {
+    //         price["status"] =
+    //             result["Data"]["InvoiceTransactions"][0]['TransactionStatus'];
+    //         _isLoading = false;
+    //         if (result["Data"]["InvoiceTransactions"][0]['TransactionStatus'] ==
+    //             "InProgress") {
+    //           loadStatus();
+    //         }
+    //       });
+    //     },
+    //     onFailure: (msg) {
+    //       showMessage(msg);
+    //     },
+    //     paymentId: paymentId);
   }
 
   @override
@@ -135,24 +139,6 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                 onWillPop: () async => false,
                 child: Scaffold(
                     backgroundColor: Colors.white,
-                    bottomNavigationBar: GestureDetector(
-                      onTap: () {
-                        navigateToDetail();
-                      },
-                      child: Container(
-                        height: sizeheight * .1,
-                        width: sizewidth,
-                        color: const Color(0XFF25A163),
-                        alignment: Alignment.center,
-                        child: Text(
-                          AppLocalizations.of(context)!.bookingSummary,
-                          style: const TextStyle(
-                              color: Color(0XFFFFFFFF),
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ),
                     body: SizedBox(
                       height: sizeheight,
                       width: sizewidth,
@@ -164,14 +150,13 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                             flex: 15,
                             child: Container(),
                           ),
-                          price["status"] == "Success"
-                              ? Lottie.asset('assets/lottiefiles/success.json',
-                                  height: sizeheight * .4,
-                                  width: sizewidth * .7)
-                              : Lottie.asset(
-                                  'assets/lottiefiles/pandingpayment.json',
-                                  height: sizeheight * .4,
-                                  width: sizewidth * .7),
+                          // price["status"] == "Success"?
+                          Lottie.asset('assets/lottiefiles/success.json',
+                              height: sizeheight * .4, width: sizewidth * .7),
+                          // : Lottie.asset(
+                          //     'assets/lottiefiles/pandingpayment.json',
+                          //     height: sizeheight * .4,
+                          //     width: sizewidth * .7),
 
                           //Text(AppLocalizations.of(context).resetPassword,style: TextStyle(color: Color(0XFF2F2F2F),fontSize: 18,fontWeight: FontWeight.w600),),
                           Padding(
@@ -188,6 +173,20 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                             flex: 20,
                             child: Container(),
                           ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: sizewidth * 0.05),
+                            child: ButtonWidget(
+                                onTaped: () {
+                                  navigateToDetail();
+                                },
+                                title: Text('Booking Summary',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(color: AppColors.white)),
+                                isLoading: false),
+                          )
                         ],
                       ),
                     )),
@@ -208,16 +207,16 @@ class _PaymentSuccess extends State<PaymentSuccess> {
 
   void navigateToDetail() {
     var detail = {
-      "status": price["status"],
+      "status": widget.price["status"],
       "price": widget.price["price"],
-      "venueName": widget.price["venueName"],
-      "name": widget.price["name"],
-      "tranjectionId": widget.price["tranjectionId"],
+      "AcademyName": widget.price["AcademyName"],
+      "transactionId": widget.price["tranjectionId"],
       "startingDate": widget.price["startingDate"],
-      "pitchtype": widget.price["pitchtype"],
+      'sessions': widget.price['Sessions'],
       "email": widget.price["email"],
-      "teamId": widget.price["teamId"],
+      "booked_date": widget.price["booked_date"],
     };
+    print(detail);
     //Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: CarouselDemo (index: 2,)));
     Navigator.pushNamed(context, RouteNames.bookingSummary, arguments: detail);
   }

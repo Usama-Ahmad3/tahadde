@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
@@ -94,12 +94,12 @@ class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
                 appBar: appBarWidget(sizeWidth, sizeHeight, context,
                     AppLocalizations.of(context)!.academy, true),
                 body: _academyModel != null
-                    ? VanueList(
+                    ? AcademyList(
                         text: AppLocalizations.of(context)!.academy,
                         academyDetail: _academyModel,
                         tagForView: false,
                       )
-                    : VanueList(
+                    : AcademyList(
                         text: AppLocalizations.of(context)!.academy,
                         academyDetail: _academyModel,
                         tagForView: false,

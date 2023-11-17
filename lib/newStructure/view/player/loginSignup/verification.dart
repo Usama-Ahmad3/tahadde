@@ -122,6 +122,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   signup() {
     details = {
+      'id': widget.detail.id,
       "first_name": widget.detail.firstName,
       "last_name": widget.detail.lastName,
       "email": widget.detail.email,

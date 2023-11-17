@@ -28,12 +28,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   loadNotification() async {
     await _networkCalls.notificationGet(
-      onSuccess: (msg) {
+      onSuccess: (msg) async {
         if (mounted) {
-          setState(() {
-            detail = msg;
-            _isLoading = false;
-          });
+          detail = await msg;
+          _isLoading = false;
+          setState(() {});
         }
       },
       onFailure: (msg) {
@@ -133,21 +132,23 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           right: 0,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: widget.player?13.0:height * 0.078, vertical: 55),
+                                horizontal:
+                                    widget.player ? 13.0 : height * 0.078,
+                                vertical: 55),
                             child: Row(
                               children: [
                                 widget.player
                                     ? InkWell(
-                                    onTap: () {
-                                       Navigator.pop(context);
-                                    },
-                                    child: SizedBox(
-                                         height: height * 0.06,
-                                         child: Image.asset(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: SizedBox(
+                                            height: height * 0.06,
+                                            child: Image.asset(
                                               'assets/images/back.png',
-                                               color: AppColors.white,
-                                    )),
-                                       )
+                                              color: AppColors.white,
+                                            )),
+                                      )
                                     : const SizedBox.shrink(),
                                 SizedBox(
                                   width: height * 0.09,
@@ -155,9 +156,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 Text(
                                   AppLocalizations.of(context)!.notificationC,
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: const Color(0xffffffff),
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                        color: const Color(0xffffffff),
+                                      ),
                                 ),
                               ],
                             ),
@@ -196,9 +200,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           Text(
                                             AppLocalizations.of(context)!
                                                 .notificationDec,
-                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                color: const Color(0XFFB7B7B7),
-                                                fontWeight: FontWeight.w600),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color:
+                                                        const Color(0XFFB7B7B7),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                           ),
                                           flaxibleGap(5),
                                         ],
@@ -233,21 +242,32 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 12 * fem,
-                                                horizontal: MediaQuery.of(context).size.width * 0.062),
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.062),
                                             child: Align(
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 AppLocalizations.of(context)!
                                                     .newC,
                                                 textAlign: TextAlign.center,
-                                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                  fontWeight: FontWeight.w500,
-                                                  height:
-                                                      1.3333333333 * ffem / fem,
-                                                  color: mode == ThemeMode.light
-                                                      ? AppColors.darkTheme
-                                                      : const Color(0xffffffff),
-                                                ),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      height: 1.3333333333 *
+                                                          ffem /
+                                                          fem,
+                                                      color: mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.darkTheme
+                                                          : const Color(
+                                                              0xffffffff),
+                                                    ),
                                               ),
                                             ),
                                           ),
@@ -271,8 +291,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                   Container(
                                                     padding:
                                                         EdgeInsets.symmetric(
-                                                            horizontal:
-                                                                15 * fem,
+                                                            horizontal: 8 * fem,
                                                             vertical: 12 * fem),
                                                     width: double.infinity,
                                                     height: 62 * fem,
@@ -311,39 +330,47 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                   BorderRadius
                                                                       .circular(
                                                                           50.0),
-                                                              child: detail![0]["previousNotfication"]
-                                                                              [index == 0 ? 0 : index - current]
-                                                                          ['notificationFor'] ==
-                                                                      'team'
-                                                                  ? detail![0]["previousNotfication"][index == 0 ? 0 : index - current]["image"]["filePath"] == null
-                                                                      ? Image.asset(
-                                                                          "assets/images/profile.png",
-                                                                          fit: BoxFit
-                                                                              .fill,
-                                                                          height:
-                                                                              .06 * fem,
-                                                                          width:
-                                                                              .06 * fem,
-                                                                        )
-                                                                      : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"]["filePath"] ?? '')
-                                                                  // : current == 0 || index >= current
-                                                                  //     ? Image.asset(
-                                                                  //         "assets/images/profile.png",
-                                                                  //         fit: BoxFit
-                                                                  //             .fill,
-                                                                  //         height:
-                                                                  //             .06 * fem,
-                                                                  //         width:
-                                                                  //             .06 * fem,
-                                                                  //       )
-                                                                      : detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] == null
-                                                                          ? Image.asset(
-                                                                              "assets/images/profile.png",
-                                                                              fit: BoxFit.fill,
-                                                                              height: .06 * fem,
-                                                                              width: .06 * fem,
-                                                                            )
-                                                                          : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] ?? '')),
+                                                              child:
+                                                                  // detail![0]["previousNotfication"]
+                                                                  //                 [index == 0 ? 0 : index - current][
+                                                                  //             'notificationFor'] ==
+                                                                  //         'team'
+                                                                  // ? detail![0]["previousNotfication"][index == 0 ? 0 : index - current]["image"]["filePath"] == null
+                                                                  // ?
+                                                                  Image.asset(
+                                                                "assets/images/profile.png",
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                height:
+                                                                    .06 * fem,
+                                                                width:
+                                                                    .05 * fem,
+                                                              )),
+                                                          // : cachedNetworkImage(
+                                                          //     height: .06 *
+                                                          //         fem,
+                                                          //     width: .06 *
+                                                          //         fem,
+                                                          //     cuisineImageUrl:
+                                                          //         detail![0]["previousNotfication"][index == 0 ? 0 : index - current]["image"]["filePath"] ?? '')),
+                                                          // : current == 0 || index >= current
+                                                          //     ? Image.asset(
+                                                          //         "assets/images/profile.png",
+                                                          //         fit: BoxFit
+                                                          //             .fill,
+                                                          //         height:
+                                                          //             .06 * fem,
+                                                          //         width:
+                                                          //             .06 * fem,
+                                                          //       )
+                                                          //     : detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] == null
+                                                          //         ? Image.asset(
+                                                          //             "assets/images/profile.png",
+                                                          //             fit: BoxFit.fill,
+                                                          //             height: .06 * fem,
+                                                          //             width: .06 * fem,
+                                                          //           )
+                                                          //         : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] ?? '')),
                                                         ),
                                                         Container(
                                                           margin:
@@ -352,59 +379,64 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                       26 * fem),
                                                           constraints:
                                                               BoxConstraints(
-                                                            maxWidth: 175 * fem,
+                                                            maxWidth: 185 * fem,
                                                           ),
                                                           child: RichText(
                                                             text: TextSpan(
-                                                              style:
-                                                                  Theme.of(context).textTheme.titleSmall!.copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                height:
-                                                                    1.3333333333 *
-                                                                        ffem /
-                                                                        fem,
-                                                                color: const Color(
-                                                                    0xff050505),
-                                                              ),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .titleSmall!
+                                                                  .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    height:
+                                                                        1.3333333333 *
+                                                                            ffem /
+                                                                            fem,
+                                                                    color: const Color(
+                                                                        0xff050505),
+                                                                  ),
                                                               children: [
                                                                 TextSpan(
-                                                                  text: detail![0]["previousNotfication"][index == 0 ? 0:index - current]
+                                                                  text: detail![0]["previousNotfication"][index == 0 ? 0 : index - current]
                                                                               [
                                                                               "notificationMessage"] ==
                                                                           null
                                                                       ? ""
-                                                                      : detail![0]["previousNotfication"][index == 0 ? 0:index - current]["notificationMessage"]
+                                                                      : detail![0]
                                                                               [
-                                                                              "message"] ??
+                                                                              "previousNotfication"][index ==
+                                                                                  0
+                                                                              ? 0
+                                                                              : index - current]["notificationMessage"]["message"] ??
                                                                           "",
-                                                                  style:
-                                                                      Theme.of(context).textTheme.titleSmall!.copyWith(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    height:
-                                                                        1.3846153846 *
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .titleSmall!
+                                                                      .copyWith(
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        height: 1.3846153846 *
                                                                             ffem /
                                                                             fem,
-                                                                    color: mode ==
-                                                                            ThemeMode
-                                                                                .light
-                                                                        ? const Color(
-                                                                            0xff050505)
-                                                                        : const Color(
-                                                                            0xffffffff),
-                                                                  ),
+                                                                        color: mode ==
+                                                                                ThemeMode.light
+                                                                            ? const Color(0xff050505)
+                                                                            : const Color(0xffffffff),
+                                                                      ),
                                                                 ),
                                                               ],
                                                             ),
                                                           ),
                                                         ),
                                                         Text(
-                                                          detail![0]["previousNotfication"]
-                                                                          [
-                                                          index == 0 ? 0:index -
+                                                          detail![0]["previousNotfication"][index ==
+                                                                              0
+                                                                          ? 0
+                                                                          : index -
                                                                               current]
                                                                       [
                                                                       "createdDatetime"] ==
@@ -413,14 +445,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                                                               ///6
                                                               : detail![0]["previousNotfication"]
-                                                                          [index == 0 ? 0:
-                                                                          index -
-                                                                              current]
                                                                       [
-                                                                      "createdDatetime"]
+                                                                      index == 0
+                                                                          ? 0
+                                                                          : index -
+                                                                              current]["createdDatetime"]
                                                                   .toString()
-                                                                  .substring(
-                                                                      0, 10),
+                                                                  .substring(0, 10),
                                                           textAlign:
                                                               TextAlign.right,
                                                           style: SafeGoogleFont(
@@ -463,24 +494,26 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style:
-                                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                height:
-                                                                    1.3333333333 *
-                                                                        ffem /
-                                                                        fem,
-                                                                color: MyAppState
-                                                                            .mode ==
-                                                                        ThemeMode
-                                                                            .light
-                                                                    ? AppColors
-                                                                        .darkTheme
-                                                                    : AppColors
-                                                                        .white,
-                                                              ),
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    height:
+                                                                        1.3333333333 *
+                                                                            ffem /
+                                                                            fem,
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? AppColors
+                                                                            .darkTheme
+                                                                        : AppColors
+                                                                            .white,
+                                                                  ),
                                                             ),
                                                           ),
                                                         )

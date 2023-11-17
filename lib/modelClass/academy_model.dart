@@ -336,6 +336,7 @@ class Session {
 
 class Sessions {
   Sessions({
+    int? id,
     bool? holiday,
     String? name,
     String? nameArabic,
@@ -344,6 +345,7 @@ class Sessions {
     String? startTime,
     String? endTime,
   }) {
+    _id = id;
     _holiday = holiday;
     _name = name;
     _nameArabic = nameArabic;
@@ -354,6 +356,7 @@ class Sessions {
   }
 
   Sessions.fromJson(dynamic json) {
+    _id = json['session_id'];
     _holiday = json['Holiday'];
     _name = json['Name'];
     _nameArabic = json['Name_Arabic'];
@@ -362,6 +365,7 @@ class Sessions {
     _startTime = json['Start_time'];
     _endTime = json['End_time'];
   }
+  int? _id;
   bool? _holiday;
   String? _name;
   String? _nameArabic;
@@ -370,6 +374,7 @@ class Sessions {
   String? _startTime;
   String? _endTime;
   Sessions copyWith({
+    int? id,
     bool? holiday,
     String? name,
     String? nameArabic,
@@ -379,6 +384,7 @@ class Sessions {
     String? endTime,
   }) =>
       Sessions(
+        id: id ?? _id,
         holiday: holiday ?? _holiday,
         name: name ?? _name,
         nameArabic: nameArabic ?? _nameArabic,
@@ -387,6 +393,7 @@ class Sessions {
         startTime: startTime ?? _startTime,
         endTime: endTime ?? _endTime,
       );
+  int? get id => _id;
   bool? get holiday => _holiday;
   String? get name => _name;
   String? get nameArabic => _nameArabic;
@@ -397,6 +404,7 @@ class Sessions {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['id'] = _id;
     map['Holiday'] = _holiday;
     map['Name'] = _name;
     map['Name_Arabic'] = _nameArabic;

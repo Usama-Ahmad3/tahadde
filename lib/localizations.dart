@@ -71,12 +71,20 @@ class AppLocalizations {
   }
 
   String get paymentTransaction {
-    return Intl.message('payment,methods,transaction',
+    return Intl.message('payment, methods, transaction',
         name: 'paymentTransaction');
   }
 
   String get team {
     return Intl.message('team', name: 'team');
+  }
+
+  String get firstSession {
+    return Intl.message('create your first session', name: 'firstSession');
+  }
+
+  String get academyOwner {
+    return Intl.message('Academy Owner', name: 'academyOwner');
   }
 
   String get popular {
@@ -801,7 +809,7 @@ class AppLocalizations {
   }
 
   String get contacts {
-    return Intl.message('contacts', name: 'contacts');
+    return Intl.message('Contact', name: 'contact');
   }
 
   String get invitePlayers {
@@ -1669,7 +1677,8 @@ class AppLocalizations {
   }
 
   String get addyourexperienceforthepitchesyouhaveplayedupon {
-    return Intl.message('addyourexperienceforthepitchesyouhaveplayedupon',
+    return Intl.message(
+        'add your experience for the academies you have played upon',
         name: 'addyourexperienceforthepitchesyouhaveplayedupon');
   }
 

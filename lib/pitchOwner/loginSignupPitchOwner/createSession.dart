@@ -1311,6 +1311,7 @@ class _CreateSessionState extends State<CreateSession> {
 
 class SessionDetail {
   bool? isHoliday;
+  int? id;
   String? sessionName;
   String? sessionNameAr;
   int? slotDuration;
@@ -1323,10 +1324,12 @@ class SessionDetail {
       this.slotDuration = 10,
       this.graceTime = 10,
       this.startTime,
+      this.id,
       this.endTime,
       this.isHoliday = false});
   SessionDetail clone() {
     return SessionDetail(
+      id: id,
       sessionNameAr: sessionNameAr,
       sessionName: sessionName,
       graceTime: graceTime,

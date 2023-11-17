@@ -66,7 +66,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       if (_internet == true) {
         _isLoading = false;
-        tokenStatus();
+        // tokenStatus();
       } else {
         setState(() {
           _isLoading = false;
@@ -79,7 +79,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-    return _isLoading
+    return !_isLoading
         ? Scaffold(
             key: scaffoldkey,
             body: SizedBox(

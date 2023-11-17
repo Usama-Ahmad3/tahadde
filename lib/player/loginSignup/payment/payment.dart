@@ -44,6 +44,7 @@ class _PaymentState extends State<Payment> {
   Map? profileDetail;
 
   void setPaymentMethodSelected(int index, bool value) {
+    print('setPaymentMethod');
     for (int i = 0; i < isSelected.length; i++) {
       if (i == index) {
         isSelected[i] = value;
@@ -104,10 +105,10 @@ class _PaymentState extends State<Payment> {
       // print("Url${msg['myfatoorah_base_url']}");
       // MFSDK.init(mAPIKey, msg, msg["myfatoorah_base_url"]);
       MFSDK.init(
-          mAPIKey,
-          MFCountry.UNITED_ARAB_EMIRATES,
+          'rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL',
+          MFCountry.KUWAIT,
           // RestApis.BASE_URL == "https://powerhouse.tahadde.ae" ?
-          MFEnvironment.LIVE
+          MFEnvironment.TEST
           // : MFEnvironment.TEST
           );
       initiatePayment();
@@ -118,6 +119,7 @@ class _PaymentState extends State<Payment> {
   }
 
   void initiatePayment() {
+    print('initial payment');
     var request = MFInitiatePaymentRequest(
         double.parse(widget.detail["price"].toString()), MFCurrencyISO.UAE_AED);
     MFSDK.setUpAppBar(
@@ -434,6 +436,7 @@ class _PaymentState extends State<Payment> {
   }
 
   void executeRegularPayment() {
+    print('payment Execute');
     var request = MFExecutePaymentRequest(
       paymentMethodId!,
       double.parse(widget.detail["price"].toString()),
@@ -445,7 +448,9 @@ class _PaymentState extends State<Payment> {
 
     var mfCardInfo = MFCardInfo(cardToken: mAPIKey);
     bool paymentStatus(String paymentStatusResult) {
+      print('paymentCheck$paymentStatusResult');
       if (paymentStatusResult == "Success") {
+        print('kajsjsj');
         return true;
       } else if (paymentStatusResult == "InProgress") {
         return true;
@@ -463,10 +468,13 @@ class _PaymentState extends State<Payment> {
       onPaymentResponse:
           (String? invoiceId, MFResult<MFPaymentStatusResponse> result) {
         if (result.isSuccess()) {
+          print('kuch TO Hai $result');
+
           ///debugShowhowMessage(result.response.toJson().toString(), scaffoldkey,duration:  Duration(hours: 1)),
           tranjectionId = result.response!.toJson();
-          if (paymentStatus(
-              tranjectionId["InvoiceTransactions"][0]['TransactionStatus'])) {
+          if (tranjectionId["InvoiceTransactions"][0]['TransactionStatus'] ==
+              'Succss') {
+            print('tarnsasb$tranjectionId');
             setState(() {
               String pitchDetail = widget.detail["ids"].toString();
               Map tarnsectiondetail = {
@@ -484,43 +492,105 @@ class _PaymentState extends State<Payment> {
                 "pitchtype_id": widget.detail["subPitchId"],
                 "player_count": widget.detail["player_count"]
               };
-              _networkCalls.transection(
-                id: pitchDetail,
-                tarnsectiondetail: tarnsectiondetail,
-                bookingPer: widget.detail["slug"],
+              print('Transaction Detail $tarnsectiondetail');
+              Map detailPost = {
+                "price": widget.detail["price"],
+                "academy": widget.detail['academy_id'],
+                "player": widget.detail['id'],
+                "payment_status": true,
+                "transaction_id": tranjectionId["InvoiceTransactions"][0]
+                    ['PaymentId'],
+                "player_count": widget.detail['player_count'],
+                "booking_date": widget.detail['apidetail']['date'],
+                'booked_date': tarnsectiondetail['booked_for_date'],
+                "booked_session": widget.detail['sessionId'],
+                "location": widget.detail['location'],
+                "currency": "AED",
+              };
+              print(detailPost);
+              _networkCalls.confirmBooking(
+                transactionDetail: detailPost,
                 onSuccess: (value) {
-                  showMessage(value);
-                  navigateToPaymentSuccess(tranjectionId["InvoiceTransactions"]
-                      [0]['TransactionStatus']);
-                  Map detail = {
-                    "pitchtype_id": widget.detail["subPitchId"],
-                    "booked_for_date": widget.detail["apidetail"]["date"],
-                    "slot_ids_list": widget.detail["apidetail"]["id"],
-                    "player_count": widget.detail["player_count"]
-                  };
-                  _networkCalls.bookpitchSlotConferm(
-                    urlDetail: detail,
-                    slug: widget.detail["slug"],
-                    onSuccess: (value) {
-                      navigateToPaymentSuccess(
-                          tranjectionId["InvoiceTransactions"][0]
-                              ['TransactionStatus']);
-                    },
-                    onFailure: (msg) {
-                      showMessage(msg);
-                    },
-                    tokenExpire: () {
-                      if (mounted) on401(context);
-                    },
+                  // showMessage(value);
+                  print('Transactionvalue$value');
+                  navigateToPaymentSuccess(
+                    tranjectionId["InvoiceTransactions"][0]
+                        ['TransactionStatus'],
+                    tarnsectiondetail['booked_for_date'],
                   );
+                  // Map detail = {
+                  //   "pitchtype_id": widget.detail["subPitchId"],
+                  //   "booked_for_date": widget.detail["apidetail"]["date"],
+                  //   "slot_ids_list": widget.detail["apidetail"]["id"],
+                  //   "player_count": widget.detail["player_count"]
+                  // };
+                  // _networkCalls.bookpitchSlotConferm(
+                  //   urlDetail: detail,
+                  //   slug: widget.detail["slug"],
+                  //   onSuccess: (value) {
+                  //     navigateToPaymentSuccess(
+                  //         tranjectionId["InvoiceTransactions"][0]
+                  //         ['TransactionStatus']);
+                  //   },
+                  //   onFailure: (msg) {
+                  //     print('maksj$msg');
+                  //     showMessage(msg);
+                  //   },
+                  //   tokenExpire: () {
+                  //     if (mounted) on401(context);
+                  //   },
+                  // );
                 },
                 onFailure: (msg) {
+                  print('failed $msg');
                   showMessage(msg);
                 },
                 tokenExpire: () {
                   if (mounted) on401(context);
                 },
               );
+
+              ///clear
+              // _networkCalls.transection(
+              //   id: pitchDetail,
+              //   tarnsectiondetail: tarnsectiondetail,
+              //   bookingPer: widget.detail["slug"],
+              //   onSuccess: (value) {
+              //     showMessage(value);
+              //     print('Transactionvalue$value');
+              //     navigateToPaymentSuccess(tranjectionId["InvoiceTransactions"]
+              //     [0]['TransactionStatus']);
+              //     Map detail = {
+              //       "pitchtype_id": widget.detail["subPitchId"],
+              //       "booked_for_date": widget.detail["apidetail"]["date"],
+              //       "slot_ids_list": widget.detail["apidetail"]["id"],
+              //       "player_count": widget.detail["player_count"]
+              //     };
+              //     _networkCalls.bookpitchSlotConferm(
+              //       urlDetail: detail,
+              //       slug: widget.detail["slug"],
+              //       onSuccess: (value) {
+              //         navigateToPaymentSuccess(
+              //             tranjectionId["InvoiceTransactions"][0]
+              //             ['TransactionStatus']);
+              //       },
+              //       onFailure: (msg) {
+              //         print('maksj$msg');
+              //         showMessage(msg);
+              //       },
+              //       tokenExpire: () {
+              //         if (mounted) on401(context);
+              //       },
+              //     );
+              //   },
+              //   onFailure: (msg) {
+              //     print('failed $msg');
+              //     showMessage(msg);
+              //   },
+              //   tokenExpire: () {
+              //     if (mounted) on401(context);
+              //   },
+              // );
               // _response = result.response.toJson().toString();
             });
           } else {
@@ -533,6 +603,7 @@ class _PaymentState extends State<Payment> {
           }
         } else {
           setState(() {
+            print('result Is not Seccess');
             print(invoiceId);
             print(result.error!.toJson());
             // _response = result.error.message;
@@ -544,17 +615,22 @@ class _PaymentState extends State<Payment> {
     );
   }
 
-  void navigateToPaymentSuccess(String status) {
+  void navigateToPaymentSuccess(String status, String bookedFor) {
     var detail = {
       "price": widget.detail["price"],
-      "venueName": widget.detail["name"],
+      "AcademyName": widget.detail["name"],
       "status": status,
       "tranjectionId": tranjectionId["InvoiceTransactions"][0]['PaymentId'],
-      "name": widget.detail["detail"],
-      "startingDate": widget.detail["startingDate"],
-      "pitchtype": widget.detail["pitchtype"],
-      "email": "xyz",
+      "Sessions": widget.detail["detail"],
+      "startingDate": widget.detail["apidetail"]['date'],
+      "playerId": widget.detail["id"],
+      'booked_date': bookedFor,
+      "email": _detail.email,
+      "location": widget.detail['location'],
+      "currency": "AED",
     };
+    print('aaaaaaaaaaaa');
+    print(detail);
     Navigator.pushNamed(
       context,
       RouteNames.paymentSuccess,

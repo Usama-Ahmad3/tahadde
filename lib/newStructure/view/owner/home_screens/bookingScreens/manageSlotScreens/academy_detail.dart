@@ -31,6 +31,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
   String gamePlay = "";
   bool loading = false;
+  List facilitySlugD = [];
   bool internet = true;
   bool indoor = false;
   bool outdoor = false;
@@ -110,6 +111,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
         widget.detail.facilitySlug!.split(',').map((e) => e.trim()).toList();
     facilitySlugD.forEach((element) => indexList.add(element));
     print(facility);
+    print(facilitySlugD);
     // widget.detail["detail"].venueDetails.facility
     //     .forEach((element) => indexList.add(element.slug));
   }
@@ -235,31 +237,6 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                     .pleaseenterPitchName;
                               }
                               return null;
-                            },
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.grey),
-                                borderRadius: BorderRadius.circular(12)),
-                            enableBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.grey),
-                                borderRadius: BorderRadius.circular(12)),
-                            focusBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.grey),
-                                borderRadius: BorderRadius.circular(12))),
-                        SizedBox(
-                          height: sizeHeight * 0.01,
-                        ),
-                        TextFieldWidget(
-                            controller: _codeControllerArabic,
-                            hintText: AppLocalizations.of(context)!.code,
-                            focus: codeFocus,
-                            onSubmitted: (value) {
-                              FocusScope.of(context)
-                                  .requestFocus(descriptionFocus);
-                              return null;
-                            },
-                            onChanged: (value) {
-                              detailSportsModel!.code = value;
-                              return '';
                             },
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: AppColors.grey),
@@ -520,16 +497,15 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                     onTap: () {
                                       setState(() {
                                         if (indexList
-                                            .contains(facilitySlug[blockIdx])) {
-                                          indexList
-                                              .remove(facilitySlug[blockIdx]);
+                                            .contains(facility[blockIdx])) {
+                                          indexList.remove(facility[blockIdx]);
                                         } else {
-                                          indexList.add(facilitySlug[blockIdx]);
+                                          indexList.add(facility[blockIdx]);
                                         }
                                       });
                                     },
                                     child: indexList
-                                            .contains(facilitySlug[blockIdx])
+                                            .contains(facility[blockIdx])
                                         ? Container(
                                             width: sizeWidth * .28,
                                             height: sizeWidth * .07,
@@ -689,6 +665,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                         "gameplaySlug": gamePlayApi,
                                       },
                                     };
+                                    // showMessage("Can't do it right now!");
                                     editAcademy(academyDetail);
                                     Navigator.pop(context);
                                     // print(academyDetail);

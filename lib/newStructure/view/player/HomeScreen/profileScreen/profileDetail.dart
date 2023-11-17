@@ -127,7 +127,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                               ),
                               Container(
                                 color: AppColors.black,
-                                height: height * 0.78,
+                                height: height * 0.785,
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: mode == ThemeMode.light
@@ -139,7 +139,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                   child: Column(
                                     children: [
                                       SizedBox(
-                                        height: height * 0.08,
+                                        height: height * 0.07,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
@@ -190,15 +190,15 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                             '${AppLocalizations.of(context)!.email} :',
                                         constantValue: profileDetail!['email'],
                                       ),
-                                      widget.playerTag
-                                          ? EmailContactDOB(
-                                              constant:
-                                                  '${AppLocalizations.of(context)!.dateofBirth} :',
-                                              constantValue: profileDetail![
-                                                      'dob'] ??
-                                                  AppLocalizations.of(context)!
-                                                      .dateofBirth)
-                                          : const SizedBox.shrink(),
+                                      // widget.playerTag
+                                      //     ? EmailContactDOB(
+                                      //         constant:
+                                      //             '${AppLocalizations.of(context)!.dateofBirth} :',
+                                      //         constantValue: profileDetail![
+                                      //                 'dob'] ??
+                                      //             AppLocalizations.of(context)!
+                                      //                 .dateofBirth)
+                                      //     : const SizedBox.shrink(),
                                       EmailContactDOB(
                                         constant:
                                             '${AppLocalizations.of(context)!.contacts} :',
@@ -280,12 +280,13 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                       backgroundImage: const AssetImage(
                                           "assets/images/profile.png"),
                                     )
-                                  : profileDetail!['profile_pic'] != null
+                                  : profileDetail!['profile_pic']
+                                          .toString()
+                                          .isNotEmpty
                                       ? CircleAvatar(
                                           radius: height * 0.06,
                                           backgroundImage: NetworkImage(
-                                              profileDetail!['profile_pic']
-                                                  ['filePath']))
+                                              profileDetail!['profile_pic']))
                                       : CircleAvatar(
                                           radius: height * 0.06,
                                           backgroundImage: const AssetImage(
@@ -304,13 +305,13 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                                   '${profileDetail!['first_name']} ${profileDetail!['last_name']}',
                                               position:
                                                   '${profileDetail!['role']}',
-                                              profileImage: profileDetail![
-                                                          'profile_pic'] ==
-                                                      null
-                                                  ? ''
-                                                  : profileDetail![
-                                                          'profile_pic']
-                                                      ['filePath'],
+                                              profileImage:
+                                                  profileDetail!['profile_pic']
+                                                          .toString()
+                                                          .isEmpty
+                                                      ? ''
+                                                      : profileDetail![
+                                                          'profile_pic'],
                                               playerTag: widget.playerTag,
                                             )));
                               },

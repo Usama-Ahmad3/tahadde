@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/viewMoreBookPitch.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
@@ -8,14 +9,14 @@ import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../utils/utils.dart';
 
-class VanueList extends StatefulWidget {
+class AcademyList extends StatefulWidget {
   var academyDetail;
   bool tagForView;
   bool empty;
   bool? searchflag;
   String text;
 
-  VanueList(
+  AcademyList(
       {super.key,
       this.searchflag = false,
       required this.text,
@@ -24,12 +25,49 @@ class VanueList extends StatefulWidget {
       this.empty = false});
 
   @override
-  State<VanueList> createState() => _VanueListState();
+  State<AcademyList> createState() => _AcademyListState();
 }
 
-class _VanueListState extends State<VanueList> {
+class _AcademyListState extends State<AcademyList> {
+  bool _auth = false;
+  checkAuth() async {
+    _auth = (await checkAuthorizaton())!;
+  }
+
+  onWillPop() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext cntext) {
+          return AlertDialog(
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+            content: Text(
+              AppLocalizations.of(context)!.toReserve,
+              style: TextStyle(
+                  color: AppColors.black, fontWeight: FontWeight.normal),
+            ),
+            actions: [
+              TextButton(
+                child: Text(
+                  AppLocalizations.of(context)!.cancel,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+              ),
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.login),
+                onPressed: () {
+                  navigateToLogin();
+                },
+              )
+            ],
+          );
+        });
+  }
+
   @override
   void initState() {
+    checkAuth();
     super.initState();
   }
 
@@ -154,29 +192,34 @@ class _VanueListState extends State<VanueList> {
                       ))
                   : InkWell(
                       onTap: () {
-                        dynamic detail = {
-                          "academy_id":
-                              widget.academyDetail[index]["academy_id"] ?? 0,
-                          "Academy_NameEnglish": widget.academyDetail[index]
-                              ["Academy_NameEnglish"],
-                          "Academy_NameArabic": widget.academyDetail[index]
-                              ["Academy_NameArabic"],
-                          "descriptionEnglish": widget.academyDetail[index]
-                              ["descriptionEnglish"],
-                          "descriptionArabic": widget.academyDetail[index]
-                              ["descriptionArabic"],
-                          "facilitySlug": widget.academyDetail[index]
-                              ["facilitySlug"],
-                          "gameplaySlug": widget.academyDetail[index]
-                              ["gameplaySlug"],
-                          "academy_image": widget.academyDetail[index]
-                              ["academy_image"],
-                          'latitude': widget.academyDetail[index]['latitude'],
-                          'longitude': widget.academyDetail[index]['longitude'],
-                          'Academy_Location': widget.academyDetail[index]
-                              ['Academy_Location']
-                        };
-                        navigateToGroundDetail(detail);
+                        if (_auth) {
+                          dynamic detail = {
+                            "academy_id":
+                                widget.academyDetail[index]["academy_id"] ?? 0,
+                            "Academy_NameEnglish": widget.academyDetail[index]
+                                ["Academy_NameEnglish"],
+                            "Academy_NameArabic": widget.academyDetail[index]
+                                ["Academy_NameArabic"],
+                            "descriptionEnglish": widget.academyDetail[index]
+                                ["descriptionEnglish"],
+                            "descriptionArabic": widget.academyDetail[index]
+                                ["descriptionArabic"],
+                            "facilitySlug": widget.academyDetail[index]
+                                ["facilitySlug"],
+                            "gameplaySlug": widget.academyDetail[index]
+                                ["gameplaySlug"],
+                            "academy_image": widget.academyDetail[index]
+                                ["academy_image"],
+                            'latitude': widget.academyDetail[index]['latitude'],
+                            'longitude': widget.academyDetail[index]
+                                ['longitude'],
+                            'Academy_Location': widget.academyDetail[index]
+                                ['Academy_Location'],
+                          };
+                          navigateToGroundDetail(detail);
+                        } else {
+                          onWillPop();
+                        }
                       },
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 16 * fem),
@@ -227,8 +270,11 @@ class _VanueListState extends State<VanueList> {
                                 padding: EdgeInsets.only(
                                     left: 4.0 * fem, bottom: 2 * fem),
                                 child: Text(
-                                  widget.academyDetail[index]
-                                      ["Academy_NameEnglish"],
+                                  AppLocalizations.of(context)!.locale == 'en'
+                                      ? widget.academyDetail[index]
+                                          ["Academy_NameEnglish"]
+                                      : widget.academyDetail[index]
+                                          ["Academy_NameArabic"],
                                   style: SafeGoogleFont(
                                     'Inter',
                                     fontSize: 20 * ffem,
@@ -255,7 +301,7 @@ class _VanueListState extends State<VanueList> {
                                     ),
                                   ),
                                   Text(
-                                    "${widget.academyDetail[0]['Academy_Location'].toString().substring(0, 40)} ...",
+                                    "${widget.academyDetail[0]['Academy_Location'].toString().substring(0, 35)} ...",
                                     style: SafeGoogleFont(
                                       'Inter',
                                       fontSize: 13 * ffem,
@@ -290,5 +336,11 @@ class _VanueListState extends State<VanueList> {
         context,
         MaterialPageRoute(
             builder: (_) => ViewMoreBookPitchScreen(pitchType: detail)));
+  }
+
+  void navigateToLogin() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
+    // Navigator.pushNamed(context, RouteNames.login);
   }
 }

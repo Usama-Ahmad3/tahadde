@@ -442,109 +442,109 @@ class GroundDetailState extends State<GroundDetail>
                                       ),
 
                                       ///GroundList
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .academyList,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium!
-                                              .copyWith(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? AppColors.black
-                                                      : AppColors.white)),
-                                      ...List.generate(
-                                          3,
-                                          (index) => Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: height * 0.01),
-                                                child: Container(
-                                                  height: height * 0.08,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                          color: Colors.black38
-                                                              .withOpacity(
-                                                                  0.17),
-                                                          blurStyle:
-                                                              BlurStyle.normal,
-                                                          offset: const Offset(
-                                                              1, 1),
-                                                          blurRadius: 12,
-                                                          spreadRadius: 2)
-                                                    ],
-                                                  ),
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      SizedBox(
-                                                        width: width * 0.01,
-                                                      ),
-                                                      Container(
-                                                        height: height * 0.06,
-                                                        width: width * 0.13,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            image: const DecorationImage(
-                                                                fit:
-                                                                    BoxFit.fill,
-                                                                image: NetworkImage(
-                                                                    'https://tse1.mm.bing.net/th?id=OIP.Pi1ySxKBf7DyNStcLdOASwHaEo&pid=Api&rs=1&c=1&qlt=95&w=168&h=105'))),
-                                                      ),
-                                                      SizedBox(
-                                                        width: width * 0.03,
-                                                      ),
-                                                      Text(
-                                                        ground[index],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                              color: MyAppState
-                                                                          .mode ==
-                                                                      ThemeMode
-                                                                          .light
-                                                                  ? AppColors
-                                                                      .black
-                                                                  : AppColors
-                                                                      .white,
-                                                            ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: width * 0.2,
-                                                      ),
-                                                      Checkbox(
-                                                          shape:
-                                                              const CircleBorder(),
-                                                          activeColor: AppColors
-                                                              .appThemeColor,
-                                                          value:
-                                                              selectedIndex ==
-                                                                      index
-                                                                  ? true
-                                                                  : false,
-                                                          onChanged:
-                                                              (onChanged) {
-                                                            selectedIndex =
-                                                                index;
-                                                            setState(() {});
-                                                          }),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )),
+                                      // Text(
+                                      //     AppLocalizations.of(context)!
+                                      //         .academyList,
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .titleMedium!
+                                      //         .copyWith(
+                                      //             color: MyAppState.mode ==
+                                      //                     ThemeMode.light
+                                      //                 ? AppColors.black
+                                      //                 : AppColors.white)),
+                                      // ...List.generate(
+                                      //     3,
+                                      //     (index) => Padding(
+                                      //           padding: EdgeInsets.symmetric(
+                                      //               vertical: height * 0.01),
+                                      //           child: Container(
+                                      //             height: height * 0.08,
+                                      //             decoration: BoxDecoration(
+                                      //               color: Colors.white,
+                                      //               borderRadius:
+                                      //                   BorderRadius.circular(
+                                      //                       10),
+                                      //               boxShadow: [
+                                      //                 BoxShadow(
+                                      //                     color: Colors.black38
+                                      //                         .withOpacity(
+                                      //                             0.17),
+                                      //                     blurStyle:
+                                      //                         BlurStyle.normal,
+                                      //                     offset: const Offset(
+                                      //                         1, 1),
+                                      //                     blurRadius: 12,
+                                      //                     spreadRadius: 2)
+                                      //               ],
+                                      //             ),
+                                      //             child: Row(
+                                      //               crossAxisAlignment:
+                                      //                   CrossAxisAlignment
+                                      //                       .center,
+                                      //               mainAxisAlignment:
+                                      //                   MainAxisAlignment
+                                      //                       .spaceBetween,
+                                      //               children: [
+                                      //                 SizedBox(
+                                      //                   width: width * 0.01,
+                                      //                 ),
+                                      //                 Container(
+                                      //                   height: height * 0.06,
+                                      //                   width: width * 0.13,
+                                      //                   decoration: BoxDecoration(
+                                      //                       borderRadius:
+                                      //                           BorderRadius
+                                      //                               .circular(
+                                      //                                   10),
+                                      //                       image: const DecorationImage(
+                                      //                           fit:
+                                      //                               BoxFit.fill,
+                                      //                           image: NetworkImage(
+                                      //                               'https://tse1.mm.bing.net/th?id=OIP.Pi1ySxKBf7DyNStcLdOASwHaEo&pid=Api&rs=1&c=1&qlt=95&w=168&h=105'))),
+                                      //                 ),
+                                      //                 SizedBox(
+                                      //                   width: width * 0.03,
+                                      //                 ),
+                                      //                 Text(
+                                      //                   ground[index],
+                                      //                   style: Theme.of(context)
+                                      //                       .textTheme
+                                      //                       .bodyMedium!
+                                      //                       .copyWith(
+                                      //                         color: MyAppState
+                                      //                                     .mode ==
+                                      //                                 ThemeMode
+                                      //                                     .light
+                                      //                             ? AppColors
+                                      //                                 .black
+                                      //                             : AppColors
+                                      //                                 .white,
+                                      //                       ),
+                                      //                 ),
+                                      //                 SizedBox(
+                                      //                   width: width * 0.2,
+                                      //                 ),
+                                      //                 Checkbox(
+                                      //                     shape:
+                                      //                         const CircleBorder(),
+                                      //                     activeColor: AppColors
+                                      //                         .appThemeColor,
+                                      //                     value:
+                                      //                         selectedIndex ==
+                                      //                                 index
+                                      //                             ? true
+                                      //                             : false,
+                                      //                     onChanged:
+                                      //                         (onChanged) {
+                                      //                       selectedIndex =
+                                      //                           index;
+                                      //                       setState(() {});
+                                      //                     }),
+                                      //               ],
+                                      //             ),
+                                      //           ),
+                                      //         )),
 
                                       ///facilities
                                       SizedBox(
@@ -633,22 +633,22 @@ class GroundDetailState extends State<GroundDetail>
                                       ),
 
                                       ///location
-                                      // Padding(
-                                      //   padding: EdgeInsets.symmetric(
-                                      //       vertical: height * 0.008),
-                                      //   child: Text(
-                                      //     AppLocalizations.of(context)!
-                                      //         .location,
-                                      //     style: Theme.of(context)
-                                      //         .textTheme
-                                      //         .titleMedium!
-                                      //         .copyWith(
-                                      //             color: MyAppState.mode ==
-                                      //                     ThemeMode.light
-                                      //                 ? AppColors.black
-                                      //                 : AppColors.white),
-                                      //   ),
-                                      // ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: height * 0.008),
+                                        child: Text(
+                                          AppLocalizations.of(context)!
+                                              .location,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.black
+                                                      : AppColors.white),
+                                        ),
+                                      ),
                                       GestureDetector(
                                         onTap: () {
                                           openMapsSheet(context);

@@ -68,11 +68,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا توجد أكاديميات متاحة"),
         "addyourexperienceforthepitchesyouhaveplayedupon":
             MessageLookupByLibrary.simpleMessage(
-                "أضف خبرتك للملاعب التي لعبت عليها."),
+                "أضف تجربتك للأكاديميات التي لعبت فيها."),
         "ago": MessageLookupByLibrary.simpleMessage("منذ"),
         "paymentTransaction":
             MessageLookupByLibrary.simpleMessage("الدفع، طرق، المعاملات"),
         "Help": MessageLookupByLibrary.simpleMessage("يساعد"),
+        "academyOwner": MessageLookupByLibrary.simpleMessage("مالك الأكاديمية"),
+        "firstSession":
+            MessageLookupByLibrary.simpleMessage("قم بإنشاء جلستك الأولى"),
         "language,theme":
             MessageLookupByLibrary.simpleMessage("اللغة والموضوع والتكوين"),
         "name,email": MessageLookupByLibrary.simpleMessage(
@@ -213,7 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirm": MessageLookupByLibrary.simpleMessage("تآكيد"),
         "contactNumber": MessageLookupByLibrary.simpleMessage("رقم الاتصال"),
-        "contacts": MessageLookupByLibrary.simpleMessage("جهات الاتصال"),
+        "contact": MessageLookupByLibrary.simpleMessage("اتصال"),
         "contectUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "continu": MessageLookupByLibrary.simpleMessage("استمر"),
         "continueS": MessageLookupByLibrary.simpleMessage("التالي"),

@@ -56,7 +56,11 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(AppLocalizations.of(context)!.uploadprofilepicture),
+            backgroundColor: AppColors.white,
+            elevation: 2,
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
@@ -826,13 +830,11 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                       if (_formKey.currentState!.validate()) {
                                         _formKey.currentState!.save();
                                         _facility = "";
-                                        widget.detail.pitchDetailModel!.code =
-                                            Random().nextInt(100).toString();
                                         for (int i = 0;
                                             i < indexList.length;
                                             i++) {
                                           _facility =
-                                              "$_facility${facilitySlug[i]},";
+                                              "$_facility${facility[indexList[i]]},";
                                         }
                                         _facility = _facility.substring(
                                             0, _facility.length - 1);
@@ -844,18 +846,11 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                         setState(() {
                                           loading = true;
                                         });
-                                        var detail = {
-                                          "profile_image": image,
-                                          "type": "bookpitch"
-                                        };
                                         print('+++++++++++');
                                         print(widget.detail.pitchDetailModel!
                                             .facility = _facility);
-                                        print(widget.detail.pitchDetailModel!
-                                            .gamePlay = gamePlay);
                                         print('============');
                                         // await _networkCalls.upload(image);
-                                        // navigateToPriceScreen(widget.detail);
                                         await _networkCalls.helperMultiImage2(
                                           pitchImage: image,
                                           onSuccess: (msg) {
@@ -869,6 +864,8 @@ class _PitchDetailScreenState extends State<PitchDetailScreen> {
                                             widget.detail.pitchDetailModel!
                                                 .pitchImageId!
                                                 .add(msg);
+                                            navigateToPriceScreen(
+                                                widget.detail);
                                           },
                                           onFailure: (msg) {
                                             showMessage(msg);

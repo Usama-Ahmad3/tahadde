@@ -17,24 +17,24 @@ const List<String> facilitySlug = [
 const List<String> genderEn = ["Male", "Female"];
 const List<String> genderAr = ["ذكر", "أنثى"];
 const List<String> facility = [
-  "Bathroom",
-  "Bibs",
-  "Car Parking",
-  "Locker",
-  "Metro Station",
-  "Refree",
-  "Free Parking",
-  "Masjid",
-  "Market",
+  "bathroom",
+  "bibs",
+  "car-parking",
+  "locker",
+  "metro-station",
+  "refree",
+  "free-Parking",
+  "masjid",
+  "market",
 ];
 const List<String> facilityAr = [
   "حمام",
   "كفرات",
-  "موقف سيارات",
+  "موقف-سيارات",
   "خزانة",
-  "محطة مترو",
+  "محطة-مترو",
   "حكم",
-  "موقف سيارات مجاني",
+  "موقف سيارات-مجاني",
   "مسجد",
   "دكان",
 ];

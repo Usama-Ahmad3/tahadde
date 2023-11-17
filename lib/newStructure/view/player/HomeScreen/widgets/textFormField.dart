@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
@@ -6,25 +8,25 @@ import '../../../../app_colors/app_colors.dart';
 
 class TextFieldWidget extends StatefulWidget {
   TextEditingController controller;
-  String hintText;
-  InputBorder? border;
-  Widget? suffix;
-  Widget? prefix;
-  bool enable;
-  TextInputType type;
-  InputBorder? enableBorder;
+  final String hintText;
+  final InputBorder? border;
+  final Widget? suffix;
+  final Widget? prefix;
+  final bool enable;
+  final TextInputType type;
+  final InputBorder? enableBorder;
   FormFieldValidator? onSubmitted;
-  FocusNode? focus;
-  InputBorder? focusBorder;
-  IconData? prefixIcon;
-  IconData? suffixIcon;
-  Color? prefixIconColor;
+  final FocusNode? focus;
+  final InputBorder? focusBorder;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+  final Color? prefixIconColor;
   bool obscure;
   bool searchTag;
-  IconData? hideIcon;
-  Color? suffixIconColor;
-  Color? fillColor;
-  Color? textColor;
+  final IconData? hideIcon;
+  final Color? suffixIconColor;
+  final Color? fillColor;
+  final Color? textColor;
   FormFieldValidator? onValidate;
   FormFieldValidator? onChanged;
   VoidCallback? onTap;
@@ -72,7 +74,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       focusNode: widget.focus,
       validator: widget.onValidate,
       enabled: widget.enable,
-      onTap: widget.onTap,
+      onTap: widget.onTap != null ? null : widget.onTap,
       keyboardType: widget.type,
       style: TextStyle(
           fontSize: widget.controller.text.length > 8 ? 12 : 14,

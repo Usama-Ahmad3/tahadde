@@ -118,8 +118,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(AppLocalizations.of(context)!.uploadprofilepicture,
-                style: TextStyle(color: AppColors.black)),
+            backgroundColor: AppColors.white,
+            elevation: 2,
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
@@ -318,11 +321,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((value) {
       position = value;
+      print('ok jxddddddddddddddddddddddddddddddddd');
       pitchLong = position!.longitude;
       pitchLat = position!.latitude;
       Map latlong = {
         "latitude": pitchLat.toString(),
         "longitude": pitchLong.toString(),
+        "language": 'en'
       };
       print(latlong);
       _networkCalls.getAddress(
@@ -355,10 +360,12 @@ class _DocumentScreenState extends State<DocumentScreen> {
       print('Permanent');
     } else {
       location();
+      defaultLocation();
     }
   }
 
   location() async {
+    print('hi');
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((value) {
       setState(() {
@@ -370,6 +377,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   _permission() async {
+    print('permissionnnnnn');
     var status = await Permission.location.status;
     if (status.isGranted) {
       defaultLocation();
@@ -611,7 +619,10 @@ class _DocumentScreenState extends State<DocumentScreen> {
                             fixedGap(height: 10.0),
                             Text(
                               locationController.text,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: AppColors.black),
                             ),
                             flaxibleGap(1),
                             Material(

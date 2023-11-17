@@ -653,10 +653,10 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                                   widget.detail.sportsType,
                                               'Country': widget.detail
                                                   .documentModel!.country,
-                                              'latitude': widget
-                                                  .detail.documentModel!.lat,
-                                              'longitude': widget
-                                                  .detail.documentModel!.long,
+                                              'latitude':
+                                                  "${widget.detail.documentModel!.lat}",
+                                              'longitude':
+                                                  "${widget.detail.documentModel!.long}",
                                               "facilitySlug": widget.detail
                                                   .pitchDetailModel!.facility,
                                               'gameplaySlug': widget.detail

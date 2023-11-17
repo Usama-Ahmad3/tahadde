@@ -94,19 +94,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "addto": MessageLookupByLibrary.simpleMessage("Add to"),
         "addyourexperienceforthepitchesyouhaveplayedupon":
             MessageLookupByLibrary.simpleMessage(
-                "Add your experience for the Venues you have played upon."),
+                "Add your experience for the academies you have played upon."),
         "ago": MessageLookupByLibrary.simpleMessage("ago"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "am": MessageLookupByLibrary.simpleMessage("AM"),
         "filterResult": MessageLookupByLibrary.simpleMessage("Filter Result"),
-        "paymentTransaction":
-            MessageLookupByLibrary.simpleMessage("payment,methods,transaction"),
+        "paymentTransaction": MessageLookupByLibrary.simpleMessage(
+            "payment, methods, transaction"),
         "noAcademy":
             MessageLookupByLibrary.simpleMessage("No Academies Available"),
         "amongstAvailableSlotUnavailable": MessageLookupByLibrary.simpleMessage(
             "You can book a slot or make it unavailable."),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
+        "firstSession":
+            MessageLookupByLibrary.simpleMessage("create your first session"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
+        "academyOwner": MessageLookupByLibrary.simpleMessage("Academy Owner"),
         "applyCoupon": MessageLookupByLibrary.simpleMessage("Apply Coupon"),
         "approve": MessageLookupByLibrary.simpleMessage("Approve"),
         "academyName": MessageLookupByLibrary.simpleMessage("Academy Name"),
@@ -223,7 +226,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contactNumber": MessageLookupByLibrary.simpleMessage("Contact Number"),
-        "contacts": MessageLookupByLibrary.simpleMessage("Contacts"),
+        "contact": MessageLookupByLibrary.simpleMessage("Contact"),
         "contectUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "continu": MessageLookupByLibrary.simpleMessage("Continue"),
         "continueS": MessageLookupByLibrary.simpleMessage("Continue"),

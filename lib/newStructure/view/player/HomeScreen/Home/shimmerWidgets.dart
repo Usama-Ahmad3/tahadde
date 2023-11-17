@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/vanueList.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerWidgets {
@@ -57,8 +57,8 @@ class ShimmerWidgets {
                 left: 0,
                 right: 0,
                 child: SizedBox(
-                    height: 450 * size,
-                    child: VanueList(
+                    height: 430 * size,
+                    child: AcademyList(
                         text: AppLocalizations.of(context)!.innovative,
                         academyDetail: const [])))
           ],

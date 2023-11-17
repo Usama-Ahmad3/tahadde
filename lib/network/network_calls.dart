@@ -5,6 +5,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_tahaddi/homeFile/utility.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/modelClass/booked_model.dart';
+import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
 import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -102,8 +104,7 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode({"email": email});
     try {
-      response = await http.post(
-          Uri.parse("${RestApis.BASEURL}${RestApis.VERIFY_EMAIL}"),
+      response = await http.post(Uri.parse("$baseUrl${RestApis.VERIFY_EMAIL}"),
           headers: header(
             prefs,
             body,
@@ -125,6 +126,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('usama$e');
       onFailure("This Email not exist");
     }
   }
@@ -367,7 +369,7 @@ class NetworkCalls {
       // player token = 484613c64499586646fee0bbf69886f08e741ba5
       // owner token = 5916de5550f5564f94533ec7171696ff53a7cd73
 
-      print(response.body);
+      print('ProfileDetails${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -639,10 +641,13 @@ class NetworkCalls {
           headers: headerWithToken(prefs, body, HttpMethod.PUT),
           body: body);
 
+      print("Edit Profile ${response.body}");
+      print("Edit Profile Status ${response.statusCode}");
       if (response.statusCode == 200) {
         onSuccess("Your data edited");
       } else if (response.statusCode == 400) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
+        print(resp);
         onFailure(resp["error"]);
       } else if (response.statusCode == tokenExpireStatus) {
         tokenExpire();
@@ -652,6 +657,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('Error Hai $e');
       onFailure("fail to change profile");
     }
   }
@@ -1449,7 +1455,7 @@ class NetworkCalls {
       onFailure(internetStatus);
     } catch (e) {
       onFailure("Something went wrong$e");
-      print(e);
+      print('sadesdsds f sffd $e');
     }
   }
 
@@ -1788,7 +1794,8 @@ class NetworkCalls {
             HttpMethod.POST,
           ),
           body: body);
-
+      print(response.body);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp['success']);
@@ -1812,13 +1819,13 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(changeDetail);
+    print(body);
     try {
-      response = await http.put(
-          Uri.parse(
-              "$baseUrl${RestApis.CHANGEPASSWORD}?language=${prefs.get("lang")}"),
-          headers: headerWithToken(prefs, body, HttpMethod.PUT),
-          body: body);
-
+      print('jj');
+      response = await http.put(Uri.parse("$baseUrl${RestApis.CHANGEPASSWORD}"),
+          headers: headerWithToken(prefs, body, HttpMethod.PUT), body: body);
+      print(response.body);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp['success']);
@@ -1830,6 +1837,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print("error$e");
       onFailure("Something went wrong");
     }
   }
@@ -1848,7 +1856,8 @@ class NetworkCalls {
               "$baseUrl${RestApis.RESETPASSWORD}?language=${prefs.get("lang")}"),
           headers: headerWithToken(prefs, body, HttpMethod.PUT),
           body: body);
-
+      print(response.body);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp['success']);
@@ -1889,6 +1898,43 @@ class NetworkCalls {
     }
   }
 
+  confirmBooking(
+      {required Map transactionDetail,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String url =
+    //     "$baseUrl${RestApis.TRANSECTION}$id/?transaction_for=bookpitch&booking_as_per=$bookingPer&language=${prefs.get("lang")}";
+    String url = '$baseUrl/api/v1/user/capture_transaction/';
+    print("Url Bro $url");
+    var body = json.encode(transactionDetail);
+    print("encoded$body");
+    try {
+      final response = await http.post(Uri.parse(url),
+          headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);
+      print("transaction${response.body}");
+      print(response.statusCode);
+      if (response.statusCode > 200 && response.statusCode < 300) {
+        print('kkkk');
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        print('kkkk2');
+        onSuccess(resp);
+        print('kkkk3');
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp['error']);
+      } else {
+        onFailure("You already booked");
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print("Errrro$e");
+      onFailure("Server is not responding");
+    }
+  }
+
   transection(
       {required String id,
       required String bookingPer,
@@ -1897,9 +1943,11 @@ class NetworkCalls {
       required OnFailure onFailure,
       required TokenExpire tokenExpire}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "$baseUrl${RestApis.TRANSECTION}$id/?transaction_for=bookpitch&booking_as_per=$bookingPer&language=${prefs.get("lang")}";
+    // String url =
+    //     "$baseUrl${RestApis.TRANSECTION}$id/?transaction_for=bookpitch&booking_as_per=$bookingPer&language=${prefs.get("lang")}";
+    String url = '$baseUrl/api/v1/user/capture_transaction/';
     print("Url Bro $url");
+    print('tarnschdsApi');
     var body = json.encode(tarnsectiondetail);
     try {
       final response = await http.post(Uri.parse(url),
@@ -1979,6 +2027,43 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      onFailure("Something went wrong");
+    }
+  }
+
+  loadPlayerbookings(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(
+          Uri.parse(
+              "$baseUrl${RestApis.playerbookings}?language=${prefs.get("lang")}"),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print('playerbookings${response.statusCode}');
+      print('playerbookings${response.body}');
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        // List<Bookings> bookings = [];
+        // for (int i = 0; i < resp.length; i++) {
+        //   bookings.add(Bookings.fromJson(resp[i]));
+        // }
+        var data = PlayerBookings.fromJson(resp);
+        onSuccess(data);
+      } else if (response.statusCode == 404) {
+        List<Event> event = [];
+        onSuccess(event);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load slot'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('PlayerbookingsError$e');
       onFailure("Something went wrong");
     }
   }
@@ -2272,6 +2357,80 @@ class NetworkCalls {
           pitch.add(BookingModelClass.fromJson(resp[i]));
         }
         onSuccess(pitch);
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load slot'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong");
+    }
+  }
+
+  totalBooking(
+      {required String id,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    // print('object');
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url =
+        "https://ahmad223.pythonanywhere.com/api/v1/user/academy/$id/bookings/";
+    try {
+      response = await http.get(Uri.parse(url),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      // print(response.body);
+      print('status${response.statusCode}');
+      print('statusss${response.body}');
+      if (response.statusCode == 200) {
+        // print(response.body);
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        List<BookedModel> academy = [];
+        for (int i = 0; i < resp.length; i++) {
+          academy.add(BookedModel.fromJson(resp[i]));
+        }
+        onSuccess(academy);
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load slot'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('bbokingErrorr$e');
+      onFailure("Something went wrong");
+    }
+  }
+
+  specificSession(
+      {required String id,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    print('object');
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url =
+        "https://ahmad223.pythonanywhere.com/api/v1/acadmies/sessions/$id/";
+    try {
+      response = await http.get(Uri.parse(url),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      // print(response.body);
+      print('status${response.statusCode}');
+      if (response.statusCode == 200) {
+        // print(response.body);
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
       } else if (response.statusCode == 400) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onFailure(resp["error"]);
@@ -2658,7 +2817,7 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       response = await http.delete(
-        Uri.parse("$baseUrl${RestApis.DELETEACCOUNT}"),
+        Uri.parse("$baseUrl${RestApis.deleteAccount}"),
         headers: headerWithToken(prefs, "", HttpMethod.DELETE),
       );
       print('Delete Account ${response.body}');
@@ -3114,6 +3273,7 @@ class NetworkCalls {
         Uri.parse(url),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
+      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3169,7 +3329,7 @@ class NetworkCalls {
       final response = await http.get(
           Uri.parse("$baseUrl${RestApis.TRANSECTIONTOKEN}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
-      // print('Token${response.body}');
+      print('Token${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3232,7 +3392,6 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    LatLong["language"] = prefs.get("lang");
     var body = json.encode(LatLong);
     try {
       response = await http.post(
@@ -3240,7 +3399,9 @@ class NetworkCalls {
         headers: headerWithToken(prefs, body, HttpMethod.POST),
         body: body,
       );
+      print("$baseUrl${RestApis.LATLONG}");
       print("get address${response.body}");
+      print('statusCode${response.statusCode}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3255,6 +3416,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('Error$e');
       onFailure("Something went wrong");
     }
   }
@@ -3267,13 +3429,11 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      String url =
-          ("https://powerhouse.tahadde.ae${RestApis.PRIVACYPOLICY}${prefs.get("lang")}");
+      String url = ("$baseUrl${RestApis.PRIVACYPOLICY}${prefs.get("lang")}");
       // print(url);
-      response = await http.get(
-          Uri.parse("$baseUrl${RestApis.PRIVACYPOLICY}${prefs.get("lang")}"),
+      response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
-      // print('${response.body}');
+      print('${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3425,6 +3585,79 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map details = {
+      "academydetail": {
+        "Academy_NameEnglish": "Usama Flutter Dev",
+        "Academy_NameArabic": "أكاديمية مثال",
+        "descriptionEnglish": "Description in English",
+        "descriptionArabic": "الوصف بالعربية",
+        "Academy_Location": "Location",
+        "latitude": "123456",
+        "longitude": "123456",
+        "Country": "Country",
+        "sport_slug": "cricket",
+        "facilitySlug": "bathroom,bibs,carParking",
+        "gameplaySlug": "both",
+        "academy_image": ["image_url_1", "image_url_2"]
+      },
+      "document": [
+        {
+          "Document_Name": "Document 1",
+          "License_Number": "123",
+          "Expiry_Date": "2023-12-31",
+          "file": "file_url_1"
+        },
+        {
+          "Document_Name": "Document 2",
+          "License_Number": "456",
+          "Expiry_Date": "2024-12-31",
+          "file": "file_url_2"
+        }
+      ],
+      "price": [
+        {"Sub_Academy": "Sub Academy 1", "Price": 100},
+        {"Sub_Academy": "Sub Academy 2", "Price": 200}
+      ],
+      "sessions": [
+        {
+          "weekday": "monday",
+          "sessions": [
+            {
+              "Holiday": false,
+              "Name": "Morning Session",
+              "Name_Arabic": "صباحًا",
+              "Slot_duration": "60",
+              "Extra_slot": false,
+              "Start_time": "09:00",
+              "End_time": "10:00"
+            },
+            {
+              "Holiday": false,
+              "Name": "Evening Session",
+              "Name_Arabic": "مساءً",
+              "Slot_duration": "90",
+              "Extra_slot": true,
+              "Start_time": "18:00",
+              "End_time": "19:30"
+            }
+          ]
+        },
+        {
+          "weekday": "tuesday",
+          "sessions": [
+            {
+              "Holiday": false,
+              "Name": "Afternoon Session",
+              "Name_Arabic": "بعد الظهر",
+              "Slot_duration": "60",
+              "Extra_slot": false,
+              "Start_time": "14:00",
+              "End_time": "15:00"
+            }
+          ]
+        }
+      ]
+    };
     var body = json.encode(detail);
     print('body$body');
     try {

@@ -295,7 +295,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                             style: Theme.of(
                                                                     context)
                                                                 .textTheme
-                                                                .bodyMedium),
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    color: AppColors
+                                                                        .white)),
                                                         isLoading: isLoading)
                                                   ],
                                                   title: Text(
@@ -339,7 +342,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                               .textTheme
                                                               .bodyMedium!
                                                               .copyWith(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0XFF2F2F2F),
                                                                   fontWeight:
                                                                       FontWeight
@@ -356,7 +359,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                               .textTheme
                                                               .bodyMedium!
                                                               .copyWith(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0XFF898989)),
                                                         ),
                                                       ],

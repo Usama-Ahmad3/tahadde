@@ -213,21 +213,21 @@ class _BookingScreenState extends State<BookingScreen> {
                                                                   FontWeight
                                                                       .w700),
                                                     ),
-                                              Text(
-                                                "${date["bookings"]} ${AppLocalizations.of(context)!.booking}",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? const Color(
-                                                                0XFF858585)
-                                                            : AppColors.white,
-                                                        fontWeight:
-                                                            FontWeight.w700),
-                                              ),
+                                              // Text(
+                                              //   "${date["bookings"]} ${AppLocalizations.of(context)!.booking}",
+                                              //   style: Theme.of(context)
+                                              //       .textTheme
+                                              //       .bodyMedium!
+                                              //       .copyWith(
+                                              //           color: MyAppState
+                                              //                       .mode ==
+                                              //                   ThemeMode.light
+                                              //               ? const Color(
+                                              //                   0XFF858585)
+                                              //               : AppColors.white,
+                                              //           fontWeight:
+                                              //               FontWeight.w700),
+                                              // ),
                                             ],
                                           ),
                                           flaxibleGap(4),
@@ -369,10 +369,10 @@ class _BookingScreenState extends State<BookingScreen> {
                                     Expanded(
                                       child: TabBarView(
                                         children: [
-                                          BookingsWidget(
-                                            bookingDetail: bookingDetail,
-                                          ),
-                                          const ManageSlotsWidget(),
+                                          BookingWidget(
+                                              // bookingDetail: bookingDetail,
+                                              ),
+                                          ManageSlotsWidget(),
                                         ],
                                       ),
                                     ),

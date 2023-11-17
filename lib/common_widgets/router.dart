@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/academy_detail.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/main_home/view_all.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/enterYourDetailPitch.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
@@ -11,13 +10,10 @@ import 'package:flutter_tahaddi/player/loginSignup/team/searchBar.dart';
 
 import '../homeFile/association_promotion.dart';
 import '../homeFile/routingConstant.dart';
-import '../homeFile/select_your_location.dart';
 import '../homeFile/specific_promotion_screen.dart';
 import '../homeFile/specific_sports_venue_screen.dart';
 import '../main.dart';
 import '../modelClass/bookPitchModelClass.dart';
-import '../modelClass/bookingModelClass.dart';
-import '../modelClass/my_venue_list_model_class.dart';
 import '../modelClass/pramotion_model_class.dart';
 import '../modelClass/teamModelClass.dart';
 import '../modelClass/yourTahaddiModelClass.dart';
@@ -29,7 +25,6 @@ import '../pitchOwner/addNewPitch/addNewGround.dart';
 import '../pitchOwner/addNewPitch/addNewGroundSecond.dart';
 import '../pitchOwner/bookingPitchOwner/closingHour.dart';
 import '../pitchOwner/bookingPitchOwner/manageSlotsDetail.dart';
-import '../pitchOwner/bookingPitchOwner/pitchBookingDetails.dart';
 import '../pitchOwner/bookingPitchOwner/verifiedPitchDetail.dart';
 import '../pitchOwner/createEvents/createEventFirst.dart';
 import '../pitchOwner/createEvents/createEventSecond.dart';
@@ -56,7 +51,6 @@ import '../pitchOwner/profilePitchOwner/myPitches/rejectPitch.dart';
 import '../player/bookPitch/bookPitch.dart';
 import '../player/bookPitch/bookPitchSlot.dart';
 import '../player/bookPitch/bookPitchYourTahaddi.dart';
-import '../player/bookPitch/enterYourDetailPitch.dart';
 import '../player/bookPitch/venueDetail.dart';
 import '../player/bookPitch/viewMoreBookPitch.dart';
 import '../player/league/enterDetail.dart';
@@ -397,11 +391,13 @@ class RouterPage {
         return MaterialPageRoute(builder: (_) => const Account());
       case RouteNames.accountSetting:
         return MaterialPageRoute(builder: (_) => const AccountSetting());
-      case RouteNames.pitchBookingDetails:
-        var detail = settings.arguments;
-        return MaterialPageRoute(
-            builder: (_) => PitchBookingDetails(
-                bookindDetail: detail as BookingModelClass));
+      // case RouteNames.pitchBookingDetails:
+      //   var detail = settings.arguments;
+      //   return MaterialPageRoute(
+      //       builder: (_) => PitchBookingDetails(
+      //             bookindDetail: detail as BookingModelClass,
+      //             bookedSession: [],
+      //           ));
       case RouteNames.leagueTahaddi:
         var leageData = settings.arguments;
         return MaterialPageRoute(

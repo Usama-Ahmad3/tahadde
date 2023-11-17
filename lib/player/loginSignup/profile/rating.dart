@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:lottie/lottie.dart';
@@ -29,14 +30,46 @@ class _RateState extends State<Rate> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
   bool loading = true;
   bool? _internet;
+  bool reviewNotReady = true;
   bool? data;
   int count = 0;
+  var _academyModel;
+
+  loadAcademies() async {
+    await _networkCalls.loadVerifiedAcademies(
+      sport: '',
+      onSuccess: (academies) {
+        _academyModel = academies;
+        if (mounted) {
+          setState(() {
+            loading = false;
+            print('hi');
+            print('ok');
+            print(_academyModel);
+            print('kok');
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            loading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) {
+          print('loadVenues');
+          on401(context);
+        }
+      },
+    );
+  }
 
   loadingRating() {
     _networkCalls.ratingGet(
       onSuccess: (msg) {
         setState(() {
-          loading = false;
           rating = msg;
           data = true;
         });
@@ -60,6 +93,7 @@ class _RateState extends State<Rate> {
       _internet = msg;
       if (msg == true) {
         loadingRating();
+        loadAcademies();
       } else {
         setState(() {
           loading = false;
@@ -128,7 +162,7 @@ class _RateState extends State<Rate> {
                 backgroundColor: Colors.black,
                 appBar: appBarWidget(sizeWidth, sizeHeight, context,
                     AppLocalizations.of(context)!.ratingsReviews, true),
-                body: data!
+                body: !data!
                     ? Stack(
                         children: [
                           Container(
@@ -163,13 +197,14 @@ class _RateState extends State<Rate> {
                                         shrinkWrap: true,
                                         physics:
                                             const NeverScrollableScrollPhysics(),
-                                        itemCount: 10,
+                                        itemCount: _academyModel.length,
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
                                             onTap: () {
                                               setState(() {
                                                 rateValue = true;
-                                                id = rating[index]["id"]
+                                                id = _academyModel[index]
+                                                        ['academy_id']
                                                     .toString();
                                               });
                                             },
@@ -193,141 +228,158 @@ class _RateState extends State<Rate> {
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.all(
-                                                          sizeHeight * .01),
-                                                      child: Container(
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        5.0) //
-                                                                    ),
-                                                          ),
-                                                          child: ClipRRect(
-                                                            clipBehavior:
-                                                                Clip.hardEdge,
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                    .all(
-                                                                    Radius.circular(
-                                                                        5.0)),
-                                                            child: rating[index]["bookpitchfiles"]
-                                                                            ["files"][0]
-                                                                        [
-                                                                        "filePath"] !=
-                                                                    null
-                                                                ? ClipRRect(
-                                                                    clipBehavior:
-                                                                        Clip
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  sizeHeight *
+                                                                      .01),
+                                                          child: Container(
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius.all(
+                                                                        Radius.circular(
+                                                                            5.0) //
+                                                                        ),
+                                                              ),
+                                                              child: ClipRRect(
+                                                                clipBehavior:
+                                                                    Clip.hardEdge,
+                                                                borderRadius:
+                                                                    const BorderRadius
+                                                                        .all(
+                                                                        Radius.circular(
+                                                                            5.0)),
+                                                                child: _academyModel[index][
+                                                                            'academy_image'] !=
+                                                                        null
+                                                                    ? ClipRRect(
+                                                                        clipBehavior: Clip
                                                                             .hardEdge,
-                                                                    borderRadius:
-                                                                        const BorderRadius
+                                                                        borderRadius: const BorderRadius
                                                                             .all(
                                                                             Radius.circular(
                                                                                 5.0)),
-                                                                    child:
-                                                                        cachedNetworkImage(
-                                                                      height:
-                                                                          sizeHeight *
-                                                                              .08,
-                                                                      width:
-                                                                          sizeWidth *
-                                                                              .15,
-                                                                      cuisineImageUrl:
-                                                                          rating[index]["bookpitchfiles"]["files"][0]
-                                                                              [
-                                                                              "filePath"],
-                                                                    ))
-                                                                : Image.asset(
-                                                                    'assets/images/T.png',
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    height:
-                                                                        sizeHeight *
-                                                                            .1,
-                                                                    width:
-                                                                        sizeWidth *
+                                                                        child:
+                                                                            cachedNetworkImage(
+                                                                          height:
+                                                                              sizeHeight * .08,
+                                                                          width:
+                                                                              sizeWidth * .15,
+                                                                          cuisineImageUrl:
+                                                                              _academyModel[index]['academy_image'][0],
+                                                                        ))
+                                                                    : Image
+                                                                        .asset(
+                                                                        'assets/images/T.png',
+                                                                        fit: BoxFit
+                                                                            .fill,
+                                                                        height:
+                                                                            sizeHeight *
+                                                                                .1,
+                                                                        width: sizeWidth *
                                                                             .15,
-                                                                  ),
-                                                          )),
+                                                                      ),
+                                                              )),
+                                                        ),
+                                                        Text(
+                                                            AppLocalizations.of(
+                                                                            context)!
+                                                                        .locale ==
+                                                                    'en'
+                                                                ? '${_academyModel[index]['Academy_NameEnglish']}'
+                                                                : '${_academyModel[index]['Academy_NameArabic']}',
+                                                            style: const TextStyle(
+                                                                color: Color(
+                                                                    0XFF032040),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                fontFamily:
+                                                                    "Poppins",
+                                                                fontSize: 16)),
+                                                      ],
                                                     ),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                    Text(
-                                                        '${rating[index]["name"]}',
-                                                        style: const TextStyle(
-                                                            color: Color(
-                                                                0XFF032040),
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            fontFamily:
-                                                                "Poppins",
-                                                            fontSize: 16)),
-                                                    flaxibleGap(
-                                                      2,
-                                                    ),
-                                                    Padding(
-                                                        padding: EdgeInsets.all(
-                                                            sizeHeight * .005),
-                                                        child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Row(
+                                                    reviewNotReady
+                                                        ? Padding(
+                                                            padding: EdgeInsets.only(
+                                                                right:
+                                                                    sizeWidth *
+                                                                        0.025),
+                                                            child: Icon(
+                                                              Icons.add,
+                                                              size: sizeHeight *
+                                                                  0.06,
+                                                              color: AppColors
+                                                                  .grey,
+                                                            ),
+                                                          )
+                                                        : Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    sizeHeight *
+                                                                        .005),
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
                                                               children: [
-                                                                Text(
-                                                                  "${rating[index]["reviewAndratings"]["rating"] ?? 0}/5",
-                                                                  style: const TextStyle(
-                                                                      color: Color(
-                                                                          0XFF9B9B9B),
-                                                                      fontSize:
-                                                                          14),
+                                                                Row(
+                                                                  children: [
+                                                                    Text(
+                                                                      "${rating[index]["reviewAndratings"]["rating"] ?? 0}/5",
+                                                                      style: const TextStyle(
+                                                                          color: Color(
+                                                                              0XFF9B9B9B),
+                                                                          fontSize:
+                                                                              14),
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 5,
+                                                                    ),
+                                                                    Image.asset(
+                                                                        "assets/images/star.png")
+                                                                  ],
                                                                 ),
                                                                 const SizedBox(
-                                                                  width: 5,
+                                                                  height: 5,
                                                                 ),
-                                                                Image.asset(
-                                                                    "assets/images/star.png")
+                                                                Row(
+                                                                  children: [
+                                                                    Text(
+                                                                      "${rating[index]["reviewAndratings"]["review"] ?? 0}",
+                                                                      style: const TextStyle(
+                                                                          color: Color(
+                                                                              0XFF9B9B9B),
+                                                                          fontSize:
+                                                                              14),
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 5,
+                                                                    ),
+                                                                    Text(
+                                                                      AppLocalizations.of(
+                                                                              context)!
+                                                                          .review,
+                                                                      style: const TextStyle(
+                                                                          color: Color(
+                                                                              0XFF9B9B9B),
+                                                                          fontSize:
+                                                                              14),
+                                                                    ),
+                                                                  ],
+                                                                )
                                                               ],
-                                                            ),
-                                                            const SizedBox(
-                                                              height: 5,
-                                                            ),
-                                                            Row(
-                                                              children: [
-                                                                Text(
-                                                                  "${rating[index]["reviewAndratings"]["review"] ?? 0}",
-                                                                  style: const TextStyle(
-                                                                      color: Color(
-                                                                          0XFF9B9B9B),
-                                                                      fontSize:
-                                                                          14),
-                                                                ),
-                                                                const SizedBox(
-                                                                  width: 5,
-                                                                ),
-                                                                Text(
-                                                                  AppLocalizations.of(
-                                                                          context)!
-                                                                      .review,
-                                                                  style: const TextStyle(
-                                                                      color: Color(
-                                                                          0XFF9B9B9B),
-                                                                      fontSize:
-                                                                          14),
-                                                                ),
-                                                              ],
-                                                            )
-                                                          ],
-                                                        )),
-                                                    flaxibleGap(
-                                                      2,
-                                                    ),
+                                                            )),
                                                   ],
                                                 ),
                                               ),
@@ -348,6 +400,8 @@ class _RateState extends State<Rate> {
                                   ),
                                 )
                               : const SizedBox(),
+
+                          ///review popUp or view
                           rateValue
                               ? Center(
                                   child: Padding(
