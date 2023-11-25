@@ -70,6 +70,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "أضف تجربتك للأكاديميات التي لعبت فيها."),
         "ago": MessageLookupByLibrary.simpleMessage("منذ"),
+        "add": MessageLookupByLibrary.simpleMessage("يضيف"),
+        "bookedFor": MessageLookupByLibrary.simpleMessage("حجزت ل"),
+        "minuteSlot": MessageLookupByLibrary.simpleMessage("فتحة دقيقة"),
+        "bookAgain": MessageLookupByLibrary.simpleMessage("احجز مرة أخرى"),
+        "bookedOn": MessageLookupByLibrary.simpleMessage("تم الحجز"),
+        "rebookThis":
+            MessageLookupByLibrary.simpleMessage("أعد حجز هذه الجلسة ل"),
         "paymentTransaction":
             MessageLookupByLibrary.simpleMessage("الدفع، طرق، المعاملات"),
         "Help": MessageLookupByLibrary.simpleMessage("يساعد"),
@@ -93,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eventTitle": MessageLookupByLibrary.simpleMessage("الأحداث"),
         "academy": MessageLookupByLibrary.simpleMessage("الأكاديميات"),
         "groundList": MessageLookupByLibrary.simpleMessage("القائمة الأرضية"),
-        "bookAcademy": MessageLookupByLibrary.simpleMessage("حجز الأكاديمية"),
+        "bookAcademy": MessageLookupByLibrary.simpleMessage("احجز جلستك"),
         "popular": MessageLookupByLibrary.simpleMessage("ميزاتنا الشعبية"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
         "support": MessageLookupByLibrary.simpleMessage("يدعم"),
@@ -126,8 +133,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookYourSlot": MessageLookupByLibrary.simpleMessage("احجز الآن"),
         "booked": MessageLookupByLibrary.simpleMessage("محجوز"),
         "bookedSlots": MessageLookupByLibrary.simpleMessage("الآوقات المحجوزة"),
-        "booking": MessageLookupByLibrary.simpleMessage("الحجز"),
+        "booking": MessageLookupByLibrary.simpleMessage("الحجوزات"),
+        "forr": MessageLookupByLibrary.simpleMessage("ل"),
+        "booking Date": MessageLookupByLibrary.simpleMessage("تاريخ الحجز"),
+        "notBooked": MessageLookupByLibrary.simpleMessage(
+            "لم تحجز أي دورة من هذه الأكاديمية"),
+        "addReview": MessageLookupByLibrary.simpleMessage("إضافة تقييمك"),
+        "noReviews":
+            MessageLookupByLibrary.simpleMessage("لا توجد مراجعات متاحة"),
+        "youCant": MessageLookupByLibrary.simpleMessage(
+            "لا يمكنك التعديل على الحجوزات الجارية"),
         "bookingDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
+        "pleaseCreateProper":
+            MessageLookupByLibrary.simpleMessage("يرجى إنشاء الجلسة بشكل صحيح"),
+        "atLeast": MessageLookupByLibrary.simpleMessage(
+            "يرجى إنشاء جلسة لمدة يوم واحد على الأقل"),
         "bookingPrice": MessageLookupByLibrary.simpleMessage("سعر الحجز"),
         "bookingSummary": MessageLookupByLibrary.simpleMessage("ملخص الحجز"),
         "bookingSummaryC": MessageLookupByLibrary.simpleMessage("ملخص الكتاب"),
@@ -265,6 +285,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "documentName": MessageLookupByLibrary.simpleMessage("اسم الملف"),
         "documents": MessageLookupByLibrary.simpleMessage("مستندات"),
         "done": MessageLookupByLibrary.simpleMessage("منجز"),
+        "uploadPDF":
+            MessageLookupByLibrary.simpleMessage("تحميل قوات الدفاع الشعبي"),
         "doyouwanttoleaveteam":
             MessageLookupByLibrary.simpleMessage("هل تريد مغادرة الفريق"),
         "editProfile":
@@ -274,6 +296,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "editdatetime":
             MessageLookupByLibrary.simpleMessage("تحرير التاريخ والوقت"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "mins": MessageLookupByLibrary.simpleMessage("دقيقة"),
+        "notify": MessageLookupByLibrary.simpleMessage(
+            "سنقوم بإعلامك بمجرد الانتهاء من ذلك."),
+        "underReview":
+            MessageLookupByLibrary.simpleMessage("إنه قيد المراجعة."),
+        "thankyouAcademy": MessageLookupByLibrary.simpleMessage(
+            "شكرا لكم على إنشاء الأكاديمية"),
         "emailhasbeensent":
             MessageLookupByLibrary.simpleMessage("تم ارسال البريد الالكتروني"),
         "end": MessageLookupByLibrary.simpleMessage("نهاية"),
@@ -374,6 +403,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "more": MessageLookupByLibrary.simpleMessage("المزيد"),
         "multipleRates": MessageLookupByLibrary.simpleMessage("معدلات متعددة"),
         "myBooking": MessageLookupByLibrary.simpleMessage("الحجوزات"),
+        "editAcademy": MessageLookupByLibrary.simpleMessage("تحرير الأكاديمية"),
+        "onGoing": MessageLookupByLibrary.simpleMessage("جاري التنفيذ"),
+        "cart": MessageLookupByLibrary.simpleMessage("عربة التسوق"),
+        "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
+        "complete": MessageLookupByLibrary.simpleMessage("مكتمل"),
         "myInterest": MessageLookupByLibrary.simpleMessage("الاهتمامات"),
         "myPitches": MessageLookupByLibrary.simpleMessage("ملاعبي"),
         "myReviewsRatings": MessageLookupByLibrary.simpleMessage("تقييمي"),
@@ -630,7 +664,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("سجل معنا"),
         "since": MessageLookupByLibrary.simpleMessage("منذ"),
-        "skip": MessageLookupByLibrary.simpleMessage("تخطى"),
+        "skip": MessageLookupByLibrary.simpleMessage("فتحات"),
         "slot": MessageLookupByLibrary.simpleMessage("الوقت"),
         "slotChart": MessageLookupByLibrary.simpleMessage("مخطط الحجز"),
         "slotDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),

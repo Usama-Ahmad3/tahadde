@@ -406,7 +406,7 @@ class LoginScreenState extends State<LoginScreen> {
                             height: height * 0.065,
                             width: width,
                             decoration: BoxDecoration(
-                                color: AppColors.containerColorB,
+                                color: AppColors.containerColorW12,
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,

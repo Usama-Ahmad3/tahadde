@@ -113,10 +113,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                   sessionNameAr: value["session_arabic_name"],
                   slotDuration: value["session_slot_time"],
                   graceTime: value["grace_time"],
-                  startTime: DateFormat("yyyy-MM-dd hh:mm:ss")
-                      .parse("2022-10-32 ${value["startTime"]}"),
-                  endTime: DateFormat("yyyy-MM-dd hh:mm:ss")
-                      .parse("2022-10-32 ${value["endTime"]}")));
+                  startTime: Intl.withLocale(
+                      'en',
+                      () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                          .parse("2022-10-32 ${value["startTime"]}")),
+                  endTime: Intl.withLocale(
+                      'en',
+                      () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                          .parse("2022-10-32 ${value["endTime"]}"))));
             });
             _sessionMap[element["day"]] = sessionList;
           });
@@ -177,10 +181,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                       sessionNameAr: value.nameArabic,
                       slotDuration: value.slotDuration as int,
                       graceTime: value.extraSlot as int,
-                      startTime: DateFormat("yyyy-MM-dd hh:mm:ss")
-                          .parse("2022-10-32 ${value.startTime}"),
-                      endTime: DateFormat("yyyy-MM-dd hh:mm:ss")
-                          .parse("2022-10-32 ${value.endTime}")));
+                      startTime: Intl.withLocale(
+                          'en',
+                          () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                              .parse("2022-10-32 ${value.startTime}")),
+                      endTime: Intl.withLocale(
+                          'en',
+                          () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                              .parse("2022-10-32 ${value.endTime}"))));
                 });
                 _sessionMap[element.weekday!] = sessionList;
               });
@@ -270,10 +278,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         context: context,
                         builder: (context) => AlertDialog(
                               elevation: 2,
-                              backgroundColor: AppColors.grey200,
+                              backgroundColor:
+                                  MyAppState.mode == ThemeMode.light
+                                      ? AppColors.grey200
+                                      : AppColors.darkTheme,
                               shape: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12)),
-                              title: Text(AppLocalizations.of(context)!.copy),
+                              title: Text(AppLocalizations.of(context)!.copy,style:TextStyle(color:MyAppState.mode == ThemeMode.light ?AppColors.black:AppColors.white)),
                               content: Text(
                                 AppLocalizations.of(context)!.copySession,
                                 style: Theme.of(context)
@@ -455,7 +466,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       .bodyMedium!
                                                       .copyWith(
                                                           color:
-                                                              AppColors.black,
+                                                              AppColors.white,
                                                           fontWeight:
                                                               FontWeight.w500),
                                                 ),
@@ -704,7 +715,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               ThemeMode.light
                                                           ? AppColors.grey200
                                                           : AppColors
-                                                              .containerColorB,
+                                                              .containerColorW12,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               13)),
@@ -720,34 +731,38 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                         child: Row(
                                                           children: [
                                                             Text(
-                                                              "${_sessionMap[_weakList[_weakIndex].slug]![index].sessionName} Session",
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyMedium!
-                                                                  .copyWith(
-                                                                      color: const Color(
-                                                                          0XFFA3A3A3),
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontFamily:
-                                                                          "Poppins"),
+                                                              "${AppLocalizations.of(context)!.locale == 'en' ? _sessionMap[_weakList[_weakIndex].slug]![index].sessionName : _sessionMap[_weakList[_weakIndex].slug]![index].sessionNameAr} ${AppLocalizations.of(context)!.sessions}",
+                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? const Color(
+                                                                          0XFFA3A3A3)
+                                                                      : AppColors
+                                                                          .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontFamily:
+                                                                      "Poppins"),
                                                             ),
                                                             Text(
-                                                              "( ${_sessionMap[_weakList[_weakIndex].slug]![index].slotDuration.toString()} min slot )",
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyMedium!
-                                                                  .copyWith(
-                                                                      color: const Color(
-                                                                          0XFFA3A3A3),
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontFamily:
-                                                                          "Poppins"),
+                                                              "( ${_sessionMap[_weakList[_weakIndex].slug]![index].slotDuration.toString()} ${AppLocalizations.of(context)!.minuteSlot} )",
+                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? const Color(
+                                                                          0XFFA3A3A3)
+                                                                      : AppColors
+                                                                          .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontFamily:
+                                                                      "Poppins"),
                                                             ),
                                                           ],
                                                         ),
@@ -769,7 +784,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                             Text(
                                                                 DateFormat.Hm(
                                                                         'en_US')
-                                                                    .format(_sessionMap[_weakList[_weakIndex].slug]![
+                                                                    .format(_sessionMap[
+                                                                                _weakList[_weakIndex].slug]![
                                                                             index]
                                                                         .startTime!),
                                                                 style: Theme.of(
@@ -777,17 +793,25 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                     .textTheme
                                                                     .bodyMedium!
                                                                     .copyWith(
-                                                                        color: AppColors
-                                                                            .appThemeColor,
+                                                                        color: MyAppState.mode == ThemeMode.light
+                                                                            ? AppColors
+                                                                                .appThemeColor
+                                                                            : AppColors
+                                                                                .grey,
                                                                         fontWeight:
                                                                             FontWeight
                                                                                 .w600,
                                                                         fontFamily:
                                                                             "Poppins")),
-                                                            const Text(" - ",
+                                                            Text(" - ",
                                                                 style: TextStyle(
-                                                                    color: AppColors
-                                                                        .appThemeColor,
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? AppColors
+                                                                            .appThemeColor
+                                                                        : AppColors
+                                                                            .grey,
                                                                     fontSize:
                                                                         16,
                                                                     fontWeight:
@@ -802,18 +826,20 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                           _weakList[_weakIndex]
                                                                               .slug]![index]
                                                                       .endTime!),
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyMedium!
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .appThemeColor,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontFamily:
-                                                                          "Poppins"),
+                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? AppColors
+                                                                          .appThemeColor
+                                                                      : AppColors
+                                                                          .grey,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      "Poppins"),
                                                             ),
                                                           ],
                                                         ),
@@ -864,7 +890,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     _sessionMap.isEmpty
                                                         ? AppLocalizations.of(context)!.firstSession
                                                         : AppLocalizations.of(context)!.noSession,
-                                                    style: Theme.of(context).textTheme.bodyMedium)))),
+                                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white))))),
 
                         ///button for navigation and creating
                         Align(
@@ -928,7 +954,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     };
                                     print('jjjjjjjjj');
                                     print(sessionsPay);
-                                    showMessage("Can't do it right now");
+                                    showMessage(
+                                        AppLocalizations.of(context)!.youCant);
 
                                     ///do it later
                                     // editAcademy(sessionsPay,
@@ -968,8 +995,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                   }
                                 : () {
                                     if (_sessionMap.length < 1) {
-                                      showMessage(
-                                          "Please create session for 1 at least one day");
+                                      showMessage(AppLocalizations.of(context)!
+                                          .atLeast);
                                     } else {
                                       setState(() {
                                         _isSession = true;
@@ -1103,7 +1130,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           },
                                           onFailure: (onFailure) {
                                             showMessage(
-                                                "Please create session properly ");
+                                                AppLocalizations.of(context)!
+                                                    .pleaseCreateProper);
                                             setState(() {
                                               _isSession = false;
                                             });
@@ -1141,7 +1169,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => EditVenuesScreen(detail: detail)));
+            builder: (context) => EditAcademyScreen(detail: detail)));
   }
 
   bottomSheet({required Function onTap}) {
@@ -1203,7 +1231,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? AppColors.grey200
-                                                : AppColors.containerColorB,
+                                                : AppColors.containerColorW12,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1213,7 +1241,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             tileColor: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? AppColors.grey200
-                                                : AppColors.containerColorB,
+                                                : AppColors.containerColorW12,
                                             onTap: () {},
                                             shape: OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -1271,7 +1299,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     Expanded(
                                       child: Center(
                                         child: Text(
-                                          "${AppLocalizations.of(context)!.markAsHoliday} for ${_weakList[_weakIndex].name} ",
+                                          "${AppLocalizations.of(context)!.markAsHoliday} ${AppLocalizations.of(context)!.forr} ${_weakList[_weakIndex].name} ",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
@@ -1353,7 +1381,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? AppColors.grey200
-                                                : AppColors.containerColorB,
+                                                : AppColors.containerColorW12,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1363,7 +1391,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             tileColor: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? AppColors.grey200
-                                                : AppColors.containerColorB,
+                                                : AppColors.containerColorW12,
                                             onTap: () {},
                                             shape: OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -1635,7 +1663,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? AppColors.grey200
-                                                : AppColors.containerColorB,
+                                                : AppColors.containerColorW12,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1645,7 +1673,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               tileColor: MyAppState.mode ==
                                                       ThemeMode.light
                                                   ? AppColors.grey200
-                                                  : AppColors.containerColorB,
+                                                  : AppColors.containerColorW12,
                                               onTap: () {
                                                 var time = 20;
                                                 showDialog(
@@ -1655,8 +1683,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     title: Text(AppLocalizations
                                                             .of(context)!
                                                         .createSlotDuration),
-                                                    backgroundColor:
-                                                        AppColors.white,
+                                                    backgroundColor: MyAppState
+                                                                .mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors.white
+                                                        : AppColors.darkTheme,
                                                     elevation: 2,
                                                     shape: OutlineInputBorder(
                                                         borderRadius:
@@ -1671,8 +1702,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child: const Text(
-                                                              'Cancel')),
+                                                          child: Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .cancel)),
                                                       TextButton(
                                                           onPressed: () {
                                                             sessionDetail
@@ -1682,8 +1715,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 context);
                                                             setState(() {});
                                                           },
-                                                          child:
-                                                              const Text('OK')),
+                                                          child: Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .ok)),
                                                     ],
                                                     content: Container(
                                                       height:
@@ -1703,7 +1738,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           for (String name
                                                               in currenciesList)
                                                             Text(
-                                                              "$name min",
+                                                              "$name ${AppLocalizations.of(context)!.mins}",
                                                               style: TextStyle(
                                                                   fontSize:
                                                                       size.height *
@@ -1760,7 +1795,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           : AppColors.white,
                                                     )
                                                   : Text(
-                                                      '${sessionDetail.slotDuration} min')),
+                                                      '${sessionDetail.slotDuration} ${AppLocalizations.of(context)!.mins}')),
                                         ),
                                       ),
                                     ),
@@ -1775,7 +1810,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? AppColors.grey200
-                                                    : AppColors.containerColorB,
+                                                    : AppColors
+                                                        .containerColorW12,
                                                 borderRadius:
                                                     BorderRadius.circular(13)),
                                             child: Center(
@@ -1788,7 +1824,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 tileColor: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? AppColors.grey200
-                                                    : AppColors.containerColorB,
+                                                    : AppColors
+                                                        .containerColorW12,
                                                 onTap: () {
                                                   var time;
                                                   showDialog(
@@ -1800,7 +1837,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                   context)!
                                                               .startTime),
                                                       backgroundColor:
-                                                          AppColors.white,
+                                                          MyAppState.mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors.white
+                                                              : AppColors
+                                                                  .darkTheme,
                                                       elevation: 2,
                                                       shape: OutlineInputBorder(
                                                           borderRadius:
@@ -1815,8 +1857,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                   context);
                                                               setState(() {});
                                                             },
-                                                            child: const Text(
-                                                                'Cancel')),
+                                                            child: Text(
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .cancel)),
                                                         TextButton(
                                                             onPressed: () {
                                                               sessionDetail
@@ -1827,8 +1871,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
 
                                                               setState(() {});
                                                             },
-                                                            child: const Text(
-                                                                'OK')),
+                                                            child: Text(
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .ok)),
                                                       ],
                                                       content: Container(
                                                         height:
@@ -1919,7 +1965,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? AppColors.grey200
-                                                : AppColors.containerColorB,
+                                                : AppColors.containerColorW12,
                                             borderRadius:
                                                 BorderRadius.circular(13)),
                                         child: Center(
@@ -1929,7 +1975,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             tileColor: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? AppColors.grey200
-                                                : AppColors.containerColorB,
+                                                : AppColors.containerColorW12,
                                             onTap: () {
                                               var time;
                                               showDialog(
@@ -1941,7 +1987,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               context)!
                                                           .endTime),
                                                   backgroundColor:
-                                                      AppColors.white,
+                                                      MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.white
+                                                          : AppColors.darkTheme,
                                                   elevation: 2,
                                                   shape: OutlineInputBorder(
                                                       borderRadius:
@@ -1956,8 +2005,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               context);
                                                           setState(() {});
                                                         },
-                                                        child: const Text(
-                                                            'Cancel')),
+                                                        child: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .cancel)),
                                                     TextButton(
                                                         onPressed: () {
                                                           sessionDetail
@@ -1966,8 +2017,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               context);
                                                           setState(() {});
                                                         },
-                                                        child:
-                                                            const Text('OK')),
+                                                        child: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .ok)),
                                                   ],
                                                   content: Container(
                                                     height: size.height * 0.15,
@@ -2144,12 +2197,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     ),
                                     ButtonWidget(
                                         onTaped: () {
-                                          DateTime startTime =
-                                              DateFormat("hh:mm").parse(
-                                                  '${sessionDetail.startTime!.hour.toInt() < 10 ? zero + sessionDetail.startTime!.hour.toString() : sessionDetail.startTime!.hour}:${sessionDetail.startTime!.minute.toInt() < 10 ? zero + sessionDetail.startTime!.minute.toString() : sessionDetail.startTime!.minute}');
-                                          DateTime endTime = DateFormat("hh:mm")
-                                              .parse(
-                                                  '${sessionDetail.endTime!.hour.toInt() < 10 ? zero + sessionDetail.endTime!.hour.toString() : sessionDetail.endTime!.hour}:${sessionDetail.endTime!.minute.toInt() < 10 ? zero + sessionDetail.endTime!.minute.toString() : sessionDetail.endTime!.minute}');
+                                          DateTime startTime = Intl.withLocale(
+                                              'en',
+                                              () => DateFormat("hh:mm").parse(
+                                                  '${sessionDetail.startTime!.hour.toInt() < 10 ? zero + sessionDetail.startTime!.hour.toString() : sessionDetail.startTime!.hour}:${sessionDetail.startTime!.minute.toInt() < 10 ? zero + sessionDetail.startTime!.minute.toString() : sessionDetail.startTime!.minute}'));
+                                          DateTime endTime = Intl.withLocale(
+                                              'en',
+                                              () => DateFormat("hh:mm").parse(
+                                                  '${sessionDetail.endTime!.hour.toInt() < 10 ? zero + sessionDetail.endTime!.hour.toString() : sessionDetail.endTime!.hour}:${sessionDetail.endTime!.minute.toInt() < 10 ? zero + sessionDetail.endTime!.minute.toString() : sessionDetail.endTime!.minute}'));
                                           if (startTime.isAfter(endTime)) {
                                             showMessage(
                                                 'please select valid start and end time');
@@ -2175,9 +2230,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   sessionDetail.slotDuration ??=
                                                       20;
                                                   sessionDetail.startTime ??=
-                                                      DateTime.now();
+                                                      Intl.withLocale('en',
+                                                          () => DateTime.now());
                                                   sessionDetail.endTime ??=
-                                                      DateTime.now();
+                                                      Intl.withLocale('en',
+                                                          () => DateTime.now());
                                                   if (_sessionMap.containsKey(
                                                       _weakList[_weakIndex]
                                                           .slug)) {
@@ -2303,9 +2360,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 sessionDetail.slotDuration ??=
                                                     20;
                                                 sessionDetail.startTime ??=
-                                                    DateTime.now();
+                                                    Intl.withLocale('en',
+                                                        () => DateTime.now());
                                                 sessionDetail.endTime ??=
-                                                    DateTime.now();
+                                                    Intl.withLocale('en',
+                                                        () => DateTime.now());
                                                 List<SessionDetail>
                                                     sessionList = [];
                                                 sessionList.add(sessionDetail);

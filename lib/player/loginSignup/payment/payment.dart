@@ -244,7 +244,8 @@ class _PaymentState extends State<Payment> {
                                                             ThemeMode.light
                                                         ? AppColors.grey
                                                             .withOpacity(.3)
-                                                        : Colors.grey.shade300,
+                                                        : AppColors
+                                                            .containerColorW12,
                                               ),
                                               child: Row(
                                                 children: [
@@ -304,8 +305,14 @@ class _PaymentState extends State<Payment> {
                                                               .textTheme
                                                               .bodyMedium!
                                                               .copyWith(
-                                                                  color: Colors
-                                                                      .black),
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? Colors
+                                                                          .black
+                                                                      : AppColors
+                                                                          .white),
                                                         )
                                                       : Text(
                                                           paymentMethods[index]
@@ -316,8 +323,14 @@ class _PaymentState extends State<Payment> {
                                                               .textTheme
                                                               .bodyMedium!
                                                               .copyWith(
-                                                                  color: AppColors
-                                                                      .black),
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? AppColors
+                                                                          .black
+                                                                      : AppColors
+                                                                          .white),
                                                         ),
                                                   Flexible(
                                                     flex: 1,
@@ -487,9 +500,7 @@ class _PaymentState extends State<Payment> {
                 "payment_id": tranjectionId["InvoiceTransactions"][0]
                         ['PaymentId']
                     .toString(),
-                "booked_for_date": widget.detail["apidetail"]["date"],
-                "slot_ids_list": widget.detail["apidetail"]["id"],
-                "pitchtype_id": widget.detail["subPitchId"],
+                "booked_for_date": widget.detail["apidetail"],
                 "player_count": widget.detail["player_count"]
               };
               print('Transaction Detail $tarnsectiondetail');
@@ -501,7 +512,9 @@ class _PaymentState extends State<Payment> {
                 "transaction_id": tranjectionId["InvoiceTransactions"][0]
                     ['PaymentId'],
                 "player_count": widget.detail['player_count'],
-                "booking_date": widget.detail['apidetail']['date'],
+                "booking_date": tarnsectiondetail['transactionMadeon']
+                    .toString()
+                    .substring(0, 9),
                 'booked_date': tarnsectiondetail['booked_for_date'],
                 "booked_session": widget.detail['sessionId'],
                 "location": widget.detail['location'],
@@ -516,7 +529,7 @@ class _PaymentState extends State<Payment> {
                   navigateToPaymentSuccess(
                     tranjectionId["InvoiceTransactions"][0]
                         ['TransactionStatus'],
-                    tarnsectiondetail['booked_for_date'],
+                    tarnsectiondetail['transactionMadeon'],
                   );
                   // Map detail = {
                   //   "pitchtype_id": widget.detail["subPitchId"],
@@ -615,26 +628,39 @@ class _PaymentState extends State<Payment> {
     );
   }
 
-  void navigateToPaymentSuccess(String status, String bookedFor) {
-    var detail = {
-      "price": widget.detail["price"],
-      "AcademyName": widget.detail["name"],
-      "status": status,
-      "tranjectionId": tranjectionId["InvoiceTransactions"][0]['PaymentId'],
-      "Sessions": widget.detail["detail"],
-      "startingDate": widget.detail["apidetail"]['date'],
-      "playerId": widget.detail["id"],
-      'booked_date': bookedFor,
-      "email": _detail.email,
-      "location": widget.detail['location'],
-      "currency": "AED",
-    };
-    print('aaaaaaaaaaaa');
-    print(detail);
-    Navigator.pushNamed(
-      context,
-      RouteNames.paymentSuccess,
-      arguments: detail,
+  void navigateToPaymentSuccess(String status, String bookingDate) {
+    print('kkkkkkkkkkkkkkkkk');
+    _networkCalls.deleteCart(
+      id: widget.detail['cart_id'].toString(),
+      onSuccess: (value) {
+        var detail = {
+          "price": widget.detail["price"],
+          "AcademyName": widget.detail["name"],
+          "status": status,
+          "tranjectionId": tranjectionId["InvoiceTransactions"][0]['PaymentId'],
+          "Sessions": widget.detail["detail"],
+          "startingDate": bookingDate,
+          "playerId": widget.detail["id"],
+          'booked_date': widget.detail['apidetail'],
+          "email": _detail.email,
+          "location": widget.detail['location'],
+          "currency": "AED",
+        };
+        print('aaaaaaaaaaaa');
+        print(detail);
+        Navigator.pushNamed(
+          context,
+          RouteNames.paymentSuccess,
+          arguments: detail,
+        );
+      },
+      onFailure: (msg) {
+        print('failed $msg');
+        showMessage(msg);
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
     );
   }
 

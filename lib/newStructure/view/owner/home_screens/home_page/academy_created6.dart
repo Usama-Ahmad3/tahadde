@@ -9,14 +9,14 @@ import '../../../../../main.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../HomePitchOwnerScreen.dart';
 
-class VenueCreatedScreen extends StatefulWidget {
-  const VenueCreatedScreen({Key? key}) : super(key: key);
+class academy_created_screen extends StatefulWidget {
+  const academy_created_screen({Key? key}) : super(key: key);
 
   @override
-  State<VenueCreatedScreen> createState() => _VenueCreatedScreenState();
+  State<academy_created_screen> createState() => _academy_created_screenState();
 }
 
-class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
+class _academy_created_screenState extends State<academy_created_screen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -54,7 +54,7 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.1,
                         width: MediaQuery.of(context).size.width * 0.2,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppColors.appThemeColor),
                         child: Icon(
@@ -68,7 +68,7 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                       2,
                     ),
                     Text(
-                      "Thank you for creating a Academy.",
+                      AppLocalizations.of(context)!.thankyouAcademy,
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontWeight: FontWeight.w600,
                           color: MyAppState.mode == ThemeMode.light
@@ -79,7 +79,7 @@ class _VenueCreatedScreenState extends State<VenueCreatedScreen> {
                       1,
                     ),
                     Text(
-                      "It is under review.\n We will notify you once it’s done.",
+                      "${AppLocalizations.of(context)!.underReview}\n ${AppLocalizations.of(context)!.notify}",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontWeight: FontWeight.w400,
                           color: MyAppState.mode == ThemeMode.light

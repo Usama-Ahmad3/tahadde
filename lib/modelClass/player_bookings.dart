@@ -43,6 +43,8 @@ class Bookings {
   Bookings({
     num? academy,
     String? academyName,
+    String? academyNameArabic,
+    List<String>? academyPics,
     num? player,
     bool? paymentStatus,
     List<num>? bookedSession,
@@ -60,6 +62,8 @@ class Bookings {
   }) {
     _academy = academy;
     _academyName = academyName;
+    _academyNameArabic = academyNameArabic;
+    _academyPics = academyPics;
     _player = player;
     _paymentStatus = paymentStatus;
     _bookedSession = bookedSession;
@@ -79,6 +83,9 @@ class Bookings {
   Bookings.fromJson(dynamic json) {
     _academy = json['academy'];
     _academyName = json['academy_name'];
+    _academyNameArabic = json['academy_name_arabic'];
+    _academyPics =
+        json['academy_pics'] != null ? json['academy_pics'].cast<String>() : [];
     _player = json['player'];
     _paymentStatus = json['payment_status'];
     _bookedSession = json['booked_session'] != null
@@ -98,6 +105,8 @@ class Bookings {
   }
   num? _academy;
   String? _academyName;
+  String? _academyNameArabic;
+  List<String>? _academyPics;
   num? _player;
   bool? _paymentStatus;
   List<num>? _bookedSession;
@@ -115,6 +124,8 @@ class Bookings {
   Bookings copyWith({
     num? academy,
     String? academyName,
+    String? academyNameArabic,
+    List<String>? academyPics,
     num? player,
     bool? paymentStatus,
     List<num>? bookedSession,
@@ -133,6 +144,8 @@ class Bookings {
       Bookings(
         academy: academy ?? _academy,
         academyName: academyName ?? _academyName,
+        academyNameArabic: academyNameArabic ?? _academyNameArabic,
+        academyPics: academyPics ?? _academyPics,
         player: player ?? _player,
         paymentStatus: paymentStatus ?? _paymentStatus,
         bookedSession: bookedSession ?? _bookedSession,
@@ -150,6 +163,8 @@ class Bookings {
       );
   num? get academy => _academy;
   String? get academyName => _academyName;
+  String? get academyNameArabic => _academyNameArabic;
+  List<String>? get academyPics => _academyPics;
   num? get player => _player;
   bool? get paymentStatus => _paymentStatus;
   List<num>? get bookedSession => _bookedSession;
@@ -168,7 +183,9 @@ class Bookings {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['academy'] = _academy;
-    map['academyName'] = _academyName;
+    map['academy_name'] = _academyName;
+    map['academy_name_arabic'] = _academyNameArabic;
+    map['academy_pics'] = _academyPics;
     map['player'] = _player;
     map['payment_status'] = _paymentStatus;
     map['booked_session'] = _bookedSession;

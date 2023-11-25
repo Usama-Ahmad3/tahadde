@@ -26,14 +26,14 @@ class ListWidgetSettings extends StatelessWidget {
         decoration: BoxDecoration(
             color: MyAppState.mode == ThemeMode.light
                 ? AppColors.grey200
-                : AppColors.containerColorB,
+                : AppColors.containerColorW12,
             borderRadius: BorderRadius.circular(13)),
         child: Center(
           child: ListTile(
             titleAlignment: ListTileTitleAlignment.center,
             tileColor: MyAppState.mode == ThemeMode.light
                 ? AppColors.grey200
-                : AppColors.containerColorB,
+                : AppColors.containerColorW12,
             onTap: callback,
             shape: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.containerColorW12),

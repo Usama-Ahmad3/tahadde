@@ -35,10 +35,18 @@ class EmailContactDOB extends StatelessWidget {
                       height: height * 0.3,
                       child: AlertDialog(
                         elevation: 2,
-                        backgroundColor: AppColors.grey200,
+                        backgroundColor: MyAppState.mode == ThemeMode.light
+                            ? AppColors.grey200
+                            : AppColors.darkTheme,
                         shape: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        title: Text(AppLocalizations.of(context)!.price),
+                        title: Text(
+                          AppLocalizations.of(context)!.price,
+                          style: TextStyle(
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? AppColors.black
+                                  : AppColors.white),
+                        ),
                         content: SizedBox(
                           height: height * 0.12,
                           child: Column(
@@ -169,7 +177,7 @@ class EmailContactDOB extends StatelessWidget {
                 enable: false,
                 hintText: constantValue,
                 suffixIcon: slotNavigate ? Icons.edit_outlined : null,
-                fillColor: Colors.transparent,
+                fillColor: AppColors.containerColorW12,
                 suffixIconColor: MyAppState.mode == ThemeMode.light
                     ? AppColors.black
                     : AppColors.white,

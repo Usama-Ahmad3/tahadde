@@ -1,9 +1,7 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
@@ -15,17 +13,17 @@ import '../../../../../../network/network_calls.dart';
 import '../../../../../app_colors/app_colors.dart';
 import '../../../../../utils/utils.dart';
 
-class ViewMoreBookPitchScreen extends StatefulWidget {
+class ViewMoreBookAcademyScreen extends StatefulWidget {
   Map pitchType;
 
-  ViewMoreBookPitchScreen({super.key, required this.pitchType});
+  ViewMoreBookAcademyScreen({super.key, required this.pitchType});
 
   @override
-  _ViewMoreBookPitchScreenState createState() =>
-      _ViewMoreBookPitchScreenState();
+  _ViewMoreBookAcademyScreenState createState() =>
+      _ViewMoreBookAcademyScreenState();
 }
 
-class _ViewMoreBookPitchScreenState extends State<ViewMoreBookPitchScreen> {
+class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
   final NetworkCalls _networkCalls = NetworkCalls();
   var bookPitchData;
   bool _isLoading = true;

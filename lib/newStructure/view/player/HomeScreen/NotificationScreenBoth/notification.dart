@@ -307,7 +307,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                               ThemeMode.light
                                                           ? const Color(
                                                               0xffffffff)
-                                                          : AppColors.darkTheme,
+                                                          : AppColors
+                                                              .containerColorW12,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15 * fem),

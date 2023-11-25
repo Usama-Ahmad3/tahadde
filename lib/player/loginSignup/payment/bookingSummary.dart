@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/booked_sessions.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
@@ -66,7 +67,7 @@ class _BookingSummary extends State<BookingSummary> {
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-    List<SessionDetail> session = widget.price["sessions"];
+    List<BookedSessions> session = widget.price["sessions"];
     return WillPopScope(
         onWillPop: () async => false,
         child: loading
@@ -130,7 +131,7 @@ class _BookingSummary extends State<BookingSummary> {
                       decoration: BoxDecoration(
                           color: MyAppState.mode == ThemeMode.light
                               ? Colors.white
-                              : const Color(0xff686868),
+                              : AppColors.darkTheme,
                           borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(20),
                               topLeft: Radius.circular(20))),
@@ -146,7 +147,9 @@ class _BookingSummary extends State<BookingSummary> {
                               ),
                               Material(
                                 elevation: 5,
-                                color: const Color(0XFFFFFFFF),
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFFFFFFFF)
+                                    : AppColors.containerColorW12,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0)),
                                 child: Padding(
@@ -167,7 +170,10 @@ class _BookingSummary extends State<BookingSummary> {
                                             .textTheme
                                             .titleMedium!
                                             .copyWith(
-                                              color: const Color(0XFF032040),
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : AppColors.white,
                                             ),
                                       ),
                                       Container(
@@ -179,16 +185,23 @@ class _BookingSummary extends State<BookingSummary> {
                                               .textTheme
                                               .bodyMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF424242),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF424242)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w600)),
                                       Text(
-                                        widget.price['startingDate'],
+                                        widget.price['startingDate']
+                                            .toString()
+                                            .substring(0, 10),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!
                                             .copyWith(
-                                                color: AppColors.appThemeColor,
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.appThemeColor
+                                                    : AppColors.white,
                                                 fontFamily: "Poppins"),
                                       ),
                                       ListView.separated(
@@ -203,51 +216,52 @@ class _BookingSummary extends State<BookingSummary> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "${AppLocalizations.of(context)!.sessionName} ${session[index].sessionName}",
+                                                  "${AppLocalizations.of(context)!.sessionName} ${AppLocalizations.of(context)!.locale == 'en' ? session[index].name : session[index].nameArabic}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyMedium!
                                                       .copyWith(
-                                                          color: AppColors
-                                                              .appThemeColor),
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors
+                                                                  .appThemeColor
+                                                              : AppColors
+                                                                  .white),
                                                 ),
                                                 SizedBox(
-                                                    height: 40,
+                                                  height: sizeheight * 0.0056,
+                                                ),
+                                                SizedBox(
+                                                    height: 35,
                                                     width: sizewidth * 0.5,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              5.0),
-                                                      child: Container(
-                                                        height: 30,
-                                                        width: 120,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        decoration: BoxDecoration(
-                                                            color: AppColors
-                                                                .appThemeColor,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            border: Border.all(
+                                                    child: Container(
+                                                      height: 30,
+                                                      width: 110,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                          color: AppColors
+                                                              .appThemeColor,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          border: Border.all(
+                                                              color: Colors.grey
+                                                                  .shade50)),
+                                                      child: Text(
+                                                        '${session[index].startTime.toString()} - ${session[index].endTime.toString()}' ??
+                                                            "",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
                                                                 color: Colors
-                                                                    .grey
-                                                                    .shade50)),
-                                                        child: Text(
-                                                          '${session[index].startTime.toString().substring(10, 19)} - ${session[index].endTime.toString().substring(10, 19)}' ??
-                                                              "",
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Colors
-                                                                      .white),
-                                                        ),
+                                                                    .white),
                                                       ),
                                                     )),
                                               ],
@@ -265,7 +279,9 @@ class _BookingSummary extends State<BookingSummary> {
                               ),
                               Material(
                                 elevation: 5,
-                                color: const Color(0XFFFFFFFF),
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFFFFFFFF)
+                                    : AppColors.containerColorW12,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0)),
                                 child: SizedBox(
@@ -289,8 +305,10 @@ class _BookingSummary extends State<BookingSummary> {
                                               .textTheme
                                               .titleMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF032040),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF032040)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w500),
                                         ),
                                         flaxibleGap(1),
@@ -302,8 +320,10 @@ class _BookingSummary extends State<BookingSummary> {
                                               .textTheme
                                               .bodyMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF424242),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF424242)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w600),
                                         ),
                                         flaxibleGap(1),
@@ -315,8 +335,11 @@ class _BookingSummary extends State<BookingSummary> {
                                                 .textTheme
                                                 .bodyMedium!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0XFF898989))),
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(
+                                                            0XFF898989)
+                                                        : AppColors.white)),
                                         Text(
                                             profileDetail != null
                                                 ? profileDetail![
@@ -327,16 +350,22 @@ class _BookingSummary extends State<BookingSummary> {
                                                 .textTheme
                                                 .bodyMedium!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0XFF898989))),
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(
+                                                            0XFF898989)
+                                                        : AppColors.white)),
                                         Text(
                                             "${AppLocalizations.of(context)!.tranjectionId} : ${widget.price["transactionId"]}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0XFF898989))),
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(
+                                                            0XFF898989)
+                                                        : AppColors.white)),
                                         flaxibleGap(6),
                                       ],
                                     ),
@@ -348,7 +377,9 @@ class _BookingSummary extends State<BookingSummary> {
                               ),
                               Material(
                                 elevation: 5,
-                                color: const Color(0XFFFFFFFF),
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFFFFFFFF)
+                                    : AppColors.containerColorW12,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0)),
                                 child: SizedBox(
@@ -369,8 +400,10 @@ class _BookingSummary extends State<BookingSummary> {
                                               .textTheme
                                               .titleMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF032040),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF032040)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w600),
                                         ),
                                         flaxibleGap(2),
@@ -383,8 +416,11 @@ class _BookingSummary extends State<BookingSummary> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF424242),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF424242)
+                                                          : AppColors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                             ),
@@ -395,8 +431,11 @@ class _BookingSummary extends State<BookingSummary> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF7A7A7A)),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF7A7A7A)
+                                                          : AppColors.white),
                                             ),
                                             flaxibleGap(1),
                                           ],
@@ -409,8 +448,11 @@ class _BookingSummary extends State<BookingSummary> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF424242),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF424242)
+                                                          : AppColors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                             ),
@@ -428,8 +470,11 @@ class _BookingSummary extends State<BookingSummary> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF7A7A7A)),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF7A7A7A)
+                                                          : AppColors.white),
                                             ),
                                             flaxibleGap(1),
                                           ],
@@ -449,16 +494,22 @@ class _BookingSummary extends State<BookingSummary> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF424242),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF424242)
+                                                          : AppColors.white,
                                                       fontWeight:
                                                           FontWeight.bold),
                                             ),
                                             flaxibleGap(18),
                                             Text(
                                               '${AppLocalizations.of(context)!.currency} ${widget.price["price"].toString()}',
-                                              style: const TextStyle(
-                                                  color: Color(0XFF424242)),
+                                              style: TextStyle(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? Color(0XFF424242)
+                                                      : AppColors.white),
                                             ),
                                             flaxibleGap(1),
                                           ],
@@ -477,7 +528,7 @@ class _BookingSummary extends State<BookingSummary> {
                                     navigateToDetail();
                                   },
                                   title: Text(
-                                    'Go To Home Page',
+                                    AppLocalizations.of(context)!.gotoHomepage,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!

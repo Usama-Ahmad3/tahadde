@@ -127,7 +127,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
               child: ListBody(
                 children: [
                   GestureDetector(
-                    child: Text('Upload Pdf',
+                    child: Text(AppLocalizations.of(context)!.uploadPDF,
                         style: TextStyle(
                             color: AppColors.black,
                             fontWeight: FontWeight.normal)),
@@ -365,7 +365,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   location() async {
-    print('hi');
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((value) {
       setState(() {
@@ -417,7 +416,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
           return Theme(
             data: ThemeData.light().copyWith(
               colorScheme:
-                  const ColorScheme.light(primary: AppColors.themeColor),
+                  const ColorScheme.light(primary: AppColors.appThemeColor),
               buttonTheme:
                   const ButtonThemeData(textTheme: ButtonTextTheme.primary),
             ),

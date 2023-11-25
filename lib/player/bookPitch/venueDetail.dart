@@ -2158,7 +2158,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
   }
 
   void navigateToDetail(Map detail) {
-    Navigator.pushNamed(context, RouteNames.enterDetailPitch,
+    Navigator.pushNamed(context, RouteNames.enterDetailAcademy,
         arguments: detail);
   }
 

@@ -21,14 +21,14 @@ import '../../../../../network/network_calls.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/buttonWidget.dart';
 
-class PitchDetailScreen extends StatefulWidget {
+class AcademyDetailScreen extends StatefulWidget {
   final SportsModel detail;
-  const PitchDetailScreen({super.key, required this.detail});
+  const AcademyDetailScreen({super.key, required this.detail});
   @override
-  State<PitchDetailScreen> createState() => _PitchDetailScreenState();
+  State<AcademyDetailScreen> createState() => _AcademyDetailScreenState();
 }
 
-class _PitchDetailScreenState extends State<PitchDetailScreen> {
+class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
   final _nameController = TextEditingController(text: '');
   final _descriptionArabic = TextEditingController(text: "");
   final _nameControllerArabic = TextEditingController(text: '');

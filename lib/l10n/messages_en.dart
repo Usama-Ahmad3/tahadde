@@ -31,7 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Youneedtocreateyourownteam": MessageLookupByLibrary.simpleMessage(
             "You need to create your own team"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
-        "account": MessageLookupByLibrary.simpleMessage("ACCOUNT"),
+        "account": MessageLookupByLibrary.simpleMessage("Account"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("Account holder Name"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account number"),
@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addSession": MessageLookupByLibrary.simpleMessage("Add Session"),
         "groundList": MessageLookupByLibrary.simpleMessage('Ground List'),
         "bookAcademy":
-            MessageLookupByLibrary.simpleMessage('Booking a Academy'),
+            MessageLookupByLibrary.simpleMessage('Book Your Session'),
         "popular": MessageLookupByLibrary.simpleMessage("Our Popular Features"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "Help": MessageLookupByLibrary.simpleMessage("Help"),
@@ -96,6 +96,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Add your experience for the academies you have played upon."),
         "ago": MessageLookupByLibrary.simpleMessage("ago"),
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "bookedFor": MessageLookupByLibrary.simpleMessage("booked for"),
+        "minuteSlot": MessageLookupByLibrary.simpleMessage("mins slot"),
+        "bookAgain": MessageLookupByLibrary.simpleMessage("Book Again"),
+        "rebookThis":
+            MessageLookupByLibrary.simpleMessage("ReBook this session for"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "am": MessageLookupByLibrary.simpleMessage("AM"),
         "filterResult": MessageLookupByLibrary.simpleMessage("Filter Result"),
@@ -141,7 +147,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookYourSlot": MessageLookupByLibrary.simpleMessage("Book Slot"),
         "booked": MessageLookupByLibrary.simpleMessage("Booked"),
         "bookedSlots": MessageLookupByLibrary.simpleMessage("Booked Slots"),
-        "booking": MessageLookupByLibrary.simpleMessage("Booking"),
+        "booking": MessageLookupByLibrary.simpleMessage("Bookings"),
+        "forr": MessageLookupByLibrary.simpleMessage("for"),
+        "bookingDate": MessageLookupByLibrary.simpleMessage("Booking Date"),
+        "notBooked": MessageLookupByLibrary.simpleMessage(
+            "you haven't book any session from this academy"),
+        "addReview": MessageLookupByLibrary.simpleMessage("add your review"),
+        "noReviews":
+            MessageLookupByLibrary.simpleMessage("No Reviews Available"),
+        "pleaseCreateProper": MessageLookupByLibrary.simpleMessage(
+            "Please create session properly "),
+        "atLeast": MessageLookupByLibrary.simpleMessage(
+            "Please create session for 1 at least one day"),
+        "youCant": MessageLookupByLibrary.simpleMessage(
+            "You can't edit on going bookings"),
         "bookingDetails":
             MessageLookupByLibrary.simpleMessage("Booking Details"),
         "bookingPrice": MessageLookupByLibrary.simpleMessage("Booking Price"),
@@ -280,6 +299,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "doyouwanttoleaveteam": MessageLookupByLibrary.simpleMessage(
             "Do you want to leave the team"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "mins": MessageLookupByLibrary.simpleMessage("mins"),
+        "thankyouAcademy": MessageLookupByLibrary.simpleMessage(
+            "Thank you for creating academy"),
+        "uploadPDF": MessageLookupByLibrary.simpleMessage("Upload Pdf"),
+        "notify": MessageLookupByLibrary.simpleMessage(
+            "We will notify you once it’s done."),
+        "underReview":
+            MessageLookupByLibrary.simpleMessage("It is under review."),
         "editcard": MessageLookupByLibrary.simpleMessage("Edit card details"),
         "editdatetime":
             MessageLookupByLibrary.simpleMessage("Edit date and time"),
@@ -383,7 +410,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "multipleRates": MessageLookupByLibrary.simpleMessage("Multiple Rates"),
-        "myBooking": MessageLookupByLibrary.simpleMessage("My Bookings"),
+        "myBooking": MessageLookupByLibrary.simpleMessage("Bookings"),
+        "editAcademy": MessageLookupByLibrary.simpleMessage("Edit Academy"),
+        "onGoing": MessageLookupByLibrary.simpleMessage("On Going"),
+        "complete": MessageLookupByLibrary.simpleMessage("Completed"),
+        "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "myInterest": MessageLookupByLibrary.simpleMessage("My Interests"),
         "myPitches": MessageLookupByLibrary.simpleMessage("My Venues"),
         "myReviewsRatings":
@@ -553,7 +584,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Price per Person"),
         "privacyPolicy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy."),
-        "proceed": MessageLookupByLibrary.simpleMessage("PROCEED"),
+        "proceed": MessageLookupByLibrary.simpleMessage("Proceed"),
+        "addToCart": MessageLookupByLibrary.simpleMessage("Add To Cart"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing....."),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "profileC": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -649,7 +681,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "since": MessageLookupByLibrary.simpleMessage("Since"),
         "skip": MessageLookupByLibrary.simpleMessage("SKIP"),
-        "slot": MessageLookupByLibrary.simpleMessage("Slot"),
+        "slot": MessageLookupByLibrary.simpleMessage("Slots"),
         "slotChart": MessageLookupByLibrary.simpleMessage("Slot Chart"),
         "slotDetails": MessageLookupByLibrary.simpleMessage("Slot Details"),
         "slotPrice": MessageLookupByLibrary.simpleMessage("Slot Price"),

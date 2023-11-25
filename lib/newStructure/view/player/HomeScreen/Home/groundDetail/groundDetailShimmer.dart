@@ -119,63 +119,66 @@ class GroundShimmer {
                             ),
 
                             ///GroundList
-                            Text(AppLocalizations.of(context)!.academyList,
-                                style: TextStyle(fontSize: height * 0.03)),
-                            ...List.generate(
-                                3,
-                                (index) => Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: width * 0.01,
-                                          vertical: height * 0.01),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.white70,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.black12,
-                                                spreadRadius: 1,
-                                                offset: Offset(0, 1),
-                                                blurStyle: BlurStyle.outer,
-                                              )
-                                            ]),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            SizedBox(
-                                              width: width * 0.01,
-                                            ),
-                                            Container(
-                                              height: height * 0.05,
-                                              width: width * 0.1,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: width * 0.03,
-                                            ),
-                                            const Text(''),
-                                            SizedBox(
-                                              width: width * 0.3,
-                                            ),
-                                            Checkbox(
-                                                shape: const CircleBorder(),
-                                                activeColor: Colors.greenAccent,
-                                                value: true,
-                                                onChanged: (onChanged) {}),
-                                          ],
-                                        ),
-                                      ),
-                                    )),
+                            // Text(AppLocalizations.of(context)!.academyList,
+                            //     style: TextStyle(fontSize: height * 0.03)),
+                            // ...List.generate(
+                            //     3,
+                            //     (index) => Padding(
+                            //           padding: EdgeInsets.symmetric(
+                            //               horizontal: width * 0.01,
+                            //               vertical: height * 0.01),
+                            //           child: Container(
+                            //             decoration: BoxDecoration(
+                            //                 color: Colors.white70,
+                            //                 borderRadius:
+                            //                     BorderRadius.circular(10),
+                            //                 boxShadow: const [
+                            //                   BoxShadow(
+                            //                     color: Colors.black12,
+                            //                     spreadRadius: 1,
+                            //                     offset: Offset(0, 1),
+                            //                     blurStyle: BlurStyle.outer,
+                            //                   )
+                            //                 ]),
+                            //             child: Row(
+                            //               crossAxisAlignment:
+                            //                   CrossAxisAlignment.center,
+                            //               mainAxisAlignment:
+                            //                   MainAxisAlignment.spaceBetween,
+                            //               children: [
+                            //                 SizedBox(
+                            //                   width: width * 0.01,
+                            //                 ),
+                            //                 Container(
+                            //                   height: height * 0.05,
+                            //                   width: width * 0.1,
+                            //                   decoration: BoxDecoration(
+                            //                     borderRadius:
+                            //                         BorderRadius.circular(10),
+                            //                   ),
+                            //                 ),
+                            //                 SizedBox(
+                            //                   width: width * 0.03,
+                            //                 ),
+                            //                 const Text(''),
+                            //                 SizedBox(
+                            //                   width: width * 0.3,
+                            //                 ),
+                            //                 Checkbox(
+                            //                     shape: const CircleBorder(),
+                            //                     activeColor: Colors.greenAccent,
+                            //                     value: true,
+                            //                     onChanged: (onChanged) {}),
+                            //               ],
+                            //             ),
+                            //           ),
+                            //         )),
 
                             ///facilities
-                            Facilities(facility: []),
+
+                            SizedBox(
+                                height: height * 0.2,
+                                child: Facilities(facility: [])),
 
                             ///location
                             Padding(

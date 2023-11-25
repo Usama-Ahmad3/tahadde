@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/booking_screen/booking_widget_widget.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/booking_screen/booking_widget_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -30,10 +30,9 @@ class _BookingWidgetState extends State<BookingWidget> {
       onSuccess: (academies) {
         if (mounted) {
           setState(() {
-            print('hi');
             academyDetail = academies;
             _isLoading = false;
-            print(academyDetail);
+            // print(academyDetail);
           });
         }
       },
@@ -46,7 +45,7 @@ class _BookingWidgetState extends State<BookingWidget> {
       },
       tokenExpire: () {
         if (mounted) {
-          print('loadVenues');
+          // print('loadVenues');
           on401(context);
         }
       },
@@ -167,11 +166,12 @@ class _BookingWidgetState extends State<BookingWidget> {
                             scrollDirection: Axis.vertical,
                             itemCount: academyDetail.length,
                             itemBuilder: (context, index) {
-                              return BookingWidgetWidget(
+                              return BookingWidgetList(
                                 academyDetail: academyDetail[index],
                               );
                             }),
-                      ))
+                      ),
+                    )
               : InternetLoss(
                   onChange: () {
                     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {

@@ -14,15 +14,16 @@ import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/widgets/buttonWidget.dart';
 import '../../../../player/HomeScreen/widgets/textFormField.dart';
 
-class EditPitchDetailScreen extends StatefulWidget {
+class EditAcademyDetailScreen extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
   var detail;
-  EditPitchDetailScreen({super.key, required this.detail});
+  EditAcademyDetailScreen({super.key, required this.detail});
   @override
-  State<EditPitchDetailScreen> createState() => _EditPitchDetailScreenState();
+  State<EditAcademyDetailScreen> createState() =>
+      _EditAcademyDetailScreenState();
 }
 
-class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
+class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
   final _nameController = TextEditingController(text: '');
   final _descriptionArabic = TextEditingController(text: "");
   final _nameControllerArabic = TextEditingController(text: '');
@@ -525,6 +526,10 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                                 ),
                                                 Image.asset(
                                                   facilityImageS[blockIdx],
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? null
+                                                      : AppColors.white,
                                                   width: sizeWidth * .1,
                                                   height: sizeWidth * .1,
                                                   fit: BoxFit.fill,
@@ -532,9 +537,7 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                                 flaxibleGap(
                                                   1,
                                                 ),
-                                                AppLocalizations.of(context)!
-                                                            .locale ==
-                                                        "en"
+                                                AppLocalizations.of(context)!.locale == "en"
                                                     ? Text(facility[blockIdx],
                                                         style: Theme.of(context)
                                                             .textTheme
@@ -542,8 +545,11 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                                             .copyWith(
                                                                 fontFamily:
                                                                     'Poppins',
-                                                                color: const Color(
-                                                                    0XFF424242),
+                                                                color: MyAppState.mode == ThemeMode.light
+                                                                    ? const Color(
+                                                                        0XFF424242)
+                                                                    : AppColors
+                                                                        .white,
                                                                 decoration:
                                                                     TextDecoration
                                                                         .none))
@@ -554,11 +560,11 @@ class _EditPitchDetailScreenState extends State<EditPitchDetailScreen> {
                                                             .copyWith(
                                                                 fontFamily:
                                                                     'Poppins',
-                                                                color: const Color(
-                                                                    0XFF424242),
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .none)),
+                                                                color: MyAppState.mode ==
+                                                                        ThemeMode.light
+                                                                    ? const Color(0XFF424242)
+                                                                    : AppColors.white,
+                                                                decoration: TextDecoration.none)),
                                                 flaxibleGap(
                                                   1,
                                                 ),

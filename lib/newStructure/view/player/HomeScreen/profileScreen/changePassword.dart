@@ -132,7 +132,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
-                                  fillColor: AppColors.transparent,
+                                  fillColor: AppColors.containerColorW12,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
                                           ? AppColors.black
@@ -179,7 +179,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
-                                  fillColor: AppColors.transparent,
+                                  fillColor: AppColors.containerColorW12,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
                                           ? AppColors.black
@@ -226,7 +226,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
-                                  fillColor: AppColors.transparent,
+                                  fillColor: AppColors.containerColorW12,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
                                           ? AppColors.black

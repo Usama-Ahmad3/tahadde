@@ -85,14 +85,18 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                     isHoliday: value.holiday,
                     sessionNameAr: value.nameArabic,
                     slotDuration: value.slotDuration.toString(),
-                    graceTime: DateTime.now(),
+                    // graceTime: DateTime.now(),
                     startTime: value.startTime != null
-                        ? DateFormat("yyyy-MM-dd hh:mm:ss")
-                            .parse("2022-10-32 ${value.startTime}")
+                        ? Intl.withLocale(
+                            'en',
+                            () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                                .parse("2022-10-32 ${value.startTime}"))
                         : null,
                     endTime: value.endTime != null
-                        ? DateFormat("yyyy-MM-dd hh:mm:ss")
-                            .parse("2022-10-32 ${value.endTime}")
+                        ? Intl.withLocale(
+                            'en',
+                            () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                                .parse("2022-10-32 ${value.endTime}"))
                         : null));
               });
               _sessionMap[element.weekday!] = sessionList;
@@ -214,7 +218,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                               .textTheme
                                               .bodyMedium!
                                               .copyWith(
-                                                  color: AppColors.black,
+                                                  color: AppColors.white,
                                                   fontWeight: FontWeight.w500),
                                         ),
                                       ),
@@ -276,7 +280,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 20.0),
                               child: Container(
-                                color: Colors.white,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? AppColors.white
+                                    : AppColors.darkTheme,
                                 padding: const EdgeInsets.only(bottom: 5.0),
                                 child: ListView.builder(
                                     itemCount: slotVar!.session!.length,
@@ -328,7 +334,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                               print(
                                                                   priceDetail);
                                                               showMessage(
-                                                                  "Can't do it right now!");
+                                                                  AppLocalizations.of(
+                                                                          context)!
+                                                                      .youCant);
 
                                                               /// do it later
                                                               // editAcademy(
@@ -343,7 +351,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                             constant:
                                                                 "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
                                                             constantValue:
-                                                                '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} ${AppLocalizations.of(context)!.minuteSlot} )')
                                                         : const SizedBox
                                                             .shrink()
                                                     : _weakIndex == 1
@@ -375,8 +383,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                   };
                                                                   print(
                                                                       priceDetail);
-                                                                  showMessage(
-                                                                      "Can't do it right now!");
+                                                                  showMessage(AppLocalizations.of(
+                                                                          context)!
+                                                                      .youCant);
 
                                                                   /// do it later
                                                                   // editAcademy(
@@ -391,7 +400,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                 constant:
                                                                     "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
                                                                 constantValue:
-                                                                    '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                    '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} ${AppLocalizations.of(context)!.minuteSlot} )')
                                                             : const SizedBox
                                                                 .shrink()
                                                         : _weakIndex == 2
@@ -422,7 +431,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                       print(
                                                                           priceDetail);
                                                                       showMessage(
-                                                                          "Can't do it right now!");
+                                                                          AppLocalizations.of(context)!
+                                                                              .youCant);
 
                                                                       /// do it later
                                                                       // editAcademy(
@@ -438,7 +448,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                     constant:
                                                                         "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
                                                                     constantValue:
-                                                                        '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                        '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} ${AppLocalizations.of(context)!.minuteSlot} )')
                                                                 : const SizedBox.shrink()
                                                             : _weakIndex == 3
                                                                 ? slotVar!.session![index].weekday!.contains('thursday') && slotVar!.session![index].sessions![0].startTime != null
@@ -463,7 +473,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                           print(
                                                                               priceDetail);
                                                                           showMessage(
-                                                                              "Can't do it right now!");
+                                                                              AppLocalizations.of(context)!.youCant);
 
                                                                           /// do it later
                                                                           // editAcademy(
@@ -474,7 +484,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                         price: _playerPriceController,
                                                                         slotNavigate: widget.backTag,
                                                                         constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
-                                                                        constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                        constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} ${AppLocalizations.of(context)!.minuteSlot} )')
                                                                     : const SizedBox.shrink()
                                                                 : _weakIndex == 4
                                                                     ? slotVar!.session![index].weekday!.contains('friday') && slotVar!.session![index].sessions![0].startTime != null
@@ -491,7 +501,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                 ]
                                                                               };
                                                                               print(priceDetail);
-                                                                              showMessage("Can't do it right now!");
+                                                                              showMessage(AppLocalizations.of(context)!.youCant);
 
                                                                               /// do it later
                                                                               // editAcademy(
@@ -501,7 +511,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                             price: _playerPriceController,
                                                                             slotNavigate: widget.backTag,
                                                                             constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
-                                                                            constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                            constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} ${AppLocalizations.of(context)!.minuteSlot} )')
                                                                         : const SizedBox.shrink()
                                                                     : _weakIndex == 5
                                                                         ? slotVar!.session![index].weekday!.contains('saturday') && slotVar!.session![index].sessions![0].startTime != null
@@ -518,7 +528,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                     ]
                                                                                   };
                                                                                   print(priceDetail);
-                                                                                  showMessage("Can't do it right now!");
+                                                                                  showMessage(AppLocalizations.of(context)!.youCant);
 
                                                                                   /// do it later
                                                                                   // editAcademy(
@@ -528,7 +538,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                 price: _playerPriceController,
                                                                                 slotNavigate: widget.backTag,
                                                                                 constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
-                                                                                constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                                constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} ${AppLocalizations.of(context)!.minuteSlot} )')
                                                                             : const SizedBox.shrink()
                                                                         : slotVar!.session![index].weekday!.contains('saturday') && slotVar!.session![index].sessions![0].startTime != null
                                                                             ? EmailContactDOB(
@@ -544,7 +554,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                     ]
                                                                                   };
                                                                                   print(priceDetail);
-                                                                                  showMessage("Can't do it right now!");
+                                                                                  showMessage(AppLocalizations.of(context)!.youCant);
 
                                                                                   /// do it later
                                                                                   // editAcademy(
@@ -554,7 +564,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                 price: _playerPriceController,
                                                                                 slotNavigate: widget.backTag,
                                                                                 constant: "${slotVar!.session![index].sessions![indexItem].name.toString()} ( ${slotVar!.prices![0].price} AED )",
-                                                                                constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} mins )')
+                                                                                constantValue: '${slotVar!.session![index].sessions![indexItem].startTime!.substring(0, 5)} - ${slotVar!.session![index].sessions![indexItem].endTime!.substring(0, 5)} ( ${slotVar!.session![index].sessions![indexItem].slotDuration} ${AppLocalizations.of(context)!.minuteSlot} )')
                                                                             : const SizedBox.shrink(),
                                               ],
                                             );
@@ -567,8 +577,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                           )
                         : Expanded(
                             child: Center(
-                            child: Text(
-                                "Marked as holiday for ${_weakList[_weakIndex].name} "),
+                            child: Text(AppLocalizations.of(context)!.locale ==
+                                    'en'
+                                ? "Marked as holiday for ${_weakList[_weakIndex].name} "
+                                : AppLocalizations.of(context)!.markAsHoliday),
                           )),
                 // : Expanded(
                 //     child: Center(
@@ -585,7 +597,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                 //   )),
                 ButtonWidget(
                     onTaped: () {
-                      navigateToVenueCreated();
+                      navigateToAcademyCreated();
                     },
                     title: Text(
                       AppLocalizations.of(context)!.continu,
@@ -606,9 +618,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
     );
   }
 
-  void navigateToVenueCreated() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (_) => const VenueCreatedScreen()));
+  void navigateToAcademyCreated() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => const academy_created_screen()));
     // Navigator.pushNamed(context, RouteNames.venueCreated);
   }
 

@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
+import 'package:flutter_tahaddi/modelClass/player_rating.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -23,8 +25,8 @@ class Rate extends StatefulWidget {
 class _RateState extends State<Rate> {
   bool rateValue = false;
   String? review;
-  var rating;
   String? id;
+  String? playerId;
   final _formKey = GlobalKey<FormState>();
   final NetworkCalls _networkCalls = NetworkCalls();
   final scaffoldkey = GlobalKey<ScaffoldState>();
@@ -32,18 +34,19 @@ class _RateState extends State<Rate> {
   bool? _internet;
   bool reviewNotReady = true;
   bool? data;
-  int count = 0;
   var _academyModel;
-
+  int count = 0;
+  late PlayerBookings bookings;
   loadAcademies() async {
     await _networkCalls.loadVerifiedAcademies(
       sport: '',
       onSuccess: (academies) {
-        _academyModel = academies;
         if (mounted) {
           setState(() {
             loading = false;
+            data = true;
             print('hi');
+            _academyModel = academies;
             print('ok');
             print(_academyModel);
             print('kok');
@@ -66,22 +69,26 @@ class _RateState extends State<Rate> {
     );
   }
 
-  loadingRating() {
-    _networkCalls.ratingGet(
-      onSuccess: (msg) {
+  loadBookings() async {
+    await _networkCalls.loadPlayerbookings(
+      onSuccess: (event) {
         setState(() {
-          rating = msg;
-          data = true;
+          bookings = event;
+          // loading = false;
+          // data = true;
+          if (bookings != null) {
+            loadAcademies();
+          }
         });
       },
       onFailure: (msg) {
-        setState(() {
-          loading = false;
-          data = false;
-        });
+        showMessage(msg);
       },
       tokenExpire: () {
-        if (mounted) on401(context);
+        if (mounted) {
+          on401(context);
+          showMessage(AppLocalizations.of(context)!.loginRequired);
+        }
       },
     );
   }
@@ -92,8 +99,7 @@ class _RateState extends State<Rate> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
       if (msg == true) {
-        loadingRating();
-        loadAcademies();
+        loadBookings();
       } else {
         setState(() {
           loading = false;
@@ -162,7 +168,7 @@ class _RateState extends State<Rate> {
                 backgroundColor: Colors.black,
                 appBar: appBarWidget(sizeWidth, sizeHeight, context,
                     AppLocalizations.of(context)!.ratingsReviews, true),
-                body: !data!
+                body: data!
                     ? Stack(
                         children: [
                           Container(
@@ -171,7 +177,7 @@ class _RateState extends State<Rate> {
                             decoration: BoxDecoration(
                                 color: MyAppState.mode == ThemeMode.light
                                     ? const Color(0XFFF0F0F0)
-                                    : const Color(0xff686868),
+                                    : AppColors.darkTheme,
                                 borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(20),
                                     topLeft: Radius.circular(20))),
@@ -195,6 +201,7 @@ class _RateState extends State<Rate> {
                                         horizontal: sizeWidth * .01),
                                     child: ListView.builder(
                                         shrinkWrap: true,
+                                        reverse: true,
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         itemCount: _academyModel.length,
@@ -202,29 +209,48 @@ class _RateState extends State<Rate> {
                                           return GestureDetector(
                                             onTap: () {
                                               setState(() {
-                                                rateValue = true;
-                                                id = _academyModel[index]
-                                                        ['academy_id']
-                                                    .toString();
+                                                bookings.bookings!
+                                                    .forEach((element) {
+                                                  if (element.academy ==
+                                                      _academyModel[index]
+                                                          ['academy_id']) {
+                                                    rateValue = true;
+                                                    playerId = element.player
+                                                        .toString();
+                                                    id = element.academy
+                                                        .toString();
+                                                  }
+                                                });
+                                                rateValue
+                                                    ? null
+                                                    : showMessage(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .notBooked);
                                               });
                                             },
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: sizeWidth * 0.03,
+                                                  horizontal: sizeWidth * 0.05,
                                                   vertical: sizeHeight * 0.01),
                                               child: Container(
-                                                height: sizeHeight * .11,
-                                                width: sizeWidth * .8,
+                                                height: sizeHeight * .1,
+                                                width: sizeWidth * .78,
                                                 decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Colors
-                                                            .blueGrey.shade300),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                      Radius.circular(12.0),
-                                                      //
-                                                    ),
-                                                    color: Colors.white),
+                                                  border: Border.all(
+                                                      color: Colors
+                                                          .blueGrey.shade300),
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                    Radius.circular(12.0),
+                                                    //
+                                                  ),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0xffffffff)
+                                                      : AppColors
+                                                          .containerColorW12,
+                                                ),
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
@@ -260,7 +286,7 @@ class _RateState extends State<Rate> {
                                                                         Radius.circular(
                                                                             5.0)),
                                                                 child: _academyModel[index][
-                                                                            'academy_image'] !=
+                                                                            "academy_image"] !=
                                                                         null
                                                                     ? ClipRRect(
                                                                         clipBehavior: Clip
@@ -276,7 +302,7 @@ class _RateState extends State<Rate> {
                                                                           width:
                                                                               sizeWidth * .15,
                                                                           cuisineImageUrl:
-                                                                              _academyModel[index]['academy_image'][0],
+                                                                              _academyModel[index]["academy_image"][0],
                                                                         ))
                                                                     : Image
                                                                         .asset(
@@ -291,95 +317,125 @@ class _RateState extends State<Rate> {
                                                                       ),
                                                               )),
                                                         ),
-                                                        Text(
-                                                            AppLocalizations.of(
-                                                                            context)!
-                                                                        .locale ==
-                                                                    'en'
-                                                                ? '${_academyModel[index]['Academy_NameEnglish']}'
-                                                                : '${_academyModel[index]['Academy_NameArabic']}',
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0XFF032040),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                fontFamily:
-                                                                    "Poppins",
-                                                                fontSize: 16)),
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                                AppLocalizations.of(context)!
+                                                                            .locale ==
+                                                                        'en'
+                                                                    ? '${_academyModel[index]['Academy_NameEnglish']}'
+                                                                    : '${_academyModel[index]['Academy_NameArabic']}',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                        color: MyAppState.mode == ThemeMode.light
+                                                                            ? AppColors
+                                                                                .black
+                                                                            : AppColors
+                                                                                .white,
+                                                                        fontSize:
+                                                                            14)),
+                                                            Text(
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .addReview,
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodySmall!
+                                                                    .copyWith(
+                                                                        color: MyAppState.mode ==
+                                                                                ThemeMode.light
+                                                                            ? AppColors.black
+                                                                            : AppColors.white)),
+                                                          ],
+                                                        )
                                                       ],
                                                     ),
-                                                    reviewNotReady
-                                                        ? Padding(
-                                                            padding: EdgeInsets.only(
-                                                                right:
-                                                                    sizeWidth *
-                                                                        0.025),
-                                                            child: Icon(
-                                                              Icons.add,
-                                                              size: sizeHeight *
-                                                                  0.06,
-                                                              color: AppColors
-                                                                  .grey,
-                                                            ),
-                                                          )
-                                                        : Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    sizeHeight *
-                                                                        .005),
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "${rating[index]["reviewAndratings"]["rating"] ?? 0}/5",
-                                                                      style: const TextStyle(
-                                                                          color: Color(
-                                                                              0XFF9B9B9B),
-                                                                          fontSize:
-                                                                              14),
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      width: 5,
-                                                                    ),
-                                                                    Image.asset(
-                                                                        "assets/images/star.png")
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 5,
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "${rating[index]["reviewAndratings"]["review"] ?? 0}",
-                                                                      style: const TextStyle(
-                                                                          color: Color(
-                                                                              0XFF9B9B9B),
-                                                                          fontSize:
-                                                                              14),
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      width: 5,
-                                                                    ),
-                                                                    Text(
-                                                                      AppLocalizations.of(
-                                                                              context)!
-                                                                          .review,
-                                                                      style: const TextStyle(
-                                                                          color: Color(
-                                                                              0XFF9B9B9B),
-                                                                          fontSize:
-                                                                              14),
-                                                                    ),
-                                                                  ],
-                                                                )
-                                                              ],
-                                                            )),
+                                                    // rating.isEmpty ?
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right: sizeWidth *
+                                                              0.025),
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        size:
+                                                            sizeHeight * 0.045,
+                                                        color: AppColors.grey,
+                                                      ),
+                                                    )
+                                                    // : Padding(
+                                                    //     padding:
+                                                    //         EdgeInsets.all(
+                                                    //             sizeHeight *
+                                                    //                 .005),
+                                                    //     child: Column(
+                                                    //       mainAxisAlignment:
+                                                    //           MainAxisAlignment
+                                                    //               .center,
+                                                    //       children: [
+                                                    //         Row(
+                                                    //           children: [
+                                                    //             Text(
+                                                    //               "${rating[index].rating ?? 0}/5",
+                                                    //               style: Theme.of(
+                                                    //                       context)
+                                                    //                   .textTheme
+                                                    //                   .bodyMedium!
+                                                    //                   .copyWith(
+                                                    //                       color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white,
+                                                    //                       fontSize: 14),
+                                                    //             ),
+                                                    //             const SizedBox(
+                                                    //               width: 5,
+                                                    //             ),
+                                                    //             Padding(
+                                                    //               padding: EdgeInsets.only(
+                                                    //                   bottom: sizeHeight *
+                                                    //                       0.01,
+                                                    //                   right:
+                                                    //                       sizeWidth * 0.01),
+                                                    //               child: Image
+                                                    //                   .asset(
+                                                    //                       "assets/images/star.png"),
+                                                    //             )
+                                                    //           ],
+                                                    //         ),
+                                                    //         // Row(
+                                                    //         //   children: [
+                                                    //         //     Text(
+                                                    //         //       "${rating[0].review ?? 0}",
+                                                    //         //       style: const TextStyle(
+                                                    //         //           color: Color(
+                                                    //         //               0XFF9B9B9B),
+                                                    //         //           fontSize:
+                                                    //         //               14),
+                                                    //         //     ),
+                                                    //         //     const SizedBox(
+                                                    //         //       width: 5,
+                                                    //         //     ),
+                                                    //         //     Text(
+                                                    //         //       AppLocalizations.of(
+                                                    //         //               context)!
+                                                    //         //           .review,
+                                                    //         //       style: const TextStyle(
+                                                    //         //           color: Color(
+                                                    //         //               0XFF9B9B9B),
+                                                    //         //           fontSize:
+                                                    //         //               14),
+                                                    //         //     ),
+                                                    //         //   ],
+                                                    //         // )
+                                                    //       ],
+                                                    //     ))
                                                   ],
                                                 ),
                                               ),
@@ -766,18 +822,20 @@ class _RateState extends State<Rate> {
                                                         _formKey.currentState!
                                                             .save();
                                                         Map detail = {
+                                                          "user": playerId,
                                                           "rating": count,
-                                                          "review": review
+                                                          "review": review,
+                                                          "academy_id": id
                                                         };
+                                                        print(detail);
                                                         _networkCalls
-                                                            .ratingSend(
+                                                            .ratingSendForAcademy(
                                                           detail: detail,
-                                                          id: id!,
                                                           onSuccess: (msg) {
                                                             setState(() {
                                                               rateValue = false;
                                                               loading = true;
-                                                              loadingRating();
+                                                              loadBookings();
                                                             });
                                                           },
                                                           onFailure: (msg) {
@@ -793,9 +851,13 @@ class _RateState extends State<Rate> {
                                                     },
                                                     title: Center(
                                                         child: Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .save)),
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .save,
+                                                      style: TextStyle(
+                                                          color:
+                                                              AppColors.white),
+                                                    )),
                                                     isLoading: loading)
                                                 : ButtonWidget(
                                                     onTaped: () {},
@@ -866,7 +928,7 @@ class _RateState extends State<Rate> {
                   _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
                     _internet = msg;
                     if (msg == true) {
-                      loadingRating();
+                      loadBookings();
                     }
                   });
                 },

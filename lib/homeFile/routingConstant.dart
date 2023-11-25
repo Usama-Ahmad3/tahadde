@@ -36,7 +36,7 @@ class RouteNames {
   static const String viewMoreTournament = "viewMoreTournament";
   static const String viewMoreBookPitch = "viewMoreBookPitch";
   static const String myBookings = "myBookings";
-  static const String enterDetailPitch = "enterDetailPitch";
+  static const String enterDetailAcademy = "enterDetailPitch";
   static const String savePayment = "savePayment";
   static const String leagueTahaddi = "leagueTahaddi";
   static const String bookPitchTahaddi = "bookPitchTahaddi";
@@ -82,7 +82,7 @@ class RouteNames {
   static const String editVenuesScreen = "editVenuesScreen";
   static const String preferredSports = "preferredSports";
   static const String sportExperience = "sportExperience";
-  static const String editPitchDetail = "editPitchDetail";
+  static const String editAcademyDetail = "editPitchDetail";
   static const String venueDetailScreen = "venueDetailScreen";
   static const String specificSportsScreen = "specificSportsScreen";
   static const String viewMoreVenue = "viewMoreVenue";

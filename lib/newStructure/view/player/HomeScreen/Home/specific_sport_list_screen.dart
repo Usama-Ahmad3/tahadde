@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 
 import '../../../../../constant.dart';
@@ -101,14 +102,14 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
               child: Stack(
                 children: [
                   Container(
-                    height: 180,
+                    height: size.height * 0.23,
                     width: size.width,
                     color: AppColors.white,
                     child: Column(
                       children: [
                         cachedNetworkImage(
                             cuisineImageUrl: widget.detail!["bannerImage"],
-                            height: 150,
+                            height: size.height * 0.19,
                             width: size.width,
                             imageFit: BoxFit.fill,
                             errorFit: BoxFit.fitHeight),
@@ -200,10 +201,12 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
         navigateToGroundDetail(detail);
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Material(
             elevation: 5,
-            color: Colors.white,
+            color: MyAppState.mode == ThemeMode.light
+                ? const Color(0xffffffff)
+                : AppColors.containerColorW12,
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
@@ -239,19 +242,24 @@ class _SpecificSportsListScreenState extends State<SpecificSportsListScreen> {
                           children: [
                             Text(
                               academyModel[index]["Academy_NameEnglish"],
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: appThemeColor),
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? appThemeColor
+                                      : AppColors.white),
                             ),
                             fixedGap(height: 5.0),
-                            Text(AppLocalizations.of(context)!.showDirections,
-                                style: const TextStyle(
+                            Text(
+                                "${academyModel[index]['Academy_Location'].toString().substring(0, 35)} ...",
+                                style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0XFF25A163))),
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? Color(0XFF25A163)
+                                        : AppColors.white)),
                           ],
                         ),
                         Material(

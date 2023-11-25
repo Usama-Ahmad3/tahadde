@@ -11,7 +11,8 @@ import 'groundDetail.dart';
 
 class Carousel extends StatefulWidget {
   List? image;
-  Carousel({super.key, this.image});
+  bool storyView;
+  Carousel({super.key, this.image, this.storyView = true});
 
   @override
   State<Carousel> createState() => _CarouselState();
@@ -69,41 +70,43 @@ class _CarouselState extends State<Carousel> {
     });
     return Stack(
       children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => StoryPage(
-                      files: widget.image ?? [],
-                    )));
-          },
-          child: CarouselSlider.builder(
-              carouselController: nextPageController,
-              itemCount: widget.image == null ? 5 : widget.image!.length,
-              itemBuilder:
-                  (BuildContext context, int itemIndex, int pageViewIndex) {
-                return cachedNetworkImage(
+        CarouselSlider.builder(
+            carouselController: nextPageController,
+            itemCount: widget.image == null ? 5 : widget.image!.length,
+            itemBuilder:
+                (BuildContext context, int itemIndex, int pageViewIndex) {
+              return InkWell(
+                onTap: () {
+                  widget.storyView
+                      ? Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => StoryPage(
+                                files: widget.image ?? [],
+                              )))
+                      : null;
+                },
+                child: cachedNetworkImage(
                   height: height * 0.3,
                   imageFit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
                   cuisineImageUrl:
                       widget.image == null ? '' : widget.image![itemIndex],
-                );
-              },
-              options: CarouselOptions(
-                  height: height,
-                  viewportFraction: 1,
-                  initialPage: 0,
-                  autoPlay: true,
-                  enableInfiniteScroll: false,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  pageSnapping: true,
-                  scrollDirection: Axis.horizontal,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _currentIndexPage = index.toDouble();
-                    });
-                  })),
-        ),
+                ),
+              );
+            },
+            options: CarouselOptions(
+                height: height,
+                viewportFraction: 1,
+                initialPage: 0,
+                autoPlay: true,
+                enableInfiniteScroll: false,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                pageSnapping: true,
+                scrollDirection: Axis.horizontal,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentIndexPage = index.toDouble();
+                  });
+                })),
         Positioned(
           left: 0.0,
           right: 0.0,

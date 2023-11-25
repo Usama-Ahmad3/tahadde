@@ -3442,8 +3442,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                               )
                             : data.runtimeType == int
                                 ? Shimmer.fromColors(
-                          baseColor: Colors.grey.shade300,
-                          highlightColor: Colors.grey.shade100,
+                                    baseColor: Colors.grey.shade300,
+                                    highlightColor: Colors.grey.shade100,
                                     enabled: true,
                                     child: Container(
                                       alignment: Alignment.center,
@@ -3454,8 +3454,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                                   )
                                 : data.toString().length <= 2
                                     ? Shimmer.fromColors(
-                          baseColor: Colors.grey.shade300,
-                          highlightColor: Colors.grey.shade100,
+                                        baseColor: Colors.grey.shade300,
+                                        highlightColor: Colors.grey.shade100,
                                         enabled: true,
                                         child: Container(
                                           alignment: Alignment.center,
@@ -3527,11 +3527,11 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                                   '${pitchslot.pitchType!.area} ${pitchslot.pitchType!.name}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize:
-                                          AppLocalizations.of(context)!.locale ==
-                                                  "en"
-                                              ? 18
-                                              : 22,
+                                      fontSize: AppLocalizations.of(context)!
+                                                  .locale ==
+                                              "en"
+                                          ? 18
+                                          : 22,
                                       color: const Color(0XFFFFFFFF)),
                                 ),
                                 flaxibleGap(9),
@@ -3962,19 +3962,23 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                                                       children: <Widget>[
                                                         Text(
                                                           '${AppLocalizations.of(context)!.currency} ${pitchslot.pitchType!.paymentSummary!.grandTotal!.round()}',
-                                                          style: const TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 13),
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 13),
                                                           textAlign:
                                                               TextAlign.center,
                                                         ),
                                                         Text(
-                                                          AppLocalizations.of(context)!.booked,
-                                                          style: const TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 10),
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .booked,
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 10),
                                                           textAlign:
                                                               TextAlign.center,
                                                         )
@@ -4001,7 +4005,9 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                                                                       .center,
                                                             ),
                                                             Text(
-                                                              AppLocalizations.of(context)!.booked,
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .booked,
                                                               style: const TextStyle(
                                                                   color: Colors
                                                                       .white,
@@ -4083,9 +4089,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                             loadBookPitchSlot();
                           } else {
                             if (mounted) {
-                              showMessage(
-                                  AppLocalizations.of(context)!
-                                      .noInternetConnection);
+                              showMessage(AppLocalizations.of(context)!
+                                  .noInternetConnection);
                             }
                           }
                         });
@@ -4098,7 +4103,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
 
   void navigateToDetail() {
     var deatil = {
-      "price": count2 * pitchslot.pitchType!.paymentSummary!.grandTotal!.round(),
+      "price":
+          count2 * pitchslot.pitchType!.paymentSummary!.grandTotal!.round(),
       "apidetail": detail,
       "slotdetail": slotsinformation,
       "pitchtype": pitchslot.pitchType!.name,
@@ -4107,7 +4113,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
       "ids": widget.id["ids"],
       "email": widget.id["email"]
     };
-    Navigator.pushNamed(context, RouteNames.enterDetailPitch, arguments: deatil);
+    Navigator.pushNamed(context, RouteNames.enterDetailAcademy,
+        arguments: deatil);
   }
 
   bool leapYear() {
@@ -4293,7 +4300,9 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
         month1 == 12) {
       //return 1;
       for (int i = 0; i < pitchslot.months![0]!.days!.length; i++) {
-        for (int j = 0; j < pitchslot.months![0]!.days![i]!.slots!.length; j++) {
+        for (int j = 0;
+            j < pitchslot.months![0]!.days![i]!.slots!.length;
+            j++) {
           for (int m = 0; m < rowsCells.length; m++) {
             for (int n = 0; n < rowsCells[0].length; n++) {
               if (timeComparison(
@@ -4307,9 +4316,10 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                         pitchslot.months![0]!.days![i]!.slots![j]!.startTime &&
                     rowsCells[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
-                    if (pitchslot
-                            .months![0]!.days![i]!.slots![j]!.slot_not_available ==
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
+                    if (pitchslot.months![0]!.days![i]!.slots![j]!
+                            .slot_not_available ==
                         false) {
                       rowsCells[m][n].price = 1800;
                       rowsCells[m][n].id =
@@ -4330,7 +4340,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                         pitchslot.months![0]!.days![i]!.slots![j]!.startTime &&
                     rowsCells[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
                     rowsCells[m][n].price = 1802;
                     rowsCells[m][n].id =
                         pitchslot.months![0]!.days![i]!.slots![j]!.id;
@@ -4350,7 +4361,9 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
     }
     if (month1 == 4 || month1 == 6 || month1 == 9 || month1 == 11) {
       for (int i = 0; i < pitchslot.months![0]!.days!.length; i++) {
-        for (int j = 0; j < pitchslot.months![0]!.days![i]!.slots!.length; j++) {
+        for (int j = 0;
+            j < pitchslot.months![0]!.days![i]!.slots!.length;
+            j++) {
           for (int m = 0; m < rowsCells1.length; m++) {
             for (int n = 0; n < rowsCells1[0].length; n++) {
               if (timeComparison(
@@ -4361,12 +4374,14 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                       hour: rowsCells1[m][n].x.substring(0, 2)) ==
                   false) {
                 if (rowsCells1[m][n].x ==
-                        pitchslot.months![0]!.days![i]!.slots![j]!.startTime.toString() &&
+                        pitchslot.months![0]!.days![i]!.slots![j]!.startTime
+                            .toString() &&
                     rowsCells1[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
-                    if (pitchslot
-                            .months![0]!.days![i]!.slots![j]!.slot_not_available ==
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
+                    if (pitchslot.months![0]!.days![i]!.slots![j]!
+                            .slot_not_available ==
                         false) {
                       rowsCells1[m][n].price = 1800;
                       rowsCells1[m][n].id =
@@ -4387,7 +4402,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                         pitchslot.months![0]!.days![i]!.slots![j]!.startTime &&
                     rowsCells1[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
                     rowsCells1[m][n].price = 1802;
                     rowsCells1[m][n].id =
                         pitchslot.months![0]!.days![i]!.slots![j]!.id;
@@ -4408,7 +4424,9 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
 
     if (year2 && month1 == 2) {
       for (int i = 0; i < pitchslot.months![0]!.days!.length; i++) {
-        for (int j = 0; j < pitchslot.months![0]!.days![i]!.slots!.length; j++) {
+        for (int j = 0;
+            j < pitchslot.months![0]!.days![i]!.slots!.length;
+            j++) {
           for (int m = 0; m < rowsCells3.length; m++) {
             for (int n = 0; n < rowsCells3[0].length; n++) {
               if (timeComparison(
@@ -4422,9 +4440,10 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                         pitchslot.months![0]!.days![i]!.slots![j]!.startTime &&
                     rowsCells3[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
-                    if (pitchslot
-                            .months![0]!.days![i]!.slots![j]!.slot_not_available ==
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
+                    if (pitchslot.months![0]!.days![i]!.slots![j]!
+                            .slot_not_available ==
                         false) {
                       rowsCells3[m][n].price = 1800;
                       rowsCells3[m][n].id =
@@ -4445,7 +4464,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                         pitchslot.months![0]!.days![i]!.slots![j]!.startTime &&
                     rowsCells3[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
                     rowsCells3[m][n].price = 1802;
                     rowsCells3[m][n].id =
                         pitchslot.months![0]!.days![i]!.slots![j]!.id;
@@ -4465,7 +4485,9 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
     }
     if (!year2 && month1 == 2) {
       for (int i = 0; i < pitchslot.months![0]!.days!.length; i++) {
-        for (int j = 0; j < pitchslot.months![0]!.days![i]!.slots!.length; j++) {
+        for (int j = 0;
+            j < pitchslot.months![0]!.days![i]!.slots!.length;
+            j++) {
           for (int m = 0; m < rowsCells2.length; m++) {
             for (int n = 0; n < rowsCells2[0].length; n++) {
               if (timeComparison(
@@ -4479,9 +4501,10 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                         pitchslot.months![0]!.days![i]!.slots![j]!.startTime &&
                     rowsCells2[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
-                    if (pitchslot
-                            .months![0]!.days![i]!.slots![j]!.slot_not_available ==
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
+                    if (pitchslot.months![0]!.days![i]!.slots![j]!
+                            .slot_not_available ==
                         false) {
                       rowsCells2[m][n].price = 1800;
                       rowsCells2[m][n].id =
@@ -4502,7 +4525,8 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
                         pitchslot.months![0]!.days![i]!.slots![j]!.startTime &&
                     rowsCells2[m][n].y ==
                         pitchslot.months![0]!.days![i]!.dayNumber) {
-                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked == false) {
+                  if (pitchslot.months![0]!.days![i]!.slots![j]!.is_booked ==
+                      false) {
                     rowsCells2[m][n].price = 1802;
                     rowsCells2[m][n].id =
                         pitchslot.months![0]!.days![i]!.slots![j]!.id;
@@ -4569,7 +4593,11 @@ class _BookPitchSlotState extends State<BookPitchSlots> {
   }
 
   bool timeComparison(
-      {String? currentTime, String? year, String? month, int? date, String? hour}) {
+      {String? currentTime,
+      String? year,
+      String? month,
+      int? date,
+      String? hour}) {
     var now1 = DateTime(
         int.parse(year!), monthFind(index: month!), date!, int.parse(hour!));
     var now = DateTime.parse(currentTime!);

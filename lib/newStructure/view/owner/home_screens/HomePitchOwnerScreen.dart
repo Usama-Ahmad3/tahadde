@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../constant.dart';
@@ -7,7 +8,7 @@ import '../../../app_colors/app_colors.dart';
 import '../../player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../../player/HomeScreen/profileScreen/profileDetail.dart';
 import 'bookingScreens/bookingScreen.dart';
-import 'home_page/main_home/picthowner_main_home.dart';
+import 'home_page/main_home/academyowner_main_home.dart';
 
 // ignore: must_be_immutable
 class HomePitchOwnerScreen extends StatefulWidget {
@@ -24,9 +25,17 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
         builder: (BuildContext cntext) {
           return AlertDialog(
             elevation: 2,
-            backgroundColor: AppColors.grey200,
+            backgroundColor: MyAppState.mode == ThemeMode.light
+                ? AppColors.grey200
+                : AppColors.darkTheme,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            title: Text(AppLocalizations.of(context)!.areYouSure),
+            title: Text(
+              AppLocalizations.of(context)!.areYouSure,
+              style: TextStyle(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? AppColors.black
+                      : AppColors.white),
+            ),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
               style: Theme.of(context)
@@ -92,7 +101,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
   }
 
   final page = [
-    const PitchOwnerMainHome(),
+    const AcademyOwnerMainHome(),
     const BookingScreen(),
     NotificationScreen(
       player: false,

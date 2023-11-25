@@ -23,14 +23,14 @@ import '../../../../../../modelClass/specific_pitch_model_class.dart';
 import '../../../../../../network/network_calls.dart';
 import '../../../../../app_colors/app_colors.dart';
 
-class EditVenuesScreen extends StatefulWidget {
+class EditAcademyScreen extends StatefulWidget {
   final Map detail;
-  const EditVenuesScreen({super.key, required this.detail});
+  const EditAcademyScreen({super.key, required this.detail});
   @override
-  State<EditVenuesScreen> createState() => _EditVenuesScreenState();
+  State<EditAcademyScreen> createState() => _EditAcademyScreenState();
 }
 
-class _EditVenuesScreenState extends State<EditVenuesScreen> {
+class _EditAcademyScreenState extends State<EditAcademyScreen> {
   bool _internet = true;
   bool _isLoading = false;
   String date = "name";
@@ -219,7 +219,7 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
         width,
         height,
         context,
-        AppLocalizations.of(context)!.academyBook,
+        AppLocalizations.of(context)!.editAcademy,
         true,
       ),
       body: _isLoading
@@ -584,7 +584,8 @@ class _EditVenuesScreenState extends State<EditVenuesScreen> {
   }
 
   void navigateToPitchDetail(SpecificAcademy detail) {
-    Navigator.pushNamed(context, RouteNames.editPitchDetail, arguments: detail);
+    Navigator.pushNamed(context, RouteNames.editAcademyDetail,
+        arguments: detail);
   }
 
   void navigateToSlotScreen(Map detail) {

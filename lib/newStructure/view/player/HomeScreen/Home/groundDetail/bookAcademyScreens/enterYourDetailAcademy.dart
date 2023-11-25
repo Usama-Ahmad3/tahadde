@@ -5,6 +5,7 @@ import 'package:flutter_tahaddi/homeFile/routingConstant.dart';
 import 'package:flutter_tahaddi/homeFile/utility.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/booked_sessions.dart';
 import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
@@ -13,15 +14,15 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
 
-class EnterDetailPitchScreen extends StatefulWidget {
+class EnterDetailAcademyScreen extends StatefulWidget {
   final dynamic detail;
-  const EnterDetailPitchScreen({super.key, this.detail});
+  const EnterDetailAcademyScreen({super.key, this.detail});
 
   @override
-  State<EnterDetailPitchScreen> createState() => _EnterDetailPitchScreen();
+  State<EnterDetailAcademyScreen> createState() => _EnterDetailPitchScreen();
 }
 
-class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
+class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
   final focus = FocusNode();
   late bool internet;
   final GlobalKey _textKey = GlobalKey();
@@ -30,6 +31,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
   late Map profileDetail;
   List<int> sessionList = [];
+  List<BookedSessions> bookedSessions = [];
 
   final NetworkCalls _networkCalls = NetworkCalls();
 
@@ -38,7 +40,6 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
       onSuccess: (msg) {
         setState(() {
           profileDetail = msg;
-          loading = false;
         });
       },
       onFailure: (msg) {},
@@ -62,21 +63,46 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
     );
   }
 
-  List<SessionDetail> list = [];
+  loadSpecificSession() {
+    list.forEach((id) async {
+      await _networkCalls.specificSession(
+        id: id.toString(),
+        onSuccess: (event) async {
+          BookedSessions session = BookedSessions.fromJson(event);
+          bookedSessions.add(session);
+          if (mounted) {
+            setState(() {
+              loading = false;
+            });
+          }
+        },
+        onFailure: (msg) {
+          if (mounted) {
+            showMessage(msg);
+          }
+        },
+        tokenExpire: () {
+          if (mounted) on401(context);
+        },
+      );
+    });
+  }
+
+  var list = [];
   @override
   void initState() {
     super.initState();
-    print('lllllll');
     print(widget.detail);
-    list = widget.detail['slotDetail'];
+    list = widget.detail['session'];
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
         loadProfile();
-        for (int i = 0; i < list.length; i++) {
-          sessionList.add(list[i].id!.toInt());
-          print(sessionList);
-        }
+        loadSpecificSession();
+        // for (int i = 0; i < list.length; i++) {
+        //   sessionList.add(list[i].id!.toInt());
+        //   print(sessionList);
+        // }
       } else {
         setState(() {
           loading = false;
@@ -89,7 +115,6 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-    List<SessionDetail> session = widget.detail["slotDetail"].toList();
     return Material(
         child: loading
             ? Scaffold(
@@ -101,7 +126,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                   decoration: BoxDecoration(
                       color: MyAppState.mode == ThemeMode.light
                           ? Colors.white
-                          : const Color(0xff686868),
+                          : AppColors.darkTheme,
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20))),
@@ -143,14 +168,14 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                     height: sizeheight * .01,
                                   ),
                                   Text(
-                                      "${AppLocalizations.of(context)!.pitch} (${widget.detail["venueName"]})",
+                                      "${AppLocalizations.of(context)!.academy} (${widget.detail["academy"]})",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
                                             color: const Color(0XFF424242),
                                           )),
-                                  Text("${widget.detail["pitchType"]}",
+                                  Text('',
                                       style: const TextStyle(
                                           color: Color(0XFF898989))),
                                   Container(
@@ -692,7 +717,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                       decoration: BoxDecoration(
                           color: MyAppState.mode == ThemeMode.light
                               ? Colors.white
-                              : const Color(0xff686868),
+                              : AppColors.darkTheme,
                           borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(20),
                               topLeft: Radius.circular(20))),
@@ -708,7 +733,9 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                               ),
                               Material(
                                 elevation: 5,
-                                color: const Color(0XFFFFFFFF),
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFFFFFFFF)
+                                    : AppColors.containerColorW12,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0)),
                                 child: Padding(
@@ -729,28 +756,36 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                             .textTheme
                                             .titleMedium!
                                             .copyWith(
-                                              color: const Color(0XFF032040),
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : AppColors.white,
                                             ),
                                       ),
                                       Container(
                                         height: sizeheight * .01,
                                       ),
                                       Text(
-                                          "${AppLocalizations.of(context)!.academyOnly} (${widget.detail["academyName"]})",
+                                          "${AppLocalizations.of(context)!.academyOnly} (${AppLocalizations.of(context)!.locale == 'en' ? widget.detail["academyNameEnglish"] : widget.detail["academyNameArabic"]})",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF424242),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF424242)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w600)),
                                       Text(
-                                        widget.detail["apiDetail"]["date"],
+                                        widget.detail["booked_date"],
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!
                                             .copyWith(
-                                                color: AppColors.appThemeColor,
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.appThemeColor
+                                                    : AppColors.white,
                                                 fontFamily: "Poppins"),
                                       ),
                                       ListView.separated(
@@ -758,59 +793,63 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                             return const Divider();
                                           },
                                           shrinkWrap: true,
-                                          itemCount: widget
-                                              .detail['slotDetail'].length,
+                                          itemCount: bookedSessions.length,
                                           itemBuilder: (context, index) {
                                             return Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "${AppLocalizations.of(context)!.sessionName} ${session[index].sessionName}",
+                                                  AppLocalizations.of(context)!
+                                                              .locale ==
+                                                          'en'
+                                                      ? "${AppLocalizations.of(context)!.sessionName} ${bookedSessions[index].name}"
+                                                      : "${AppLocalizations.of(context)!.sessionName} ${bookedSessions[index].nameArabic}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyMedium!
                                                       .copyWith(
-                                                          color: AppColors
-                                                              .appThemeColor),
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors
+                                                                  .appThemeColor
+                                                              : AppColors
+                                                                  .white),
                                                 ),
                                                 SizedBox(
-                                                    height: 40,
+                                                  height: sizeheight * 0.0054,
+                                                ),
+                                                SizedBox(
+                                                    height: 35,
                                                     width: sizewidth * 0.5,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              5.0),
-                                                      child: Container(
-                                                        height: 30,
-                                                        width: 120,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        decoration: BoxDecoration(
-                                                            color: AppColors
-                                                                .appThemeColor,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            border: Border.all(
+                                                    child: Container(
+                                                      height: 30,
+                                                      width: 110,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                          color: AppColors
+                                                              .appThemeColor,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          border: Border.all(
+                                                              color: Colors.grey
+                                                                  .shade50)),
+                                                      child: Text(
+                                                        '${bookedSessions[index].startTime.toString()} - ${bookedSessions[index].endTime.toString()}' ??
+                                                            "",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
                                                                 color: Colors
-                                                                    .grey
-                                                                    .shade50)),
-                                                        child: Text(
-                                                          '${session[index].startTime.toString().substring(10, 19)} - ${session[index].endTime.toString().substring(10, 19)}' ??
-                                                              "",
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Colors
-                                                                      .white),
-                                                        ),
+                                                                    .white),
                                                       ),
                                                     )),
                                               ],
@@ -828,7 +867,9 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                               ),
                               Material(
                                 elevation: 5,
-                                color: const Color(0XFFFFFFFF),
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFFFFFFFF)
+                                    : AppColors.containerColorW12,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0)),
                                 child: SizedBox(
@@ -852,8 +893,10 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                               .textTheme
                                               .titleMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF032040),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF032040)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w500),
                                         ),
                                         flaxibleGap(1),
@@ -865,8 +908,10 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                               .textTheme
                                               .bodyMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF424242),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF424242)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w600),
                                         ),
                                         flaxibleGap(1),
@@ -878,8 +923,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                 .textTheme
                                                 .bodyMedium!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0XFF898989))),
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(
+                                                            0XFF898989)
+                                                        : AppColors.white)),
                                         Text(
                                             profileDetail != null
                                                 ? profileDetail[
@@ -890,8 +938,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                 .textTheme
                                                 .bodyMedium!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0XFF898989))),
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(
+                                                            0XFF898989)
+                                                        : AppColors.white)),
                                         flaxibleGap(6),
                                       ],
                                     ),
@@ -903,7 +954,9 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                               ),
                               Material(
                                 elevation: 5,
-                                color: const Color(0XFFFFFFFF),
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFFFFFFFF)
+                                    : AppColors.containerColorW12,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0)),
                                 child: SizedBox(
@@ -924,8 +977,10 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                               .textTheme
                                               .titleMedium!
                                               .copyWith(
-                                                  color:
-                                                      const Color(0XFF032040),
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF032040)
+                                                      : AppColors.white,
                                                   fontWeight: FontWeight.w600),
                                         ),
                                         flaxibleGap(2),
@@ -938,8 +993,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF424242),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF424242)
+                                                          : AppColors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                             ),
@@ -950,8 +1008,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF7A7A7A)),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF7A7A7A)
+                                                          : AppColors.white),
                                             ),
                                             flaxibleGap(1),
                                           ],
@@ -964,8 +1025,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF424242),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF424242)
+                                                          : AppColors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                             ),
@@ -983,8 +1047,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF7A7A7A)),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF7A7A7A)
+                                                          : AppColors.white),
                                             ),
                                             flaxibleGap(1),
                                           ],
@@ -1004,16 +1071,22 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                                   .textTheme
                                                   .bodyMedium!
                                                   .copyWith(
-                                                      color: const Color(
-                                                          0XFF424242),
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF424242)
+                                                          : AppColors.white,
                                                       fontWeight:
                                                           FontWeight.bold),
                                             ),
                                             flaxibleGap(18),
                                             Text(
                                               '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
-                                              style: const TextStyle(
-                                                  color: Color(0XFF424242)),
+                                              style: TextStyle(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? Color(0XFF424242)
+                                                      : AppColors.white),
                                             ),
                                             flaxibleGap(1),
                                           ],
@@ -1119,70 +1192,64 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
                                 height: sizeheight * .01,
                               ),
                               monVal
-                                  ? Container(
-                                      height: sizeheight * 0.1,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizewidth * 0.03,
-                                          vertical: sizeheight * 0.006),
-                                      child: ButtonWidget(
-                                          onTaped: () {},
-                                          title: Row(
+                                  ? ButtonWidget(
+                                      onTaped: () {},
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyMedium!
-                                                        .copyWith(
-                                                          color: const Color(
-                                                              0XFFFFFFFF),
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  navigateToDetail();
-                                                },
-                                                child: Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    color: Color(0XFFFFFFFF),
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(5.0),
+                                              Text(
+                                                '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      color: const Color(
+                                                          0XFFFFFFFF),
                                                     ),
-                                                  ),
-                                                  height: sizeheight * .04,
-                                                  width: sizewidth * .3,
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .proceed,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyMedium!
-                                                        .copyWith(
-                                                          color: Colors.black,
-                                                        ),
-                                                  ),
-                                                ),
-                                              )
+                                              ),
                                             ],
                                           ),
-                                          isLoading: loading),
-                                    )
+                                          SizedBox(
+                                            width: sizewidth * 0.03,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              navigateToDetail();
+                                            },
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                color: Color(0XFFFFFFFF),
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(5.0),
+                                                ),
+                                              ),
+                                              height: sizeheight * .04,
+                                              width: sizewidth * .32,
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .proceed,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                    ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      isLoading: loading)
                                   : const SizedBox.shrink(),
                             ],
                           ),
@@ -1224,7 +1291,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
   void navigateToDetail() {
     // Navigator.push(context,
     //     PageTransition(type: PageTransitionType.rightToLeft, child: Payment()));
-    if (widget.detail["price"].round() == 0) {
+    if (widget.detail["price"] == 0) {
       Map detailTranjection = {
         "transactionId": "default",
         "transactionMadeon": "default",
@@ -1277,16 +1344,16 @@ class _EnterDetailPitchScreen extends State<EnterDetailPitchScreen> {
       );
     } else {
       var detial = {
-        "price": widget.detail["price"].round(),
-        "name": widget.detail["academyName"],
-        'academy_id': widget.detail['academy_id'],
-        "detail": widget.detail["slotDetail"],
-        "apidetail": widget.detail["apiDetail"],
+        'cart_id': widget.detail['cart_id'],
+        "price": widget.detail["price"],
+        "name": widget.detail["academyNameEnglish"],
+        'academy_id': widget.detail['academy'],
+        "detail": bookedSessions,
+        "apidetail": widget.detail["booked_date"],
         "id": profileDetail['id'],
-        'sessionId': sessionList,
+        'sessionId': list,
         'location': widget.detail['location'],
         "player_count": widget.detail["player_count"],
-        "slug": widget.detail["slug"]
       };
       print(detial);
       Navigator.pushNamed(context, RouteNames.payment, arguments: detial);

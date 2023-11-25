@@ -440,7 +440,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           ),
                           dropdownColor: MyAppState.mode == ThemeMode.light
                               ? AppColors.white
-                              : AppColors.darkTheme,
+                              : AppColors.containerColorW12,
                           iconEnabledColor: const Color(0XFF9B9B9B),
                           focusColor: const Color(0XFF9B9B9B),
                           autofocus: true,
@@ -448,7 +448,6 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           value: player,
                           borderRadius: BorderRadius.circular(height * 0.01),
                           elevation: 2,
-                          alignment: Alignment.bottomCenter,
                           padding:
                               EdgeInsets.symmetric(horizontal: width * 0.03),
                           hint: Text(

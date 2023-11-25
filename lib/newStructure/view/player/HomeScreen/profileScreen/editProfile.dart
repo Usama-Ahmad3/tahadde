@@ -377,7 +377,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   hintText:
                                       AppLocalizations.of(context)!.tahaddi,
                                   suffixIcon: Icons.edit_outlined,
-                                  fillColor: Colors.transparent,
+                                  fillColor: AppColors.containerColorW12,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
                                           ? AppColors.black
@@ -422,7 +422,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   hintText: AppLocalizations.of(context)!
                                       .pleaseenterLastName,
                                   suffixIcon: Icons.edit_outlined,
-                                  fillColor: AppColors.transparent,
+                                  fillColor: AppColors.containerColorW12,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
                                           ? AppColors.black
@@ -469,7 +469,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   hintText: AppLocalizations.of(context)!
                                       .pleaseEnterEmail,
                                   suffixIcon: Icons.edit_outlined,
-                                  fillColor: AppColors.transparent,
+                                  fillColor: AppColors.containerColorW12,
                                   suffixIconColor:
                                       MyAppState.mode == ThemeMode.light
                                           ? AppColors.black
@@ -516,7 +516,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           backgroundColor:
                                               MyAppState.mode == ThemeMode.light
                                                   ? AppColors.white
-                                                  : AppColors.darkTheme,
+                                                  : AppColors.containerColorW12,
                                           dialogTextStyle: TextStyle(
                                               color: MyAppState.mode ==
                                                       ThemeMode.light

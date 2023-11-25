@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static Color white = Colors.white;
-  static const Color darkTheme = Color(0xff686868);
+  static const Color darkTheme = Color(0xff373737);
   static Color black = Colors.black;
   static Color indigoAccent = Colors.indigoAccent;
   static Color redAccent = Colors.redAccent;

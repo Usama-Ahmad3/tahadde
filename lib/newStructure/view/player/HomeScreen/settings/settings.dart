@@ -193,7 +193,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     var width = MediaQuery.of(context).size.width;
     return _internet
         ? Scaffold(
-            backgroundColor: Colors.black54,
+            backgroundColor: Colors.black,
             appBar: appBarWidget(
               width,
               height,
@@ -208,7 +208,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ? AppColors.grey
                         : AppColors.white),
                 child: Container(
-                  color: Colors.black54,
+                  color: Colors.black,
                   child: Container(
                     height: height,
                     decoration: BoxDecoration(
@@ -284,7 +284,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
                                         ? AppColors.grey200
-                                        : AppColors.containerColorB,
+                                        : AppColors.containerColorW12,
                                     borderRadius: BorderRadius.circular(13)),
                                 child: Center(
                                   child: ListTile(
@@ -391,7 +391,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 decoration: BoxDecoration(
                                     color: MyAppState.mode == ThemeMode.light
                                         ? AppColors.grey200
-                                        : AppColors.containerColorB,
+                                        : AppColors.containerColorW12,
                                     borderRadius: BorderRadius.circular(13)),
                                 child: Center(
                                   child: ListTile(
@@ -489,7 +489,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               color: MyAppState.mode ==
                                                       ThemeMode.light
                                                   ? AppColors.grey200
-                                                  : AppColors.containerColorB,
+                                                  : AppColors.containerColorW12,
                                               borderRadius:
                                                   BorderRadius.circular(13)),
                                           child: Center(

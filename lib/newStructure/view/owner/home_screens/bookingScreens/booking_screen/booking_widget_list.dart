@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/homeFile/utility.dart';
+import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/booking_screen/booking_detail.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/booking_screen/booking_summary_list.dart';
 
-class BookingWidgetWidget extends StatelessWidget {
+class BookingWidgetList extends StatelessWidget {
   var academyDetail;
-  BookingWidgetWidget({
+  BookingWidgetList({
     super.key,
     required this.academyDetail,
   });
@@ -44,7 +45,7 @@ class BookingWidgetWidget extends StatelessWidget {
             ),
             color: MyAppState.mode == ThemeMode.light
                 ? AppColors.grey200
-                : AppColors.containerColorB,
+                : AppColors.containerColorW12,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +71,10 @@ class BookingWidgetWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   flaxibleGap(1),
-                  Text("${academyDetail['Academy_NameEnglish']}",
+                  Text(
+                      AppLocalizations.of(context)!.locale == 'en'
+                          ? "${academyDetail['Academy_NameEnglish']}"
+                          : "${academyDetail['Academy_NameArabic']}",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: MyAppState.mode == ThemeMode.light
                                 ? AppColors.themeColor
@@ -109,7 +113,7 @@ class BookingWidgetWidget extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => BookingDetailScreen(
+          builder: (context) => BookingSummaryList(
             detail: detail,
           ),
         ));

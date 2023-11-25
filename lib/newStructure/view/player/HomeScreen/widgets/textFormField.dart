@@ -25,7 +25,7 @@ class TextFieldWidget extends StatefulWidget {
   bool searchTag;
   final IconData? hideIcon;
   final Color? suffixIconColor;
-  final Color? fillColor;
+  Color? fillColor;
   final Color? textColor;
   FormFieldValidator? onValidate;
   FormFieldValidator? onChanged;
@@ -115,7 +115,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           suffixIconColor: widget.suffixIconColor,
           prefixIcon:
               widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
-          fillColor: widget.fillColor,
+          fillColor: MyAppState.mode == ThemeMode.light
+              ? AppColors.grey200
+              : AppColors.containerColorW12,
           filled: true,
           enabledBorder: widget.enableBorder,
           focusedBorder: widget.focusBorder,

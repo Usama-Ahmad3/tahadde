@@ -98,7 +98,7 @@ class _BookingScreenState extends State<BookingScreen> {
           return Theme(
             data: ThemeData.light().copyWith(
               colorScheme:
-                  const ColorScheme.light(primary: AppColors.themeColor),
+                  const ColorScheme.light(primary: AppColors.appThemeColor),
               buttonTheme:
                   const ButtonThemeData(textTheme: ButtonTextTheme.primary),
             ),
@@ -129,7 +129,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         width,
                         height,
                         context,
-                        AppLocalizations.of(context)!.academyBook,
+                        AppLocalizations.of(context)!.booking,
                         false,
                       ),
                       body: LayoutBuilder(
@@ -253,12 +253,11 @@ class _BookingScreenState extends State<BookingScreen> {
                                             child: Container(
                                               height: height * .06,
                                               width: height * .07,
-                                              decoration: BoxDecoration(
-                                                color: Colors.teal.shade100,
-                                                borderRadius:
-                                                    const BorderRadius.all(
-                                                        Radius.circular(12) //
-                                                        ),
+                                              decoration: const BoxDecoration(
+                                                color: AppColors.appThemeColor,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(12) //
+                                                    ),
                                               ),
                                               child: Column(
                                                 mainAxisAlignment:
@@ -268,7 +267,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                                     'assets/images/closed.png',
                                                     fit: BoxFit.cover,
                                                     height: height * .03,
-                                                    color: AppColors.grey,
+                                                    color: AppColors.white,
                                                   ),
                                                   Text(
                                                     AppLocalizations.of(
@@ -279,7 +278,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                                         .titleSmall!
                                                         .copyWith(
                                                             color: AppColors
-                                                                .black),
+                                                                .white),
                                                   )
                                                 ],
                                               ),
@@ -290,12 +289,12 @@ class _BookingScreenState extends State<BookingScreen> {
                                     ),
                                     Material(
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.teal.shade100),
+                                        decoration: const BoxDecoration(
+                                            color: AppColors.appThemeColor),
                                         constraints: BoxConstraints(
                                             maxHeight: height * .06),
                                         child: TabBar(
-                                          labelColor: AppColors.appThemeColor,
+                                          labelColor: AppColors.white,
                                           //controller: tabController,
                                           labelStyle: Theme.of(context)
                                               .textTheme
@@ -304,39 +303,42 @@ class _BookingScreenState extends State<BookingScreen> {
                                                   fontWeight: FontWeight.w600,
                                                   fontFamily: "Poppins"),
                                           unselectedLabelColor:
-                                              const Color(0XFFADADAD),
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? const Color(0XFFADADAD)
+                                                  : AppColors.grey,
                                           indicatorSize:
                                               TabBarIndicatorSize.label,
                                           indicatorPadding:
                                               const EdgeInsets.only(),
-                                          indicatorColor:
-                                              AppColors.appThemeColor,
+                                          indicatorColor: AppColors.white,
                                           indicatorWeight: 4,
-
                                           tabs: [
                                             Tab(
-                                                child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 6.0),
-                                              child: Container(
-                                                width: width * .4,
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                child: Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .booking,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyMedium!
-                                                        .copyWith(
-                                                            //color: Color(0XFF032040),
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontFamily:
-                                                                "Poppins")),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 6.0),
+                                                child: Container(
+                                                  width: width * .4,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .booking,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: AppColors
+                                                                  .white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontFamily:
+                                                                  "Poppins")),
+                                                ),
                                               ),
-                                            )),
+                                            ),
                                             Tab(
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
@@ -353,7 +355,8 @@ class _BookingScreenState extends State<BookingScreen> {
                                                         .textTheme
                                                         .bodyMedium!
                                                         .copyWith(
-                                                            // color: Color(0XFF032040),
+                                                            color:
+                                                                AppColors.white,
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                             fontFamily:
@@ -372,7 +375,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                           BookingWidget(
                                               // bookingDetail: bookingDetail,
                                               ),
-                                          ManageSlotsWidget(),
+                                          const ManageSlotsWidget(),
                                         ],
                                       ),
                                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../homeFile/utility.dart';
@@ -19,7 +20,7 @@ class ShimmerBookings {
               child: AppBar(
                 automaticallyImplyLeading: false,
                 title: Text(
-                  AppLocalizations.of(context)!.academyBook,
+                  AppLocalizations.of(context)!.booking,
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
@@ -87,10 +88,9 @@ class ShimmerBookings {
                       Container(
                         height: sizeHeight * .06,
                         width: sizeHeight * .07,
-                        decoration: BoxDecoration(
-                          color: Colors.teal.shade100,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5.0)),
+                        decoration: const BoxDecoration(
+                          color: AppColors.appThemeColor,
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -113,18 +113,16 @@ class ShimmerBookings {
                 ),
                 Material(
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0XFF25A163).withOpacity(.18),
-                      borderRadius: const BorderRadius.only(
+                    decoration: const BoxDecoration(
+                      color: AppColors.appThemeColor,
+                      borderRadius: BorderRadius.only(
                         topRight: Radius.circular(15),
                         topLeft: Radius.circular(15),
                       ),
-                      //border: Border.all(width: 3,color: Color(0XFFE0E0E0),style: BorderStyle.solid)
                     ),
                     constraints: BoxConstraints(maxHeight: sizeHeight * .06),
                     child: TabBar(
                       labelColor: const Color(0XFF032040),
-                      //controller: tabController,
                       labelStyle: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -134,7 +132,6 @@ class ShimmerBookings {
                       indicatorPadding: const EdgeInsets.only(),
                       indicatorColor: const Color(0XFF032040),
                       indicatorWeight: 4,
-
                       tabs: [
                         Tab(
                             child: Padding(

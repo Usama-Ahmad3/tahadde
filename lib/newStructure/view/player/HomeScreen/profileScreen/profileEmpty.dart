@@ -41,7 +41,7 @@ class _ProfileEmptyScreenState extends State<ProfileEmptyScreen> {
           children: [
             Expanded(
               child: Container(
-                color: AppColors.containerColor54,
+                color: AppColors.black,
                 child: Container(
                   height: sizeHeight,
                   width: sizeWidth,

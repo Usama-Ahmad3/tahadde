@@ -26,7 +26,7 @@ class StoryPage extends StatelessWidget {
                   child: cachedNetworkImage(
                     imageFit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width,
-                    cuisineImageUrl: files[storyIndex].filePath ?? "",
+                    cuisineImageUrl: files[storyIndex] ?? "",
                   ),
                 ),
               ],

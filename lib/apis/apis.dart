@@ -30,12 +30,14 @@ class RestApis {
   static String DASHBOARDFILTER = "/api/v1/dashboard/filter/module/";
   static String FACILITY = "/api/v1/dashboard/gameplay/";
   static String SPORTS_LIST = "/api/v1/helpers/sportslistmobile/?language=";
+  static String delete_cart = "/api/v1/user/cartitem/";
   static String SPORTS_ECPERIENCE_LIST =
       "/api/v1/helpers/availablemodernsmobile/?language=";
   static String verifiedAcademies = '/api/v1/user/get_verified_academies/';
   static String AVAILABLE_PITCH_TYPE =
       "/api/v1/dashboard/sport_secific_pitch/?sport_slug=";
   static String WEEK_LIST = "/api/v1/helpers/available_weekdays/";
+  static String cartList = "/api/v1/user/cart-items/";
   // static String CREATE_SESSION = "/api/v1/bookpitch/pitchowner/pitch/";
   static String CREATE_SESSION = "/api/v1/user/create_sessions/";
   static String SLOT_LIST = "/api/v1/bookpitch/pitchowner/pitch/";
@@ -96,7 +98,9 @@ class RestApis {
 
   //rating
   static String RATING = "/api/v1/user/pitch/rating/";
+  static String rating = "/api/v1/user/ratings/reviews/";
   static String RATINGSEND = "/api/v1/user/pitch/";
+  static String ratingSend = "/api/v1/user/ratings/";
 
   //notification
   static String NOTIFICATION = "/api/v1/user/notification/?language=";

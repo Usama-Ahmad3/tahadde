@@ -96,7 +96,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: AppColors.containerColor54,
+      backgroundColor: AppColors.black,
       body: _isLoading
           ? ProfileShimmer.buildShimmer(width, height, context)
           : _internet

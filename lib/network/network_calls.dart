@@ -1758,7 +1758,10 @@ class NetworkCalls {
     try {
       response = await http.put(Uri.parse(url),
           headers: headerWithToken(prefs, body, HttpMethod.PUT), body: body);
-
+      print(url);
+      print(body);
+      print(response.body);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         BookPitchDetail bookPitch = BookPitchDetail.fromJson(resp);
@@ -2425,7 +2428,7 @@ class NetworkCalls {
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
-      // print(response.body);
+      print(response.body);
       print('status${response.statusCode}');
       if (response.statusCode == 200) {
         // print(response.body);
@@ -3209,7 +3212,7 @@ class NetworkCalls {
         Uri.parse("$baseUrl${RestApis.RATING}"),
         headers: headerWithToken(prefs, "", HttpMethod.GET),
       );
-
+      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3228,6 +3231,43 @@ class NetworkCalls {
     }
   }
 
+  ratingGetForPlayer(
+      {required String id,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    try {
+      print('kkkkk');
+      response = await http.get(
+        Uri.parse("$baseUrl${RestApis.rating}$id/"),
+        headers: headerWithToken(prefs, "", HttpMethod.GET),
+      );
+      print(response.statusCode);
+      print(response.body);
+      print("$baseUrl${RestApis.rating}$id/");
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        print(response.body);
+        onSuccess(resp);
+      } else if (response.statusCode == 404) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load rating'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('Reviews$e');
+      onFailure("Something went wrong");
+    }
+  }
+
   ratingSend(
       {required Map detail,
       required String id,
@@ -3236,12 +3276,44 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url = ("$baseUrl${RestApis.RATINGSEND}$id/rating/");
+    String url = ("$baseUrl${RestApis.RATINGSEND}");
     var body = json.encode(detail);
     try {
       response = await http.put(Uri.parse(url),
           headers: headerWithToken(prefs, body, HttpMethod.PUT), body: body);
       if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == 404) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["detail"]);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to send rating'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      throw Exception('Failed to send rating');
+    }
+  }
+
+  ratingSendForAcademy(
+      {required Map detail,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url = ("$baseUrl${RestApis.ratingSend}");
+    var body = json.encode(detail);
+    try {
+      response = await http.post(Uri.parse(url),
+          headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);
+      print('ReviewStatus${response.statusCode}');
+      print('ReviewResponse${response.body}');
+      if (response.statusCode > 200 && response.statusCode < 300) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
       } else if (response.statusCode == 404) {
@@ -3585,79 +3657,6 @@ class NetworkCalls {
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Map details = {
-      "academydetail": {
-        "Academy_NameEnglish": "Usama Flutter Dev",
-        "Academy_NameArabic": "أكاديمية مثال",
-        "descriptionEnglish": "Description in English",
-        "descriptionArabic": "الوصف بالعربية",
-        "Academy_Location": "Location",
-        "latitude": "123456",
-        "longitude": "123456",
-        "Country": "Country",
-        "sport_slug": "cricket",
-        "facilitySlug": "bathroom,bibs,carParking",
-        "gameplaySlug": "both",
-        "academy_image": ["image_url_1", "image_url_2"]
-      },
-      "document": [
-        {
-          "Document_Name": "Document 1",
-          "License_Number": "123",
-          "Expiry_Date": "2023-12-31",
-          "file": "file_url_1"
-        },
-        {
-          "Document_Name": "Document 2",
-          "License_Number": "456",
-          "Expiry_Date": "2024-12-31",
-          "file": "file_url_2"
-        }
-      ],
-      "price": [
-        {"Sub_Academy": "Sub Academy 1", "Price": 100},
-        {"Sub_Academy": "Sub Academy 2", "Price": 200}
-      ],
-      "sessions": [
-        {
-          "weekday": "monday",
-          "sessions": [
-            {
-              "Holiday": false,
-              "Name": "Morning Session",
-              "Name_Arabic": "صباحًا",
-              "Slot_duration": "60",
-              "Extra_slot": false,
-              "Start_time": "09:00",
-              "End_time": "10:00"
-            },
-            {
-              "Holiday": false,
-              "Name": "Evening Session",
-              "Name_Arabic": "مساءً",
-              "Slot_duration": "90",
-              "Extra_slot": true,
-              "Start_time": "18:00",
-              "End_time": "19:30"
-            }
-          ]
-        },
-        {
-          "weekday": "tuesday",
-          "sessions": [
-            {
-              "Holiday": false,
-              "Name": "Afternoon Session",
-              "Name_Arabic": "بعد الظهر",
-              "Slot_duration": "60",
-              "Extra_slot": false,
-              "Start_time": "14:00",
-              "End_time": "15:00"
-            }
-          ]
-        }
-      ]
-    };
     var body = json.encode(detail);
     print('body$body');
     try {
@@ -3698,6 +3697,100 @@ class NetworkCalls {
     }
   }
 
+  addToCard(
+      {required OnSuccess onSuccess,
+      required detail,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var body = json.encode(detail);
+    print('body$body');
+    try {
+      response = await http.post(Uri.parse('$baseUrl${RestApis.cartList}'),
+          body: body, headers: headerWithToken(prefs, body, HttpMethod.POST));
+      print('$baseUrl${RestApis.cartList}');
+      print(response.statusCode);
+      if (response.statusCode > 200 && response.statusCode < 300) {
+        print('CeateSession${response.body}');
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == 400) {
+        onFailure("null");
+        //tokenExpire();
+      } else if (response.statusCode == tokenExpireStatus) {
+        onFailure("null");
+        //tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load role'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('Exception$e EEEEEEEEEEEE');
+      showMessage('it seems missing name field from sessions');
+      throw Exception('Failed to load role');
+    }
+  }
+
+  deleteCart(
+      {required String id,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url = '$baseUrl${RestApis.delete_cart}$id/';
+    print("Url Bro $url");
+    print('cartDelete');
+    try {
+      final response = await http.delete(Uri.parse(url), headers: {
+        "Authorization": "token ${prefs.get('token')}",
+        'Content-Type': 'application/json',
+      });
+      print("deleteCart${response.body}");
+      print("deleteCart${response.statusCode}");
+      if (response.statusCode > 200 || response.statusCode < 300) {
+        onSuccess(response);
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp['error']);
+      } else {
+        onFailure("Some Thing Wrong");
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Server is not responding");
+    }
+  }
+
+  getCart(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(Uri.parse("$baseUrl${RestApis.cartList}"),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print("Avaliable Carts ${response.body}");
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        onFailure("null");
+        //tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load role'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print("exception $e");
+      throw Exception('Failed to load role');
+    }
+  }
+
   availablePitchType(
       {required String sportTypeSlug,
       required OnSuccess onSuccess,
@@ -3718,6 +3811,33 @@ class NetworkCalls {
       print(
           "https://powerhouse.tahadde.ae${RestApis.AVAILABLE_PITCH_TYPE}$sportTypeSlug");
       print("Avaliable Pitches ${response.body}");
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        onFailure("null");
+        //tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load role'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print("exception $e");
+      throw Exception('Failed to load role');
+    }
+  }
+
+  getCartAcademy(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(Uri.parse("$baseUrl${RestApis.cartList}"),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print("Avaliable Carts ${response.body}");
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);

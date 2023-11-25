@@ -81,7 +81,7 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
                     sportsType: _sportsList[indexItem!].slug,
                     sportsImage: _sportsList[indexItem!].image,
                     sportsName: _sportsList[indexItem!].name,
-                  ))
+                    sportsNameArabic: _sportsList[indexItem!].nameArabic))
                 : null;
           },
           isLoading: _isLoading,
@@ -228,6 +228,7 @@ class SportsModel {
   final bool? isEdit;
   final String? sportsType;
   final String? sportsName;
+  final String? sportsNameArabic;
   final String? sportsImage;
   DocumentModel? documentModel;
   PitchDetailModel? pitchDetailModel;
@@ -235,6 +236,7 @@ class SportsModel {
       {this.sportsType,
       this.documentModel,
       this.pitchDetailModel,
+      this.sportsNameArabic,
       this.sportsImage,
       this.sportsName,
       this.isEdit = false,

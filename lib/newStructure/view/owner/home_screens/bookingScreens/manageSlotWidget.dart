@@ -10,7 +10,6 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../modelClass/bookPitchModelClass.dart';
-import '../../../../../modelClass/my_venue_list_model_class.dart';
 import '../../../../../network/network_calls.dart';
 
 class ManageSlotsWidget extends StatefulWidget {
@@ -146,7 +145,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                 ),
                                 color: MyAppState.mode == ThemeMode.light
                                     ? AppColors.grey200
-                                    : AppColors.containerColorB,
+                                    : AppColors.containerColorW12,
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +176,11 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                     children: <Widget>[
                                       flaxibleGap(1),
                                       Text(
-                                          "${academyDetail[index].academyNameEnglish}",
+                                          AppLocalizations.of(context)!
+                                                      .locale ==
+                                                  'en'
+                                              ? "${academyDetail[index].academyNameEnglish}"
+                                              : "${academyDetail[index].academyNameArabic}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -329,7 +332,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
   void navigateToEditVenues(Map detail) {
     print(detail);
     Navigator.push(context,
-        MaterialPageRoute(builder: (_) => EditVenuesScreen(detail: detail)));
+        MaterialPageRoute(builder: (_) => EditAcademyScreen(detail: detail)));
     // Navigator.pushNamed(context, RouteNames.editVenues, arguments: detail);
   }
 }

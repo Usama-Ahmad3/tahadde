@@ -14,14 +14,14 @@ import '../../../../../network/network_calls.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/app_bar.dart';
 
-class MyPitches extends StatefulWidget {
-  const MyPitches({super.key});
+class MyAcademies extends StatefulWidget {
+  const MyAcademies({super.key});
 
   @override
-  State<MyPitches> createState() => _MyPitchesState();
+  State<MyAcademies> createState() => _MyAcademiesState();
 }
 
-class _MyPitchesState extends State<MyPitches> {
+class _MyAcademiesState extends State<MyAcademies> {
   late bool _internet;
   bool _isLoading = true;
   String date = "name";
@@ -510,7 +510,7 @@ class _MyPitchesState extends State<MyPitches> {
 
   void navigateToEditVenues(Map detail) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (_) => EditVenuesScreen(detail: detail)));
+        MaterialPageRoute(builder: (_) => EditAcademyScreen(detail: detail)));
     // Navigator.pushNamed(context, RouteNames.editVenues, arguments: detail);
   }
 }

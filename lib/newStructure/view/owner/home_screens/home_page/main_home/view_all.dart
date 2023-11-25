@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
@@ -8,9 +9,10 @@ import '../../../../../../modelClass/my_venue_list_model_class.dart';
 import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/widgets/app_bar.dart';
 
-class ViewMoreVenueScreen extends StatelessWidget {
-  final List<AcademyModel> venues;
-  const ViewMoreVenueScreen({Key? key, required this.venues}) : super(key: key);
+class ViewMoreAcademyScreen extends StatelessWidget {
+  final List<AcademyModel> academy;
+  const ViewMoreAcademyScreen({Key? key, required this.academy})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     var sizeHeight = MediaQuery.of(context).size.height;
@@ -40,148 +42,349 @@ class ViewMoreVenueScreen extends StatelessWidget {
                       ListView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
-                        itemCount: venues.length,
+                        itemCount: academy.length,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) => Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: sizeHeight * 0.01,
-                              horizontal: sizeWidth * 0.06),
-                          child: Container(
-                            width: sizeWidth * 0.9,
-                            decoration: BoxDecoration(
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? AppColors.grey200
-                                  : AppColors.containerColorW12,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: DefaultTextStyle(
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            MyAppState.mode == ThemeMode.light
-                                                ? AppColors.black
-                                                : AppColors.white),
+                        itemBuilder: (context, index) {
+                          return academy[index].status == 'Verified'
+                              ? Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: sizeHeight * 0.01,
+                                      horizontal: sizeWidth * 0.06),
+                                  child: Container(
+                                    width: sizeWidth * 0.9,
+                                    decoration: BoxDecoration(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.grey200
+                                          : AppColors.containerColorW12,
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: sizeWidth * 0.02,
-                                              vertical: sizeHeight * 0.005),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                '${AppLocalizations.of(context)!.status}:',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                        color: AppColors.black),
-                                              ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          child: DefaultTextStyle(
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.black
+                                                    : AppColors.white),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal:
+                                                          sizeWidth * 0.02,
+                                                      vertical:
+                                                          sizeHeight * 0.005),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        '${AppLocalizations.of(context)!.status}:',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? AppColors
+                                                                        .black
+                                                                    : AppColors
+                                                                        .white),
+                                                      ),
 
-                                              ///status
-                                              // Text(
-                                              //   venues[index].isVerified!
-                                              //       ? AppLocalizations.of(
-                                              //               context)!
-                                              //           .verified
-                                              //       : venues[index].isDecline!
-                                              //           ? AppLocalizations.of(
-                                              //                   context)!
-                                              //               .rejected
-                                              //           : AppLocalizations.of(
-                                              //                   context)!
-                                              //               .inReview,
-                                              //   style: Theme.of(context)
-                                              //       .textTheme
-                                              //       .bodyMedium!
-                                              //       .copyWith(
-                                              //           color: AppColors
-                                              //               .redAccent),
-                                              // ),
-                                            ],
-                                          ),
-                                        ),
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          child: cachedNetworkImage(
-                                            height: sizeHeight * 0.193,
-                                            imageFit: BoxFit.fill,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            cuisineImageUrl: venues[index]
-                                                    .documents![0]
-                                                    .file
-                                                    .toString() ??
-                                                "",
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: sizeHeight * 0.005,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            cachedNetworkImage(
-                                              height: sizeHeight * 0.02,
-                                              imageFit: BoxFit.fill,
-                                              width: sizeWidth * 0.05,
-                                              cuisineImageUrl: venues[index]
-                                                      .sportImage
-                                                      .toString() ??
-                                                  "",
+                                                      ///status
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .verified,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? AppColors
+                                                                        .appThemeColor
+                                                                    : AppColors
+                                                                        .white),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
+                                                    child: SizedBox(
+                                                      height:
+                                                          sizeHeight * 0.193,
+                                                      child: Carousel(
+                                                        image: academy[index]
+                                                            .academyImage,
+                                                      ),
+                                                    )),
+                                                SizedBox(
+                                                  height: sizeHeight * 0.005,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    cachedNetworkImage(
+                                                      height: sizeHeight * 0.02,
+                                                      imageFit: BoxFit.fill,
+                                                      width: sizeWidth * 0.05,
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.black
+                                                          : AppColors.white,
+                                                      cuisineImageUrl:
+                                                          academy[index]
+                                                                  .sportImage
+                                                                  .toString() ??
+                                                              "",
+                                                    ),
+                                                    SizedBox(
+                                                      width: sizeWidth * 0.01,
+                                                    ),
+                                                    Text(
+                                                      AppLocalizations.of(
+                                                                      context)!
+                                                                  .locale ==
+                                                              'en'
+                                                          ? academy[index]
+                                                              .academyNameEnglish
+                                                              .toString()
+                                                          : academy[index]
+                                                              .academyNameArabic
+                                                              .toString(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? AppColors
+                                                                      .black
+                                                                  : AppColors
+                                                                      .white),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom:
+                                                          sizeHeight * 0.008,
+                                                      left: sizeWidth * 0.007),
+                                                  child: Text(
+                                                    academy[index]
+                                                        .academyLocation!,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? AppColors
+                                                                    .black
+                                                                : AppColors
+                                                                    .white),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            SizedBox(
-                                              width: sizeWidth * 0.01,
-                                            ),
-                                            Text(
-                                              venues[index]
-                                                  .academyNameEnglish
-                                                  .toString(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: AppColors.black),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              bottom: sizeHeight * 0.008,
-                                              left: sizeWidth * 0.007),
-                                          child: Text(
-                                            venues[index].academyLocation!,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: AppColors.black),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                                )
+                              : SizedBox.shrink();
+                        },
+                      ),
+                      ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: academy.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return academy[index].status != 'Verified'
+                              ? Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: sizeHeight * 0.01,
+                                      horizontal: sizeWidth * 0.06),
+                                  child: Container(
+                                    width: sizeWidth * 0.9,
+                                    decoration: BoxDecoration(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.grey200
+                                          : AppColors.containerColorW12,
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          child: DefaultTextStyle(
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? AppColors.black
+                                                    : AppColors.white),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal:
+                                                          sizeWidth * 0.02,
+                                                      vertical:
+                                                          sizeHeight * 0.005),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        '${AppLocalizations.of(context)!.status}:',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium,
+                                                      ),
+
+                                                      ///status
+                                                      Text(
+                                                        academy[index].status ==
+                                                                'Verified'
+                                                            ? AppLocalizations
+                                                                    .of(
+                                                                        context)!
+                                                                .verified
+                                                            : academy[index]
+                                                                        .status ==
+                                                                    'Decline'
+                                                                ? AppLocalizations.of(
+                                                                        context)!
+                                                                    .rejected
+                                                                : AppLocalizations.of(
+                                                                        context)!
+                                                                    .inReview,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                color: AppColors
+                                                                    .redAccent),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
+                                                    child: SizedBox(
+                                                      height:
+                                                          sizeHeight * 0.193,
+                                                      child: Carousel(
+                                                        image: academy[index]
+                                                            .academyImage,
+                                                      ),
+                                                    )),
+                                                SizedBox(
+                                                  height: sizeHeight * 0.005,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    cachedNetworkImage(
+                                                      height: sizeHeight * 0.02,
+                                                      imageFit: BoxFit.fill,
+                                                      width: sizeWidth * 0.05,
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.black
+                                                          : AppColors.white,
+                                                      cuisineImageUrl:
+                                                          academy[index]
+                                                                  .sportImage
+                                                                  .toString() ??
+                                                              "",
+                                                    ),
+                                                    SizedBox(
+                                                      width: sizeWidth * 0.01,
+                                                    ),
+                                                    Text(
+                                                      AppLocalizations.of(
+                                                                      context)!
+                                                                  .locale ==
+                                                              'en'
+                                                          ? academy[index]
+                                                              .academyNameEnglish
+                                                              .toString()
+                                                          : academy[index]
+                                                              .academyNameArabic
+                                                              .toString(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom:
+                                                          sizeHeight * 0.008,
+                                                      left: sizeWidth * 0.007),
+                                                  child: Text(
+                                                    academy[index]
+                                                        .academyLocation!,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : SizedBox.shrink();
+                        },
                       ),
                       SizedBox(
                         height: sizeHeight * 0.02,

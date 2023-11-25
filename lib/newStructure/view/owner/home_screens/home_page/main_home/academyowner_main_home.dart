@@ -16,18 +16,19 @@ import '../../../../player/HomeScreen/Home/shimmerWidgets.dart';
 import '../../../../../utils/utils.dart';
 import 'view_all.dart';
 
-class PitchOwnerMainHome extends StatefulWidget {
-  const PitchOwnerMainHome({super.key});
+class AcademyOwnerMainHome extends StatefulWidget {
+  const AcademyOwnerMainHome({super.key});
 
   @override
-  State<PitchOwnerMainHome> createState() => _PitchOwnerMainHomeState();
+  State<AcademyOwnerMainHome> createState() => _AcademyOwnerMainHomeState();
 }
 
-class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
+class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;
   List<MyVenueModelClass> _pitchDetail = [];
   List<AcademyModel> _academyDetail = [];
+  List<AcademyModel> _academyModel = [];
   bool _internet = true;
   int initial = 0;
   int clicked = 1;
@@ -61,7 +62,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
       onSuccess: (event) {
         if (mounted) {
           setState(() {
-            _isLoading = false;
+            // _isLoading = false;
             _academyDetail = event;
           });
         }
@@ -79,6 +80,37 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
     );
   }
 
+  // loadVerifiedAcademies() async {
+  //   await _networkCalls.loadVerifiedAcademies(
+  //     sport: '',
+  //     onSuccess: (academies) {
+  //       if (mounted) {
+  //         setState(() {
+  //           _isLoading = false;
+  //           print('hi');
+  //           _academyModel = academies;
+  //           print('ok');
+  //           print(_academyModel);
+  //           print('kok');
+  //         });
+  //       }
+  //     },
+  //     onFailure: (msg) {
+  //       if (mounted) {
+  //         setState(() {
+  //           _isLoading = false;
+  //         });
+  //       }
+  //     },
+  //     tokenExpire: () {
+  //       if (mounted) {
+  //         print('loadVenues');
+  //         on401(context);
+  //       }
+  //     },
+  //   );
+  // }
+
   @override
   void initState() {
     super.initState();
@@ -88,6 +120,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
         _isLoading = false;
         loadMyPitch();
         loadAllAcademies();
+        // loadVerifiedAcademies();
         print(_academyDetail.length);
       } else {
         setState(() {
@@ -108,7 +141,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
         ? DefaultTabController(
             length: 2,
             child: Scaffold(
-              backgroundColor: const Color(0xff050505),
+              backgroundColor: Colors.black,
               appBar: AppBar(
                 elevation: 2,
                 automaticallyImplyLeading: false,
@@ -119,7 +152,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                         width: 40 * fem,
                         child: Image.asset(
                           'assets/images/T.png',
-                          color: Colors.greenAccent,
+                          color: AppColors.white,
                         )),
                     SizedBox(
                       width: sizeWidth * 0.001,
@@ -170,18 +203,17 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
               floatingActionButton: SpeedDial(
                 elevation: 3,
                 label: Text(
-                  'Add',
-                  // AppLocalizations.of(context)!.add,
+                  AppLocalizations.of(context)!.add,
                   style: TextStyle(
                       color: MyAppState.mode == ThemeMode.light
                           ? AppColors.white
-                          : AppColors.black,
+                          : AppColors.white,
                       fontSize: 11),
                 ),
                 animationCurve: Curves.easeInOutCirc,
                 backgroundColor: MyAppState.mode == ThemeMode.light
-                    ? AppColors.darkTheme
-                    : Colors.tealAccent.shade100,
+                    ? AppColors.appThemeColor
+                    : AppColors.appThemeColor,
                 onPress: () {
                   navigateToSports();
                 },
@@ -189,7 +221,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                   Icons.add,
                   color: MyAppState.mode == ThemeMode.light
                       ? AppColors.white
-                      : AppColors.black,
+                      : AppColors.white,
                   size: sizeHeight * 0.03,
                 ),
               ),
@@ -283,6 +315,7 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                           }
                                           loadMyPitch();
                                           loadAllAcademies();
+                                          // loadVerifiedAcademies();
                                         } else {
                                           setState(() {});
                                         }
@@ -351,168 +384,169 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                     _academyDetail.length > 2
                                                         ? 3
                                                         : _academyDetail.length,
-                                                    (index) => Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical:
-                                                                  sizeHeight *
-                                                                      0.01),
-                                                      child: Container(
-                                                        width: sizeWidth * 0.9,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors
-                                                                  .grey200
-                                                              : AppColors
-                                                                  .containerColorW12,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(15),
-                                                        ),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Container(
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12)),
-                                                              child:
-                                                                  DefaultTextStyle(
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    color: MyAppState.mode ==
-                                                                            ThemeMode
-                                                                                .light
-                                                                        ? AppColors
-                                                                            .black
-                                                                        : AppColors
-                                                                            .white),
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal: sizeWidth *
-                                                                              0.02,
-                                                                          vertical:
-                                                                              sizeHeight * 0.005),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Text(
-                                                                            '${AppLocalizations.of(context)!.status}:',
-                                                                            style:
-                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.black),
-                                                                          ),
+                                                    (index) {
+                                                      return Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical:
+                                                                    sizeHeight *
+                                                                        0.01),
+                                                        child: Container(
+                                                          width:
+                                                              sizeWidth * 0.9,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? AppColors
+                                                                    .grey200
+                                                                : AppColors
+                                                                    .containerColorW12,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                          ),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              Container(
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12)),
+                                                                child:
+                                                                    DefaultTextStyle(
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? AppColors
+                                                                              .black
+                                                                          : AppColors
+                                                                              .white),
+                                                                  child: Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .center,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsets.symmetric(
+                                                                            horizontal: sizeWidth *
+                                                                                0.02,
+                                                                            vertical:
+                                                                                sizeHeight * 0.005),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          children: [
+                                                                            Text(
+                                                                              '${AppLocalizations.of(context)!.status}:',
+                                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
+                                                                            ),
 
-                                                                          ///status
+                                                                            ///status
+                                                                            Text(
+                                                                              _academyDetail[index].status == 'Verified'
+                                                                                  ? AppLocalizations.of(context)!.verified
+                                                                                  : _academyDetail[index].status == 'Decline'
+                                                                                      ? AppLocalizations.of(context)!.rejected
+                                                                                      : AppLocalizations.of(context)!.inReview,
+                                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: _academyDetail[index].status == 'Verified' ? AppColors.appThemeColor : AppColors.redAccent),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+
+                                                                      ///image
+                                                                      ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(12),
+                                                                        child:
+                                                                            SizedBox(
+                                                                          height:
+                                                                              sizeHeight * 0.193,
+                                                                          child:
+                                                                              Carousel(
+                                                                            image:
+                                                                                _academyDetail[index].academyImage,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      SizedBox(
+                                                                        height: sizeHeight *
+                                                                            0.005,
+                                                                      ),
+                                                                      Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          cachedNetworkImage(
+                                                                            height:
+                                                                                sizeHeight * 0.02,
+                                                                            imageFit:
+                                                                                BoxFit.fill,
+                                                                            width:
+                                                                                sizeWidth * 0.05,
+                                                                            color: MyAppState.mode == ThemeMode.light
+                                                                                ? AppColors.black
+                                                                                : AppColors.white,
+                                                                            cuisineImageUrl:
+                                                                                _academyDetail[index].sportImage ?? "",
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width:
+                                                                                sizeWidth * 0.01,
+                                                                          ),
                                                                           Text(
-                                                                            _academyDetail[index].status.toString(),
+                                                                            AppLocalizations.of(context)!.locale == 'en'
+                                                                                ? _academyDetail[index].academyNameEnglish.toString()
+                                                                                : _academyDetail[index].academyNameArabic.toString(),
                                                                             style:
-                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
+                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ),
-
-                                                                    ///image
-                                                                    ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              12),
-                                                                      child:
-                                                                          cachedNetworkImage(
-                                                                        height: sizeHeight *
-                                                                            0.193,
-                                                                        imageFit:
-                                                                            BoxFit.fill,
-                                                                        width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width,
-                                                                        cuisineImageUrl:
-                                                                            _academyDetail[index].academyImage![0] ??
-                                                                                "",
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: sizeHeight *
-                                                                          0.005,
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        cachedNetworkImage(
-                                                                          height:
-                                                                              sizeHeight * 0.02,
-                                                                          imageFit:
-                                                                              BoxFit.fill,
-                                                                          width:
-                                                                              sizeWidth * 0.05,
-                                                                          cuisineImageUrl:
-                                                                              _academyDetail[index].sportImage ?? "",
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              sizeWidth * 0.01,
-                                                                        ),
-                                                                        Text(
+                                                                      Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            bottom: sizeHeight *
+                                                                                0.008,
+                                                                            left:
+                                                                                sizeWidth * 0.007),
+                                                                        child:
+                                                                            Text(
                                                                           _academyDetail[index]
-                                                                              .academyNameEnglish
+                                                                              .academyLocation
                                                                               .toString(),
                                                                           style: Theme.of(context)
                                                                               .textTheme
-                                                                              .bodyMedium!
-                                                                              .copyWith(color: AppColors.black),
+                                                                              .titleSmall!
+                                                                              .copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
                                                                         ),
-                                                                      ],
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.only(
-                                                                          bottom: sizeHeight *
-                                                                              0.008,
-                                                                          left: sizeWidth *
-                                                                              0.007),
-                                                                      child:
-                                                                          Text(
-                                                                        _academyDetail[index]
-                                                                            .academyLocation
-                                                                            .toString(),
-                                                                        style: Theme.of(context)
-                                                                            .textTheme
-                                                                            .titleSmall!
-                                                                            .copyWith(color: AppColors.black),
                                                                       ),
-                                                                    ),
-                                                                  ],
+                                                                    ],
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ),
+                                                      );
+                                                    },
                                                   ),
                                                   SizedBox(
                                                     height: sizeHeight * 0.01,
@@ -525,10 +559,17 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                     0.01),
                                                     child: Align(
                                                       alignment:
-                                                          Alignment.bottomLeft,
+                                                          AppLocalizations.of(
+                                                                          context)!
+                                                                      .locale ==
+                                                                  'en'
+                                                              ? Alignment
+                                                                  .bottomLeft
+                                                              : Alignment
+                                                                  .bottomRight,
                                                       child: InkWell(
                                                         onTap: () {
-                                                          navigateToVenuesViewMore(
+                                                          navigateToAcademyViewMore(
                                                               _academyDetail);
                                                         },
                                                         child: Text(
@@ -632,153 +673,177 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
                                                                           0xffffffff))),
                                                     ),
                                                   ),
-                                                  ...List.generate(
-                                                    _pitchDetail.length > 2
-                                                        ? 1
-                                                        : _pitchDetail.length,
-                                                    (index) => InkWell(
-                                                      onTap: () {
-                                                        navigateToSports();
-                                                      },
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical:
-                                                                    sizeHeight *
-                                                                        0.01),
-                                                        child: Container(
-                                                          width:
-                                                              sizeWidth * 0.9,
-                                                          decoration:
-                                                              BoxDecoration(
+                                                  SizedBox(
+                                                    height: sizeHeight * 0.22,
+                                                  ),
+                                                  Center(
+                                                    child: Text(
+                                                      'no events available',
+                                                      // AppLocalizations.of(context)!.noAcademy,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
                                                             color: MyAppState
                                                                         .mode ==
                                                                     ThemeMode
                                                                         .light
                                                                 ? AppColors
-                                                                    .grey200
+                                                                    .black
                                                                 : AppColors
-                                                                    .containerColorW12,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        15),
+                                                                    .white,
                                                           ),
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .end,
-                                                            children: [
-                                                              Container(
-                                                                decoration: BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12)),
-                                                                child:
-                                                                    DefaultTextStyle(
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyMedium!
-                                                                      .copyWith(
-                                                                          color: MyAppState.mode == ThemeMode.light
-                                                                              ? AppColors.black
-                                                                              : AppColors.white),
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsets.symmetric(
-                                                                            horizontal: sizeWidth *
-                                                                                0.02,
-                                                                            vertical:
-                                                                                sizeHeight * 0.005),
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.spaceBetween,
-                                                                          children: [
-                                                                            Text('${AppLocalizations.of(context)!.status}:'),
-                                                                            Text(
-                                                                              _pitchDetail[index].isVerified! ? AppLocalizations.of(context)!.verified : AppLocalizations.of(context)!.inReview,
-                                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(12),
-                                                                        child:
-                                                                            cachedNetworkImage(
-                                                                          height:
-                                                                              sizeHeight * 0.193,
-                                                                          imageFit:
-                                                                              BoxFit.fill,
-                                                                          width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width,
-                                                                          cuisineImageUrl:
-                                                                              _pitchDetail[index].pitchImage.toString() ?? "",
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height: sizeHeight *
-                                                                            0.005,
-                                                                      ),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        children: [
-                                                                          cachedNetworkImage(
-                                                                            height:
-                                                                                sizeHeight * 0.02,
-                                                                            imageFit:
-                                                                                BoxFit.fill,
-                                                                            width:
-                                                                                sizeWidth * 0.05,
-                                                                            cuisineImageUrl:
-                                                                                _pitchDetail[index].sportImage.toString() ?? "",
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                                sizeWidth * 0.01,
-                                                                          ),
-                                                                          Text(_pitchDetail[index]
-                                                                              .venueName
-                                                                              .toString()),
-                                                                        ],
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsets.only(
-                                                                            bottom: sizeHeight *
-                                                                                0.008,
-                                                                            left:
-                                                                                sizeWidth * 0.007),
-                                                                        child: Text(
-                                                                            _pitchDetail[index]
-                                                                                .location!,
-                                                                            style:
-                                                                                Theme.of(context).textTheme.titleSmall),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
                                                     ),
                                                   ),
+
+                                                  ///list of academies
+                                                  // ...List.generate(
+                                                  //   _pitchDetail.length > 2
+                                                  //       ? 1
+                                                  //       : _pitchDetail.length,
+                                                  //   (index) => InkWell(
+                                                  //     onTap: () {
+                                                  //       navigateToSports();
+                                                  //     },
+                                                  //     child: Padding(
+                                                  //       padding: EdgeInsets
+                                                  //           .symmetric(
+                                                  //               vertical:
+                                                  //                   sizeHeight *
+                                                  //                       0.01),
+                                                  //       child: Container(
+                                                  //         width:
+                                                  //             sizeWidth * 0.9,
+                                                  //         decoration:
+                                                  //             BoxDecoration(
+                                                  //           color: MyAppState
+                                                  //                       .mode ==
+                                                  //                   ThemeMode
+                                                  //                       .light
+                                                  //               ? AppColors
+                                                  //                   .grey200
+                                                  //               : AppColors
+                                                  //                   .containerColorW12,
+                                                  //           borderRadius:
+                                                  //               BorderRadius
+                                                  //                   .circular(
+                                                  //                       15),
+                                                  //         ),
+                                                  //         child: Column(
+                                                  //           crossAxisAlignment:
+                                                  //               CrossAxisAlignment
+                                                  //                   .center,
+                                                  //           mainAxisAlignment:
+                                                  //               MainAxisAlignment
+                                                  //                   .end,
+                                                  //           children: [
+                                                  //             Container(
+                                                  //               decoration: BoxDecoration(
+                                                  //                   borderRadius:
+                                                  //                       BorderRadius.circular(
+                                                  //                           12)),
+                                                  //               child:
+                                                  //                   DefaultTextStyle(
+                                                  //                 style: Theme.of(
+                                                  //                         context)
+                                                  //                     .textTheme
+                                                  //                     .bodyMedium!
+                                                  //                     .copyWith(
+                                                  //                         color: MyAppState.mode == ThemeMode.light
+                                                  //                             ? AppColors.black
+                                                  //                             : AppColors.white),
+                                                  //                 child: Column(
+                                                  //                   crossAxisAlignment:
+                                                  //                       CrossAxisAlignment
+                                                  //                           .center,
+                                                  //                   mainAxisAlignment:
+                                                  //                       MainAxisAlignment
+                                                  //                           .start,
+                                                  //                   children: [
+                                                  //                     Padding(
+                                                  //                       padding: EdgeInsets.symmetric(
+                                                  //                           horizontal: sizeWidth *
+                                                  //                               0.02,
+                                                  //                           vertical:
+                                                  //                               sizeHeight * 0.005),
+                                                  //                       child:
+                                                  //                           Row(
+                                                  //                         mainAxisAlignment:
+                                                  //                             MainAxisAlignment.spaceBetween,
+                                                  //                         children: [
+                                                  //                           Text('${AppLocalizations.of(context)!.status}:'),
+                                                  //                           Text(
+                                                  //                             _pitchDetail[index].isVerified! ? AppLocalizations.of(context)!.verified : AppLocalizations.of(context)!.inReview,
+                                                  //                             style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
+                                                  //                           ),
+                                                  //                         ],
+                                                  //                       ),
+                                                  //                     ),
+                                                  //                     ClipRRect(
+                                                  //                       borderRadius:
+                                                  //                           BorderRadius.circular(12),
+                                                  //                       child:
+                                                  //                           cachedNetworkImage(
+                                                  //                         height:
+                                                  //                             sizeHeight * 0.193,
+                                                  //                         imageFit:
+                                                  //                             BoxFit.fill,
+                                                  //                         width: MediaQuery.of(context)
+                                                  //                             .size
+                                                  //                             .width,
+                                                  //                         cuisineImageUrl:
+                                                  //                             _pitchDetail[index].pitchImage.toString() ?? "",
+                                                  //                       ),
+                                                  //                     ),
+                                                  //                     SizedBox(
+                                                  //                       height: sizeHeight *
+                                                  //                           0.005,
+                                                  //                     ),
+                                                  //                     Row(
+                                                  //                       mainAxisAlignment:
+                                                  //                           MainAxisAlignment.center,
+                                                  //                       children: [
+                                                  //                         cachedNetworkImage(
+                                                  //                           height:
+                                                  //                               sizeHeight * 0.02,
+                                                  //                           imageFit:
+                                                  //                               BoxFit.fill,
+                                                  //                           width:
+                                                  //                               sizeWidth * 0.05,
+                                                  //                           cuisineImageUrl:
+                                                  //                               _pitchDetail[index].sportImage.toString() ?? "",
+                                                  //                         ),
+                                                  //                         SizedBox(
+                                                  //                           width:
+                                                  //                               sizeWidth * 0.01,
+                                                  //                         ),
+                                                  //                         Text(_pitchDetail[index]
+                                                  //                             .venueName
+                                                  //                             .toString()),
+                                                  //                       ],
+                                                  //                     ),
+                                                  //                     Padding(
+                                                  //                       padding: EdgeInsets.only(
+                                                  //                           bottom: sizeHeight *
+                                                  //                               0.008,
+                                                  //                           left:
+                                                  //                               sizeWidth * 0.007),
+                                                  //                       child: Text(
+                                                  //                           _pitchDetail[index]
+                                                  //                               .location!,
+                                                  //                           style:
+                                                  //                               Theme.of(context).textTheme.titleSmall),
+                                                  //                     ),
+                                                  //                   ],
+                                                  //                 ),
+                                                  //               ),
+                                                  //             ),
+                                                  //           ],
+                                                  //         ),
+                                                  //       ),
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
                                                   SizedBox(
                                                     height: sizeHeight * 0.02,
                                                   ),
@@ -925,12 +990,12 @@ class _PitchOwnerMainHomeState extends State<PitchOwnerMainHome> {
           );
   }
 
-  void navigateToVenuesViewMore(event) {
+  void navigateToAcademyViewMore(event) {
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (_) =>
-                ViewMoreVenueScreen(venues: event as List<AcademyModel>)));
+                ViewMoreAcademyScreen(academy: event as List<AcademyModel>)));
     // Navigator.pushNamed(context, RouteNames.viewMoreVenue, arguments: event);
   }
 

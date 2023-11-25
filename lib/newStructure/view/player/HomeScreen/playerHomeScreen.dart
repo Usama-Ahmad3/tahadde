@@ -1,5 +1,6 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
@@ -10,6 +11,7 @@ import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import '../../../app_colors/app_colors.dart';
+import 'cart_screen.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
   int index;
@@ -59,9 +61,17 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
         builder: (BuildContext cntext) {
           return AlertDialog(
             elevation: 2,
-            backgroundColor: AppColors.grey200,
+            backgroundColor: MyAppState.mode == ThemeMode.light
+                ? AppColors.grey200
+                : AppColors.darkTheme,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            title: Text(AppLocalizations.of(context)!.areYouSure),
+            title: Text(
+              AppLocalizations.of(context)!.areYouSure,
+              style: TextStyle(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? AppColors.black
+                      : AppColors.white),
+            ),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
               style: const TextStyle(color: AppColors.appThemeColor),
@@ -125,6 +135,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
   final page = [
     const HomeScreenView(),
     PlayerBookingScreen(bookingTag: false),
+    CartScreen(),
     SettingsScreen(bookingTag: false),
     // ignore: prefer_const_constructors
     ProfileDetailScreen()
@@ -172,7 +183,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   SalomonBottomBarItem(
                     icon: SizedBox(
                       height: 23,
-                      width: 23,
+                      width: 22,
                       child: Image.asset(
                         'assets/images/booking2.png',
                         color: AppColors.grey,
@@ -184,10 +195,30 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     ),
                     activeIcon: SizedBox(
                       height: 23,
-                      width: 23,
+                      width: 22,
                       child: Image.asset(
                         'assets/images/file.png',
                         color: AppColors.white,
+                      ),
+                    ),
+                    selectedColor: AppColors.appThemeColor,
+                    unselectedColor: AppColors.grey,
+                  ),
+                  SalomonBottomBarItem(
+                    icon: SizedBox(
+                        height: 23,
+                        width: 22,
+                        child: Icon(Icons.add_shopping_cart)),
+                    title: Text(
+                      AppLocalizations.of(context)!.cart,
+                      style: TextStyle(color: AppColors.white),
+                    ),
+                    activeIcon: SizedBox(
+                      height: 23,
+                      width: 22,
+                      child: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
                       ),
                     ),
                     selectedColor: AppColors.appThemeColor,
@@ -213,7 +244,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                       Icons.person_2_outlined,
                     ),
                     title: Text(
-                      AppLocalizations.of(context)!.personalDetail,
+                      AppLocalizations.of(context)!.account,
                       style: TextStyle(color: AppColors.white),
                     ),
                     activeIcon: Icon(

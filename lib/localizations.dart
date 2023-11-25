@@ -34,6 +34,10 @@ class AppLocalizations {
     return Intl.message('tournament', name: 'tournament');
   }
 
+  String get addToCart {
+    return Intl.message('Add To Cart', name: 'addToCart');
+  }
+
   String get bookPitch {
     return Intl.message('bookPitch', name: 'bookPitch');
   }
@@ -50,6 +54,35 @@ class AppLocalizations {
     return Intl.message('Academy List', name: 'academyList');
   }
 
+  String get addReview {
+    return Intl.message('add your review', name: 'addReview');
+  }
+
+  String get notBooked {
+    return Intl.message("you haven't book any session from this academy",
+        name: 'notBooked');
+  }
+
+  String get editAcademy {
+    return Intl.message("Edit Academy", name: 'editAcademy');
+  }
+
+  String get onGoing {
+    return Intl.message("On Going", name: 'onGoing');
+  }
+
+  String get complete {
+    return Intl.message("Completed", name: 'complete');
+  }
+
+  String get cart {
+    return Intl.message("Cart", name: 'cart');
+  }
+
+  String get noReviews {
+    return Intl.message('No Reviews Available', name: 'noReviews');
+  }
+
   String get academyOnly {
     return Intl.message('Academy', name: 'academyOnly');
   }
@@ -60,6 +93,18 @@ class AppLocalizations {
 
   String get loginRequired {
     return Intl.message('login required to see booking', name: 'loginRequired');
+  }
+
+  String get add {
+    return Intl.message('Add', name: 'add');
+  }
+
+  String get bookedFor {
+    return Intl.message('Booked for', name: 'bookedFor');
+  }
+
+  String get minuteSlot {
+    return Intl.message('mins slot', name: 'minuteSlot');
   }
 
   String get academyBook {
@@ -277,7 +322,7 @@ class AppLocalizations {
   }
 
   String get bookingGround {
-    return Intl.message('Booking a Academy', name: 'bookAcademy');
+    return Intl.message('Book Your Session', name: 'bookAcademy');
   }
 
   String get dateTime {
@@ -337,7 +382,7 @@ class AppLocalizations {
   }
 
   String get proceed {
-    return Intl.message('proceed', name: 'proceed');
+    return Intl.message('Proceed', name: 'proceed');
   }
 
   String get selectPaymentMethod {
@@ -462,7 +507,7 @@ class AppLocalizations {
   }
 
   String get myBooking {
-    return Intl.message('myBooking', name: 'myBooking');
+    return Intl.message('Bookings', name: 'myBooking');
   }
 
   String get savePaymentMethod {
@@ -571,6 +616,27 @@ class AppLocalizations {
 
   String get editProfile {
     return Intl.message('editProfile', name: 'editProfile');
+  }
+
+  String get thankyouAcademy {
+    return Intl.message('Thank you for creating academy',
+        name: 'thankyouAcademy');
+  }
+
+  String get underReview {
+    return Intl.message('It is under review.', name: 'underReview');
+  }
+
+  String get notify {
+    return Intl.message('We will notify you once it’s done.', name: 'notify');
+  }
+
+  String get uploadPDF {
+    return Intl.message('Upload Pdf', name: 'uploadPDF');
+  }
+
+  String get mins {
+    return Intl.message('mins', name: 'mins');
   }
 
   String get changePhoto {
@@ -866,11 +932,33 @@ class AppLocalizations {
   }
 
   String get booking {
-    return Intl.message('booking', name: 'booking');
+    return Intl.message('Bookings', name: 'booking');
+  }
+
+  String get bookingDate {
+    return Intl.message('Booking Date', name: 'bookingDate');
+  }
+
+  String get pleaseCreateProper {
+    return Intl.message('Please create session properly ',
+        name: 'pleaseCreateProper');
+  }
+
+  String get forr {
+    return Intl.message('for', name: 'forr');
+  }
+
+  String get atLeast {
+    return Intl.message('Please create session for 1 at least one day',
+        name: 'atLeast');
+  }
+
+  String get youCant {
+    return Intl.message("You can't edit on going bookings", name: 'youCant');
   }
 
   String get account {
-    return Intl.message('account', name: 'account');
+    return Intl.message('Account', name: 'account');
   }
 
   String get bankDetails {
@@ -1561,7 +1649,7 @@ class AppLocalizations {
   }
 
   String get slot {
-    return Intl.message('slot', name: 'slot');
+    return Intl.message('Slots', name: 'slot');
   }
 
   String get pleaseenterTeamName {
@@ -1670,6 +1758,18 @@ class AppLocalizations {
 
   String get choosedateofbirth {
     return Intl.message('choosedateofbirth', name: 'choosedateofbirth');
+  }
+
+  String get bookAgain {
+    return Intl.message(' Book Again', name: 'bookAgain');
+  }
+
+  String get bookedOn {
+    return Intl.message('Booked on', name: 'bookedOn');
+  }
+
+  String get rebookThis {
+    return Intl.message('ReBook this session for', name: 'rebookThis');
   }
 
   String get myReviewsRatings {

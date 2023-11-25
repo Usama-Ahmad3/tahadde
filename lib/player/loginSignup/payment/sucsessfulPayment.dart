@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:lottie/lottie.dart';
@@ -71,7 +72,9 @@ class _PaymentSuccess extends State<PaymentSuccess> {
 
     return _isLoading
         ? Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: MyAppState.mode == ThemeMode.light
+                ? Colors.white
+                : AppColors.darkTheme,
             bottomNavigationBar: Container(
               height: sizeheight * .1,
               width: sizewidth,
@@ -138,7 +141,9 @@ class _PaymentSuccess extends State<PaymentSuccess> {
             ? WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
-                    backgroundColor: Colors.white,
+                    backgroundColor: MyAppState.mode == ThemeMode.light
+                        ? AppColors.white
+                        : AppColors.darkTheme,
                     body: SizedBox(
                       height: sizeheight,
                       width: sizewidth,
@@ -151,8 +156,13 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                             child: Container(),
                           ),
                           // price["status"] == "Success"?
-                          Lottie.asset('assets/lottiefiles/success.json',
-                              height: sizeheight * .4, width: sizewidth * .7),
+                          SizedBox(
+                            child: Lottie.asset(
+                              'assets/lottiefiles/successe.json',
+                              height: sizeheight * .4,
+                              width: sizewidth * .7,
+                            ),
+                          ),
                           // : Lottie.asset(
                           //     'assets/lottiefiles/pandingpayment.json',
                           //     height: sizeheight * .4,
@@ -166,7 +176,10 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                             child: Text(
                               AppLocalizations.of(context)!.paymentSuccessfully,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(color: Color(0XFF898989)),
+                              style: TextStyle(
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? Color(0XFF898989)
+                                      : AppColors.white),
                             ),
                           ),
                           Flexible(
@@ -180,7 +193,9 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                                 onTaped: () {
                                   navigateToDetail();
                                 },
-                                title: Text('Booking Summary',
+                                title: Text(
+                                    AppLocalizations.of(context)!
+                                        .bookingSummary,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!

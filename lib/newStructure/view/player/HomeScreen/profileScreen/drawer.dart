@@ -65,9 +65,17 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
         builder: (BuildContext context) {
           return AlertDialog(
             elevation: 2,
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: MyAppState.mode == ThemeMode.light
+                ? AppColors.grey200
+                : AppColors.darkTheme,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            title: Text(AppLocalizations.of(context)!.logout),
+            title: Text(
+              AppLocalizations.of(context)!.logout,
+              style: TextStyle(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? AppColors.black
+                      : AppColors.white),
+            ),
             content: Text(
               description,
               style: const TextStyle(color: AppColors.appThemeColor),
@@ -349,7 +357,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                       tileColor:
                                           MyAppState.mode == ThemeMode.light
                                               ? AppColors.grey200
-                                              : AppColors.containerColorB,
+                                              : AppColors.containerColorW12,
                                       shape: OutlineInputBorder(
                                           borderSide: BorderSide(
                                               color:
@@ -378,19 +386,19 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                     : AppColors.white,
                                                 fontSize: 14),
                                       ),
-                                      subtitle: Text(
-                                        subtitle[index].length > 24
-                                            ? "${subtitle[index].toString().substring(0, 25)}..."
-                                            : subtitle[index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.black
-                                                    : AppColors.white),
-                                      ),
+                                      // subtitle: Text(
+                                      //   subtitle[index].length > 24
+                                      //       ? "${subtitle[index].toString().substring(0, 25)}..."
+                                      //       : subtitle[index],
+                                      //   style: Theme.of(context)
+                                      //       .textTheme
+                                      //       .titleSmall!
+                                      //       .copyWith(
+                                      //           color: MyAppState.mode ==
+                                      //                   ThemeMode.light
+                                      //               ? AppColors.black
+                                      //               : AppColors.white),
+                                      // ),
                                       trailing: Icon(
                                         AppLocalizations.of(context)!.locale ==
                                                 'en'
@@ -434,7 +442,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                       tileColor:
                                           MyAppState.mode == ThemeMode.light
                                               ? AppColors.grey200
-                                              : AppColors.containerColorB,
+                                              : AppColors.containerColorW12,
                                       shape: OutlineInputBorder(
                                           borderSide: BorderSide(
                                               color:
@@ -463,19 +471,19 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                     : AppColors.white,
                                                 fontSize: 14),
                                       ),
-                                      subtitle: Text(
-                                        ownerSubtitle[index].length > 24
-                                            ? "${ownerSubtitle[index].toString().substring(0, 25)}..."
-                                            : ownerSubtitle[index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.black
-                                                    : AppColors.white),
-                                      ),
+                                      // subtitle: Text(
+                                      //   ownerSubtitle[index].length > 24
+                                      //       ? "${ownerSubtitle[index].toString().substring(0, 25)}..."
+                                      //       : ownerSubtitle[index],
+                                      //   style: Theme.of(context)
+                                      //       .textTheme
+                                      //       .titleSmall!
+                                      //       .copyWith(
+                                      //           color: MyAppState.mode ==
+                                      //                   ThemeMode.light
+                                      //               ? AppColors.black
+                                      //               : AppColors.white),
+                                      // ),
                                       trailing: Icon(
                                         AppLocalizations.of(context)!.locale ==
                                                 'en'
@@ -502,7 +510,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                             titleAlignment: ListTileTitleAlignment.center,
                             tileColor: MyAppState.mode == ThemeMode.light
                                 ? AppColors.grey200
-                                : AppColors.containerColorB,
+                                : AppColors.containerColorW12,
                             onTap: () {
                               BottomSheett.settingModalBottomSheet(
                                   context, height);
@@ -560,7 +568,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                     tileColor:
                                         MyAppState.mode == ThemeMode.light
                                             ? AppColors.grey200
-                                            : AppColors.containerColorB,
+                                            : AppColors.containerColorW12,
                                     onTap: index == 0
                                         ? () {
                                             privacyPolicy(
@@ -617,7 +625,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                             titleAlignment: ListTileTitleAlignment.center,
                             tileColor: MyAppState.mode == ThemeMode.light
                                 ? AppColors.grey200
-                                : AppColors.containerColorB,
+                                : AppColors.containerColorW12,
                             shape: OutlineInputBorder(
                                 borderSide: BorderSide(
                                     color: AppColors.containerColorW12),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/viewMoreBookPitch.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/view_more_book_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
@@ -8,6 +8,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../utils/utils.dart';
+import 'groundDetail/carousel.dart';
 
 class AcademyList extends StatefulWidget {
   var academyDetail;
@@ -89,7 +90,7 @@ class _AcademyListState extends State<AcademyList> {
       decoration: BoxDecoration(
         color: mode == ThemeMode.light
             ? const Color(0xffffffff)
-            : const Color(0xff5A5C60),
+            : const Color(0xff373737),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(24 * fem),
             topRight: Radius.circular(24 * fem)),
@@ -107,7 +108,7 @@ class _AcademyListState extends State<AcademyList> {
                         InkWell(
                           onTap: () {
                             var details = {"bool": false};
-                            navigateToViewMorePitch(details);
+                            navigateToViewMoreAcademy(details);
                           },
                           child: Text(
                             widget.text,
@@ -126,7 +127,7 @@ class _AcademyListState extends State<AcademyList> {
                         InkWell(
                           onTap: () {
                             var details = {"bool": false};
-                            navigateToViewMorePitch(details);
+                            navigateToViewMoreAcademy(details);
                           },
                           child: Text(
                             AppLocalizations.of(context)!.viewAll,
@@ -173,7 +174,8 @@ class _AcademyListState extends State<AcademyList> {
                           children: [
                             Center(
                               child: Text(
-                                AppLocalizations.of(context)!.noAcademy,
+                                'no events available',
+                                // AppLocalizations.of(context)!.noAcademy,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -229,7 +231,7 @@ class _AcademyListState extends State<AcademyList> {
                           decoration: BoxDecoration(
                             color: mode == ThemeMode.light
                                 ? const Color(0xffffffff)
-                                : const Color(0xff373737),
+                                : AppColors.containerColorW12,
                             borderRadius: BorderRadius.circular(15 * fem),
                             boxShadow: [
                               BoxShadow(
@@ -251,18 +253,10 @@ class _AcademyListState extends State<AcademyList> {
                                     topLeft: Radius.circular(15 * fem),
                                     topRight: Radius.circular(15 * fem),
                                   ),
-                                  child: cachedNetworkImage(
-                                    cuisineImageUrl: widget
-                                            .academyDetail[index]
-                                                ["academy_image"]
-                                            .isNotEmpty
-                                        ? widget.academyDetail[index]
-                                            ["academy_image"][0]
-                                        : Container(),
-                                    height: 150,
-                                    width: fem,
-                                    imageFit: BoxFit.fitWidth,
-                                    errorFit: BoxFit.fitHeight,
+                                  child: Carousel(
+                                    image: widget.academyDetail[index]
+                                        ['academy_image'],
+                                    storyView: false,
                                   ),
                                 ),
                               ),
@@ -307,7 +301,9 @@ class _AcademyListState extends State<AcademyList> {
                                       fontSize: 13 * ffem,
                                       fontWeight: FontWeight.w400,
                                       height: 1.3846153846 * ffem / fem,
-                                      color: AppColors.darkTheme,
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.black
+                                          : AppColors.white,
                                     ),
                                   ),
                                 ],
@@ -331,11 +327,11 @@ class _AcademyListState extends State<AcademyList> {
     Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
   }
 
-  void navigateToViewMorePitch(Map detail) {
+  void navigateToViewMoreAcademy(Map detail) {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => ViewMoreBookPitchScreen(pitchType: detail)));
+            builder: (_) => ViewMoreBookAcademyScreen(pitchType: detail)));
   }
 
   void navigateToLogin() {

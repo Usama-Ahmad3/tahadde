@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../../constant.dart';
 import '../../../../../../../drop_down_file.dart';
 import '../../../../../../../localizations.dart';
-import '../groundDetail.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 
 class BookingShimmer {
   static bookingShimmer(width, height, context) {
@@ -25,11 +24,23 @@ class BookingShimmer {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    FaIcon(
-                      AppLocalizations.of(context)!.locale == 'en'
-                          ? FontAwesomeIcons.arrowsTurnRight
-                          : FontAwesomeIcons.arrowsTurnRight,
-                      color: Colors.white,
+                    Padding(
+                      padding: EdgeInsets.only(left: height * 0.01),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.appThemeColor),
+                            height: height * 0.032,
+                            child: Image.asset(
+                              'assets/images/back.png',
+                              color: AppColors.white,
+                              isAntiAlias: true,
+                            )),
+                      ),
                     ),
                     SizedBox(
                       width: width * 0.12,
@@ -70,7 +81,6 @@ class BookingShimmer {
                 ),
               ),
             ),
-
             SizedBox(
               height: height * 0.032,
             ),
@@ -93,153 +103,52 @@ class BookingShimmer {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ///ground List
-                      Text('Ground List',
-                          style: TextStyle(fontSize: height * 0.03)),
-                      ...List.generate(
-                          3,
-                          (index) => Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.01,
-                                    vertical: height * 0.01),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white70,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Colors.black12,
-                                          spreadRadius: 1,
-                                          offset: Offset(0, 1),
-                                          blurStyle: BlurStyle.outer,
-                                        )
-                                      ]),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        width: width * 0.01,
-                                      ),
-                                      SizedBox(
-                                        width: width * 0.03,
-                                      ),
-                                      const Text(''),
-                                      SizedBox(
-                                        width: width * 0.3,
-                                      ),
-                                      Checkbox(
-                                          shape: const CircleBorder(),
-                                          activeColor: Colors.greenAccent,
-                                          value: true,
-                                          onChanged: (onChanged) {}),
-                                    ],
-                                  ),
-                                ),
-                              )),
+                      // Text('Ground List',
+                      //     style: TextStyle(fontSize: height * 0.03)),
+                      // ...List.generate(
+                      //     3,
+                      //     (index) => Padding(
+                      //           padding: EdgeInsets.symmetric(
+                      //               horizontal: width * 0.01,
+                      //               vertical: height * 0.01),
+                      //           child: Container(
+                      //             decoration: BoxDecoration(
+                      //                 color: Colors.white70,
+                      //                 borderRadius: BorderRadius.circular(10),
+                      //                 boxShadow: const [
+                      //                   BoxShadow(
+                      //                     color: Colors.black12,
+                      //                     spreadRadius: 1,
+                      //                     offset: Offset(0, 1),
+                      //                     blurStyle: BlurStyle.outer,
+                      //                   )
+                      //                 ]),
+                      //             child: Row(
+                      //               crossAxisAlignment:
+                      //                   CrossAxisAlignment.center,
+                      //               mainAxisAlignment:
+                      //                   MainAxisAlignment.spaceBetween,
+                      //               children: [
+                      //                 SizedBox(
+                      //                   width: width * 0.01,
+                      //                 ),
+                      //                 SizedBox(
+                      //                   width: width * 0.03,
+                      //                 ),
+                      //                 const Text(''),
+                      //                 SizedBox(
+                      //                   width: width * 0.3,
+                      //                 ),
+                      //                 Checkbox(
+                      //                     shape: const CircleBorder(),
+                      //                     activeColor: Colors.greenAccent,
+                      //                     value: true,
+                      //                     onChanged: (onChanged) {}),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         )),
 
-                      ///select area,player
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.02),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppLocalizations.of(context)!.locale == "en"
-                                ? SizedBox(
-                                    height: 40,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.all(10.0),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            border: Border.all(
-                                              color: Colors.blueGrey,
-                                              style: BorderStyle.solid,
-                                            ),
-                                          ),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .perPlayer),
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.all(10.0),
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            border: Border.all(
-                                              color: Colors.blueGrey,
-                                              style: BorderStyle.solid,
-                                            ),
-                                          ),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .perVenue),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.01,
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                : SizedBox(
-                                    height: 40,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(10.0),
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            border: Border.all(
-                                              color: Colors.blueGrey,
-                                              style: BorderStyle.solid,
-                                            ),
-                                          ),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .perVenue),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.01,
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.all(10.0),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            border: Border.all(
-                                              color: Colors.blueGrey,
-                                              style: BorderStyle.solid,
-                                            ),
-                                          ),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .perPlayer),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                            SizedBox(
-                              width: width * .35,
-                            ),
-                          ],
-                        ),
-                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: width * .04, vertical: height * 0.01),
@@ -355,6 +264,11 @@ class BookingShimmer {
                             );
                           })
                         ],
+                      ),
+
+                      ///select area,player
+                      SizedBox(
+                        height: height * 0.05,
                       ),
 
                       ///Book Button

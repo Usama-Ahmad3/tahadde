@@ -9,8 +9,8 @@ class ProfileShimmer {
   static buildShimmer(sizeWidth, sizeHeight, context) {
     return Scaffold(
       body: Shimmer.fromColors(
-        baseColor: Colors.grey.shade300,
-        highlightColor: Colors.grey.shade100,
+        baseColor: Colors.grey,
+        highlightColor: Colors.grey,
         child: SingleChildScrollView(
           child: Stack(
             children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/manageSlotScreens/academy_detail.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/enterYourDetailPitch.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
@@ -17,9 +17,9 @@ import '../modelClass/bookPitchModelClass.dart';
 import '../modelClass/pramotion_model_class.dart';
 import '../modelClass/teamModelClass.dart';
 import '../modelClass/yourTahaddiModelClass.dart';
-import '../newStructure/view/owner/home_screens/home_page/pitchDetailScreen2.dart';
+import '../newStructure/view/owner/home_screens/home_page/academy_detail_screen2.dart';
 import '../newStructure/view/owner/home_screens/home_page/select_sport0.dart';
-import '../newStructure/view/player/HomeScreen/Home/groundDetail/bookPitchScreens/BookingScreen.dart';
+import '../newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/BookingScreen.dart';
 import '../newStructure/view/player/HomeScreen/NotificationScreenBoth/notification.dart';
 import '../pitchOwner/addNewPitch/addNewGround.dart';
 import '../pitchOwner/addNewPitch/addNewGroundSecond.dart';
@@ -289,7 +289,7 @@ class RouterPage {
       case RouteNames.pitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => PitchDetailScreen(detail: detail as SportsModel));
+            builder: (_) => AcademyDetailScreen(detail: detail as SportsModel));
       case RouteNames.viewMoreowner:
         var event = settings.arguments;
         return MaterialPageRoute(
@@ -372,10 +372,10 @@ class RouterPage {
         var deatil = settings.arguments;
         return MaterialPageRoute(
             builder: (_) => RejectPitch(pitchDetail: deatil as Map));
-      case RouteNames.enterDetailPitch:
+      case RouteNames.enterDetailAcademy:
         var deatil = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EnterDetailPitchScreen(detail: deatil));
+            builder: (_) => EnterDetailAcademyScreen(detail: deatil));
       case RouteNames.verifiedPitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
@@ -448,9 +448,9 @@ class RouterPage {
         return MaterialPageRoute(builder: (_) => const PreferredSports());
       case RouteNames.sportExperience:
         return MaterialPageRoute(builder: (_) => const SportExperience());
-      case RouteNames.editPitchDetail:
+      case RouteNames.editAcademyDetail:
         return MaterialPageRoute(
-            builder: (_) => EditPitchDetailScreen(
+            builder: (_) => EditAcademyDetailScreen(
                   detail: settings.arguments,
                 ));
       case RouteNames.venueDetailScreen:

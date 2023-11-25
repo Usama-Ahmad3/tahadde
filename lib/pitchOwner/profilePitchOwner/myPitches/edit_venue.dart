@@ -634,7 +634,7 @@ class _EditVenuesState extends State<EditVenues> {
       "venueType": venueType,
       "detail": detail
     };
-    Navigator.pushNamed(context, RouteNames.editPitchDetail,
+    Navigator.pushNamed(context, RouteNames.editAcademyDetail,
         arguments: pitchDetail);
   }
 

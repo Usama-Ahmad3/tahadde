@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tahaddi/modelClass/player_rating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetailShimmer.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/view_your_review.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_launcher/map_launcher.dart' hide MapType;
@@ -41,6 +43,7 @@ class GroundDetailState extends State<GroundDetail>
   final NetworkCalls _networkCalls = NetworkCalls();
   late SharedPreferences pref;
   bool isStateLoading = true;
+  List<PlayerRating> rating = [];
   var isDialOpen = ValueNotifier<bool>(false);
   bool _auth = false;
   List<int> listMaxPlayer = [];
@@ -55,7 +58,7 @@ class GroundDetailState extends State<GroundDetail>
 
   favorite(bool favoriteState) async {
     var detail = {
-      "pitch_id": widget.detail["pitchId"].toString(),
+      "pitch_id": widget.detail["academy_id"].toString(),
       "is_favourite": favoriteState
     };
     await _networkCalls.favorite(
@@ -91,6 +94,30 @@ class GroundDetailState extends State<GroundDetail>
                 LatLng(widget.detail['latitude']!, widget.detail['longitude']!),
           ));
         }));
+  }
+
+  loadingRating() async {
+    await _networkCalls.ratingGetForPlayer(
+      id: widget.detail["academy_id"].toString(),
+      onSuccess: (msg) {
+        setState(() {
+          for (int i = 0; i < msg.length; i++) {
+            rating.add(PlayerRating.fromJson(msg[i]));
+          }
+          isStateLoading = false;
+          // rating = msg;
+          print("rating$rating");
+        });
+      },
+      onFailure: (msg) {
+        setState(() {
+          isStateLoading = false;
+        });
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
   }
 
   openMapsSheet(context) async {
@@ -154,7 +181,7 @@ class GroundDetailState extends State<GroundDetail>
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
-        isStateLoading = false;
+        loadingRating();
         // venueDetail();
         setStateFun();
       } else {
@@ -305,16 +332,23 @@ class GroundDetailState extends State<GroundDetail>
                       pinned: true,
                       centerTitle: false,
                       expandedHeight: 200.0,
-                      leading: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: SizedBox(
-                            height: height * 0.03,
-                            child: Image.asset(
-                              'assets/images/back.png',
-                              color: AppColors.white,
-                            )),
+                      leading: Padding(
+                        padding: EdgeInsets.only(left: height * 0.01),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.appThemeColor),
+                              height: height * 0.032,
+                              child: Image.asset(
+                                'assets/images/back.png',
+                                color: AppColors.white,
+                                isAntiAlias: true,
+                              )),
+                        ),
                       ),
                       leadingWidth: width * 0.13,
                       backgroundColor: AppColors.transparent,
@@ -368,11 +402,18 @@ class GroundDetailState extends State<GroundDetail>
                                                   fontFamily: "Poppins",
                                                   decoration:
                                                       TextDecoration.none),
-                                              gradient: LinearGradient(colors: [
-                                                Colors.black38,
-                                                Colors.black45,
-                                                AppColors.containerColorB54
-                                              ]),
+                                              gradient: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? LinearGradient(colors: [
+                                                      Colors.black38,
+                                                      Colors.black45,
+                                                      AppColors
+                                                          .containerColorB54
+                                                    ])
+                                                  : LinearGradient(colors: [
+                                                      Colors.white,
+                                                      Colors.white,
+                                                    ]),
                                             )
                                           : SizedBox(
                                               height: height * 0.028,
@@ -575,7 +616,9 @@ class GroundDetailState extends State<GroundDetail>
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              navigateToReviews();
+                                              navigateToReviews(widget
+                                                  .detail['academy_id']
+                                                  .toString());
                                             },
                                             child: Text(
                                               AppLocalizations.of(context)!
@@ -597,37 +640,59 @@ class GroundDetailState extends State<GroundDetail>
                                       SizedBox(
                                         height: height * 0.015,
                                       ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.amberAccent,
-                                            size: height * 0.04,
-                                          ),
-                                          SizedBox(
-                                            width: width * 0.01,
-                                          ),
-                                          Text('4.8 ',
+                                      rating.isNotEmpty
+                                          ? Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Colors.amberAccent,
+                                                  size: height * 0.04,
+                                                ),
+                                                SizedBox(
+                                                  width: width * 0.01,
+                                                ),
+                                                Text(
+                                                    rating[0].rating.toString(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium!
+                                                        .copyWith(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? AppColors
+                                                                    .black
+                                                                : AppColors
+                                                                    .white)),
+                                                Text(
+                                                    "(${rating.length.toString()})",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? AppColors.grey
+                                                                    .withOpacity(
+                                                                        0.5)
+                                                                : AppColors
+                                                                    .white)),
+                                              ],
+                                            )
+                                          : Text(
+                                              AppLocalizations.of(context)!
+                                                  .noReviews,
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .titleMedium!
+                                                  .titleSmall!
                                                   .copyWith(
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
                                                           ? AppColors.black
                                                           : AppColors.white)),
-                                          Text('(810)',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall!
-                                                  .copyWith(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? AppColors.grey
-                                                              .withOpacity(0.5)
-                                                          : AppColors.white)),
-                                        ],
-                                      ),
                                       SizedBox(
                                         height: height * 0.02,
                                       ),
@@ -946,7 +1011,12 @@ class GroundDetailState extends State<GroundDetail>
     Navigator.pushNamed(context, RouteNames.login);
   }
 
-  void navigateToReviews() {
-    Navigator.pushNamed(context, RouteNames.rate);
+  void navigateToReviews(String id) {
+    // Navigator.pushNamed(context, RouteNames.rate);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => YourReviews(academyId: id),
+        ));
   }
 }

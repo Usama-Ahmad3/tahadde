@@ -116,26 +116,13 @@ class HomeScreenViewState extends State<HomeScreenView> {
           child: SingleChildScrollView(
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                  color: MyAppState.mode == ThemeMode.light
+                      ? Colors.white
+                      : AppColors.darkTheme,
+                  borderRadius: BorderRadius.circular(20)),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Material(
-                        child: Text(
-                          'Recent Search',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ),
-                      CloseButton(
-                        onPressed: () {
-                          removeOverlay();
-                        },
-                      ),
-                    ],
-                  ),
                   Wrap(
                     children: [
                       ...List.generate(
@@ -144,41 +131,62 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                   ? 2
                                   : showHistory!.length
                               : 0,
-                          (index) => InkWell(
-                                onTap: () async {
-                                  searchController.text = showHistory![index];
-                                  setState(() {});
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.02,
-                                      vertical: height * 0.004),
-                                  child: Chip(
-                                      avatar: CircleAvatar(
-                                          radius: 20,
+                          (index) => Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                    onTap: () async {
+                                      searchController.text =
+                                          showHistory![index];
+                                      setState(() {});
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: width * 0.02,
+                                          vertical: height * 0.004),
+                                      child: Chip(
+                                          avatar: CircleAvatar(
+                                              radius: 20,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              child: Image.asset(
+                                                  'assets/images/T.png')),
                                           backgroundColor: Colors.transparent,
-                                          child: Image.asset(
-                                              'assets/images/T.png')),
-                                      backgroundColor: Colors.transparent,
-                                      elevation: 2,
-                                      padding: const EdgeInsets.all(5),
-                                      label: Text(
-                                        showHistory![index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      )),
-                                ),
+                                          elevation: 2,
+                                          padding: const EdgeInsets.all(5),
+                                          label: Text(
+                                            showHistory![index],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          )),
+                                    ),
+                                  ),
+                                  CloseButton(
+                                    onPressed: () {
+                                      removeOverlay();
+                                    },
+                                  ),
+                                ],
                               )),
                     ],
                   ),
                   SizedBox(
                     height: height * 0.016,
                   ),
-                  Material(
-                    child: Text(
-                      AppLocalizations.of(context)!.search,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.025, vertical: height * 0.01),
+                    child: Material(
+                      color: AppColors.transparent,
+                      child: Text(
+                        AppLocalizations.of(context)!.search,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? AppColors.black
+                                : AppColors.white),
+                      ),
                     ),
                   ),
                   Wrap(
@@ -260,7 +268,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                     .textTheme
                                                     .bodyMedium!
                                                     .copyWith(
-                                                        color: Colors.black),
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? Colors.black
+                                                            : AppColors.white),
                                               )),
                                         ),
                                       )
@@ -327,8 +339,12 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           _academyModel[index][
                                                                   "academy_image"]
                                                               [0])),
-                                                  backgroundColor:
-                                                      Colors.transparent,
+                                                  backgroundColor: MyAppState
+                                                              .mode ==
+                                                          ThemeMode.light
+                                                      ? Colors.transparent
+                                                      : AppColors
+                                                          .containerColorW12,
                                                   elevation: 2,
                                                   padding:
                                                       const EdgeInsets.all(10),
@@ -345,8 +361,13 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                         .textTheme
                                                         .bodyMedium!
                                                         .copyWith(
-                                                            color:
-                                                                Colors.black),
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? Colors.black
+                                                                : AppColors
+                                                                    .white),
                                                   )),
                                             ),
                                           )
@@ -400,7 +421,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               child: Image.network(
                                                   _academyModel[index]
                                                       ["academy_image"][0])),
-                                          backgroundColor: Colors.transparent,
+                                          backgroundColor:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? Colors.transparent
+                                                  : AppColors.containerColorW12,
                                           elevation: 2,
                                           padding: const EdgeInsets.all(10),
                                           label: Text(
@@ -414,7 +438,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!
-                                                .copyWith(color: Colors.black),
+                                                .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? Colors.black
+                                                        : AppColors.white),
                                           )),
                                     ),
                                   ),
@@ -636,9 +664,13 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                     suffixIcon: FontAwesomeIcons.close,
                                     searchTap: InkWell(
                                       onTap: () {
-                                        removeOverlay();
-                                        searchFlag = !searchFlag;
-                                        searchController.clear();
+                                        if (searchController.text.isNotEmpty) {
+                                          searchController.clear();
+                                        } else {
+                                          removeOverlay();
+                                          searchFlag = !searchFlag;
+                                          searchController.clear();
+                                        }
                                         setState(() {});
                                       },
                                       child: const Icon(FontAwesomeIcons.close),
@@ -1164,6 +1196,9 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               ? academyModel != null &&
                                                       academyModel.isNotEmpty
                                                   ? AcademyList(
+
+                                                      ///Just Remove To Proceed
+                                                      empty: true,
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .innovative,
@@ -1171,15 +1206,20 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           academyModel,
                                                       searchflag: searchFlag)
                                                   : AcademyList(
+
+                                                      ///Just Remove To Proceed
+                                                      empty: true,
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .innovative,
                                                       academyDetail:
                                                           academyModel,
-                                                      empty: true,
                                                       searchflag: searchFlag)
                                               : _academyModel != null
                                                   ? AcademyList(
+
+                                                      ///Just Remove To Proceed
+                                                      empty: true,
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .innovative,

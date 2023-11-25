@@ -219,7 +219,13 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                         const SizedBox(
                                           width: 10,
                                         ),
-                                        Text(widget.detail.sportsName!,
+                                        Text(
+                                            AppLocalizations.of(context)!
+                                                        .locale ==
+                                                    'en'
+                                                ? widget.detail.sportsName!
+                                                : widget.detail.sportsNameArabic
+                                                    .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium!
