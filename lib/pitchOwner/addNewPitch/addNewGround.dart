@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
+// import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
 import 'package:geolocator/geolocator.dart' hide openAppSettings;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,7 +19,7 @@ import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
 
-FlutterGooglePlacesSdk _places = FlutterGooglePlacesSdk(kGoogleApiKey);
+// FlutterGooglePlacesSdk _places = FlutterGooglePlacesSdk(kGoogleApiKey);
 
 class AddNewGroundFirst extends StatefulWidget {
   const AddNewGroundFirst({super.key});
