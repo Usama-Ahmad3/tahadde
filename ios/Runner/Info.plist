@@ -2,11 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleLocalizations</key>
-    <array>
-        <string>en</string>
-        <string>ar</string>
-    </array>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>ar</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -26,24 +26,24 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
-    	<array>
-    		<dict>
-    			<key>CFBundleURLSchemes</key>
-    			<array>
-    				<string>fb580331605961333</string>
-    			</array>
-    		</dict>
-    		<dict>
-    			<key>CFBundleTypeRole</key>
-    			<string>Editor</string>
-    			<key>CFBundleURLName</key>
-    			<string>root.com.tahadde</string>
-    			<key>CFBundleURLSchemes</key>
-    			<array>
-    				<string>com.googleusercontent.apps.518103660124-5cbof777evebo4704ub6ap2hb26649g5</string>
-    			</array>
-    		</dict>
-    	</array>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb580331605961333</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>root.com.tahadde</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.518103660124-5cbof777evebo4704ub6ap2hb26649g5</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -53,53 +53,46 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>sms</string>
-      <string>tel</string>
-      <string>comgooglemaps</string>
-      <string>baidumap</string>
-      <string>iosamap</string>
-      <string>waze</string>
-      <string>yandexmaps</string>
-      <string>yandexnavi</string>
-      <string>citymapper</string>
-      <string>mapswithme</string>
-      <string>osmandmaps</string>
-      <string>dgis</string>
-      <string>qqmap</string>
-      <string>https</string>
-      <string>http</string>
-    </array>
+	<array>
+		<string>sms</string>
+		<string>tel</string>
+		<string>comgooglemaps</string>
+		<string>baidumap</string>
+		<string>iosamap</string>
+		<string>waze</string>
+		<string>yandexmaps</string>
+		<string>yandexnavi</string>
+		<string>citymapper</string>
+		<string>mapswithme</string>
+		<string>osmandmaps</string>
+		<string>dgis</string>
+		<string>qqmap</string>
+		<string>https</string>
+		<string>http</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>LSRequiresIPhoneOS</key>
-    	<true/>
-    	<key>NSAppTransportSecurity</key>
-    	<dict>
-    		<key>NSAllowsArbitraryLoads</key>
-    		<true/>
-    	</dict>
-        <key>NSAppleMusicUsageDescription</key>
-            <string>Tahadde app requires Music access</string>
-            <key>NSBluetoothAlwaysUsageDescription</key>
-            <string>Tahadde app requires bluetooth access</string>
-            <key>NSBluetoothPeripheralUsageDescription</key>
-            <string>Tahadde app requires bluetooth access</string>
-            <key>NSCalendarsUsageDescription</key>
-            <string>Tahadde app requires calender access to add booking events to your calendar</string>
-            <key>NSCameraUsageDescription</key>
-            <string>Tahadde app requires camera access to take profile picture and pitch image</string>
-            <key>NSContactsUsageDescription</key>
-            <string>Tahadde app requires calender access to add booking events to your calendar</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Tahadde app requires Music access</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Tahadde app requires bluetooth access</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Tahadde app requires bluetooth access</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Tahadde app requires calender access to add booking events to your calendar</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Tahadde app requires camera access to take profile picture and pitch image</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Tahadde app requires calender access to add booking events to your calendar</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -108,21 +101,19 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
-    	<string>Tahadde app requires microphone access</string>
-    	<key>NSMotionUsageDescription</key>
-    	<string>Tahadde app requires motion access</string>
-    	<key>NSPhotoLibraryUsageDescription</key>
-    	<string>Tahadde app requires photo gallery access to take profile picture and pitch image</string>
-    	<key>NSRemindersUsageDescription</key>
-    	<string>Tahadde app requires reminders access</string>
-    	<key>NSSpeechRecognitionUsageDescription</key>
-    	<string>Tahadde app requires speech access</string>
+	<string>Tahadde app requires microphone access</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Tahadde app requires motion access</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Tahadde app requires reminders access</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Tahadde app requires speech access</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>Your app requires access to your location for booking</string>
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>location</string>
-    </array>
+	<string>Your app requires access to your location for booking</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
@@ -130,6 +121,6 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>io.flutter.embedded_views_preview</key>
-    <true/>
+	<true/>
 </dict>
 </plist>

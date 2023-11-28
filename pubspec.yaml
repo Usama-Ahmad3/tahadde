@@ -45,7 +45,7 @@ dependencies:
   file_picker: ^5.5.0
   flutter_speed_dial: ^7.0.0
   firebase_core: ^2.15.0
-  firebase_auth: ^4.7.2
+  firebase_auth:
   firebase_messaging: ^14.6.5
   firebase_crashlytics: ^3.3.4
   firebase_dynamic_links: ^5.3.4
@@ -79,6 +79,7 @@ dependencies:
   whatsapp_unilink: ^2.1.0
   #  instagram_share: ^0.2.1
 #  flutter_google_places_sdk:
+  flutter_google_places_sdk:
   map_launcher: ^2.5.0+1
   crypto: ^3.0.3
   myfatoorah_flutter: ^2.1.20
