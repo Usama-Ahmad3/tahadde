@@ -79,7 +79,7 @@ dependencies:
   whatsapp_unilink: ^2.1.0
   #  instagram_share: ^0.2.1
 #  flutter_google_places_sdk:
-  flutter_google_places_sdk:
+#  flutter_google_places_sdk:
   map_launcher: ^2.5.0+1
   crypto: ^3.0.3
   myfatoorah_flutter: ^2.1.20

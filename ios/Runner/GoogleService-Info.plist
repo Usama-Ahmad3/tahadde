@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>518103660124-5cbof777evebo4704ub6ap2hb26649g5.apps.googleusercontent.com</string>
+	<string>518103660124-mq5gmashsdjhfkm0du44948pgvt8fns7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.518103660124-5cbof777evebo4704ub6ap2hb26649g5</string>
+	<string>com.googleusercontent.apps.518103660124-mq5gmashsdjhfkm0du44948pgvt8fns7</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>518103660124-8e64jtmjtv9okess3ecm8ln7lhc3uskp.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.root.tahadde</string>
+	<string>com.root.tahade</string>
 	<key>PROJECT_ID</key>
 	<string>tahadde-27296</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:518103660124:ios:a1bba213b369b7764bd899</string>
+	<string>1:518103660124:ios:845016eba7642bef4bd899</string>
 </dict>
 </plist>
