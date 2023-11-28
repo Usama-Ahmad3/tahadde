@@ -1,4 +1,4 @@
-package com.root.tahadde
+package com.root.tahade
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -38,6 +38,14 @@
           }
         },
         {
+          "client_id": "518103660124-jc1irrhm1kbnkf4afgqhrb3e8tlc0dvg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.root.tahadde",
+            "certificate_hash": "3a3df775f3c8576a73e13b23c3dba1ccff876dcf"
+          }
+        },
+        {
           "client_id": "518103660124-kovktpr8mpohrgg7dohbts8josamhlk6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -69,6 +77,43 @@
             "certificate_hash": "e367ef31879ae82ad4229058a869e18ea22d54f6"
           }
         },
+        {
+          "client_id": "518103660124-845e6niqd9lkfh7i5ijno24bk414d783.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLQx7DMkQ1zyWkL8s_WVecmZDqgLFxXZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518103660124-845e6niqd9lkfh7i5ijno24bk414d783.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "518103660124-5cbof777evebo4704ub6ap2hb26649g5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.root.tahadde",
+                "app_store_id": "1576473251"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518103660124:android:6149457bcbd3634c4bd899",
+        "android_client_info": {
+          "package_name": "com.root.tahade"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "518103660124-845e6niqd9lkfh7i5ijno24bk414d783.apps.googleusercontent.com",
           "client_type": 3
