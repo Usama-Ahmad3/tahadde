@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/modelClass/avalaible_slots.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/bookingShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -46,7 +47,8 @@ class _BookingScreenViewState extends State<BookingScreenView> {
   late String dataTime;
   var playerController = TextEditingController();
   bool isPerPlayer = true;
-  int slots = 21;
+  int slots = 0;
+  AvalaibleSlots avalaibleSlots = AvalaibleSlots();
   final List<WeekDays> _weakList = [];
   int indexItemSubPitch = 1;
   final List _slotTime = [];
@@ -90,6 +92,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
   }
 
   loadVerifiedSpecific() async {
+    avalaibleSlotCounts();
     await _networkCalls.loadVerifiedAcademies(
       sport: widget.detail['academy_id'].toString(),
       onSuccess: (academyInfo) {
@@ -161,6 +164,24 @@ class _BookingScreenViewState extends State<BookingScreenView> {
             } else {
               listMaxPlayer.clear();
             }
+          });
+        },
+        onFailure: (msg) {
+          showMessage(msg);
+        },
+        tokenExpire: () {
+          if (mounted) on401(context);
+        });
+  }
+
+  avalaibleSlotCounts() async {
+    await _networkCalls.avalaibleSlotsCount(
+        id: widget.detail['academy_id'].toString(),
+        onSuccess: (detail) {
+          setState(() {
+            print(detail);
+            avalaibleSlots = AvalaibleSlots.fromJson(detail);
+            slots = avalaibleSlots.remainingSessions!.toInt();
           });
         },
         onFailure: (msg) {
@@ -722,6 +743,9 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                 .prices![0]
                                                                 .price!
                                                                 .toDouble());
+                                                        slots != 0 ?slots = slots -1:null;
+                                                        playerController.text =
+                                                            indexItem.toString();
                                                       } else {
                                                         isSessionInList =
                                                             list.any((item) {
@@ -748,6 +772,9 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                                       .slotDuration;
                                                         });
                                                         if (isSessionInList) {
+                                                            slots < 22 ?slots = slots + 1 : null;
+                                                          playerController.text =
+                                                              indexItem.toString();
                                                           AppLocalizations.of(context)!
                                                                       .locale ==
                                                                   'en'
@@ -787,6 +814,9 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                                           _slotPrice.pricePerPlayer
                                                               .removeLast();
                                                         } else {
+                                                          slots != 0 ?slots = slots - 1 : null;
+                                                          playerController.text =
+                                                              indexItem.toString();
                                                           AppLocalizations.of(
                                                                           context)!
                                                                       .locale ==

@@ -311,11 +311,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                         ? EmailContactDOB(
                                                             onTap: () {
                                                               Map detail = {
-                                                                "price_id":
-                                                                    slotVar!
-                                                                        .prices![
-                                                                            0]
-                                                                        .priceId,
+                                                                "id": slotVar!
+                                                                    .prices![0]
+                                                                    .priceId,
                                                                 "Sub_Academy":
                                                                     slotVar!
                                                                         .prices![
@@ -333,14 +331,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                               };
                                                               print(
                                                                   priceDetail);
-                                                              showMessage(
-                                                                  AppLocalizations.of(
-                                                                          context)!
-                                                                      .youCant);
 
                                                               /// do it later
-                                                              // editAcademy(
-                                                              //     priceDetail);
+                                                              editAcademy(
+                                                                  priceDetail);
                                                               Navigator.pop(
                                                                   context);
                                                             },
@@ -363,7 +357,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                             ? EmailContactDOB(
                                                                 onTap: () {
                                                                   Map detail = {
-                                                                    "price_id": slotVar!
+                                                                    "id": slotVar!
                                                                         .prices![
                                                                             0]
                                                                         .priceId,
@@ -383,13 +377,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                   };
                                                                   print(
                                                                       priceDetail);
-                                                                  showMessage(AppLocalizations.of(
-                                                                          context)!
-                                                                      .youCant);
 
                                                                   /// do it later
-                                                                  // editAcademy(
-                                                                  //     priceDetail);
+                                                                  editAcademy(
+                                                                      priceDetail);
                                                                   Navigator.pop(
                                                                       context);
                                                                 },
@@ -412,7 +403,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                     onTap: () {
                                                                       Map detail =
                                                                           {
-                                                                        "price_id": slotVar!
+                                                                        "id": slotVar!
                                                                             .prices![0]
                                                                             .priceId,
                                                                         "Sub_Academy": slotVar!
@@ -430,13 +421,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                       };
                                                                       print(
                                                                           priceDetail);
-                                                                      showMessage(
-                                                                          AppLocalizations.of(context)!
-                                                                              .youCant);
 
                                                                       /// do it later
-                                                                      // editAcademy(
-                                                                      //     priceDetail);
+                                                                      editAcademy(
+                                                                          priceDetail);
                                                                       Navigator.pop(
                                                                           context);
                                                                     },
@@ -456,7 +444,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                         onTap: () {
                                                                           Map detail =
                                                                               {
-                                                                            "price_id":
+                                                                            "id":
                                                                                 slotVar!.prices![0].priceId,
                                                                             "Sub_Academy":
                                                                                 slotVar!.prices![0].subAcademy,
@@ -472,12 +460,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                           };
                                                                           print(
                                                                               priceDetail);
-                                                                          showMessage(
-                                                                              AppLocalizations.of(context)!.youCant);
 
                                                                           /// do it later
-                                                                          // editAcademy(
-                                                                          //     priceDetail);
+                                                                          editAcademy(
+                                                                              priceDetail);
                                                                           Navigator.pop(
                                                                               context);
                                                                         },
@@ -491,7 +477,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                         ? EmailContactDOB(
                                                                             onTap: () {
                                                                               Map detail = {
-                                                                                "price_id": slotVar!.prices![0].priceId,
+                                                                                "id": slotVar!.prices![0].priceId,
                                                                                 "Sub_Academy": slotVar!.prices![0].subAcademy,
                                                                                 "Price": _playerPriceController.text
                                                                               };
@@ -501,11 +487,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                 ]
                                                                               };
                                                                               print(priceDetail);
-                                                                              showMessage(AppLocalizations.of(context)!.youCant);
 
                                                                               /// do it later
-                                                                              // editAcademy(
-                                                                              //     priceDetail);
+                                                                              editAcademy(priceDetail);
                                                                               Navigator.pop(context);
                                                                             },
                                                                             price: _playerPriceController,
@@ -518,7 +502,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                             ? EmailContactDOB(
                                                                                 onTap: () {
                                                                                   Map detail = {
-                                                                                    "price_id": slotVar!.prices![0].priceId,
+                                                                                    "id": slotVar!.prices![0].priceId,
                                                                                     "Sub_Academy": slotVar!.prices![0].subAcademy,
                                                                                     "Price": _playerPriceController.text
                                                                                   };
@@ -528,11 +512,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                     ]
                                                                                   };
                                                                                   print(priceDetail);
-                                                                                  showMessage(AppLocalizations.of(context)!.youCant);
 
                                                                                   /// do it later
-                                                                                  // editAcademy(
-                                                                                  //     priceDetail);
+                                                                                  editAcademy(priceDetail);
                                                                                   Navigator.pop(context);
                                                                                 },
                                                                                 price: _playerPriceController,
@@ -544,7 +526,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                             ? EmailContactDOB(
                                                                                 onTap: () {
                                                                                   Map detail = {
-                                                                                    "price_id": slotVar!.prices![0].priceId,
+                                                                                    "id": slotVar!.prices![0].priceId,
                                                                                     "Sub_Academy": slotVar!.prices![0].subAcademy,
                                                                                     "Price": _playerPriceController.text
                                                                                   };
@@ -554,11 +536,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                                     ]
                                                                                   };
                                                                                   print(priceDetail);
-                                                                                  showMessage(AppLocalizations.of(context)!.youCant);
 
                                                                                   /// do it later
-                                                                                  // editAcademy(
-                                                                                  //     priceDetail);
+                                                                                  editAcademy(priceDetail);
                                                                                   Navigator.pop(context);
                                                                                 },
                                                                                 price: _playerPriceController,

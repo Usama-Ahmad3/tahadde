@@ -168,7 +168,11 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                                 width: sizeWidth * .15,
                                                 cuisineImageUrl:
                                                     academyDetail[index]
-                                                        .academyImage![0]))),
+                                                            .academyImage!
+                                                            .isNotEmpty
+                                                        ? academyDetail[index]
+                                                            .academyImage![0]
+                                                        : ''))),
                                   ),
                                   Column(
                                     crossAxisAlignment:

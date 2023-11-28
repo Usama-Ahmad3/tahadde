@@ -135,7 +135,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
   final page = [
     const HomeScreenView(),
     PlayerBookingScreen(bookingTag: false),
-    CartScreen(),
+    const CartScreen(),
     SettingsScreen(bookingTag: false),
     // ignore: prefer_const_constructors
     ProfileDetailScreen()
@@ -205,7 +205,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     unselectedColor: AppColors.grey,
                   ),
                   SalomonBottomBarItem(
-                    icon: SizedBox(
+                    icon: const SizedBox(
                         height: 23,
                         width: 22,
                         child: Icon(Icons.add_shopping_cart)),
@@ -213,7 +213,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                       AppLocalizations.of(context)!.cart,
                       style: TextStyle(color: AppColors.white),
                     ),
-                    activeIcon: SizedBox(
+                    activeIcon: const SizedBox(
                       height: 23,
                       width: 22,
                       child: Icon(

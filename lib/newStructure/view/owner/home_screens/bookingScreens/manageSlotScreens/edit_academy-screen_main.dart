@@ -354,6 +354,7 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                                                             specificAcademy!
                                                                 .academyImage
                                                       };
+                                                      print("delete$detail");
                                                       editAcademy(detail);
                                                       setState(() {});
                                                     },

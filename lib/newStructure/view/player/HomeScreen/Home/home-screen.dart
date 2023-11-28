@@ -655,7 +655,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                 height: height * 0.057,
                                 width: width * 0.7,
                                 child: TextFieldWidget(
-                                    textColor: AppColors.white,
+                                    textColor:
+                                        MyAppState.mode == ThemeMode.light
+                                            ? AppColors.black
+                                            : AppColors.white,
                                     controller: searchController,
                                     hintText:
                                         AppLocalizations.of(context)!.search,

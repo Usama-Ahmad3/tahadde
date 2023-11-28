@@ -151,6 +151,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
       },
       onFailure: (msg) {
         if (mounted) {
+          showMessage(AppLocalizations.of(context)!.youCant);
           setState(() {
             _isLoading = true;
           });
@@ -284,7 +285,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                       : AppColors.darkTheme,
                               shape: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12)),
-                              title: Text(AppLocalizations.of(context)!.copy,style:TextStyle(color:MyAppState.mode == ThemeMode.light ?AppColors.black:AppColors.white)),
+                              title: Text(AppLocalizations.of(context)!.copy,
+                                  style: TextStyle(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.black
+                                          : AppColors.white)),
                               content: Text(
                                 AppLocalizations.of(context)!.copySession,
                                 style: Theme.of(context)
@@ -919,12 +924,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     });
                                     List<Map<dynamic, dynamic>>
                                         sessionsPayload = [];
+                                    List<Map<dynamic, dynamic>>
+                                        sessionsPayloadNew = [];
 
                                     _sessionMap.forEach((k, v) {
                                       List<Map<dynamic, dynamic>> sessionsData =
                                           [];
                                       if (!v[0].isHoliday!) {
-                                        for (var element in v) {
+                                        v.forEach((element) {
                                           Map detail = {
                                             'id': element.id,
                                             "Holiday":
@@ -941,26 +948,47 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 .format(element.endTime!),
                                           };
                                           sessionsData.add(detail);
-                                        }
-                                        Map<dynamic, dynamic> detail = {
+                                        });
+                                        for (var element in v) {}
+                                        Map<String, dynamic> detail = {
                                           "weekday": k,
                                           "sessions": sessionsData
+                                              .where((element) =>
+                                                  element.containsKey('id') &&
+                                                  element['id'] != null)
+                                              .toList()
+                                        };
+                                        Map<String, dynamic> newDetail = {
+                                          "weekday": k,
+                                          "sessions": sessionsData
+                                                  .where((element) =>
+                                                      element['id'] == null)
+                                                  .toList() ??
+                                              ''
                                         };
                                         sessionsPayload.add(detail);
+                                        sessionsPayloadNew.add(newDetail);
                                       }
                                     });
-                                    Map sessionsPay = {
-                                      "session": sessionsPayload
+                                    List<Map<dynamic, dynamic>>
+                                        sessionsPayloadNewData =
+                                        sessionsPayloadNew
+                                            .where((day) =>
+                                                day['sessions'] != null &&
+                                                (day['sessions'] as List)
+                                                    .isNotEmpty)
+                                            .toList();
+                                    Map sessionUpdate = {
+                                      'new_sessions': sessionsPayloadNewData,
+                                      'sessions': sessionsPayload
                                     };
-                                    print('jjjjjjjjj');
-                                    print(sessionsPay);
-                                    showMessage(
-                                        AppLocalizations.of(context)!.youCant);
+                                    print(sessionUpdate);
 
                                     ///do it later
-                                    // editAcademy(sessionsPay,
-                                    //     specificAcademy!.academyId.toString());
+                                    editAcademy(sessionUpdate,
+                                        specificAcademy!.academyId.toString());
                                     Navigator.pop(context);
+                                    // Navigator.pop(context);
                                     // _networkCalls.editSession(
                                     //     onSuccess: (onSuccess) {
                                     //       _isSession = false;
@@ -2287,6 +2315,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           sessionList = [];
                                                       sessionList
                                                           .add(sessionDetail);
+
+                                                      ///new sessions
                                                       _sessionMap[_weakList[
                                                                   _weakIndex]
                                                               .slug]!
@@ -2311,6 +2341,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           "Your time is not proper as compare to previous sessions");
                                                     }
                                                   } else {
+                                                    print('llllsssss');
                                                     List<SessionDetail>
                                                         sessionList = [];
                                                     sessionList

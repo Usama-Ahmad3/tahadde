@@ -73,6 +73,7 @@ class RestApis {
   static String HOMETOURNAMENT = "/api/v1/tournament/pitchowner/?language=";
   static String HOMETOURNAMENTSORT =
       "/api/v1/tournament/pitchowner/?sort_by=start_date&language=";
+  static String avalaibleSlotsCount = '/api/v1/user/academy/session-count/';
   static String HELPERPROFILE = "/api/v1/helpers/fileupload/";
   static String MULTIIMAGE = "/api/v1/helpers/multiplefileuploads/";
   static String image = "/api/v1/acadmies/multiupload/";

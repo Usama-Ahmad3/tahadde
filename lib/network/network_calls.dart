@@ -4209,17 +4209,50 @@ class NetworkCalls {
     }
   }
 
-  editSession(
+  avalaibleSlotsCount(
       {required String id,
-      required String venueType,
-      required Map venueDetail,
       required OnSuccess onSuccess,
       required OnFailure onFailure,
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "$baseUrl${RestApis.UPDATE_SESSIONS}$id/?pitch=$venueType&language=${prefs.get("lang")}";
+    String url = "$baseUrl${RestApis.avalaibleSlotsCount}$id/";
+    print(url);
+    print('ji');
+    try {
+      response = await http.get(Uri.parse(url),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        print(response.body);
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load league'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('Error $e');
+      onFailure("Something went wrong");
+    }
+  }
+
+  editSession(
+      {required String id,
+      required Map venueDetail,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire,
+      required String venueType}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url = "$baseUrl${RestApis.UPDATE_SESSIONS}$id/";
     var body = json.encode(venueDetail);
     try {
       response = await http.put(Uri.parse(url),
