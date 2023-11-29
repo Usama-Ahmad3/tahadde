@@ -1866,6 +1866,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.10"
+  video_player_avfoundation:
+    dependency: transitive
+    description:
+      name: video_player_avfoundation
+      sha256: bc923884640d6dc403050586eb40713cdb8d1d84e6886d8aca50ab04c59124c2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.2"
   video_player_platform_interface:
     dependency: transitive
     description:
