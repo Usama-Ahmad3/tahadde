@@ -678,7 +678,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                       },
                                       child: const Icon(FontAwesomeIcons.close),
                                     ),
-                                    suffixIconColor: AppColors.white,
+                                    suffixIconColor:
+                                        MyAppState.mode == ThemeMode.light
+                                            ? AppColors.grey200
+                                            : AppColors.white,
                                     searchTag: true,
                                     onChanged: (e) {
                                       setState(() {
@@ -945,7 +948,23 @@ class HomeScreenViewState extends State<HomeScreenView> {
               ],
             ),
             body: _isLoading
-                ? ShimmerWidgets().buildShimmer(fem, context, _bookPitchData)
+                ? Container(
+                    height: height,
+                    width: width,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: MyAppState.mode == ThemeMode.light
+                            ? AppColors.white
+                            : AppColors.darkTheme,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.appThemeColor,
+                      ),
+                    ),
+                  )
                 : _internet!
                     ? LayoutBuilder(builder: (context, box) {
                         return CustomScrollView(

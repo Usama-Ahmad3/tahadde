@@ -24,29 +24,26 @@ class BookingShimmer {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: height * 0.01),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.appThemeColor),
-                            height: height * 0.032,
-                            child: Image.asset(
-                              'assets/images/back.png',
-                              color: AppColors.white,
-                              isAntiAlias: true,
-                            )),
-                      ),
+                    InkWell(
+                      onTap: () {
+                        // Navigator.pop(context);
+                      },
+                      child: Container(
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.appThemeColor),
+                          height: height * 0.032,
+                          child: Image.asset(
+                            'assets/images/back.png',
+                            color: AppColors.white,
+                            isAntiAlias: true,
+                          )),
                     ),
                     SizedBox(
                       width: width * 0.12,
                     ),
-                    const Text(
-                      'Booking a Ground',
+                    Text(
+                      AppLocalizations.of(context)!.bookingGround,
                       style: TextStyle(fontSize: 15, color: Colors.white),
                     )
                   ],
@@ -88,6 +85,7 @@ class BookingShimmer {
             ///down white Container
             Container(
               width: width,
+              height: height,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

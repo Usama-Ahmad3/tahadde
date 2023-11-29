@@ -115,8 +115,12 @@ class _RateState extends State<Rate> {
     return loading
         ? Scaffold(
             backgroundColor: Colors.black,
-            appBar: appBarWidget(sizeWidth, sizeHeight, context,
-                AppLocalizations.of(context)!.ratingsReviews, true),
+            appBar: appBarWidget(
+                sizeWidth: sizeWidth,
+                sizeHeight: sizeHeight,
+                context: context,
+                title: AppLocalizations.of(context)!.ratingsReviews,
+                back: true),
             body: Container(
               height: sizeHeight * .87,
               width: sizeWidth,
@@ -166,8 +170,12 @@ class _RateState extends State<Rate> {
         : _internet!
             ? Scaffold(
                 backgroundColor: Colors.black,
-                appBar: appBarWidget(sizeWidth, sizeHeight, context,
-                    AppLocalizations.of(context)!.ratingsReviews, true),
+                appBar: appBarWidget(
+                    sizeWidth: sizeWidth,
+                    sizeHeight: sizeHeight,
+                    context: context,
+                    title: AppLocalizations.of(context)!.ratingsReviews,
+                    back: true),
                 body: data!
                     ? Stack(
                         children: [

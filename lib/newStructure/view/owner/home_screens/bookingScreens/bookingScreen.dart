@@ -126,11 +126,11 @@ class _BookingScreenState extends State<BookingScreen> {
                     child: Scaffold(
                       backgroundColor: AppColors.black,
                       appBar: appBarWidget(
-                        width,
-                        height,
-                        context,
-                        AppLocalizations.of(context)!.booking,
-                        false,
+                        sizeWidth: width,
+                        sizeHeight: height,
+                        context: context,
+                        title: AppLocalizations.of(context)!.booking,
+                        back: false,
                       ),
                       body: LayoutBuilder(
                         builder: (context, constraint) {

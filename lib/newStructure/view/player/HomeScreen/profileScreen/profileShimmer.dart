@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/passwordSecurityFields.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -9,8 +10,8 @@ class ProfileShimmer {
   static buildShimmer(sizeWidth, sizeHeight, context) {
     return Scaffold(
       body: Shimmer.fromColors(
-        baseColor: Colors.grey,
-        highlightColor: Colors.grey,
+        baseColor: AppColors.grey200,
+        highlightColor: Colors.grey.shade300,
         child: SingleChildScrollView(
           child: Stack(
             children: [
@@ -58,11 +59,11 @@ class ProfileShimmer {
                     constantValue: 'Email',
                   ),
                   EmailContactDOB(
-                      constant: 'DOB :',
-                      constantValue: AppLocalizations.of(context)!.dateofBirth),
-                  EmailContactDOB(
                     constant: 'Contact :',
                     constantValue: '0000-0000-0000',
+                  ),
+                  SizedBox(
+                    height: sizeHeight * 0.02,
                   ),
                   PasswordSecurity(
                     prefixIcon: Icons.key,

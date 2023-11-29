@@ -61,8 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("حالة"),
         "academyBook": MessageLookupByLibrary.simpleMessage("حجز الأكاديمية"),
         "academyOnly": MessageLookupByLibrary.simpleMessage("الأكاديمية"),
-        "loginRequired": MessageLookupByLibrary.simpleMessage(
-            "تسجيل الدخول مطلوب لرؤية الحجز"),
+        "loginRequiredCart": MessageLookupByLibrary.simpleMessage(
+            "تسجيل الدخول مطلوب لرؤية عناصر السلة"),
         "filterResult": MessageLookupByLibrary.simpleMessage("تصفية النتائج"),
         "noAcademy":
             MessageLookupByLibrary.simpleMessage("لا توجد أكاديميات متاحة"),
@@ -394,8 +394,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("صالة عرض"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "makechoice": MessageLookupByLibrary.simpleMessage("Make choice!"),
-        "manageSlots":
-            MessageLookupByLibrary.simpleMessage("يدير"),
+        "manageSlots": MessageLookupByLibrary.simpleMessage("يدير"),
         "markAsHoliday":
             MessageLookupByLibrary.simpleMessage("وضع علامة الاجازة "),
         "minimumMaximum14Characters": MessageLookupByLibrary.simpleMessage(

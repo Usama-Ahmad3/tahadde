@@ -87,11 +87,11 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
     return Scaffold(
         backgroundColor: AppColors.black,
         appBar: appBarWidget(
-          sizeWidth,
-          sizeHeight,
-          context,
-          AppLocalizations.of(context)!.booked,
-          true,
+          sizeWidth: sizeWidth,
+          sizeHeight: sizeHeight,
+          context: context,
+          title: AppLocalizations.of(context)!.booked,
+          back: true,
         ),
         body: loading
             ? Container(

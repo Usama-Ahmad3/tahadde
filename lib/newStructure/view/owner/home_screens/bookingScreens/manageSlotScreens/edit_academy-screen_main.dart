@@ -216,11 +216,11 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: appBarWidget(
-        width,
-        height,
-        context,
-        AppLocalizations.of(context)!.editAcademy,
-        true,
+        sizeWidth: width,
+        sizeHeight: height,
+        context: context,
+        title: AppLocalizations.of(context)!.editAcademy,
+        back: true,
       ),
       body: _isLoading
           ? Container(
@@ -298,7 +298,8 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                                                         .copyWith(
                                                             color: const Color(
                                                                 0XFFB3B3B3),
-                                                            fontWeight: FontWeight.w500,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                             fontFamily:
                                                                 "Poppins")),
                                               ],

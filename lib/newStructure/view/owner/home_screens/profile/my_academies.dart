@@ -105,11 +105,11 @@ class _MyAcademiesState extends State<MyAcademies> {
         ),
       ),
       appBar: appBarWidget(
-        sizeWidth,
-        sizeHeight,
-        context,
-        AppLocalizations.of(context)!.myAcademy,
-        true,
+        sizeWidth: sizeWidth,
+        sizeHeight: sizeHeight,
+        context: context,
+        title: AppLocalizations.of(context)!.myAcademy,
+        back: true,
       ),
       body: _isLoading
           ? Container(

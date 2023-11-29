@@ -262,8 +262,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             backgroundColor: MyAppState.mode == ThemeMode.light
                 ? AppColors.white
                 : AppColors.darkTheme,
-            appBar: appBarWidget(width, height, context,
-                AppLocalizations.of(context)!.editProfile, true),
+            appBar: appBarWidget(
+                sizeWidth: width,
+                sizeHeight: height,
+                context: context,
+                title: AppLocalizations.of(context)!.editProfile,
+                back: true),
             body: DefaultTextStyle(
                 style: TextStyle(
                     fontSize: height * 0.02,

@@ -3,7 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../app_colors/app_colors.dart';
 
-PreferredSize appBarWidget(sizeWidth, sizeHeight, context, title, back) {
+PreferredSize appBarWidget(
+    {required sizeWidth,
+    required sizeHeight,
+    required context,
+    required title,
+    required back,
+    VoidCallback? onTap}) {
   return PreferredSize(
       preferredSize: Size(sizeWidth, sizeHeight * 0.105),
       child: AppBar(
@@ -20,9 +26,10 @@ PreferredSize appBarWidget(sizeWidth, sizeHeight, context, title, back) {
         leadingWidth: back ? sizeWidth * 0.13 : 0,
         leading: back
             ? InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: onTap ??
+                    () {
+                      Navigator.pop(context);
+                    },
                 child: SizedBox(
                     height: sizeHeight * 0.03,
                     child: Image.asset(

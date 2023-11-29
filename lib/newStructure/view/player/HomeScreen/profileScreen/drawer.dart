@@ -5,6 +5,7 @@ import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScre
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/setting_params.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -171,6 +172,17 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             ],
           );
         });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setFun();
+  }
+
+  setFun() {
+    setState(() {});
   }
 
   @override
@@ -348,6 +360,12 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                               MaterialPageRoute(
                                                                   builder: (_) =>
                                                                       SettingsScreen(
+                                                                        settingParams: SettingParams(
+                                                                            name:
+                                                                                widget.name,
+                                                                            playerTag: widget.playerTag,
+                                                                            position: widget.position,
+                                                                            profileImage: widget.profileImage),
                                                                         bookingTag:
                                                                             true,
                                                                       )));
@@ -434,6 +452,17 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                       MaterialPageRoute(
                                                           builder: (_) =>
                                                               SettingsScreen(
+                                                                settingParams: SettingParams(
+                                                                    name: widget
+                                                                        .name,
+                                                                    playerTag:
+                                                                        widget
+                                                                            .playerTag,
+                                                                    position: widget
+                                                                        .position,
+                                                                    profileImage:
+                                                                        widget
+                                                                            .profileImage),
                                                                 bookingTag:
                                                                     true,
                                                               )));
@@ -634,6 +663,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                 borderSide: BorderSide(
                                     color: AppColors.containerColorW12),
                                 borderRadius: BorderRadius.circular(10)),
+                            horizontalTitleGap: 0,
                             leading: Icon(
                               Icons.logout_sharp,
                               color: AppColors.red,

@@ -119,8 +119,12 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
         child: loading
             ? Scaffold(
                 backgroundColor: Colors.black,
-                appBar: appBarWidget(sizewidth, sizeheight, context,
-                    AppLocalizations.of(context)!.bookingDetails, true),
+                appBar: appBarWidget(
+                    sizeWidth: sizewidth,
+                    sizeHeight: sizeheight,
+                    context: context,
+                    title: AppLocalizations.of(context)!.bookingDetails,
+                    back: true),
                 body: Container(
                   height: double.infinity,
                   decoration: BoxDecoration(
@@ -650,8 +654,12 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
             : internet
                 ? Scaffold(
                     backgroundColor: Colors.black,
-                    appBar: appBarWidget(sizewidth, sizeheight, context,
-                        AppLocalizations.of(context)!.bookingDetails, true),
+                    appBar: appBarWidget(
+                        sizeWidth: sizewidth,
+                        sizeHeight: sizeheight,
+                        context: context,
+                        title: AppLocalizations.of(context)!.bookingDetails,
+                        back: true),
                     // bottomNavigationBar: monVal
                     //     ? Container(
                     //         height: sizeheight * 0.1,

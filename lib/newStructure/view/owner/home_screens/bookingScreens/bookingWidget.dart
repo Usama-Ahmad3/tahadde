@@ -79,11 +79,11 @@ class _BookingWidgetState extends State<BookingWidget> {
               : AppColors.darkTheme,
       appBar: widget.fromDrawer
           ? appBarWidget(
-              sizeWidth,
-              sizeHeight,
-              context,
-              AppLocalizations.of(context)!.myBooking,
-              true,
+              sizeWidth: sizeWidth,
+              sizeHeight: sizeHeight,
+              context: context,
+              title: AppLocalizations.of(context)!.myBooking,
+              back: true,
             )
           : null,
       body: _isLoading

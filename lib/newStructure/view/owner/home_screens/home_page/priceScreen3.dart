@@ -147,8 +147,12 @@ class _PriceScreenViewState extends State<PriceScreenView> {
       onWillPop: () async => false,
       child: _isLoading
           ? Scaffold(
-              appBar: appBarWidget(size.width, size.height, context,
-                  AppLocalizations.of(context)!.price, true),
+              appBar: appBarWidget(
+                  sizeWidth: size.width,
+                  sizeHeight: size.height,
+                  context: context,
+                  title: AppLocalizations.of(context)!.price,
+                  back: true),
               body: const Center(
                 child: CircularProgressIndicator(
                   color: AppColors.appThemeColor,

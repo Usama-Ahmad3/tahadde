@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/drawer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
@@ -12,11 +13,13 @@ import '../../../../../network/network_calls.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../profileScreen/bottomSheet.dart';
 import '../widgets/app_bar.dart';
+import 'setting_params.dart';
 
 class SettingsScreen extends StatefulWidget {
   bool bookingTag;
+  SettingParams? settingParams;
 
-  SettingsScreen({super.key, this.bookingTag = false});
+  SettingsScreen({super.key, this.bookingTag = false, this.settingParams});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -195,12 +198,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ? Scaffold(
             backgroundColor: Colors.black,
             appBar: appBarWidget(
-              width,
-              height,
-              context,
-              AppLocalizations.of(context)!.setting,
-              widget.bookingTag ? true : false,
-            ),
+                sizeWidth: width,
+                sizeHeight: height,
+                context: context,
+                title: AppLocalizations.of(context)!.setting,
+                back: widget.bookingTag ? true : false,
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfileDrawer(
+                          name: widget.settingParams!.name,
+                          position: widget.settingParams!.position,
+                          profileImage: widget.settingParams!.profileImage,
+                          playerTag: widget.settingParams!.playerTag,
+                        ),
+                      ));
+                }),
             body: DefaultTextStyle(
                 style: TextStyle(
                     fontSize: height * 0.02,

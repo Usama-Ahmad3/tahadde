@@ -1,6 +1,7 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
@@ -10,8 +11,9 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../../../../homeFile/routingConstant.dart';
 import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
+import '../../../../modelClass/cart_model.dart';
 import '../../../app_colors/app_colors.dart';
-import 'cart_screen.dart';
+import 'cart_screen/cart_screen.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
   int index;
@@ -24,6 +26,7 @@ class PlayerHomeScreen extends StatefulWidget {
 }
 
 class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
+  List<CartModel> cartModel = [];
   initDynamicLinks() async {
     bool auth = await checkAuthorizaton() as bool;
     PendingDynamicLinkData? data =
@@ -53,6 +56,18 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
       navigateToLeagueDetail(detail);
     }
     FirebaseDynamicLinks.instance.onLink;
+  }
+
+  getCartAcademies() async {
+    await NetworkCalls().getCartAcademy(
+        onSuccess: (detail) {
+          for (int i = 0; i < detail.length; i++) {
+            cartModel.add(CartModel.fromJson(detail[i]));
+          }
+          setState(() {});
+        },
+        onFailure: (onFailure) {},
+        tokenExpire: () {});
   }
 
   onWillPop() {
@@ -132,6 +147,13 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
         });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCartAcademies();
+  }
+
   final page = [
     const HomeScreenView(),
     PlayerBookingScreen(bookingTag: false),
@@ -205,20 +227,36 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     unselectedColor: AppColors.grey,
                   ),
                   SalomonBottomBarItem(
-                    icon: const SizedBox(
-                        height: 23,
-                        width: 22,
-                        child: Icon(Icons.add_shopping_cart)),
+                    icon: Badge(
+                      alignment: Alignment.topRight,
+                      textColor: AppColors.red,
+                      label: Text(
+                        cartModel.length.toString(),
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                      child: const SizedBox(
+                          height: 23,
+                          width: 22,
+                          child: Icon(Icons.add_shopping_cart)),
+                    ),
                     title: Text(
                       AppLocalizations.of(context)!.cart,
                       style: TextStyle(color: AppColors.white),
                     ),
-                    activeIcon: const SizedBox(
-                      height: 23,
-                      width: 22,
-                      child: Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
+                    activeIcon: Badge(
+                      alignment: Alignment.topRight,
+                      textColor: AppColors.red,
+                      label: Text(
+                        cartModel.length.toString(),
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                      child: const SizedBox(
+                        height: 23,
+                        width: 22,
+                        child: Icon(
+                          Icons.shopping_cart,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     selectedColor: AppColors.appThemeColor,

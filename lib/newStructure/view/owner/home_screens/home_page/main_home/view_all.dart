@@ -19,8 +19,12 @@ class ViewMoreAcademyScreen extends StatelessWidget {
     var sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: AppColors.black,
-        appBar: appBarWidget(sizeWidth, sizeHeight, context,
-            AppLocalizations.of(context)!.academy, true),
+        appBar: appBarWidget(
+            sizeWidth: sizeWidth,
+            sizeHeight: sizeHeight,
+            context: context,
+            title: AppLocalizations.of(context)!.academy,
+            back: true),
         body: Container(
             color: Colors.black54,
             child: Container(

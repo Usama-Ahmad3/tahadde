@@ -56,8 +56,12 @@ class _YourReviewsState extends State<YourReviews> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Colors.black,
-        appBar: appBarWidget(width, height, context,
-            AppLocalizations.of(context)!.reviews, true),
+        appBar: appBarWidget(
+            sizeWidth: width,
+            sizeHeight: height,
+            context: context,
+            title: AppLocalizations.of(context)!.reviews,
+            back: true),
         body: loading
             ? const Center(
                 child: CircularProgressIndicator(),

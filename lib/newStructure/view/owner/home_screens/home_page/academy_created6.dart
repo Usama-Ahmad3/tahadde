@@ -26,8 +26,12 @@ class _academy_created_screenState extends State<academy_created_screen> {
           backgroundColor: MyAppState.mode == ThemeMode.light
               ? AppColors.white
               : AppColors.darkTheme,
-          appBar: appBarWidget(size.width, size.height, context,
-              AppLocalizations.of(context)!.academyCreated, false),
+          appBar: appBarWidget(
+              sizeWidth: size.width,
+              sizeHeight: size.height,
+              context: context,
+              title: AppLocalizations.of(context)!.academyCreated,
+              back: false),
           body: Container(
               color: AppColors.black,
               child: Container(

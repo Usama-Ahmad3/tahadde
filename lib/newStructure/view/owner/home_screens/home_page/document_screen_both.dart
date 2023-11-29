@@ -478,922 +478,909 @@ class _DocumentScreenState extends State<DocumentScreen> {
     var size = MediaQuery.of(context).size;
     if (loading) {
       return Scaffold(
-            backgroundColor: AppColors.black,
-            appBar: appBarWidget(
-              sizeWidth,
-              sizeHeight,
-              context,
-              AppLocalizations.of(context)!.document,
-              true,
+        backgroundColor: AppColors.black,
+        appBar: appBarWidget(
+          sizeWidth: sizeWidth,
+          sizeHeight: sizeHeight,
+          context: context,
+          title: AppLocalizations.of(context)!.document,
+          back: true,
+        ),
+        body: Container(
+          height: sizeHeight,
+          width: sizeWidth,
+          padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
+          decoration: BoxDecoration(
+              color: MyAppState.mode == ThemeMode.light
+                  ? AppColors.white
+                  : AppColors.darkTheme,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+          child: const Center(
+            child: CircularProgressIndicator(
+              color: AppColors.appThemeColor,
             ),
-            body: Container(
-              height: sizeHeight,
-              width: sizeWidth,
-              padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.033),
-              decoration: BoxDecoration(
-                  color: MyAppState.mode == ThemeMode.light
-                      ? AppColors.white
-                      : AppColors.darkTheme,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              child: const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.appThemeColor,
-                ),
-              ),
-            ),
-          );
+          ),
+        ),
+      );
     } else {
       return map
-            ? Scaffold(
-                appBar: PreferredSize(
-                    preferredSize: const Size.fromHeight(0),
-                    child: AppBar(
-                      backgroundColor: AppColors.themeColor,
-                    )),
-                body: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: Stack(
-                        children: [
-                          GoogleMap(
-                            onMapCreated: (controller) {
-                              mapController = controller;
-                            },
-                            onTap: (latLng) {
-                              print('${latLng.latitude}, ${latLng.longitude}');
-                              pitchLong = latLng.longitude;
-                              pitchLat = latLng.latitude;
-                              setState(() {
-                                allMarkers.add(Marker(
-                                  markerId: const MarkerId('myMarker'),
-                                  draggable: false,
-                                  onTap: () {
-                                    debugPrint('marker');
-                                  },
-                                  position: LatLng(pitchLat!, pitchLong!),
-                                ));
-                              });
-                              Map latlong = {
-                                "latitude": pitchLat.toString(),
-                                "longitude": pitchLong.toString(),
-                              };
-                              _networkCalls.getAddress(
-                                  LatLong: latlong,
-                                  onSuccess: (msg) {
-                                    setState(() {
-                                      country = msg[1];
-                                      locationController.text =
-                                          msg[0].toString().substring(9);
-                                      // isAddressLoading=false;
-                                    });
-                                  },
-                                  onFailure: (msg) {
-                                    showMessage(msg);
-                                  },
-                                  tokenExpire: () {
-                                    if (mounted) on401(context);
+          ? Scaffold(
+              body: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Stack(
+                      children: [
+                        GoogleMap(
+                          onMapCreated: (controller) {
+                            mapController = controller;
+                          },
+                          liteModeEnabled: true,
+                          onTap: (latLng) {
+                            print('${latLng.latitude}, ${latLng.longitude}');
+                            pitchLong = latLng.longitude;
+                            pitchLat = latLng.latitude;
+                            setState(() {
+                              allMarkers.add(Marker(
+                                markerId: const MarkerId('myMarker'),
+                                draggable: false,
+                                onTap: () {
+                                  debugPrint('marker');
+                                },
+                                position: LatLng(pitchLat!, pitchLong!),
+                              ));
+                            });
+                            Map latlong = {
+                              "latitude": pitchLat.toString(),
+                              "longitude": pitchLong.toString(),
+                            };
+                            _networkCalls.getAddress(
+                                LatLong: latlong,
+                                onSuccess: (msg) {
+                                  setState(() {
+                                    country = msg[1];
+                                    locationController.text =
+                                        msg[0].toString().substring(9);
+                                    // isAddressLoading=false;
                                   });
-                              // getUserLocation(pitchLat,pitchLong);
-                            },
-                            compassEnabled: true,
-                            mapType: MapType.normal,
-                            initialCameraPosition: CameraPosition(
-                                target: LatLng(
-                                    position!.latitude, position!.longitude),
-                                zoom: 15.0),
-                            markers: Set.from(allMarkers),
-                            //markers: _markers.values.toSet(),
-                          ),
-                          Row(
+                                },
+                                onFailure: (msg) {
+                                  showMessage(msg);
+                                },
+                                tokenExpire: () {
+                                  if (mounted) on401(context);
+                                });
+                            // getUserLocation(pitchLat,pitchLong);
+                          },
+                          compassEnabled: true,
+                          mapType: MapType.normal,
+                          buildingsEnabled: true,
+                          indoorViewEnabled: true,
+                          myLocationEnabled: true,
+                          myLocationButtonEnabled: true,
+                          initialCameraPosition: CameraPosition(
+                              target: LatLng(
+                                  position!.latitude, position!.longitude),
+                              zoom: 15.0),
+                          markers: Set.from(allMarkers),
+                          //markers: _markers.values.toSet(),
+                        ),
+                        Positioned(
+                          top: sizeHeight * 0.04,
+                          child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0, vertical: 30),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      map = false;
-                                      isAddressLoading = false;
-                                    });
-                                  },
-                                  child: Image.asset(
-                                    "assets/images/arrowMap.png",
-                                    height: 50,
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 200,
-                      width: sizeWidth,
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(40),
-                            topLeft: Radius.circular(40)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          children: [
-                            fixedGap(height: 10.0),
-                            Container(
-                              height: 8,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: Colors.grey.shade300,
-                                //color: Color(color),
-                              ),
-                            ),
-                            fixedGap(height: 10.0),
-                            Text(
-                              locationController.text,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: AppColors.black),
-                            ),
-                            flaxibleGap(1),
-                            Material(
-                              child: Ink(
-                                width: sizeWidth,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: AppColors.appThemeColor,
-                                  //color: Color(color),
-                                ),
+                                padding:
+                                    EdgeInsets.only(left: sizeHeight * 0.01),
                                 child: InkWell(
-                                  splashColor: AppColors.black,
-                                  child: button(
-                                    name: AppLocalizations.of(context)!.confirm,
-                                  ),
-                                  onTap: () {
-                                    setState(() {
-                                      isAddressLoading = false;
-                                      map = false;
-                                    });
-                                  },
-                                ),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                        height: sizeHeight * 0.04,
+                                        width: sizeWidth * 0.13,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.white,
+                                        ),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                left: sizeWidth * 0.02),
+                                            child: Icon(
+                                              Icons.arrow_back_ios,
+                                              color: AppColors.black,
+                                            ),
+                                          ),
+                                        ))),
                               ),
-                            ),
-                            // flaxibleGap(1),
-                            // GestureDetector(
-                            //   onTap: () {
-                            //     _handlePressButton();
-                            //   },
-                            //   child: Container(
-                            //     height: 40,
-                            //     width: sizeWidth,
-                            //     decoration: BoxDecoration(
-                            //       borderRadius: BorderRadius.circular(4),
-                            //       color: Colors.grey.shade300,
-                            //       //color: Color(color),
-                            //     ),
-                            //     child: const Padding(
-                            //       padding: EdgeInsets.all(8.0),
-                            //       child: Row(
-                            //         children: [
-                            //           Text(
-                            //             "Search Pitch",
-                            //             style: TextStyle(
-                            //                 fontFamily: "Poppins",
-                            //                 fontWeight: FontWeight.w500,
-                            //                 fontSize: 15,
-                            //                 color: Colors.grey),
-                            //           ),
-                            //           Spacer(),
-                            //           Icon(Icons.search, color: Colors.grey)
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
-                            flaxibleGap(1),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            : GestureDetector(
-                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                child: Scaffold(
-                  backgroundColor: MyAppState.mode == ThemeMode.light
-                      ? AppColors.white
-                      : AppColors.darkTheme,
-                  appBar: appBarForCreatingAcademy(
-                    size,
-                    context,
-                    AppLocalizations.of(context)!.document,
-                    true,
-                    AppColors.appThemeColor,
-                    const Color(0XFFCBCBCB),
-                    const Color(0XFFCBCBCB),
-                    const Color(0XFFCBCBCB),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                  body: SingleChildScrollView(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    child: Container(
-                      color: AppColors.black,
-                      child: Container(
-                        width: sizeWidth,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: sizeWidth * 0.059),
-                        decoration: BoxDecoration(
-                            color: MyAppState.mode == ThemeMode.light
-                                ? AppColors.white
-                                : AppColors.darkTheme,
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20))),
-                        child: Form(
-                          key: _formKey,
-                          child: DefaultTextStyle(
+                  Container(
+                    height: 200,
+                    width: sizeWidth,
+                    decoration: BoxDecoration(
+                      color: MyAppState.mode == ThemeMode.light
+                          ? AppColors.white
+                          : AppColors.darkTheme,
+                      borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(40),
+                          topLeft: Radius.circular(40)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        children: [
+                          fixedGap(height: 10.0),
+                          Container(
+                            height: 8,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.grey.shade300,
+                              //color: Color(color),
+                            ),
+                          ),
+                          fixedGap(height: 10.0),
+                          Text(
+                            locationController.text,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
-                                .copyWith(),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: sizeHeight * 0.008,
+                                .copyWith(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? AppColors.black
+                                        : AppColors.white),
+                          ),
+                          flaxibleGap(1),
+                          Material(
+                            child: Ink(
+                              width: sizeWidth,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: AppColors.appThemeColor,
+                                //color: Color(color),
+                              ),
+                              child: InkWell(
+                                splashColor: AppColors.black,
+                                child: button(
+                                  name: AppLocalizations.of(context)!.confirm,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: sizeWidth * .009,
-                                      vertical: sizeHeight * .02),
-                                  child: _isImageLoading
-                                      ? Container(
-                                          height: sizeHeight * .2,
-                                          width: sizeWidth,
-                                          decoration: BoxDecoration(
-                                              color: AppColors.themeColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: Lottie.asset(
-                                            'assets/lottiefiles/profile.json',
+                                onTap: () {
+                                  setState(() {
+                                    isAddressLoading = false;
+                                    map = false;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          // flaxibleGap(1),
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     _handlePressButton();
+                          //   },
+                          //   child: Container(
+                          //     height: 40,
+                          //     width: sizeWidth,
+                          //     decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(4),
+                          //       color: Colors.grey.shade300,
+                          //       //color: Color(color),
+                          //     ),
+                          //     child: const Padding(
+                          //       padding: EdgeInsets.all(8.0),
+                          //       child: Row(
+                          //         children: [
+                          //           Text(
+                          //             "Search Pitch",
+                          //             style: TextStyle(
+                          //                 fontFamily: "Poppins",
+                          //                 fontWeight: FontWeight.w500,
+                          //                 fontSize: 15,
+                          //                 color: Colors.grey),
+                          //           ),
+                          //           Spacer(),
+                          //           Icon(Icons.search, color: Colors.grey)
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          flaxibleGap(1),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+          : GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: Scaffold(
+                backgroundColor: MyAppState.mode == ThemeMode.light
+                    ? AppColors.white
+                    : AppColors.darkTheme,
+                appBar: appBarForCreatingAcademy(
+                  size,
+                  context,
+                  AppLocalizations.of(context)!.document,
+                  true,
+                  AppColors.appThemeColor,
+                  const Color(0XFFCBCBCB),
+                  const Color(0XFFCBCBCB),
+                  const Color(0XFFCBCBCB),
+                ),
+                body: SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  child: Container(
+                    color: AppColors.black,
+                    child: Container(
+                      width: sizeWidth,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * 0.059),
+                      decoration: BoxDecoration(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? AppColors.white
+                              : AppColors.darkTheme,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20))),
+                      child: Form(
+                        key: _formKey,
+                        child: DefaultTextStyle(
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: sizeHeight * 0.008,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: sizeWidth * .009,
+                                    vertical: sizeHeight * .02),
+                                child: _isImageLoading
+                                    ? Container(
+                                        height: sizeHeight * .2,
+                                        width: sizeWidth,
+                                        decoration: BoxDecoration(
+                                            color: AppColors.themeColor,
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: Lottie.asset(
+                                          'assets/lottiefiles/profile.json',
+                                        ),
+                                      )
+                                    : SizedBox(
+                                        height: sizeHeight * .2,
+                                        width: sizeWidth,
+                                        child: image != null ||
+                                                documentFilePath != null
+                                            ?
+                                            // doc.isNotEmpty
+                                            //         ? ListView.builder(
+                                            //             itemCount: doc.length + 1,
+                                            //             scrollDirection:
+                                            //                 Axis.horizontal,
+                                            //             itemBuilder:
+                                            //                 (context, index) {
+                                            //               return Padding(
+                                            //                 padding:
+                                            //                     const EdgeInsets
+                                            //                         .all(5.0),
+                                            //                 child: index == 0
+                                            //                     ? widget.detail
+                                            //                             .isEdit!
+                                            //                         ? const SizedBox
+                                            //                             .shrink()
+                                            //                         : GestureDetector(
+                                            //                             onTap: () {
+                                            //                               setState(
+                                            //                                   () {
+                                            //                                 checkIndex =
+                                            //                                     -1;
+                                            //                                 _nameController.text =
+                                            //                                     "";
+                                            //                                 _licenceController.text =
+                                            //                                     "";
+                                            //                                 _expiryDate.text =
+                                            //                                     '';
+                                            //                                 _apiExpiryDate =
+                                            //                                     null;
+                                            //                                 _showChoiceDialog(
+                                            //                                     context);
+                                            //                               });
+                                            //                             },
+                                            //                             child:
+                                            //                                 Container(
+                                            //                               height:
+                                            //                                   sizeHeight *
+                                            //                                       .3,
+                                            //                               width:
+                                            //                                   150,
+                                            //                               decoration: BoxDecoration(
+                                            //                                   color: MyAppState.mode == ThemeMode.light
+                                            //                                       ? Colors.grey.shade200
+                                            //                                       : Colors.white,
+                                            //                                   borderRadius: BorderRadius.circular(10)),
+                                            //                               child:
+                                            //                                   Padding(
+                                            //                                 padding: const EdgeInsets
+                                            //                                     .all(
+                                            //                                     50.0),
+                                            //                                 child: Image
+                                            //                                     .asset(
+                                            //                                   "assets/images/add_doc.png",
+                                            //                                   height:
+                                            //                                       50,
+                                            //                                 ),
+                                            //                               ),
+                                            //                             ),
+                                            //                           )
+                                            //                     : GestureDetector(
+                                            //                         onTap: () {
+                                            //                           if (checkIndex ==
+                                            //                               index) {
+                                            //                             setState(
+                                            //                                 () {
+                                            //                               checkIndex =
+                                            //                                   -1;
+                                            //                               _nameController
+                                            //                                   .text = "";
+                                            //                               _licenceController
+                                            //                                   .text = "";
+                                            //                               _expiryDate
+                                            //                                   .text = '';
+                                            //                               _apiExpiryDate =
+                                            //                                   null;
+                                            //                               pitch_Id =
+                                            //                                   null;
+                                            //                             });
+                                            //                           } else {
+                                            //                             setState(
+                                            //                                 () {
+                                            //                               checkIndex =
+                                            //                                   index;
+                                            //                               _nameController
+                                            //                                       .text =
+                                            //                                   doc[checkIndex - 1].docName ??
+                                            //                                       "";
+                                            //                               _licenceController
+                                            //                                   .text = doc[checkIndex -
+                                            //                                       1]
+                                            //                                   .licenceNumber!;
+                                            //                               if (doc[checkIndex - 1]
+                                            //                                       .expiryDate !=
+                                            //                                   null) {
+                                            //                                 _expiryDate
+                                            //                                     .text = formatter.format(DateTime.parse(doc[checkIndex -
+                                            //                                         1]
+                                            //                                     .expiryDate!));
+                                            //                                 _apiExpiryDate =
+                                            //                                     apiFormatter.format(DateTime.parse(doc[checkIndex - 1].expiryDate!));
+                                            //                                 pitch_Id =
+                                            //                                     doc[checkIndex - 1].id;
+                                            //                               } else {
+                                            //                                 _expiryDate.text =
+                                            //                                     '';
+                                            //                                 _apiExpiryDate =
+                                            //                                     null;
+                                            //                                 pitch_Id =
+                                            //                                     null;
+                                            //                               }
+                                            //                             });
+                                            //                           }
+                                            //                         },
+                                            //                         child: Stack(
+                                            //                           children: [
+                                            //                             ClipRRect(
+                                            //                               borderRadius:
+                                            //                                   BorderRadius.circular(
+                                            //                                       10),
+                                            //                               child: cachedNetworkImage(
+                                            //                                   height: sizeHeight *
+                                            //                                       .2,
+                                            //                                   width: sizeWidth *
+                                            //                                       0.45,
+                                            //                                   cuisineImageUrl: doc[index - 1]
+                                            //                                       .docImage,
+                                            //                                   imageFit:
+                                            //                                       BoxFit.fill),
+                                            //                             ),
+                                            //                             checkIndex ==
+                                            //                                     index
+                                            //                                 ? Container(
+                                            //                                     height:
+                                            //                                         sizeHeight * .2,
+                                            //                                     width:
+                                            //                                         sizeWidth * 0.45,
+                                            //                                     decoration:
+                                            //                                         BoxDecoration(color: Colors.white.withOpacity(.2), borderRadius: BorderRadius.circular(10)),
+                                            //                                   )
+                                            //                                 : const SizedBox
+                                            //                                     .shrink(),
+                                            //                             checkIndex ==
+                                            //                                     index
+                                            //                                 ? SizedBox(
+                                            //                                     height:
+                                            //                                         sizeHeight * .2,
+                                            //                                     width:
+                                            //                                         sizeWidth * 0.45,
+                                            //                                     child:
+                                            //                                         Padding(
+                                            //                                       padding: const EdgeInsets.all(50.0),
+                                            //                                       child: Image.asset(
+                                            //                                         "assets/images/check.png",
+                                            //                                         height: 50,
+                                            //                                       ),
+                                            //                                     ),
+                                            //                                   )
+                                            //                                 : const SizedBox
+                                            //                                     .shrink(),
+                                            //                           ],
+                                            //                         ),
+                                            //                       ),
+                                            //               );
+                                            //             }) :
+                                            GestureDetector(
+                                                onTap: () {
+                                                  _showChoiceDialog(context);
+                                                },
+                                                child: checkIndex == 1
+                                                    ? cachedNetworkImage(
+                                                        height: sizeHeight * .2,
+                                                        width: sizeWidth,
+                                                        cuisineImageUrl:
+                                                            image!.path)
+                                                    : pdfClicked
+                                                        ? _decidePdfView()
+                                                        : _decideImageview())
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  _showChoiceDialog(context);
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                    Icon(
+                                                      Icons.add_circle,
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF9B9B9B)
+                                                          : AppColors.white,
+                                                      size: 50,
+                                                    ),
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                    Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .uploadDocument,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF9B9B9B)
+                                                                    : AppColors
+                                                                        .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontFamily:
+                                                                    "Poppins")),
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                    Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .weNeedAccount,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleSmall!
+                                                            .copyWith(
+                                                                color: const Color(
+                                                                        0XFF9B9B9B)
+                                                                    .withOpacity(
+                                                                        .5),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontFamily:
+                                                                    "Poppins")),
+                                                    flaxibleGap(
+                                                      1,
+                                                    ),
+                                                  ],
+                                                ),
+                                              )),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.documentName,
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
+                              ),
+                              SizedBox(
+                                height: sizeHeight * 0.01,
+                              ),
+                              TextFieldWidget(
+                                  controller: _nameController,
+                                  hintText: AppLocalizations.of(context)!
+                                      .documentName,
+                                  enable: widget.detail.isEdit! ? false : true,
+                                  onChanged: (value) {
+                                    widget.detail.documentModel =
+                                        DocumentModel(documentName: value!);
+                                    return '';
+                                  },
+                                  onValidate: (value) {
+                                    if (value.toString().isEmpty) {
+                                      return AppLocalizations.of(context)!
+                                          .pleaseentername;
+                                    }
+                                    return null;
+                                  },
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  enableBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  focusBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12))),
+                              SizedBox(
+                                height: sizeHeight * 0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.licenceName,
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
+                              ),
+                              SizedBox(
+                                height: sizeHeight * 0.01,
+                              ),
+                              TextFieldWidget(
+                                  controller: _licenceController,
+                                  hintText:
+                                      AppLocalizations.of(context)!.licenceName,
+                                  type: TextInputType.number,
+                                  onChanged: (value) {
+                                    widget.detail.documentModel!.licenceNumber =
+                                        value;
+                                    return '';
+                                  },
+                                  enable: widget.detail.isEdit! ? false : true,
+                                  onValidate: (value) {
+                                    if (value.isEmpty) {
+                                      return AppLocalizations.of(context)!
+                                          .pleaseenterPitchName;
+                                    }
+                                    return null;
+                                  },
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  enableBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  focusBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12))),
+                              SizedBox(
+                                height: sizeHeight * 0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.expiryDate,
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? AppColors.themeColor
+                                        : AppColors.white),
+                              ),
+                              SizedBox(
+                                height: sizeHeight * 0.01,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  var selectDate;
+                                  selectDate = widget.specificAcademyId != null
+                                      ? null
+                                      : await slecteDtateTime(context);
+                                  if (selectDate != null) {
+                                    setState(() {
+                                      _expiryDate.text = formatter
+                                          .format((selectDate))
+                                          .toString();
+                                      _apiExpiryDate = apiFormatter
+                                          .format((selectDate))
+                                          .toString();
+                                    });
+                                  }
+                                },
+                                child: TextFieldWidget(
+                                  controller: _expiryDate,
+                                  hintText: 'Expiry Document Date',
+                                  enable: false,
+                                  onValidate: (value) {
+                                    if (value.isEmpty) {
+                                      return AppLocalizations.of(context)!
+                                          .expriyDate;
+                                    }
+                                    return null;
+                                  },
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  enableBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  focusBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: AppColors.grey),
+                                      borderRadius: BorderRadius.circular(12)),
+                                ),
+                              ),
+                              SizedBox(
+                                height: sizeHeight * 0.02,
+                              ),
+                              locationController.text.isNotEmpty &&
+                                      widget.specificAcademyId == null
+                                  ? Text(
+                                      AppLocalizations.of(context)!
+                                          .academyLocation,
+                                      style: TextStyle(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.themeColor
+                                                  : AppColors.white),
+                                    )
+                                  : const SizedBox.shrink(),
+                              SizedBox(
+                                height: sizeHeight * 0.01,
+                              ),
+                              widget.specificAcademyId != null
+                                  ? const SizedBox.shrink()
+                                  : isAddressLoading
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            _permission();
+                                          },
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              shimmer(width: sizeWidth),
+                                              SizedBox(
+                                                height: sizeHeight * 0.013,
+                                              ),
+                                              shimmer(width: sizeWidth * .8),
+                                              SizedBox(
+                                                height: sizeHeight * 0.013,
+                                              ),
+                                              shimmer(width: sizeWidth),
+                                            ],
                                           ),
                                         )
-                                      : SizedBox(
-                                          height: sizeHeight * .2,
-                                          width: sizeWidth,
-                                          child: image != null ||
-                                                  documentFilePath != null
-                                              ?
-                                              // doc.isNotEmpty
-                                              //         ? ListView.builder(
-                                              //             itemCount: doc.length + 1,
-                                              //             scrollDirection:
-                                              //                 Axis.horizontal,
-                                              //             itemBuilder:
-                                              //                 (context, index) {
-                                              //               return Padding(
-                                              //                 padding:
-                                              //                     const EdgeInsets
-                                              //                         .all(5.0),
-                                              //                 child: index == 0
-                                              //                     ? widget.detail
-                                              //                             .isEdit!
-                                              //                         ? const SizedBox
-                                              //                             .shrink()
-                                              //                         : GestureDetector(
-                                              //                             onTap: () {
-                                              //                               setState(
-                                              //                                   () {
-                                              //                                 checkIndex =
-                                              //                                     -1;
-                                              //                                 _nameController.text =
-                                              //                                     "";
-                                              //                                 _licenceController.text =
-                                              //                                     "";
-                                              //                                 _expiryDate.text =
-                                              //                                     '';
-                                              //                                 _apiExpiryDate =
-                                              //                                     null;
-                                              //                                 _showChoiceDialog(
-                                              //                                     context);
-                                              //                               });
-                                              //                             },
-                                              //                             child:
-                                              //                                 Container(
-                                              //                               height:
-                                              //                                   sizeHeight *
-                                              //                                       .3,
-                                              //                               width:
-                                              //                                   150,
-                                              //                               decoration: BoxDecoration(
-                                              //                                   color: MyAppState.mode == ThemeMode.light
-                                              //                                       ? Colors.grey.shade200
-                                              //                                       : Colors.white,
-                                              //                                   borderRadius: BorderRadius.circular(10)),
-                                              //                               child:
-                                              //                                   Padding(
-                                              //                                 padding: const EdgeInsets
-                                              //                                     .all(
-                                              //                                     50.0),
-                                              //                                 child: Image
-                                              //                                     .asset(
-                                              //                                   "assets/images/add_doc.png",
-                                              //                                   height:
-                                              //                                       50,
-                                              //                                 ),
-                                              //                               ),
-                                              //                             ),
-                                              //                           )
-                                              //                     : GestureDetector(
-                                              //                         onTap: () {
-                                              //                           if (checkIndex ==
-                                              //                               index) {
-                                              //                             setState(
-                                              //                                 () {
-                                              //                               checkIndex =
-                                              //                                   -1;
-                                              //                               _nameController
-                                              //                                   .text = "";
-                                              //                               _licenceController
-                                              //                                   .text = "";
-                                              //                               _expiryDate
-                                              //                                   .text = '';
-                                              //                               _apiExpiryDate =
-                                              //                                   null;
-                                              //                               pitch_Id =
-                                              //                                   null;
-                                              //                             });
-                                              //                           } else {
-                                              //                             setState(
-                                              //                                 () {
-                                              //                               checkIndex =
-                                              //                                   index;
-                                              //                               _nameController
-                                              //                                       .text =
-                                              //                                   doc[checkIndex - 1].docName ??
-                                              //                                       "";
-                                              //                               _licenceController
-                                              //                                   .text = doc[checkIndex -
-                                              //                                       1]
-                                              //                                   .licenceNumber!;
-                                              //                               if (doc[checkIndex - 1]
-                                              //                                       .expiryDate !=
-                                              //                                   null) {
-                                              //                                 _expiryDate
-                                              //                                     .text = formatter.format(DateTime.parse(doc[checkIndex -
-                                              //                                         1]
-                                              //                                     .expiryDate!));
-                                              //                                 _apiExpiryDate =
-                                              //                                     apiFormatter.format(DateTime.parse(doc[checkIndex - 1].expiryDate!));
-                                              //                                 pitch_Id =
-                                              //                                     doc[checkIndex - 1].id;
-                                              //                               } else {
-                                              //                                 _expiryDate.text =
-                                              //                                     '';
-                                              //                                 _apiExpiryDate =
-                                              //                                     null;
-                                              //                                 pitch_Id =
-                                              //                                     null;
-                                              //                               }
-                                              //                             });
-                                              //                           }
-                                              //                         },
-                                              //                         child: Stack(
-                                              //                           children: [
-                                              //                             ClipRRect(
-                                              //                               borderRadius:
-                                              //                                   BorderRadius.circular(
-                                              //                                       10),
-                                              //                               child: cachedNetworkImage(
-                                              //                                   height: sizeHeight *
-                                              //                                       .2,
-                                              //                                   width: sizeWidth *
-                                              //                                       0.45,
-                                              //                                   cuisineImageUrl: doc[index - 1]
-                                              //                                       .docImage,
-                                              //                                   imageFit:
-                                              //                                       BoxFit.fill),
-                                              //                             ),
-                                              //                             checkIndex ==
-                                              //                                     index
-                                              //                                 ? Container(
-                                              //                                     height:
-                                              //                                         sizeHeight * .2,
-                                              //                                     width:
-                                              //                                         sizeWidth * 0.45,
-                                              //                                     decoration:
-                                              //                                         BoxDecoration(color: Colors.white.withOpacity(.2), borderRadius: BorderRadius.circular(10)),
-                                              //                                   )
-                                              //                                 : const SizedBox
-                                              //                                     .shrink(),
-                                              //                             checkIndex ==
-                                              //                                     index
-                                              //                                 ? SizedBox(
-                                              //                                     height:
-                                              //                                         sizeHeight * .2,
-                                              //                                     width:
-                                              //                                         sizeWidth * 0.45,
-                                              //                                     child:
-                                              //                                         Padding(
-                                              //                                       padding: const EdgeInsets.all(50.0),
-                                              //                                       child: Image.asset(
-                                              //                                         "assets/images/check.png",
-                                              //                                         height: 50,
-                                              //                                       ),
-                                              //                                     ),
-                                              //                                   )
-                                              //                                 : const SizedBox
-                                              //                                     .shrink(),
-                                              //                           ],
-                                              //                         ),
-                                              //                       ),
-                                              //               );
-                                              //             }) :
-                                              GestureDetector(
-                                                  onTap: () {
-                                                    _showChoiceDialog(context);
-                                                  },
-                                                  child: checkIndex == 1
-                                                      ? cachedNetworkImage(
-                                                          height:
-                                                              sizeHeight * .2,
-                                                          width: sizeWidth,
-                                                          cuisineImageUrl:
-                                                              image!.path)
-                                                      : pdfClicked
-                                                          ? _decidePdfView()
-                                                          : _decideImageview())
-                                              : GestureDetector(
-                                                  onTap: () {
-                                                    _showChoiceDialog(context);
-                                                  },
-                                                  child: Column(
-                                                    children: [
-                                                      flaxibleGap(
-                                                        1,
-                                                      ),
-                                                      Icon(
-                                                        Icons.add_circle,
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? const Color(
-                                                                0XFF9B9B9B)
-                                                            : AppColors.white,
-                                                        size: 50,
-                                                      ),
-                                                      flaxibleGap(
-                                                        1,
-                                                      ),
-                                                      Text(
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .uploadDocument,
-                                                          style: Theme
-                                                                  .of(context)
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF9B9B9B)
-                                                                      : AppColors
-                                                                          .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontFamily:
-                                                                      "Poppins")),
-                                                      flaxibleGap(
-                                                        1,
-                                                      ),
-                                                      Text(
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .weNeedAccount,
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .titleSmall!
-                                                              .copyWith(
-                                                                  color: const Color(
-                                                                          0XFF9B9B9B)
-                                                                      .withOpacity(
-                                                                          .5),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontFamily:
-                                                                      "Poppins")),
-                                                      flaxibleGap(
-                                                        1,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                )),
-                                ),
-                                Text(
-                                  AppLocalizations.of(context)!.documentName,
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.themeColor
-                                          : AppColors.white),
-                                ),
-                                SizedBox(
-                                  height: sizeHeight * 0.01,
-                                ),
-                                TextFieldWidget(
-                                    controller: _nameController,
-                                    hintText: AppLocalizations.of(context)!
-                                        .documentName,
-                                    enable:
-                                        widget.detail.isEdit! ? false : true,
-                                    onChanged: (value) {
-                                      widget.detail.documentModel =
-                                          DocumentModel(documentName: value!);
-                                      return '';
-                                    },
-                                    onValidate: (value) {
-                                      if (value.toString().isEmpty) {
-                                        return AppLocalizations.of(context)!
-                                            .pleaseentername;
-                                      }
-                                      return null;
-                                    },
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    enableBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    focusBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12))),
-                                SizedBox(
-                                  height: sizeHeight * 0.02,
-                                ),
-                                Text(
-                                  AppLocalizations.of(context)!.licenceName,
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.themeColor
-                                          : AppColors.white),
-                                ),
-                                SizedBox(
-                                  height: sizeHeight * 0.01,
-                                ),
-                                TextFieldWidget(
-                                    controller: _licenceController,
-                                    hintText: AppLocalizations.of(context)!
-                                        .licenceName,
-                                    type: TextInputType.number,
-                                    onChanged: (value) {
-                                      widget.detail.documentModel!
-                                          .licenceNumber = value;
-                                      return '';
-                                    },
-                                    enable:
-                                        widget.detail.isEdit! ? false : true,
-                                    onValidate: (value) {
-                                      if (value.isEmpty) {
-                                        return AppLocalizations.of(context)!
-                                            .pleaseenterPitchName;
-                                      }
-                                      return null;
-                                    },
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    enableBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    focusBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12))),
-                                SizedBox(
-                                  height: sizeHeight * 0.02,
-                                ),
-                                Text(
-                                  AppLocalizations.of(context)!.expiryDate,
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.themeColor
-                                          : AppColors.white),
-                                ),
-                                SizedBox(
-                                  height: sizeHeight * 0.01,
-                                ),
-                                InkWell(
-                                  onTap: () async {
-                                    var selectDate;
-                                    selectDate =
-                                        widget.specificAcademyId != null
-                                            ? null
-                                            : await slecteDtateTime(context);
-                                    if (selectDate != null) {
-                                      setState(() {
-                                        _expiryDate.text = formatter
-                                            .format((selectDate))
-                                            .toString();
-                                        _apiExpiryDate = apiFormatter
-                                            .format((selectDate))
-                                            .toString();
-                                      });
-                                    }
-                                  },
-                                  child: TextFieldWidget(
-                                    controller: _expiryDate,
-                                    hintText: 'Expiry Document Date',
-                                    enable: false,
-                                    onValidate: (value) {
-                                      if (value.isEmpty) {
-                                        return AppLocalizations.of(context)!
-                                            .expriyDate;
-                                      }
-                                      return null;
-                                    },
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    enableBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    focusBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: sizeHeight * 0.02,
-                                ),
-                                locationController.text.isNotEmpty &&
-                                        widget.specificAcademyId == null
-                                    ? Text(
-                                        AppLocalizations.of(context)!
-                                            .academyLocation,
-                                        style: TextStyle(
-                                            color: MyAppState.mode ==
+                                      : InkWell(
+                                          onTap: () {
+                                            isAddressLoading = true;
+                                            FocusScope.of(context).unfocus();
+                                            _getLocationPermission();
+                                          },
+                                          child: TextFieldWidget(
+                                            controller: locationController,
+                                            hintText: locationController.text,
+                                            suffixIcon:
+                                                Icons.location_searching,
+                                            suffixIconColor: MyAppState.mode ==
                                                     ThemeMode.light
-                                                ? AppColors.themeColor
-                                                : AppColors.white),
-                                      )
-                                    : const SizedBox.shrink(),
-                                SizedBox(
-                                  height: sizeHeight * 0.01,
-                                ),
-                                widget.specificAcademyId != null
-                                    ? const SizedBox.shrink()
-                                    : isAddressLoading
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              _permission();
+                                                ? AppColors.black
+                                                : AppColors.white,
+                                            enable: false,
+                                            onValidate: (value) {
+                                              if (value.isEmpty) {
+                                                return AppLocalizations.of(
+                                                        context)!
+                                                    .expriyDate;
+                                              }
+                                              return null;
                                             },
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                shimmer(width: sizeWidth),
-                                                SizedBox(
-                                                  height: sizeHeight * 0.013,
-                                                ),
-                                                shimmer(width: sizeWidth * .8),
-                                                SizedBox(
-                                                  height: sizeHeight * 0.013,
-                                                ),
-                                                shimmer(width: sizeWidth),
-                                              ],
-                                            ),
-                                          )
-                                        : InkWell(
-                                            onTap: () {
-                                              isAddressLoading = true;
-                                              FocusScope.of(context).unfocus();
-                                              _getLocationPermission();
-                                            },
-                                            child: TextFieldWidget(
-                                              controller: locationController,
-                                              hintText: locationController.text,
-                                              suffixIcon:
-                                                  Icons.location_searching,
-                                              suffixIconColor:
-                                                  MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? AppColors.black
-                                                      : AppColors.white,
-                                              enable: false,
-                                              onValidate: (value) {
-                                                if (value.isEmpty) {
-                                                  return AppLocalizations.of(
-                                                          context)!
-                                                      .expriyDate;
-                                                }
-                                                return null;
-                                              },
-                                              border: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: AppColors.grey),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12)),
-                                              enableBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: AppColors.grey),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12)),
-                                              focusBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: AppColors.grey),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12)),
-                                            ),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
+                                            enableBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
+                                            focusBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: AppColors.grey),
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
                                           ),
-                                SizedBox(
-                                  height: sizeHeight * 0.02,
-                                ),
-                                locationController.text != '' &&
-                                        _expiryDate.text != '' &&
-                                        _nameController.text != ""
-                                    ? ButtonWidget(
-                                        onTaped: () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            _formKey.currentState!.save();
-                                            if (widget.specificAcademyId !=
-                                                null) {
-                                              print('Document $documentImage');
-                                              print('Image $image');
-                                              showMessage(
-                                                  "You can't update your document");
-                                              Navigator.pop(context);
-                                              // List<Sessions> mondaySessions =
-                                              //     _specificAcademy.sessions!
-                                              //         .where((session) =>
-                                              //             session.weekday ==
-                                              //             'monday')
-                                              //         .toList();
-                                              // List<Sessions> tuesdaySessions =
-                                              //     _specificAcademy.sessions!
-                                              //         .where((session) =>
-                                              //             session.weekday ==
-                                              //             'tuesday')
-                                              //         .toList();
-                                              // List<Sessions> wednesdaySessions =
-                                              //     _specificAcademy.sessions!
-                                              //         .where((session) =>
-                                              //             session.weekday ==
-                                              //             'wednesday')
-                                              //         .toList();
-                                              // List<Sessions> thursdaySessions =
-                                              //     _specificAcademy.sessions!
-                                              //         .where((session) =>
-                                              //             session.weekday ==
-                                              //             'thursday')
-                                              //         .toList();
-                                              // List<Sessions> fridaySessions =
-                                              //     _specificAcademy.sessions!
-                                              //         .where((session) =>
-                                              //             session.weekday ==
-                                              //             'friday')
-                                              //         .toList();
-                                              // List<Sessions> saturdaySessions =
-                                              //     _specificAcademy.sessions!
-                                              //         .where((session) =>
-                                              //             session.weekday ==
-                                              //             'saturday')
-                                              //         .toList();
-                                              // List<Sessions> sundaySessions =
-                                              //     _specificAcademy.sessions!
-                                              //         .where((session) =>
-                                              //             session.weekday ==
-                                              //             'sunday')
-                                              //         .toList();
-                                              // for (int i = 0;
-                                              //     i < mondaySessions.length;
-                                              //     i++) {
-                                              //   print(mondaySessions[i].name);
-                                              // }
-                                              // Map detailS = {
-                                              //   "weekday":
-                                              //       mondaySessions[0].weekday,
-                                              //   "sessions": mondaySessions
-                                              // };
-                                              // print(detailS);
-                                              // _specificAcademy.documents![0]
-                                              //     .file = documentImage;
-                                              // _specificAcademy.documents![0]
-                                              //         .expiryDate =
-                                              //     _expiryDate.text;
-                                              // Map documentDetail =
-                                              //     ModelToMapEditAcademy
-                                              //         .editAcademy(
-                                              //             _specificAcademy);
-                                              // print(documentDetail);
-                                              // editAcademy(documentDetail);
-                                            } else {
-                                              widget.detail.documentModel?.lat =
-                                                  pitchLat;
-                                              widget.detail.documentModel
-                                                  ?.long = pitchLong;
-                                              widget.detail.documentModel !=
-                                                      null
-                                                  ? widget.detail.documentModel!
-                                                          .address =
-                                                      locationController.text
-                                                  : widget.detail.documentModel
-                                                          ?.address =
-                                                      locationController.text;
-                                              // widget.detail.documentModel !=
-                                              //         null
-                                              //     ? widget.detail.documentModel!
-                                              //             .documentImageId =
-                                              //         pitch_Id
-                                              //     : widget.detail.documentModel
-                                              //             ?.documentImageId =
-                                              //         pitch_Id;
-                                              widget.detail.documentModel !=
-                                                      null
-                                                  ? widget.detail.documentModel!
-                                                          .expiryDate =
-                                                      _apiExpiryDate
-                                                  : widget.detail.documentModel
-                                                          ?.expiryDate =
-                                                      _apiExpiryDate;
-                                              widget.detail.documentModel !=
-                                                      null
-                                                  ? widget.detail.documentModel!
-                                                      .country = country
-                                                  : widget.detail.documentModel
-                                                      ?.country = country;
-                                              widget.detail.documentModel!
-                                                      .documentImage =
-                                                  documentImage;
-                                              print(widget.detail.documentModel!
-                                                  .documentImage);
-                                              navigateToDocuments(
-                                                  widget.detail);
-                                            }
-                                          }
-                                        },
-                                        title: Text(
-                                          AppLocalizations.of(context)!.continu,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(color: AppColors.white),
                                         ),
-                                        isLoading: loading)
-                                    : ButtonWidget(
-                                        color: const Color(0XFFBCBCBC),
-                                        onTaped: () {},
-                                        title: Text(
-                                            AppLocalizations.of(context)!
-                                                .continu),
-                                        isLoading: false),
-                                SizedBox(
-                                  height: sizeHeight * 0.01,
-                                )
-                              ],
-                            ),
+                              SizedBox(
+                                height: sizeHeight * 0.02,
+                              ),
+                              locationController.text != '' &&
+                                      _expiryDate.text != '' &&
+                                      _nameController.text != ""
+                                  ? ButtonWidget(
+                                      onTaped: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          _formKey.currentState!.save();
+                                          if (widget.specificAcademyId !=
+                                              null) {
+                                            print('Document $documentImage');
+                                            print('Image $image');
+                                            showMessage(
+                                                "You can't update your document");
+                                            Navigator.pop(context);
+                                            // List<Sessions> mondaySessions =
+                                            //     _specificAcademy.sessions!
+                                            //         .where((session) =>
+                                            //             session.weekday ==
+                                            //             'monday')
+                                            //         .toList();
+                                            // List<Sessions> tuesdaySessions =
+                                            //     _specificAcademy.sessions!
+                                            //         .where((session) =>
+                                            //             session.weekday ==
+                                            //             'tuesday')
+                                            //         .toList();
+                                            // List<Sessions> wednesdaySessions =
+                                            //     _specificAcademy.sessions!
+                                            //         .where((session) =>
+                                            //             session.weekday ==
+                                            //             'wednesday')
+                                            //         .toList();
+                                            // List<Sessions> thursdaySessions =
+                                            //     _specificAcademy.sessions!
+                                            //         .where((session) =>
+                                            //             session.weekday ==
+                                            //             'thursday')
+                                            //         .toList();
+                                            // List<Sessions> fridaySessions =
+                                            //     _specificAcademy.sessions!
+                                            //         .where((session) =>
+                                            //             session.weekday ==
+                                            //             'friday')
+                                            //         .toList();
+                                            // List<Sessions> saturdaySessions =
+                                            //     _specificAcademy.sessions!
+                                            //         .where((session) =>
+                                            //             session.weekday ==
+                                            //             'saturday')
+                                            //         .toList();
+                                            // List<Sessions> sundaySessions =
+                                            //     _specificAcademy.sessions!
+                                            //         .where((session) =>
+                                            //             session.weekday ==
+                                            //             'sunday')
+                                            //         .toList();
+                                            // for (int i = 0;
+                                            //     i < mondaySessions.length;
+                                            //     i++) {
+                                            //   print(mondaySessions[i].name);
+                                            // }
+                                            // Map detailS = {
+                                            //   "weekday":
+                                            //       mondaySessions[0].weekday,
+                                            //   "sessions": mondaySessions
+                                            // };
+                                            // print(detailS);
+                                            // _specificAcademy.documents![0]
+                                            //     .file = documentImage;
+                                            // _specificAcademy.documents![0]
+                                            //         .expiryDate =
+                                            //     _expiryDate.text;
+                                            // Map documentDetail =
+                                            //     ModelToMapEditAcademy
+                                            //         .editAcademy(
+                                            //             _specificAcademy);
+                                            // print(documentDetail);
+                                            // editAcademy(documentDetail);
+                                          } else {
+                                            widget.detail.documentModel?.lat =
+                                                pitchLat;
+                                            widget.detail.documentModel?.long =
+                                                pitchLong;
+                                            widget.detail.documentModel != null
+                                                ? widget.detail.documentModel!
+                                                        .address =
+                                                    locationController.text
+                                                : widget.detail.documentModel
+                                                        ?.address =
+                                                    locationController.text;
+                                            // widget.detail.documentModel !=
+                                            //         null
+                                            //     ? widget.detail.documentModel!
+                                            //             .documentImageId =
+                                            //         pitch_Id
+                                            //     : widget.detail.documentModel
+                                            //             ?.documentImageId =
+                                            //         pitch_Id;
+                                            widget.detail.documentModel != null
+                                                ? widget.detail.documentModel!
+                                                    .expiryDate = _apiExpiryDate
+                                                : widget.detail.documentModel
+                                                        ?.expiryDate =
+                                                    _apiExpiryDate;
+                                            widget.detail.documentModel != null
+                                                ? widget.detail.documentModel!
+                                                    .country = country
+                                                : widget.detail.documentModel
+                                                    ?.country = country;
+                                            widget.detail.documentModel!
+                                                .documentImage = documentImage;
+                                            print(widget.detail.documentModel!
+                                                .documentImage);
+                                            navigateToDocuments(widget.detail);
+                                          }
+                                        }
+                                      },
+                                      title: Text(
+                                        AppLocalizations.of(context)!.continu,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(color: AppColors.white),
+                                      ),
+                                      isLoading: loading)
+                                  : ButtonWidget(
+                                      color: const Color(0XFFBCBCBC),
+                                      onTaped: () {},
+                                      title: Text(AppLocalizations.of(context)!
+                                          .continu),
+                                      isLoading: false),
+                              SizedBox(
+                                height: sizeHeight * 0.01,
+                              )
+                            ],
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              );
+              ),
+            );
     }
   }
 
@@ -1407,7 +1394,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   _openGallery(BuildContext context) async {
-    try{
+    try {
       var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
       setState(() {
         print('ddj');
@@ -1433,7 +1420,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
         );
       });
       Navigator.of(context).pop();
-    }catch(e){
+    } catch (e) {
       print('gallery picking error $e');
     }
   }

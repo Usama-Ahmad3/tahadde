@@ -73,8 +73,12 @@ class _BookingSummary extends State<BookingSummary> {
         child: loading
             ? Scaffold(
                 backgroundColor: Colors.black,
-                appBar: appBarWidget(sizewidth, sizeheight, context,
-                    AppLocalizations.of(context)!.bookingDetails, true),
+                appBar: appBarWidget(
+                    sizeWidth: sizewidth,
+                    sizeHeight: sizeheight,
+                    context: context,
+                    title: AppLocalizations.of(context)!.bookingDetails,
+                    back: true),
                 body: SizedBox(
                   width: sizewidth,
                   child: Column(
@@ -124,8 +128,12 @@ class _BookingSummary extends State<BookingSummary> {
             : internet!
                 ? Scaffold(
                     backgroundColor: Colors.black,
-                    appBar: appBarWidget(sizewidth, sizeheight, context,
-                        AppLocalizations.of(context)!.bookingDetails, false),
+                    appBar: appBarWidget(
+                        sizeWidth: sizewidth,
+                        sizeHeight: sizeheight,
+                        context: context,
+                        title: AppLocalizations.of(context)!.bookingDetails,
+                        back: false),
                     body: Container(
                       height: double.infinity,
                       decoration: BoxDecoration(

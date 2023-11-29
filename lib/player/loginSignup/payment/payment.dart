@@ -161,8 +161,12 @@ class _PaymentState extends State<Payment> {
     return _isLoading
         ? Scaffold(
             backgroundColor: AppColors.black,
-            appBar: appBarWidget(sizewidth, sizeheight, context,
-                AppLocalizations.of(context)!.selectPaymentMethod, true),
+            appBar: appBarWidget(
+                sizeWidth: sizewidth,
+                sizeHeight: sizeheight,
+                context: context,
+                title: AppLocalizations.of(context)!.selectPaymentMethod,
+                back: true),
             body: Container(
               height: sizeheight,
               width: sizewidth,
@@ -198,8 +202,12 @@ class _PaymentState extends State<Payment> {
         : internet
             ? Scaffold(
                 backgroundColor: AppColors.black,
-                appBar: appBarWidget(sizewidth, sizeheight, context,
-                    AppLocalizations.of(context)!.selectPaymentMethod, true),
+                appBar: appBarWidget(
+                    sizeWidth: sizewidth,
+                    sizeHeight: sizeheight,
+                    context: context,
+                    title: AppLocalizations.of(context)!.selectPaymentMethod,
+                    back: true),
                 resizeToAvoidBottomInset: true,
                 body: Container(
                   height: sizeheight,

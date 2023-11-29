@@ -226,7 +226,23 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                 ),
               ),
               body: _isLoading
-                  ? ShimmerWidgets().buildShimmer(fem, context, _pitchDetail)
+                  ? Container(
+                      height: sizeHeight,
+                      width: sizeWidth,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? AppColors.white
+                              : AppColors.darkTheme,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20))),
+                      child: const Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.appThemeColor,
+                        ),
+                      ),
+                    )
                   : LayoutBuilder(
                       builder: (context, constraints) => ConstrainedBox(
                         constraints:

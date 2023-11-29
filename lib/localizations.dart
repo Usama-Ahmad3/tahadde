@@ -95,6 +95,11 @@ class AppLocalizations {
     return Intl.message('login required to see booking', name: 'loginRequired');
   }
 
+  String get loginRequiredCart {
+    return Intl.message('login required to see cart items',
+        name: 'loginRequiredCart');
+  }
+
   String get add {
     return Intl.message('Add', name: 'add');
   }

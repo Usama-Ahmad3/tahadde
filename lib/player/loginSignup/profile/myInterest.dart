@@ -79,8 +79,12 @@ class _MyInterestState extends State<MyInterest> {
     return loading
         ? Scaffold(
             backgroundColor: AppColors.black,
-            appBar: appBarWidget(sizeWidth, sizeHeight, context,
-                AppLocalizations.of(context)!.myInterest, true),
+            appBar: appBarWidget(
+                sizeWidth: sizeWidth,
+                sizeHeight: sizeHeight,
+                context: context,
+                title: AppLocalizations.of(context)!.myInterest,
+                back: true),
             body: Container(
               height: sizeHeight,
               width: sizeWidth,
@@ -129,8 +133,12 @@ class _MyInterestState extends State<MyInterest> {
         : _internet!
             ? Scaffold(
                 backgroundColor: AppColors.black,
-                appBar: appBarWidget(sizeWidth, sizeHeight, context,
-                    AppLocalizations.of(context)!.myInterest, true),
+                appBar: appBarWidget(
+                    sizeWidth: sizeWidth,
+                    sizeHeight: sizeHeight,
+                    context: context,
+                    title: AppLocalizations.of(context)!.myInterest,
+                    back: true),
                 body: data!
                     ? Container(
                         height: sizeHeight * .87,

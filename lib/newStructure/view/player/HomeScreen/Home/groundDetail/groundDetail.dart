@@ -335,17 +335,28 @@ class GroundDetailState extends State<GroundDetail>
                       leading: Padding(
                         padding: EdgeInsets.only(left: height * 0.01),
                         child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Image.asset(
-                            'assets/images/back.png',
-                            color: AppColors.white,
-                            isAntiAlias: true,
-                          ),
-                        ),
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                                height: height * 0.045,
+                                width: width * 0.01,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: width * 0.017),
+                                    child: Icon(
+                                      Icons.arrow_back_ios,
+                                      color: AppColors.black,
+                                    ),
+                                  ),
+                                ))),
                       ),
-                      leadingWidth: width * 0.13,
+                      leadingWidth: width * 0.11,
                       backgroundColor: AppColors.transparent,
                       automaticallyImplyLeading: false,
                       flexibleSpace: FlexibleSpaceBar(
@@ -405,10 +416,11 @@ class GroundDetailState extends State<GroundDetail>
                                                       AppColors
                                                           .containerColorB54
                                                     ])
-                                                  : LinearGradient(colors: [
-                                                      Colors.white,
-                                                      Colors.white,
-                                                    ]),
+                                                  : const LinearGradient(
+                                                      colors: [
+                                                          Colors.white,
+                                                          Colors.white,
+                                                        ]),
                                             )
                                           : SizedBox(
                                               height: height * 0.028,

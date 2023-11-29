@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
@@ -89,8 +88,12 @@ class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
         : _internet
             ? Scaffold(
                 backgroundColor: AppColors.black,
-                appBar: appBarWidget(sizeWidth, sizeHeight, context,
-                    AppLocalizations.of(context)!.academy, true),
+                appBar: appBarWidget(
+                    sizeWidth: sizeWidth,
+                    sizeHeight: sizeHeight,
+                    context: context,
+                    title: AppLocalizations.of(context)!.academy,
+                    back: true),
                 body: _academyModel != null
                     ? AcademyList(
                         text: AppLocalizations.of(context)!.academy,

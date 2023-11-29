@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
+import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -52,15 +54,23 @@ class ShimmerWidgets {
                 ),
               ],
             ),
-            Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: SizedBox(
-                    height: 430 * size,
-                    child: AcademyList(
-                        text: AppLocalizations.of(context)!.innovative,
-                        academyDetail: const [])))
+            Container(
+              height: size * 100,
+              width: size * 100,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? AppColors.white
+                      : AppColors.darkTheme,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.appThemeColor,
+                ),
+              ),
+            )
           ],
         ),
       ),

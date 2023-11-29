@@ -9,7 +9,7 @@ import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'widgets/app_bar.dart';
+import '../widgets/app_bar.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -33,7 +33,12 @@ class _CartScreenState extends State<CartScreen> {
           }
           loadVerifiedSpecific();
         },
-        onFailure: (onFailure) {},
+        onFailure: (onFailure) {
+          if (mounted) {
+            on401(context);
+            showMessage(AppLocalizations.of(context)!.loginRequired);
+          }
+        },
         tokenExpire: () {});
   }
 
@@ -81,11 +86,11 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: appBarWidget(
-        width,
-        height,
-        context,
-        AppLocalizations.of(context)!.cart,
-        false,
+        sizeWidth: width,
+        sizeHeight: height,
+        context: context,
+        title: AppLocalizations.of(context)!.cart,
+        back: false,
       ),
       body: loading
           ? Container(
