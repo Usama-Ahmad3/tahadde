@@ -158,6 +158,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
           true,
           AppColors.appThemeColor,
           AppColors.appThemeColor,
+          AppColors.appThemeColor,
+          AppColors.appThemeColor,
         ),
         body: Container(
           color: AppColors.black,

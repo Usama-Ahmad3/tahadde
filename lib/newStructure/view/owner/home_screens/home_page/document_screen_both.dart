@@ -176,7 +176,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                     padding: EdgeInsets.all(8.0),
                   ),
                   GestureDetector(
-                    child: Text(AppLocalizations.of(context)!.choosefromlibrary,
+                    child: Text(AppLocalizations.of(context)!.gallery,
                         style: TextStyle(
                             color: AppColors.black,
                             fontWeight: FontWeight.normal)),
@@ -476,8 +476,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
     var size = MediaQuery.of(context).size;
-    return loading
-        ? Scaffold(
+    if (loading) {
+      return Scaffold(
             backgroundColor: AppColors.black,
             appBar: appBarWidget(
               sizeWidth,
@@ -503,8 +503,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 ),
               ),
             ),
-          )
-        : map
+          );
+    } else {
+      return map
             ? Scaffold(
                 appBar: PreferredSize(
                     preferredSize: const Size.fromHeight(0),
@@ -697,6 +698,8 @@ class _DocumentScreenState extends State<DocumentScreen> {
                     context,
                     AppLocalizations.of(context)!.document,
                     true,
+                    AppColors.appThemeColor,
+                    const Color(0XFFCBCBCB),
                     const Color(0XFFCBCBCB),
                     const Color(0XFFCBCBCB),
                   ),
@@ -1391,6 +1394,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   ),
                 ),
               );
+    }
   }
 
   void navigateToDocuments(SportsModel detail) {
@@ -1403,31 +1407,35 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   _openGallery(BuildContext context) async {
-    var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      print('ddj');
-      _isImageLoading = true;
-      image = File(picture!.path);
-      checkIndex = -1;
-      print('Image$image');
-      var detail = {"profile_image": image, "type": "bookpitch"};
-      _networkCalls.helperMultiImageDocument(
-        pitchImage: image,
-        onSuccess: (msg) {
-          _isImageLoading = false;
-          setState(() {
-            pitch_Id = msg;
-            documentImage = msg;
-            print(msg);
-          });
-        },
-        onFailure: (msg) {},
-        tokenExpire: () {
-          if (mounted) on401(context);
-        },
-      );
-    });
-    Navigator.of(context).pop();
+    try{
+      var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
+      setState(() {
+        print('ddj');
+        _isImageLoading = true;
+        image = File(picture!.path);
+        checkIndex = -1;
+        print('Image$image');
+        var detail = {"profile_image": image, "type": "bookpitch"};
+        _networkCalls.helperMultiImageDocument(
+          pitchImage: image,
+          onSuccess: (msg) {
+            _isImageLoading = false;
+            setState(() {
+              pitch_Id = msg;
+              documentImage = msg;
+              print(msg);
+            });
+          },
+          onFailure: (msg) {},
+          tokenExpire: () {
+            if (mounted) on401(context);
+          },
+        );
+      });
+      Navigator.of(context).pop();
+    }catch(e){
+      print('gallery picking error $e');
+    }
   }
 
   _openCamera(BuildContext context) async {

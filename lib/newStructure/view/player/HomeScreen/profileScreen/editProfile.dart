@@ -60,7 +60,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   GestureDetector(
                     child: Text(
-                      AppLocalizations.of(context)!.choosefromlibrary,
+                      AppLocalizations.of(context)!.gallery,
                       style: const TextStyle(
                           fontWeight: FontWeight.normal, fontSize: 15),
                     ),

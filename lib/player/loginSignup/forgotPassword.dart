@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -22,11 +25,12 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
   bool monVal = false;
   late String email;
-  bool _isLoading = true;
+  bool _isLoading = false;
   bool _internet = true;
   final _formKey = GlobalKey<FormState>();
   final scaffoldkey = GlobalKey<ScaffoldState>();
   final NetworkCalls _networkCalls = NetworkCalls();
+  TextEditingController emailController = TextEditingController();
 
   @override
   void initState() {
@@ -42,8 +46,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-    return _isLoading
-        ? _internet
+      return _internet
             ? Scaffold(
                 backgroundColor: MyAppState.mode == ThemeMode.light
                     ? const Color(0XFFF0F0F0)
@@ -108,95 +111,91 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),
                               flaxibleGap(2),
-                              textField(
-                                  name: AppLocalizations.of(context)!.email,
-                                  hint: AppLocalizations.of(context)!.email,
-                                  text: false,
-                                  keybordType: false,
-                                  text1: false,
-                                  onSaved: (value) {
-                                    email = value!;
-                                  },
-                                  onchange: (value) {
-                                    if (value == "xxxxxx") {
-                                      FocusScope.of(context).unfocus();
-                                      navigateToAccountSetting();
-                                    }
-                                  },
-                                  validator: (value) {
-                                    var msg;
-                                    if (!isMail(value!.trim())) {
-                                      msg = AppLocalizations.of(context)!
-                                          .invalidEmail;
-                                    }
-                                    return msg;
-                                  }),
-                              flaxibleGap(3),
-                              Ink(
-                                decoration: BoxDecoration(
-                                    color: Colors.yellowAccent,
-                                    borderRadius: BorderRadius.circular(13)),
-                                child: InkWell(
-                                  splashColor: Colors.black,
-                                  onTap: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      _formKey.currentState!.save();
-                                      _networkCalls.checkInternetConnectivity(
-                                          onSuccess: (msg) {
-                                        _internet = msg;
-                                        if (msg == true) {
-                                          _networkCalls.checkEmailExist(
-                                              email: email,
-                                              onSuccess: (msg) {
-                                                if (msg ==
-                                                    'This email already exists') {
-                                                  _networkCalls.forgotPassword(
-                                                    email: email,
-                                                    onSuccess: (msg) {
-                                                      navigateToDetail(
-                                                          msg: msg);
-                                                    },
-                                                    onFailure: (msg) {
-                                                      setState(() {});
-                                                      showMessage(msg);
-                                                    },
-                                                    tokenExpire: () {
-                                                      if (mounted) {
-                                                        on401(context);
-                                                      }
-                                                    },
-                                                  );
-                                                }
-                                              },
-                                              onFailure: (msg) {
-                                                setState(() {});
-                                                showMessage(msg);
-                                              },
-                                              tokenExpire: () {
-                                                if (mounted) on401(context);
-                                              });
-                                        } else {
-                                          if (mounted) setState(() {});
-                                        }
-                                      });
-                                    }
-                                  },
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.2,
-                                    height: 45,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      AppLocalizations.of(context)!.sendEmail,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                      ),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
-                                ),
+                              TextFieldWidget(
+                                  controller: emailController,
+                                  hintText: AppLocalizations.of(context)!.email,
+                              onChanged: (value) {
+                                  email = value!;
+                        if (value == "xxxxxx") {
+                        FocusScope.of(context).unfocus();
+                        navigateToAccountSetting();
+                        }
+                        },
+                              onValidate:  (value) {
+                                var msg;
+                                if (!isMail(value!.trim())) {
+                                  msg = AppLocalizations.of(context)!
+                                      .invalidEmail;
+                                }
+                                return msg;
+                              },
+                                enableBorder: OutlineInputBorder(
+                                    borderSide: MyAppState.mode == ThemeMode.light
+                                        ? BorderSide.none
+                                        : BorderSide(color: AppColors.white, width: 1),
+                                    borderRadius: BorderRadius.circular(12)),
+                                focusBorder: OutlineInputBorder(
+                                    borderSide: MyAppState.mode == ThemeMode.light
+                                        ? BorderSide.none
+                                        : BorderSide(color: AppColors.white, width: 1),
+                                    borderRadius: BorderRadius.circular(12)),
+                                border: OutlineInputBorder(
+                                    borderSide: MyAppState.mode == ThemeMode.light
+                                        ? BorderSide.none
+                                        : BorderSide(color: AppColors.white, width: 1),
+                                    borderRadius: BorderRadius.circular(12)),
                               ),
+                              flaxibleGap(3),
+                              ButtonWidget(onTaped: () {
+                        if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        _isLoading = true;
+                        _networkCalls.checkInternetConnectivity(
+                        onSuccess: (msg) {
+                        _internet = msg;
+                        if (msg == true) {
+                        _networkCalls.checkEmailExist(
+                        email: email,
+                        onSuccess: (msg) {
+                        if (msg ==
+                        'This email already exists') {
+                        _networkCalls.forgotPassword(
+                        email: email,
+                        onSuccess: (msg) {
+                          _isLoading = false;
+                          showMessage('Check your mail, Email has been sent');
+                        navigateToDetail(
+                        msg: msg);
+                        },
+                        onFailure: (msg) {
+                        setState(() {});
+                        showMessage(msg);
+                        },
+                        tokenExpire: () {
+                        if (mounted) {
+                        on401(context);
+                        }
+                        },
+                        );
+                        }
+                        },
+                        onFailure: (msg) {
+                        setState(() {});
+                        showMessage(msg);
+                        },
+                        tokenExpire: () {
+                        if (mounted) on401(context);
+                        });
+                        } else {
+                        if (mounted) setState(() {});
+                        }
+                        });
+                        }
+                        }, title: Text(AppLocalizations.of(context)!.sendEmail,style: TextStyle(color: AppColors.white),),
+                                isLoading: _isLoading,
+
+                              ),
+
                             ],
                           ),
                         ),
@@ -216,71 +215,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     }
                   });
                 },
-              )
-        : Scaffold(
-            key: scaffoldkey,
-            body: SizedBox(
-              width: sizewidth,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: Shimmer.fromColors(
-                      baseColor: Colors.grey.shade300,
-                      highlightColor: Colors.grey.shade100,
-                      enabled: true,
-                      child: ListView.builder(
-                        itemBuilder: (_, __) => Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Container(
-                                      width: double.infinity,
-                                      height: 60.0,
-                                      color: Colors.white,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 8.0),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 200.0,
-                                      color: Colors.white,
-                                      padding: const EdgeInsets.only(
-                                          left: 16, right: 16),
-                                    ),
-                                    Container(
-                                      height: sizeheight * .5,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 4.0),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 100.0,
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        itemCount: 10,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+              );
+
   }
 
   void navigateToDetail({String? msg}) {

@@ -64,6 +64,8 @@ class _SelectSportScreenState extends State<SelectSportScreen> {
         true,
         const Color(0XFFCBCBCB),
         const Color(0XFFCBCBCB),
+        const Color(0XFFCBCBCB),
+        const Color(0XFFCBCBCB),
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.height * 0.02),

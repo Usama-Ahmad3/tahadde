@@ -5,7 +5,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../app_colors/app_colors.dart';
 
 PreferredSize appBarForCreatingAcademy(
-    size, context, title, back, color4, color5) {
+    size, context, title, back,color2,color3, color4, color5) {
   return PreferredSize(
       preferredSize: Size(size.width, size.height * 0.105),
       child: AppBar(
@@ -47,13 +47,13 @@ PreferredSize appBarForCreatingAcademy(
                 Container(
                   height: size.height * .005,
                   width: size.width * .17,
-                  color: AppColors.appThemeColor,
+                  color: color2,
                 ),
                 flaxibleGap(1),
                 Container(
                     height: size.height * .005,
                     width: size.width * .17,
-                    color: AppColors.appThemeColor),
+                    color: color3),
                 flaxibleGap(1),
                 Container(
                   height: size.height * .005,

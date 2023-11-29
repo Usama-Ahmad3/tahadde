@@ -298,6 +298,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       BottomSheett.settingModalBottomSheet(
                                           context, height);
                                     },
+                                    horizontalTitleGap: width * 0,
                                     shape: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: AppColors.containerColorB),
@@ -416,6 +417,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           ? AppColors.black
                                           : AppColors.white,
                                     ),
+                                    horizontalTitleGap: width * 0,
                                     titleTextStyle: const TextStyle(
                                         leadingDistribution:
                                             TextLeadingDistribution.even),
@@ -507,6 +509,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
+                                              horizontalTitleGap: width * 0,
                                               leading: Icon(
                                                 accountIcon[index],
                                                 color: AppColors.red,

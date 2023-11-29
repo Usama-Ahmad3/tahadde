@@ -66,7 +66,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                 children: [
                   GestureDetector(
                     child: Text(
-                      AppLocalizations.of(context)!.choosefromlibrary,
+                      AppLocalizations.of(context)!.gallery,
                       style: TextStyle(
                           color: AppColors.black,
                           fontWeight: FontWeight.normal),
@@ -213,6 +213,8 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
           context,
           AppLocalizations.of(context)!.document,
           true,
+          AppColors.appThemeColor,
+          AppColors.appThemeColor,
           const Color(0XFFCBCBCB),
           const Color(0XFFCBCBCB),
         ),
@@ -357,6 +359,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                               height: sizeHeight * 0.01,
                             ),
                             TextFieldWidget(
+                              // textDirection: TextDirection.rtl,
                                 controller: _nameControllerArabic,
                                 hintText:
                                     AppLocalizations.of(context)!.academyNameA,
@@ -486,6 +489,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                               height: sizeHeight * 0.01,
                             ),
                             textFieldWidgetMulti(
+                              // textDirection: TextDirection.rtl,
                                 controller: _descriptionArabic,
                                 hintText: '',
                                 focus: descriptionAFocus,

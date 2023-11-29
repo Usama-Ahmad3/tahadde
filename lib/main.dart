@@ -11,6 +11,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
+// import 'package:video_player/video_player.dart';
 
 import 'apis/apis.dart';
 import 'common_widgets/internetStatus.dart';
@@ -201,7 +202,8 @@ class MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', ''), Locale('ar', '')],
       locale: _language != null ? Locale(_language!, '') : null,
       //locale: _specificLocalizationDelegate.overriddenLocale,
-      home: LanguageSave(
+      home:
+      LanguageSave(
         role: widget.role.toString(),
         walk: widget.walk.toString(),
         country: widget.country.toString(),
@@ -227,7 +229,20 @@ class _LanguageSaveState extends State<LanguageSave> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    _controller = VideoPlayerController.asset('assets/images/New.mp4');
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.initialize().then((_) => setState(() {}));
+    _controller.play();
+    _controller.setLooping(false);
+    _controller.setVolume(5.0);
+    Timer(const Duration(milliseconds: 3000), () {
+      setState(() {
+      });
+      _isSplace = false;
+    });
+        // setState(() {});
     super.initState();
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -288,32 +303,33 @@ class _LanguageSaveState extends State<LanguageSave> {
       }
       throw Exception();
     });
-    _controller = VideoPlayerController.asset('assets/images/New.mp4')
-      ..initialize().then((_) {
-        // Once the video has been loaded we play the video and set looping to true.
-        Timer(const Duration(milliseconds: 3000), () {
-          setState(() {
-            _isSplace = false;
-          });
-        });
-        _controller.play();
-        _controller.setLooping(false);
-        _controller.setVolume(5.0);
-        setState(() {});
-      });
+    // _controller = VideoPlayerController.asset('assets/images/New.mp4')
+    //   ..initialize().then((_) {
+    //     // Once the video has been loaded we play the video and set looping to true.
+    //     Timer(const Duration(milliseconds: 3000), () {
+    //       setState(() {
+    //         _isSplace = false;
+    //       });
+    //     });
+    //     _controller.play();
+    //     _controller.setLooping(false);
+    //     _controller.setVolume(5.0);
+    //     setState(() {});
+    //   });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    // _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return ConnectivityStatus(
         child: _isSplace
-            ? SizedBox.expand(
+            ?
+        SizedBox.expand(
                 child: FittedBox(
                   fit: BoxFit.fill,
                   child: SizedBox(
@@ -674,11 +690,10 @@ class _VideoAppState extends State<VideoApp> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.networkUrl(Uri.parse(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'));
+    _controller.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
