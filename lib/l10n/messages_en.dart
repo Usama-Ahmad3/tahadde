@@ -294,6 +294,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "descriptionEnglish":
             MessageLookupByLibrary.simpleMessage("Description in English"),
         "descriptionS": MessageLookupByLibrary.simpleMessage("Description"),
+        "academyDetail": MessageLookupByLibrary.simpleMessage("Academy Details"),
         "descriptioninArabic":
             MessageLookupByLibrary.simpleMessage("Description in Arabic"),
         "document": MessageLookupByLibrary.simpleMessage("Document"),

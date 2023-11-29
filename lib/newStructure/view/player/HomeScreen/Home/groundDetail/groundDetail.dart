@@ -622,11 +622,11 @@ class GroundDetailState extends State<GroundDetail>
                                                             0xffffffff)),
                                           ),
                                           InkWell(
-                                            onTap: () {
+                                            onTap:rating.isNotEmpty? () {
                                               navigateToReviews(widget
                                                   .detail['academy_id']
                                                   .toString());
-                                            },
+                                            }:null,
                                             child: Text(
                                               AppLocalizations.of(context)!
                                                   .viewAll,

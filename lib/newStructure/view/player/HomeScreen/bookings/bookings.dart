@@ -354,7 +354,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         blurStyle: BlurStyle.outer)
                   ]),
               height: booking.bookedSession!.length == 1
-                  ? sizeHeight * 0.5
+                  ? sizeHeight * 0.47
                   : sizeHeight * .56,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

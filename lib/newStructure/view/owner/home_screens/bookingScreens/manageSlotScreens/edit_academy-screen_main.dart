@@ -559,7 +559,7 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
 
   List title = [
     AppLocalizations().documents,
-    AppLocalizations().bookingDetails,
+    AppLocalizations().academyDetail,
     AppLocalizations().slotPrice,
     AppLocalizations().sessions
   ];

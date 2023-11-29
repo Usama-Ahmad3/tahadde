@@ -627,6 +627,10 @@ class AppLocalizations {
     return Intl.message('editProfile', name: 'editProfile');
   }
 
+  String get academyDetail {
+    return Intl.message('Academy Details', name: 'academyDetail');
+  }
+
   String get thankyouAcademy {
     return Intl.message('Thank you for creating academy',
         name: 'thankyouAcademy');

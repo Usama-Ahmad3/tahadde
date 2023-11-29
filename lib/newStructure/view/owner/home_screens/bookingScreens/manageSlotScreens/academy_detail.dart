@@ -141,7 +141,7 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
           appBar: appBarForCreatingAcademy(
               size,
               context,
-              AppLocalizations.of(context)!.document,
+              AppLocalizations.of(context)!.academyDetail,
               true,
               AppColors.appThemeColor,
               AppColors.appThemeColor,
