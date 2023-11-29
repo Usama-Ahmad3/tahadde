@@ -632,7 +632,7 @@ class AppLocalizations {
   }
 
   String get uploadPDF {
-    return Intl.message('Upload Pdf', name: 'uploadPDF');
+    return Intl.message('Upload PDF', name: 'uploadPDF');
   }
 
   String get mins {
@@ -1181,7 +1181,11 @@ class AppLocalizations {
   }
 
   String get manageSlots {
-    return Intl.message('manageSlots', name: 'manageSlots');
+    return Intl.message('Manage', name: 'manageSlots');
+  }
+
+  String get gallery {
+    return Intl.message('Gallery', name: 'gallery');
   }
 
   String get bookingDetails {

@@ -302,7 +302,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mins": MessageLookupByLibrary.simpleMessage("mins"),
         "thankyouAcademy": MessageLookupByLibrary.simpleMessage(
             "Thank you for creating academy"),
-        "uploadPDF": MessageLookupByLibrary.simpleMessage("Upload Pdf"),
+        "uploadPDF": MessageLookupByLibrary.simpleMessage("Upload PDF"),
         "notify": MessageLookupByLibrary.simpleMessage(
             "We will notify you once it’s done."),
         "underReview":
@@ -402,7 +402,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "logo": MessageLookupByLibrary.simpleMessage("Logo"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "makechoice": MessageLookupByLibrary.simpleMessage("Make choice!"),
-        "manageSlots": MessageLookupByLibrary.simpleMessage("Manage Slots"),
+        "manageSlots": MessageLookupByLibrary.simpleMessage("Manage"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "markAsHoliday":
             MessageLookupByLibrary.simpleMessage("Mark as Holiday"),
         "minimumMaximum14Characters": MessageLookupByLibrary.simpleMessage(

@@ -82,7 +82,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>Tahadde app requires calender access to add booking events to your calendar</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Tahadde app requires camera access to take profile picture and pitch image</string>
+	<string>Tahadde app requires camera access to take profile picture and academy image</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Tahadde app requires calender access to add booking events to your calendar</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -95,6 +95,8 @@
 	<string>Tahadde app requires reminders access</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Tahadde app requires speech access</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Tahadde requires gallery access to upload picture for profile or academy</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
@@ -105,6 +107,13 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
+    <key>NSAllowsArbitraryLoadsForMedia</key>
+    <true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

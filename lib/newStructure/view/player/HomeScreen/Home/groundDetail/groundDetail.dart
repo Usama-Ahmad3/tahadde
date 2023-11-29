@@ -338,16 +338,11 @@ class GroundDetailState extends State<GroundDetail>
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: Container(
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.appThemeColor),
-                              height: height * 0.032,
-                              child: Image.asset(
-                                'assets/images/back.png',
-                                color: AppColors.white,
-                                isAntiAlias: true,
-                              )),
+                          child: Image.asset(
+                            'assets/images/back.png',
+                            color: AppColors.white,
+                            isAntiAlias: true,
+                          ),
                         ),
                       ),
                       leadingWidth: width * 0.13,

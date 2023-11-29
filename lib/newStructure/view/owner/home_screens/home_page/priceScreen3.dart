@@ -165,7 +165,9 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                     context,
                     AppLocalizations.of(context)!.price,
                     true,
-                    const Color(0XFFCBCBCB),
+                    AppColors.appThemeColor,
+                    AppColors.appThemeColor,
+                    AppColors.appThemeColor,
                     const Color(0XFFCBCBCB),
                   ),
                   body: Container(
@@ -240,51 +242,51 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 SizedBox(
                                   height: size.height * 0.02,
                                 ),
-                                Text(
-                                  AppLocalizations.of(context)!.subAcademyName,
-                                  style: TextStyle(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.themeColor
-                                          : AppColors.white),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.01,
-                                ),
-                                TextFieldWidget(
-                                    controller: _vanueController,
-                                    hintText: AppLocalizations.of(context)!
-                                        .subAcademyName,
-                                    onSubmitted: (value) {
-                                      FocusScope.of(context)
-                                          .requestFocus(focusNode);
-                                      return null;
-                                    },
-                                    onChanged: (value) {
-                                      subVenue = value;
-                                      return '';
-                                    },
-                                    onValidate: (value) {
-                                      if (value!.isEmpty) {
-                                        return AppLocalizations.of(context)!
-                                            .pleaseentername;
-                                      }
-                                      return null;
-                                    },
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    enableBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    focusBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: AppColors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(12))),
+                                // Text(
+                                //   AppLocalizations.of(context)!.subAcademyName,
+                                //   style: TextStyle(
+                                //       color: MyAppState.mode == ThemeMode.light
+                                //           ? AppColors.themeColor
+                                //           : AppColors.white),
+                                // ),
+                                // SizedBox(
+                                //   height: size.height * 0.01,
+                                // ),
+                                // TextFieldWidget(
+                                //     controller: _vanueController,
+                                //     hintText: AppLocalizations.of(context)!
+                                //         .subAcademyName,
+                                //     onSubmitted: (value) {
+                                //       FocusScope.of(context)
+                                //           .requestFocus(focusNode);
+                                //       return null;
+                                //     },
+                                //     onChanged: (value) {
+                                //       subVenue = value;
+                                //       return '';
+                                //     },
+                                //     onValidate: (value) {
+                                //       if (value!.isEmpty) {
+                                //         return AppLocalizations.of(context)!
+                                //             .pleaseentername;
+                                //       }
+                                //       return null;
+                                //     },
+                                //     border: OutlineInputBorder(
+                                //         borderSide:
+                                //             BorderSide(color: AppColors.grey),
+                                //         borderRadius:
+                                //             BorderRadius.circular(12)),
+                                //     enableBorder: OutlineInputBorder(
+                                //         borderSide:
+                                //             BorderSide(color: AppColors.grey),
+                                //         borderRadius:
+                                //             BorderRadius.circular(12)),
+                                //     focusBorder: OutlineInputBorder(
+                                //         borderSide:
+                                //             BorderSide(color: AppColors.grey),
+                                //         borderRadius:
+                                //             BorderRadius.circular(12))),
                                 // SizedBox(
                                 //   height: size.height * 0.02,
                                 // ),
@@ -353,11 +355,11 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 //     : SizedBox(
                                 //         height: size.height * 0.02,
                                 //       ),
-                                widget.detail.sportsType == "swimming"
-                                    ? SizedBox(
-                                        height: size.height * 0.02,
-                                      )
-                                    : const SizedBox.shrink(),
+                                // widget.detail.sportsType == "swimming"
+                                //     ? SizedBox(
+                                //         height: size.height * 0.02,
+                                //       )
+                                //     : const SizedBox.shrink(),
                                 // widget.detail.sportsType == "swimming"
                                 //     ? SizedBox(
                                 //         height: size.height * 0.07,
@@ -414,11 +416,11 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                 //         ),
                                 //       )
                                 //     : const SizedBox.shrink(),
-                                widget.detail.sportsType == "swimming"
-                                    ? const SizedBox.shrink()
-                                    : SizedBox(
-                                        height: size.height * 0.02,
-                                      ),
+                                // widget.detail.sportsType == "swimming"
+                                //     ? const SizedBox.shrink()
+                                //     : SizedBox(
+                                //         height: size.height * 0.02,
+                                //       ),
                                 // widget.detail.sportsType == "swimming"
                                 //     ? const SizedBox.shrink()
                                 //     : Column(

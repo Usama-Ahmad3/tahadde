@@ -13,7 +13,7 @@ class RestApis {
   static String LOGOUT = "/api/v1/user/logout/";
   // static String PHONENUMBER = "/api/v1/user/verifycontactnumber/";
   static String PHONENUMBER = "/api/v1/user/verifycontactnumber/";
-  static String FORGOT_PASSWORD = "/api/v1/user/forgetpassword/";
+  static String FORGOT_PASSWORD = "/api/v1/password_reset/";
   static String CHANGEPASSWORD = "/api/v1/user/changepassword/";
   static String RESETPASSWORD = "/api/v1/user/resetpassword/";
   static String TOKENSTATUS = "/api/v1/user/tokenstatus/";

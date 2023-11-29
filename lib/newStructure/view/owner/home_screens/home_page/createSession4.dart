@@ -250,8 +250,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
               context,
               AppLocalizations.of(context)!.createSession,
               true,
-              AppColors.barLineColor,
-              const Color(0xFFCBCBCB)),
+              AppColors.appThemeColor,
+              AppColors.appThemeColor,
+              AppColors.appThemeColor,
+              AppColors.appThemeColor,
+              ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniEndFloat,
           floatingActionButton: Align(
@@ -471,7 +474,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       .bodyMedium!
                                                       .copyWith(
                                                           color:
-                                                              AppColors.white,
+                                                              MyAppState.mode == ThemeMode.light?AppColors.black:AppColors.white,
                                                           fontWeight:
                                                               FontWeight.w500),
                                                 ),
@@ -1228,8 +1231,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             context,
                             AppLocalizations.of(context)!.createSession,
                             true,
-                            AppColors.barLineColor,
-                            const Color(0XFFCBCBCB)),
+                            AppColors.appThemeColor,
+                            AppColors.appThemeColor,
+                            AppColors.appThemeColor,
+                            AppColors.appThemeColor,),
                         body: SingleChildScrollView(
                           keyboardDismissBehavior:
                               ScrollViewKeyboardDismissBehavior.onDrag,
@@ -1368,7 +1373,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             AppLocalizations.of(context)!.createSession,
                             true,
                             AppColors.appThemeColor,
-                            const Color(0XFFCBCBCB)),
+                            AppColors.appThemeColor,
+                            AppColors.appThemeColor,
+                            AppColors.appThemeColor,),
                         body: SingleChildScrollView(
                           keyboardDismissBehavior:
                               ScrollViewKeyboardDismissBehavior.onDrag,
@@ -2313,16 +2320,21 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                     .endTime))) {
                                                       List<SessionDetail>
                                                           sessionList = [];
-                                                      sessionList
-                                                          .add(sessionDetail);
-
+                                                      // sessionList
+                                                      //     .add(sessionDetail);
+                                                      print(copySessionIndex);
                                                       ///new sessions
                                                       _sessionMap[_weakList[
                                                                   _weakIndex]
                                                               .slug]!
                                                           .add(sessionDetail);
+                                                      print(sessionDetail);
+                                                      print(_sessionMap[_weakList[_weakIndex].slug]);
                                                       if (copySessionIndex
                                                           .isNotEmpty) {
+                                                        print('11CopySsessionss');
+                                                        print(sessionDetail);
+                                                        print(_sessionMap[_weakList[_weakIndex].slug]);
                                                         copySessionIndex
                                                             .forEach((element) {
                                                           _sessionMap[_weakList[
@@ -2330,6 +2342,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                   .slug] =
                                                               sessionList;
                                                         });
+                                                        copySessionIndex.clear();
                                                       }
                                                       print(sessionDetail
                                                           .sessionName);
@@ -2351,6 +2364,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                         .slug] = sessionList;
                                                     if (copySessionIndex
                                                         .isNotEmpty) {
+                                                      print('2222Copy');
                                                       copySessionIndex
                                                           .forEach((element) {
                                                         _sessionMap[_weakList[
@@ -2364,6 +2378,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
 
                                                 ///Holiday
                                                 else {
+                                                  print('sgshgbbs');
                                                   List<SessionDetail>
                                                       sessionList = [];
                                                   sessionList
@@ -2373,6 +2388,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           .slug] = sessionList;
                                                   if (copySessionIndex
                                                       .isNotEmpty) {
+                                                    print('22444422Copy');
                                                     copySessionIndex
                                                         .forEach((element) {
                                                       _sessionMap[
@@ -2380,6 +2396,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                   .slug] =
                                                           sessionList;
                                                     });
+                                                    copySessionIndex.clear();
                                                   }
                                                 }
                                               }

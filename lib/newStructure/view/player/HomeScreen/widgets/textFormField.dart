@@ -31,6 +31,7 @@ class TextFieldWidget extends StatefulWidget {
   FormFieldValidator? onChanged;
   VoidCallback? onTap;
   Widget? searchTap;
+  TextDirection? textDirection;
 
   TextFieldWidget(
       {super.key,
@@ -38,6 +39,7 @@ class TextFieldWidget extends StatefulWidget {
       required this.hintText,
       this.onValidate,
       this.onTap,
+        this.textDirection = TextDirection.ltr,
       this.searchTag = false,
       this.enable = true,
       this.textColor,
@@ -69,6 +71,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.obscure,
+      textDirection:widget.textDirection,
       onChanged: widget.onChanged,
       onFieldSubmitted: widget.onSubmitted,
       focusNode: widget.focus,
@@ -90,6 +93,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           suffix: widget.suffix,
           prefix: widget.prefix,
           hintText: widget.hintText,
+
           errorStyle: const TextStyle(fontSize: 13, height: 0.09),
           hintStyle: TextStyle(
               height: 1,
@@ -150,11 +154,13 @@ class textFieldWidgetMulti extends StatefulWidget {
   FormFieldValidator? onChanged;
   VoidCallback? onTap;
   int? maxLines;
+  TextDirection? textDirection;
 
   textFieldWidgetMulti(
       {super.key,
       required this.controller,
       required this.hintText,
+        this.textDirection = TextDirection.ltr,
       this.onValidate,
       this.onTap,
       this.maxLines,
@@ -187,6 +193,7 @@ class _textFieldWidgetMultiState extends State<textFieldWidgetMulti> {
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.obscure,
+      textDirection: widget.textDirection,
       onChanged: widget.onChanged,
       onFieldSubmitted: widget.onSubmitted,
       focusNode: widget.focus,

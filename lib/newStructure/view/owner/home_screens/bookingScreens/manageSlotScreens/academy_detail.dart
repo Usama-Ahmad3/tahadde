@@ -143,6 +143,8 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
               context,
               AppLocalizations.of(context)!.document,
               true,
+              AppColors.appThemeColor,
+              AppColors.appThemeColor,
               const Color(0XFFCBCBCB),
               const Color(0XFFCBCBCB)),
           body: Container(

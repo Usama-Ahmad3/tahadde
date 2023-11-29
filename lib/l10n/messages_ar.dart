@@ -391,10 +391,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "logincancelledbytheuser": MessageLookupByLibrary.simpleMessage(
             "تم إلغاء تسجيل الدخول من قبل المستخدم."),
         "logo": MessageLookupByLibrary.simpleMessage("شعار الفريق"),
+        "gallery": MessageLookupByLibrary.simpleMessage("صالة عرض"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "makechoice": MessageLookupByLibrary.simpleMessage("Make choice!"),
         "manageSlots":
-            MessageLookupByLibrary.simpleMessage("إدارة حجوزات الملعب"),
+            MessageLookupByLibrary.simpleMessage("يدير"),
         "markAsHoliday":
             MessageLookupByLibrary.simpleMessage("وضع علامة الاجازة "),
         "minimumMaximum14Characters": MessageLookupByLibrary.simpleMessage(

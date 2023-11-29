@@ -1790,7 +1790,7 @@ class NetworkCalls {
     try {
       response = await http.post(
           Uri.parse(
-              "$baseUrl${RestApis.FORGOT_PASSWORD}?language=${prefs.get("lang")}"),
+              "$baseUrl${RestApis.FORGOT_PASSWORD}"),
           headers: header(
             prefs,
             body,

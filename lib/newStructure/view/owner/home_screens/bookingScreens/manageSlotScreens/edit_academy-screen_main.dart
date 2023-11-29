@@ -294,17 +294,13 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                                                     textAlign: TextAlign.center,
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .titleSmall!
+                                                        .bodySmall!
                                                         .copyWith(
                                                             color: const Color(
                                                                 0XFFB3B3B3),
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                            fontWeight: FontWeight.w500,
                                                             fontFamily:
                                                                 "Poppins")),
-                                                flaxibleGap(
-                                                  1,
-                                                ),
                                               ],
                                             ),
                                           ),

@@ -364,6 +364,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                   AppColors.containerColorW12),
                                           borderRadius:
                                               BorderRadius.circular(10)),
+                                      horizontalTitleGap: width * 0,
                                       leading: Icon(
                                         icon[index],
                                         color:
@@ -449,6 +450,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                   AppColors.containerColorW12),
                                           borderRadius:
                                               BorderRadius.circular(10)),
+                                      horizontalTitleGap: width * 0,
                                       leading: Icon(
                                         ownerIcon[index],
                                         color:
@@ -525,6 +527,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   ? AppColors.black
                                   : AppColors.white,
                             ),
+                            horizontalTitleGap: width * 0,
                             style: ListTileStyle.list,
                             titleTextStyle: const TextStyle(
                                 leadingDistribution:
@@ -563,6 +566,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   padding: EdgeInsets.symmetric(
                                       vertical: height * 0.01),
                                   child: ListTile(
+                                    horizontalTitleGap: width * 0,
                                     titleAlignment:
                                         ListTileTitleAlignment.center,
                                     tileColor:

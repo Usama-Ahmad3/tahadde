@@ -262,7 +262,7 @@ class _AcademyListState extends State<AcademyList> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 4.0 * fem, bottom: 2 * fem),
+                                    left: 10.0 * fem, bottom: 2 * fem),
                                 child: Text(
                                   AppLocalizations.of(context)!.locale == 'en'
                                       ? widget.academyDetail[index]

@@ -343,7 +343,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   color: MyAppState.mode == ThemeMode.light
-                      ? AppColors.white24
+                      ? AppColors.grey200
                       : AppColors.containerColorW12,
                   boxShadow: [
                     BoxShadow(
