@@ -24,30 +24,21 @@ class _BookingWidgetState extends State<BookingWidget> {
   bool _isLoading = true;
   var academyDetail = [];
   late bool _internet;
-  loadAcademies() async {
-    await _networkCalls.loadVerifiedAcademies(
-      sport: '',
-      onSuccess: (academies) {
-        if (mounted) {
-          setState(() {
-            academyDetail = academies;
-            _isLoading = false;
-            // print(academyDetail);
-          });
-        }
+  loadAllAcademies() async {
+    await _networkCalls.allAcademies(
+      onSuccess: (event) {
+        setState(() {
+          _isLoading = false;
+          academyDetail = event;
+        });
       },
       onFailure: (msg) {
-        if (mounted) {
-          setState(() {
-            _isLoading = false;
-          });
-        }
+        setState(() {
+          _isLoading = false;
+        });
       },
       tokenExpire: () {
-        if (mounted) {
-          // print('loadVenues');
-          on401(context);
-        }
+        if (mounted) on401(context);
       },
     );
   }
@@ -58,7 +49,7 @@ class _BookingWidgetState extends State<BookingWidget> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
       if (msg == true) {
-        loadAcademies();
+        loadAllAcademies();
       } else {
         setState(() {
           _isLoading = false;
@@ -166,9 +157,10 @@ class _BookingWidgetState extends State<BookingWidget> {
                             scrollDirection: Axis.vertical,
                             itemCount: academyDetail.length,
                             itemBuilder: (context, index) {
-                              return BookingWidgetList(
+                              return academyDetail[index]['status'] == 'Verified'?
+                              BookingWidgetList(
                                 academyDetail: academyDetail[index],
-                              );
+                              ):SizedBox.shrink();
                             }),
                       ),
                     )
@@ -177,7 +169,7 @@ class _BookingWidgetState extends State<BookingWidget> {
                     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
                       _internet = msg;
                       if (msg == true) {
-                        loadAcademies();
+                        loadAllAcademies();
                       }
                     });
                   },
