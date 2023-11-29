@@ -1788,15 +1788,14 @@ class NetworkCalls {
     Map<String, String> emailForgot = {"email": email};
     var body = json.encode(emailForgot);
     try {
-      response = await http.post(
-          Uri.parse(
-              "$baseUrl${RestApis.FORGOT_PASSWORD}"),
-          headers: header(
-            prefs,
-            body,
-            HttpMethod.POST,
-          ),
-          body: body);
+      response =
+          await http.post(Uri.parse("$baseUrl${RestApis.FORGOT_PASSWORD}"),
+              headers: header(
+                prefs,
+                body,
+                HttpMethod.POST,
+              ),
+              body: body);
       print(response.body);
       print(response.statusCode);
       if (response.statusCode == 200) {
@@ -4011,6 +4010,7 @@ class NetworkCalls {
               // }
               headerWithToken(prefs, "", HttpMethod.GET));
       // print("$baseUrl${RestApis.allAcademies}?language=${prefs.get("lang")}");
+      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         List<AcademyModel> bookPitch = [];

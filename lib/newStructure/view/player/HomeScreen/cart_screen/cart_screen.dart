@@ -60,7 +60,9 @@ class _CartScreenState extends State<CartScreen> {
         },
         onFailure: (msg) {
           if (mounted) {
-            setState(() {});
+            setState(() {
+              loading = false;
+            });
           }
         },
         tokenExpire: () {
@@ -130,491 +132,598 @@ class _CartScreenState extends State<CartScreen> {
                         SizedBox(
                           height: height * 0.02,
                         ),
-                        ListView.builder(
-                          itemCount: cartModel.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            final reversed = cartModel.reversed
-                                .toList(); // reverse your list here
-                            final reversedAcademy = _specificAcademy.reversed
-                                .toList(); // reverse your list here
-                            final item = reversed[index];
-                            return Padding(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: height * 0.01),
-                              child: Container(
-                                height: height * 0.235,
-                                width: width,
-                                decoration: BoxDecoration(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.grey200
-                                        : AppColors.containerColorW12,
-                                    borderRadius: BorderRadius.circular(13)),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: width * .03),
+                        cartModel.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: cartModel.length,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  final reversed = cartModel.reversed
+                                      .toList(); // reverse your list here
+                                  final reversedAcademy = _specificAcademy
+                                      .reversed
+                                      .toList(); // reverse your list here
+                                  final item = reversed[index];
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: height * 0.01),
+                                    child: Container(
+                                      height: height * 0.235,
+                                      width: width,
+                                      decoration: BoxDecoration(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.grey200
+                                                  : AppColors.containerColorW12,
+                                          borderRadius:
+                                              BorderRadius.circular(13)),
+                                      child: SingleChildScrollView(
                                         child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            SizedBox(
-                                              height: height * 0.01,
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: width * .03),
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        "${AppLocalizations.of(context)!.academyName}:",
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0XFF032040)
+                                                                : AppColors
+                                                                    .white),
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                                        context)!
+                                                                    .locale ==
+                                                                'en'
+                                                            ? reversedAcademy[
+                                                                    index]
+                                                                .academyNameEnglish
+                                                                .toString()
+                                                            : reversedAcademy[
+                                                                    index]
+                                                                .academyNameArabic
+                                                                .toString(),
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0XFF25A163)
+                                                                : AppColors
+                                                                    .grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        width: width * .78,
+                                                        child: Text(
+                                                          reversedAcademy[index]
+                                                              .academyLocation
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? Color(
+                                                                      0XFF9B9B9B)
+                                                                  : Colors
+                                                                      .grey),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  "${AppLocalizations.of(context)!.academyName}:",
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF032040)
-                                                          : AppColors.white),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: width * 0.03),
+                                                  child: Container(
+                                                      height: height * .14,
+                                                      width: height * .12,
+                                                      decoration: BoxDecoration(
+                                                          color:
+                                                              Color(0XFF4F5C6A),
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  height *
+                                                                      0.005)),
+                                                      child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  height *
+                                                                      0.005),
+                                                          child: cachedNetworkImage(
+                                                              height:
+                                                                  height * .1,
+                                                              imageFit:
+                                                                  BoxFit.fill,
+                                                              cuisineImageUrl:
+                                                                  reversedAcademy[
+                                                                          index]
+                                                                      .academyImage![0],
+                                                              placeholder: 'assets/images/profile.png'))),
                                                 ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                              .locale ==
-                                                          'en'
-                                                      ? reversedAcademy[index]
-                                                          .academyNameEnglish
-                                                          .toString()
-                                                      : reversedAcademy[index]
-                                                          .academyNameArabic
-                                                          .toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF25A163)
-                                                          : AppColors.grey),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: width * .78,
-                                                  child: Text(
-                                                    reversedAcademy[index]
-                                                        .academyLocation
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? Color(0XFF9B9B9B)
-                                                            : Colors.grey),
-                                                  ),
-                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  width * .03),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "${AppLocalizations.of(context)!.bookedFor}:",
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF032040)
+                                                                    : AppColors
+                                                                        .white),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                width * 0.083,
+                                                          ),
+                                                          Text(
+                                                            item.bookedDate
+                                                                .toString(),
+                                                            // "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                                                            style: TextStyle(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF25A163)
+                                                                    : AppColors
+                                                                        .grey,
+                                                                fontSize: 14),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  width * .03),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            "${AppLocalizations.of(context)!.bookedFor}:",
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF032040)
+                                                                    : AppColors
+                                                                        .white),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                width * 0.083,
+                                                          ),
+                                                          Text(
+                                                            "${item.playerCount} ${item.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                                                            style: TextStyle(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF25A163)
+                                                                    : AppColors
+                                                                        .grey,
+                                                                fontSize: 14),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  width * .03),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: [
+                                                          Text(
+                                                            "${AppLocalizations.of(context)!.slot}:",
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF032040)
+                                                                    : AppColors
+                                                                        .white),
+                                                          ),
+                                                          SizedBox(
+                                                            width: width * 0.2,
+                                                          ),
+                                                          Text(
+                                                            "${item.session!.length} ${AppLocalizations.of(context)!.selected}",
+                                                            style: TextStyle(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF25A163)
+                                                                    : AppColors
+                                                                        .grey,
+                                                                fontSize: 14),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  width * .03),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: [
+                                                          Text(
+                                                            "${AppLocalizations.of(context)!.price}:",
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF032040)
+                                                                    : AppColors
+                                                                        .white),
+                                                          ),
+                                                          SizedBox(
+                                                            width: width * 0.2,
+                                                          ),
+                                                          Text(
+                                                            item.price
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? const Color(
+                                                                        0XFF25A163)
+                                                                    : AppColors
+                                                                        .grey,
+                                                                fontSize: 14),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: height * 0.004,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: width *
+                                                                      0.025),
+                                                          child: Container(
+                                                            height:
+                                                                height * 0.035,
+                                                            width: width * 0.23,
+                                                            decoration: BoxDecoration(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? AppColors
+                                                                        .grey
+                                                                        .withOpacity(
+                                                                            0.4)
+                                                                    : AppColors
+                                                                        .containerColorW12,
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        4),
+                                                                border: Border.fromBorderSide(MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? BorderSide
+                                                                        .none
+                                                                    : BorderSide(
+                                                                        color: AppColors.white,
+                                                                        width: 1))),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    setState(
+                                                                        () {
+                                                                      if (item.playerCount!
+                                                                              .toInt() !=
+                                                                          1) {
+                                                                        item.playerCount =
+                                                                            item.playerCount!.toInt() -
+                                                                                1;
+                                                                        var it =
+                                                                            double.parse(item.pricePerPlayer.toString()) *
+                                                                                item.playerCount!.toDouble();
+                                                                        item.price =
+                                                                            it;
+                                                                        print(
+                                                                            it);
+                                                                        print(item
+                                                                            .price);
+                                                                      }
+                                                                    });
+                                                                  },
+                                                                  child:
+                                                                      const Icon(
+                                                                    FontAwesomeIcons
+                                                                        .minus,
+                                                                    color: AppColors
+                                                                        .appThemeColor,
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  width: width *
+                                                                      0.01,
+                                                                ),
+                                                                Text(
+                                                                  item.playerCount
+                                                                      .toString(),
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium,
+                                                                ),
+                                                                SizedBox(
+                                                                  width: width *
+                                                                      0.01,
+                                                                ),
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    item.playerCount! <
+                                                                            22
+                                                                        ? item.playerCount =
+                                                                            cartModel[index].playerCount! +
+                                                                                1
+                                                                        : null;
+                                                                    var it = double.parse(item
+                                                                            .pricePerPlayer
+                                                                            .toString()) *
+                                                                        item.playerCount!
+                                                                            .toDouble();
+                                                                    item.price =
+                                                                        it;
+                                                                    print(item
+                                                                        .price);
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                  child: Icon(
+                                                                    Icons.add,
+                                                                    color: AppColors
+                                                                        .appThemeColor,
+                                                                    size: height *
+                                                                        0.035,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: width * 0.08,
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            List IdList = [];
+                                                            item.session!
+                                                                .forEach(
+                                                                    (element) {
+                                                              IdList.add(
+                                                                  element);
+                                                            });
+                                                            Map details = {
+                                                              'cart_id':
+                                                                  item.id,
+                                                              'academyNameEnglish':
+                                                                  reversedAcademy[
+                                                                          index]
+                                                                      .academyNameEnglish
+                                                                      .toString(),
+                                                              'academyNameArabic':
+                                                                  reversedAcademy[
+                                                                          index]
+                                                                      .academyNameArabic
+                                                                      .toString(),
+                                                              "academy":
+                                                                  item.academy,
+                                                              "session": IdList,
+                                                              "Sub_Academy": item
+                                                                  .subAcademy,
+                                                              "price":
+                                                                  item.price,
+                                                              "location":
+                                                                  item.location,
+                                                              "booked_date": item
+                                                                  .bookedDate,
+                                                              "player_count": item
+                                                                  .playerCount,
+                                                              'price_per_player':
+                                                                  item.pricePerPlayer
+                                                            };
+                                                            print(details);
+                                                            navigateToEditAcademyDetail(
+                                                                details);
+                                                          },
+                                                          child: Container(
+                                                            height:
+                                                                height * 0.035,
+                                                            width: width * 0.22,
+                                                            decoration: BoxDecoration(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? AppColors
+                                                                        .appThemeColor
+                                                                    : AppColors
+                                                                        .appThemeColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4),
+                                                                border: Border.fromBorderSide(MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? BorderSide
+                                                                        .none
+                                                                    : BorderSide(
+                                                                        color: AppColors
+                                                                            .white,
+                                                                        width:
+                                                                            1))),
+                                                            child: Center(
+                                                              child: Text(
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .proceed
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    color: AppColors
+                                                                        .white),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ],
+                                                )
                                               ],
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: width * 0.03),
-                                            child: Container(
-                                                height: height * .14,
-                                                width: height * .12,
-                                                decoration: BoxDecoration(
-                                                    color: Color(0XFF4F5C6A),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            height * 0.005)),
-                                                child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            height * 0.005),
-                                                    child: cachedNetworkImage(
-                                                        height: height * .1,
-                                                        imageFit: BoxFit.fill,
-                                                        cuisineImageUrl:
-                                                            reversedAcademy[
-                                                                        index]
-                                                                    .academyImage![
-                                                                0],
-                                                        placeholder:
-                                                            'assets/images/profile.png'))),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: width * .03),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "${AppLocalizations.of(context)!.bookedFor}:",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF032040)
-                                                              : AppColors
-                                                                  .white),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.083,
-                                                    ),
-                                                    Text(
-                                                      item.bookedDate
-                                                          .toString(),
-                                                      // "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                                                      style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF25A163)
-                                                              : AppColors.grey,
-                                                          fontSize: 14),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: width * .03),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "${AppLocalizations.of(context)!.bookedFor}:",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF032040)
-                                                              : AppColors
-                                                                  .white),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.083,
-                                                    ),
-                                                    Text(
-                                                      "${item.playerCount} ${item.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                                                      style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF25A163)
-                                                              : AppColors.grey,
-                                                          fontSize: 14),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: width * .03),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Text(
-                                                      "${AppLocalizations.of(context)!.slot}:",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF032040)
-                                                              : AppColors
-                                                                  .white),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.2,
-                                                    ),
-                                                    Text(
-                                                      "${item.session!.length} ${AppLocalizations.of(context)!.selected}",
-                                                      style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF25A163)
-                                                              : AppColors.grey,
-                                                          fontSize: 14),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: width * .03),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Text(
-                                                      "${AppLocalizations.of(context)!.price}:",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF032040)
-                                                              : AppColors
-                                                                  .white),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.2,
-                                                    ),
-                                                    Text(
-                                                      item.price.toString(),
-                                                      style: TextStyle(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF25A163)
-                                                              : AppColors.grey,
-                                                          fontSize: 14),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: height * 0.004,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: width * 0.025),
-                                                    child: Container(
-                                                      height: height * 0.035,
-                                                      width: width * 0.23,
-                                                      decoration: BoxDecoration(
-                                                          color: MyAppState.mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors.grey
-                                                                  .withOpacity(
-                                                                      0.4)
-                                                              : AppColors
-                                                                  .containerColorW12,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(4),
-                                                          border: Border.fromBorderSide(
-                                                              MyAppState.mode ==
-                                                                      ThemeMode
-                                                                          .light
-                                                                  ? BorderSide
-                                                                      .none
-                                                                  : BorderSide(
-                                                                      color: AppColors
-                                                                          .white,
-                                                                      width: 1))),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
-                                                        children: [
-                                                          InkWell(
-                                                            onTap: () {
-                                                              setState(() {
-                                                                if (item.playerCount!
-                                                                        .toInt() !=
-                                                                    1) {
-                                                                  item.playerCount =
-                                                                      item.playerCount!
-                                                                              .toInt() -
-                                                                          1;
-                                                                  var it = double.parse(item
-                                                                          .pricePerPlayer
-                                                                          .toString()) *
-                                                                      item.playerCount!
-                                                                          .toDouble();
-                                                                  item.price =
-                                                                      it;
-                                                                  print(it);
-                                                                  print(item
-                                                                      .price);
-                                                                }
-                                                              });
-                                                            },
-                                                            child: const Icon(
-                                                              FontAwesomeIcons
-                                                                  .minus,
-                                                              color: AppColors
-                                                                  .appThemeColor,
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            width: width * 0.01,
-                                                          ),
-                                                          Text(
-                                                            item.playerCount
-                                                                .toString(),
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyMedium,
-                                                          ),
-                                                          SizedBox(
-                                                            width: width * 0.01,
-                                                          ),
-                                                          InkWell(
-                                                            onTap: () {
-                                                              item.playerCount! <
-                                                                      22
-                                                                  ? item.playerCount =
-                                                                      cartModel[index]
-                                                                              .playerCount! +
-                                                                          1
-                                                                  : null;
-                                                              var it = double.parse(item
-                                                                      .pricePerPlayer
-                                                                      .toString()) *
-                                                                  item.playerCount!
-                                                                      .toDouble();
-                                                              item.price = it;
-                                                              print(item.price);
-                                                              setState(() {});
-                                                            },
-                                                            child: Icon(
-                                                              Icons.add,
-                                                              color: AppColors
-                                                                  .appThemeColor,
-                                                              size: height *
-                                                                  0.035,
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: width * 0.08,
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      List IdList = [];
-                                                      item.session!
-                                                          .forEach((element) {
-                                                        IdList.add(element);
-                                                      });
-                                                      Map details = {
-                                                        'cart_id': item.id,
-                                                        'academyNameEnglish':
-                                                            reversedAcademy[
-                                                                    index]
-                                                                .academyNameEnglish
-                                                                .toString(),
-                                                        'academyNameArabic':
-                                                            reversedAcademy[
-                                                                    index]
-                                                                .academyNameArabic
-                                                                .toString(),
-                                                        "academy": item.academy,
-                                                        "session": IdList,
-                                                        "Sub_Academy":
-                                                            item.subAcademy,
-                                                        "price": item.price,
-                                                        "location":
-                                                            item.location,
-                                                        "booked_date":
-                                                            item.bookedDate,
-                                                        "player_count":
-                                                            item.playerCount,
-                                                        'price_per_player':
-                                                            item.pricePerPlayer
-                                                      };
-                                                      print(details);
-                                                      navigateToEditAcademyDetail(
-                                                          details);
-                                                    },
-                                                    child: Container(
-                                                      height: height * 0.035,
-                                                      width: width * 0.22,
-                                                      decoration: BoxDecoration(
-                                                          color: MyAppState.mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors
-                                                                  .appThemeColor
-                                                              : AppColors
-                                                                  .appThemeColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(4),
-                                                          border: Border.fromBorderSide(
-                                                              MyAppState.mode ==
-                                                                      ThemeMode
-                                                                          .light
-                                                                  ? BorderSide
-                                                                      .none
-                                                                  : BorderSide(
-                                                                      color: AppColors
-                                                                          .white,
-                                                                      width:
-                                                                          1))),
-                                                      child: Center(
-                                                        child: Text(
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .proceed
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              color: AppColors
-                                                                  .white),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                    ),
+                                  );
+                                },
+                              )
+                            : Container(
+                                color: Colors.black54,
+                                child: Container(
+                                  height: height,
+                                  decoration: BoxDecoration(
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.white
+                                          : AppColors.darkTheme,
+                                      borderRadius: true
+                                          ? const BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20))
+                                          : BorderRadius.zero),
+                                  child: Column(
+                                    children: [
+                                      flaxibleGap(30),
+                                      SizedBox(
+                                          height: width * .15,
+                                          width: height * .15,
+                                          child: Image.asset(
+                                            'assets/images/icon.png',
+                                            fit: BoxFit.fill,
+                                          )),
+                                      flaxibleGap(4),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .noItemsInCart,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                color: MyAppState.mode ==
+                                                        ThemeMode.light
+                                                    ? const Color(0XFF424242)
+                                                    : AppColors.white,
+                                                fontFamily: "Poppins",
+                                              )),
+                                      flaxibleGap(1),
+                                      Text(
+                                        AppLocalizations.of(context)!
+                                            .youHaveBooked,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? const Color(0XFF7A7A7A)
+                                                  : Colors.white38,
+                                              fontFamily: "Poppins",
+                                            ),
                                       ),
+                                      flaxibleGap(30),
                                     ],
                                   ),
-                                ),
-                              ),
-                            );
-                          },
-                        )
+                                ))
                       ],
                     ),
                   ),

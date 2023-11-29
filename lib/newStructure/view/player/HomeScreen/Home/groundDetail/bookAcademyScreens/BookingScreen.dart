@@ -1105,7 +1105,7 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                         ),
                                       )
                                     : SizedBox(
-                                        height: height * 0.35,
+                                        height: height * 0.5,
                                         child: Center(
                                           child: Text(
                                             AppLocalizations.of(context)!

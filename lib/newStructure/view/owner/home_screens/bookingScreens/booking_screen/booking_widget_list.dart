@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/homeFile/utility.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/booking_screen/booking_summary_list.dart';
 
 class BookingWidgetList extends StatelessWidget {
-  var academyDetail;
+  AcademyModel academyDetail;
   BookingWidgetList({
     super.key,
     required this.academyDetail,
@@ -21,7 +22,7 @@ class BookingWidgetList extends StatelessWidget {
           // academyDetail[index].isDecline! ?
           () {
         Map detail = {
-          "id": academyDetail['academy_id'],
+          "id": academyDetail.academyId,
         };
         navigateToBookings(
           detail,
@@ -64,8 +65,7 @@ class BookingWidgetList extends StatelessWidget {
                         child: cachedNetworkImage(
                             height: sizeHeight * .08,
                             width: sizeWidth * .15,
-                            cuisineImageUrl: academyDetail['academy_image']
-                                [0]))),
+                            cuisineImageUrl: academyDetail.academyImage![0]))),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,8 +73,8 @@ class BookingWidgetList extends StatelessWidget {
                   flaxibleGap(1),
                   Text(
                       AppLocalizations.of(context)!.locale == 'en'
-                          ? "${academyDetail['Academy_NameEnglish']}"
-                          : "${academyDetail['Academy_NameArabic']}",
+                          ? "${academyDetail.academyNameEnglish}"
+                          : "${academyDetail.academyNameArabic}",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: MyAppState.mode == ThemeMode.light
                                 ? AppColors.themeColor
@@ -84,7 +84,7 @@ class BookingWidgetList extends StatelessWidget {
                           )),
                   SizedBox(
                     width: sizeWidth * .7,
-                    child: Text(" ${academyDetail['Academy_Location']}",
+                    child: Text(" ${academyDetail.academyLocation}",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(

@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("حالة"),
         "academyBook": MessageLookupByLibrary.simpleMessage("حجز الأكاديمية"),
         "academyOnly": MessageLookupByLibrary.simpleMessage("الأكاديمية"),
+        "noItemsInCart":
+            MessageLookupByLibrary.simpleMessage("لا شيء في العربة"),
         "loginRequiredCart": MessageLookupByLibrary.simpleMessage(
             "تسجيل الدخول مطلوب لرؤية عناصر السلة"),
         "filterResult": MessageLookupByLibrary.simpleMessage("تصفية النتائج"),

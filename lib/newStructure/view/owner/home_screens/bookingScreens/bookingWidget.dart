@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/booking_screen/booking_widget_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
@@ -22,7 +23,7 @@ class _BookingWidgetState extends State<BookingWidget> {
   final NetworkCalls _networkCalls = NetworkCalls();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isLoading = true;
-  var academyDetail = [];
+  List<AcademyModel> academyDetail = [];
   late bool _internet;
   loadAllAcademies() async {
     await _networkCalls.allAcademies(
@@ -153,15 +154,35 @@ class _BookingWidgetState extends State<BookingWidget> {
                                     topLeft: Radius.circular(20),
                                     topRight: Radius.circular(20))
                                 : BorderRadius.zero),
-                        child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: academyDetail.length,
-                            itemBuilder: (context, index) {
-                              return academyDetail[index]['status'] == 'Verified'?
-                              BookingWidgetList(
-                                academyDetail: academyDetail[index],
-                              ):SizedBox.shrink();
-                            }),
+                        child: academyDetail.isNotEmpty
+                            ? ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                itemCount: academyDetail.length,
+                                itemBuilder: (context, index) {
+                                  return academyDetail[index].status ==
+                                          'Verified'
+                                      ? BookingWidgetList(
+                                          academyDetail: academyDetail[index],
+                                        )
+                                      : SizedBox.shrink();
+                                })
+                            : Container(
+                                height: sizeHeight,
+                                width: sizeWidth,
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? AppColors.white
+                                        : AppColors.darkTheme,
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20))),
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.appThemeColor,
+                                  ),
+                                ),
+                              ),
                       ),
                     )
               : InternetLoss(

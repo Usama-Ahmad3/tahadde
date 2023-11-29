@@ -100,6 +100,10 @@ class AppLocalizations {
         name: 'loginRequiredCart');
   }
 
+  String get noItemsInCart {
+    return Intl.message('Nothing In The Cart', name: 'noItemsInCart');
+  }
+
   String get add {
     return Intl.message('Add', name: 'add');
   }

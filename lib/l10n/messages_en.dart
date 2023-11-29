@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "perAcademy": MessageLookupByLibrary.simpleMessage("Per Academy"),
         "academyList": MessageLookupByLibrary.simpleMessage("Academy List"),
         "academyBook": MessageLookupByLibrary.simpleMessage("Academy Booking"),
+        "noItemsInCart":
+            MessageLookupByLibrary.simpleMessage("Nothing In The Cart"),
         "loginRequired": MessageLookupByLibrary.simpleMessage(
             "login required to see the booking"),
         "loginRequiredCart": MessageLookupByLibrary.simpleMessage(
