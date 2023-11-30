@@ -64,6 +64,7 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
           setState(() {
             // _isLoading = false;
             _academyDetail = event;
+            _isLoading = false;
           });
         }
       },
@@ -271,7 +272,8 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                     child: TabBar(
                                       indicatorSize: TabBarIndicatorSize.tab,
                                       unselectedLabelColor: AppColors.grey,
-                                      dividerColor: AppColors.red,
+                                      dividerColor: AppColors.black,
+                                      indicatorColor: AppColors.appThemeColor,
                                       isScrollable: true,
                                       physics:
                                           const AlwaysScrollableScrollPhysics(),

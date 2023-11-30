@@ -50,6 +50,7 @@ class EmailContactDOB extends StatelessWidget {
                         content: SizedBox(
                           height: height * 0.12,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 AppLocalizations.of(context)!.pricePerPlayer,
@@ -105,7 +106,7 @@ class EmailContactDOB extends StatelessWidget {
                                 child: Container(
                                   height: 50,
                                   width:
-                                      MediaQuery.of(context).size.width * 0.5,
+                                      MediaQuery.of(context).size.width * 0.8,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     color: AppColors.appThemeColor,
@@ -129,7 +130,7 @@ class EmailContactDOB extends StatelessWidget {
                             child: Center(
                               child: Container(
                                 height: 50,
-                                width: MediaQuery.of(context).size.width * 0.5,
+                                width: MediaQuery.of(context).size.width * 0.8,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: AppColors.appThemeColor,

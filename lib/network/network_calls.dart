@@ -3711,8 +3711,9 @@ class NetworkCalls {
       print('$baseUrl${RestApis.cartList}');
       print(response.statusCode);
       if (response.statusCode > 200 && response.statusCode < 300) {
-        print('CeateSession${response.body}');
+        print('AddCartItemsResponse${response.body}');
         var resp = json.decode(utf8.decode(response.bodyBytes));
+        print('kkk');
         onSuccess(resp);
       } else if (response.statusCode == 400) {
         onFailure("null");

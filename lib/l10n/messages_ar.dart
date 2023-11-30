@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPlayerC": MessageLookupByLibrary.simpleMessage("إضافة لاعب"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("أضف لاعبين"),
         "addSession": MessageLookupByLibrary.simpleMessage("أضف الجلسة"),
+        "doYouWantProceed":
+            MessageLookupByLibrary.simpleMessage("هل تريد المتابعة الآن"),
         "addanotherdocument":
             MessageLookupByLibrary.simpleMessage("أضف مستندًا آخر"),
         "addnewpitchdetails":
@@ -384,7 +386,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "licenceName": MessageLookupByLibrary.simpleMessage("اسم الرخصة"),
         "locale": MessageLookupByLibrary.simpleMessage("ar"),
         "location": MessageLookupByLibrary.simpleMessage("الموقع"),
-        "academyDetail": MessageLookupByLibrary.simpleMessage("تفاصيل الأكاديمية"),
+        "academyDetail":
+            MessageLookupByLibrary.simpleMessage("تفاصيل الأكاديمية"),
         "locationDes": MessageLookupByLibrary.simpleMessage(
             "يجب أن تكون الخدمات متاحة في جميع أنحاء دولة الإمارات العربية المتحدة وتتمتع الشركة بصلاحية تقديم الخدمات للجمهور داخل المنطقة المحددة."),
         "locationPermission":

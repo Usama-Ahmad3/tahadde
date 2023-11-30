@@ -146,7 +146,10 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
             bottom: TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
               unselectedLabelColor: AppColors.grey,
-              dividerColor: AppColors.red,
+              tabAlignment: TabAlignment.center,
+              automaticIndicatorColorAdjustment: true,
+              indicatorColor: AppColors.appThemeColor,
+              dividerColor: AppColors.black,
               isScrollable: true,
               physics: const AlwaysScrollableScrollPhysics(),
               // indicator: BoxDecoration(
@@ -156,7 +159,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
               padding: EdgeInsets.symmetric(vertical: sizeHeight * 0.003),
               tabs: [
                 SizedBox(
-                  width: sizeWidth * 0.41,
+                  width: sizeWidth * 0.34,
                   child: Center(
                       child: Padding(
                     padding: EdgeInsets.all(sizeHeight * 0.01),
@@ -170,7 +173,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                   )),
                 ),
                 SizedBox(
-                  width: sizeWidth * 0.41,
+                  width: sizeWidth * 0.34,
                   child: Center(
                       child: Padding(
                     padding: EdgeInsets.all(sizeHeight * 0.012),
@@ -250,12 +253,85 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                         DateTime date = Intl.withLocale(
                                             'en',
                                             () => DateTime.parse(
-                                                '${item.bookedDate != null ? item.bookedDate : '2023-11-29'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
+                                                '${item.bookedDate ?? '2023-11-29'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
                                         return date.isAfter(DateTime.now()) ||
                                                 date.day == DateTime.now().day
                                             ? bookingsList(sizeWidth,
                                                 sizeHeight, item, index)
-                                            : const SizedBox.shrink();
+                                            : Container(
+                                                color: Colors.black54,
+                                                child: Container(
+                                                  height: sizeHeight,
+                                                  decoration: BoxDecoration(
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.white
+                                                          : AppColors.darkTheme,
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                              topLeft: Radius
+                                                                  .circular(20),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      20))),
+                                                  child: Column(
+                                                    children: [
+                                                      flaxibleGap(30),
+                                                      SizedBox(
+                                                          height:
+                                                              sizeHeight * .15,
+                                                          width:
+                                                              sizeHeight * .15,
+                                                          child: Image.asset(
+                                                            'assets/images/icon.png',
+                                                            fit: BoxFit.fill,
+                                                          )),
+                                                      flaxibleGap(4),
+                                                      Text(
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .noBookingsFound,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? const Color(
+                                                                            0XFF424242)
+                                                                        : AppColors
+                                                                            .white,
+                                                                    fontFamily:
+                                                                        "Poppins",
+                                                                  )),
+                                                      flaxibleGap(1),
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .youHaveBooked,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleSmall!
+                                                            .copyWith(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? const Color(
+                                                                      0XFF7A7A7A)
+                                                                  : Colors
+                                                                      .white38,
+                                                              fontFamily:
+                                                                  "Poppins",
+                                                            ),
+                                                      ),
+                                                      flaxibleGap(30),
+                                                    ],
+                                                  ),
+                                                ));
                                       },
                                     ),
                                   ),
@@ -276,13 +352,86 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                         DateTime date = Intl.withLocale(
                                             'en',
                                             () => DateTime.parse(
-                                                '${item.bookedDate != null ? item.bookedDate : '2023-11-28'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
+                                                '${item.bookedDate ?? '2023-11-28'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
                                         return date.isBefore(DateTime.now())
                                             ? date.day == DateTime.now().day
-                                                ? const SizedBox.shrink()
+                                                ? Container(
+                                                    color: Colors.black54,
+                                                    child: Container(
+                                                      height: sizeHeight,
+                                                      decoration: BoxDecoration(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? AppColors.white
+                                                            : AppColors
+                                                                .darkTheme,
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          flaxibleGap(30),
+                                                          SizedBox(
+                                                              height:
+                                                                  sizeHeight *
+                                                                      .15,
+                                                              width:
+                                                                  sizeHeight *
+                                                                      .15,
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/icon.png',
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                              )),
+                                                          flaxibleGap(4),
+                                                          Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .noBookingsFound,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? const Color(
+                                                                            0XFF424242)
+                                                                        : AppColors
+                                                                            .white,
+                                                                    fontFamily:
+                                                                        "Poppins",
+                                                                  )),
+                                                          flaxibleGap(1),
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .youHaveBooked,
+                                                            style:
+                                                                Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .titleSmall!
+                                                                    .copyWith(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? const Color(
+                                                                              0XFF7A7A7A)
+                                                                          : Colors
+                                                                              .white38,
+                                                                      fontFamily:
+                                                                          "Poppins",
+                                                                    ),
+                                                          ),
+                                                          flaxibleGap(30),
+                                                        ],
+                                                      ),
+                                                    ))
                                                 : bookingsList(sizeWidth,
                                                     sizeHeight, item, 0)
-                                            : const SizedBox.shrink();
+                                            : SizedBox.shrink();
                                       },
                                     ),
                                   ),
@@ -323,8 +472,8 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * .07),
       child: SizedBox(
         height: booking.bookedSession!.length == 1
-            ? sizeHeight * 0.55
-            : sizeHeight * .6,
+            ? sizeHeight * 0.56
+            : sizeHeight * .63,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -354,8 +503,8 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         blurStyle: BlurStyle.outer)
                   ]),
               height: booking.bookedSession!.length == 1
-                  ? sizeHeight * 0.47
-                  : sizeHeight * .56,
+                  ? sizeHeight * 0.48
+                  : sizeHeight * .57,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -723,7 +872,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                                     width: MediaQuery.of(context)
                                                                             .size
                                                                             .width *
-                                                                        0.5,
+                                                                        0.8,
                                                                     decoration:
                                                                         BoxDecoration(
                                                                       borderRadius:
@@ -769,7 +918,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                                     width: MediaQuery.of(context)
                                                                             .size
                                                                             .width *
-                                                                        0.5,
+                                                                        0.8,
                                                                     decoration:
                                                                         BoxDecoration(
                                                                       borderRadius:

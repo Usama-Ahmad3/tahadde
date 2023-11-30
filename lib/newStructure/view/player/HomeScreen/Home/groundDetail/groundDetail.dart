@@ -242,8 +242,8 @@ class GroundDetailState extends State<GroundDetail>
                   closeManually: true,
                   isOpenOnStart: false,
                   backgroundColor: MyAppState.mode == ThemeMode.light
-                      ? AppColors.darkTheme
-                      : Colors.tealAccent.shade100,
+                      ? AppColors.appThemeColor
+                      : AppColors.appThemeColor,
                   renderOverlay: false,
                   onPress: () {
                     setState(() {
@@ -622,11 +622,13 @@ class GroundDetailState extends State<GroundDetail>
                                                             0xffffffff)),
                                           ),
                                           InkWell(
-                                            onTap:rating.isNotEmpty? () {
-                                              navigateToReviews(widget
-                                                  .detail['academy_id']
-                                                  .toString());
-                                            }:null,
+                                            onTap: rating.isNotEmpty
+                                                ? () {
+                                                    navigateToReviews(widget
+                                                        .detail['academy_id']
+                                                        .toString());
+                                                  }
+                                                : null,
                                             child: Text(
                                               AppLocalizations.of(context)!
                                                   .viewAll,

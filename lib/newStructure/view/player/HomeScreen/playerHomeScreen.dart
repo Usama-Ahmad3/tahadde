@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
@@ -99,7 +101,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 child: Center(
                   child: Container(
                     height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.appThemeColor,
@@ -121,12 +123,12 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   Navigator.of(context).pop(true);
 
                   ///close the app
-                  // exit(0);
+                  exit(0);
                 },
                 child: Center(
                   child: Container(
                     height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.appThemeColor,

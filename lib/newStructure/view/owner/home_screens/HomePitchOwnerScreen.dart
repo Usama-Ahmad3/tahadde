@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -51,7 +53,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                   child: Center(
                     child: Container(
                       height: 50,
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      width: MediaQuery.of(context).size.width * 0.8,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: AppColors.appThemeColor,
@@ -72,12 +74,13 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).pop(true);
+                  // Navigator.of(context).pop(true);
+                  exit(0);
                 },
                 child: Center(
                   child: Container(
                     height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.appThemeColor,

@@ -88,7 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Center(
                   child: Container(
                     height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.appThemeColor,
@@ -155,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Center(
                   child: Container(
                     height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.appThemeColor,
@@ -309,10 +309,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             ? AppColors.grey200
                                             : AppColors.containerColorB,
                                     onTap: () {
-                                      BottomSheett.settingModalBottomSheet(
-                                          context, height);
+                                      // BottomSheett.settingModalBottomSheet(
+                                      //     context, height);
                                     },
-                                    horizontalTitleGap: width * 0,
+                                    horizontalTitleGap: width * 0.015,
                                     shape: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: AppColors.containerColorB),
@@ -417,8 +417,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             ? AppColors.grey200
                                             : AppColors.containerColorB,
                                     onTap: () {
-                                      BottomSheett.settingModalBottomSheet(
-                                          context, height);
+                                      // BottomSheett.settingModalBottomSheet(
+                                      //     context, height);
                                     },
                                     shape: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -431,7 +431,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           ? AppColors.black
                                           : AppColors.white,
                                     ),
-                                    horizontalTitleGap: width * 0,
+                                    horizontalTitleGap: width * 0.015,
                                     titleTextStyle: const TextStyle(
                                         leadingDistribution:
                                             TextLeadingDistribution.even),
@@ -523,7 +523,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
-                                              horizontalTitleGap: width * 0,
+                                              horizontalTitleGap: width * 0.015,
                                               leading: Icon(
                                                 accountIcon[index],
                                                 color: AppColors.red,

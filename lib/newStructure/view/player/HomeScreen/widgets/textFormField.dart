@@ -237,7 +237,9 @@ class _textFieldWidgetMultiState extends State<textFieldWidgetMulti> {
           suffixIconColor: widget.suffixIconColor,
           prefixIcon:
               widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
-          fillColor: widget.fillColor,
+          fillColor: MyAppState.mode == ThemeMode.light
+              ? AppColors.grey200
+              : AppColors.containerColorW12,
           filled: true,
           enabledBorder: widget.enableBorder,
           focusedBorder: widget.focusBorder,

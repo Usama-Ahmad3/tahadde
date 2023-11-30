@@ -1040,6 +1040,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                                           .width *
                                                                       0.02),
                                                           child: Chip(
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(
+                                                                          height *
+                                                                              0.1)),
                                                               avatar:
                                                                   CircleAvatar(
                                                                       radius:
@@ -1117,7 +1122,9 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   TabBarIndicatorSize.label,
                                               unselectedLabelColor:
                                                   AppColors.grey,
-                                              dividerColor: AppColors.red,
+                                              dividerColor: AppColors.black,
+                                              indicatorColor:
+                                                  AppColors.appThemeColor,
                                               isScrollable: true,
                                               physics:
                                                   const AlwaysScrollableScrollPhysics(),

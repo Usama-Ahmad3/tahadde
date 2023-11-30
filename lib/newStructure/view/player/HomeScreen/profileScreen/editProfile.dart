@@ -114,7 +114,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
                         style: const TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 15)),
+                          fontWeight: FontWeight.normal,
+                        )),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -683,7 +684,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   },
                                   title: Text(
                                     AppLocalizations.of(context)!.saveChanges,
-                                    style: TextStyle(color: AppColors.black),
+                                    style: TextStyle(color: AppColors.white),
                                   ))
                             ],
                           ),

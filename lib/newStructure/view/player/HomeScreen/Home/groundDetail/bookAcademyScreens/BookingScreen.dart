@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/avalaible_slots.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/bookingShimmer.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
@@ -9,7 +10,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../common_widgets/internet_loss.dart';
-import '../../../../../../../homeFile/routingConstant.dart';
 import '../../../../../../../homeFile/utility.dart';
 import '../../../../../../../localizations.dart';
 import '../../../../../../../main.dart';
@@ -19,22 +19,23 @@ import '../../../../../../../pitchOwner/loginSignupPitchOwner/createSession.dart
 import '../../../../../../../player/bookPitch/venueDetail.dart';
 import '../../../../../../app_colors/app_colors.dart';
 
-class BookingScreenView extends StatefulWidget {
+class PlayerBookingScreenView extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
   var detail;
 
-  BookingScreenView({super.key, required this.detail});
+  PlayerBookingScreenView({super.key, required this.detail});
 
   @override
-  State<BookingScreenView> createState() => _BookingScreenViewState();
+  State<PlayerBookingScreenView> createState() => _PlayerBookingScreenViewState();
 }
 
-class _BookingScreenViewState extends State<BookingScreenView> {
+class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   int? selectedIndex;
   final NetworkCalls _networkCalls = NetworkCalls();
   final DateFormat apiFormatter = DateFormat('yyyy-MM-dd', 'en_US');
   bool? isSelected;
   bool _auth = false;
+  List sessionIdList = [];
   List<String> academyId = [];
   List<int> listMaxPlayer = [];
   Map<String, List<String>> slotInformation = {};
@@ -210,12 +211,101 @@ class _BookingScreenViewState extends State<BookingScreenView> {
         onFailure: (onFailure) {},
         tokenExpire: () {});
   }
+  doYouWantProceedNow(Map detail,int cartId){
+   return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            elevation: 2,
+            backgroundColor: MyAppState.mode == ThemeMode.light
+                ? AppColors.grey200
+                : AppColors.darkTheme,
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+            title: Text(
+              AppLocalizations.of(context)!.doYouWantProceed,
+              style: TextStyle(
+                fontSize:15,
+                  color: MyAppState.mode == ThemeMode.light
+                      ? AppColors.black
+                      : AppColors.white),
+            ),
+            content: Text(
+              AppLocalizations.of(context)!.bookNow,
+              style: const TextStyle(color: AppColors.appThemeColor),
+            ),
+            actions: [
+              InkWell(
+                onTap: () {
+                  navigateToHomeScreen(detail);
+                },
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.appThemeColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.no,
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap:() {
+          Map detailForProceed = {
+          'cart_id':
+          cartId,
+          'academyNameEnglish':
+          _specificAcademy[0].academyNameEnglish,
+          'academyNameArabic':_specificAcademy[0].academyNameArabic,
+          "academy": _specificAcademy[0].academyId,
+          "session":
+          sessionIdList,
+          "price":
+          _specificAcademy[0].prices![0].price,
+          "location": _specificAcademy[0].academyLocation,
+          "booked_date": dataTime,
+          "player_count":indexItem,
+          'price_per_player':
+          _specificAcademy[0].prices![0].price
+          };
+          navigateToEditAcademyDetail(detailForProceed);
+          },
+                child: Center(
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.appThemeColor,
+                      border: Border.all(width: 1, color: AppColors.white),
+                    ),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.yes,
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        });
+  }
   addToCart(details) async {
     await _networkCalls.addToCard(
       detail: details,
         onSuccess: (detail) {
-          print(detail);
-          navigateToHomeScreen(details);
+          doYouWantProceedNow(details,detail['id']);
         },
         onFailure: (onFailure) {},
         tokenExpire: () {});
@@ -1160,13 +1250,12 @@ class _BookingScreenViewState extends State<BookingScreenView> {
                                             //   "player_count": indexItem,
                                             //   "slug": "price-per-player"
                                             // };
-                                            List IdList = [];
                                             list.forEach((element) {
-                                              IdList.add(element.id);
+                                              sessionIdList.add(element.id);
                                             });
                                             Map details = {
                                               "academy": _specificAcademy[0].academyId,
-                                              "session": IdList,
+                                              "session": sessionIdList,
                                               "Sub_Academy": _specificAcademy[0]
                                                   .prices![0]
                                                   .subAcademy,
@@ -1261,5 +1350,12 @@ class _BookingScreenViewState extends State<BookingScreenView> {
     // Navigator.pushNamed(context, RouteNames.enterDetailAcademy,
     //     arguments: detail);
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PlayerHomeScreen(index: 0),));
+  }
+  navigateToEditAcademyDetail(detail) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EnterDetailAcademyScreen(detail: detail),
+        ));
   }
 }

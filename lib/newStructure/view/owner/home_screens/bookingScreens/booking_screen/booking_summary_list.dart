@@ -94,7 +94,8 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
             bottom: TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
               unselectedLabelColor: AppColors.grey,
-              dividerColor: AppColors.red,
+              dividerColor: AppColors.black,
+              indicatorColor: AppColors.appThemeColor,
               isScrollable: true,
               physics: const AlwaysScrollableScrollPhysics(),
               // indicator: BoxDecoration(
@@ -104,7 +105,7 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
               padding: EdgeInsets.symmetric(vertical: sizeHeight * 0.003),
               tabs: [
                 SizedBox(
-                  width: sizeWidth * 0.41,
+                  width: sizeWidth * 0.34,
                   child: Center(
                       child: Padding(
                     padding: EdgeInsets.all(sizeHeight * 0.01),
@@ -118,7 +119,7 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                   )),
                 ),
                 SizedBox(
-                  width: sizeWidth * 0.41,
+                  width: sizeWidth * 0.34,
                   child: Center(
                       child: Padding(
                     padding: EdgeInsets.all(sizeHeight * 0.012),
@@ -226,7 +227,7 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                 DateTime date = Intl.withLocale(
                                                     'en',
                                                     () => DateTime.parse(
-                                                        '${item.bookedDate != null ? item.bookedDate : '2023-11-17'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
+                                                        '${item.bookedDate ?? '2023-11-17'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
                                                 return date.isAfter(
                                                             DateTime.now()) ||
                                                         date.day ==
@@ -243,7 +244,85 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                             sizeHeight,
                                                             item),
                                                       )
-                                                    : SizedBox.shrink();
+                                                    : Container(
+                                                        color: Colors.black54,
+                                                        child: Container(
+                                                          height: sizeHeight,
+                                                          decoration: BoxDecoration(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? AppColors
+                                                                      .white
+                                                                  : AppColors
+                                                                      .darkTheme,
+                                                              borderRadius: const BorderRadius
+                                                                  .only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          20),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          20))),
+                                                          child: Column(
+                                                            children: [
+                                                              flaxibleGap(30),
+                                                              SizedBox(
+                                                                  height:
+                                                                      sizeHeight *
+                                                                          .15,
+                                                                  width:
+                                                                      sizeHeight *
+                                                                          .15,
+                                                                  child: Image
+                                                                      .asset(
+                                                                    'assets/images/icon.png',
+                                                                    fit: BoxFit
+                                                                        .fill,
+                                                                  )),
+                                                              flaxibleGap(4),
+                                                              Text(
+                                                                  AppLocalizations.of(
+                                                                          context)!
+                                                                      .noBookingsFound,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                        color: MyAppState.mode ==
+                                                                                ThemeMode.light
+                                                                            ? const Color(0XFF424242)
+                                                                            : AppColors.white,
+                                                                        fontFamily:
+                                                                            "Poppins",
+                                                                      )),
+                                                              flaxibleGap(1),
+                                                              Text(
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .youHaveBooked,
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .titleSmall!
+                                                                    .copyWith(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? const Color(
+                                                                              0XFF7A7A7A)
+                                                                          : Colors
+                                                                              .white38,
+                                                                      fontFamily:
+                                                                          "Poppins",
+                                                                    ),
+                                                              ),
+                                                              flaxibleGap(30),
+                                                            ],
+                                                          ),
+                                                        ));
                                               }),
                                         ),
                                         Align(
@@ -262,12 +341,91 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                 DateTime date = Intl.withLocale(
                                                     'en',
                                                     () => DateTime.parse(
-                                                        '${item.bookedDate != null ? item.bookedDate : '2023-11-17'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
+                                                        '${item.bookedDate ?? '2023-11-17'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
                                                 return date.isBefore(
                                                         DateTime.now())
                                                     ? date.day ==
                                                             DateTime.now().day
-                                                        ? SizedBox.shrink()
+                                                        ? Container(
+                                                            color:
+                                                                Colors.black54,
+                                                            child: Container(
+                                                              height:
+                                                                  sizeHeight,
+                                                              decoration: BoxDecoration(
+                                                                  color: MyAppState
+                                                                              .mode ==
+                                                                          ThemeMode
+                                                                              .light
+                                                                      ? AppColors
+                                                                          .white
+                                                                      : AppColors
+                                                                          .darkTheme,
+                                                                  borderRadius: const BorderRadius
+                                                                      .only(
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              20),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              20))),
+                                                              child: Column(
+                                                                children: [
+                                                                  flaxibleGap(
+                                                                      30),
+                                                                  SizedBox(
+                                                                      height:
+                                                                          sizeHeight *
+                                                                              .15,
+                                                                      width:
+                                                                          sizeHeight *
+                                                                              .15,
+                                                                      child: Image
+                                                                          .asset(
+                                                                        'assets/images/icon.png',
+                                                                        fit: BoxFit
+                                                                            .fill,
+                                                                      )),
+                                                                  flaxibleGap(
+                                                                      4),
+                                                                  Text(
+                                                                      AppLocalizations.of(
+                                                                              context)!
+                                                                          .noBookingsFound,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            color: MyAppState.mode == ThemeMode.light
+                                                                                ? const Color(0XFF424242)
+                                                                                : AppColors.white,
+                                                                            fontFamily:
+                                                                                "Poppins",
+                                                                          )),
+                                                                  flaxibleGap(
+                                                                      1),
+                                                                  Text(
+                                                                    AppLocalizations.of(
+                                                                            context)!
+                                                                        .youHaveBooked,
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .titleSmall!
+                                                                        .copyWith(
+                                                                          color: MyAppState.mode == ThemeMode.light
+                                                                              ? const Color(0XFF7A7A7A)
+                                                                              : Colors.white38,
+                                                                          fontFamily:
+                                                                              "Poppins",
+                                                                        ),
+                                                                  ),
+                                                                  flaxibleGap(
+                                                                      30),
+                                                                ],
+                                                              ),
+                                                            ))
                                                         : GestureDetector(
                                                             onTap: () {
                                                               navigateToAcademyBookingDetails(
@@ -280,7 +438,7 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                                 sizeHeight,
                                                                 item),
                                                           )
-                                                    : SizedBox.shrink();
+                                                    : const SizedBox.shrink();
                                               }),
                                         ),
                                       ],

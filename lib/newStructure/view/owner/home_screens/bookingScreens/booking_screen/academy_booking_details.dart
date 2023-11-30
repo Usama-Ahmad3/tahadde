@@ -140,7 +140,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? Color(0XFF032040)
+                                        ? const Color(0XFF032040)
                                         : Colors.white),
                               ),
                               SizedBox(
@@ -206,7 +206,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                     fontSize: 16,
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Color(0XFF032040)
+                                                        ? const Color(
+                                                            0XFF032040)
                                                         : AppColors.white),
                                               ),
                                               Row(
@@ -226,7 +227,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                         color: MyAppState
                                                                     .mode ==
                                                                 ThemeMode.light
-                                                            ? Color(0XFFADADAD)
+                                                            ? const Color(
+                                                                0XFFADADAD)
                                                             : AppColors.white),
                                                   )
                                                 ],
@@ -249,7 +251,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                         color: MyAppState
                                                                     .mode ==
                                                                 ThemeMode.light
-                                                            ? Color(0XFFADADAD)
+                                                            ? const Color(
+                                                                0XFFADADAD)
                                                             : Colors.white),
                                                   )
                                                 ],
@@ -295,7 +298,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                     fontSize: 14,
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Color(0XFF032040)
+                                                        ? const Color(
+                                                            0XFF032040)
                                                         : AppColors.white),
                                               ),
                                               Text(
@@ -312,7 +316,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                     fontSize: 14,
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
-                                                        ? Color(0XFF25A163)
+                                                        ? const Color(
+                                                            0XFF25A163)
                                                         : AppColors.grey),
                                               ),
                                             ],
@@ -329,7 +334,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                       fontSize: 12,
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
-                                                          ? Color(0XFF9B9B9B)
+                                                          ? const Color(
+                                                              0XFF9B9B9B)
                                                           : Colors.grey),
                                                 ),
                                               ),
@@ -360,7 +366,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                 fontSize: 14,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF032040)
+                                                    ? const Color(0XFF032040)
                                                     : AppColors.white),
                                           ),
                                           Text(
@@ -369,7 +375,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                               style: TextStyle(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
-                                                      ? Color(0XFF25A163)
+                                                      ? const Color(0XFF25A163)
                                                       : Colors.grey,
                                                   fontFamily: "Poppins",
                                                   fontSize: 14))
@@ -389,7 +395,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                 fontSize: 14,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF032040)
+                                                    ? const Color(0XFF032040)
                                                     : AppColors.white),
                                           ),
                                           Text(
@@ -397,7 +403,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                             style: TextStyle(
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF25A163)
+                                                    ? const Color(0XFF25A163)
                                                     : AppColors.grey,
                                                 fontSize: 14),
                                           ),
@@ -417,7 +423,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                 fontSize: 14,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF032040)
+                                                    ? const Color(0XFF032040)
                                                     : AppColors.white),
                                           ),
                                           Text(
@@ -427,7 +433,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                 fontFamily: 'Poppins',
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF25A163)
+                                                    ? const Color(0XFF25A163)
                                                     : Colors.grey,
                                                 decoration: TextDecoration.none,
                                                 fontSize: 14),
@@ -448,7 +454,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                 fontSize: 14,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF032040)
+                                                    ? const Color(0XFF032040)
                                                     : AppColors.white),
                                           ),
                                           Text(
@@ -458,7 +464,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                 fontSize: 12,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
-                                                    ? Color(0XFF25A163)
+                                                    ? const Color(0XFF25A163)
                                                     : AppColors.grey),
                                           ),
                                         ],

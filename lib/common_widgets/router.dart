@@ -129,7 +129,7 @@ class RouterPage {
         );
       case RouteNames.bookingScreen:
         return MaterialPageRoute(
-          builder: (context) => BookingScreenView(detail: settings.arguments),
+          builder: (context) => PlayerBookingScreenView(detail: settings.arguments),
         );
       case RouteNames.verificationScreen:
         var detail = settings.arguments;

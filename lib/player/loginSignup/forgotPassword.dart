@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
@@ -46,42 +47,29 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-      return _internet
-            ? Scaffold(
-                backgroundColor: MyAppState.mode == ThemeMode.light
-                    ? const Color(0XFFF0F0F0)
-                    : Colors.grey.shade300,
-                appBar: PreferredSize(
-                  preferredSize: Size(sizewidth, sizeheight * 0.1),
-                  child: AppBar(
-                    leading: IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: Color(0XFFFFFFFF),
-                      ),
-                    ),
-                    automaticallyImplyLeading: false,
-                    title: Text(
-                      AppLocalizations.of(context)!.forgotPassword,
-                      style: TextStyle(
-                          fontSize: appHeaderFont,
-                          color: const Color(0XFFFFFFFF),
-                          fontFamily:
-                              AppLocalizations.of(context)!.locale == "en"
-                                  ? "Poppins"
-                                  : "VIP",
-                          fontWeight:
-                              AppLocalizations.of(context)!.locale == "en"
-                                  ? FontWeight.w600
-                                  : FontWeight.normal),
-                    ),
-                    backgroundColor: Colors.black,
-                  ),
-                ),
-                body: SingleChildScrollView(
+    return _internet
+        ? Scaffold(
+            // backgroundColor: MyAppState.mode == ThemeMode.light
+            //     ? const Color(0XFFF0F0F0)
+            //     : Colors.grey.shade300,
+            appBar: appBarWidget(
+                sizeWidth: sizewidth,
+                sizeHeight: sizeheight,
+                context: context,
+                title: AppLocalizations.of(context)!.forgotPassword,
+                back: true),
+            body: Container(
+              color: Colors.black,
+              child: Container(
+                height: sizeheight,
+                decoration: BoxDecoration(
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.white
+                        : AppColors.darkTheme,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                child: SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.only(
                         left: sizewidth * .05,
@@ -95,9 +83,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         child: Form(
                           key: _formKey,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               flaxibleGap(2),
-                              Container(
+                              Center(
                                 child: Image.asset(
                                   'assets/images/password.png',
                                   height: 100,
@@ -111,91 +100,113 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),
                               flaxibleGap(2),
+                              Text(
+                                AppLocalizations.of(context)!.email,
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? AppColors.black
+                                        : AppColors.white),
+                              ),
+                              SizedBox(
+                                height: sizeheight * 0.015,
+                              ),
                               TextFieldWidget(
-                                  controller: emailController,
-                                  hintText: AppLocalizations.of(context)!.email,
-                              onChanged: (value) {
+                                controller: emailController,
+                                hintText: AppLocalizations.of(context)!.email,
+                                onChanged: (value) {
                                   email = value!;
-                        if (value == "xxxxxx") {
-                        FocusScope.of(context).unfocus();
-                        navigateToAccountSetting();
-                        }
-                        },
-                              onValidate:  (value) {
-                                var msg;
-                                if (!isMail(value!.trim())) {
-                                  msg = AppLocalizations.of(context)!
-                                      .invalidEmail;
-                                }
-                                return msg;
-                              },
+                                  if (value == "xxxxxx") {
+                                    FocusScope.of(context).unfocus();
+                                    navigateToAccountSetting();
+                                  }
+                                },
+                                onValidate: (value) {
+                                  var msg;
+                                  if (!isMail(value!.trim())) {
+                                    msg = AppLocalizations.of(context)!
+                                        .invalidEmail;
+                                  }
+                                  return msg;
+                                },
                                 enableBorder: OutlineInputBorder(
-                                    borderSide: MyAppState.mode == ThemeMode.light
-                                        ? BorderSide.none
-                                        : BorderSide(color: AppColors.white, width: 1),
+                                    borderSide:
+                                        MyAppState.mode == ThemeMode.light
+                                            ? BorderSide.none
+                                            : BorderSide(
+                                                color: AppColors.white,
+                                                width: 1),
                                     borderRadius: BorderRadius.circular(12)),
                                 focusBorder: OutlineInputBorder(
-                                    borderSide: MyAppState.mode == ThemeMode.light
-                                        ? BorderSide.none
-                                        : BorderSide(color: AppColors.white, width: 1),
+                                    borderSide:
+                                        MyAppState.mode == ThemeMode.light
+                                            ? BorderSide.none
+                                            : BorderSide(
+                                                color: AppColors.white,
+                                                width: 1),
                                     borderRadius: BorderRadius.circular(12)),
                                 border: OutlineInputBorder(
-                                    borderSide: MyAppState.mode == ThemeMode.light
-                                        ? BorderSide.none
-                                        : BorderSide(color: AppColors.white, width: 1),
+                                    borderSide:
+                                        MyAppState.mode == ThemeMode.light
+                                            ? BorderSide.none
+                                            : BorderSide(
+                                                color: AppColors.white,
+                                                width: 1),
                                     borderRadius: BorderRadius.circular(12)),
                               ),
                               flaxibleGap(3),
-                              ButtonWidget(onTaped: () {
-                        if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        _isLoading = true;
-                        _networkCalls.checkInternetConnectivity(
-                        onSuccess: (msg) {
-                        _internet = msg;
-                        if (msg == true) {
-                        _networkCalls.checkEmailExist(
-                        email: email,
-                        onSuccess: (msg) {
-                        if (msg ==
-                        'This email already exists') {
-                        _networkCalls.forgotPassword(
-                        email: email,
-                        onSuccess: (msg) {
-                          _isLoading = false;
-                          showMessage('Check your mail, Email has been sent');
-                        navigateToDetail(
-                        msg: msg);
-                        },
-                        onFailure: (msg) {
-                        setState(() {});
-                        showMessage(msg);
-                        },
-                        tokenExpire: () {
-                        if (mounted) {
-                        on401(context);
-                        }
-                        },
-                        );
-                        }
-                        },
-                        onFailure: (msg) {
-                        setState(() {});
-                        showMessage(msg);
-                        },
-                        tokenExpire: () {
-                        if (mounted) on401(context);
-                        });
-                        } else {
-                        if (mounted) setState(() {});
-                        }
-                        });
-                        }
-                        }, title: Text(AppLocalizations.of(context)!.sendEmail,style: TextStyle(color: AppColors.white),),
+                              ButtonWidget(
+                                onTaped: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    _isLoading = true;
+                                    _networkCalls.checkInternetConnectivity(
+                                        onSuccess: (msg) {
+                                      _internet = msg;
+                                      if (msg == true) {
+                                        _networkCalls.checkEmailExist(
+                                            email: email,
+                                            onSuccess: (msg) {
+                                              if (msg ==
+                                                  'This email already exists') {
+                                                _networkCalls.forgotPassword(
+                                                  email: email,
+                                                  onSuccess: (msg) {
+                                                    _isLoading = false;
+                                                    showMessage(
+                                                        'Check your mail, Email has been sent');
+                                                    navigateToDetail(msg: msg);
+                                                  },
+                                                  onFailure: (msg) {
+                                                    setState(() {});
+                                                    showMessage(msg);
+                                                  },
+                                                  tokenExpire: () {
+                                                    if (mounted) {
+                                                      on401(context);
+                                                    }
+                                                  },
+                                                );
+                                              }
+                                            },
+                                            onFailure: (msg) {
+                                              setState(() {});
+                                              showMessage(msg);
+                                            },
+                                            tokenExpire: () {
+                                              if (mounted) on401(context);
+                                            });
+                                      } else {
+                                        if (mounted) setState(() {});
+                                      }
+                                    });
+                                  }
+                                },
+                                title: Text(
+                                  AppLocalizations.of(context)!.sendEmail,
+                                  style: TextStyle(color: AppColors.white),
+                                ),
                                 isLoading: _isLoading,
-
                               ),
-
                             ],
                           ),
                         ),
@@ -203,20 +214,20 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                   ),
                 ),
-              )
-            : InternetLoss(
-                onChange: () {
-                  _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
-                    _internet = msg;
-                    if (mounted) {
-                      setState(() {
-                        _isLoading = true;
-                      });
-                    }
+              ),
+            ))
+        : InternetLoss(
+            onChange: () {
+              _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
+                _internet = msg;
+                if (mounted) {
+                  setState(() {
+                    _isLoading = true;
                   });
-                },
-              );
-
+                }
+              });
+            },
+          );
   }
 
   void navigateToDetail({String? msg}) {

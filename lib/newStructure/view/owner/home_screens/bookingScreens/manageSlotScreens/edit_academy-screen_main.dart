@@ -10,12 +10,10 @@ import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/s
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/slot_chart_screen5.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
-import '../../../../../../constant.dart';
 import '../../../../../../homeFile/routingConstant.dart';
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
@@ -279,13 +277,15 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                flaxibleGap(1),
+                                                SizedBox(
+                                                  height: height * 0.015,
+                                                ),
                                                 Image.asset(
                                                   "assets/images/add_vanue.png",
                                                   height: height * 0.03,
                                                 ),
-                                                flaxibleGap(
-                                                  1,
+                                                SizedBox(
+                                                  height: height * 0.01,
                                                 ),
                                                 Text(
                                                     AppLocalizations
@@ -296,6 +296,7 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                                                         .textTheme
                                                         .bodySmall!
                                                         .copyWith(
+                                                            fontSize: 10,
                                                             color: const Color(
                                                                 0XFFB3B3B3),
                                                             fontWeight:

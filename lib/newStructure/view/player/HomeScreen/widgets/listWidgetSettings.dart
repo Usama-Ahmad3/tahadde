@@ -36,7 +36,7 @@ class ListWidgetSettings extends StatelessWidget {
                 ? AppColors.grey200
                 : AppColors.containerColorW12,
             onTap: callback,
-            horizontalTitleGap: width * 0,
+            horizontalTitleGap: width * 0.015,
             shape: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.containerColorW12),
                 borderRadius: BorderRadius.circular(10)),
@@ -46,7 +46,6 @@ class ListWidgetSettings extends StatelessWidget {
                   ? AppColors.black
                   : AppColors.white,
             ),
-
             titleTextStyle: const TextStyle(
                 leadingDistribution: TextLeadingDistribution.even),
             title: Text(

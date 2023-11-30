@@ -95,6 +95,10 @@ class AppLocalizations {
     return Intl.message('login required to see booking', name: 'loginRequired');
   }
 
+  String get doYouWantProceed {
+    return Intl.message('Do You Want To Proceed Now', name: 'doYouWantProceed');
+  }
+
   String get loginRequiredCart {
     return Intl.message('login required to see cart items',
         name: 'loginRequiredCart');
@@ -1450,7 +1454,7 @@ class AppLocalizations {
   }
 
   String get uploadprofilepicture {
-    return Intl.message('uploadprofilepicture', name: 'uploadprofilepicture');
+    return Intl.message('Upload Profile Pic', name: 'uploadprofilepicture');
   }
 
   String get makechoice {

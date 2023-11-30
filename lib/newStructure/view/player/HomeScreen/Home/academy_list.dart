@@ -48,15 +48,17 @@ class _AcademyListState extends State<AcademyList> {
             ),
             actions: [
               TextButton(
-                child: Text(
-                  AppLocalizations.of(context)!.cancel,
-                ),
+                child: Text(AppLocalizations.of(context)!.cancel,
+                    style: TextStyle(color: AppColors.appThemeColor)),
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
               ),
               TextButton(
-                child: Text(AppLocalizations.of(context)!.login),
+                child: Text(
+                  AppLocalizations.of(context)!.login,
+                  style: TextStyle(color: AppColors.appThemeColor),
+                ),
                 onPressed: () {
                   navigateToLogin();
                 },

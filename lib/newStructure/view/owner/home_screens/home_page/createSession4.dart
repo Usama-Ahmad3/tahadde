@@ -246,15 +246,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
               ? AppColors.white
               : AppColors.darkTheme,
           appBar: appBarForCreatingAcademy(
-              size,
-              context,
-              AppLocalizations.of(context)!.createSession,
-              true,
-              AppColors.appThemeColor,
-              AppColors.appThemeColor,
-              AppColors.appThemeColor,
-              AppColors.appThemeColor,
-              ),
+            size,
+            context,
+            AppLocalizations.of(context)!.createSession,
+            true,
+            AppColors.appThemeColor,
+            AppColors.appThemeColor,
+            AppColors.appThemeColor,
+            AppColors.appThemeColor,
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniEndFloat,
           floatingActionButton: Align(
@@ -271,8 +271,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
               ),
               animationCurve: Curves.easeInOutCirc,
               backgroundColor: MyAppState.mode == ThemeMode.light
-                  ? AppColors.darkTheme
-                  : Colors.tealAccent.shade100,
+                  ? AppColors.appThemeColor
+                  : AppColors.appThemeColor,
               onPress: () {
                 _holiday = false;
                 _nameController.clear();
@@ -309,7 +309,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     child: Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width *
-                                          0.5,
+                                          0.8,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         color: AppColors.appThemeColor,
@@ -350,7 +350,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     child: Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width *
-                                          0.5,
+                                          0.8,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         color: AppColors.appThemeColor,
@@ -473,8 +473,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       .textTheme
                                                       .bodyMedium!
                                                       .copyWith(
-                                                          color:
-                                                              MyAppState.mode == ThemeMode.light?AppColors.black:AppColors.white,
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors.white
+                                                              : AppColors.white,
                                                           fontWeight:
                                                               FontWeight.w500),
                                                 ),
@@ -1227,14 +1231,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             ? AppColors.white
                             : AppColors.darkTheme,
                         appBar: appBarForCreatingAcademy(
-                            size,
-                            context,
-                            AppLocalizations.of(context)!.createSession,
-                            true,
-                            AppColors.appThemeColor,
-                            AppColors.appThemeColor,
-                            AppColors.appThemeColor,
-                            AppColors.appThemeColor,),
+                          size,
+                          context,
+                          AppLocalizations.of(context)!.createSession,
+                          true,
+                          AppColors.appThemeColor,
+                          AppColors.appThemeColor,
+                          AppColors.appThemeColor,
+                          AppColors.appThemeColor,
+                        ),
                         body: SingleChildScrollView(
                           keyboardDismissBehavior:
                               ScrollViewKeyboardDismissBehavior.onDrag,
@@ -1368,14 +1373,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             ? AppColors.white
                             : AppColors.darkTheme,
                         appBar: appBarForCreatingAcademy(
-                            size,
-                            context,
-                            AppLocalizations.of(context)!.createSession,
-                            true,
-                            AppColors.appThemeColor,
-                            AppColors.appThemeColor,
-                            AppColors.appThemeColor,
-                            AppColors.appThemeColor,),
+                          size,
+                          context,
+                          AppLocalizations.of(context)!.createSession,
+                          true,
+                          AppColors.appThemeColor,
+                          AppColors.appThemeColor,
+                          AppColors.appThemeColor,
+                          AppColors.appThemeColor,
+                        ),
                         body: SingleChildScrollView(
                           keyboardDismissBehavior:
                               ScrollViewKeyboardDismissBehavior.onDrag,
@@ -1738,9 +1744,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                             setState(() {});
                                                           },
                                                           child: Text(
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .cancel)),
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .cancel,
+                                                            style: const TextStyle(
+                                                                color: AppColors
+                                                                    .appThemeColor),
+                                                          )),
                                                       TextButton(
                                                           onPressed: () {
                                                             sessionDetail
@@ -1753,7 +1763,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           child: Text(
                                                               AppLocalizations.of(
                                                                       context)!
-                                                                  .ok)),
+                                                                  .ok,
+                                                              style: const TextStyle(
+                                                                  color: AppColors
+                                                                      .appThemeColor))),
                                                     ],
                                                     content: Container(
                                                       height:
@@ -1895,7 +1908,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                             child: Text(
                                                                 AppLocalizations.of(
                                                                         context)!
-                                                                    .cancel)),
+                                                                    .cancel,
+                                                                style: const TextStyle(
+                                                                    color: AppColors
+                                                                        .appThemeColor))),
                                                         TextButton(
                                                             onPressed: () {
                                                               sessionDetail
@@ -1909,7 +1925,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                             child: Text(
                                                                 AppLocalizations.of(
                                                                         context)!
-                                                                    .ok)),
+                                                                    .ok,
+                                                                style: const TextStyle(
+                                                                    color: AppColors
+                                                                        .appThemeColor))),
                                                       ],
                                                       content: Container(
                                                         height:
@@ -2043,7 +2062,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                         child: Text(
                                                             AppLocalizations.of(
                                                                     context)!
-                                                                .cancel)),
+                                                                .cancel,
+                                                            style: const TextStyle(
+                                                                color: AppColors
+                                                                    .appThemeColor))),
                                                     TextButton(
                                                         onPressed: () {
                                                           sessionDetail
@@ -2055,7 +2077,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                         child: Text(
                                                             AppLocalizations.of(
                                                                     context)!
-                                                                .ok)),
+                                                                .ok,
+                                                            style: const TextStyle(
+                                                                color: AppColors
+                                                                    .appThemeColor))),
                                                   ],
                                                   content: Container(
                                                     height: size.height * 0.15,
@@ -2128,7 +2153,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: size.height * 0.02,
+                                      height: size.height * 0.015,
                                     ),
                                     Expanded(
                                       child: ListView(
@@ -2151,7 +2176,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       : Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .end,
+                                                                  .center,
                                                           children: [
                                                             _weakList[_weakIndex]
                                                                         .slug !=
@@ -2179,14 +2204,16 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                           8.0),
                                                                       child:
                                                                           Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
                                                                         children: [
                                                                           copySessionIndex.contains(item.key)
                                                                               ? SizedBox(
-                                                                                  height: size.height * .03,
+                                                                                  height: size.height * .04,
                                                                                   width: size.width * .055,
                                                                                   child: Container(
-                                                                                    width: size.width * 0.11,
-                                                                                    height: size.height * 0.04,
+                                                                                    width: size.width * 0.1,
+                                                                                    height: size.height * 0.045,
                                                                                     decoration: BoxDecoration(color: AppColors.appThemeColor, borderRadius: BorderRadius.circular(size.height * 0.005)),
                                                                                     child: Icon(
                                                                                       FontAwesomeIcons.check,
@@ -2229,6 +2256,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             )
                                             .toList(),
                                       ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.005,
                                     ),
                                     ButtonWidget(
                                         onTaped: () {
@@ -2323,18 +2353,25 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       // sessionList
                                                       //     .add(sessionDetail);
                                                       print(copySessionIndex);
+
                                                       ///new sessions
                                                       _sessionMap[_weakList[
                                                                   _weakIndex]
                                                               .slug]!
                                                           .add(sessionDetail);
                                                       print(sessionDetail);
-                                                      print(_sessionMap[_weakList[_weakIndex].slug]);
+                                                      print(_sessionMap[
+                                                          _weakList[_weakIndex]
+                                                              .slug]);
                                                       if (copySessionIndex
                                                           .isNotEmpty) {
-                                                        print('11CopySsessionss');
+                                                        print(
+                                                            '11CopySsessionss');
                                                         print(sessionDetail);
-                                                        print(_sessionMap[_weakList[_weakIndex].slug]);
+                                                        print(_sessionMap[
+                                                            _weakList[
+                                                                    _weakIndex]
+                                                                .slug]);
                                                         copySessionIndex
                                                             .forEach((element) {
                                                           _sessionMap[_weakList[
@@ -2342,7 +2379,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                   .slug] =
                                                               sessionList;
                                                         });
-                                                        copySessionIndex.clear();
+                                                        copySessionIndex
+                                                            .clear();
                                                       }
                                                       print(sessionDetail
                                                           .sessionName);

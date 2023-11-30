@@ -89,7 +89,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                 child: Center(
                   child: Container(
                     height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.appThemeColor,
@@ -154,7 +154,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                 child: Center(
                   child: Container(
                     height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.appThemeColor,
@@ -382,7 +382,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                   AppColors.containerColorW12),
                                           borderRadius:
                                               BorderRadius.circular(10)),
-                                      horizontalTitleGap: width * 0,
+                                      horizontalTitleGap: width * 0.015,
                                       leading: Icon(
                                         icon[index],
                                         color:
@@ -479,7 +479,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                   AppColors.containerColorW12),
                                           borderRadius:
                                               BorderRadius.circular(10)),
-                                      horizontalTitleGap: width * 0,
+                                      horizontalTitleGap: width * 0.015,
                                       leading: Icon(
                                         ownerIcon[index],
                                         color:
@@ -556,7 +556,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   ? AppColors.black
                                   : AppColors.white,
                             ),
-                            horizontalTitleGap: width * 0,
+                            horizontalTitleGap: width * 0.015,
                             style: ListTileStyle.list,
                             titleTextStyle: const TextStyle(
                                 leadingDistribution:
@@ -595,7 +595,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                   padding: EdgeInsets.symmetric(
                                       vertical: height * 0.01),
                                   child: ListTile(
-                                    horizontalTitleGap: width * 0,
+                                    horizontalTitleGap: width * 0.015,
                                     titleAlignment:
                                         ListTileTitleAlignment.center,
                                     tileColor:
@@ -663,7 +663,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                 borderSide: BorderSide(
                                     color: AppColors.containerColorW12),
                                 borderRadius: BorderRadius.circular(10)),
-                            horizontalTitleGap: 0,
+                            horizontalTitleGap: width * 0.015,
                             leading: Icon(
                               Icons.logout_sharp,
                               color: AppColors.red,
@@ -733,8 +733,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     Icons.settings
   ];
   List ownerIcon = [
-    FontAwesomeIcons.bank,
-    FontAwesomeIcons.flag,
+    FontAwesomeIcons.person,
+    Icons.library_books_outlined,
     Icons.settings
   ];
   List title = [

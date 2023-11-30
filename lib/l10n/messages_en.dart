@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addAsideCamesPitch": MessageLookupByLibrary.simpleMessage(
             "Add the aside venue that cames under this venue"),
         "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
+        "doYouWantProceed":
+            MessageLookupByLibrary.simpleMessage("Do You Want To Proceed Now"),
         "addNewGroundPitch":
             MessageLookupByLibrary.simpleMessage("Add More Ground"),
         "addNewPitch": MessageLookupByLibrary.simpleMessage("Add New Venue"),
@@ -294,7 +296,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "descriptionEnglish":
             MessageLookupByLibrary.simpleMessage("Description in English"),
         "descriptionS": MessageLookupByLibrary.simpleMessage("Description"),
-        "academyDetail": MessageLookupByLibrary.simpleMessage("Academy Details"),
+        "academyDetail":
+            MessageLookupByLibrary.simpleMessage("Academy Details"),
         "descriptioninArabic":
             MessageLookupByLibrary.simpleMessage("Description in Arabic"),
         "document": MessageLookupByLibrary.simpleMessage("Document"),
@@ -774,7 +777,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadpitchimages":
             MessageLookupByLibrary.simpleMessage("Upload venue images"),
         "uploadprofilepicture":
-            MessageLookupByLibrary.simpleMessage("Upload profile picture"),
+            MessageLookupByLibrary.simpleMessage("Upload Profile Pic"),
         "validity": MessageLookupByLibrary.simpleMessage("VALIDITY"),
         "venueCreated": MessageLookupByLibrary.simpleMessage("Venue Created"),
         "venueName": MessageLookupByLibrary.simpleMessage("Venue Name"),
