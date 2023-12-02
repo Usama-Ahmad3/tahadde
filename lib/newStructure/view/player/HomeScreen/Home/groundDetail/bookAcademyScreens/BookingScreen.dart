@@ -751,6 +751,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                 //           ),
                                 //         ),
                                 //       ) :
+                                _weakList.isNotEmpty?
                                _sessionMap[_weakList[_weekIndex].name] != null
                                     ? SizedBox(
                                         height: height * 0.54,
@@ -1210,7 +1211,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                         : AppColors.white),
                                           ),
                                         ),
-                                      ),
+                                      ):SizedBox.shrink(),
                                 SizedBox(
                                   height: height * 0.02,
                                 ),

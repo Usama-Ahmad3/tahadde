@@ -520,9 +520,9 @@ class _PaymentState extends State<Payment> {
                 "transaction_id": tranjectionId["InvoiceTransactions"][0]
                     ['PaymentId'],
                 "player_count": widget.detail['player_count'],
-                "booking_date": tarnsectiondetail['transactionMadeon']
+                "booking_date": DateTime.now().day<10?tarnsectiondetail['transactionMadeon']
                     .toString()
-                    .substring(0, 9),
+                    .substring(0, 10):tarnsectiondetail['transactionMadeon'].toString().substring(0,9),
                 'booked_date': tarnsectiondetail['booked_for_date'],
                 "booked_session": widget.detail['sessionId'],
                 "location": widget.detail['location'],

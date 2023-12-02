@@ -23,7 +23,7 @@ const List<String> facility = [
   "locker",
   "metro-station",
   "refree",
-  "free-Parking",
+  "free-parking",
   "masjid",
   "market",
 ];
