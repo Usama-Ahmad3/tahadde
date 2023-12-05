@@ -307,7 +307,15 @@ class AppLocalizations {
   }
 
   String get setting {
-    return Intl.message('setting', name: 'setting');
+    return Intl.message('settings', name: 'setting');
+  }
+
+  String get checkout {
+    return Intl.message('Checkout', name: 'checkout');
+  }
+
+  String get playerCount {
+    return Intl.message('Player Count', name: 'playerCount');
   }
 
   String get email {
@@ -544,7 +552,7 @@ class AppLocalizations {
   }
 
   String get viewInterest {
-    return Intl.message('viewInterest', name: 'viewInterest');
+    return Intl.message('View my favorite academies.', name: 'viewInterest');
   }
 
   String get dateofBirth {
@@ -932,7 +940,8 @@ class AppLocalizations {
   }
 
   String get youHaveBooked {
-    return Intl.message('youHaveBooked', name: 'youHaveBooked');
+    return Intl.message('you have not added any sessions.',
+        name: 'youHaveBooked');
   }
 
   String get createYourLeagueHere {
@@ -1461,6 +1470,10 @@ class AppLocalizations {
     return Intl.message('makechoice', name: 'makechoice');
   }
 
+  String get update {
+    return Intl.message('Update', name: 'update');
+  }
+
   String get phone {
     return Intl.message('phone', name: 'phone');
   }
@@ -1671,6 +1684,10 @@ class AppLocalizations {
 
   String get slot {
     return Intl.message('Slots', name: 'slot');
+  }
+
+  String get timings {
+    return Intl.message('Timings', name: 'timings');
   }
 
   String get pleaseenterTeamName {

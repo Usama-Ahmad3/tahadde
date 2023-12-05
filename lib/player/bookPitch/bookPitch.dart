@@ -141,7 +141,7 @@ class _BookPitchState extends State<BookPitch> {
   favorite() async {
     detail = {"pitch_id": pitchDetail.id, "is_favourite": favoriteState};
     await _networkCalls.favorite(
-      detail: detail,
+      // detail: detail,
       onSuccess: (msg) {
         setState(() {
           pitchDetail = msg;
@@ -153,6 +153,7 @@ class _BookPitchState extends State<BookPitch> {
       tokenExpire: () {
         if (mounted) on401(context);
       },
+      id: '0', favorite: false,
     );
   }
 

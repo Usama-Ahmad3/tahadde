@@ -153,8 +153,8 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                     ),
                     SalomonBottomBarItem(
                       icon: SizedBox(
-                        height: 23,
-                        width: 23,
+                        height: 21,
+                        width: 21,
                         child: Image.asset(
                           'assets/images/booking2.png',
                           color: AppColors.grey,
@@ -165,8 +165,8 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                         style: TextStyle(color: AppColors.white),
                       ),
                       activeIcon: SizedBox(
-                        height: 23,
-                        width: 23,
+                        height: 21,
+                        width: 21,
                         child: Image.asset(
                           'assets/images/file.png',
                           color: AppColors.white,

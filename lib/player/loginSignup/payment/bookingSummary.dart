@@ -16,8 +16,8 @@ import '../../../network/network_calls.dart';
 import '../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
 
 class BookingSummary extends StatefulWidget {
-  var price;
-  BookingSummary({super.key, this.price});
+  List<Map> price;
+  BookingSummary({super.key, required this.price});
   @override
   _BookingSummary createState() => _BookingSummary();
 }
@@ -67,7 +67,6 @@ class _BookingSummary extends State<BookingSummary> {
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-    List<BookedSessions> session = widget.price["sessions"];
     return WillPopScope(
         onWillPop: () async => false,
         child: loading
@@ -133,7 +132,7 @@ class _BookingSummary extends State<BookingSummary> {
                         sizeHeight: sizeheight,
                         context: context,
                         title: AppLocalizations.of(context)!.bookingDetails,
-                        back: false),
+                        back: true),
                     body: Container(
                       height: double.infinity,
                       decoration: BoxDecoration(
@@ -153,135 +152,151 @@ class _BookingSummary extends State<BookingSummary> {
                               Container(
                                 height: sizeheight * .02,
                               ),
-                              Material(
-                                elevation: 5,
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? const Color(0XFFFFFFFF)
-                                    : AppColors.containerColorW12,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20.0)),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: sizewidth * .05,
-                                      right: sizewidth * .05),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Container(
-                                        height: sizeheight * .01,
-                                      ),
-                                      Text(
-                                        AppLocalizations.of(context)!
-                                            .slotDetails,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : AppColors.white,
-                                            ),
-                                      ),
-                                      Container(
-                                        height: sizeheight * .01,
-                                      ),
-                                      Text(
-                                          "${AppLocalizations.of(context)!.academyOnly} (${widget.price["AcademyName"]})",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
+                              ...List.generate(widget.price.length, (index) {
+                                List<BookedSessions> sessions =
+                                    widget.price[index]['sessions'];
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: sizeheight * 0.01),
+                                  child: Material(
+                                    elevation: 5,
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? const Color(0XFFFFFFFF)
+                                        : AppColors.containerColorW12,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20.0)),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: sizewidth * .05,
+                                          right: sizewidth * .05),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Container(
+                                            height: sizeheight * .01,
+                                          ),
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .slotDetails,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .copyWith(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
-                                                      ? const Color(0XFF424242)
+                                                      ? const Color(0XFF032040)
                                                       : AppColors.white,
-                                                  fontWeight: FontWeight.w600)),
-                                      Text(
-                                        widget.price['startingDate']
-                                            .toString()
-                                            .substring(0, 10),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.appThemeColor
-                                                    : AppColors.white,
-                                                fontFamily: "Poppins"),
-                                      ),
-                                      ListView.separated(
-                                          separatorBuilder: (context, index) {
-                                            return const Divider();
-                                          },
-                                          shrinkWrap: true,
-                                          itemCount: session.length,
-                                          itemBuilder: (context, index) {
-                                            return Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "${AppLocalizations.of(context)!.sessionName} ${AppLocalizations.of(context)!.locale == 'en' ? session[index].name : session[index].nameArabic}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors
-                                                                  .appThemeColor
-                                                              : AppColors
-                                                                  .white),
                                                 ),
-                                                SizedBox(
-                                                  height: sizeheight * 0.0056,
-                                                ),
-                                                SizedBox(
-                                                    height: 35,
-                                                    width: sizewidth * 0.5,
-                                                    child: Container(
-                                                      height: 30,
-                                                      width: 110,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                          color: AppColors
-                                                              .appThemeColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          border: Border.all(
-                                                              color: Colors.grey
-                                                                  .shade50)),
-                                                      child: Text(
-                                                        '${session[index].startTime.toString()} - ${session[index].endTime.toString()}' ??
-                                                            "",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: Colors
-                                                                    .white),
-                                                      ),
-                                                    )),
-                                              ],
-                                            );
-                                          }),
-                                      Container(
-                                        height: sizeheight * .01,
+                                          ),
+                                          Container(
+                                            height: sizeheight * .01,
+                                          ),
+                                          Text(
+                                              "${AppLocalizations.of(context)!.academyOnly} (${widget.price[index]["AcademyName"]})",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF424242)
+                                                          : AppColors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600)),
+                                          Text(
+                                            widget.price[index]['startingDate']
+                                                .toString()
+                                                .substring(0, 10),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors
+                                                            .appThemeColor
+                                                        : AppColors.white,
+                                                    fontFamily: "Poppins"),
+                                          ),
+                                          ListView.separated(
+                                              separatorBuilder:
+                                                  (context, index) {
+                                                return const Divider();
+                                              },
+                                              shrinkWrap: true,
+                                              itemCount: sessions.length,
+                                              itemBuilder: (context, index) {
+                                                return Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${AppLocalizations.of(context)!.sessionName} ${AppLocalizations.of(context)!.locale == 'en' ? sessions[index].name : sessions[index].nameArabic}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? AppColors
+                                                                      .appThemeColor
+                                                                  : AppColors
+                                                                      .white),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          sizeheight * 0.0056,
+                                                    ),
+                                                    SizedBox(
+                                                        height: 35,
+                                                        width: sizewidth * 0.5,
+                                                        child: Container(
+                                                          height: 30,
+                                                          width: 110,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                              color: AppColors
+                                                                  .appThemeColor,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade50)),
+                                                          child: Text(
+                                                            '${sessions[index].startTime.toString()} - ${sessions[index].endTime.toString()}' ??
+                                                                "",
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                        )),
+                                                  ],
+                                                );
+                                              }),
+                                          Container(
+                                            height: sizeheight * .01,
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
+                                );
+                              }),
                               Container(
                                 height: sizeheight * .01,
                               ),
@@ -364,7 +379,7 @@ class _BookingSummary extends State<BookingSummary> {
                                                             0XFF898989)
                                                         : AppColors.white)),
                                         Text(
-                                            "${AppLocalizations.of(context)!.tranjectionId} : ${widget.price["transactionId"]}",
+                                            "${AppLocalizations.of(context)!.tranjectionId} : ${widget.price[0]["tranjectionId"]}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!
@@ -434,7 +449,7 @@ class _BookingSummary extends State<BookingSummary> {
                                             ),
                                             flaxibleGap(18),
                                             Text(
-                                              '${AppLocalizations.of(context)!.currency} ${widget.price["price"].toString()} ',
+                                              '${AppLocalizations.of(context)!.currency} ${widget.price[0]["totalPrice"].toString()} ',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium!
@@ -512,7 +527,7 @@ class _BookingSummary extends State<BookingSummary> {
                                             ),
                                             flaxibleGap(18),
                                             Text(
-                                              '${AppLocalizations.of(context)!.currency} ${widget.price["price"].toString()}',
+                                              '${AppLocalizations.of(context)!.currency} ${widget.price[0]["totalPrice"].toString()}',
                                               style: TextStyle(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light

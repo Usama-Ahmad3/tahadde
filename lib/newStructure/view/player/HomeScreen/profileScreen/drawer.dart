@@ -648,9 +648,6 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                     ),
                                   ),
                                 )),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
                         Padding(
                           padding:
                               EdgeInsets.symmetric(vertical: height * 0.01),
@@ -732,11 +729,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     Icons.rate_review_outlined,
     Icons.settings
   ];
-  List ownerIcon = [
-    FontAwesomeIcons.person,
-    Icons.library_books_outlined,
-    Icons.settings
-  ];
+  List ownerIcon = [Icons.person, Icons.library_books_outlined, Icons.settings];
   List title = [
     AppLocalizations().editProfile,
     AppLocalizations().bookingDetails,

@@ -114,9 +114,7 @@ class RouterPage {
       case RouteNames.payment:
         var price = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => Payment(
-                  detail: settings.arguments,
-                ));
+            builder: (_) => Payment(detail: settings.arguments as List<Map>));
       case RouteNames.languageSave:
         return MaterialPageRoute(builder: (context) => const LanguageSave());
 
@@ -129,7 +127,8 @@ class RouterPage {
         );
       case RouteNames.bookingScreen:
         return MaterialPageRoute(
-          builder: (context) => PlayerBookingScreenView(detail: settings.arguments),
+          builder: (context) =>
+              PlayerBookingScreenView(detail: settings.arguments),
         );
       case RouteNames.verificationScreen:
         var detail = settings.arguments;
@@ -153,7 +152,8 @@ class RouterPage {
       //           ));
       case RouteNames.bookingSummary:
         var price = settings.arguments;
-        return MaterialPageRoute(builder: (_) => BookingSummary(price: price));
+        return MaterialPageRoute(
+            builder: (_) => BookingSummary(price: price as List<Map>));
       case RouteNames.bookPitch:
         var pitchData = settings.arguments;
         return MaterialPageRoute(
@@ -254,7 +254,7 @@ class RouterPage {
         var price = settings.arguments;
         return MaterialPageRoute(
             builder: (_) => PaymentSuccess(
-                  price: price,
+                  price: price as List<Map>,
                 ));
       case RouteNames.resetPasswordSuccess:
         var msg = settings.arguments;
@@ -375,7 +375,8 @@ class RouterPage {
       case RouteNames.enterDetailAcademy:
         var deatil = settings.arguments;
         return MaterialPageRoute(
-            builder: (_) => EnterDetailAcademyScreen(detail: deatil));
+            builder: (_) =>
+                EnterDetailAcademyScreen(detail: deatil as List<Map>));
       case RouteNames.verifiedPitchDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(

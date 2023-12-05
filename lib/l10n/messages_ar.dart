@@ -357,7 +357,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hasrequestedyoutojoin":
             MessageLookupByLibrary.simpleMessage("لقد طلب منك الانضمام"),
         "holiday": MessageLookupByLibrary.simpleMessage("إجازة"),
-        "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
+        "home": MessageLookupByLibrary.simpleMessage("بيت"),
         "iAgree": MessageLookupByLibrary.simpleMessage("أنا أوافق على"),
         "ibnNumber": MessageLookupByLibrary.simpleMessage("رقم الآيبان"),
         "inReview": MessageLookupByLibrary.simpleMessage("تحت المراجعة"),
@@ -666,6 +666,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "setPassword": MessageLookupByLibrary.simpleMessage("ضبط كلمة السر"),
         "setting": MessageLookupByLibrary.simpleMessage("إعدادات"),
         "share": MessageLookupByLibrary.simpleMessage("شارك"),
+        "checkout": MessageLookupByLibrary.simpleMessage("الدفع"),
+        "playerCount": MessageLookupByLibrary.simpleMessage("عدد اللاعبين"),
+        "timings": MessageLookupByLibrary.simpleMessage("توقيت"),
         "showDirections": MessageLookupByLibrary.simpleMessage("عرض الاتجاهات"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("سجل معنا"),
@@ -752,6 +755,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "until": MessageLookupByLibrary.simpleMessage("حتى"),
         "uploadDocument": MessageLookupByLibrary.simpleMessage("حمل المستند"),
         "uploadImage": MessageLookupByLibrary.simpleMessage("تحميل الصورة"),
+        "update": MessageLookupByLibrary.simpleMessage("تحديث"),
         "uploadPitchDocument":
             MessageLookupByLibrary.simpleMessage("حمل مستند الملعب"),
         "uploadpitchimages":
@@ -770,8 +774,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyOTP":
             MessageLookupByLibrary.simpleMessage("تحقق من  رمز المرور"),
         "viewAll": MessageLookupByLibrary.simpleMessage("مشاهدة الكل"),
-        "viewInterest":
-            MessageLookupByLibrary.simpleMessage("عرض الأماكن المفضلة لدي."),
+        "viewInterest": MessageLookupByLibrary.simpleMessage(
+            "عرض الأكاديميات المفضلة لدي."),
         "viewMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
         "viewProfile":
             MessageLookupByLibrary.simpleMessage("عرض الصفحة الشخصية"),
@@ -809,7 +813,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youGoingLogout": MessageLookupByLibrary.simpleMessage(
             "انت ذاهب الى الخروج من ملف التعريف الخاص بك!"),
         "youHaveBooked":
-            MessageLookupByLibrary.simpleMessage("لم تحجز أي ملعب."),
+            MessageLookupByLibrary.simpleMessage("لم تقم بإضافة أي جلسات."),
         "youHaveSuccessfully": MessageLookupByLibrary.simpleMessage(
             "لقد تم إعادة تعيين كلمة المرور بنجاح"),
         "youNeedChallenge": MessageLookupByLibrary.simpleMessage(

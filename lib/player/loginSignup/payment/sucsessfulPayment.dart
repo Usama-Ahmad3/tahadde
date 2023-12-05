@@ -12,21 +12,21 @@ import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
 
 class PaymentSuccess extends StatefulWidget {
-  var price;
-  PaymentSuccess({super.key, this.price});
+  List<Map> price;
+  PaymentSuccess({super.key, required this.price});
   @override
-  _PaymentSuccess createState() => _PaymentSuccess(price);
+  // ignore: library_private_types_in_public_api
+  _PaymentSuccess createState() => _PaymentSuccess();
 }
 
 class _PaymentSuccess extends State<PaymentSuccess> {
-  var price;
+  List<Map> academyDetail = [];
   // _PaymentSuccess(this.price,this._isLoading);
   final scaffoldkey = GlobalKey<ScaffoldState>();
   late bool internet;
   bool _isLoading = true;
   final NetworkCalls _networkCalls = NetworkCalls();
 
-  _PaymentSuccess(price);
   @override
   void initState() {
     // TODO: implement initState
@@ -44,7 +44,6 @@ class _PaymentSuccess extends State<PaymentSuccess> {
   }
 
   loadStatus() {
-    Map paymentId = {"payment_id": widget.price["tranjectionId"]};
     _isLoading = false;
     setState(() {});
     // _networkCalls.transectionStatus(
@@ -221,18 +220,23 @@ class _PaymentSuccess extends State<PaymentSuccess> {
   }
 
   void navigateToDetail() {
-    var detail = {
-      "status": widget.price["status"],
-      "price": widget.price["price"],
-      "AcademyName": widget.price["AcademyName"],
-      "transactionId": widget.price["tranjectionId"],
-      "startingDate": widget.price["startingDate"],
-      'sessions': widget.price['Sessions'],
-      "email": widget.price["email"],
-      "booked_date": widget.price["booked_date"],
-    };
-    print(detail);
+    widget.price.forEach((element) {
+      var detail = {
+        "status": element["status"],
+        "price": element["price"],
+        "AcademyName": element["AcademyName"],
+        "transactionId": element["tranjectionId"],
+        "startingDate": element["startingDate"],
+        'sessions': element['Sessions'],
+        "email": element["email"],
+        "booked_date": element["booked_date"],
+      };
+      academyDetail.add(detail);
+    });
+    print('shddsjs');
+    print(widget.price);
     //Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: CarouselDemo (index: 2,)));
-    Navigator.pushNamed(context, RouteNames.bookingSummary, arguments: detail);
+    Navigator.pushNamed(context, RouteNames.bookingSummary,
+        arguments: widget.price);
   }
 }

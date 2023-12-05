@@ -248,7 +248,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                     ),
                     child: Center(
                       child: Text(
-                        AppLocalizations.of(context)!.no,
+                        AppLocalizations.of(context)!.gotoHomepage,
                         style: TextStyle(color: AppColors.white),
                       ),
                     ),
@@ -260,25 +260,23 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
               ),
               InkWell(
                 onTap:() {
-          Map detailForProceed = {
-          'cart_id':
-          cartId,
-          'academyNameEnglish':
-          _specificAcademy[0].academyNameEnglish,
-          'academyNameArabic':_specificAcademy[0].academyNameArabic,
-          "academy": _specificAcademy[0].academyId,
-          "session":
-          sessionIdList,
-          "price":
-          _specificAcademy[0].prices![0].price,
-          "location": _specificAcademy[0].academyLocation,
-          "booked_date": dataTime,
-          "player_count":indexItem,
-          'price_per_player':
-          _specificAcademy[0].prices![0].price
-          };
-          navigateToEditAcademyDetail(detailForProceed);
-          },
+                    Map detailForProceed = {
+                    'cart_id':
+                    cartId,
+                    'academyNameEnglish':
+                    _specificAcademy[0].academyNameEnglish,
+                    'academyNameArabic':_specificAcademy[0].academyNameArabic,
+                    "academy": _specificAcademy[0].academyId,
+                    "session": sessionIdList,
+                      "price": _specificAcademy[0].prices![0].price,
+                    "location": _specificAcademy[0].academyLocation,
+                    "booked_date": dataTime,
+                    "player_count":indexItem,
+                    'price_per_player':
+                    _specificAcademy[0].prices![0].price
+                    };
+                    navigateToEditAcademyDetail(detailForProceed);
+                    },
                 child: Center(
                   child: Container(
                     height: 50,
@@ -290,7 +288,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                     ),
                     child: Center(
                       child: Text(
-                        AppLocalizations.of(context)!.yes,
+                        AppLocalizations.of(context)!.checkout,
                         style: TextStyle(color: AppColors.white),
                       ),
                     ),

@@ -223,6 +223,7 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                     .reversed
                                                     .toList(); // reverse your list here
                                                 final item = reversed[index];
+                                                bool empty = true;
                                                 String zero = '0';
                                                 DateTime date = Intl.withLocale(
                                                     'en',
@@ -242,110 +243,10 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                         child: bookingList(
                                                             sizeWidth,
                                                             sizeHeight,
-                                                            item),
+                                                            item,
+                                                            empty),
                                                       )
-                                                    : Container(
-                                                        color: Colors.black54,
-                                                        child: Container(
-                                                          height: sizeHeight,
-                                                          decoration: BoxDecoration(
-                                                              color: MyAppState
-                                                                          .mode ==
-                                                                      ThemeMode
-                                                                          .light
-                                                                  ? AppColors
-                                                                      .white
-                                                                  : AppColors
-                                                                      .darkTheme,
-                                                              borderRadius: const BorderRadius
-                                                                  .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          20),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          20))),
-                                                          child: Column(
-                                                            children: [
-                                                              flaxibleGap(30),
-                                                              SizedBox(
-                                                                  height:
-                                                                      sizeHeight *
-                                                                          .15,
-                                                                  width:
-                                                                      sizeHeight *
-                                                                          .15,
-                                                                  child: Image
-                                                                      .asset(
-                                                                    'assets/images/icon.png',
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                  )),
-                                                              flaxibleGap(4),
-                                                              Text(
-                                                                  AppLocalizations.of(
-                                                                          context)!
-                                                                      .noBookingsFound,
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyMedium!
-                                                                      .copyWith(
-                                                                        color: MyAppState.mode ==
-                                                                                ThemeMode.light
-                                                                            ? const Color(0XFF424242)
-                                                                            : AppColors.white,
-                                                                        fontFamily:
-                                                                            "Poppins",
-                                                                      )),
-                                                              flaxibleGap(1),
-                                                              Text(
-                                                                AppLocalizations.of(
-                                                                        context)!
-                                                                    .youHaveBooked,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .titleSmall!
-                                                                    .copyWith(
-                                                                      color: MyAppState.mode ==
-                                                                              ThemeMode
-                                                                                  .light
-                                                                          ? const Color(
-                                                                              0XFF7A7A7A)
-                                                                          : Colors
-                                                                              .white38,
-                                                                      fontFamily:
-                                                                          "Poppins",
-                                                                    ),
-                                                              ),
-                                                              flaxibleGap(30),
-                                                            ],
-                                                          ),
-                                                        ));
-                                              }),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.topCenter,
-                                          child: ListView.builder(
-                                              itemCount: bookedModel.length,
-                                              physics:
-                                                  const AlwaysScrollableScrollPhysics(),
-                                              shrinkWrap: true,
-                                              itemBuilder: (context, index) {
-                                                final reversed = bookedModel
-                                                    .reversed
-                                                    .toList();
-                                                final item = reversed[index];
-                                                String zero = '0';
-                                                DateTime date = Intl.withLocale(
-                                                    'en',
-                                                    () => DateTime.parse(
-                                                        '${item.bookedDate ?? '2023-11-17'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
-                                                return date.isBefore(
-                                                        DateTime.now())
-                                                    ? date.day ==
-                                                            DateTime.now().day
+                                                    : empty
                                                         ? Container(
                                                             color:
                                                                 Colors.black54,
@@ -426,6 +327,99 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                                 ],
                                                               ),
                                                             ))
+                                                        : null;
+                                              }),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: ListView.builder(
+                                              itemCount: bookedModel.length,
+                                              physics:
+                                                  const AlwaysScrollableScrollPhysics(),
+                                              shrinkWrap: true,
+                                              itemBuilder: (context, index) {
+                                                final reversed = bookedModel
+                                                    .reversed
+                                                    .toList();
+                                                bool empty = true;
+                                                final item = reversed[index];
+                                                String zero = '0';
+                                                DateTime date = Intl.withLocale(
+                                                    'en',
+                                                    () => DateTime.parse(
+                                                        '${item.bookedDate ?? '2023-11-17'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
+                                                return date.isBefore(
+                                                        DateTime.now())
+                                                    ? date.day ==
+                                                            DateTime.now().day
+                                                        ? empty
+                                                            ? Container(
+                                                                color: Colors
+                                                                    .black54,
+                                                                child:
+                                                                    Container(
+                                                                  height:
+                                                                      sizeHeight,
+                                                                  decoration: BoxDecoration(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? AppColors
+                                                                              .white
+                                                                          : AppColors
+                                                                              .darkTheme,
+                                                                      borderRadius: const BorderRadius
+                                                                          .only(
+                                                                          topLeft: Radius.circular(
+                                                                              20),
+                                                                          topRight:
+                                                                              Radius.circular(20))),
+                                                                  child: Column(
+                                                                    children: [
+                                                                      flaxibleGap(
+                                                                          30),
+                                                                      SizedBox(
+                                                                          height: sizeHeight *
+                                                                              .15,
+                                                                          width: sizeHeight *
+                                                                              .15,
+                                                                          child:
+                                                                              Image.asset(
+                                                                            'assets/images/icon.png',
+                                                                            fit:
+                                                                                BoxFit.fill,
+                                                                          )),
+                                                                      flaxibleGap(
+                                                                          4),
+                                                                      Text(
+                                                                          AppLocalizations.of(context)!
+                                                                              .noBookingsFound,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: MyAppState.mode == ThemeMode.light ? const Color(0XFF424242) : AppColors.white,
+                                                                                fontFamily: "Poppins",
+                                                                              )),
+                                                                      flaxibleGap(
+                                                                          1),
+                                                                      Text(
+                                                                        AppLocalizations.of(context)!
+                                                                            .youHaveBooked,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .titleSmall!
+                                                                            .copyWith(
+                                                                              color: MyAppState.mode == ThemeMode.light ? const Color(0XFF7A7A7A) : Colors.white38,
+                                                                              fontFamily: "Poppins",
+                                                                            ),
+                                                                      ),
+                                                                      flaxibleGap(
+                                                                          30),
+                                                                    ],
+                                                                  ),
+                                                                ))
+                                                            : null
                                                         : GestureDetector(
                                                             onTap: () {
                                                               navigateToAcademyBookingDetails(
@@ -436,7 +430,8 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                                                             child: bookingList(
                                                                 sizeWidth,
                                                                 sizeHeight,
-                                                                item),
+                                                                item,
+                                                                empty),
                                                           )
                                                     : const SizedBox.shrink();
                                               }),
@@ -463,7 +458,8 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
   }
 
   ///whole widget of booking detail list
-  Widget bookingList(sizeWidth, sizeHeight, bookedModel) {
+  Widget bookingList(sizeWidth, sizeHeight, bookedModel, empty) {
+    empty = false;
     return Padding(
       padding: EdgeInsets.only(
           left: sizeWidth * .059,
@@ -526,7 +522,7 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
                               fontFamily: "Poppins",
                             )),
                     Text(
-                        " ${bookedModel.playerCount.toString()} ${AppLocalizations.of(context)!.player}",
+                        " ${bookedModel.playerCount.toString()} ${bookedModel.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               color: MyAppState.mode == ThemeMode.light
                                   ? AppColors.barLineColor

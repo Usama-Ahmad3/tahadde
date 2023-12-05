@@ -170,6 +170,7 @@ class MyAppState extends State<MyApp> {
       color: Colors.white,
       themeMode: mode ?? ThemeMode.light,
       theme: ThemeData(
+        useMaterial3: false,
         brightness: currentSystemBrightness,
         fontFamily: 'Poppins',
         textTheme: TextTheme(
@@ -202,8 +203,7 @@ class MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', ''), Locale('ar', '')],
       locale: _language != null ? Locale(_language!, '') : null,
       //locale: _specificLocalizationDelegate.overriddenLocale,
-      home:
-      LanguageSave(
+      home: LanguageSave(
         role: widget.role.toString(),
         walk: widget.walk.toString(),
         country: widget.country.toString(),
@@ -238,11 +238,10 @@ class _LanguageSaveState extends State<LanguageSave> {
     _controller.setLooping(false);
     _controller.setVolume(5.0);
     Timer(const Duration(milliseconds: 3000), () {
-      setState(() {
-      });
+      setState(() {});
       _isSplace = false;
     });
-        // setState(() {});
+    // setState(() {});
     super.initState();
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -328,8 +327,7 @@ class _LanguageSaveState extends State<LanguageSave> {
   Widget build(BuildContext context) {
     return ConnectivityStatus(
         child: _isSplace
-            ?
-        SizedBox.expand(
+            ? SizedBox.expand(
                 child: FittedBox(
                   fit: BoxFit.fill,
                   child: SizedBox(

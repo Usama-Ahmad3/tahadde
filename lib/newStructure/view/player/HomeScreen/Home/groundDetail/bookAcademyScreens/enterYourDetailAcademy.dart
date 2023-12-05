@@ -10,13 +10,14 @@ import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:flutter_tahaddi/player/loginSignup/payment/payment.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
 
 class EnterDetailAcademyScreen extends StatefulWidget {
-  final dynamic detail;
-  const EnterDetailAcademyScreen({super.key, this.detail});
+  final List<Map> detail;
+  const EnterDetailAcademyScreen({super.key, required this.detail});
 
   @override
   State<EnterDetailAcademyScreen> createState() => _EnterDetailPitchScreen();
@@ -32,6 +33,8 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
   late Map profileDetail;
   List<int> sessionList = [];
   List<BookedSessions> bookedSessions = [];
+  List<BookedSessions> bookedSessionsFor = [];
+  List<List<BookedSessions>> sessionsbookings = [];
 
   final NetworkCalls _networkCalls = NetworkCalls();
 
@@ -63,37 +66,51 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
     );
   }
 
-  loadSpecificSession() {
-    list.forEach((id) async {
-      await _networkCalls.specificSession(
-        id: id.toString(),
-        onSuccess: (event) async {
-          BookedSessions session = BookedSessions.fromJson(event);
-          bookedSessions.add(session);
-          if (mounted) {
-            setState(() {
-              loading = false;
-            });
-          }
-        },
-        onFailure: (msg) {
-          if (mounted) {
-            showMessage(msg);
-          }
-        },
-        tokenExpire: () {
-          if (mounted) on401(context);
-        },
-      );
-    });
+  loadSpecificSession() async {
+    for (int i = 0; i < list.length; i++) {
+      bookedSessions.clear();
+      for (int j = 0; j < list[i].length; j++) {
+        await _networkCalls.specificSession(
+          id: list[i][j].toString(),
+          onSuccess: (event) async {
+            BookedSessions session = BookedSessions.fromJson(event);
+            bookedSessions.add(session);
+            print('bokked$bookedSessions');
+            if (mounted) {
+              setState(() {
+                loading = false;
+              });
+            }
+          },
+          onFailure: (msg) {
+            if (mounted) {
+              showMessage(msg);
+            }
+          },
+          tokenExpire: () {
+            if (mounted) on401(context);
+          },
+        );
+      }
+      sessionsbookings.add(bookedSessions);
+    }
   }
 
   var list = [];
+  var price = 0.0;
   @override
   void initState() {
     super.initState();
+    print('wwwwwwwwwwwwww');
     print(widget.detail);
-    list = widget.detail['session'];
+    widget.detail.forEach((element) {
+      list.add(element['session']);
+    });
+    widget.detail.forEach((element) {
+      price = double.parse(element['price'].toString()) + price.toDouble();
+    });
+    print(price);
+    print('listttt$list');
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
@@ -159,29 +176,35 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                   Container(
                                     height: sizeheight * .01,
                                   ),
-                                  Text(
-                                    AppLocalizations.of(context)!.slotDetails,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                          color: const Color(0XFF032040),
-                                        ),
+                                  InkWell(
+                                    onTap: () {
+                                      print(sessionsbookings);
+                                      print(bookedSessions);
+                                    },
+                                    child: Text(
+                                      AppLocalizations.of(context)!.slotDetails,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .copyWith(
+                                            color: const Color(0XFF032040),
+                                          ),
+                                    ),
                                   ),
                                   Container(
                                     height: sizeheight * .01,
                                   ),
-                                  Text(
-                                      "${AppLocalizations.of(context)!.academy} (${widget.detail["academy"]})",
+                                  Text('academy',
+                                      // "${AppLocalizations.of(context)!.academy} (${widget.detail["academy"]})",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
                                             color: const Color(0XFF424242),
                                           )),
-                                  Text('',
-                                      style: const TextStyle(
-                                          color: Color(0XFF898989))),
+                                  const Text('',
+                                      style:
+                                          TextStyle(color: Color(0XFF898989))),
                                   Container(
                                     height: sizeheight * .005,
                                   ),
@@ -519,9 +542,10 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                               color: Color(0XFF7A7A7A)),
                                         ),
                                         flaxibleGap(18),
-                                        Text(
-                                          '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
-                                          style: const TextStyle(
+                                        const Text(
+                                          'price',
+                                          // '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
+                                          style: TextStyle(
                                               color: Color(0XFF7A7A7A)),
                                         ),
                                         flaxibleGap(1),
@@ -566,9 +590,10 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         flaxibleGap(18),
-                                        Text(
-                                          '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
-                                          style: const TextStyle(
+                                        const Text(
+                                          '0000',
+                                          // '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
+                                          style: TextStyle(
                                               color: Color(0XFF424242)),
                                         ),
                                         flaxibleGap(1),
@@ -739,80 +764,76 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                               Container(
                                 height: sizeheight * .02,
                               ),
-                              Material(
-                                elevation: 5,
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? const Color(0XFFFFFFFF)
-                                    : AppColors.containerColorW12,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20.0)),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: sizewidth * .05,
-                                      right: sizewidth * .05),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Container(
-                                        height: sizeheight * .01,
-                                      ),
-                                      Text(
-                                        AppLocalizations.of(context)!
-                                            .slotDetails,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? const Color(0XFF032040)
-                                                  : AppColors.white,
-                                            ),
-                                      ),
-                                      Container(
-                                        height: sizeheight * .01,
-                                      ),
-                                      Text(
-                                          "${AppLocalizations.of(context)!.academyOnly} (${AppLocalizations.of(context)!.locale == 'en' ? widget.detail["academyNameEnglish"] : widget.detail["academyNameArabic"]})",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? const Color(0XFF424242)
-                                                      : AppColors.white,
-                                                  fontWeight: FontWeight.w600)),
-                                      Text(
-                                        widget.detail["booked_date"],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.appThemeColor
-                                                    : AppColors.white,
-                                                fontFamily: "Poppins"),
-                                      ),
-                                      ListView.separated(
-                                          separatorBuilder: (context, index) {
-                                            return const Divider();
-                                          },
-                                          shrinkWrap: true,
-                                          itemCount: bookedSessions.length,
-                                          itemBuilder: (context, index) {
-                                            return Column(
+                              ...List.generate(
+                                  sessionsbookings.length,
+                                  (index) => Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: sizeheight * 0.01),
+                                        child: Material(
+                                          elevation: 5,
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? const Color(0XFFFFFFFF)
+                                                  : AppColors.containerColorW12,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20.0)),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                left: sizewidth * .05,
+                                                right: sizewidth * .05),
+                                            child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: [
+                                              children: <Widget>[
+                                                Container(
+                                                  height: sizeheight * .01,
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    print(sessionsbookings);
+                                                    print(bookedSessions);
+                                                  },
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .slotDetails,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium!
+                                                        .copyWith(
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? const Color(
+                                                                  0XFF032040)
+                                                              : AppColors.white,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  height: sizeheight * .01,
+                                                ),
                                                 Text(
-                                                  AppLocalizations.of(context)!
-                                                              .locale ==
-                                                          'en'
-                                                      ? "${AppLocalizations.of(context)!.sessionName} ${bookedSessions[index].name}"
-                                                      : "${AppLocalizations.of(context)!.sessionName} ${bookedSessions[index].nameArabic}",
+                                                    "${AppLocalizations.of(context)!.academyOnly} (${AppLocalizations.of(context)!.locale == 'en' ? widget.detail[index]["academyNameEnglish"] : widget.detail[index]["academyNameArabic"]})",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0XFF424242)
+                                                                : AppColors
+                                                                    .white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600)),
+                                                Text(
+                                                  widget.detail[index]
+                                                      ["booked_date"],
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyMedium!
@@ -823,53 +844,96 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                                                       .light
                                                               ? AppColors
                                                                   .appThemeColor
-                                                              : AppColors
-                                                                  .white),
+                                                              : AppColors.white,
+                                                          fontFamily:
+                                                              "Poppins"),
                                                 ),
-                                                SizedBox(
-                                                  height: sizeheight * 0.0054,
+                                                ListView.separated(
+                                                    separatorBuilder:
+                                                        (context, index) {
+                                                      return const Divider();
+                                                    },
+                                                    shrinkWrap: true,
+                                                    itemCount:
+                                                        sessionsbookings[index]
+                                                            .length,
+                                                    itemBuilder:
+                                                        (context, indexx) {
+                                                      return Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                            context)!
+                                                                        .locale ==
+                                                                    'en'
+                                                                ? "${AppLocalizations.of(context)!.sessionName} ${sessionsbookings[index][indexx].name}"
+                                                                : "${AppLocalizations.of(context)!.sessionName} ${sessionsbookings[index][indexx].nameArabic}",
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    color: MyAppState
+                                                                                .mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? AppColors
+                                                                            .appThemeColor
+                                                                        : AppColors
+                                                                            .white),
+                                                          ),
+                                                          SizedBox(
+                                                            height: sizeheight *
+                                                                0.0054,
+                                                          ),
+                                                          SizedBox(
+                                                              height: 35,
+                                                              width: sizewidth *
+                                                                  0.5,
+                                                              child: Container(
+                                                                height: 30,
+                                                                width: 110,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                decoration: BoxDecoration(
+                                                                    color: AppColors
+                                                                        .appThemeColor,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    border: Border.all(
+                                                                        color: Colors
+                                                                            .grey
+                                                                            .shade50)),
+                                                                child: Text(
+                                                                  '${sessionsbookings[index][indexx].startTime.toString()} - ${sessionsbookings[index][indexx].endTime.toString()}' ??
+                                                                      "",
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                          fontWeight: FontWeight
+                                                                              .w600,
+                                                                          color:
+                                                                              Colors.white),
+                                                                ),
+                                                              )),
+                                                        ],
+                                                      );
+                                                    }),
+                                                Container(
+                                                  height: sizeheight * .01,
                                                 ),
-                                                SizedBox(
-                                                    height: 35,
-                                                    width: sizewidth * 0.5,
-                                                    child: Container(
-                                                      height: 30,
-                                                      width: 110,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                          color: AppColors
-                                                              .appThemeColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          border: Border.all(
-                                                              color: Colors.grey
-                                                                  .shade50)),
-                                                      child: Text(
-                                                        '${bookedSessions[index].startTime.toString()} - ${bookedSessions[index].endTime.toString()}' ??
-                                                            "",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: Colors
-                                                                    .white),
-                                                      ),
-                                                    )),
                                               ],
-                                            );
-                                          }),
-                                      Container(
-                                        height: sizeheight * .01,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
                               Container(
                                 height: sizeheight * .01,
                               ),
@@ -1011,7 +1075,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                             ),
                                             flaxibleGap(18),
                                             Text(
-                                              '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()} ',
+                                              '${AppLocalizations.of(context)!.currency} $price ',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium!
@@ -1089,11 +1153,11 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                             ),
                                             flaxibleGap(18),
                                             Text(
-                                              '${AppLocalizations.of(context)!.currency} ${widget.detail["price"].toString()}',
+                                              '${AppLocalizations.of(context)!.currency} $price',
                                               style: TextStyle(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
-                                                      ? Color(0XFF424242)
+                                                      ? const Color(0XFF424242)
                                                       : AppColors.white),
                                             ),
                                             flaxibleGap(1),
@@ -1215,7 +1279,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
+                                                '${AppLocalizations.of(context)!.currency} $price',
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium!
@@ -1277,94 +1341,100 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                   ));
   }
 
-  void navigateTosucessscreen(String status) {
-    var detail = {
-      "price": widget.detail["price"],
-      "status": status,
-      "tranjectionId": "-",
-      "name": widget.detail["detail"].name,
-      "startingDate": widget.detail["slotdetail"],
-      "pitchtype": widget.detail["pitchtype"],
-      "email": widget.detail["email"],
-      "apidetail": widget.detail["apidetail"],
-    };
-    //Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: PaymentProceed()));
-    Navigator.pushNamed(
-      context,
-      RouteNames.paymentSuccess,
-      arguments: detail,
-    );
-  }
-
+  // void navigateTosucessscreen(String status) {
+  //   var detail = {
+  //     "price": widget.detail["price"],
+  //     "status": status,
+  //     "tranjectionId": "-",
+  //     "name": widget.detail["detail"].name,
+  //     "startingDate": widget.detail["slotdetail"],
+  //     "pitchtype": widget.detail["pitchtype"],
+  //     "email": widget.detail["email"],
+  //     "apidetail": widget.detail["apidetail"],
+  //   };
+  //   //Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: PaymentProceed()));
+  //   Navigator.pushNamed(
+  //     context,
+  //     RouteNames.paymentSuccess,
+  //     arguments: detail,
+  //   );
+  // }
+  //
   void navigateToDetail() {
-    // Navigator.push(context,
-    //     PageTransition(type: PageTransitionType.rightToLeft, child: Payment()));
-    if (widget.detail["price"] == 0) {
-      Map detailTranjection = {
-        "transactionId": "default",
-        "transactionMadeon": "default",
-        "payment_id": "default",
-      };
-      var day = "0";
-      var id = "0";
-      widget.detail["apidetail"]["dayId"].forEach((key, value) {
-        // ignore: prefer_interpolation_to_compose_strings
-        day = "$day,$key";
-        value.forEach((element) {
-          id = "$id,$element";
-        });
-      });
-      var detail = {
-        "year": widget.detail["apidetail"]["year"],
-        "month": widget.detail["apidetail"]["month"],
-        "id": widget.detail["apidetail"]["id"]["id"],
-        "day": day.substring(2),
-        "ids": id.substring(2),
-        "idsPitch": widget.detail["ids"]
-      };
-      String pitchDetail =
-          "bookpitch&id=${detail['id']}&year=${detail['year']}&month=${detail['month']}&day=${detail['day']}&slot_ids=${detail['ids']}&pitchtype_id=${widget.detail["ids"]}";
-      _networkCalls.transection(
-        id: pitchDetail,
-        tarnsectiondetail: detailTranjection,
-        onSuccess: (msg) {
-          _networkCalls.bookpitchSlotConferm(
-            urlDetail: detail,
-            slug: "hds",
-            onSuccess: (value) {
-              navigateTosucessscreen("succeeded");
-            },
-            onFailure: (msg) {
-              showMessage(msg);
-            },
-            tokenExpire: () {
-              if (mounted) on401(context);
-            },
-          );
-        },
-        onFailure: (msg) {
-          showMessage(msg);
-        },
-        tokenExpire: () {
-          if (mounted) on401(context);
-        },
-        bookingPer: '',
-      );
+    // // Navigator.push(context,
+    // //     PageTransition(type: PageTransitionType.rightToLeft, child: Payment()));
+    if (widget.detail[0]["price"] == 0) {
+      //   Map detailTranjection = {
+      //     "transactionId": "default",
+      //     "transactionMadeon": "default",
+      //     "payment_id": "default",
+      //   };
+      //   var day = "0";
+      //   var id = "0";
+      //   widget.detail["apidetail"]["dayId"].forEach((key, value) {
+      //     // ignore: prefer_interpolation_to_compose_strings
+      //     day = "$day,$key";
+      //     value.forEach((element) {
+      //       id = "$id,$element";
+      //     });
+      //   });
+      //   var detail = {
+      //     "year": widget.detail["apidetail"]["year"],
+      //     "month": widget.detail["apidetail"]["month"],
+      //     "id": widget.detail["apidetail"]["id"]["id"],
+      //     "day": day.substring(2),
+      //     "ids": id.substring(2),
+      //     "idsPitch": widget.detail["ids"]
+      //   };
+      //   String pitchDetail =
+      //       "bookpitch&id=${detail['id']}&year=${detail['year']}&month=${detail['month']}&day=${detail['day']}&slot_ids=${detail['ids']}&pitchtype_id=${widget.detail["ids"]}";
+      //   _networkCalls.transection(
+      //     id: pitchDetail,
+      //     tarnsectiondetail: detailTranjection,
+      //     onSuccess: (msg) {
+      //       _networkCalls.bookpitchSlotConferm(
+      //         urlDetail: detail,
+      //         slug: "hds",
+      //         onSuccess: (value) {
+      //           navigateTosucessscreen("succeeded");
+      //         },
+      //         onFailure: (msg) {
+      //           showMessage(msg);
+      //         },
+      //         tokenExpire: () {
+      //           if (mounted) on401(context);
+      //         },
+      //       );
+      //     },
+      //     onFailure: (msg) {
+      //       showMessage(msg);
+      //     },
+      //     tokenExpire: () {
+      //       if (mounted) on401(context);
+      //     },
+      //     bookingPer: '',
+      //   );
     } else {
-      var detial = {
-        'cart_id': widget.detail['cart_id'],
-        "price": widget.detail["price"],
-        "name": widget.detail["academyNameEnglish"],
-        'academy_id': widget.detail['academy'],
-        "detail": bookedSessions,
-        "apidetail": widget.detail["booked_date"],
-        "id": profileDetail['id'],
-        'sessionId': list,
-        'location': widget.detail['location'],
-        "player_count": widget.detail["player_count"],
-      };
-      print(detial);
-      Navigator.pushNamed(context, RouteNames.payment, arguments: detial);
+      List<Map> academyDetail = [];
+      widget.detail.forEach((element) {
+        var detial = {
+          'cart_id': element['cart_id'],
+          'totalPrice': price,
+          "price": element["price"],
+          "name": element["academyNameEnglish"],
+          'academy_id': element['academy'],
+          "detail": bookedSessions,
+          "apidetail": element["booked_date"],
+          "id": profileDetail['id'],
+          'sessionId': element['session'],
+          'location': element['location'],
+          "player_count": element["player_count"],
+        };
+        academyDetail.add(detial);
+      });
+      print(academyDetail);
+      Navigator.pushNamed(context, RouteNames.payment,
+          arguments: academyDetail);
     }
   }
 }

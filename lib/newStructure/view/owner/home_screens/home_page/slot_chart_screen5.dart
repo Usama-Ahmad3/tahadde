@@ -582,7 +582,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                       navigateToAcademyCreated();
                     },
                     title: Text(
-                      AppLocalizations.of(context)!.continu,
+                      widget.backTag
+                          ? AppLocalizations.of(context)!.update
+                          : AppLocalizations.of(context)!.continu,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!

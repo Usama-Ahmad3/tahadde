@@ -7,6 +7,7 @@ class RestApis {
   // static String SIGNUP = "/api/v1/user/signup/?language=";
   static String SIGNUP = "/api/v1/user/signup/";
   static String LOGIN = "/api/v1/user/login/";
+  static String favorite = "/api/v1/user/user_favorite_academies/";
   static String LOGINFACEBOOK = "/api/v1/user/facebook-login/";
   static String LOGINAPPLE = "/api/v1/user/apple-login/";
   static String LOGINGOOGLE = "/api/v1/user/google-login/";

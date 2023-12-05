@@ -258,7 +258,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniEndFloat,
           floatingActionButton: Align(
-            alignment: const Alignment(1.1, 0.87),
+            alignment: Alignment(size.width * 0.0027, size.height * 0.00109),
             child: SpeedDial(
               elevation: 3,
               label: Text(
@@ -1175,7 +1175,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     }
                                   },
                             title: Text(
-                              AppLocalizations.of(context)!.continu,
+                              widget.createdTag
+                                  ? AppLocalizations.of(context)!.update
+                                  : AppLocalizations.of(context)!.continu,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!

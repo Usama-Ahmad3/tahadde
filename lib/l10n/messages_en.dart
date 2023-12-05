@@ -682,7 +682,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "sessionName": MessageLookupByLibrary.simpleMessage("Session Name:"),
         "sessions": MessageLookupByLibrary.simpleMessage("Sessions"),
         "setPassword": MessageLookupByLibrary.simpleMessage("SET PASSWORD"),
-        "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "setting": MessageLookupByLibrary.simpleMessage("Settings"),
+        "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
+        "playerCount": MessageLookupByLibrary.simpleMessage("Player Count"),
+        "timings": MessageLookupByLibrary.simpleMessage("Timings"),
         "share": MessageLookupByLibrary.simpleMessage("Share"),
         "showDirections":
             MessageLookupByLibrary.simpleMessage("Show directions"),
@@ -772,6 +775,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadDocument":
             MessageLookupByLibrary.simpleMessage("Upload Document"),
         "uploadImage": MessageLookupByLibrary.simpleMessage("Upload Image"),
+        "update": MessageLookupByLibrary.simpleMessage("Update"),
         "uploadPitchDocument":
             MessageLookupByLibrary.simpleMessage("Upload Venue Document"),
         "uploadpitchimages":
@@ -791,7 +795,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyOTP": MessageLookupByLibrary.simpleMessage("Verify OTP"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "viewInterest":
-            MessageLookupByLibrary.simpleMessage("View my favorite venues."),
+            MessageLookupByLibrary.simpleMessage("View my favorite academies."),
         "viewMore": MessageLookupByLibrary.simpleMessage("View More"),
         "viewProfile": MessageLookupByLibrary.simpleMessage("VIEW PROFILE"),
         "viewTeam": MessageLookupByLibrary.simpleMessage("View Team"),
@@ -828,7 +832,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youGoingLogout": MessageLookupByLibrary.simpleMessage(
             "You are going to logout from your profile!"),
         "youHaveBooked": MessageLookupByLibrary.simpleMessage(
-            "You have not booked any events."),
+            "You have not added any sessions."),
         "youHaveSuccessfully": MessageLookupByLibrary.simpleMessage(
             "You have successfully reset the password for your Tahadde account"),
         "youNeedChallenge": MessageLookupByLibrary.simpleMessage(

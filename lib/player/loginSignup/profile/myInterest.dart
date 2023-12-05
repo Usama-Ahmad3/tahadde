@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
@@ -23,17 +24,19 @@ class _MyInterestState extends State<MyInterest> {
   var interest;
   bool? _internet;
   String? id;
+  var _academyModel;
   final NetworkCalls _networkCalls = NetworkCalls();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool loading = true;
   bool? data;
   int count = 0;
 
-  loagingRating() {
-    _networkCalls.myInterest(
+  getFavorites() {
+    _networkCalls.getFavorites(
       onSuccess: (msg) {
         setState(() {
-          if (msg["pitch"].isNotEmpty) {
+          _academyModel = msg;
+          if (msg.isNotEmpty) {
             loading = false;
             data = true;
             interest = msg;
@@ -63,7 +66,7 @@ class _MyInterestState extends State<MyInterest> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
       if (_internet = true) {
-        loagingRating();
+        getFavorites();
       } else {
         setState(() {
           loading = false;
@@ -152,175 +155,29 @@ class _MyInterestState extends State<MyInterest> {
                                 topRight: Radius.circular(20))),
                         child: SingleChildScrollView(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizeWidth * .1),
-                                child: Container(
-                                    height: sizeHeight * .1,
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      AppLocalizations.of(context)!
-                                          .viewInterest,
-                                      style: const TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0XFFA3A3A3)),
-                                    )),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizeWidth * .05),
-                                child: SizedBox(
-                                  height: sizeHeight * .75,
-                                  child: ListView.builder(
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: 2,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: sizeHeight * .01),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              Map<String, dynamic> detail = {
-                                                "pitchId": interest["pitch"]
-                                                    [index]["id"],
-                                                "subPitchId": interest["pitch"]
-                                                        [index]["venue_details"]
-                                                    ["pitchType"][0]
-                                              };
-                                              navigateToBookPitchDetail(detail);
-                                            },
-                                            child: Container(
-                                              height: sizeHeight * .1,
-                                              width: sizeWidth * .8,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors
-                                                          .blueGrey.shade200),
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                    Radius.circular(12.0),
-                                                    //
-                                                  ),
-                                                  color: Colors.grey.shade300),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Padding(
-                                                    padding: EdgeInsets.all(
-                                                        sizeHeight * .01),
-                                                    child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          5.0) //
-                                                                  ),
-                                                        ),
-                                                        child: ClipRRect(
-                                                          clipBehavior:
-                                                              Clip.hardEdge,
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          5.0)),
-                                                          child: interest["pitch"][index]
-                                                                              [
-                                                                              "images"]
-                                                                          [
-                                                                          "files"][0]
-                                                                      [
-                                                                      "filePath"] !=
-                                                                  null
-                                                              ? ClipRRect(
-                                                                  clipBehavior:
-                                                                      Clip.hardEdge,
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .all(
-                                                                          Radius.circular(
-                                                                              5.0)),
-                                                                  child:
-                                                                      CachedNetworkImage(
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    height:
-                                                                        sizeHeight *
-                                                                            .08,
-                                                                    width:
-                                                                        sizeWidth *
-                                                                            .15,
-                                                                    imageUrl: interest["pitch"][index]["images"]
-                                                                            [
-                                                                            "files"][0]
-                                                                        [
-                                                                        "filePath"],
-                                                                    placeholder:
-                                                                        (context,
-                                                                            url) {
-                                                                      return Image
-                                                                          .asset(
-                                                                        'assets/images/T.png',
-                                                                        height: sizeHeight *
-                                                                            .08,
-                                                                        width: sizeWidth *
-                                                                            .15,
-                                                                      );
-                                                                    },
-                                                                    errorWidget: (context,
-                                                                            url,
-                                                                            error) =>
-                                                                        const Icon(
-                                                                            Icons.error),
-                                                                  ),
-                                                                )
-                                                              : Image.asset(
-                                                                  'assets/images/T.png',
-                                                                  fit: BoxFit
-                                                                      .fill,
-                                                                  height:
-                                                                      sizeHeight *
-                                                                          .1,
-                                                                  width:
-                                                                      sizeWidth *
-                                                                          .15,
-                                                                ),
-                                                        )),
-                                                  ),
-                                                  Container(
-                                                    width: sizeWidth * .1,
-                                                  ),
-                                                  Container(
-                                                    alignment: Alignment.center,
-                                                    width: sizeWidth * .4,
-                                                    child: Text(
-                                                        interest["pitch"][index]
-                                                                [
-                                                                "venue_details"]
-                                                            ["name"],
-                                                        style: const TextStyle(
-                                                            color: AppColors
-                                                                .themeColor,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            fontFamily:
-                                                                "Poppins",
-                                                            fontSize: 16)),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }),
-                                ),
-                              )
+                              // SizedBox(
+                              //   height: sizeHeight * 0.01,
+                              // ),
+                              // Padding(
+                              //   padding: EdgeInsets.symmetric(
+                              //       horizontal: sizeWidth * .074),
+                              //   child: Text(
+                              //     AppLocalizations.of(context)!.viewInterest,
+                              //     style: const TextStyle(
+                              //         fontSize: 12, color: Color(0XFFA3A3A3)),
+                              //   ),
+                              // ),
+                              _academyModel != null
+                                  ? AcademyList(
+                                      text:
+                                          AppLocalizations.of(context)!.academy,
+                                      academyDetail: _academyModel,
+                                      searchflag: false,
+                                      tagForView: false,
+                                    )
+                                  : const SizedBox.shrink()
                             ],
                           ),
                         ),
@@ -376,7 +233,7 @@ class _MyInterestState extends State<MyInterest> {
                   _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
                     _internet = msg;
                     if (_internet = true) {
-                      loagingRating();
+                      getFavorites();
                     } else {
                       setState(() {
                         loading = false;

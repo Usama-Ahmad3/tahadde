@@ -66,12 +66,10 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
   late ScrollController _scrollController;
 
   favorite(bool favoriteState) async {
-    var detail = {
-      "pitch_id": widget.detail["pitchId"].toString(),
-      "is_favourite": favoriteState
-    };
     await _networkCalls.favorite(
-      detail: detail,
+      favorite: false,
+      // detail: detail,
+      id: widget.detail['academy_id'],
       onSuccess: (msg) {
         venueDetail();
       },

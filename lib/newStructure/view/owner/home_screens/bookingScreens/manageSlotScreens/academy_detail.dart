@@ -700,7 +700,7 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
                                   }
                                 },
                                 title: Text(
-                                  AppLocalizations.of(context)!.continu,
+                                  AppLocalizations.of(context)!.update,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium!
@@ -710,7 +710,7 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
                             : ButtonWidget(
                                 color: const Color(0XFFBCBCBC),
                                 title: Text(
-                                    AppLocalizations.of(context)!.continu,
+                                    AppLocalizations.of(context)!.update,
                                     style:
                                         Theme.of(context).textTheme.bodyMedium),
                                 isLoading: loading,

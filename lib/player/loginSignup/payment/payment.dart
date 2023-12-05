@@ -17,9 +17,9 @@ import '../../../newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 
 // ignore: must_be_immutable
 class Payment extends StatefulWidget {
-  dynamic detail;
+  List<Map> detail;
 
-  Payment({super.key, this.detail});
+  Payment({super.key, required this.detail});
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -37,6 +37,7 @@ class _PaymentState extends State<Payment> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
   final CoustmerDetail _detail = CoustmerDetail();
   late CardDetail cardDetail;
+  List<Map> academyDetail = [];
   late bool internet;
   var detail;
   bool _isLoading = true;
@@ -121,7 +122,8 @@ class _PaymentState extends State<Payment> {
   void initiatePayment() {
     print('initial payment');
     var request = MFInitiatePaymentRequest(
-        double.parse(widget.detail["price"].toString()), MFCurrencyISO.UAE_AED);
+        double.parse(widget.detail[0]["totalPrice"].toString()),
+        MFCurrencyISO.UAE_AED);
     MFSDK.setUpAppBar(
         title: AppLocalizations.of(context)!.payment,
         //titleColor: Colors.white, // Color(0xFFFFFFFF)
@@ -366,7 +368,7 @@ class _PaymentState extends State<Payment> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
+                                            '${AppLocalizations.of(context)!.currency} ${widget.detail[0]["totalPrice"]}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!
@@ -460,7 +462,7 @@ class _PaymentState extends State<Payment> {
     print('payment Execute');
     var request = MFExecutePaymentRequest(
       paymentMethodId!,
-      double.parse(widget.detail["price"].toString()),
+      double.parse(widget.detail[0]["totalPrice"].toString()),
       // _detail.email,
       // _detail.phoneNumber,
       // "${_detail.firstName} ${_detail.lastName}",
@@ -497,78 +499,118 @@ class _PaymentState extends State<Payment> {
               'Succss') {
             print('tarnsasb$tranjectionId');
             setState(() {
-              String pitchDetail = widget.detail["ids"].toString();
-              Map tarnsectiondetail = {
-                "transactionId": tranjectionId["InvoiceTransactions"][0]
-                        ['PaymentId']
-                    .toString(),
-                "transactionMadeon": tranjectionId["InvoiceTransactions"][0]
-                        ['TransactionDate']
-                    .toString(),
-                "payment_id": tranjectionId["InvoiceTransactions"][0]
-                        ['PaymentId']
-                    .toString(),
-                "booked_for_date": widget.detail["apidetail"],
-                "player_count": widget.detail["player_count"]
-              };
-              print('Transaction Detail $tarnsectiondetail');
-              Map detailPost = {
-                "price": widget.detail["price"],
-                "academy": widget.detail['academy_id'],
-                "player": widget.detail['id'],
-                "payment_status": true,
-                "transaction_id": tranjectionId["InvoiceTransactions"][0]
-                    ['PaymentId'],
-                "player_count": widget.detail['player_count'],
-                "booking_date": tarnsectiondetail['transactionMadeon']
-                    .toString()
-                    .substring(0, 9),
-                'booked_date': tarnsectiondetail['booked_for_date'],
-                "booked_session": widget.detail['sessionId'],
-                "location": widget.detail['location'],
-                "currency": "AED",
-              };
-              print(detailPost);
-              _networkCalls.confirmBooking(
-                transactionDetail: detailPost,
-                onSuccess: (value) {
-                  // showMessage(value);
-                  print('Transactionvalue$value');
-                  navigateToPaymentSuccess(
-                    tranjectionId["InvoiceTransactions"][0]
-                        ['TransactionStatus'],
-                    tarnsectiondetail['transactionMadeon'],
-                  );
-                  // Map detail = {
-                  //   "pitchtype_id": widget.detail["subPitchId"],
-                  //   "booked_for_date": widget.detail["apidetail"]["date"],
-                  //   "slot_ids_list": widget.detail["apidetail"]["id"],
-                  //   "player_count": widget.detail["player_count"]
-                  // };
-                  // _networkCalls.bookpitchSlotConferm(
-                  //   urlDetail: detail,
-                  //   slug: widget.detail["slug"],
-                  //   onSuccess: (value) {
-                  //     navigateToPaymentSuccess(
-                  //         tranjectionId["InvoiceTransactions"][0]
-                  //         ['TransactionStatus']);
-                  //   },
-                  //   onFailure: (msg) {
-                  //     print('maksj$msg');
-                  //     showMessage(msg);
-                  //   },
-                  //   tokenExpire: () {
-                  //     if (mounted) on401(context);
-                  //   },
-                  // );
-                },
-                onFailure: (msg) {
-                  print('failed $msg');
-                  showMessage(msg);
-                },
-                tokenExpire: () {
-                  if (mounted) on401(context);
-                },
+              // String pitchDetail = widget.detail["ids"].toString();
+              List<Map> transactionDetail = [];
+              widget.detail.forEach((element) {
+                Map tarnsectiondetail = {
+                  "transactionId": tranjectionId["InvoiceTransactions"][0]
+                          ['PaymentId']
+                      .toString(),
+                  "transactionMadeon": tranjectionId["InvoiceTransactions"][0]
+                          ['TransactionDate']
+                      .toString(),
+                  "payment_id": tranjectionId["InvoiceTransactions"][0]
+                          ['PaymentId']
+                      .toString(),
+                  "booked_for_date": element["apidetail"],
+                  "player_count": element["player_count"]
+                };
+                transactionDetail.add(tarnsectiondetail);
+              });
+              print('Transaction Detail $transactionDetail');
+              widget.detail.forEach((element) {
+                Map detailPost = {
+                  "price": element["price"],
+                  "academy": element['academy_id'],
+                  "player": element['id'],
+                  "payment_status": true,
+                  "transaction_id": tranjectionId["InvoiceTransactions"][0]
+                      ['PaymentId'],
+                  "player_count": element['player_count'],
+                  "booking_date": DateTime.now().day > 10
+                      ? tranjectionId["InvoiceTransactions"][0]
+                              ['TransactionDate']
+                          .toString()
+                          .substring(0, 9)
+                      : tranjectionId["InvoiceTransactions"][0]
+                              ['TransactionDate']
+                          .toString()
+                          .substring(0, 10),
+                  'booked_date': element["apidetail"],
+                  "booked_session": element['sessionId'],
+                  "location": element['location'],
+                  "currency": "AED",
+                };
+                var detial = {
+                  'totalPrice': element['totalPrice'],
+                  'cart_id': element['cart_id'],
+                  "price": element["price"],
+                  "name": element["name"],
+                  'academy_id': element['academy'],
+                  "detail": element['detail'],
+                  "apidetail": element["apidetail"],
+                  "id": element['id'],
+                  'location': element['location'],
+                };
+                print('detailPost');
+                print(detailPost);
+                _networkCalls.confirmBooking(
+                  transactionDetail: detailPost,
+                  onSuccess: (value) {
+                    // showMessage(value);
+                    print('Transactionvalue$value');
+                    navigateToPaymentSuccess(
+                      tranjectionId["InvoiceTransactions"][0]
+                          ['TransactionStatus'],
+                      DateTime.now().day > 10
+                          ? tranjectionId["InvoiceTransactions"][0]
+                                  ['TransactionDate']
+                              .toString()
+                              .substring(0, 9)
+                          : tranjectionId["InvoiceTransactions"][0]
+                                  ['TransactionDate']
+                              .toString()
+                              .substring(0, 10),
+                      detial,
+                    );
+                    // Map detail = {
+                    //   "pitchtype_id": widget.detail["subPitchId"],
+                    //   "booked_for_date": widget.detail["apidetail"]["date"],
+                    //   "slot_ids_list": widget.detail["apidetail"]["id"],
+                    //   "player_count": widget.detail["player_count"]
+                    // };
+                    // _networkCalls.bookpitchSlotConferm(
+                    //   urlDetail: detail,
+                    //   slug: widget.detail["slug"],
+                    //   onSuccess: (value) {
+                    //     navigateToPaymentSuccess(
+                    //         tranjectionId["InvoiceTransactions"][0]
+                    //         ['TransactionStatus']);
+                    //   },
+                    //   onFailure: (msg) {
+                    //     print('maksj$msg');
+                    //     showMessage(msg);
+                    //   },
+                    //   tokenExpire: () {
+                    //     if (mounted) on401(context);
+                    //   },
+                    // );
+                  },
+                  onFailure: (msg) {
+                    print('failed $msg');
+                    showMessage(msg);
+                  },
+                  tokenExpire: () {
+                    if (mounted) on401(context);
+                  },
+                );
+              });
+              print('academyDetail');
+              print(academyDetail);
+              Navigator.pushNamed(
+                context,
+                RouteNames.paymentSuccess,
+                arguments: academyDetail,
               );
 
               ///clear
@@ -636,31 +678,29 @@ class _PaymentState extends State<Payment> {
     );
   }
 
-  void navigateToPaymentSuccess(String status, String bookingDate) {
+  void navigateToPaymentSuccess(
+      String status, String bookingDate, Map element) {
     print('kkkkkkkkkkkkkkkkk');
     _networkCalls.deleteCart(
-      id: widget.detail['cart_id'].toString(),
+      id: element['cart_id'].toString(),
       onSuccess: (value) {
         var detail = {
-          "price": widget.detail["price"],
-          "AcademyName": widget.detail["name"],
+          'totalPrice': element['totalPrice'],
+          "price": element["price"],
+          "AcademyName": element["name"],
           "status": status,
           "tranjectionId": tranjectionId["InvoiceTransactions"][0]['PaymentId'],
-          "Sessions": widget.detail["detail"],
+          "sessions": element["detail"],
           "startingDate": bookingDate,
-          "playerId": widget.detail["id"],
-          'booked_date': widget.detail['apidetail'],
+          "playerId": element["id"],
+          'booked_date': element['apidetail'],
           "email": _detail.email,
-          "location": widget.detail['location'],
+          "location": element['location'],
           "currency": "AED",
         };
         print('aaaaaaaaaaaa');
-        print(detail);
-        Navigator.pushNamed(
-          context,
-          RouteNames.paymentSuccess,
-          arguments: detail,
-        );
+        academyDetail.add(detail);
+        print(academyDetail);
       },
       onFailure: (msg) {
         print('failed $msg');

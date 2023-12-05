@@ -290,18 +290,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                         children: [
                                           Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                "${AppLocalizations.of(context)!.academyName}:",
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? const Color(
-                                                            0XFF032040)
-                                                        : AppColors.white),
-                                              ),
                                               Text(
                                                 AppLocalizations.of(context)!
                                                             .locale ==
@@ -390,7 +380,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "${AppLocalizations.of(context)!.bookedFor}:",
+                                            "${AppLocalizations.of(context)!.playerCount}:",
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: MyAppState.mode ==

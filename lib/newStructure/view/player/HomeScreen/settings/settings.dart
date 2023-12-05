@@ -346,15 +346,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   color: isSwitched
-                                                      ? const Color(0XFFB7B7B7)
+                                                      ? AppColors.grey
                                                       : darkMode
-                                                          ? AppColors.white
+                                                          ? MyAppState.mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors.black
+                                                              : AppColors.white
                                                           : const Color(
                                                               0xFF032040))),
                                           Switch(
                                             value: isSwitched,
                                             inactiveTrackColor:
-                                                Colors.greenAccent,
+                                                const Color(0xff1d7e55)
+                                                    .withOpacity(0.6),
                                             onChanged: (value) {
                                               if (mounted) {
                                                 setState(() {
@@ -368,17 +373,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               }
                                             },
                                             activeColor:
-                                                AppLocalizations.of(context)!
-                                                            .locale ==
-                                                        'en'
-                                                    ? const Color(0xff1d7e55)
-                                                    : AppColors.grey,
+                                                const Color(0xff1d7e55),
                                             inactiveThumbColor:
-                                                AppLocalizations.of(context)!
-                                                            .locale ==
-                                                        'en'
-                                                    ? AppColors.grey
-                                                    : AppColors.appThemeColor,
+                                                const Color(0xff1d7e55),
                                           ),
                                           Text(
                                             'En',
@@ -386,7 +383,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 fontWeight: FontWeight.w600,
                                                 color: isSwitched
                                                     ? darkMode
-                                                        ? Colors.white
+                                                        ? MyAppState.mode ==
+                                                                ThemeMode.light
+                                                            ? Colors.black
+                                                            : AppColors.white
                                                         : const Color(
                                                             0xFF032040)
                                                     : const Color(0XFFB7B7B7)),
@@ -454,7 +454,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   color: darkMode
-                                                      ? const Color(0XFFB7B7B7)
+                                                      ? MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.black
+                                                          : AppColors.grey
                                                       : const Color(
                                                           0xFF032040))),
                                           Switch(
@@ -480,7 +483,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   color: darkMode
-                                                      ? AppColors.white
+                                                      ? MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.black
+                                                          : AppColors.white
                                                       : const Color(
                                                           0XFFB7B7B7)))
                                         ],
@@ -490,9 +496,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: height * 0.03,
-                            ),
+                            // SizedBox(
+                            //   height: height * 0.03,
+                            // ),
                             ...List.generate(
                                 2,
                                 (index) => _auth

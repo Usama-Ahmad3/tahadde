@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/player_rating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetailShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/view_your_review.dart';
@@ -49,23 +50,41 @@ class GroundDetailState extends State<GroundDetail>
   List<int> listMaxPlayer = [];
   int? selectedIndex;
   List facilitySlugD = [];
+  List<AcademyModel> _academyModel = [];
   bool? favoriteState;
   final itemSize = 100.0;
   List<Marker> allMarkers = [];
   List indexList = [];
   var id = 0;
   int date = 0;
+  getFavorites() {
+    print(';hi');
+    _networkCalls.getFavorites(
+      onSuccess: (msg) {
+        setState(() {
+          _academyModel = msg;
+          if (msg.isNotEmpty) {
+          } else {
+            setState(() {});
+          }
+        });
+      },
+      onFailure: (msg) {
+        setState(() {});
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
 
   favorite(bool favoriteState) async {
-    var detail = {
-      "pitch_id": widget.detail["academy_id"].toString(),
-      "is_favourite": favoriteState
-    };
     await _networkCalls.favorite(
-      detail: detail,
+      favorite: favoriteState,
+      id: widget.detail["academy_id"].toString(),
       onSuccess: (msg) {
         // venueDetail();
-        print('Detail$detail');
+        print(msg);
       },
       onFailure: (msg) {
         // venueDetail();
@@ -182,6 +201,7 @@ class GroundDetailState extends State<GroundDetail>
       internet = msg;
       if (msg == true) {
         loadingRating();
+        getFavorites();
         // venueDetail();
         setStateFun();
       } else {
@@ -254,26 +274,26 @@ class GroundDetailState extends State<GroundDetail>
                     _auth
                         ? SpeedDialChild(
                             visible: true,
-                            backgroundColor: MyAppState.mode == ThemeMode.light
-                                ? AppColors.darkTheme
-                                : Colors.tealAccent.shade100,
+                            backgroundColor: AppColors.appThemeColor,
                             child: Icon(
-                              privateVenueDetail.isFavourite
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? AppColors.white
-                                  : AppColors.black,
-                            ),
+                                _academyModel.contains('academy_id')
+                                    ? Icons.favorite_border
+                                    : Icons.favorite,
+                                color: AppColors.white),
                             onTap: () {
                               _networkCalls.checkInternetConnectivity(
                                   onSuccess: (msg) {
                                 if (msg) {
-                                  if (privateVenueDetail.isFavourite == false) {
+                                  if (_academyModel.contains('academy_id')) {
                                     privateVenueDetail.isFavourite = true;
+                                    print("EEEE${widget.detail}");
+                                    print(
+                                        widget.detail["academy_id"].toString());
                                     favorite(true);
                                   } else {
                                     privateVenueDetail.isFavourite = false;
+                                    widget.detail["academy_id"].toString();
+                                    print("EEEE${widget.detail}");
                                     favorite(false);
                                   }
                                   setState(() {});
@@ -286,14 +306,10 @@ class GroundDetailState extends State<GroundDetail>
                         : SpeedDialChild(),
                     SpeedDialChild(
                         visible: true,
-                        backgroundColor: MyAppState.mode == ThemeMode.light
-                            ? AppColors.darkTheme
-                            : Colors.tealAccent.shade100,
+                        backgroundColor: AppColors.appThemeColor,
                         child: Icon(
                           Icons.share,
-                          color: MyAppState.mode == ThemeMode.light
-                              ? AppColors.white
-                              : AppColors.black,
+                          color: AppColors.white,
                         ),
                         onTap: () {
                           Share.share(
@@ -302,14 +318,10 @@ class GroundDetailState extends State<GroundDetail>
                         }),
                     SpeedDialChild(
                         visible: true,
-                        backgroundColor: MyAppState.mode == ThemeMode.light
-                            ? AppColors.darkTheme
-                            : Colors.tealAccent.shade100,
+                        backgroundColor: AppColors.appThemeColor,
                         child: Icon(
                           Icons.email_outlined,
-                          color: MyAppState.mode == ThemeMode.light
-                              ? AppColors.white
-                              : AppColors.black,
+                          color: AppColors.white,
                         ),
                         onTap: () async {
                           launch("mailto:info@tahadde.com");
@@ -317,9 +329,7 @@ class GroundDetailState extends State<GroundDetail>
                   ],
                   child: Icon(
                     Icons.add,
-                    color: MyAppState.mode == ThemeMode.light
-                        ? AppColors.white
-                        : AppColors.black,
+                    color: AppColors.white,
                     size: height * 0.04,
                   ),
                 ),
@@ -738,23 +748,13 @@ class GroundDetailState extends State<GroundDetail>
                                                 height: height * .3,
                                                 decoration: const BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  20.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  20.0)),
+                                                      BorderRadius.all(
+                                                          Radius.circular(20)),
                                                 ),
                                                 child: ClipRRect(
                                                   borderRadius:
-                                                      const BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  15.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  15.0)),
+                                                      const BorderRadius.all(
+                                                          Radius.circular(15)),
                                                   child: GoogleMap(
                                                     zoomControlsEnabled: true,
                                                     myLocationButtonEnabled:
@@ -786,97 +786,97 @@ class GroundDetailState extends State<GroundDetail>
                                                   ),
                                                 ),
                                               ),
-                                              Material(
-                                                elevation: 1,
-                                                color: AppColors.white,
-                                                borderRadius: const BorderRadius
-                                                    .only(
-                                                    bottomRight:
-                                                        Radius.circular(20.0),
-                                                    bottomLeft:
-                                                        Radius.circular(20.0)),
-                                                child: SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 7,
-                                                            left: 7,
-                                                            top: 10),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                const Icon(
-                                                                  Icons
-                                                                      .location_on,
-                                                                  size: 20,
-                                                                ),
-                                                                SizedBox(
-                                                                  width: width *
-                                                                      0.002,
-                                                                ),
-                                                                SizedBox(
-                                                                  width: width *
-                                                                      .6,
-                                                                  child: Text(
-                                                                    AppLocalizations.of(
-                                                                            context)!
-                                                                        .location,
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                    maxLines: 5,
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .bodyMedium!
-                                                                        .copyWith(
-                                                                          color:
-                                                                              AppColors.black,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            SizedBox(
-                                                              width:
-                                                                  width * .75,
-                                                              child: Text(
-                                                                widget.detail[
-                                                                        'Academy_Location'] ??
-                                                                    "",
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                maxLines: 2,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .titleSmall!
-                                                                    .copyWith(
-                                                                      color: const Color(
-                                                                          0XFF8B8B8B),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
+                                              // Material(
+                                              //   elevation: 1,
+                                              //   color: AppColors.white,
+                                              //   borderRadius: const BorderRadius
+                                              //       .only(
+                                              //       bottomRight:
+                                              //           Radius.circular(20.0),
+                                              //       bottomLeft:
+                                              //           Radius.circular(20.0)),
+                                              //   child: SizedBox(
+                                              //     width: MediaQuery.of(context)
+                                              //         .size
+                                              //         .width,
+                                              //     child: Padding(
+                                              //       padding:
+                                              //           const EdgeInsets.only(
+                                              //               right: 7,
+                                              //               left: 7,
+                                              //               top: 10),
+                                              //       child: Row(
+                                              //         mainAxisAlignment:
+                                              //             MainAxisAlignment
+                                              //                 .spaceBetween,
+                                              //         children: [
+                                              //           Column(
+                                              //             crossAxisAlignment:
+                                              //                 CrossAxisAlignment
+                                              //                     .start,
+                                              //             children: [
+                                              //               Row(
+                                              //                 children: [
+                                              //                   const Icon(
+                                              //                     Icons
+                                              //                         .location_on,
+                                              //                     size: 20,
+                                              //                   ),
+                                              //                   SizedBox(
+                                              //                     width: width *
+                                              //                         0.002,
+                                              //                   ),
+                                              //                   SizedBox(
+                                              //                     width: width *
+                                              //                         .6,
+                                              //                     child: Text(
+                                              //                       AppLocalizations.of(
+                                              //                               context)!
+                                              //                           .location,
+                                              //                       overflow:
+                                              //                           TextOverflow
+                                              //                               .ellipsis,
+                                              //                       maxLines: 5,
+                                              //                       style: Theme.of(
+                                              //                               context)
+                                              //                           .textTheme
+                                              //                           .bodyMedium!
+                                              //                           .copyWith(
+                                              //                             color:
+                                              //                                 AppColors.black,
+                                              //                           ),
+                                              //                     ),
+                                              //                   ),
+                                              //                 ],
+                                              //               ),
+                                              //               SizedBox(
+                                              //                 width:
+                                              //                     width * .75,
+                                              //                 child: Text(
+                                              //                   widget.detail[
+                                              //                           'Academy_Location'] ??
+                                              //                       "",
+                                              //                   overflow:
+                                              //                       TextOverflow
+                                              //                           .ellipsis,
+                                              //                   maxLines: 2,
+                                              //                   style: Theme.of(
+                                              //                           context)
+                                              //                       .textTheme
+                                              //                       .titleSmall!
+                                              //                       .copyWith(
+                                              //                         color: const Color(
+                                              //                             0XFF8B8B8B),
+                                              //                       ),
+                                              //                 ),
+                                              //               ),
+                                              //             ],
+                                              //           ),
+                                              //         ],
+                                              //       ),
+                                              //     ),
+                                              //   ),
+                                              // ),
                                             ],
                                           ),
                                         ),

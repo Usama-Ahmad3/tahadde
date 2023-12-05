@@ -1745,27 +1745,58 @@ class NetworkCalls {
     }
   }
 
+  getFavorites(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url = "$baseUrl${RestApis.favorite}";
+    print(url);
+    try {
+      response = await http.get(Uri.parse(url),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print(response.statusCode);
+      print(response.body);
+      print(url);
+      if (response.statusCode > 200 || response.statusCode < 300) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load slot'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong");
+    }
+  }
+
   favorite(
-      {required Map detail,
+      {required String id,
+      required bool favorite,
       required OnSuccess onSuccess,
       required OnFailure onFailure,
       required TokenExpire tokenExpire}) async {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url =
-        "$baseUrl/api/v1/user/favourite/pitch/?language=${prefs.get("lang")}";
-    var body = json.encode(detail);
+    String url = "$baseUrl${RestApis.favorite}$id/";
     try {
-      response = await http.put(Uri.parse(url),
-          headers: headerWithToken(prefs, body, HttpMethod.PUT), body: body);
+      favorite
+          ? response = await http.delete(Uri.parse(url),
+              headers: headerWithToken(prefs, '', HttpMethod.DELETE))
+          : response = await http.post(Uri.parse(url),
+              headers: headerWithToken(prefs, '', HttpMethod.POST));
       print(url);
-      print(body);
-      print(response.body);
       print(response.statusCode);
-      if (response.statusCode == 200) {
-        var resp = json.decode(utf8.decode(response.bodyBytes));
-        BookPitchDetail bookPitch = BookPitchDetail.fromJson(resp);
-        onSuccess(bookPitch);
+      print(response.body);
+      if (response.statusCode > 200 || response.statusCode < 300) {
+        onSuccess('true');
       } else if (response.statusCode == tokenExpireStatus) {
         tokenExpire();
       } else {

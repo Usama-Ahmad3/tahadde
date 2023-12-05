@@ -543,7 +543,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   setState(() {
                                     country = msg[1];
                                     locationController.text =
-                                        msg[0].toString().substring(9);
+                                        msg[0].toString().substring(10);
                                     // isAddressLoading=false;
                                   });
                                 },
@@ -1356,7 +1356,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                         }
                                       },
                                       title: Text(
-                                        AppLocalizations.of(context)!.continu,
+                                        widget.specificAcademyId != null
+                                            ? AppLocalizations.of(context)!
+                                                .update
+                                            : AppLocalizations.of(context)!
+                                                .continu,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!
@@ -1366,8 +1370,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                   : ButtonWidget(
                                       color: const Color(0XFFBCBCBC),
                                       onTaped: () {},
-                                      title: Text(AppLocalizations.of(context)!
-                                          .continu),
+                                      title: Text(widget.specificAcademyId !=
+                                              null
+                                          ? AppLocalizations.of(context)!.update
+                                          : AppLocalizations.of(context)!
+                                              .continu),
                                       isLoading: false),
                               SizedBox(
                                 height: sizeHeight * 0.01,
