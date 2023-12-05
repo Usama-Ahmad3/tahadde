@@ -22,6 +22,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
   bool? internet;
   bool state = true;
   final bool _auth = false;
+  List<Map> academyDetail = [];
   String date = "name";
   final DateFormat apiFormatter = DateFormat('yyyy-MM-dd', 'en_US');
   List<BookedSessions> bookedSessions = [];
@@ -347,11 +348,11 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                               //     () => DateTime.parse(
                                               //         '${item.bookedDate ?? '2023-11-29'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
                                               return bookingsList(
-                                                sizeWidth,
-                                                sizeHeight,
-                                                item,
-                                                index,
-                                              );
+                                                  sizeWidth,
+                                                  sizeHeight,
+                                                  item,
+                                                  index,
+                                                  false);
                                             },
                                           )),
                                   reversedItemBefore.isEmpty
@@ -413,8 +414,12 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                             itemBuilder: (context, index) {
                                               final item =
                                                   reversedItemBefore[index];
-                                              return bookingsList(sizeWidth,
-                                                  sizeHeight, item, 0);
+                                              return bookingsList(
+                                                  sizeWidth,
+                                                  sizeHeight,
+                                                  item,
+                                                  index,
+                                                  true);
                                             },
                                           ),
                                         ),
@@ -431,14 +436,12 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
   }
 
   navigateToPayment(index, dateTime) {
-    var detial = {
+    Map detial = {
+      'totalPrice': bookings.bookings![index].price,
       "price": bookings.bookings![index].price,
       "name": bookings.bookings![index].academyName,
       'academy_id': bookings.bookings![index].academy,
-      "apidetail": {
-        'date': dateTime,
-        'id': bookings.bookings![index].academy,
-      },
+      "apidetail": dateTime,
       "id": bookings.bookings![index].player,
       'sessionId': bookings.bookings![index].bookedSession,
       'location': bookings.bookings![index].location,
@@ -446,11 +449,12 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
       "slug": 'price-per-player'
     };
     print(detial);
-    Navigator.pushNamed(context, RouteNames.payment, arguments: detial);
+    academyDetail.add(detial);
+    Navigator.pushNamed(context, RouteNames.payment, arguments: academyDetail);
   }
 
   ///Whole widget of booking detail list
-  Widget bookingsList(sizeWidth, sizeHeight, booking, index) {
+  Widget bookingsList(sizeWidth, sizeHeight, booking, index, completed) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * .07),
       child: SizedBox(
@@ -789,7 +793,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                 fontSize: 13)),
                                       ],
                                     ),
-                                    index == 0
+                                    completed == false
                                         ? SizedBox.shrink()
                                         : InkWell(
                                             onTap: () async {
