@@ -34,6 +34,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   final NetworkCalls _networkCalls = NetworkCalls();
   final DateFormat apiFormatter = DateFormat('yyyy-MM-dd', 'en_US');
   bool? isSelected;
+  List<Map> academyDetail = [];
   bool _auth = false;
   List sessionIdList = [];
   List<String> academyId = [];
@@ -275,7 +276,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                     'price_per_player':
                     _specificAcademy[0].prices![0].price
                     };
-                    navigateToEditAcademyDetail(detailForProceed);
+                    academyDetail.add(detailForProceed);
+                    navigateToEditAcademyDetail(academyDetail);
                     },
                 child: Center(
                   child: Container(

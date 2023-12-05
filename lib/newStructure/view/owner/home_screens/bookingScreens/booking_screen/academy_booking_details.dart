@@ -125,6 +125,9 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: sizeHeight * 0.01,
+                      ),
                       Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: sizeWidth * .07),
