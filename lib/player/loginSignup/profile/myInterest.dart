@@ -176,6 +176,7 @@ class _MyInterestState extends State<MyInterest> {
                                       academyDetail: _academyModel,
                                       searchflag: false,
                                       tagForView: false,
+                                      myInterest: true,
                                     )
                                   : const SizedBox.shrink()
                             ],

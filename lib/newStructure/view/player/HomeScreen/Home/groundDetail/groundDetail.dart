@@ -30,8 +30,9 @@ import 'facilities.dart';
 
 class GroundDetail extends StatefulWidget {
   Map detail;
+  bool? myInterest;
 
-  GroundDetail({super.key, required this.detail});
+  GroundDetail({super.key, required this.detail, this.myInterest = false});
 
   @override
   State<GroundDetail> createState() => GroundDetailState();
@@ -50,11 +51,12 @@ class GroundDetailState extends State<GroundDetail>
   List<int> listMaxPlayer = [];
   int? selectedIndex;
   List facilitySlugD = [];
-  List<AcademyModel> _academyModel = [];
+  var _academyModel = [];
   bool? favoriteState;
   final itemSize = 100.0;
   List<Marker> allMarkers = [];
   List indexList = [];
+  List academyIds = [];
   var id = 0;
   int date = 0;
   getFavorites() {
@@ -63,10 +65,7 @@ class GroundDetailState extends State<GroundDetail>
       onSuccess: (msg) {
         setState(() {
           _academyModel = msg;
-          if (msg.isNotEmpty) {
-          } else {
-            setState(() {});
-          }
+          ids();
         });
       },
       onFailure: (msg) {
@@ -78,12 +77,25 @@ class GroundDetailState extends State<GroundDetail>
     );
   }
 
+  ids() {
+    academyIds.clear();
+    if (_academyModel.isEmpty) {
+      setState(() {});
+    } else {
+      for (int i = 0; i < _academyModel.length; i++) {
+        academyIds.add(_academyModel[i]['academy_id']);
+      }
+    }
+    print(academyIds);
+  }
+
   favorite(bool favoriteState) async {
     await _networkCalls.favorite(
       favorite: favoriteState,
       id: widget.detail["academy_id"].toString(),
       onSuccess: (msg) {
         // venueDetail();
+        showMessage('operation successful');
         print(msg);
       },
       onFailure: (msg) {
@@ -267,6 +279,7 @@ class GroundDetailState extends State<GroundDetail>
                   renderOverlay: false,
                   onPress: () {
                     setState(() {
+                      ids();
                       isDialOpen.value = !isDialOpen.value;
                     });
                   },
@@ -276,30 +289,35 @@ class GroundDetailState extends State<GroundDetail>
                             visible: true,
                             backgroundColor: AppColors.appThemeColor,
                             child: Icon(
-                                _academyModel.contains('academy_id')
-                                    ? Icons.favorite_border
-                                    : Icons.favorite,
+                                academyIds.contains(widget.detail['academy_id'])
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
                                 color: AppColors.white),
                             onTap: () {
                               _networkCalls.checkInternetConnectivity(
                                   onSuccess: (msg) {
                                 if (msg) {
-                                  if (_academyModel.contains('academy_id')) {
+                                  if (academyIds
+                                      .contains(widget.detail['academy_id'])) {
                                     privateVenueDetail.isFavourite = true;
-                                    print("EEEE${widget.detail}");
-                                    print(
-                                        widget.detail["academy_id"].toString());
                                     favorite(true);
+                                    setState(() {
+                                      isDialOpen.value = !isDialOpen.value;
+                                      getFavorites();
+                                    });
                                   } else {
-                                    privateVenueDetail.isFavourite = false;
-                                    widget.detail["academy_id"].toString();
-                                    print("EEEE${widget.detail}");
                                     favorite(false);
+                                    setState(() {
+                                      isDialOpen.value = !isDialOpen.value;
+                                      getFavorites();
+                                    });
                                   }
-                                  setState(() {});
                                 } else {
                                   showMessage(AppLocalizations.of(context)!
                                       .noInternetConnection);
+                                  setState(() {
+                                    isDialOpen.value = !isDialOpen.value;
+                                  });
                                 }
                               });
                             })
@@ -315,6 +333,9 @@ class GroundDetailState extends State<GroundDetail>
                           Share.share(
                             "pitchDetail.link",
                           );
+                          setState(() {
+                            isDialOpen.value = !isDialOpen.value;
+                          });
                         }),
                     SpeedDialChild(
                         visible: true,
@@ -325,6 +346,9 @@ class GroundDetailState extends State<GroundDetail>
                         ),
                         onTap: () async {
                           launch("mailto:info@tahadde.com");
+                          setState(() {
+                            isDialOpen.value = !isDialOpen.value;
+                          });
                         })
                   ],
                   child: Icon(
@@ -346,7 +370,10 @@ class GroundDetailState extends State<GroundDetail>
                         padding: EdgeInsets.only(left: height * 0.01),
                         child: InkWell(
                             onTap: () {
-                              Navigator.pop(context);
+                              widget.myInterest!
+                                  ? Navigator.pushReplacementNamed(
+                                      context, RouteNames.myInterest)
+                                  : Navigator.pop(context);
                             },
                             child: Container(
                                 height: height * 0.045,

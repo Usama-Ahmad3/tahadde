@@ -1757,7 +1757,6 @@ class NetworkCalls {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       print(response.statusCode);
-      print(response.body);
       print(url);
       if (response.statusCode > 200 || response.statusCode < 300) {
         var resp = json.decode(utf8.decode(response.bodyBytes));

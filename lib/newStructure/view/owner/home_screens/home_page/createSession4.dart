@@ -477,7 +477,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                       .mode ==
                                                                   ThemeMode
                                                                       .light
-                                                              ? AppColors.white
+                                                              ? _sessionMap
+                                                              .containsKey(_weakList[index].slug)?AppColors.white:AppColors.black
                                                               : AppColors.white,
                                                           fontWeight:
                                                               FontWeight.w500),

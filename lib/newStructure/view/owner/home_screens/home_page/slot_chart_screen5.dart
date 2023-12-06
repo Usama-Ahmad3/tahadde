@@ -579,7 +579,9 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                 //   )),
                 ButtonWidget(
                     onTaped: () {
-                      navigateToAcademyCreated();
+                      widget.backTag
+                          ? Navigator.of(context).pop()
+                          : navigateToAcademyCreated();
                     },
                     title: Text(
                       widget.backTag

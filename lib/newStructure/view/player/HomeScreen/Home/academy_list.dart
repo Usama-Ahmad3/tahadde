@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/view_more_book_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
@@ -16,11 +17,13 @@ class AcademyList extends StatefulWidget {
   bool empty;
   bool? searchflag;
   String text;
+  bool? myInterest;
 
   AcademyList(
       {super.key,
       this.searchflag = false,
       required this.text,
+      this.myInterest = false,
       required this.academyDetail,
       this.tagForView = true,
       this.empty = false});
@@ -326,7 +329,20 @@ class _AcademyListState extends State<AcademyList> {
   }
 
   void navigateToGroundDetail(Map detail) {
-    Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
+    widget.myInterest!
+        ? Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  GroundDetail(detail: detail, myInterest: widget.myInterest),
+            ))
+        : Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  GroundDetail(detail: detail, myInterest: widget.myInterest),
+            ));
+    // Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
   }
 
   void navigateToViewMoreAcademy(Map detail) {

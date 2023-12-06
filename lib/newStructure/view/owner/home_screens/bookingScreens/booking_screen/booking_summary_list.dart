@@ -186,7 +186,7 @@ class _BookingSummaryListState extends State<BookingSummaryList> {
           ),
           body: loading
               ? Container(
-                  height: sizeHeight,
+                  height: sizeHeight * 0.9,
                   width: sizeWidth,
                   padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.2),
                   decoration: BoxDecoration(
