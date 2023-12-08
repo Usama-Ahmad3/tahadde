@@ -2273,7 +2273,7 @@ class AppLocalizations {
   }
 
   String get selecttypeofSport {
-    return Intl.message('selecttypeofSport', name: 'selecttypeofSport');
+    return Intl.message('Select Sport', name: 'selecttypeofSport');
   }
 
   String get subVenueName {

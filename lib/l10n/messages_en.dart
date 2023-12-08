@@ -672,7 +672,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Fill in the fields below to enter with other team"),
         "selecttypeofSport":
-            MessageLookupByLibrary.simpleMessage("Select type of sport"),
+            MessageLookupByLibrary.simpleMessage("Select Sport"),
         "selectyourfield":
             MessageLookupByLibrary.simpleMessage("Select your field"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),

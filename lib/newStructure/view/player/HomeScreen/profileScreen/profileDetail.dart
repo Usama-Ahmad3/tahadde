@@ -328,11 +328,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
               : Scaffold(
                   body: Column(
                     children: [
-                      buildAppBar(
-                          language: AppLocalizations.of(context)!.locale,
-                          title: AppLocalizations.of(context)!.profileC,
-                          height: height,
-                          width: width),
                       Expanded(
                         child: InternetLoss(
                           onChange: () {

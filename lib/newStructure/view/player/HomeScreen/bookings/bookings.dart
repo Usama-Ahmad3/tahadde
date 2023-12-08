@@ -241,7 +241,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
           ),
           body: state
               ? Container(
-                  height: sizeHeight,
+                  height: sizeHeight * 0.9,
                   width: sizeWidth,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
@@ -459,15 +459,15 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * .07),
       child: SizedBox(
         height: booking.bookedSession!.length == 1
-            ? sizeHeight * 0.56
-            : sizeHeight * .63,
+            ? sizeHeight * 0.51
+            : sizeHeight * .57,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "${AppLocalizations.of(context)!.bookedOn} ${booking.bookingDate.toString()}",
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: sizeHeight * 0.017,
                   color: MyAppState.mode == ThemeMode.light
                       ? const Color(0XFF032040)
                       : Colors.white),
@@ -490,8 +490,8 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         blurStyle: BlurStyle.outer)
                   ]),
               height: booking.bookedSession!.length == 1
-                  ? sizeHeight * 0.5
-                  : sizeHeight * .6,
+                  ? sizeHeight * 0.47
+                  : sizeHeight * .53,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -524,7 +524,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                             Text(
                               booking.playerName.toString(),
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: sizeHeight * 0.017,
                                   color: MyAppState.mode == ThemeMode.light
                                       ? const Color(0XFF032040)
                                       : AppColors.white),
@@ -540,7 +540,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                 Text(
                                   " ${booking.playerPhoneno.toString()}",
                                   style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: sizeHeight * 0.012,
                                       color: MyAppState.mode == ThemeMode.light
                                           ? const Color(0XFFADADAD)
                                           : AppColors.white),
@@ -558,7 +558,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                 Text(
                                   "  ${booking.playerEmail}" ?? "",
                                   style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: sizeHeight * 0.012,
                                       color: MyAppState.mode == ThemeMode.light
                                           ? const Color(0XFFADADAD)
                                           : Colors.white),
@@ -579,7 +579,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                     child: Text(
                       AppLocalizations.of(context)!.bookingDetails,
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: sizeHeight * 0.017,
                           color: MyAppState.mode == ThemeMode.light
                               ? Colors.black
                               : AppColors.white),
@@ -608,7 +608,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                   ? booking.academyName.toString()
                                   : booking.academyNameArabic.toString(),
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: sizeHeight * 0.015,
                                   color: MyAppState.mode == ThemeMode.light
                                       ? const Color(0XFF25A163)
                                       : AppColors.grey),
@@ -622,7 +622,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                               child: Text(
                                 booking.location.toString(),
                                 style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: sizeHeight * 0.013,
                                     color: MyAppState.mode == ThemeMode.light
                                         ? const Color(0XFF9B9B9B)
                                         : Colors.grey),
@@ -650,7 +650,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         Text(
                           "${AppLocalizations.of(context)!.status}:",
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: sizeHeight * 0.015,
                               color: MyAppState.mode == ThemeMode.light
                                   ? const Color(0XFF032040)
                                   : AppColors.white),
@@ -661,7 +661,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                     ? const Color(0XFF25A163)
                                     : Colors.grey,
                                 fontFamily: "Poppins",
-                                fontSize: 14))
+                                fontSize: sizeHeight * 0.015,))
                       ],
                     ),
                   ),
@@ -673,7 +673,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         Text(
                           "${AppLocalizations.of(context)!.playerCount}:",
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: sizeHeight * 0.015,
                               color: MyAppState.mode == ThemeMode.light
                                   ? const Color(0XFF032040)
                                   : AppColors.white),
@@ -684,7 +684,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                               color: MyAppState.mode == ThemeMode.light
                                   ? const Color(0XFF25A163)
                                   : AppColors.grey,
-                              fontSize: 14),
+                              fontSize: sizeHeight * 0.015,),
                         ),
                       ],
                     ),
@@ -697,7 +697,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         Text(
                           "${AppLocalizations.of(context)!.bookingDate}:",
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: sizeHeight * 0.015,
                               color: MyAppState.mode == ThemeMode.light
                                   ? const Color(0XFF032040)
                                   : AppColors.white),
@@ -710,7 +710,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                   ? const Color(0XFF25A163)
                                   : Colors.grey,
                               decoration: TextDecoration.none,
-                              fontSize: 14),
+                              fontSize: sizeHeight * 0.015),
                         ),
                       ],
                     ),
@@ -723,7 +723,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         Text(
                           "${AppLocalizations.of(context)!.tranjectionId}:",
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: sizeHeight * 0.015,
                               color: MyAppState.mode == ThemeMode.light
                                   ? const Color(0XFF032040)
                                   : AppColors.white),
@@ -731,7 +731,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         Text(
                           booking.transactionId.toString(),
                           style: TextStyle(
-                              fontSize: 12,
+                              fontSize: sizeHeight * 0.015,
                               color: MyAppState.mode == ThemeMode.light
                                   ? const Color(0XFF25A163)
                                   : AppColors.grey),
@@ -742,7 +742,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                   Text(
                     AppLocalizations.of(context)!.slot,
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: sizeHeight * 0.017,
                         color: MyAppState.mode == ThemeMode.light
                             ? Colors.black
                             : AppColors.white),
@@ -781,7 +781,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                         ThemeMode.light
                                                     ? AppColors.black
                                                     : AppColors.white,
-                                                fontSize: 14)),
+                                                fontSize: sizeHeight * 0.015)),
                                         Text(
                                             "${bookedSessions[blockindex].startTime} ${AppLocalizations.of(context)!.to} ${bookedSessions[blockindex].endTime}",
                                             // '(${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
@@ -790,7 +790,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                         ThemeMode.light
                                                     ? AppColors.grey
                                                     : Colors.grey,
-                                                fontSize: 13)),
+                                                fontSize: sizeHeight * 0.014)),
                                       ],
                                     ),
                                     completed == false
@@ -950,9 +950,9 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .bookAgain,
-                                                    style: const TextStyle(
+                                                    style:  TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 14)),
+                                                        fontSize: sizeHeight * 0.015,)),
                                               ),
                                             ),
                                           )
@@ -971,7 +971,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         color: const Color(0XFFD8D8D8),
                         borderRadius: BorderRadius.circular(10)),
                     alignment: Alignment.center,
-                    height: sizeHeight * .061,
+                    height: sizeHeight * .06,
                     width: sizeWidth * 0.91,
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -983,28 +983,28 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                         children: <Widget>[
                           Text(
                             AppLocalizations.of(context)!.paidTotal,
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 fontFamily: 'Poppins',
                                 color: Color(0XFF25A163),
                                 fontWeight: FontWeight.w500,
-                                fontSize: 14),
+                                fontSize: sizeHeight * 0.015),
                           ),
                           flaxibleGap(1),
                           Text(
                             booking.price.toString(),
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 fontFamily: 'Poppins',
                                 color: Color(0XFF25A163),
                                 fontWeight: FontWeight.w500,
-                                fontSize: 14),
+                                fontSize: sizeHeight * 0.015,),
                           ),
                           Text(
                             booking.currency.toString(),
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 fontFamily: 'Poppins',
                                 color: Color(0XFF25A163),
                                 fontWeight: FontWeight.w500,
-                                fontSize: 14),
+                                fontSize: sizeHeight * 0.015,),
                           ),
                         ],
                       ),

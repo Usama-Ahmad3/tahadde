@@ -1235,7 +1235,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           academyModel,
                                                       searchflag: searchFlag)
                                                   : AcademyList(
-
                                                       ///Just Remove To Proceed
                                                       empty: true,
                                                       text: AppLocalizations.of(
@@ -1269,7 +1268,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                           children: [
                             SizedBox(
                               width: double.infinity,
-                              height: MediaQuery.of(context).size.height,
+                              height: MediaQuery.of(context).size.height * 0.9,
                               child: InternetLoss(
                                 onChange: () {
                                   _networkCalls.checkInternetConnectivity(

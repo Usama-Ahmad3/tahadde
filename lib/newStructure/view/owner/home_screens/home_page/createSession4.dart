@@ -2277,7 +2277,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             showMessage(
                                                 'please select valid start and end time');
                                           } else {
-                                            {
                                               var maxEndDate;
                                               var minStartDate;
 
@@ -2310,16 +2309,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 _weakIndex]
                                                             .slug] !=
                                                         null) {
-                                                      minStartDate = _sessionMap[
-                                                              _weakList[
-                                                                      _weakIndex]
-                                                                  .slug]!
-                                                          .reduce((previous,
-                                                                  element) =>
-                                                              (previous.startTime)!
-                                                                      .isBefore(
-                                                                          element
-                                                                              .startTime!)
+                                                      print('sjshshsghuswuu9');
+                                                      minStartDate = _sessionMap[_weakList[_weakIndex].slug]!
+                                                          .reduce((previous, element) =>
+                                                              (previous.startTime)!.isBefore(
+                                                                          element.startTime!)
                                                                   ? previous
                                                                   : element);
                                                       maxEndDate = _sessionMap[
@@ -2351,45 +2345,42 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 .endTime!
                                                                 .isAfter(maxEndDate
                                                                     .endTime))) {
+                                                      print('hhh');
+                                                      print(_sessionMap[
+                                                      _weakList[_weakIndex]
+                                                          .slug]!.length);
                                                       List<SessionDetail>
                                                           sessionList = [];
-                                                      // sessionList
-                                                      //     .add(sessionDetail);
-                                                      print(copySessionIndex);
-
+                                                      print('copyDaysIndex$copySessionIndex');
+                                                      print(_weakList[_weakIndex].slug);
+                                                      print('sessionList$sessionList');
+                                                      sessionList.add(sessionDetail);
                                                       ///new sessions
                                                       _sessionMap[_weakList[
                                                                   _weakIndex]
-                                                              .slug]!
-                                                          .add(sessionDetail);
-                                                      print(sessionDetail);
+                                                              .slug]!.add(sessionDetail);
+                                                      print(_sessionMap[_weakList[
+                                                      _weakIndex]
+                                                          .slug]![0]);
+                                                      print('sessionDetail${sessionDetail}');
                                                       print(_sessionMap[
                                                           _weakList[_weakIndex]
-                                                              .slug]);
+                                                              .slug]!.length);
                                                       if (copySessionIndex
-                                                          .isNotEmpty) {
+                                                          .isNotEmpty ) {
                                                         print(
                                                             '11CopySsessionss');
-                                                        print(sessionDetail);
+                                                        print('sessionDetailllll$sessionDetail');
                                                         print(_sessionMap[
                                                             _weakList[
                                                                     _weakIndex]
                                                                 .slug]);
                                                         copySessionIndex
                                                             .forEach((element) {
-                                                          _sessionMap[_weakList[
-                                                                      element]
-                                                                  .slug] =
-                                                              sessionList;
+                                                          _sessionMap[_weakList[element].slug] = sessionList;
                                                         });
-                                                        copySessionIndex
-                                                            .clear();
+                                                        copySessionIndex.clear();
                                                       }
-                                                      print(sessionDetail
-                                                          .sessionName);
-                                                      print(sessionDetail
-                                                          .slotDuration);
-                                                      print(_weakIndex);
                                                     } else {
                                                       showMessage(
                                                           "Your time is not proper as compare to previous sessions");
@@ -2444,7 +2435,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
 
                                               /// adding first session if there is no session created before
                                               else {
-                                                print('2');
+                                                print('2sessions');
                                                 sessionDetail.graceTime ??= 20;
                                                 sessionDetail.slotDuration ??=
                                                     20;
@@ -2465,6 +2456,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 _weakIndex]
                                                             .slug]![0]
                                                         .isHoliday!) {
+                                                  print('shsgdygdb8');
                                                   // for (int i = _weakIndex;
                                                   //     i < 7;
                                                   //     i++) {
@@ -2478,15 +2470,22 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   _sessionMap[
                                                       _weakList[_weakIndex]
                                                           .slug] = sessionList;
+                                                  print(sessionList);
+                                                  print(sessionDetail);
+                                                  print(_sessionMap[
+                                                  _weakList[_weakIndex]
+                                                      .slug]);
                                                   if (copySessionIndex
                                                       .isNotEmpty) {
-                                                    copySessionIndex
-                                                        .forEach((element) {
-                                                      _sessionMap[
-                                                              _weakList[element]
-                                                                  .slug] =
-                                                          sessionList;
+                                                    print('shhsss7 ');
+                                                    copySessionIndex.forEach((element) {
+                                                      print("my data "+_sessionMap[_weakList[element].slug].toString());
+                                                      print("myelement::::$element");
+
+                                                      _sessionMap[_weakList[element].slug] = sessionList;
+                                                      print(_sessionMap[_weakList[element].slug]);
                                                     });
+                                                    copySessionIndex.clear();
                                                   }
                                                 } else {
                                                   if (_sessionMap[
@@ -2526,12 +2525,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           sessionDetail.endTime!
                                                               .isAfter(maxEndDate
                                                                   .endTime))) {
+                                                    print('hshsssh5');
                                                     _sessionMap[_weakList[
                                                                 _weakIndex]
                                                             .slug]!
                                                         .add(sessionDetail);
                                                     if (copySessionIndex
                                                         .isNotEmpty) {
+                                                      print('sjjss4');
                                                       copySessionIndex
                                                           .forEach((element) {
                                                         _sessionMap[_weakList[
@@ -2552,7 +2553,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
 
                                               Navigator.of(context).pop();
                                               onTap();
-                                            }
                                           }
                                         },
                                         title: Text(

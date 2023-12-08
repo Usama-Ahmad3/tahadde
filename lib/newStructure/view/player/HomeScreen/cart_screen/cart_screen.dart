@@ -130,54 +130,51 @@ class _CartScreenState extends State<CartScreen> {
         title: AppLocalizations.of(context)!.cart,
         back: false,
       ),
-      floatingActionButton: Align(
-        alignment: Alignment(width * 0.0027, height * 0.0013),
-        child: SizedBox(
-          height: height * 0.065,
-          child: SpeedDial(
-            elevation: 3,
-            label: Text(
-              AppLocalizations.of(context)!.checkout,
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: MyAppState.mode == ThemeMode.light
-                        ? AppColors.white
-                        : AppColors.black,
-                  ),
-            ),
-            animationCurve: Curves.easeInOutCirc,
-            backgroundColor: MyAppState.mode == ThemeMode.light
-                ? AppColors.appThemeColor
-                : AppColors.appThemeColor,
-            onPress: () {
-              int index = 0;
-              List<Map> cartDetails = [];
-              cartModel.forEach((item) {
-                List IdList = [];
-                item.session!.forEach((element) {
-                  IdList.add(element);
-                });
-                Map details = {
-                  'cart_id': item.id,
-                  'academyNameEnglish':
-                      _specificAcademy[index].academyNameEnglish.toString(),
-                  'academyNameArabic':
-                      _specificAcademy[index].academyNameArabic.toString(),
-                  "academy": item.academy,
-                  "session": IdList,
-                  "Sub_Academy": item.subAcademy,
-                  "price": item.price,
-                  "location": item.location,
-                  "booked_date": item.bookedDate,
-                  "player_count": item.playerCount,
-                  'price_per_player': item.pricePerPlayer
-                };
-                index = index + 1;
-                cartDetails.add(details);
-              });
-              print(cartDetails);
-              navigateToEditAcademyDetail(cartDetails);
-            },
+      floatingActionButton: SizedBox(
+        height: height * 0.065,
+        child: SpeedDial(
+          elevation: 3,
+          label: Text(
+            AppLocalizations.of(context)!.checkout,
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: MyAppState.mode == ThemeMode.light
+                      ? AppColors.white
+                      : AppColors.black,
+                ),
           ),
+          animationCurve: Curves.easeInOutCirc,
+          backgroundColor: MyAppState.mode == ThemeMode.light
+              ? AppColors.appThemeColor
+              : AppColors.appThemeColor,
+          onPress: () {
+            int index = 0;
+            List<Map> cartDetails = [];
+            cartModel.forEach((item) {
+              List IdList = [];
+              item.session!.forEach((element) {
+                IdList.add(element);
+              });
+              Map details = {
+                'cart_id': item.id,
+                'academyNameEnglish':
+                    _specificAcademy[index].academyNameEnglish.toString(),
+                'academyNameArabic':
+                    _specificAcademy[index].academyNameArabic.toString(),
+                "academy": item.academy,
+                "session": IdList,
+                "Sub_Academy": item.subAcademy,
+                "price": item.price,
+                "location": item.location,
+                "booked_date": item.bookedDate,
+                "player_count": item.playerCount,
+                'price_per_player': item.pricePerPlayer
+              };
+              index = index + 1;
+              cartDetails.add(details);
+            });
+            print(cartDetails);
+            navigateToEditAcademyDetail(cartDetails);
+          },
         ),
       ),
       body: loading

@@ -43,7 +43,7 @@ class LoginScreenState extends State<LoginScreen> {
   var sigupPasswordController = TextEditingController();
   var confirmSignPasswordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
-  FacebookAuth facebookSignIn = FacebookAuth.instance;
+  // FacebookAuth facebookSignIn = FacebookAuth.instance;
   var signingIntoFirebase = false;
   var error;
   late OverlayEntry? overlayEntry;
@@ -180,62 +180,62 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   //////////
-  _loginFacebook() async {
-    FacebookAuth.getInstance();
-    facebookSignIn.isWebSdkInitialized;
-    try {
-      final result = await facebookSignIn.login();
-      switch (result.status) {
-        case LoginStatus.success:
-          final AccessToken? accessToken = result.accessToken;
-          var details = {
-            "fbUserToken": accessToken!.token,
-            "deviceType": logDetail.deviceType,
-            "deviceToken": logDetail.fcmToken
-          };
-          _networkCalls.loginFacebook(
-              loginDetail: details,
-              onSuccess: (msg) {
-                if (msg["token"] != null) {
-                  _networkCalls.saveToken(msg["token"]);
-                  _networkCalls.saveRole(msg["role"]);
-                  _networkCalls.authorizationSave(true);
-                  navigateToDetail();
-                } else {
-                  var detail = {"detail": msg, "facebook": true};
-                  navigateToSocialDetail(detail);
-                }
-              },
-              onFailure: (msg) {
-                showMessage(msg);
-              });
-
-          break;
-        case LoginStatus.cancelled:
-          // ignore: use_build_context_synchronously
-          showMessage(AppLocalizations.of(context)!.logincancelledbytheuser);
-          break;
-        case LoginStatus.failed:
-          showMessage('Something went wrong with the login process.\n'
-              'Here\'s the error Facebook gave us: ${result.message}');
-          print("jiiii${result.message}");
-          break;
-        default:
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future _logOut() async {
-    FacebookAuth.getInstance();
-    facebookSignIn.isWebSdkInitialized;
-    try {
-      await facebookSignIn.logOut();
-    } catch (e) {
-      print(e);
-    }
-  }
+  // _loginFacebook() async {
+  //   FacebookAuth.getInstance();
+  //   facebookSignIn.isWebSdkInitialized;
+  //   try {
+  //     final result = await facebookSignIn.login();
+  //     switch (result.status) {
+  //       case LoginStatus.success:
+  //         final AccessToken? accessToken = result.accessToken;
+  //         var details = {
+  //           "fbUserToken": accessToken!.token,
+  //           "deviceType": logDetail.deviceType,
+  //           "deviceToken": logDetail.fcmToken
+  //         };
+  //         _networkCalls.loginFacebook(
+  //             loginDetail: details,
+  //             onSuccess: (msg) {
+  //               if (msg["token"] != null) {
+  //                 _networkCalls.saveToken(msg["token"]);
+  //                 _networkCalls.saveRole(msg["role"]);
+  //                 _networkCalls.authorizationSave(true);
+  //                 navigateToDetail();
+  //               } else {
+  //                 var detail = {"detail": msg, "facebook": true};
+  //                 navigateToSocialDetail(detail);
+  //               }
+  //             },
+  //             onFailure: (msg) {
+  //               showMessage(msg);
+  //             });
+  //
+  //         break;
+  //       case LoginStatus.cancelled:
+  //         // ignore: use_build_context_synchronously
+  //         showMessage(AppLocalizations.of(context)!.logincancelledbytheuser);
+  //         break;
+  //       case LoginStatus.failed:
+  //         showMessage('Something went wrong with the login process.\n'
+  //             'Here\'s the error Facebook gave us: ${result.message}');
+  //         print("jiiii${result.message}");
+  //         break;
+  //       default:
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+  //
+  // Future _logOut() async {
+  //   FacebookAuth.getInstance();
+  //   facebookSignIn.isWebSdkInitialized;
+  //   try {
+  //     await facebookSignIn.logOut();
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   Future _loginGoogle() async {
     try {
@@ -304,7 +304,7 @@ class LoginScreenState extends State<LoginScreen> {
     super.initState();
     clicked = widget.clicked!.toInt();
     isLoading = false;
-    _logOut();
+    // _logOut();
     _getAppleSigninAvailability();
     firebaseCloudMessaging_Listeners();
     if (Platform.isIOS) {
@@ -648,28 +648,28 @@ class LoginScreenState extends State<LoginScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              GestureDetector(
-                                child: Image.asset(
-                                  'assets/images/facebook.png',
-                                  height: height * .05,
-                                  fit: BoxFit.fill,
-                                ),
-                                onTap: () {
-                                  _networkCalls.checkInternetConnectivity(
-                                      onSuccess: (msg) {
-                                    _internet = msg;
-                                    if (msg == true) {
-                                      _loginFacebook();
-                                    } else {
-                                      if (mounted) {
-                                        showMessage(
-                                            AppLocalizations.of(context)!
-                                                .noInternetConnection);
-                                      }
-                                    }
-                                  });
-                                },
-                              ),
+                              // GestureDetector(
+                              //   child: Image.asset(
+                              //     'assets/images/facebook.png',
+                              //     height: height * .05,
+                              //     fit: BoxFit.fill,
+                              //   ),
+                              //   onTap: () {
+                              //     _networkCalls.checkInternetConnectivity(
+                              //         onSuccess: (msg) {
+                              //       _internet = msg;
+                              //       if (msg == true) {
+                              //         _loginFacebook();
+                              //       } else {
+                              //         if (mounted) {
+                              //           showMessage(
+                              //               AppLocalizations.of(context)!
+                              //                   .noInternetConnection);
+                              //         }
+                              //       }
+                              //     });
+                              //   },
+                              // ),
                               Visibility(
                                 visible: Platform.isIOS ? true : false,
                                 // _isAppleSigninAvailable,
@@ -689,7 +689,7 @@ class LoginScreenState extends State<LoginScreen> {
                                     }
                                   }),
                                   child: Image.asset(
-                                    'assets/images/apple.png',
+                                    'assets/images/pngwing.png',
                                     height: height * .05,
                                     fit: BoxFit.fill,
                                   ),
@@ -697,7 +697,7 @@ class LoginScreenState extends State<LoginScreen> {
                               ),
                               GestureDetector(
                                 child: Image.asset(
-                                  'assets/images/google.png',
+                                  'assets/images/google_icon.png',
                                   height: height * .05,
                                   fit: BoxFit.fill,
                                 ),

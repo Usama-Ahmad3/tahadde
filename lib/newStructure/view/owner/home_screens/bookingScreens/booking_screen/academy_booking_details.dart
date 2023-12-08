@@ -95,7 +95,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
         ),
         body: loading
             ? Container(
-                height: sizeHeight,
+                height: sizeHeight * 0.9,
                 width: sizeWidth,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -133,15 +133,15 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                             EdgeInsets.symmetric(horizontal: sizeWidth * .07),
                         child: SizedBox(
                           height: bookedSessions.length == 1
-                              ? sizeHeight * 0.55
-                              : sizeHeight * .63,
+                              ? sizeHeight * 0.51
+                              : sizeHeight * .57,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "${AppLocalizations.of(context)!.bookedOn} ${widget.bookindDetail.bookingDate}",
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: sizeHeight * 0.017,
                                     color: MyAppState.mode == ThemeMode.light
                                         ? const Color(0XFF032040)
                                         : Colors.white),
@@ -154,7 +154,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10.0)),
                                     color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.white24
+                                        ? AppColors.grey200
                                         : AppColors.containerColorW12,
                                     boxShadow: [
                                       BoxShadow(
@@ -165,8 +165,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                           blurStyle: BlurStyle.outer)
                                     ]),
                                 height: bookedSessions.length == 1
-                                    ? sizeHeight * 0.5
-                                    : sizeHeight * .56,
+                                    ? sizeHeight * 0.47
+                                    : sizeHeight * .53,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -206,7 +206,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                 widget.bookindDetail.playerName
                                                     .toString(),
                                                 style: TextStyle(
-                                                    fontSize: 16,
+                                                    fontSize: sizeHeight * 0.017,
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
                                                         ? const Color(
@@ -226,7 +226,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                   Text(
                                                     " ${widget.bookindDetail.playerPhoneno.toString()}",
                                                     style: TextStyle(
-                                                        fontSize: 10,
+                                                        fontSize: sizeHeight * 0.012,
                                                         color: MyAppState
                                                                     .mode ==
                                                                 ThemeMode.light
@@ -250,7 +250,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                     "  ${widget.bookindDetail.playerEmail}" ??
                                                         "",
                                                     style: TextStyle(
-                                                        fontSize: 10,
+                                                        fontSize: sizeHeight * 0.012,
                                                         color: MyAppState
                                                                     .mode ==
                                                                 ThemeMode.light
@@ -276,7 +276,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                         AppLocalizations.of(context)!
                                             .bookingDetails,
                                         style: TextStyle(
-                                            fontSize: 15,
+                                            fontSize: sizeHeight * 0.017,
                                             color: MyAppState.mode ==
                                                     ThemeMode.light
                                                 ? Colors.black
@@ -306,7 +306,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                         .academyNameArabic
                                                         .toString(),
                                                 style: TextStyle(
-                                                    fontSize: 14,
+                                                    fontSize: sizeHeight * 0.015,
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
                                                         ? const Color(
@@ -324,7 +324,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                       .academyLocation
                                                       .toString(),
                                                   style: TextStyle(
-                                                      fontSize: 12,
+                                                      fontSize: sizeHeight * 0.013,
                                                       color: MyAppState.mode ==
                                                               ThemeMode.light
                                                           ? const Color(
@@ -356,7 +356,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                           Text(
                                             "${AppLocalizations.of(context)!.status}:",
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: sizeHeight * 0.015,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? const Color(0XFF032040)
@@ -371,7 +371,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                       ? const Color(0XFF25A163)
                                                       : Colors.grey,
                                                   fontFamily: "Poppins",
-                                                  fontSize: 14))
+                                                  fontSize: sizeHeight * 0.015,))
                                         ],
                                       ),
                                     ),
@@ -385,7 +385,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                           Text(
                                             "${AppLocalizations.of(context)!.playerCount}:",
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: sizeHeight * 0.015,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? const Color(0XFF032040)
@@ -398,7 +398,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                         ThemeMode.light
                                                     ? const Color(0XFF25A163)
                                                     : AppColors.grey,
-                                                fontSize: 14),
+                                                fontSize: sizeHeight * 0.015,),
                                           ),
                                         ],
                                       ),
@@ -413,7 +413,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                           Text(
                                             "${AppLocalizations.of(context)!.bookingDate}:",
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: sizeHeight * 0.015,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? const Color(0XFF032040)
@@ -429,7 +429,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                     ? const Color(0XFF25A163)
                                                     : Colors.grey,
                                                 decoration: TextDecoration.none,
-                                                fontSize: 14),
+                                                fontSize: sizeHeight * 0.015),
                                           ),
                                         ],
                                       ),
@@ -444,7 +444,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                           Text(
                                             "${AppLocalizations.of(context)!.tranjectionId}:",
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: sizeHeight * 0.015,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? const Color(0XFF032040)
@@ -454,7 +454,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                             widget.bookindDetail.transactionId
                                                 .toString(),
                                             style: TextStyle(
-                                                fontSize: 12,
+                                                fontSize: sizeHeight * 0.013,
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? const Color(0XFF25A163)
@@ -466,7 +466,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                     Text(
                                       AppLocalizations.of(context)!.slot,
                                       style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: sizeHeight * 0.017,
                                           color:
                                               MyAppState.mode == ThemeMode.light
                                                   ? Colors.black
@@ -515,7 +515,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                                       : AppColors
                                                                           .white,
                                                                   fontSize:
-                                                                      14)),
+                                                                  sizeHeight * 0.015)),
                                                           Text(
                                                               "${bookedSessions[blockindex].startTime} ${AppLocalizations.of(context)!.to} ${bookedSessions[blockindex].endTime}",
                                                               // '(${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
@@ -529,7 +529,7 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                                       : Colors
                                                                           .grey,
                                                                   fontSize:
-                                                                      13)),
+                                                                  sizeHeight * 0.014)),
                                                         ],
                                                       ),
                                                     ],
@@ -564,30 +564,30 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                             Text(
                                               AppLocalizations.of(context)!
                                                   .paidTotal,
-                                              style: const TextStyle(
+                                              style:  TextStyle(
                                                   fontFamily: 'Poppins',
                                                   color: Color(0XFF25A163),
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: 14),
+                                                  fontSize: sizeHeight * 0.015),
                                             ),
                                             flaxibleGap(1),
                                             Text(
                                               widget.bookindDetail.price
                                                   .toString(),
-                                              style: const TextStyle(
+                                              style:  TextStyle(
                                                   fontFamily: 'Poppins',
                                                   color: Color(0XFF25A163),
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: 14),
+                                                  fontSize: sizeHeight * 0.015,),
                                             ),
                                             Text(
                                               widget.bookindDetail.currency
                                                   .toString(),
-                                              style: const TextStyle(
+                                              style:  TextStyle(
                                                   fontFamily: 'Poppins',
                                                   color: Color(0XFF25A163),
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: 14),
+                                                  fontSize: sizeHeight * 0.015),
                                             ),
                                           ],
                                         ),

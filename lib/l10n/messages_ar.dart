@@ -655,7 +655,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "املأ الحقول أدناه للدخول مع فريق آخر"),
         "selecttypeofSport":
-            MessageLookupByLibrary.simpleMessage("اختر نوع الرياضة"),
+            MessageLookupByLibrary.simpleMessage("اختر الرياضة"),
         "selectyourfield": MessageLookupByLibrary.simpleMessage("حدد الملعب "),
         "send": MessageLookupByLibrary.simpleMessage("إرسال"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("راسلنا"),

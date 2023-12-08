@@ -62,7 +62,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Text(
                       AppLocalizations.of(context)!.gallery,
                       style: const TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 15),
+                          fontWeight: FontWeight.normal,),
                     ),
                     onTap: () async {
                       var status = await Permission.photos.status;

@@ -868,8 +868,8 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                                             widget.detail.pitchDetailModel!
                                                 .pitchImageId!
                                                 .add(msg);
-                                            navigateToPriceScreen(
-                                                widget.detail);
+                                            // navigateToPriceScreen(
+                                            //     widget.detail);
                                           },
                                           onFailure: (msg) {
                                             showMessage(msg);

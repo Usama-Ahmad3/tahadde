@@ -5,7 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -225,11 +224,14 @@ class LanguageSave extends StatefulWidget {
 
 class _LanguageSaveState extends State<LanguageSave> {
   late VideoPlayerController _controller;
+
   bool _isSplace = true;
 
   @override
   void initState() {
-    _controller = VideoPlayerController.asset('assets/images/New.mp4');
+
+    _controller = VideoPlayerController.asset(
+        'assets/images/New.mp4');
     _controller.addListener(() {
       setState(() {});
     });
@@ -302,31 +304,19 @@ class _LanguageSaveState extends State<LanguageSave> {
       }
       throw Exception();
     });
-    // _controller = VideoPlayerController.asset('assets/images/New.mp4')
-    //   ..initialize().then((_) {
-    //     // Once the video has been loaded we play the video and set looping to true.
-    //     Timer(const Duration(milliseconds: 3000), () {
-    //       setState(() {
-    //         _isSplace = false;
-    //       });
-    //     });
-    //     _controller.play();
-    //     _controller.setLooping(false);
-    //     _controller.setVolume(5.0);
-    //     setState(() {});
-    //   });
+    
   }
 
   @override
   void dispose() {
     super.dispose();
-    // _controller.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return ConnectivityStatus(
-        child: _isSplace
+        child:  _isSplace
             ? SizedBox.expand(
                 child: FittedBox(
                   fit: BoxFit.fill,
@@ -343,7 +333,8 @@ class _LanguageSaveState extends State<LanguageSave> {
                     ? HomePitchOwnerScreen(
                         index: 0,
                       )
-                    : PlayerHomeScreen(index: 0));
+                    : PlayerHomeScreen(index: 0)
+        );
   }
 }
 
