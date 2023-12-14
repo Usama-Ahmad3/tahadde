@@ -286,10 +286,11 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                         builder: (context) =>
                                             CupertinoAlertDialog(
                                           content: Container(
-                                            height: height * 0.25,
+                                            height: height * 0.3,
+                                            width: width,
                                             decoration: BoxDecoration(
                                                 image: DecorationImage(
-                                                    fit: BoxFit.fill,
+                                                    fit: BoxFit.cover,
                                                     image: NetworkImage(
                                                         widget.profileImage))),
                                           ),

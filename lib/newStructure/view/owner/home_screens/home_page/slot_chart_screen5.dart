@@ -606,7 +606,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
 
   void navigateToAcademyCreated() {
     Navigator.push(context,
-        MaterialPageRoute(builder: (_) => const academy_created_screen()));
+        MaterialPageRoute(builder: (_) => const AcademyCreatedScreen()));
     // Navigator.pushNamed(context, RouteNames.venueCreated);
   }
 

@@ -531,7 +531,7 @@ class _PaymentState extends State<Payment> {
                       ? tranjectionId["InvoiceTransactions"][0]
                               ['TransactionDate']
                           .toString()
-                          .substring(0, 9)
+                          .substring(0, 10)
                       : tranjectionId["InvoiceTransactions"][0]
                               ['TransactionDate']
                           .toString()
@@ -562,15 +562,16 @@ class _PaymentState extends State<Payment> {
                     navigateToPaymentSuccess(
                       tranjectionId["InvoiceTransactions"][0]
                           ['TransactionStatus'],
-                      DateTime.now().day > 10
-                          ? tranjectionId["InvoiceTransactions"][0]
-                                  ['TransactionDate']
-                              .toString()
-                              .substring(0, 9)
-                          : tranjectionId["InvoiceTransactions"][0]
-                                  ['TransactionDate']
-                              .toString()
-                              .substring(0, 10),
+                      detailPost['booking_date'],
+                      // DateTime.now().day > 10
+                      //     ? tranjectionId["InvoiceTransactions"][0]
+                      //             ['TransactionDate']
+                      //         .toString()
+                      //         .substring(0, 9)
+                      //     : tranjectionId["InvoiceTransactions"][0]
+                      //             ['TransactionDate']
+                      //         .toString()
+                      //         .substring(0, 10),
                       detial,
                     );
                     // Map detail = {

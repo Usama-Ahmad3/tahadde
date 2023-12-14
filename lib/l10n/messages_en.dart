@@ -158,7 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookingDate": MessageLookupByLibrary.simpleMessage("Booking Date"),
         "notBooked": MessageLookupByLibrary.simpleMessage(
             "you haven't book any session from this academy"),
-        "addReview": MessageLookupByLibrary.simpleMessage("add your review"),
+        "addReview": MessageLookupByLibrary.simpleMessage("Add Your Review"),
         "noReviews":
             MessageLookupByLibrary.simpleMessage("No Reviews Available"),
         "pleaseCreateProper": MessageLookupByLibrary.simpleMessage(
@@ -248,7 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "commissionPaymentDes": MessageLookupByLibrary.simpleMessage(
             "Tahadde will charge 15% per booking as commission for its services from the venue owner. Tahadde’s commission will be deducted automatically from the booking and the remaining amount will be transferred to the venue owner upon the agreed term of 7 days or a maximum period of 30 days depending on the venue owner"),
         "confermpassword":
-            MessageLookupByLibrary.simpleMessage("Confirm password"),
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contactNumber": MessageLookupByLibrary.simpleMessage("Contact Number"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact"),
@@ -309,7 +309,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "mins": MessageLookupByLibrary.simpleMessage("mins"),
         "thankyouAcademy": MessageLookupByLibrary.simpleMessage(
-            "Thank you for creating academy"),
+            "Thank You For Creating Academy"),
         "uploadPDF": MessageLookupByLibrary.simpleMessage("Upload PDF"),
         "notify": MessageLookupByLibrary.simpleMessage(
             "We will notify you once it’s done."),
@@ -469,7 +469,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onwords": MessageLookupByLibrary.simpleMessage("Onwords"),
         "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or Sign in With"),
         "organisedby": MessageLookupByLibrary.simpleMessage("ORGANISED BY"),
-        "ourPolicy": MessageLookupByLibrary.simpleMessage("Our policy"),
+        "ourPolicy": MessageLookupByLibrary.simpleMessage("Our Policy"),
         "outdoor": MessageLookupByLibrary.simpleMessage("OUTDOOR"),
         "paidTotal": MessageLookupByLibrary.simpleMessage("Paid Total"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -591,8 +591,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Copy from first session for all days"),
         "pricePerPlayer":
             MessageLookupByLibrary.simpleMessage("Price per Person"),
-        "privacyPolicy":
-            MessageLookupByLibrary.simpleMessage("Privacy Policy."),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proceed": MessageLookupByLibrary.simpleMessage("Proceed"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add To Cart"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing....."),
@@ -690,7 +689,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "showDirections":
             MessageLookupByLibrary.simpleMessage("Show directions"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Signup"),
         "since": MessageLookupByLibrary.simpleMessage("Since"),
         "skip": MessageLookupByLibrary.simpleMessage("SKIP"),
         "slot": MessageLookupByLibrary.simpleMessage("Slots"),

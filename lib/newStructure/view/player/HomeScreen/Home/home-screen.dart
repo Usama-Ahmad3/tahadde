@@ -934,14 +934,17 @@ class HomeScreenViewState extends State<HomeScreenView> {
                         NavigateToNotification();
                       },
                       child: CircleAvatar(
-                        radius: 23,
+                        radius: 23 * fem,
                         backgroundColor: Colors.white10,
                         child: Icon(
                           Icons.notifications_none,
                           color: AppColors.white,
-                          size: 23,
+                          size: 23 * fem,
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      width: width * 0.008,
                     )
                   ],
                 ),
@@ -1235,6 +1238,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           academyModel,
                                                       searchflag: searchFlag)
                                                   : AcademyList(
+
                                                       ///Just Remove To Proceed
                                                       empty: true,
                                                       text: AppLocalizations.of(

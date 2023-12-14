@@ -199,7 +199,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                       SizedBox(
                                         width: sizeWidth * .7,
                                         child: Text(
-                                            " ${academyDetail[index].academyLocation}",
+                                            "${academyDetail[index].academyLocation}",
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: Theme.of(context)

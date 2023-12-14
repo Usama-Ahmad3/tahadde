@@ -360,6 +360,31 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           '+971',
                           'ae',
                         ],
+                        closeIcon: Icon(
+                          Icons.close,
+                          color: AppColors.black,
+                        ),
+                        hideSearch: false,
+                        searchDecoration: InputDecoration(
+                            constraints:
+                                BoxConstraints(maxHeight: height * 0.065),
+                            fillColor: MyAppState.mode == ThemeMode.light
+                                ? AppColors.grey200
+                                : AppColors.grey200,
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey)),
+                            disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey)),
+                            prefixIcon: Icon(Icons.search, color: Colors.grey)),
                         showCountryOnly: false,
                         showOnlyCountryWhenClosed: false,
                         alignLeft: false,
@@ -409,13 +434,39 @@ class SignUpWidgetState extends State<SignUpWidget> {
                                 ? const Color(0XFF032040)
                                 : AppColors.white,
                             fontWeight: FontWeight.w600,
-                            fontSize: 12),
+                            fontSize: 10),
                         onChanged: widget.onChanged,
                         initialSelection: _initialCountry,
                         favorite: const [
                           '+971',
                           'ae',
                         ],
+                        closeIcon: Icon(
+                          Icons.close,
+                          color: AppColors.black,
+                        ),
+                        hideSearch: false,
+                        searchDecoration: InputDecoration(
+                            constraints:
+                                BoxConstraints(maxHeight: height * 0.065),
+                            fillColor: MyAppState.mode == ThemeMode.light
+                                ? AppColors.grey200
+                                : AppColors.grey200,
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey)),
+                            disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey)),
+                            prefixIcon:
+                                const Icon(Icons.search, color: Colors.grey)),
                         showCountryOnly: false,
                         showOnlyCountryWhenClosed: false,
                         alignLeft: false,

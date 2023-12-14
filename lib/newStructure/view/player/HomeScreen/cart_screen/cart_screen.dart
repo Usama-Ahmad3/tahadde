@@ -9,7 +9,6 @@ import 'package:flutter_tahaddi/modelClass/cart_model.dart';
 import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/app_bar.dart';
 
@@ -224,12 +223,24 @@ class _CartScreenState extends State<CartScreen> {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
-                                      final reversed = cartModel.reversed
-                                          .toList(); // reverse your list here
-                                      final reversedAcademy = _specificAcademy
-                                          .reversed
-                                          .toList(); // reverse your list here
+                                      final reversed =
+                                          cartModel.reversed.toList();
+                                      final reversedAcademy =
+                                          _specificAcademy.reversed.toList();
                                       final item = reversed[index];
+                                      List<BookedSessions>
+                                          bookedSessionFiltered = [];
+                                      for (int i = 0;
+                                          i < item.session!.length;
+                                          i++) {
+                                        int id = bookedSessions.indexWhere(
+                                            (element) =>
+                                                element.id == item.session![i]);
+                                        bookedSessionFiltered
+                                            .add(bookedSessions[id]);
+                                      }
+                                      print('aaaaasddd');
+                                      print(bookedSessionFiltered);
                                       return Padding(
                                         padding: EdgeInsets.symmetric(
                                             vertical: height * 0.01),
@@ -239,12 +250,12 @@ class _CartScreenState extends State<CartScreen> {
                                               DismissDirection.endToStart,
                                           onDismissed: (direction) {
                                             setState(() {
+                                              loading = true;
                                               _networkCalls.deleteCart(
-                                                id: cartModel[index]
-                                                    .id
-                                                    .toString(),
+                                                id: item.id.toString(),
                                                 onSuccess: (value) {
                                                   showMessage('Deleted');
+                                                  getCartAcademies();
                                                 },
                                                 onFailure: (msg) {
                                                   print('failed $msg');
@@ -664,28 +675,22 @@ class _CartScreenState extends State<CartScreen> {
                                                                   fontSize: 14),
                                                             ),
                                                             ...List.generate(
-                                                                item.session!
+                                                                bookedSessionFiltered
                                                                     .length,
                                                                 (indexSession) {
-                                                              bookedSessions
-                                                                  .forEach(
-                                                                      (element) {
-                                                                sessions.add(
-                                                                    element.id);
-                                                              });
-                                                              return sessions.contains(
-                                                                      item.session![
-                                                                          indexSession])
-                                                                  ? Text(
-                                                                      "${bookedSessions[index].startTime}",
-                                                                      style: TextStyle(
-                                                                          color: MyAppState.mode == ThemeMode.light
-                                                                              ? const Color(0XFF25A163)
-                                                                              : AppColors.grey,
-                                                                          fontSize: 14),
-                                                                    )
-                                                                  : SizedBox
-                                                                      .shrink();
+                                                              return Text(
+                                                                "${bookedSessionFiltered[indexSession].startTime}",
+                                                                style: TextStyle(
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? const Color(
+                                                                            0XFF25A163)
+                                                                        : AppColors
+                                                                            .grey,
+                                                                    fontSize:
+                                                                        14),
+                                                              );
                                                             }),
                                                             // InkWell(
                                                             //   onTap: () {

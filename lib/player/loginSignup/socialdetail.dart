@@ -5,6 +5,8 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
 import 'package:intl/intl.dart';
@@ -156,40 +158,12 @@ class _SocialDetailState extends State<SocialDetail> {
             backgroundColor: MyAppState.mode == ThemeMode.light
                 ? Colors.white
                 : const Color(0xff686868),
-            appBar: PreferredSize(
-              preferredSize: Size(sizewidth, sizeheight * 0.13),
-              child: AppBar(
-                title: Text(
-                  AppLocalizations.of(context)!.socialTitle,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Colors.white),
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.black,
-                leadingWidth: sizewidth * 0.18,
-                leading: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                        height: sizeheight * 0.004,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            shape: BoxShape.circle),
-                        child: Icon(
-                          AppLocalizations.of(context)!.locale == 'en'
-                              ? Icons.keyboard_arrow_left_sharp
-                              : Icons.keyboard_arrow_right,
-                          color: Colors.white,
-                        )),
-                  ),
-                ),
-              ),
-            ),
+            appBar: appBarWidget(
+                sizeWidth: sizewidth,
+                sizeHeight: sizeheight,
+                context: context,
+                title: AppLocalizations.of(context)!.socialTitle,
+                back: true),
             // appBar: AppBar(
             //   leading: IconButton(
             //     onPressed: () {
@@ -267,34 +241,70 @@ class _SocialDetailState extends State<SocialDetail> {
                                     alignment: Alignment.bottomCenter,
                                     child: CountryCodePicker(
                                       padding: const EdgeInsets.only(top: 5),
+                                      backgroundColor:
+                                          MyAppState.mode == ThemeMode.light
+                                              ? AppColors.white
+                                              : AppColors.darkTheme,
+                                      dialogTextStyle: TextStyle(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : AppColors.black),
+                                      searchStyle: TextStyle(
+                                        color: AppColors.black,
+                                      ),
+                                      textStyle: TextStyle(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : AppColors.white,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 10),
                                       onChanged: (value) {
                                         setState(() {
                                           _detail.countryCode =
                                               value.toString();
                                         });
                                       },
-                                      // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                                       initialSelection: '+971',
                                       favorite: const [
                                         '+971',
-                                        'ITU',
+                                        'ae',
                                       ],
-                                      // optional. Shows only country name and flag
-                                      showCountryOnly: false,
-                                      // optional. Shows only country name and flag when popup is closed.
-                                      showOnlyCountryWhenClosed: false,
-                                      // optional. aligns the flag and the Text left
-                                      alignLeft: false,
-                                      searchStyle: const TextStyle(
-                                          color: Colors.black, fontSize: 13),
-                                      textStyle: TextStyle(
-                                        color:
-                                            MyAppState.mode == ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white,
+                                      closeIcon: Icon(
+                                        Icons.close,
+                                        color: AppColors.black,
                                       ),
-                                    ),
-                                  )
+                                      hideSearch: false,
+                                      searchDecoration: InputDecoration(
+                                          constraints: BoxConstraints(
+                                              maxHeight: sizeheight * 0.065),
+                                          fillColor:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.grey200
+                                                  : AppColors.grey200,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey)),
+                                          prefixIcon: Icon(Icons.search,
+                                              color: Colors.grey)),
+                                      showCountryOnly: false,
+                                      showOnlyCountryWhenClosed: false,
+                                      alignLeft: false,
+                                    ))
                                 : Container(),
                             Expanded(
                               child: Container(
@@ -302,8 +312,8 @@ class _SocialDetailState extends State<SocialDetail> {
                                 width: sizewidth * .4,
                                 alignment: Alignment.topCenter,
                                 child: textField(
-                                  name:
-                                      AppLocalizations.of(context)!.phoneNumber,
+                                  name: '',
+                                  // AppLocalizations.of(context)!.phoneNumber,
                                   testAlignment:
                                       AppLocalizations.of(context)!.locale ==
                                               "en"

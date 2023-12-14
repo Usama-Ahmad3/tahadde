@@ -62,7 +62,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Text(
                       AppLocalizations.of(context)!.gallery,
                       style: const TextStyle(
-                          fontWeight: FontWeight.normal,),
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
                     onTap: () async {
                       var status = await Permission.photos.status;
@@ -546,6 +547,37 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             '+971',
                                             'ae',
                                           ],
+                                          closeIcon: Icon(
+                                            Icons.close,
+                                            color: AppColors.black,
+                                          ),
+                                          hideSearch: false,
+                                          searchDecoration: InputDecoration(
+                                              constraints: BoxConstraints(
+                                                  maxHeight: height * 0.065),
+                                              fillColor: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? AppColors.grey200
+                                                  : AppColors.grey200,
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey)),
+                                              disabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey)),
+                                              prefixIcon: const Icon(
+                                                  Icons.search,
+                                                  color: Colors.grey)),
                                           showCountryOnly: false,
                                           showOnlyCountryWhenClosed: false,
                                           alignLeft: false,
@@ -616,6 +648,37 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             '+971',
                                             'ae',
                                           ],
+                                          closeIcon: Icon(
+                                            Icons.close,
+                                            color: AppColors.black,
+                                          ),
+                                          hideSearch: false,
+                                          searchDecoration: InputDecoration(
+                                              constraints: BoxConstraints(
+                                                  maxHeight: height * 0.065),
+                                              fillColor: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? AppColors.grey200
+                                                  : AppColors.grey200,
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey)),
+                                              disabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey)),
+                                              prefixIcon: const Icon(
+                                                  Icons.search,
+                                                  color: Colors.grey)),
                                           showCountryOnly: false,
                                           showOnlyCountryWhenClosed: false,
                                           alignLeft: false,

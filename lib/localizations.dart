@@ -55,7 +55,7 @@ class AppLocalizations {
   }
 
   String get addReview {
-    return Intl.message('add your review', name: 'addReview');
+    return Intl.message('Add Your Review', name: 'addReview');
   }
 
   String get notBooked {
@@ -279,7 +279,7 @@ class AppLocalizations {
   }
 
   String get signUp {
-    return Intl.message('signUp', name: 'signUp');
+    return Intl.message('signup', name: 'signUp');
   }
 
   String get tahaddi {
@@ -576,7 +576,7 @@ class AppLocalizations {
   }
 
   String get confermpassword {
-    return Intl.message('confermpassword', name: 'confermpassword');
+    return Intl.message('Confirm Password', name: 'confermpassword');
   }
 
   String get changepassword {
@@ -644,7 +644,7 @@ class AppLocalizations {
   }
 
   String get thankyouAcademy {
-    return Intl.message('Thank you for creating academy',
+    return Intl.message('Thank You For Creating Academy',
         name: 'thankyouAcademy');
   }
 
@@ -829,7 +829,7 @@ class AppLocalizations {
   }
 
   String get privacyPolicy {
-    return Intl.message('privacyPolicy', name: 'privacyPolicy');
+    return Intl.message('Privacy Policy', name: 'privacyPolicy');
   }
 
   String get createYourOwnTeam {
@@ -2135,7 +2135,7 @@ class AppLocalizations {
   }
 
   String get ourPolicy {
-    return Intl.message('ourPolicy', name: 'ourPolicy');
+    return Intl.message('Our Policy', name: 'ourPolicy');
   }
 
   String get calendarPermission {

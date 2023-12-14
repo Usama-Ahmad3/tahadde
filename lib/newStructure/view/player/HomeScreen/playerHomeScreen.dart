@@ -61,6 +61,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
   }
 
   getCartAcademies() async {
+    cartModel.clear();
     await NetworkCalls().getCartAcademy(
         onSuccess: (detail) {
           for (int i = 0; i < detail.length; i++) {
@@ -182,6 +183,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 currentIndex: widget.index,
                 onTap: (index) {
                   widget.index = index;
+                  getCartAcademies();
                   setState(() {});
                 },
                 selectedItemColor: AppColors.appThemeColor,
@@ -229,38 +231,52 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     unselectedColor: AppColors.grey,
                   ),
                   SalomonBottomBarItem(
-                    icon: Badge(
-                      alignment: Alignment.topRight,
-                      textColor: AppColors.red,
-                      label: Text(
-                        cartModel.length.toString(),
-                        style: TextStyle(color: AppColors.white),
-                      ),
-                      child: const SizedBox(
-                          height: 23,
-                          width: 22,
-                          child: Icon(Icons.add_shopping_cart)),
-                    ),
+                    icon: cartModel.isEmpty
+                        ? const SizedBox(
+                            height: 23,
+                            width: 22,
+                            child: Icon(Icons.add_shopping_cart))
+                        : Badge(
+                            alignment: Alignment.topRight,
+                            textColor: AppColors.red,
+                            label: Text(
+                              cartModel.length.toString(),
+                              style: TextStyle(color: AppColors.white),
+                            ),
+                            child: const SizedBox(
+                                height: 23,
+                                width: 22,
+                                child: Icon(Icons.add_shopping_cart)),
+                          ),
                     title: Text(
                       AppLocalizations.of(context)!.cart,
                       style: TextStyle(color: AppColors.white),
                     ),
-                    activeIcon: Badge(
-                      alignment: Alignment.topRight,
-                      textColor: AppColors.red,
-                      label: Text(
-                        cartModel.length.toString(),
-                        style: TextStyle(color: AppColors.white),
-                      ),
-                      child: const SizedBox(
-                        height: 23,
-                        width: 22,
-                        child: Icon(
-                          Icons.shopping_cart,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    activeIcon: cartModel.isEmpty
+                        ? const SizedBox(
+                            height: 23,
+                            width: 22,
+                            child: Icon(
+                              Icons.shopping_cart,
+                              color: Colors.white,
+                            ),
+                          )
+                        : Badge(
+                            alignment: Alignment.topRight,
+                            textColor: AppColors.red,
+                            label: Text(
+                              cartModel.length.toString(),
+                              style: TextStyle(color: AppColors.white),
+                            ),
+                            child: const SizedBox(
+                              height: 23,
+                              width: 22,
+                              child: Icon(
+                                Icons.shopping_cart,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                     selectedColor: AppColors.appThemeColor,
                     unselectedColor: AppColors.grey,
                   ),

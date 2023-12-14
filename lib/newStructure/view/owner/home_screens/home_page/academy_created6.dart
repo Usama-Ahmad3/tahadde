@@ -9,14 +9,14 @@ import '../../../../../main.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../HomePitchOwnerScreen.dart';
 
-class academy_created_screen extends StatefulWidget {
-  const academy_created_screen({Key? key}) : super(key: key);
+class AcademyCreatedScreen extends StatefulWidget {
+  const AcademyCreatedScreen({Key? key}) : super(key: key);
 
   @override
-  State<academy_created_screen> createState() => _academy_created_screenState();
+  State<AcademyCreatedScreen> createState() => _AcademyCreatedScreenState();
 }
 
-class _academy_created_screenState extends State<academy_created_screen> {
+class _AcademyCreatedScreenState extends State<AcademyCreatedScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

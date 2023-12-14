@@ -84,7 +84,7 @@ class BookingWidgetList extends StatelessWidget {
                           )),
                   SizedBox(
                     width: sizeWidth * .7,
-                    child: Text(" ${academyDetail.academyLocation}",
+                    child: Text("${academyDetail.academyLocation}",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(

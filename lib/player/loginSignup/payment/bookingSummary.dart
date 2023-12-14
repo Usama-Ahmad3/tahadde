@@ -207,8 +207,7 @@ class _BookingSummary extends State<BookingSummary> {
                                                           FontWeight.w600)),
                                           Text(
                                             widget.price[index]['startingDate']
-                                                .toString()
-                                                .substring(0, 10),
+                                                .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!

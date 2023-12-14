@@ -997,7 +997,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                         left: width *
                                                                             0.015),
                                                                     child: Text(
-                                                                      '${_sessionMap[_weakList[_weekIndex].name]![i].startTime.toString().substring(11, 16)} - ${_sessionMap[_weakList[_weekIndex].name]![i].startTime!.toString().substring(11, 16)}',
+                                                                      '${_sessionMap[_weakList[_weekIndex].name]![i].startTime.toString().substring(11, 16)} - ${_sessionMap[_weakList[_weekIndex].name]![i].endTime!.toString().substring(11, 16)}',
                                                                       style: Theme.of(
                                                                               context)
                                                                           .textTheme
