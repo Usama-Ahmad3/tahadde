@@ -52,7 +52,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
   final String _initialCountry = '+971';
   final NetworkCalls _networkCalls = NetworkCalls();
   static String? player;
-  List<String> playerEn = ["player", "Owner"];
+  List<String> playerEn = ["Player", "Owner"];
   List<String> playerAr = ["لاعب", "مالك"];
 
   privacyPolicy(String text) async {

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_tahaddi/homeFile/utility.dart';
+import 'package:flutter_tahaddi/modelClass/Facilities.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/booked_model.dart';
 import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
@@ -2349,6 +2350,7 @@ class NetworkCalls {
       }
           // headerWithToken(prefs, "", HttpMethod.GET)
           );
+      print('Response${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3562,6 +3564,34 @@ class NetworkCalls {
           Uri.parse("$baseUrl/api/v1/helpers/sportslistmobile/"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       // print('Sports${response.body}');
+      // cbb65ad9f2c1882d300cb98662405cc585df16c8
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        onFailure("null");
+        //tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load role'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      throw Exception('Failed to load role');
+    }
+  }
+
+  facilityList(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(
+          Uri.parse("$baseUrl/api/v1/helpers/facilitylistmobile/"),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print('facility${response.body}');
       // cbb65ad9f2c1882d300cb98662405cc585df16c8
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));

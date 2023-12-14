@@ -646,7 +646,9 @@ class LoginScreenState extends State<LoginScreen> {
                           padding: EdgeInsets.symmetric(
                               vertical: height * 0.02, horizontal: width * 0.2),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: Platform.isIOS
+                                ? MainAxisAlignment.spaceEvenly
+                                : MainAxisAlignment.center,
                             children: [
                               // GestureDetector(
                               //   child: Image.asset(
@@ -670,31 +672,33 @@ class LoginScreenState extends State<LoginScreen> {
                               //     });
                               //   },
                               // ),
-                              Visibility(
-                                visible: Platform.isIOS ? true : false,
-                                // _isAppleSigninAvailable,
-                                child: GestureDetector(
-                                  onTap: () => _networkCalls
-                                      .checkInternetConnectivity(
-                                          onSuccess: (msg) {
-                                    _internet = msg;
-                                    if (msg == true) {
-                                      _signInWithApple(context);
-                                    } else {
-                                      if (mounted) {
-                                        showMessage(
-                                            AppLocalizations.of(context)!
-                                                .noInternetConnection);
-                                      }
-                                    }
-                                  }),
-                                  child: Image.asset(
-                                    'assets/images/pngwing.png',
-                                    height: height * .05,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
+                              Platform.isIOS
+                                  ? Visibility(
+                                      visible: Platform.isIOS ? true : false,
+                                      // _isAppleSigninAvailable,
+                                      child: GestureDetector(
+                                        onTap: () => _networkCalls
+                                            .checkInternetConnectivity(
+                                                onSuccess: (msg) {
+                                          _internet = msg;
+                                          if (msg == true) {
+                                            _signInWithApple(context);
+                                          } else {
+                                            if (mounted) {
+                                              showMessage(
+                                                  AppLocalizations.of(context)!
+                                                      .noInternetConnection);
+                                            }
+                                          }
+                                        }),
+                                        child: Image.asset(
+                                          'assets/images/pngwing.png',
+                                          height: height * .05,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    )
+                                  : SizedBox.shrink(),
                               GestureDetector(
                                 child: Image.asset(
                                   'assets/images/google_icon.png',

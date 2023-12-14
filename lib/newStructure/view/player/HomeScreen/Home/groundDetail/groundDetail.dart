@@ -55,7 +55,7 @@ class GroundDetailState extends State<GroundDetail>
   bool? favoriteState;
   final itemSize = 100.0;
   List<Marker> allMarkers = [];
-  List indexList = [];
+  List<int> indexList = [];
   List academyIds = [];
   var id = 0;
   int date = 0;
@@ -207,6 +207,8 @@ class GroundDetailState extends State<GroundDetail>
     print(widget.detail);
     facilitySlugD =
         widget.detail['facilitySlug']!.split(',').map((e) => e.trim()).toList();
+    facilitySlugD
+        .forEach((element) => indexList.add(int.parse(element.toString())));
     super.initState();
     checkAuth();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
@@ -635,7 +637,7 @@ class GroundDetailState extends State<GroundDetail>
                                       SizedBox(
                                         height: height * 0.015,
                                       ),
-                                      Facilities(facility: facilitySlugD),
+                                      FacilitiesList(facility: indexList),
                                       SizedBox(
                                         height: height * 0.02,
                                       ),

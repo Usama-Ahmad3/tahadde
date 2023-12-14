@@ -1,15 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/constant.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
+import 'package:flutter_tahaddi/homeFile/utility.dart';
+import 'package:flutter_tahaddi/localizations.dart';
+import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/Facilities.dart';
+import 'package:flutter_tahaddi/network/network_calls.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 
-import '../../../../../../homeFile/utility.dart';
-import '../../../../../../localizations.dart';
-import '../../../../../../main.dart';
-import '../../../../../app_colors/app_colors.dart';
+class FacilitiesList extends StatefulWidget {
+  List<int> facility;
+  FacilitiesList({super.key, required this.facility});
+  @override
+  State<FacilitiesList> createState() => _FacilitiesListState();
+}
 
-class Facilities extends StatelessWidget {
-  List facility;
-  Facilities({super.key, required this.facility});
+class _FacilitiesListState extends State<FacilitiesList> {
+  List<Facilities> facilities = [];
+  bool loading = true;
+  getFacility() async {
+    await NetworkCalls().facilityList(
+        onSuccess: (detail) {
+          for (int i = 0; i < detail.length; i++) {
+            facilities.add(Facilities.fromJson(detail[i]));
+          }
+          print('jjaja$facilities');
+          setState(() {
+            loading = false;
+          });
+        },
+        onFailure: (detail) {},
+        tokenExpire: () {});
+  }
+
+  @override
+  void initState() {
+    getFacility();
+    print('kkkkkkkk');
+    print(widget.facility);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +57,9 @@ class Facilities extends StatelessWidget {
         ),
         Wrap(
           children: [
-            ...List.generate(
-                facility.isEmpty ? 5 : facility.length,
-                (index) => Padding(
+            ...List.generate(facilities.length, (index) {
+              return widget.facility.contains(facilities[index].id)
+                  ? Padding(
                       padding: EdgeInsets.symmetric(vertical: height * .008),
                       child: SizedBox(
                         width: width * 0.41,
@@ -40,59 +69,31 @@ class Facilities extends StatelessWidget {
                             CircleAvatar(
                               radius: height * 0.024,
                               backgroundColor: Colors.transparent,
-                              child: Image.asset(
-                                  facility[index] == "bathroom"
-                                      ? facilityImageS[0]
-                                      : facility[index] == 'bibs'
-                                          ? facilityImageS[1]
-                                          : facility[index] == 'car-parking'
-                                              ? facilityImageS[2]
-                                              : facility[index] == 'locker'
-                                                  ? facilityImageS[3]
-                                                  : facility[index] ==
-                                                          'metro_station'
-                                                      ? facilityImageS[4]
-                                                      : facility[index] ==
-                                                              'refree'
-                                                          ? facilityImageS[5]
-                                                          : facility[index] ==
-                                                                  'free_parking'
-                                                              ? facilityImageS[
-                                                                  6]
-                                                              : facility[index] ==
-                                                                      'masjid'
-                                                                  ? facilityImageS[
-                                                                      7]
-                                                                  : facility[index] ==
-                                                                          'market'
-                                                                      ? facilityImageS[
-                                                                          8]
-                                                                      : '' ??
-                                                                          "",
+                              child: cachedNetworkImage(
                                   height: height * .065,
                                   width: width * .15,
-                                  fit: BoxFit.contain,
+                                  cuisineImageUrl:
+                                      facilities[index].facilityImage ?? "",
+                                  imageFit: BoxFit.contain,
                                   color: MyAppState.mode == ThemeMode.light
                                       ? AppColors.black
                                       : AppColors.white),
-                              // cachedNetworkImage(
-                              //     height: height * .065,
-                              //     width: width * .15,
-                              //     cuisineImageUrl: facilityImageS[index] ?? "",
-                              //     imageFit: BoxFit.contain,
-                              //     color: MyAppState.mode == ThemeMode.light
-                              //         ? AppColors.black
-                              //         : AppColors.white),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: width * 0.015),
                               child: Text(
                                 AppLocalizations.of(context)!.locale == 'en'
-                                    ? facility[index].toString().length > 12
-                                        ? '${facility[index].toString().substring(0, 12)}..'
-                                        : facility[index]
-                                    : facilityAr[index] ?? "",
+                                    ? facilities[index].facilityName!.length >
+                                            12
+                                        ? '${facilities[index].facilityName!.substring(0, 12)}..'
+                                        : facilities[index]
+                                            .facilityName
+                                            .toString()
+                                    : facilities[index]
+                                            .facilityArabicName
+                                            .toString() ??
+                                        "",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -111,10 +112,53 @@ class Facilities extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ))
+                    )
+                  : const SizedBox.shrink();
+            })
           ],
         ),
       ],
     );
   }
 }
+// Image.asset(
+// widget.facility[index] == "bathroom"
+// ? facilityImageS[0]
+//     : widget.facility[index] == 'bibs'
+// ? facilityImageS[1]
+//     : widget.facility[index] ==
+// 'car-parking'
+// ? facilityImageS[2]
+//     : widget.facility[index] ==
+// 'locker'
+// ? facilityImageS[3]
+//     : widget.facility[index] ==
+// 'metro_station'
+// ? facilityImageS[4]
+//     : widget.facility[
+// index] ==
+// 'refree'
+// ? facilityImageS[5]
+//     : widget.facility[
+// index] ==
+// 'free_parking'
+// ? facilityImageS[
+// 6]
+//     : widget.facility[
+// index] ==
+// 'masjid'
+// ? facilityImageS[
+// 7]
+//     : widget.facility[
+// index] ==
+// 'market'
+// ? facilityImageS[
+// 8]
+//     : '' ??
+// "",
+// height: height * .065,
+// width: width * .15,
+// fit: BoxFit.contain,
+// color: MyAppState.mode == ThemeMode.light
+// ? AppColors.black
+// : AppColors.white),

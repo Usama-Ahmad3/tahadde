@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/modelClass/Facilities.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/priceScreen3.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/select_sport0.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
@@ -40,9 +42,11 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
   bool loading = false;
   bool internet = true;
   bool indoor = false;
+  bool facilityLoading = true;
   bool outdoor = false;
   final bool _isImageLoading = false;
   List<File> image = <File>[];
+  List<Facilities> facilities = [];
   late List<dynamic> pitch_Id;
   final NetworkCalls _networkCalls = NetworkCalls();
   final arabicFocus = FocusNode();
@@ -50,7 +54,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
   final descriptionFocus = FocusNode();
   final descriptionAFocus = FocusNode();
   final _formKey = GlobalKey<FormState>();
-  List<int> indexList = [];
+  List indexList = [];
   Future<void> _showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -181,6 +185,21 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
         });
   }
 
+  getFacility() async {
+    await _networkCalls.facilityList(
+        onSuccess: (detail) {
+          for (int i = 0; i < detail.length; i++) {
+            facilities.add(Facilities.fromJson(detail[i]));
+          }
+          print('jjaja$facilities');
+          setState(() {
+            facilityLoading = false;
+          });
+        },
+        onFailure: (detail) {},
+        tokenExpire: () {});
+  }
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -194,6 +213,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
   @override
   void initState() {
     _networkCalls.getKey('token');
+    getFacility();
     super.initState();
   }
 
@@ -359,7 +379,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                               height: sizeHeight * 0.01,
                             ),
                             TextFieldWidget(
-                              // textDirection: TextDirection.rtl,
+                                // textDirection: TextDirection.rtl,
                                 controller: _nameControllerArabic,
                                 hintText:
                                     AppLocalizations.of(context)!.academyNameA,
@@ -489,7 +509,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                               height: sizeHeight * 0.01,
                             ),
                             textFieldWidgetMulti(
-                              // textDirection: TextDirection.rtl,
+                                // textDirection: TextDirection.rtl,
                                 controller: _descriptionArabic,
                                 hintText: '',
                                 focus: descriptionAFocus,
@@ -676,147 +696,171 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                             SizedBox(
                               height: sizeHeight * 0.01,
                             ),
-                            SizedBox(
-                              height: sizeHeight * .13,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: facility.length,
-                                  itemBuilder:
-                                      (BuildContext context, int blockIdx) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            if (indexList.contains(blockIdx)) {
-                                              indexList.remove(blockIdx);
-                                            } else {
-                                              indexList.add(blockIdx);
-                                            }
-                                          });
-                                        },
-                                        child: indexList.contains(blockIdx)
-                                            ? Container(
-                                                width: sizeWidth * .28,
-                                                height: sizeWidth * .07,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: const Color(
-                                                          0XFFA3A3A3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: AppColors.appThemeColor
-                                                      .withOpacity(0.7),
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    flaxibleGap(
-                                                      2,
+                            facilityLoading
+                                ? CircularProgressIndicator()
+                                : SizedBox(
+                                    height: sizeHeight * .13,
+                                    child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: facilities.length,
+                                        itemBuilder: (BuildContext context,
+                                            int blockIdx) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  print('index$indexList');
+                                                  if (indexList.contains(
+                                                      facilities[blockIdx]
+                                                          .id)) {
+                                                    indexList.remove(
+                                                        facilities[blockIdx]
+                                                            .id);
+                                                  } else {
+                                                    indexList.add(
+                                                        facilities[blockIdx]
+                                                            .id);
+                                                  }
+                                                  print('indexAfter$indexList');
+                                                });
+                                              },
+                                              child: indexList.contains(
+                                                      facilities[blockIdx].id)
+                                                  ? Container(
+                                                      width: sizeWidth * .28,
+                                                      height: sizeWidth * .07,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: const Color(
+                                                                0XFFA3A3A3)),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        color: AppColors
+                                                            .appThemeColor
+                                                            .withOpacity(0.7),
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          flaxibleGap(
+                                                            2,
+                                                          ),
+                                                          Image.network(
+                                                            facilities[blockIdx]
+                                                                .facilityImage
+                                                                .toString(),
+                                                            width:
+                                                                sizeWidth * .1,
+                                                            height:
+                                                                sizeWidth * .1,
+                                                            fit: BoxFit.fill,
+                                                          ),
+                                                          flaxibleGap(
+                                                            1,
+                                                          ),
+                                                          AppLocalizations.of(context)!
+                                                                      .locale ==
+                                                                  "en"
+                                                              ? Text(
+                                                                  facilities[blockIdx]
+                                                                      .facilityName
+                                                                      .toString(),
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .titleSmall!
+                                                                      .copyWith(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color: const Color(
+                                                                              0XFF424242),
+                                                                          decoration: TextDecoration
+                                                                              .none))
+                                                              : Text(
+                                                                  facilities[blockIdx]
+                                                                      .facilityArabicName
+                                                                      .toString(),
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .titleSmall!
+                                                                      .copyWith(
+                                                                          fontFamily: 'Poppins',
+                                                                          color: const Color(0XFF424242),
+                                                                          decoration: TextDecoration.none)),
+                                                          flaxibleGap(
+                                                            1,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  : Container(
+                                                      width: sizeWidth * .28,
+                                                      height: sizeWidth * .07,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: const Color(
+                                                                0XFFA3A3A3)),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        color: Colors.white,
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          flaxibleGap(
+                                                            2,
+                                                          ),
+                                                          Image.network(
+                                                            facilities[blockIdx]
+                                                                .facilityImage
+                                                                .toString(),
+                                                            width:
+                                                                sizeWidth * .1,
+                                                            height:
+                                                                sizeWidth * .1,
+                                                            fit: BoxFit.fill,
+                                                          ),
+                                                          flaxibleGap(
+                                                            1,
+                                                          ),
+                                                          AppLocalizations.of(context)!
+                                                                      .locale ==
+                                                                  "en"
+                                                              ? Text(
+                                                                  facilities[blockIdx]
+                                                                      .facilityName
+                                                                      .toString(),
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .titleSmall!
+                                                                      .copyWith(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color: const Color(
+                                                                              0XFF424242),
+                                                                          decoration: TextDecoration
+                                                                              .none))
+                                                              : Text(
+                                                                  facilities[blockIdx]
+                                                                      .facilityArabicName
+                                                                      .toString(),
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .titleSmall!
+                                                                      .copyWith(
+                                                                          fontFamily: 'Poppins',
+                                                                          color: const Color(0XFF424242),
+                                                                          decoration: TextDecoration.none)),
+                                                          flaxibleGap(
+                                                            1,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    Image.asset(
-                                                      facilityImageS[blockIdx],
-                                                      width: sizeWidth * .1,
-                                                      height: sizeWidth * .1,
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                    AppLocalizations.of(context)!
-                                                                .locale ==
-                                                            "en"
-                                                        ? Text(facility[blockIdx],
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .titleSmall!
-                                                                .copyWith(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    color: const Color(
-                                                                        0XFF424242),
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none))
-                                                        : Text(facilityAr[blockIdx],
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .titleSmall!
-                                                                .copyWith(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    color: const Color(
-                                                                        0XFF424242),
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none)),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            : Container(
-                                                width: sizeWidth * .28,
-                                                height: sizeWidth * .07,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: const Color(
-                                                          0XFFA3A3A3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: Colors.white,
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    flaxibleGap(
-                                                      2,
-                                                    ),
-                                                    Image.asset(
-                                                      facilityImage[blockIdx],
-                                                      width: sizeWidth * .1,
-                                                      height: sizeWidth * .1,
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                    AppLocalizations.of(context)!
-                                                                .locale ==
-                                                            "en"
-                                                        ? Text(facility[blockIdx],
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .titleSmall!
-                                                                .copyWith(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    color: const Color(
-                                                                        0XFF424242),
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none))
-                                                        : Text(facilityAr[blockIdx],
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .titleSmall!
-                                                                .copyWith(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    color: const Color(
-                                                                        0XFF424242),
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none)),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                      ),
-                                    );
-                                  }),
-                            ),
+                                            ),
+                                          );
+                                        }),
+                                  ),
                             SizedBox(
                               height: sizeHeight * 0.02,
                             ),
@@ -838,11 +882,12 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                                             i < indexList.length;
                                             i++) {
                                           _facility =
-                                              "$_facility${facility[indexList[i]]},";
+                                              "$_facility${indexList[i]},";
                                         }
                                         _facility = _facility.substring(
                                             0, _facility.length - 1);
                                         _facility = _facility.substring(0);
+                                        print("_facility$_facility");
                                         widget.detail.pitchDetailModel!
                                             .facility = _facility;
                                         widget.detail.pitchDetailModel!
@@ -884,6 +929,8 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                                             });
                                           },
                                         );
+                                        print(widget.detail.pitchDetailModel!
+                                            .pitchNameAr);
                                         navigateToPriceScreen(widget.detail);
                                         setState(() {
                                           loading = false;

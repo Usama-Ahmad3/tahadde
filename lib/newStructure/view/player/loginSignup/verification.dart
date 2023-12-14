@@ -127,8 +127,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       "last_name": widget.detail.lastName,
       "email": widget.detail.email,
       "contact_number": widget.detail.phoneNumber,
-      "role":
-          widget.detail.player == 'Owner' ? 'pitchowner' : widget.detail.player,
+      "role": widget.detail.player == 'Owner' ? 'pitchowner' : 'player',
       "country": "UAE",
       "countryCode": widget.detail.countryCode,
       "password": base64.encode(utf8.encode(widget.detail.password.toString())),

@@ -8,6 +8,7 @@ import '../../../../../../homeFile/routingConstant.dart';
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
+import '../../../../../../modelClass/facilities.dart';
 import '../../../../../../network/network_calls.dart';
 import '../../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../../../app_colors/app_colors.dart';
@@ -32,6 +33,7 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
   String gamePlay = "";
   bool loading = false;
+  bool facilityLoading = true;
   List facilitySlugD = [];
   bool internet = true;
   bool indoor = false;
@@ -44,7 +46,23 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
   final codeFocus = FocusNode();
   final _formKey = GlobalKey<FormState>();
   PitchDetailModel? detailSportsModel;
-  List<String> indexList = [];
+  List<int> indexList = [];
+  List<Facilities> facilities = [];
+  getFacility() async {
+    await _networkCalls.facilityList(
+        onSuccess: (detail) {
+          for (int i = 0; i < detail.length; i++) {
+            facilities.add(Facilities.fromJson(detail[i]));
+          }
+          print('jjaja$facilities');
+          setState(() {
+            facilityLoading = false;
+          });
+        },
+        onFailure: (detail) {},
+        tokenExpire: () {});
+  }
+
   // editVenue(Map detail) async {
   //   await _networkCalls.editVenue(
   //     id: widget.detail["id"].toString(),
@@ -95,6 +113,7 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
   @override
   void initState() {
     super.initState();
+    getFacility();
     _nameController.text = widget.detail.academyNameEnglish.toString();
     _nameControllerArabic.text = widget.detail.academyNameArabic.toString();
     _description.text = widget.detail.descriptionEnglish.toString();
@@ -110,7 +129,8 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
     }
     List facilitySlugD =
         widget.detail.facilitySlug!.split(',').map((e) => e.trim()).toList();
-    facilitySlugD.forEach((element) => indexList.add(element));
+    facilitySlugD
+        .forEach((element) => indexList.add(int.parse(element.toString())));
     print(facility);
     print(facilitySlugD);
     // widget.detail["detail"].venueDetails.facility
@@ -487,154 +507,172 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
                         SizedBox(
                           height: sizeHeight * 0.01,
                         ),
-                        SizedBox(
-                          height: sizeHeight * .13,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: facility.length,
-                              itemBuilder:
-                                  (BuildContext context, int blockIdx) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        if (indexList
-                                            .contains(facility[blockIdx])) {
-                                          indexList.remove(facility[blockIdx]);
-                                        } else {
-                                          indexList.add(facility[blockIdx]);
-                                        }
-                                      });
-                                    },
-                                    child: indexList
-                                            .contains(facility[blockIdx])
-                                        ? Container(
-                                            width: sizeWidth * .28,
-                                            height: sizeWidth * .07,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color:
-                                                      const Color(0XFFA3A3A3)),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: AppColors.appThemeColor
-                                                  .withOpacity(0.7),
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                flaxibleGap(
-                                                  2,
+
+                        ///facilities
+                        facilityLoading == false
+                            ? SizedBox(
+                                height: sizeHeight * .13,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: facilities.length,
+                                    itemBuilder:
+                                        (BuildContext context, int blockIdx) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              print(indexList);
+                                              if (indexList.contains(
+                                                  facilities[blockIdx].id)) {
+                                                indexList.remove(
+                                                    facilities[blockIdx]
+                                                        .id!
+                                                        .toInt());
+                                              } else {
+                                                indexList.add(
+                                                    facilities[blockIdx]
+                                                        .id!
+                                                        .toInt());
+                                              }
+                                              print('indexAfter$indexList');
+                                            });
+                                          },
+                                          child: indexList.contains(
+                                                  facilities[blockIdx].id)
+                                              ? Container(
+                                                  width: sizeWidth * .28,
+                                                  height: sizeWidth * .07,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: const Color(
+                                                            0XFFA3A3A3)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: AppColors
+                                                        .appThemeColor
+                                                        .withOpacity(0.7),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      flaxibleGap(
+                                                        2,
+                                                      ),
+                                                      Image.network(
+                                                        facilities[blockIdx]
+                                                            .facilityImage
+                                                            .toString(),
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? null
+                                                            : AppColors.white,
+                                                        width: sizeWidth * .1,
+                                                        height: sizeWidth * .1,
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                      AppLocalizations.of(context)!
+                                                                  .locale ==
+                                                              "en"
+                                                          ? Text(facilities[blockIdx].facilityName.toString(),
+                                                              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  color: MyAppState.mode == ThemeMode.light
+                                                                      ? const Color(
+                                                                          0XFF424242)
+                                                                      : AppColors
+                                                                          .white,
+                                                                  decoration: TextDecoration
+                                                                      .none))
+                                                          : Text(
+                                                              facilities[blockIdx]
+                                                                  .facilityArabicName
+                                                                  .toString(),
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleSmall!
+                                                                  .copyWith(
+                                                                      fontFamily: 'Poppins',
+                                                                      color: MyAppState.mode == ThemeMode.light ? const Color(0XFF424242) : AppColors.white,
+                                                                      decoration: TextDecoration.none)),
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              : Container(
+                                                  width: sizeWidth * .28,
+                                                  height: sizeWidth * .07,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: const Color(
+                                                            0XFFA3A3A3)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: AppColors.white,
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      flaxibleGap(
+                                                        2,
+                                                      ),
+                                                      Image.network(
+                                                        facilities[blockIdx]
+                                                            .facilityImage
+                                                            .toString(),
+                                                        width: sizeWidth * .1,
+                                                        height: sizeWidth * .1,
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                      AppLocalizations.of(context)!.locale == "en"
+                                                          ? Text(
+                                                              facilities[blockIdx]
+                                                                  .facilityName
+                                                                  .toString(),
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleSmall!
+                                                                  .copyWith(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      color: const Color(
+                                                                          0XFF424242),
+                                                                      decoration:
+                                                                          TextDecoration
+                                                                              .none))
+                                                          : Text(
+                                                              facilities[blockIdx]
+                                                                  .facilityArabicName
+                                                                  .toString(),
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleSmall!
+                                                                  .copyWith(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      color: const Color(0XFF424242),
+                                                                      decoration: TextDecoration.none)),
+                                                      flaxibleGap(
+                                                        1,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                Image.asset(
-                                                  facilityImageS[blockIdx],
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? null
-                                                      : AppColors.white,
-                                                  width: sizeWidth * .1,
-                                                  height: sizeWidth * .1,
-                                                  fit: BoxFit.fill,
-                                                ),
-                                                flaxibleGap(
-                                                  1,
-                                                ),
-                                                AppLocalizations.of(context)!.locale == "en"
-                                                    ? Text(facility[blockIdx],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleSmall!
-                                                            .copyWith(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: MyAppState.mode == ThemeMode.light
-                                                                    ? const Color(
-                                                                        0XFF424242)
-                                                                    : AppColors
-                                                                        .white,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .none))
-                                                    : Text(facilityAr[blockIdx],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleSmall!
-                                                            .copyWith(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: MyAppState.mode ==
-                                                                        ThemeMode.light
-                                                                    ? const Color(0XFF424242)
-                                                                    : AppColors.white,
-                                                                decoration: TextDecoration.none)),
-                                                flaxibleGap(
-                                                  1,
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        : Container(
-                                            width: sizeWidth * .28,
-                                            height: sizeWidth * .07,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color:
-                                                      const Color(0XFFA3A3A3)),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: AppColors.white,
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                flaxibleGap(
-                                                  2,
-                                                ),
-                                                Image.asset(
-                                                  facilityImage[blockIdx],
-                                                  width: sizeWidth * .1,
-                                                  height: sizeWidth * .1,
-                                                  fit: BoxFit.fill,
-                                                ),
-                                                flaxibleGap(
-                                                  1,
-                                                ),
-                                                AppLocalizations.of(context)!
-                                                            .locale ==
-                                                        "en"
-                                                    ? Text(facility[blockIdx],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleSmall!
-                                                            .copyWith(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: const Color(
-                                                                    0XFF424242),
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .none))
-                                                    : Text(facilityAr[blockIdx],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleSmall!
-                                                            .copyWith(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: const Color(
-                                                                    0XFF424242),
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .none)),
-                                                flaxibleGap(
-                                                  1,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                  ),
-                                );
-                              }),
-                        ),
+                                        ),
+                                      );
+                                    }),
+                              )
+                            : const CircularProgressIndicator(),
                         SizedBox(
                           height: sizeHeight * 0.02,
                         ),

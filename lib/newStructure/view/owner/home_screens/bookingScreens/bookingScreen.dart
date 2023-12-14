@@ -171,9 +171,8 @@ class _BookingScreenState extends State<BookingScreen> {
                                                       DateFormat.yMMMMEEEEd(
                                                               'en_US')
                                                           .format(BookingDate ??
-                                                              DateTime.parse(
-                                                                  date["currentDate"] ??
-                                                                      '')),
+                                                              DateTime.now() ??
+                                                              ''),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyMedium!
@@ -194,8 +193,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                                       DateFormat.yMMMMEEEEd(
                                                               'ar_SA')
                                                           .format(BookingDate ??
-                                                              DateTime.parse(date[
-                                                                  "currentDate"])),
+                                                              DateTime.now()),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyMedium!

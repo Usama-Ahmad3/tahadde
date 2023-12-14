@@ -335,7 +335,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
           onSuccess: (msg) {
             setState(() {
               country = msg[1];
-              locationController.text = msg[0].toString().substring(9);
+              locationController.text = msg[0].toString().substring(10);
               isAddressLoading = false;
             });
           },

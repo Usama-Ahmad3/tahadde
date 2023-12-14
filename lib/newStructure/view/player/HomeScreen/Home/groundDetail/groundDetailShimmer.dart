@@ -178,7 +178,7 @@ class GroundShimmer {
 
                             SizedBox(
                                 height: height * 0.2,
-                                child: Facilities(facility: [])),
+                                child: FacilitiesList(facility: [])),
 
                             ///location
                             Padding(
