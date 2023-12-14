@@ -229,26 +229,23 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     unselectedColor: AppColors.grey,
                   ),
                   SalomonBottomBarItem(
-                    icon:cartModel.length == 0? Badge(
+                    icon: Badge(
                       alignment: Alignment.topRight,
                       textColor: AppColors.red,
                       label: Text(
                         cartModel.length.toString(),
                         style: TextStyle(color: AppColors.white),
                       ),
-                      child:const SizedBox(
+                      child: const SizedBox(
                           height: 23,
                           width: 22,
                           child: Icon(Icons.add_shopping_cart)),
-                    ):const SizedBox(
-                        height: 23,
-                        width: 22,
-                        child: Icon(Icons.add_shopping_cart)),
+                    ),
                     title: Text(
                       AppLocalizations.of(context)!.cart,
                       style: TextStyle(color: AppColors.white),
                     ),
-                    activeIcon:cartModel.length == 0? Badge(
+                    activeIcon: Badge(
                       alignment: Alignment.topRight,
                       textColor: AppColors.red,
                       label: Text(
@@ -263,7 +260,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                           color: Colors.white,
                         ),
                       ),
-                    ):SizedBox.shrink(),
+                    ),
                     selectedColor: AppColors.appThemeColor,
                     unselectedColor: AppColors.grey,
                   ),
