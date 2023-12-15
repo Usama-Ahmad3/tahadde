@@ -283,7 +283,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "currentPlayers":
             MessageLookupByLibrary.simpleMessage("CURRENT PLAYERS"),
         "currentpassword":
-            MessageLookupByLibrary.simpleMessage("Current password"),
+            MessageLookupByLibrary.simpleMessage("Current Password"),
         "dateTime": MessageLookupByLibrary.simpleMessage("DATE AND TIME"),
         "dateofBirth": MessageLookupByLibrary.simpleMessage("Date of Birth"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
@@ -437,7 +437,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "To join the team you need to create an account or login"),
         "newC": MessageLookupByLibrary.simpleMessage("New"),
         "newPlayer": MessageLookupByLibrary.simpleMessage("New Player"),
-        "newpassword": MessageLookupByLibrary.simpleMessage("New password"),
+        "newpassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noBookingsFound":

@@ -560,7 +560,7 @@ class AppLocalizations {
   }
 
   String get currentpassword {
-    return Intl.message('currentpassword', name: 'currentpassword');
+    return Intl.message('Current Password', name: 'currentpassword');
   }
 
   String get support {
@@ -572,7 +572,7 @@ class AppLocalizations {
   }
 
   String get newpassword {
-    return Intl.message('newpassword', name: 'newpassword');
+    return Intl.message('New Password', name: 'newpassword');
   }
 
   String get confermpassword {
