@@ -308,9 +308,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you want to leave the team"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "mins": MessageLookupByLibrary.simpleMessage("mins"),
+        "shop": MessageLookupByLibrary.simpleMessage("Shop"),
+        "shopEmpty":
+            MessageLookupByLibrary.simpleMessage("Nothing In The Shop"),
         "thankyouAcademy": MessageLookupByLibrary.simpleMessage(
             "Thank You For Creating Academy"),
         "uploadPDF": MessageLookupByLibrary.simpleMessage("Upload PDF"),
+        "approveByAdmin":
+            MessageLookupByLibrary.simpleMessage("Approved By Admin"),
         "notify": MessageLookupByLibrary.simpleMessage(
             "We will notify you once it’s done."),
         "underReview":
@@ -480,11 +485,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordhasbeenreset":
             MessageLookupByLibrary.simpleMessage("Password has been reset"),
         "payNow": MessageLookupByLibrary.simpleMessage("Pay Now"),
+        "innovativeBookings":
+            MessageLookupByLibrary.simpleMessage("My Innovative Bookings"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "paymentSuccessful":
             MessageLookupByLibrary.simpleMessage("PAYMENT SUCCESSFUL !"),
         "paymentSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Payment has been successfully made. For more details view booking summary"),
+        "paymentSuccessfullyInnovative": MessageLookupByLibrary.simpleMessage(
+            "Payment has been successfully made. For more details view booking"),
         "paymentSummary":
             MessageLookupByLibrary.simpleMessage("Payment Summary"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),

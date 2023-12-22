@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
 import '../../../../../../homeFile/routingConstant.dart';
@@ -12,7 +13,6 @@ import '../../../../../../localizations.dart';
 import '../../../../../../modelClass/my_venue_list_model_class.dart';
 import '../../../../../../network/network_calls.dart';
 import '../../../../../app_colors/app_colors.dart';
-import '../../../../player/HomeScreen/Home/shimmerWidgets.dart';
 import '../../../../../utils/utils.dart';
 import 'view_all.dart';
 
@@ -28,6 +28,7 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
   bool _isLoading = true;
   List<MyVenueModelClass> _pitchDetail = [];
   List<AcademyModel> _academyDetail = [];
+  List<InnovativeHub> _innovativeDetail = [];
   List<AcademyModel> _academyModel = [];
   bool _internet = true;
   int initial = 0;
@@ -64,6 +65,30 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
           setState(() {
             // _isLoading = false;
             _academyDetail = event;
+            // _isLoading = false;
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
+  loadAllInnovative() async {
+    await _networkCalls.allInnovative(
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            // _isLoading = false;
+            _innovativeDetail = event;
             _isLoading = false;
           });
         }
@@ -121,8 +146,10 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
         _isLoading = false;
         loadMyPitch();
         loadAllAcademies();
+        loadAllInnovative();
         // loadVerifiedAcademies();
         print(_academyDetail.length);
+        print(_innovativeDetail.length);
       } else {
         setState(() {
           _isLoading = false;
@@ -627,7 +654,7 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                               _isLoading = true;
                                             });
                                           }
-                                          loadMyPitch();
+                                          loadAllInnovative();
                                         } else {
                                           setState(() {});
                                         }
@@ -691,177 +718,192 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                                                           0xffffffff))),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    height: sizeHeight * 0.22,
-                                                  ),
-                                                  Center(
-                                                    child: Text(
-                                                      'no events available',
-                                                      // AppLocalizations.of(context)!.noAcademy,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .copyWith(
-                                                            color: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? AppColors
-                                                                    .black
-                                                                : AppColors
-                                                                    .white,
-                                                          ),
-                                                    ),
-                                                  ),
+                                                  _innovativeDetail.isEmpty ||
+                                                          _innovativeDetail ==
+                                                              null
+                                                      ? Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height:
+                                                                  sizeHeight *
+                                                                      0.22,
+                                                            ),
+                                                            Center(
+                                                              child: Text(
+                                                                'no events available',
+                                                                // AppLocalizations.of(context)!.noAcademy,
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? AppColors
+                                                                              .black
+                                                                          : AppColors
+                                                                              .white,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      :
 
-                                                  ///list of academies
-                                                  // ...List.generate(
-                                                  //   _pitchDetail.length > 2
-                                                  //       ? 1
-                                                  //       : _pitchDetail.length,
-                                                  //   (index) => InkWell(
-                                                  //     onTap: () {
-                                                  //       navigateToSports();
-                                                  //     },
-                                                  //     child: Padding(
-                                                  //       padding: EdgeInsets
-                                                  //           .symmetric(
-                                                  //               vertical:
-                                                  //                   sizeHeight *
-                                                  //                       0.01),
-                                                  //       child: Container(
-                                                  //         width:
-                                                  //             sizeWidth * 0.9,
-                                                  //         decoration:
-                                                  //             BoxDecoration(
-                                                  //           color: MyAppState
-                                                  //                       .mode ==
-                                                  //                   ThemeMode
-                                                  //                       .light
-                                                  //               ? AppColors
-                                                  //                   .grey200
-                                                  //               : AppColors
-                                                  //                   .containerColorW12,
-                                                  //           borderRadius:
-                                                  //               BorderRadius
-                                                  //                   .circular(
-                                                  //                       15),
-                                                  //         ),
-                                                  //         child: Column(
-                                                  //           crossAxisAlignment:
-                                                  //               CrossAxisAlignment
-                                                  //                   .center,
-                                                  //           mainAxisAlignment:
-                                                  //               MainAxisAlignment
-                                                  //                   .end,
-                                                  //           children: [
-                                                  //             Container(
-                                                  //               decoration: BoxDecoration(
-                                                  //                   borderRadius:
-                                                  //                       BorderRadius.circular(
-                                                  //                           12)),
-                                                  //               child:
-                                                  //                   DefaultTextStyle(
-                                                  //                 style: Theme.of(
-                                                  //                         context)
-                                                  //                     .textTheme
-                                                  //                     .bodyMedium!
-                                                  //                     .copyWith(
-                                                  //                         color: MyAppState.mode == ThemeMode.light
-                                                  //                             ? AppColors.black
-                                                  //                             : AppColors.white),
-                                                  //                 child: Column(
-                                                  //                   crossAxisAlignment:
-                                                  //                       CrossAxisAlignment
-                                                  //                           .center,
-                                                  //                   mainAxisAlignment:
-                                                  //                       MainAxisAlignment
-                                                  //                           .start,
-                                                  //                   children: [
-                                                  //                     Padding(
-                                                  //                       padding: EdgeInsets.symmetric(
-                                                  //                           horizontal: sizeWidth *
-                                                  //                               0.02,
-                                                  //                           vertical:
-                                                  //                               sizeHeight * 0.005),
-                                                  //                       child:
-                                                  //                           Row(
-                                                  //                         mainAxisAlignment:
-                                                  //                             MainAxisAlignment.spaceBetween,
-                                                  //                         children: [
-                                                  //                           Text('${AppLocalizations.of(context)!.status}:'),
-                                                  //                           Text(
-                                                  //                             _pitchDetail[index].isVerified! ? AppLocalizations.of(context)!.verified : AppLocalizations.of(context)!.inReview,
-                                                  //                             style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
-                                                  //                           ),
-                                                  //                         ],
-                                                  //                       ),
-                                                  //                     ),
-                                                  //                     ClipRRect(
-                                                  //                       borderRadius:
-                                                  //                           BorderRadius.circular(12),
-                                                  //                       child:
-                                                  //                           cachedNetworkImage(
-                                                  //                         height:
-                                                  //                             sizeHeight * 0.193,
-                                                  //                         imageFit:
-                                                  //                             BoxFit.fill,
-                                                  //                         width: MediaQuery.of(context)
-                                                  //                             .size
-                                                  //                             .width,
-                                                  //                         cuisineImageUrl:
-                                                  //                             _pitchDetail[index].pitchImage.toString() ?? "",
-                                                  //                       ),
-                                                  //                     ),
-                                                  //                     SizedBox(
-                                                  //                       height: sizeHeight *
-                                                  //                           0.005,
-                                                  //                     ),
-                                                  //                     Row(
-                                                  //                       mainAxisAlignment:
-                                                  //                           MainAxisAlignment.center,
-                                                  //                       children: [
-                                                  //                         cachedNetworkImage(
-                                                  //                           height:
-                                                  //                               sizeHeight * 0.02,
-                                                  //                           imageFit:
-                                                  //                               BoxFit.fill,
-                                                  //                           width:
-                                                  //                               sizeWidth * 0.05,
-                                                  //                           cuisineImageUrl:
-                                                  //                               _pitchDetail[index].sportImage.toString() ?? "",
-                                                  //                         ),
-                                                  //                         SizedBox(
-                                                  //                           width:
-                                                  //                               sizeWidth * 0.01,
-                                                  //                         ),
-                                                  //                         Text(_pitchDetail[index]
-                                                  //                             .venueName
-                                                  //                             .toString()),
-                                                  //                       ],
-                                                  //                     ),
-                                                  //                     Padding(
-                                                  //                       padding: EdgeInsets.only(
-                                                  //                           bottom: sizeHeight *
-                                                  //                               0.008,
-                                                  //                           left:
-                                                  //                               sizeWidth * 0.007),
-                                                  //                       child: Text(
-                                                  //                           _pitchDetail[index]
-                                                  //                               .location!,
-                                                  //                           style:
-                                                  //                               Theme.of(context).textTheme.titleSmall),
-                                                  //                     ),
-                                                  //                   ],
-                                                  //                 ),
-                                                  //               ),
-                                                  //             ),
-                                                  //           ],
-                                                  //         ),
-                                                  //       ),
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
+                                                      ///list of academies
+                                                      Column(
+                                                          children: [
+                                                            ...List.generate(
+                                                                _innovativeDetail
+                                                                            .length >
+                                                                        2
+                                                                    ? 3
+                                                                    : _innovativeDetail
+                                                                        .length,
+                                                                (index) {
+                                                              print('hi');
+                                                              return InkWell(
+                                                                onTap: () {
+                                                                  dynamic
+                                                                      detail = {
+                                                                    "academy_id":
+                                                                        _innovativeDetail[index].innovativehubId ??
+                                                                            0,
+                                                                    "Academy_NameEnglish":
+                                                                        _innovativeDetail[index]
+                                                                            .nameEnglish,
+                                                                    "Academy_NameArabic":
+                                                                        _innovativeDetail[index]
+                                                                            .nameArabic,
+                                                                    "descriptionEnglish":
+                                                                        _innovativeDetail[index]
+                                                                            .descriptionEnglish,
+                                                                    "descriptionArabic":
+                                                                        _innovativeDetail[index]
+                                                                            .descriptionArabic,
+                                                                    "gameplaySlug":
+                                                                        _innovativeDetail[index]
+                                                                            .sportSlug,
+                                                                    "academy_image":
+                                                                        [
+                                                                      _innovativeDetail[
+                                                                              index]
+                                                                          .image
+                                                                    ],
+                                                                    'latitude':
+                                                                        _innovativeDetail[index]
+                                                                            .latitude,
+                                                                    'longitude':
+                                                                        _innovativeDetail[index]
+                                                                            .longitude,
+                                                                    'Academy_Location':
+                                                                        _innovativeDetail[index]
+                                                                            .location,
+                                                                  };
+                                                                  navigateToGroundDetail(
+                                                                      detail);
+                                                                },
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.symmetric(
+                                                                      vertical:
+                                                                          sizeHeight *
+                                                                              0.01),
+                                                                  child:
+                                                                      Container(
+                                                                    width:
+                                                                        sizeWidth *
+                                                                            0.9,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? AppColors
+                                                                              .grey200
+                                                                          : AppColors
+                                                                              .containerColorW12,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              15),
+                                                                    ),
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .end,
+                                                                      children: [
+                                                                        Container(
+                                                                          decoration:
+                                                                              BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                                                                          child:
+                                                                              DefaultTextStyle(
+                                                                            style:
+                                                                                Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
+                                                                            child:
+                                                                                Column(
+                                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.02, vertical: sizeHeight * 0.005),
+                                                                                  child: Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    children: [
+                                                                                      Text('${AppLocalizations.of(context)!.status}:'),
+                                                                                      Text(
+                                                                                        AppLocalizations.of(context)!.approveByAdmin,
+                                                                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.redAccent),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                                ClipRRect(
+                                                                                  borderRadius: BorderRadius.circular(12),
+                                                                                  child: cachedNetworkImage(
+                                                                                    height: sizeHeight * 0.193,
+                                                                                    imageFit: BoxFit.fill,
+                                                                                    width: MediaQuery.of(context).size.width,
+                                                                                    cuisineImageUrl: '${_innovativeDetail[index].image}' ?? "",
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(
+                                                                                  height: sizeHeight * 0.005,
+                                                                                ),
+                                                                                Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    cachedNetworkImage(
+                                                                                      height: sizeHeight * 0.02,
+                                                                                      imageFit: BoxFit.fill,
+                                                                                      width: sizeWidth * 0.05,
+                                                                                      cuisineImageUrl: _innovativeDetail[index].sportImage.toString() ?? "",
+                                                                                    ),
+                                                                                    SizedBox(
+                                                                                      width: sizeWidth * 0.01,
+                                                                                    ),
+                                                                                    Text(_innovativeDetail[index].sportSlug.toString()),
+                                                                                  ],
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsets.only(bottom: sizeHeight * 0.008, left: sizeWidth * 0.007),
+                                                                                  child: Text(_innovativeDetail[index].location!, style: Theme.of(context).textTheme.titleSmall),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }),
+                                                          ],
+                                                        ),
                                                   SizedBox(
                                                     height: sizeHeight * 0.02,
                                                   ),
@@ -1019,5 +1061,17 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
 
   void navigateToSports() {
     Navigator.pushNamed(context, RouteNames.selectSport, arguments: true);
+  }
+
+  void navigateToGroundDetail(Map detail) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GroundDetail(
+            detail: detail,
+            navigateFromInovative: true,
+          ),
+        ));
+    // Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
   }
 }

@@ -459,7 +459,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "orSignUpWith": MessageLookupByLibrary.simpleMessage("أو اشترك مع"),
         "organisedby": MessageLookupByLibrary.simpleMessage("المنظم"),
         "ourPolicy": MessageLookupByLibrary.simpleMessage("سياستنا"),
+        "approveByAdmin": MessageLookupByLibrary.simpleMessage(
+            "تمت الموافقة عليه من قبل المشرف"),
         "outdoor": MessageLookupByLibrary.simpleMessage("ملعب خارجي"),
+        "shop": MessageLookupByLibrary.simpleMessage("محل"),
+        "shopEmpty": MessageLookupByLibrary.simpleMessage("لا شيء في المحل"),
         "paidTotal": MessageLookupByLibrary.simpleMessage("مجموع المدفوع"),
         "password": MessageLookupByLibrary.simpleMessage("كلمه المرور"),
         "passwordMismatch":
@@ -469,11 +473,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordhasbeenreset":
             MessageLookupByLibrary.simpleMessage("تم إعادة تعيين كلمة السر"),
         "payNow": MessageLookupByLibrary.simpleMessage("ادفع الآن"),
+        "innovativeBookings":
+            MessageLookupByLibrary.simpleMessage("حجوزاتي المبتكرة"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "paymentSuccessful":
             MessageLookupByLibrary.simpleMessage("تمت عملية الدفع بنجاح!"),
         "paymentSuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم الدفع بنجاح للمزيد من التفاصيل قم بعرض ملخص الحجز."),
+        "paymentSuccessfullyInnovative": MessageLookupByLibrary.simpleMessage(
+            "تم الدفع بنجاح. لمزيد من التفاصيل عرض الحجز"),
         "paymentSummary": MessageLookupByLibrary.simpleMessage("ملخص الدفع"),
         "pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
         "perPlayer": MessageLookupByLibrary.simpleMessage("سعر اللاعب"),

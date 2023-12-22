@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/shop_screen/shop_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../constant.dart';
@@ -109,6 +110,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
     NotificationScreen(
       player: false,
     ),
+    const ShopScreen(),
     ProfileDetailScreen(playerTag: false),
   ];
 
@@ -185,6 +187,21 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       activeIcon: Icon(
                         Icons.notifications_sharp,
+                        color: AppColors.white,
+                      ),
+                      selectedColor: AppColors.appThemeColor,
+                      unselectedColor: AppColors.grey,
+                    ),
+                    SalomonBottomBarItem(
+                      icon: const Icon(
+                        Icons.shopping_basket_outlined,
+                      ),
+                      title: Text(
+                        AppLocalizations.of(context)!.shop,
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                      activeIcon: Icon(
+                        Icons.shopping_basket,
                         color: AppColors.white,
                       ),
                       selectedColor: AppColors.appThemeColor,

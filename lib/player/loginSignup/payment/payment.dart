@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:flutter_tahaddi/player/loginSignup/payment/sucsessfulPayment.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import "package:myfatoorah_flutter/utils/MFCountry.dart";
 import "package:myfatoorah_flutter/utils/MFEnvironment.dart";
@@ -18,8 +19,13 @@ import '../../../newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 // ignore: must_be_immutable
 class Payment extends StatefulWidget {
   List<Map> detail;
+  bool navigateFromInnovative;
 
-  Payment({super.key, required this.detail});
+  Payment({
+    super.key,
+    required this.detail,
+    this.navigateFromInnovative = false,
+  });
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -541,6 +547,28 @@ class _PaymentState extends State<Payment> {
                   "location": element['location'],
                   "currency": "AED",
                 };
+                Map innovativeDetail = {
+                  "booked_session": element['sessionId'],
+                  "inovativehub": element['academy_id'],
+                  "player": element['id'],
+                  "payment_status": true,
+                  "player_count": element['player_count'],
+                  "location": element['location'],
+                  "transaction_id": tranjectionId["InvoiceTransactions"][0]
+                      ['PaymentId'],
+                  "price": element["price"],
+                  "currency": "AED",
+                  "booking_date": DateTime.now().day > 10
+                      ? tranjectionId["InvoiceTransactions"][0]
+                              ['TransactionDate']
+                          .toString()
+                          .substring(0, 10)
+                      : tranjectionId["InvoiceTransactions"][0]
+                              ['TransactionDate']
+                          .toString()
+                          .substring(0, 10),
+                  "booked_date": element["apidetail"]
+                };
                 var detial = {
                   'totalPrice': element['totalPrice'],
                   'cart_id': element['cart_id'],
@@ -554,64 +582,115 @@ class _PaymentState extends State<Payment> {
                 };
                 print('detailPost');
                 print(detailPost);
-                _networkCalls.confirmBooking(
-                  transactionDetail: detailPost,
-                  onSuccess: (value) {
-                    // showMessage(value);
-                    print('Transactionvalue$value');
-                    navigateToPaymentSuccess(
-                      tranjectionId["InvoiceTransactions"][0]
-                          ['TransactionStatus'],
-                      detailPost['booking_date'],
-                      // DateTime.now().day > 10
-                      //     ? tranjectionId["InvoiceTransactions"][0]
-                      //             ['TransactionDate']
-                      //         .toString()
-                      //         .substring(0, 9)
-                      //     : tranjectionId["InvoiceTransactions"][0]
-                      //             ['TransactionDate']
-                      //         .toString()
-                      //         .substring(0, 10),
-                      detial,
-                    );
-                    // Map detail = {
-                    //   "pitchtype_id": widget.detail["subPitchId"],
-                    //   "booked_for_date": widget.detail["apidetail"]["date"],
-                    //   "slot_ids_list": widget.detail["apidetail"]["id"],
-                    //   "player_count": widget.detail["player_count"]
-                    // };
-                    // _networkCalls.bookpitchSlotConferm(
-                    //   urlDetail: detail,
-                    //   slug: widget.detail["slug"],
-                    //   onSuccess: (value) {
-                    //     navigateToPaymentSuccess(
-                    //         tranjectionId["InvoiceTransactions"][0]
-                    //         ['TransactionStatus']);
-                    //   },
-                    //   onFailure: (msg) {
-                    //     print('maksj$msg');
-                    //     showMessage(msg);
-                    //   },
-                    //   tokenExpire: () {
-                    //     if (mounted) on401(context);
-                    //   },
-                    // );
-                  },
-                  onFailure: (msg) {
-                    print('failed $msg');
-                    showMessage(msg);
-                  },
-                  tokenExpire: () {
-                    if (mounted) on401(context);
-                  },
-                );
+                if (widget.navigateFromInnovative) {
+                  _networkCalls.confirmInnovativeBooking(
+                    transactionDetail: innovativeDetail,
+                    onSuccess: (value) {
+                      // showMessage(value);
+                      print('Transactionvalue$value');
+                      var detail = {
+                        'totalPrice': element['totalPrice'],
+                        "price": element["price"],
+                        "AcademyName": element["name"],
+                        "status": tranjectionId["InvoiceTransactions"][0]
+                            ['TransactionStatus'],
+                        "tranjectionId": tranjectionId["InvoiceTransactions"][0]
+                            ['PaymentId'],
+                        "sessions": element["detail"],
+                        "startingDate": detailPost['booking_date'],
+                        "playerId": element["id"],
+                        'booked_date': element['apidetail'],
+                        "email": _detail.email,
+                        "location": element['location'],
+                        "currency": "AED",
+                      };
+                      print('aaaaaaaaaaaa');
+                      academyDetail.add(detail);
+                      // Map detail = {
+                      //   "pitchtype_id": widget.detail["subPitchId"],
+                      //   "booked_for_date": widget.detail["apidetail"]["date"],
+                      //   "slot_ids_list": widget.detail["apidetail"]["id"],
+                      //   "player_count": widget.detail["player_count"]
+                      // };
+                      // _networkCalls.bookpitchSlotConferm(
+                      //   urlDetail: detail,
+                      //   slug: widget.detail["slug"],
+                      //   onSuccess: (value) {
+                      //     navigateToPaymentSuccess(
+                      //         tranjectionId["InvoiceTransactions"][0]
+                      //         ['TransactionStatus']);
+                      //   },
+                      //   onFailure: (msg) {
+                      //     print('maksj$msg');
+                      //     showMessage(msg);
+                      //   },
+                      //   tokenExpire: () {
+                      //     if (mounted) on401(context);
+                      //   },
+                      // );
+                    },
+                    onFailure: (msg) {
+                      print('failed $msg');
+                      showMessage(msg);
+                    },
+                    tokenExpire: () {
+                      if (mounted) on401(context);
+                    },
+                  );
+                } else {
+                  _networkCalls.confirmBooking(
+                    transactionDetail: detailPost,
+                    onSuccess: (value) {
+                      // showMessage(value);
+                      print('Transactionvalue$value');
+                      navigateToPaymentSuccess(
+                        tranjectionId["InvoiceTransactions"][0]
+                            ['TransactionStatus'],
+                        detailPost['booking_date'],
+                        detial,
+                      );
+                      // Map detail = {
+                      //   "pitchtype_id": widget.detail["subPitchId"],
+                      //   "booked_for_date": widget.detail["apidetail"]["date"],
+                      //   "slot_ids_list": widget.detail["apidetail"]["id"],
+                      //   "player_count": widget.detail["player_count"]
+                      // };
+                      // _networkCalls.bookpitchSlotConferm(
+                      //   urlDetail: detail,
+                      //   slug: widget.detail["slug"],
+                      //   onSuccess: (value) {
+                      //     navigateToPaymentSuccess(
+                      //         tranjectionId["InvoiceTransactions"][0]
+                      //         ['TransactionStatus']);
+                      //   },
+                      //   onFailure: (msg) {
+                      //     print('maksj$msg');
+                      //     showMessage(msg);
+                      //   },
+                      //   tokenExpire: () {
+                      //     if (mounted) on401(context);
+                      //   },
+                      // );
+                    },
+                    onFailure: (msg) {
+                      print('failed $msg');
+                      showMessage(msg);
+                    },
+                    tokenExpire: () {
+                      if (mounted) on401(context);
+                    },
+                  );
+                }
               });
               print('academyDetail');
               print(academyDetail);
-              Navigator.pushNamed(
+              Navigator.push(
                 context,
-                RouteNames.paymentSuccess,
-                arguments: academyDetail,
+                MaterialPageRoute(
+                  builder: (context) => PaymentSuccess(
+                      price: academyDetail,
+                      navigateFromInnovative: widget.navigateFromInnovative),
+                ),
               );
 
               ///clear
@@ -682,25 +761,25 @@ class _PaymentState extends State<Payment> {
   void navigateToPaymentSuccess(
       String status, String bookingDate, Map element) {
     print('kkkkkkkkkkkkkkkkk');
+    var detail = {
+      'totalPrice': element['totalPrice'],
+      "price": element["price"],
+      "AcademyName": element["name"],
+      "status": status,
+      "tranjectionId": tranjectionId["InvoiceTransactions"][0]['PaymentId'],
+      "sessions": element["detail"],
+      "startingDate": bookingDate,
+      "playerId": element["id"],
+      'booked_date': element['apidetail'],
+      "email": _detail.email,
+      "location": element['location'],
+      "currency": "AED",
+    };
+    print('aaaaaaaaaaaa');
+    academyDetail.add(detail);
     _networkCalls.deleteCart(
       id: element['cart_id'].toString(),
       onSuccess: (value) {
-        var detail = {
-          'totalPrice': element['totalPrice'],
-          "price": element["price"],
-          "AcademyName": element["name"],
-          "status": status,
-          "tranjectionId": tranjectionId["InvoiceTransactions"][0]['PaymentId'],
-          "sessions": element["detail"],
-          "startingDate": bookingDate,
-          "playerId": element["id"],
-          'booked_date': element['apidetail'],
-          "email": _detail.email,
-          "location": element['location'],
-          "currency": "AED",
-        };
-        print('aaaaaaaaaaaa');
-        academyDetail.add(detail);
         print(academyDetail);
       },
       onFailure: (msg) {

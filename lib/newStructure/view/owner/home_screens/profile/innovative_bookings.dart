@@ -6,35 +6,33 @@ import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/modelClass/booked_sessions.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_bookings_model.dart';
 import 'package:flutter_tahaddi/network/network_calls.dart';
-import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/player/loginSignup/payment/payment.dart';
 import 'package:intl/intl.dart';
 
-class PlayerBookingScreen extends StatefulWidget {
-  bool bookingTag;
-  PlayerBookingScreen({super.key, this.bookingTag = false});
+class InnovativeBookings extends StatefulWidget {
+  const InnovativeBookings({super.key});
+
   @override
-  _PlayerBookingScreenState createState() => _PlayerBookingScreenState();
+  State<InnovativeBookings> createState() => _InnovativeBookingsState();
 }
 
-class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
-  bool? internet;
+class _InnovativeBookingsState extends State<InnovativeBookings> {
   bool state = true;
-  final bool _auth = false;
+  final NetworkCalls _networkCalls = NetworkCalls();
+  late List<InnovativeBookingsModel> innovativeDetail;
+  bool? internet;
   List<Map> academyDetail = [];
-  String date = "name";
   final DateFormat apiFormatter = DateFormat('yyyy-MM-dd', 'en_US');
   List<BookedSessions> bookedSessions = [];
-  final NetworkCalls _networkCalls = NetworkCalls();
-  late PlayerBookings bookings;
-  late List<InnovativeBookingsModel> innovativeDetail;
-
-  loadBookings() async {
-    await _networkCalls.loadPlayerbookings(
+  List<dynamic> reversedItemAfter = [];
+  List<dynamic> reversedItemAfterCurrent = [];
+  List<dynamic> reversedItemBefore = [];
+  loadBookingsInnovative() async {
+    await _networkCalls.loadBookingsInnovative(
       onSuccess: (event) {
         setState(() {
-          bookings = event;
+          innovativeDetail = event;
         });
         loadSpecificSession();
       },
@@ -50,170 +48,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
     );
   }
 
-  loadBookingsInnovative() async {
-    await _networkCalls.loadBookingsInnovative(
-      onSuccess: (event) {
-        setState(() {
-          innovativeDetail = event;
-        });
-        loadSpecificSessionInnovative();
-      },
-      onFailure: (msg) {
-        showMessage(msg);
-      },
-      tokenExpire: () {
-        if (mounted) {
-          on401(context);
-          showMessage(AppLocalizations.of(context)!.loginRequired);
-        }
-      },
-    );
-  }
-
-  List<dynamic> reversedItemAfter = [];
-  List<dynamic> reversedItemAfterCurrent = [];
-  List<dynamic> reversedItemBefore = [];
-  List<dynamic> reversedItemAfterInnovative = [];
-  List<dynamic> reversedItemAfterCurrentInnovative = [];
-  List<dynamic> reversedItemBeforeInnovative = [];
-  separateListbefore() {
-    final reversed = bookings.bookings!.reversed.toList();
-    reversedItemBefore = reversed.where((element) {
-      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
-      DateTime currentDate = DateTime.now();
-      DateTime currentDateWithoutTime = DateTime(
-        currentDate.year,
-        currentDate.month,
-        currentDate.day,
-      );
-      return bookedDate.isBefore(currentDateWithoutTime);
-    }).toList();
-
-    print(reversedItemBefore.length);
-  }
-
-  separateListbeforeInnovative() {
-    final reversed = innovativeDetail.reversed.toList();
-    reversedItemBeforeInnovative = reversed.where((element) {
-      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
-      DateTime currentDate = DateTime.now();
-      DateTime currentDateWithoutTime = DateTime(
-        currentDate.year,
-        currentDate.month,
-        currentDate.day,
-      );
-      return bookedDate.isBefore(currentDateWithoutTime);
-    }).toList();
-
-    print(reversedItemBeforeInnovative.length);
-  }
-
-  separateListAfter() {
-    final reversed = bookings.bookings!.reversed.toList();
-    reversedItemAfterCurrent = reversed.where((element) {
-      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
-      DateTime currentDate = DateTime.now();
-      DateTime currentDateWithoutTime = DateTime(
-        currentDate.year,
-        currentDate.month,
-        currentDate.day,
-      );
-      return bookedDate.day == DateTime.now().day;
-    }).toList();
-    print('shdgdg');
-    print(reversedItemAfter.length);
-    reversedItemAfter = reversed.where((element) {
-      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
-      DateTime currentDate = DateTime.now();
-      DateTime currentDateWithoutTime = DateTime(
-        currentDate.year,
-        currentDate.month,
-        currentDate.day,
-      );
-      return bookedDate.isAfter(currentDateWithoutTime);
-    }).toList();
-    reversedItemAfter.addAll(reversedItemAfterCurrent);
-    print(reversedItemAfter.length);
-  }
-
-  separateListAfterInnovative() {
-    final reversed = innovativeDetail.reversed.toList();
-    reversedItemAfterCurrentInnovative = reversed.where((element) {
-      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
-      DateTime currentDate = DateTime.now();
-      DateTime currentDateWithoutTime = DateTime(
-        currentDate.year,
-        currentDate.month,
-        currentDate.day,
-      );
-      return bookedDate.day == DateTime.now().day;
-    }).toList();
-    print('sjjjjjjjjjjjjjjjjjjjjg');
-    print(reversedItemAfterInnovative.length);
-    reversedItemAfterInnovative = reversed.where((element) {
-      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
-      DateTime currentDate = DateTime.now();
-      DateTime currentDateWithoutTime = DateTime(
-        currentDate.year,
-        currentDate.month,
-        currentDate.day,
-      );
-      return bookedDate.isAfter(currentDateWithoutTime);
-    }).toList();
-    reversedItemAfterInnovative.addAll(reversedItemAfterCurrentInnovative);
-    print(reversedItemAfterInnovative.length);
-  }
-
-  Future<DateTime?> slecteDtateTime(BuildContext context) => showDatePicker(
-        context: context,
-        initialDate: DateTime.now().add(const Duration(seconds: 1)),
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2030),
-        locale: Locale(AppLocalizations.of(context)!.locale),
-        builder: (BuildContext context, Widget? child) {
-          return Theme(
-            data: ThemeData.light().copyWith(
-              colorScheme:
-                  const ColorScheme.light(primary: AppColors.appThemeColor),
-              buttonTheme:
-                  const ButtonThemeData(textTheme: ButtonTextTheme.primary),
-            ),
-            child: child!,
-          );
-        },
-      );
-
   loadSpecificSession() {
-    print('jjj');
-    if (bookings.bookings!.isNotEmpty) {
-      bookings.bookings!.forEach((element) async {
-        element.bookedSession!.forEach((sessionsId) async {
-          await _networkCalls.specificSession(
-            id: sessionsId.toString(),
-            onSuccess: (event) async {
-              BookedSessions session = BookedSessions.fromJson(event);
-              bookedSessions.add(session);
-              if (mounted) {
-                setState(() {});
-              }
-            },
-            onFailure: (msg) {
-              if (mounted) {
-                showMessage(msg);
-              }
-            },
-            tokenExpire: () {
-              if (mounted) on401(context);
-            },
-          );
-        });
-      });
-      separateListAfter();
-      separateListbefore();
-    }
-  }
-
-  loadSpecificSessionInnovative() {
     print('hi');
     if (innovativeDetail.isNotEmpty) {
       innovativeDetail.forEach((element) async {
@@ -238,12 +73,56 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
           );
         });
       });
-      separateListAfterInnovative();
-      separateListbeforeInnovative();
+      separateListAfter();
+      separateListbefore();
     }
     setState(() {
       state = false;
     });
+  }
+
+  separateListbefore() {
+    final reversed = innovativeDetail.reversed.toList();
+    reversedItemBefore = reversed.where((element) {
+      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
+      DateTime currentDate = DateTime.now();
+      DateTime currentDateWithoutTime = DateTime(
+        currentDate.year,
+        currentDate.month,
+        currentDate.day,
+      );
+      return bookedDate.isBefore(currentDateWithoutTime);
+    }).toList();
+
+    print(reversedItemBefore.length);
+  }
+
+  separateListAfter() {
+    final reversed = innovativeDetail.reversed.toList();
+    reversedItemAfterCurrent = reversed.where((element) {
+      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
+      DateTime currentDate = DateTime.now();
+      DateTime currentDateWithoutTime = DateTime(
+        currentDate.year,
+        currentDate.month,
+        currentDate.day,
+      );
+      return bookedDate.day == DateTime.now().day;
+    }).toList();
+    print('sjjjjjjjjjjjjjjjjjjjjg');
+    print(reversedItemAfter.length);
+    reversedItemAfter = reversed.where((element) {
+      DateTime bookedDate = DateTime.parse(element.bookedDate ?? '2023-11-28');
+      DateTime currentDate = DateTime.now();
+      DateTime currentDateWithoutTime = DateTime(
+        currentDate.year,
+        currentDate.month,
+        currentDate.day,
+      );
+      return bookedDate.isAfter(currentDateWithoutTime);
+    }).toList();
+    reversedItemAfter.addAll(reversedItemAfterCurrent);
+    print(reversedItemAfter.length);
   }
 
   @override
@@ -252,7 +131,6 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
-        loadBookings();
         loadBookingsInnovative();
       } else {
         setState(() {
@@ -261,6 +139,25 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
       }
     });
   }
+
+  Future<DateTime?> slecteDtateTime(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: DateTime.now().add(const Duration(seconds: 1)),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2030),
+        locale: Locale(AppLocalizations.of(context)!.locale),
+        builder: (BuildContext context, Widget? child) {
+          return Theme(
+            data: ThemeData.light().copyWith(
+              colorScheme:
+                  const ColorScheme.light(primary: AppColors.appThemeColor),
+              buttonTheme:
+                  const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+            ),
+            child: child!,
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -281,20 +178,18 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
             ),
             centerTitle: true,
             backgroundColor: AppColors.black,
-            leadingWidth: widget.bookingTag ? sizeWidth * 0.13 : 0,
-            leading: widget.bookingTag
-                ? InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: SizedBox(
-                        height: sizeHeight * 0.03,
-                        child: Image.asset(
-                          'assets/images/back.png',
-                          color: AppColors.white,
-                        )),
-                  )
-                : null,
+            leadingWidth: sizeWidth * 0.13,
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: SizedBox(
+                  height: sizeHeight * 0.03,
+                  child: Image.asset(
+                    'assets/images/back.png',
+                    color: AppColors.white,
+                  )),
+            ),
             bottom: TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
               unselectedLabelColor: AppColors.grey,
@@ -384,8 +279,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                   maxHeight: constraints.maxHeight),
                               child: TabBarView(
                                 children: [
-                                  reversedItemAfter.isEmpty &&
-                                          reversedItemAfterInnovative.isEmpty
+                                  reversedItemAfter.isEmpty
                                       ? Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -434,75 +328,27 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                         )
                                       : Align(
                                           alignment: Alignment.topCenter,
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              children: [
-                                                ListView.builder(
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  controller:
-                                                      ScrollController(),
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      reversedItemAfter.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    final item =
-                                                        reversedItemAfter[
-                                                            index];
-                                                    // String zero = '0';
-                                                    // print(item.bookedDate);
-                                                    // DateTime date = Intl.withLocale(
-                                                    //     'en',
-                                                    //     () => DateTime.parse(
-                                                    //         '${item.bookedDate ?? '2023-11-29'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
-                                                    return bookingsList(
-                                                        sizeWidth,
-                                                        sizeHeight,
-                                                        item,
-                                                        index,
-                                                        false,
-                                                        false);
-                                                  },
-                                                ),
-                                                ListView.builder(
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  controller:
-                                                      ScrollController(),
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      reversedItemAfterInnovative
-                                                          .length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    final item =
-                                                        reversedItemAfterInnovative[
-                                                            index];
-                                                    // String zero = '0';
-                                                    // print(item.bookedDate);
-                                                    // DateTime date = Intl.withLocale(
-                                                    //     'en',
-                                                    //     () => DateTime.parse(
-                                                    //         '${item.bookedDate ?? '2023-11-29'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
-                                                    return bookingsList(
-                                                        sizeWidth,
-                                                        sizeHeight,
-                                                        item,
-                                                        index,
-                                                        false,
-                                                        true);
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          )),
-                                  reversedItemBefore.isEmpty &&
-                                          reversedItemBeforeInnovative.isEmpty
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                const AlwaysScrollableScrollPhysics(),
+                                            controller: ScrollController(),
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: reversedItemAfter.length,
+                                            itemBuilder: (context, index) {
+                                              final item =
+                                                  reversedItemAfter[index];
+                                              return bookingsList(
+                                                  sizeWidth,
+                                                  sizeHeight,
+                                                  item,
+                                                  index,
+                                                  false,
+                                                  false);
+                                            },
+                                          ),
+                                        ),
+                                  reversedItemBefore.isEmpty
                                       ? Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -551,57 +397,26 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                         )
                                       : Align(
                                           alignment: Alignment.topCenter,
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              children: [
-                                                ListView.builder(
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      reversedItemBefore.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    final item =
-                                                        reversedItemBefore[
-                                                            index];
-                                                    return bookingsList(
-                                                        sizeWidth,
-                                                        sizeHeight,
-                                                        item,
-                                                        index,
-                                                        true,
-                                                        false);
-                                                  },
-                                                ),
-                                                ListView.builder(
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      reversedItemBeforeInnovative
-                                                          .length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    final item =
-                                                        reversedItemBeforeInnovative[
-                                                            index];
-                                                    return bookingsList(
-                                                        sizeWidth,
-                                                        sizeHeight,
-                                                        item,
-                                                        index,
-                                                        true,
-                                                        true);
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          )),
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                const AlwaysScrollableScrollPhysics(),
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                reversedItemBefore.length,
+                                            itemBuilder: (context, index) {
+                                              final item =
+                                                  reversedItemBefore[index];
+                                              return bookingsList(
+                                                  sizeWidth,
+                                                  sizeHeight,
+                                                  item,
+                                                  index,
+                                                  true,
+                                                  false);
+                                            },
+                                          ),
+                                        ),
                                 ],
                               ),
                             ),
@@ -614,47 +429,31 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
     );
   }
 
-  navigateToPayment(index, dateTime, bookedSession, innovative) {
-    if (innovative) {
-      Map detial = {
-        'totalPrice': innovativeDetail[index].price,
-        "price": innovativeDetail[index].price,
-        "name": innovativeDetail[index].inovativehubName,
-        'academy_id': innovativeDetail[index].inovativehub,
-        "apidetail": dateTime,
-        "id": innovativeDetail[index].player,
-        'sessionId': innovativeDetail[index].bookedSession,
-        'location': innovativeDetail[index].location,
-        "player_count": innovativeDetail[index].playerCount,
-        "slug": 'price-per-player'
-      };
-      print(detial);
-      academyDetail.add(detial);
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                Payment(detail: academyDetail, navigateFromInnovative: true),
-          ));
-    } else {
-      Map detial = {
-        'totalPrice': bookings.bookings![index].price,
-        "price": bookings.bookings![index].price,
-        "name": bookings.bookings![index].academyName,
-        'academy_id': bookings.bookings![index].academy,
-        "apidetail": dateTime,
-        'detail': bookedSession,
-        "id": bookings.bookings![index].player,
-        'sessionId': bookings.bookings![index].bookedSession,
-        'location': bookings.bookings![index].location,
-        "player_count": bookings.bookings![index].playerCount,
-        "slug": 'price-per-player'
-      };
-      print(detial);
-      academyDetail.add(detial);
-      Navigator.pushNamed(context, RouteNames.payment,
-          arguments: academyDetail);
-    }
+  navigateToPayment(
+    index,
+    dateTime,
+  ) {
+    Map detial = {
+      'totalPrice': innovativeDetail[index].price,
+      "price": innovativeDetail[index].price,
+      "name": innovativeDetail[index].inovativehubName,
+      'academy_id': innovativeDetail[index].inovativehub,
+      "apidetail": dateTime,
+      "id": innovativeDetail[index].player,
+      'sessionId': innovativeDetail[index].bookedSession,
+      'location': innovativeDetail[index].location,
+      "player_count": innovativeDetail[index].playerCount,
+      "slug": 'price-per-player'
+    };
+    print(detial);
+    academyDetail.add(detial);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              Payment(detail: academyDetail, navigateFromInnovative: true),
+        ));
+    // Navigator.pushNamed(context, RouteNames.payment, arguments: academyDetail);
   }
 
   ///Whole widget of booking detail list
@@ -810,13 +609,8 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                             // ),
                             Text(
                               AppLocalizations.of(context)!.locale == 'en'
-                                  ? innovative
-                                      ? booking.inovativehubName.toString()
-                                      : booking.academyName.toString()
-                                  : innovative
-                                      ? booking.inovativehubNameArabic
-                                          .toString()
-                                      : booking.academyNameArabic.toString(),
+                                  ? booking.inovativehubName.toString()
+                                  : booking.inovativehubNameArabic.toString(),
                               style: TextStyle(
                                   fontSize: sizeHeight * 0.015,
                                   color: MyAppState.mode == ThemeMode.light
@@ -1105,10 +899,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                                           true);
                                                                   navigateToPayment(
                                                                       index,
-                                                                      dateTime,
-                                                                      bookedSessions[
-                                                                          blockindex],
-                                                                      innovative);
+                                                                      dateTime);
                                                                 },
                                                                 child: Center(
                                                                   child:

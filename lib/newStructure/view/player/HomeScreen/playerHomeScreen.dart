@@ -7,7 +7,7 @@ import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/home-screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/profileDetail.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/shop_screen/shop_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../homeFile/routingConstant.dart';
@@ -161,7 +161,8 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
     const HomeScreenView(),
     PlayerBookingScreen(bookingTag: false),
     const CartScreen(),
-    SettingsScreen(bookingTag: false),
+    const ShopScreen(),
+    // SettingsScreen(bookingTag: false),
     // ignore: prefer_const_constructors
     ProfileDetailScreen()
   ];
@@ -282,14 +283,14 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   ),
                   SalomonBottomBarItem(
                     icon: const Icon(
-                      Icons.settings_outlined,
+                      Icons.shopping_basket_outlined,
                     ),
                     title: Text(
-                      AppLocalizations.of(context)!.more,
+                      AppLocalizations.of(context)!.shop,
                       style: TextStyle(color: AppColors.white),
                     ),
                     activeIcon: Icon(
-                      Icons.settings,
+                      Icons.shopping_basket,
                       color: AppColors.white,
                     ),
                     selectedColor: AppColors.appThemeColor,

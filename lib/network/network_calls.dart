@@ -7,6 +7,8 @@ import 'package:flutter_tahaddi/homeFile/utility.dart';
 import 'package:flutter_tahaddi/modelClass/Facilities.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/booked_model.dart';
+import 'package:flutter_tahaddi/modelClass/innovative_bookings_model.dart';
+import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
 import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:http/http.dart' as http;
@@ -1460,6 +1462,43 @@ class NetworkCalls {
     }
   }
 
+  loadSpecifiedInnovative(
+      {required String sport,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    ///
+    String url =
+        "https://ahmad223.pythonanywhere.com/api/v1/inovativehub/InovativeDetail/$sport/";
+    try {
+      response = await http.get(Uri.parse(url),
+          headers:
+              // {
+              //   "Authorization": "token 484613c64499586646fee0bbf69886f08e741ba5",
+              //   'Content-Type': 'application/json',
+              // });
+              headerWithToken(prefs, "", HttpMethod.GET));
+      print(url);
+      print('Innovative${response.body}');
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load Book Pitch'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong$e");
+      print('sadesdsds f sffd $e');
+    }
+  }
+
   bookpitchdetail(
       {required Map urldetail,
       required OnSuccess onSuccess,
@@ -1968,6 +2007,43 @@ class NetworkCalls {
     }
   }
 
+  confirmInnovativeBooking(
+      {required Map transactionDetail,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String url =
+    //     "$baseUrl${RestApis.TRANSECTION}$id/?transaction_for=bookpitch&booking_as_per=$bookingPer&language=${prefs.get("lang")}";
+    String url = '$baseUrl/api/v1/inovativehub/inovative_transaction/';
+    print("Url Bro $url");
+    var body = json.encode(transactionDetail);
+    print("encoded$body");
+    try {
+      final response = await http.post(Uri.parse(url),
+          headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);
+      print("transaction${response.body}");
+      print(response.statusCode);
+      if (response.statusCode > 200 && response.statusCode < 300) {
+        print('kkkk');
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        print('kkkk2');
+        onSuccess(resp);
+        print('kkkk3');
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp['error']);
+      } else {
+        onFailure("You already booked");
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print("Errrro$e");
+      onFailure("Server is not responding");
+    }
+  }
+
   transection(
       {required String id,
       required String bookingPer,
@@ -2085,6 +2161,42 @@ class NetworkCalls {
         // }
         var data = PlayerBookings.fromJson(resp);
         onSuccess(data);
+      } else if (response.statusCode == 404) {
+        List<Event> event = [];
+        onSuccess(event);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load slot'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      print('PlayerbookingsError$e');
+      onFailure("Something went wrong");
+    }
+  }
+
+  loadBookingsInnovative(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(
+          Uri.parse(
+              "https://ahmad223.pythonanywhere.com/api/v1/inovativehub/inovative/1/bookings/"),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print('playerbookingsInnovative${response.statusCode}');
+      print('playerbookingsInnovative${response.body}');
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        List<InnovativeBookingsModel> bookings = [];
+        for (int i = 0; i < resp.length; i++) {
+          bookings.add(InnovativeBookingsModel.fromJson(resp[i]));
+        }
+        onSuccess(bookings);
       } else if (response.statusCode == 404) {
         List<Event> event = [];
         onSuccess(event);
@@ -2456,6 +2568,40 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url =
         "https://ahmad223.pythonanywhere.com/api/v1/acadmies/sessions/$id/";
+    try {
+      response = await http.get(Uri.parse(url),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print(response.body);
+      print('status${response.statusCode}');
+      if (response.statusCode == 200) {
+        // print(response.body);
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == 400) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load slot'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong");
+    }
+  }
+
+  specificSessionInnovative(
+      {required String id,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    print('object');
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url =
+        "https://ahmad223.pythonanywhere.com/api/v1/inovativehub/inovativesessions/$id/";
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
@@ -4077,6 +4223,45 @@ class NetworkCalls {
         List<AcademyModel> bookPitch = [];
         for (int i = 0; i < resp.length; i++) {
           bookPitch.add(AcademyModel.fromJson(resp[i]));
+        }
+        onSuccess(bookPitch);
+      } else if (response.statusCode == 404) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else {
+        onFailure(throw Exception('Failed to load league'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong");
+    }
+  }
+
+  allInnovative(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(
+          Uri.parse(
+              'https://ahmad223.pythonanywhere.com/api/v1/inovativehub/InovativeDetail/'),
+          // "$baseUrl${RestApis.allAcademies}?language=${prefs.get("lang")}"),
+          headers:
+              // {
+              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
+              //   'Content-Type': 'application/json',
+              // }
+              headerWithToken(prefs, "", HttpMethod.GET));
+      // print("$baseUrl${RestApis.allAcademies}?language=${prefs.get("lang")}");
+      print(response.body);
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        List<InnovativeHub> bookPitch = [];
+        for (int i = 0; i < resp.length; i++) {
+          bookPitch.add(InnovativeHub.fromJson(resp[i]));
         }
         onSuccess(bookPitch);
       } else if (response.statusCode == 404) {

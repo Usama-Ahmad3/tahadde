@@ -87,6 +87,10 @@ class AppLocalizations {
     return Intl.message('Academy', name: 'academyOnly');
   }
 
+  String get innovativeBookings {
+    return Intl.message('My Innovative Bookings', name: 'innovativeBookings');
+  }
+
   String get status {
     return Intl.message('Status', name: 'status');
   }
@@ -203,6 +207,18 @@ class AppLocalizations {
 
   String get darkMode {
     return Intl.message('Dark Mode', name: 'darkMode');
+  }
+
+  String get shop {
+    return Intl.message('Shop', name: 'shop');
+  }
+
+  String get shopEmpty {
+    return Intl.message('Nothing In The Shop', name: 'shopEmpty');
+  }
+
+  String get approveByAdmin {
+    return Intl.message('Approved By Admin', name: 'approveByAdmin');
   }
 
   String get bookingAcademy {
@@ -889,6 +905,12 @@ class AppLocalizations {
 
   String get paymentSuccessfully {
     return Intl.message('paymentSuccessfully', name: 'paymentSuccessfully');
+  }
+
+  String get paymentSuccessfullyInnovative {
+    return Intl.message(
+        'Payment has been successfully made. For more details view booking',
+        name: 'paymentSuccessfullyInnovative');
   }
 
   String get tranjectionId {

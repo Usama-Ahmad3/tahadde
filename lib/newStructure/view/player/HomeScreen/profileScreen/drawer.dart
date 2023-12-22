@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/bookingWidget.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/profile/innovative_bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/editProfile.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/setting_params.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/settings/settings.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
@@ -16,6 +14,8 @@ import '../../../../../network/network_calls.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../../../owner/home_screens/HomePitchOwnerScreen.dart';
 import '../playerHomeScreen.dart';
+import 'settings/setting_params.dart';
+import 'settings/settings.dart';
 
 class ProfileDrawer extends StatefulWidget {
   String name;
@@ -317,7 +317,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                           height: height * 0.02,
                         ),
                         ...List.generate(
-                            widget.playerTag ? 5 : 3,
+                            widget.playerTag ? 5 : 4,
                             (index) => widget.playerTag
                                 ? Padding(
                                     padding: EdgeInsets.symmetric(
@@ -447,27 +447,31 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                               ? () {
                                                   navigateToMyPitches();
                                                 }
-                                              : () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              SettingsScreen(
-                                                                settingParams: SettingParams(
-                                                                    name: widget
-                                                                        .name,
-                                                                    playerTag:
-                                                                        widget
-                                                                            .playerTag,
-                                                                    position: widget
-                                                                        .position,
-                                                                    profileImage:
-                                                                        widget
-                                                                            .profileImage),
-                                                                bookingTag:
-                                                                    true,
-                                                              )));
-                                                },
+                                              : index == 2
+                                                  ? () {
+                                                      navigateToInnovativeBookings();
+                                                    }
+                                                  : () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (_) =>
+                                                                  SettingsScreen(
+                                                                    settingParams: SettingParams(
+                                                                        name: widget
+                                                                            .name,
+                                                                        playerTag:
+                                                                            widget
+                                                                                .playerTag,
+                                                                        position:
+                                                                            widget
+                                                                                .position,
+                                                                        profileImage:
+                                                                            widget.profileImage),
+                                                                    bookingTag:
+                                                                        true,
+                                                                  )));
+                                                    },
                                       titleAlignment:
                                           ListTileTitleAlignment.center,
                                       tileColor:
@@ -730,7 +734,12 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     Icons.rate_review_outlined,
     Icons.settings
   ];
-  List ownerIcon = [Icons.person, Icons.library_books_outlined, Icons.settings];
+  List ownerIcon = [
+    Icons.person,
+    Icons.library_books_outlined,
+    Icons.admin_panel_settings_outlined,
+    Icons.settings
+  ];
   List title = [
     AppLocalizations().editProfile,
     AppLocalizations().bookingDetails,
@@ -741,6 +750,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   List ownerTitle = [
     AppLocalizations().editProfile,
     AppLocalizations().myBooking,
+    AppLocalizations().innovativeBookings,
     AppLocalizations().setting
   ];
   List subtitle = [
@@ -763,5 +773,13 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   navigateToHome() {
     Navigator.push(
         context, MaterialPageRoute(builder: (_) => PlayerHomeScreen(index: 0)));
+  }
+
+  navigateToInnovativeBookings() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const InnovativeBookings(),
+        ));
   }
 }

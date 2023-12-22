@@ -401,15 +401,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                   ),
                                                               children: [
                                                                 TextSpan(
-                                                                  text: detail![0]["previousNotfication"][index == 0 ? 0 : index - current]
+                                                                  text: detail![0]["previousNotfication"][index < 0 || index == 0 ? 0 : index - current]
                                                                               [
                                                                               "notificationMessage"] ==
                                                                           null
                                                                       ? ""
                                                                       : detail![0]
                                                                               [
-                                                                              "previousNotfication"][index ==
-                                                                                  0
+                                                                              "previousNotfication"][index < 0 || index == 0
                                                                               ? 0
                                                                               : index - current]["notificationMessage"]["message"] ??
                                                                           "",
@@ -434,8 +433,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                           ),
                                                         ),
                                                         Text(
-                                                          detail![0]["previousNotfication"][index ==
-                                                                              0
+                                                          detail![0]["previousNotfication"][index < 0 || index == 0
                                                                           ? 0
                                                                           : index -
                                                                               current]
@@ -447,7 +445,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                               ///6
                                                               : detail![0]["previousNotfication"]
                                                                       [
-                                                                      index == 0
+                                                          index < 0 || index == 0
                                                                           ? 0
                                                                           : index -
                                                                               current]["createdDatetime"]

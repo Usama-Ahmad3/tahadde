@@ -6,6 +6,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/player_rating.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/bookingScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetailShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/view_your_review.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -25,14 +26,20 @@ import '../../../../../../main.dart';
 import '../../../../../../modelClass/venue_detail_model_class.dart';
 import '../../../../../../network/network_calls.dart';
 import '../../../../../app_colors/app_colors.dart';
+import 'bookAcademyScreens/BookingScreen.dart';
 import 'carousel.dart';
 import 'facilities.dart';
 
 class GroundDetail extends StatefulWidget {
   Map detail;
   bool? myInterest;
+  bool navigateFromInovative;
 
-  GroundDetail({super.key, required this.detail, this.myInterest = false});
+  GroundDetail(
+      {super.key,
+      required this.detail,
+      this.myInterest = false,
+      this.navigateFromInovative = false});
 
   @override
   State<GroundDetail> createState() => GroundDetailState();
@@ -202,13 +209,17 @@ class GroundDetailState extends State<GroundDetail>
     _auth = (await checkAuthorizaton())!;
   }
 
-  @override
-  void initState() {
-    print(widget.detail);
+  facilityDiff() {
     facilitySlugD =
         widget.detail['facilitySlug']!.split(',').map((e) => e.trim()).toList();
     facilitySlugD
         .forEach((element) => indexList.add(int.parse(element.toString())));
+  }
+
+  @override
+  void initState() {
+    print(widget.detail);
+    widget.navigateFromInovative ? null : facilityDiff();
     super.initState();
     checkAuth();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
@@ -637,7 +648,9 @@ class GroundDetailState extends State<GroundDetail>
                                       SizedBox(
                                         height: height * 0.015,
                                       ),
-                                      FacilitiesList(facility: indexList),
+                                      widget.navigateFromInovative!
+                                          ? SizedBox.shrink()
+                                          : FacilitiesList(facility: indexList),
                                       SizedBox(
                                         height: height * 0.02,
                                       ),
@@ -916,7 +929,8 @@ class GroundDetailState extends State<GroundDetail>
                                           isLoading: false,
                                           onTaped: () {
                                             navigateToBookingScreen(
-                                                widget.detail);
+                                                widget.detail,
+                                                widget.navigateFromInovative);
                                           },
                                           title: Text(
                                             AppLocalizations.of(context)!
@@ -1041,8 +1055,14 @@ class GroundDetailState extends State<GroundDetail>
   ];
   List ground = ['Main Academy', 'Futsal Academy', 'tennis Academy'];
 
-  void navigateToBookingScreen(Map detail) {
-    Navigator.pushNamed(context, RouteNames.bookingScreen, arguments: detail);
+  void navigateToBookingScreen(Map detail, bool innovativeNavigation) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlayerBookingScreenView(
+              detail: detail, navigateFromInnovative: innovativeNavigation),
+        ));
+    // Navigator.pushNamed(context, RouteNames.bookingScreen, arguments: detail);
   }
 
   void navigateToDetail1() {

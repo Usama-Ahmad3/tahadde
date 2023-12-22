@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/modelClass/territory_model_class.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/innovative_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,6 +35,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
   String? arabicCountry;
   String? arabicCity;
   bool? _internet;
+  List<InnovativeHub> _innovativeDetail = [];
   String sportName = '';
   final NetworkCalls _networkCalls = NetworkCalls();
   bool _isLoading = true;
@@ -41,6 +44,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
   int isSelected = -1;
   var _academyModel;
   var academyModel;
+  var innovativeModel;
 
   // ignore: prefer_typing_uninitialized_variables
   var _bookPitchData;
@@ -530,6 +534,30 @@ class HomeScreenViewState extends State<HomeScreenView> {
     );
   }
 
+  loadAllInnovative() async {
+    await _networkCalls.allInnovative(
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            // _isLoading = false;
+            _innovativeDetail = event;
+            _isLoading = false;
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
   loadAcademiesSpecific() async {
     await _networkCalls.loadVerifiedAcademies(
       sport: sportName,
@@ -567,6 +595,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
         loadTerritories();
         getSports();
         loadAcademies();
+        loadAllInnovative();
         // loadVenues();
       } else {
         if (mounted) {
@@ -1224,41 +1253,50 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          isSelected != -1
-                                              ? academyModel != null &&
-                                                      academyModel.isNotEmpty
-                                                  ? AcademyList(
-
-                                                      ///Just Remove To Proceed
-                                                      empty: true,
-                                                      text: AppLocalizations.of(
-                                                              context)!
-                                                          .innovative,
-                                                      academyDetail:
-                                                          academyModel,
-                                                      searchflag: searchFlag)
-                                                  : AcademyList(
-
-                                                      ///Just Remove To Proceed
-                                                      empty: true,
-                                                      text: AppLocalizations.of(
-                                                              context)!
-                                                          .innovative,
-                                                      academyDetail:
-                                                          academyModel,
-                                                      searchflag: searchFlag)
-                                              : _academyModel != null
-                                                  ? AcademyList(
-
-                                                      ///Just Remove To Proceed
-                                                      empty: true,
-                                                      text: AppLocalizations.of(
-                                                              context)!
-                                                          .innovative,
-                                                      academyDetail:
-                                                          _academyModel,
-                                                      searchflag: searchFlag)
-                                                  : const SizedBox.shrink()
+                                          // isSelected != -1
+                                          //     ? academyModel != null &&
+                                          //             academyModel.isNotEmpty
+                                          //         ? AcademyList(
+                                          //
+                                          //             ///Just Remove To Proceed
+                                          //             // empty: true,
+                                          //             text: AppLocalizations.of(
+                                          //                     context)!
+                                          //                 .innovative,
+                                          //             academyDetail:
+                                          //                 academyModel,
+                                          //             searchflag: searchFlag)
+                                          //         : AcademyList(
+                                          //
+                                          //             ///Just Remove To Proceed
+                                          //             // empty: true,
+                                          //             text: AppLocalizations.of(
+                                          //                     context)!
+                                          //                 .innovative,
+                                          //             academyDetail:
+                                          //                 academyModel,
+                                          //             searchflag: searchFlag):
+                                          _innovativeDetail != null
+                                              ? InnovativeList(
+                                                  ///Just Remove To Proceed
+                                                  // empty: true,
+                                                  text: AppLocalizations.of(
+                                                          context)!
+                                                      .innovative,
+                                                  empty: false,
+                                                  innovativeDetail:
+                                                      _innovativeDetail,
+                                                )
+                                              : InnovativeList(
+                                                  ///Just Remove To Proceed
+                                                  // empty: true,
+                                                  text: AppLocalizations.of(
+                                                          context)!
+                                                      .innovative,
+                                                  empty: true,
+                                                  innovativeDetail:
+                                                      _innovativeDetail,
+                                                )
                                         ],
                                       ),
                                     ),

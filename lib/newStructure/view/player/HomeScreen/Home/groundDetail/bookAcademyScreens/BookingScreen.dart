@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/homeFile/routingConstant.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/avalaible_slots.dart';
+import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/bookingShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
+import 'package:flutter_tahaddi/player/loginSignup/payment/payment.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
@@ -22,8 +25,9 @@ import '../../../../../../app_colors/app_colors.dart';
 class PlayerBookingScreenView extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
   var detail;
+  bool navigateFromInnovative;
 
-  PlayerBookingScreenView({super.key, required this.detail});
+  PlayerBookingScreenView({super.key, required this.detail,this.navigateFromInnovative = false});
 
   @override
   State<PlayerBookingScreenView> createState() => _PlayerBookingScreenViewState();
@@ -34,6 +38,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   final NetworkCalls _networkCalls = NetworkCalls();
   final DateFormat apiFormatter = DateFormat('yyyy-MM-dd', 'en_US');
   bool? isSelected;
+  InnovativeHub? _specificInnovative;
   List<Map> academyDetail = [];
   bool _auth = false;
   List sessionIdList = [];
@@ -61,6 +66,20 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   bool isStateLoading = true;
   int date = 0;
   List<AcademyModel> _specificAcademy = [];
+  late Map profileDetail;
+  loadProfile() async {
+    await _networkCalls.getProfile(
+      onSuccess: (msg) {
+        setState(() {
+          profileDetail = msg;
+        });
+      },
+      onFailure: (msg) {},
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
 
   onWillPop() {
     return showDialog(
@@ -91,6 +110,57 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
             ],
           );
         });
+  }
+
+  loadSpecificInnovative() async {
+    avalaibleSlotCounts();
+    await _networkCalls.loadSpecifiedInnovative(
+      sport: widget.detail['academy_id'].toString(),
+      onSuccess: (academyInfo) {
+        _specificInnovative = InnovativeHub.fromJson(academyInfo);
+        if (_specificInnovative!.session!.isNotEmpty) {
+          _specificInnovative!.session!.forEach((element) {
+            List<SessionDetail> sessionList = [];
+            element.sessions!.forEach((value) {
+              sessionList.add(SessionDetail(
+                  id: int.parse(value.id.toString()),
+                  sessionName: value.name,
+                  sessionNameAr: value.nameArabic,
+                  slotDuration: value.slotDuration as int,
+                  startTime: Intl.withLocale(
+                      'en',
+                      () => DateFormat("yyyy-MM-dd HH:mm:ss")
+                          .parse('2022-11-31 ${value.startTime.toString()}')),
+                  endTime: Intl.withLocale(
+                      'en',
+                      () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                          .parse('2022-10-31 ${value.endTime.toString()}')
+                          .toLocal())));
+            });
+            _sessionMap[element.weekday!] = sessionList;
+            // print(_sessionMap[element.weekday]);
+          });
+          // print('kkkk');
+          // print("SessionId${_sessionMap[_weakList[0].name]![0].id}");
+          // print("SessionId${_sessionMap[_weakList[0].name]![0].endTime}");
+        }
+        isStateLoading = false;
+        setState(() {});
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            isStateLoading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) {
+          print('load Specific');
+          on401(context);
+        }
+      },
+    );
   }
 
   loadVerifiedSpecific() async {
@@ -321,7 +391,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
       if (msg == true) {
         // slotDetail();
         weekdays();
-        loadVerifiedSpecific();
+        widget.navigateFromInnovative?loadSpecificInnovative():loadVerifiedSpecific();
       } else {
         setState(() {
           isStateLoading = false;
@@ -830,7 +900,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                     .sessionNameAr
                                                                     .toString()));
                                                         _slotPrice.pricePerPlayer
-                                                            .add(_specificAcademy[0]
+                                                            .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[0]
                                                                 .prices![0]
                                                                 .price!
                                                                 .toDouble());
@@ -927,7 +997,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           list.add(
                                                               sessionToAddOrRemove);
                                                           _slotPrice.pricePerPlayer
-                                                              .add(_specificAcademy[
+                                                              .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
                                                                       0]
                                                                   .prices![0]
                                                                   .price!
@@ -1220,7 +1290,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                   alignment: Alignment.bottomCenter,
                                   child: ButtonWidget(
                                       isLoading: false,
-                                      onTaped: () {
+                                      onTaped: () async {
                                         if (_auth) {
                                           if (_slotPrice
                                               .pricePerPlayer.isEmpty) {
@@ -1254,28 +1324,48 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                             list.forEach((element) {
                                               sessionIdList.add(element.id);
                                             });
-                                            Map details = {
-                                              "academy": _specificAcademy[0].academyId,
-                                              "session": sessionIdList,
-                                              "Sub_Academy": _specificAcademy[0]
-                                                  .prices![0]
-                                                  .subAcademy,
-                                              "price": slotPriceCalculation(
-                                                  _slotPrice
-                                                      .pricePerPlayer) *
-                                                  indexItem,
-                                              "location": _specificAcademy[0]
-                                                  .academyLocation,
-                                              "booked_date": dataTime,
-                                              "player_count":indexItem,
-                                              'price_per_player': _specificAcademy[0].prices![0].price
-                                            };
-                                            print('AcademyDetail$details');
-                                            // print(_sessionMap[
-                                            //         _weakList[_weekIndex]
-                                            //             .name]![0]
-                                            //     .id);
-                                            addToCart(details);
+                                            if(widget.navigateFromInnovative){
+                                              await loadProfile();
+                                              var detial = {
+                                                'cart_id': null,
+                                                'totalPrice': (slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round(),
+                                                "price": _specificInnovative!.prices![0].price,
+                                                "name": _specificInnovative!.nameEnglish,
+                                                'academy_id': _specificInnovative!.innovativehubId,
+                                                // "detail": bookedSessions,
+                                                "apidetail": dataTime,
+                                                "id": profileDetail['id'],
+                                                'sessionId': sessionIdList,
+                                                'location': _specificInnovative!.location,
+                                                "player_count": indexItem,
+                                              };
+                                              academyDetail.add(detial);
+                                              print(academyDetail);
+                                              navigateToPayment(academyDetail,widget.navigateFromInnovative);
+                                            }else{
+                                             Map details  = {
+                                                "academy": _specificAcademy[0].academyId,
+                                                "session": sessionIdList,
+                                                "Sub_Academy": _specificAcademy[0]
+                                                    .prices![0]
+                                                    .subAcademy,
+                                                "price": slotPriceCalculation(
+                                                    _slotPrice
+                                                        .pricePerPlayer) *
+                                                    indexItem,
+                                                "location": _specificAcademy[0]
+                                                    .academyLocation,
+                                                "booked_date": dataTime,
+                                                "player_count":indexItem,
+                                                'price_per_player': _specificAcademy[0].prices![0].price
+                                              };
+                                             print('AcademyDetail$details');
+                                             // print(_sessionMap[
+                                             //         _weakList[_weekIndex]
+                                             //             .name]![0]
+                                             //     .id);
+                                             addToCart(details);
+                                            }
                                           }
                                         } else {
                                           onWillPop();
@@ -1286,7 +1376,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                           _slotPrice.pricePerPlayer.isEmpty
                                               ? AppLocalizations.of(context)!
                                                   .bookNowS
-                                              : "${AppLocalizations.of(context)!.addToCart}: ${(slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round().toString()} AED",
+                                              : "${widget.navigateFromInnovative?AppLocalizations.of(context)!.bookNowS:AppLocalizations.of(context)!.addToCart}: ${(slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round().toString()} AED",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -1359,4 +1449,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
           builder: (context) => EnterDetailAcademyScreen(detail: detail),
         ));
   }
+  navigateToPayment(detail,navigateFromInnovative){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Payment(detail: detail,navigateFromInnovative: navigateFromInnovative),));
+}
 }

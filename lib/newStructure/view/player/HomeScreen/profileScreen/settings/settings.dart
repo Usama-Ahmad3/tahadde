@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/common_widgets/internet_loss.dart';
+import 'package:flutter_tahaddi/common_widgets/localeHelper.dart';
+import 'package:flutter_tahaddi/homeFile/utility.dart';
+import 'package:flutter_tahaddi/localizations.dart';
+import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/network/network_calls.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/drawer.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/listWidgetSettings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
-import '../../../../../common_widgets/internet_loss.dart';
-import '../../../../../common_widgets/localeHelper.dart';
-import '../../../../../homeFile/utility.dart';
-import '../../../../../localizations.dart';
-import '../../../../../main.dart';
-import '../../../../../network/network_calls.dart';
-import '../../../../app_colors/app_colors.dart';
-import '../profileScreen/bottomSheet.dart';
-import '../widgets/app_bar.dart';
 import 'setting_params.dart';
 
 class SettingsScreen extends StatefulWidget {

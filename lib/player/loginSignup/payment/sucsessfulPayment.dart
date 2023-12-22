@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
@@ -13,7 +15,9 @@ import '../../../network/network_calls.dart';
 
 class PaymentSuccess extends StatefulWidget {
   List<Map> price;
-  PaymentSuccess({super.key, required this.price});
+  bool navigateFromInnovative;
+  PaymentSuccess(
+      {super.key, required this.price, this.navigateFromInnovative = false});
   @override
   // ignore: library_private_types_in_public_api
   _PaymentSuccess createState() => _PaymentSuccess();
@@ -24,8 +28,24 @@ class _PaymentSuccess extends State<PaymentSuccess> {
   // _PaymentSuccess(this.price,this._isLoading);
   final scaffoldkey = GlobalKey<ScaffoldState>();
   late bool internet;
+  late Map profileDetail;
   bool _isLoading = true;
   final NetworkCalls _networkCalls = NetworkCalls();
+
+  loadProfile() {
+    _networkCalls.getProfile(
+      onSuccess: (msg) {
+        setState(() {
+          profileDetail = msg;
+          _isLoading = false;
+        });
+      },
+      onFailure: (msg) {},
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
 
   @override
   void initState() {
@@ -34,7 +54,7 @@ class _PaymentSuccess extends State<PaymentSuccess> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
-        loadStatus();
+        loadProfile();
       } else {
         setState(() {
           _isLoading = false;
@@ -168,17 +188,26 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                           //     width: sizewidth * .7),
 
                           //Text(AppLocalizations.of(context).resetPassword,style: TextStyle(color: Color(0XFF2F2F2F),fontSize: 18,fontWeight: FontWeight.w600),),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: sizewidth * .146,
-                                right: sizewidth * .146),
-                            child: Text(
-                              AppLocalizations.of(context)!.paymentSuccessfully,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? Color(0XFF898989)
-                                      : AppColors.white),
+                          InkWell(
+                            onTap: () {
+                              print(widget.price);
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: sizewidth * .146,
+                                  right: sizewidth * .146),
+                              child: Text(
+                                widget.navigateFromInnovative
+                                    ? AppLocalizations.of(context)!
+                                        .paymentSuccessfullyInnovative
+                                    : AppLocalizations.of(context)!
+                                        .paymentSuccessfully,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: MyAppState.mode == ThemeMode.light
+                                        ? Color(0XFF898989)
+                                        : AppColors.white),
+                              ),
                             ),
                           ),
                           Flexible(
@@ -193,8 +222,11 @@ class _PaymentSuccess extends State<PaymentSuccess> {
                                   navigateToDetail();
                                 },
                                 title: Text(
-                                    AppLocalizations.of(context)!
-                                        .bookingSummary,
+                                    widget.navigateFromInnovative
+                                        ? AppLocalizations.of(context)!
+                                            .gotoHomepage
+                                        : AppLocalizations.of(context)!
+                                            .bookingSummary,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
@@ -227,7 +259,7 @@ class _PaymentSuccess extends State<PaymentSuccess> {
         "AcademyName": element["AcademyName"],
         "transactionId": element["tranjectionId"],
         "startingDate": element["startingDate"],
-        'sessions': element['Sessions'],
+        'sessions': element['sessions'],
         "email": element["email"],
         "booked_date": element["booked_date"],
       };
@@ -236,7 +268,21 @@ class _PaymentSuccess extends State<PaymentSuccess> {
     print('shddsjs');
     print(widget.price);
     //Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: CarouselDemo (index: 2,)));
-    Navigator.pushNamed(context, RouteNames.bookingSummary,
-        arguments: widget.price);
+    if (widget.navigateFromInnovative) {
+      profileDetail['role'] == 'player'
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PlayerHomeScreen(index: 0),
+              ))
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePitchOwnerScreen(index: 0),
+              ));
+    } else {
+      Navigator.pushNamed(context, RouteNames.bookingSummary,
+          arguments: widget.price);
+    }
   }
 }
