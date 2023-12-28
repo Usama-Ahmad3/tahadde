@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Add the aside venue that cames under this venue"),
         "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
         "doYouWantProceed":
-            MessageLookupByLibrary.simpleMessage("Do You Want To Proceed Now"),
+            MessageLookupByLibrary.simpleMessage("Do You Want To Proceed"),
         "addNewGroundPitch":
             MessageLookupByLibrary.simpleMessage("Add More Ground"),
         "addNewPitch": MessageLookupByLibrary.simpleMessage("Add New Venue"),
@@ -309,8 +309,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "mins": MessageLookupByLibrary.simpleMessage("mins"),
         "shop": MessageLookupByLibrary.simpleMessage("Shop"),
-        "shopEmpty":
-            MessageLookupByLibrary.simpleMessage("Nothing In The Shop"),
+        "coming": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "thankyouAcademy": MessageLookupByLibrary.simpleMessage(
             "Thank You For Creating Academy"),
         "uploadPDF": MessageLookupByLibrary.simpleMessage("Upload PDF"),
@@ -452,14 +451,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "noPlayerRequests":
             MessageLookupByLibrary.simpleMessage("No Player Requests"),
         "noSlotsAvailable":
-            MessageLookupByLibrary.simpleMessage("No slots available"),
+            MessageLookupByLibrary.simpleMessage("No Slots Available"),
         "noAcademiesAvailable":
             MessageLookupByLibrary.simpleMessage("No Academies Available"),
+        "noEvents": MessageLookupByLibrary.simpleMessage("No Events Available"),
         "noplayershavebeenaddedyet": MessageLookupByLibrary.simpleMessage(
             "No players have been added yet"),
         "noplayershavebeenfoundnearyou": MessageLookupByLibrary.simpleMessage(
             "No players have been found near you"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+        "selectCart": MessageLookupByLibrary.simpleMessage(
+            "Select At-least One Cart Item To Proceed"),
+        "reviewAdded":
+            MessageLookupByLibrary.simpleMessage("Review Already Added"),
         "notificationC": MessageLookupByLibrary.simpleMessage("Notification"),
         "notificationDec":
             MessageLookupByLibrary.simpleMessage("No notification available."),
@@ -642,7 +646,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("SAVE"),
         "saveCards": MessageLookupByLibrary.simpleMessage("Save Cards"),
-        "saveChanges": MessageLookupByLibrary.simpleMessage("SAVE CHANGES"),
+        "tahaddiShop": MessageLookupByLibrary.simpleMessage("Tahaddi Shop"),
+        "morningSession":
+            MessageLookupByLibrary.simpleMessage("Morning Sessions"),
+        "eveningSession":
+            MessageLookupByLibrary.simpleMessage("Evening Sessions"),
+        "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
         "savePaymentMethod": MessageLookupByLibrary.simpleMessage("My Wallets"),
         "savePaymentMethods":
             MessageLookupByLibrary.simpleMessage("Save Payment Methods"),
@@ -840,7 +849,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youGoingLogout": MessageLookupByLibrary.simpleMessage(
             "You are going to logout from your profile!"),
         "youHaveBooked": MessageLookupByLibrary.simpleMessage(
-            "You have not added any sessions."),
+            "You Have Not Added Any Sessions."),
         "youHaveSuccessfully": MessageLookupByLibrary.simpleMessage(
             "You have successfully reset the password for your Tahadde account"),
         "youNeedChallenge": MessageLookupByLibrary.simpleMessage(

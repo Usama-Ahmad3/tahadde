@@ -334,7 +334,6 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                               print(
                                                                   priceDetail);
 
-                                                              /// do it later
                                                               editAcademy(
                                                                   priceDetail);
                                                               Navigator.pop(

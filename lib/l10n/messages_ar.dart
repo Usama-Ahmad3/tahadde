@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPlayers": MessageLookupByLibrary.simpleMessage("أضف لاعبين"),
         "addSession": MessageLookupByLibrary.simpleMessage("أضف الجلسة"),
         "doYouWantProceed":
-            MessageLookupByLibrary.simpleMessage("هل تريد المتابعة الآن"),
+            MessageLookupByLibrary.simpleMessage("هل تريد المتابعة"),
         "addanotherdocument":
             MessageLookupByLibrary.simpleMessage("أضف مستندًا آخر"),
         "addnewpitchdetails":
@@ -70,6 +70,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "filterResult": MessageLookupByLibrary.simpleMessage("تصفية النتائج"),
         "noAcademy":
             MessageLookupByLibrary.simpleMessage("لا توجد أكاديميات متاحة"),
+        "noEvents": MessageLookupByLibrary.simpleMessage("لا توجد أحداث متاحة"),
+        "selectCart": MessageLookupByLibrary.simpleMessage(
+            "حدد على الأقل عنصرًا واحدًا في عربة التسوق للمتابعة"),
+        "reviewAdded":
+            MessageLookupByLibrary.simpleMessage("تمت إضافة المراجعة بالفعل"),
         "addyourexperienceforthepitchesyouhaveplayedupon":
             MessageLookupByLibrary.simpleMessage(
                 "أضف تجربتك للأكاديميات التي لعبت فيها."),
@@ -457,14 +462,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "onlineBooking": MessageLookupByLibrary.simpleMessage("الحجز أونلاين"),
         "onwords": MessageLookupByLibrary.simpleMessage("فصاعدا"),
         "orSignUpWith": MessageLookupByLibrary.simpleMessage("أو اشترك مع"),
+        "tahaddiShop": MessageLookupByLibrary.simpleMessage("متجر التحدي"),
+        "morningSession":
+            MessageLookupByLibrary.simpleMessage("الجلسة الصباحية"),
+        "eveningSession": MessageLookupByLibrary.simpleMessage("جلسة مسائية"),
         "organisedby": MessageLookupByLibrary.simpleMessage("المنظم"),
         "ourPolicy": MessageLookupByLibrary.simpleMessage("سياستنا"),
         "approveByAdmin": MessageLookupByLibrary.simpleMessage(
             "تمت الموافقة عليه من قبل المشرف"),
         "outdoor": MessageLookupByLibrary.simpleMessage("ملعب خارجي"),
         "shop": MessageLookupByLibrary.simpleMessage("محل"),
-        "shopEmpty": MessageLookupByLibrary.simpleMessage("لا شيء في المحل"),
-        "paidTotal": MessageLookupByLibrary.simpleMessage("مجموع المدفوع"),
+        "coming": MessageLookupByLibrary.simpleMessage("قريباً"),
+        "paidTotal": MessageLookupByLibrary.simpleMessage("المجموع المدفوع"),
         "password": MessageLookupByLibrary.simpleMessage("كلمه المرور"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("كلمة السر غير متطابقة !!!"),

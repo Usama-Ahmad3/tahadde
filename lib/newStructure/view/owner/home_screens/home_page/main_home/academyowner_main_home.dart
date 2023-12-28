@@ -730,8 +730,9 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                                             ),
                                                             Center(
                                                               child: Text(
-                                                                'no events available',
-                                                                // AppLocalizations.of(context)!.noAcademy,
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .noEvents,
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme

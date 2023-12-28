@@ -42,12 +42,20 @@ class AppLocalizations {
     return Intl.message('bookPitch', name: 'bookPitch');
   }
 
+  String get reviewAdded {
+    return Intl.message('Review Already Added', name: 'reviewAdded');
+  }
+
   String get academyLocation {
     return Intl.message('Academy Location', name: 'academyLocation');
   }
 
   String get noAcademy {
     return Intl.message('No Academies Available', name: 'noAcademy');
+  }
+
+  String get noEvents {
+    return Intl.message('No Events Available', name: 'noEvents');
   }
 
   String get academyList {
@@ -100,7 +108,7 @@ class AppLocalizations {
   }
 
   String get doYouWantProceed {
-    return Intl.message('Do You Want To Proceed Now', name: 'doYouWantProceed');
+    return Intl.message('Do You Want To Proceed', name: 'doYouWantProceed');
   }
 
   String get loginRequiredCart {
@@ -210,11 +218,11 @@ class AppLocalizations {
   }
 
   String get shop {
-    return Intl.message('Shop', name: 'shop');
+    return Intl.message('Tahaddi Shop', name: 'shop');
   }
 
-  String get shopEmpty {
-    return Intl.message('Nothing In The Shop', name: 'shopEmpty');
+  String get coming {
+    return Intl.message('Coming Soon', name: 'coming');
   }
 
   String get approveByAdmin {
@@ -312,6 +320,11 @@ class AppLocalizations {
 
   String get refer {
     return Intl.message('refer', name: 'refer');
+  }
+
+  String get selectCart {
+    return Intl.message('Select At-least One Cart Item To Proceed',
+        name: 'selectCart');
   }
 
   String get rateApp {
@@ -648,7 +661,19 @@ class AppLocalizations {
   }
 
   String get saveChanges {
-    return Intl.message('saveChanges', name: 'saveChanges');
+    return Intl.message('Save Changes', name: 'saveChanges');
+  }
+
+  String get morningSession {
+    return Intl.message('Morning Sessions', name: 'morningSession');
+  }
+
+  String get eveningSession {
+    return Intl.message('Evening Sessions', name: 'eveningSession');
+  }
+
+  String get tahaddiShop {
+    return Intl.message('Tahaddi Shop', name: 'tahaddiShop');
   }
 
   String get editProfile {
@@ -962,7 +987,7 @@ class AppLocalizations {
   }
 
   String get youHaveBooked {
-    return Intl.message('you have not added any sessions.',
+    return Intl.message('You Have Not Added Any Sessions.',
         name: 'youHaveBooked');
   }
 
@@ -2423,7 +2448,7 @@ class AppLocalizations {
   }
 
   String get noSlotsAvailable {
-    return Intl.message('noSlotsAvailable', name: 'noSlotsAvailable');
+    return Intl.message('No Slots Available', name: 'noSlotsAvailable');
   }
 
   String get deleteAccount {

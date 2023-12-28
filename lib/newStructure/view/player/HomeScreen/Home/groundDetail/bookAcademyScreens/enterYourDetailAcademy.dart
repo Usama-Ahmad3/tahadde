@@ -790,8 +790,8 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                                 ),
                                                 InkWell(
                                                   onTap: () {
-                                                    print(sessionsbookings);
-                                                    print(bookedSessions);
+                                                    // print(sessionsbookings);
+                                                    // print(bookedSessions);
                                                   },
                                                   child: Text(
                                                     AppLocalizations.of(
@@ -910,7 +910,7 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                                                             .grey
                                                                             .shade50)),
                                                                 child: Text(
-                                                                  '${sessionsbookings[index][indexx].startTime.toString()} - ${sessionsbookings[index][indexx].endTime.toString()}' ??
+                                                                  '${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12}${sessionsbookings[index][indexx].startTime.toString().substring(2, 5)}' : int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12}' : sessionsbookings[index][indexx].startTime.toString().substring(0, 5)}${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'} - ${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12}${sessionsbookings[index][indexx].endTime.toString().substring(2, 5)}' : int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12}' : sessionsbookings[index][indexx].endTime.toString().substring(0, 5)}${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'}' ??
                                                                       "",
                                                                   style: Theme.of(
                                                                           context)

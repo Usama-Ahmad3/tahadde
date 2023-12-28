@@ -72,102 +72,114 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             title: Text(
               AppLocalizations.of(context)!.logout,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: MyAppState.mode == ThemeMode.light
                       ? AppColors.black
                       : AppColors.white),
             ),
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.065),
             content: Text(
               description,
-              style: const TextStyle(color: AppColors.appThemeColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: AppColors.appThemeColor),
             ),
             actions: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Center(
-                  child: Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.appThemeColor,
-                    ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     child: Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.no,
-                        style: TextStyle(color: AppColors.white),
+                      child: Container(
+                        height: 35,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.appThemeColor,
+                          border: Border.all(width: 1, color: AppColors.white),
+                        ),
+                        child: Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.yes,
+                            style: TextStyle(color: AppColors.white),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  InkWell(
+                    onTap: () {
+                      NetworkCalls().checkInternetConnectivity(
+                          onSuccess: (msg) {
+                        if (msg == true) {
+                          if (isLogout) {
+                            NetworkCalls().logout(
+                              onSuccess: (msg) {
+                                NetworkCalls().clearToken(key: 'token');
+                                NetworkCalls().clearToken(key: 'role');
+                                NetworkCalls().clearToken(key: "auth");
+                                setState(() {
+                                  navigateToHome();
+                                });
+                              },
+                              onFailure: (msg) {
+                                showMessage(msg);
+                              },
+                              tokenExpire: () {
+                                if (mounted) on401(context);
+                              },
+                            );
+                          } else {
+                            NetworkCalls().deleteAccount(
+                              onSuccess: (msg) {
+                                NetworkCalls().clearToken(key: 'token');
+                                NetworkCalls().clearToken(key: 'role');
+                                NetworkCalls().clearToken(key: "auth");
+                                navigateToHome();
+                              },
+                              onFailure: (msg) {
+                                showMessage(msg);
+                              },
+                              tokenExpire: () {
+                                if (mounted) on401(context);
+                              },
+                            );
+                          }
+                        } else {
+                          if (mounted) {
+                            showMessage(AppLocalizations.of(context)!
+                                .noInternetConnection);
+                          }
+                        }
+                      });
+                    },
+                    child: Center(
+                      child: Container(
+                        height: 35,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.red,
+                          border: Border.all(width: 1, color: AppColors.white),
+                        ),
+                        child: Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.yes,
+                            style: TextStyle(color: AppColors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  NetworkCalls().checkInternetConnectivity(onSuccess: (msg) {
-                    if (msg == true) {
-                      if (isLogout) {
-                        NetworkCalls().logout(
-                          onSuccess: (msg) {
-                            NetworkCalls().clearToken(key: 'token');
-                            NetworkCalls().clearToken(key: 'role');
-                            NetworkCalls().clearToken(key: "auth");
-                            setState(() {
-                              navigateToHome();
-                            });
-                          },
-                          onFailure: (msg) {
-                            showMessage(msg);
-                          },
-                          tokenExpire: () {
-                            if (mounted) on401(context);
-                          },
-                        );
-                      } else {
-                        NetworkCalls().deleteAccount(
-                          onSuccess: (msg) {
-                            NetworkCalls().clearToken(key: 'token');
-                            NetworkCalls().clearToken(key: 'role');
-                            NetworkCalls().clearToken(key: "auth");
-                            navigateToHome();
-                          },
-                          onFailure: (msg) {
-                            showMessage(msg);
-                          },
-                          tokenExpire: () {
-                            if (mounted) on401(context);
-                          },
-                        );
-                      }
-                    } else {
-                      if (mounted) {
-                        showMessage(
-                            AppLocalizations.of(context)!.noInternetConnection);
-                      }
-                    }
-                  });
-                },
-                child: Center(
-                  child: Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.appThemeColor,
-                      border: Border.all(width: 1, color: AppColors.white),
-                    ),
-                    child: Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.yes,
-                        style: TextStyle(color: AppColors.white),
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           );

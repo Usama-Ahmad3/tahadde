@@ -283,6 +283,7 @@ class NetworkCalls {
         saveToken(resp["key"]);
         saveRole(resp["role"]);
         authorizationSave(true);
+        ratingSave(false);
       } else if (response.statusCode == 400) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onFailure("ErrorNo${resp["error"]}");
@@ -312,6 +313,18 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print(auth);
     await prefs.setBool("auth", auth);
+  }
+
+  ratingSave(bool rating) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(rating);
+    await prefs.setBool("rating", rating);
+  }
+
+  getPreference(String rating) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(rating);
+    return prefs.getBool(rating);
   }
 
   void saveToken(String token) async {

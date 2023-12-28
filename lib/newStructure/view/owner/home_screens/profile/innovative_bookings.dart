@@ -456,6 +456,212 @@ class _InnovativeBookingsState extends State<InnovativeBookings> {
     // Navigator.pushNamed(context, RouteNames.payment, arguments: academyDetail);
   }
 
+  showDialogBox(
+      {required sizeWidth,
+      required sizeHeight,
+      required innovative,
+      required booking}) {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              elevation: 2,
+              backgroundColor: MyAppState.mode == ThemeMode.light
+                  ? AppColors.grey200
+                  : AppColors.darkTheme,
+              shape:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+              title: Text(
+                AppLocalizations.of(context)!.bookingDetails,
+                style: TextStyle(
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.black
+                        : AppColors.white),
+              ),
+              contentPadding: EdgeInsets.zero,
+              content: SizedBox(
+                height: sizeHeight * 0.23,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              AppLocalizations.of(context)!.locale == 'en'
+                                  ? booking.inovativehubName.toString()
+                                  : booking.inovativehubNameArabic.toString(),
+                              style: TextStyle(
+                                  fontSize: sizeHeight * 0.015,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? const Color(0XFF25A163)
+                                      : AppColors.grey),
+                            ),
+                          ),
+                          SizedBox(
+                            height: sizeHeight * 0.01,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: sizeWidth * .5,
+                                child: Text(
+                                  booking.location.toString(),
+                                  style: TextStyle(
+                                      fontSize: sizeHeight * 0.013,
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? const Color(0XFF9B9B9B)
+                                          : Colors.grey),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: sizeHeight * 0.01,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.status}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(AppLocalizations.of(context)!.booked,
+                              style: TextStyle(
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF25A163)
+                                    : Colors.grey,
+                                fontFamily: "Poppins",
+                                fontSize: sizeHeight * 0.015,
+                              ))
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.bookedFor}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(
+                            booking.bookedDate.toString(),
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF25A163)
+                                    : Colors.grey,
+                                decoration: TextDecoration.none,
+                                fontSize: sizeHeight * 0.015),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.playerCount}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(
+                            "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                            style: TextStyle(
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? const Color(0XFF25A163)
+                                  : AppColors.grey,
+                              fontSize: sizeHeight * 0.015,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.tranjectionId}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(
+                            booking.transactionId.toString(),
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF25A163)
+                                    : AppColors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Center(
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.appThemeColor,
+                        border:
+                            Border.all(width: 1, color: AppColors.transparent),
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.ok,
+                          style: TextStyle(color: AppColors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ));
+  }
+
   ///Whole widget of booking detail list
   Widget bookingsList(
       sizeWidth, sizeHeight, booking, index, completed, innovative) {
@@ -463,8 +669,8 @@ class _InnovativeBookingsState extends State<InnovativeBookings> {
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * .07),
       child: SizedBox(
         height: booking.bookedSession!.length == 1
-            ? sizeHeight * 0.51
-            : sizeHeight * .57,
+            ? sizeHeight * 0.42
+            : sizeHeight * .48,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -479,135 +685,163 @@ class _InnovativeBookingsState extends State<InnovativeBookings> {
             SizedBox(
               height: sizeHeight * 0.005,
             ),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  color: MyAppState.mode == ThemeMode.light
-                      ? AppColors.grey200
-                      : AppColors.containerColorW12,
-                  boxShadow: [
-                    BoxShadow(
-                        color: AppColors.containerColorB,
-                        spreadRadius: 3,
-                        blurRadius: 2,
-                        offset: const Offset(1, 1),
-                        blurStyle: BlurStyle.outer)
-                  ]),
-              height: booking.bookedSession!.length == 1
-                  ? sizeHeight * 0.47
-                  : sizeHeight * .53,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: sizeHeight * 0.02,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                    child: Row(
-                      children: [
-                        Container(
-                            height: sizeHeight * .08,
-                            width: sizeHeight * .08,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0XFF4F5C6A),
-                            ),
-                            child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.circular(sizeHeight * .1),
-                                child: cachedNetworkImage(
-                                    height: sizeHeight * .08,
-                                    cuisineImageUrl:
-                                        booking.playerPicture ?? '',
-                                    placeholder: 'assets/images/profile.png'))),
-                        flaxibleGap(2),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              booking.playerName.toString(),
-                              style: TextStyle(
-                                  fontSize: sizeHeight * 0.017,
-                                  color: MyAppState.mode == ThemeMode.light
-                                      ? const Color(0XFF032040)
-                                      : AppColors.white),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.call,
-                                  color: Colors.green,
-                                  size: sizeHeight * .025,
-                                ),
-                                Text(
-                                  " ${booking.playerPhoneno.toString()}",
-                                  style: TextStyle(
-                                      fontSize: sizeHeight * 0.012,
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? const Color(0XFFADADAD)
-                                          : AppColors.white),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.mail,
-                                  color: Colors.green,
-                                  size: sizeHeight * .025,
-                                ),
-                                Text(
-                                  "  ${booking.playerEmail}" ?? "",
-                                  style: TextStyle(
-                                      fontSize: sizeHeight * 0.012,
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? const Color(0XFFADADAD)
-                                          : Colors.white),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                        flaxibleGap(10),
-                      ],
+            InkWell(
+              onTap: () {
+                showDialogBox(
+                    sizeWidth: sizeWidth,
+                    sizeHeight: sizeHeight,
+                    innovative: innovative,
+                    booking: booking);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.grey200
+                        : AppColors.containerColorW12,
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.containerColorB,
+                          spreadRadius: 3,
+                          blurRadius: 2,
+                          offset: const Offset(1, 1),
+                          blurStyle: BlurStyle.outer)
+                    ]),
+                height: booking.bookedSession!.length == 1
+                    ? sizeHeight * 0.38
+                    : sizeHeight * .44,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: sizeHeight * 0.02,
                     ),
-                  ),
-                  SizedBox(
-                    height: sizeHeight * 0.02,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                    child: Text(
-                      AppLocalizations.of(context)!.bookingDetails,
-                      style: TextStyle(
-                          fontSize: sizeHeight * 0.017,
-                          color: MyAppState.mode == ThemeMode.light
-                              ? Colors.black
-                              : AppColors.white),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Row(
+                        children: [
+                          Container(
+                              height: sizeHeight * .08,
+                              width: sizeHeight * .08,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0XFF4F5C6A),
+                              ),
+                              child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.circular(sizeHeight * .1),
+                                  child: cachedNetworkImage(
+                                      height: sizeHeight * .08,
+                                      cuisineImageUrl:
+                                          booking.playerPicture ?? '',
+                                      placeholder:
+                                          'assets/images/profile.png'))),
+                          flaxibleGap(2),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: sizeWidth * 0.62,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      booking.playerName.toString(),
+                                      style: TextStyle(
+                                          fontSize: sizeHeight * 0.017,
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? const Color(0XFF032040)
+                                                  : AppColors.white),
+                                    ),
+                                    Text(
+                                      booking.bookedDate.toString(),
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? const Color(0XFF25A163)
+                                                  : Colors.grey,
+                                          decoration: TextDecoration.none,
+                                          fontSize: sizeHeight * 0.015),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(
+                                    Icons.call,
+                                    color: Colors.green,
+                                    size: sizeHeight * .025,
+                                  ),
+                                  Text(
+                                    " ${booking.playerPhoneno.toString()}",
+                                    style: TextStyle(
+                                        fontSize: sizeHeight * 0.012,
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? const Color(0XFFADADAD)
+                                                : AppColors.white),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.mail,
+                                    color: Colors.green,
+                                    size: sizeHeight * .025,
+                                  ),
+                                  Text(
+                                    "  ${booking.playerEmail}" ?? "",
+                                    style: TextStyle(
+                                        fontSize: sizeHeight * 0.012,
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? const Color(0XFFADADAD)
+                                                : Colors.white),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                          flaxibleGap(10),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: sizeHeight * 0.01,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            // Text(
-                            //   "${AppLocalizations.of(context)!.academyName}:",
-                            //   style: TextStyle(
-                            //       fontSize: 14,
-                            //       color: MyAppState.mode == ThemeMode.light
-                            //           ? const Color(0XFF032040)
-                            //           : AppColors.white),
-                            // ),
-                            Text(
+                    SizedBox(
+                      height: sizeHeight * 0.02,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Text(
+                        AppLocalizations.of(context)!.bookingDetails,
+                        style: TextStyle(
+                            fontSize: sizeHeight * 0.017,
+                            color: MyAppState.mode == ThemeMode.light
+                                ? Colors.black
+                                : AppColors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      height: sizeHeight * 0.01,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
                               AppLocalizations.of(context)!.locale == 'en'
                                   ? booking.inovativehubName.toString()
                                   : booking.inovativehubNameArabic.toString(),
@@ -617,407 +851,344 @@ class _InnovativeBookingsState extends State<InnovativeBookings> {
                                       ? const Color(0XFF25A163)
                                       : AppColors.grey),
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: sizeWidth * .78,
-                              child: Text(
-                                booking.location.toString(),
-                                style: TextStyle(
-                                    fontSize: sizeHeight * 0.013,
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? const Color(0XFF9B9B9B)
-                                        : Colors.grey),
-                              ),
-                            ),
-                          ],
-                        )
-                        // Container(
-                        //   width: 2,
-                        //   height: sizeHeight * .05,
-                        //   color: const Color(0XFF979797),
-                        // ),
-                        // flaxibleGap(1),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizeHeight * 0.01,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${AppLocalizations.of(context)!.status}:",
-                          style: TextStyle(
-                              fontSize: sizeHeight * 0.015,
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF032040)
-                                  : AppColors.white),
-                        ),
-                        Text(AppLocalizations.of(context)!.booked,
-                            style: TextStyle(
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF25A163)
-                                  : Colors.grey,
-                              fontFamily: "Poppins",
-                              fontSize: sizeHeight * 0.015,
-                            ))
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${AppLocalizations.of(context)!.playerCount}:",
-                          style: TextStyle(
-                              fontSize: sizeHeight * 0.015,
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF032040)
-                                  : AppColors.white),
-                        ),
-                        Text(
-                          "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                          style: TextStyle(
-                            color: MyAppState.mode == ThemeMode.light
-                                ? const Color(0XFF25A163)
-                                : AppColors.grey,
-                            fontSize: sizeHeight * 0.015,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${AppLocalizations.of(context)!.bookingDate}:",
-                          style: TextStyle(
-                              fontSize: sizeHeight * 0.015,
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF032040)
-                                  : AppColors.white),
-                        ),
-                        Text(
-                          booking.bookedDate.toString(),
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF25A163)
-                                  : Colors.grey,
-                              decoration: TextDecoration.none,
-                              fontSize: sizeHeight * 0.015),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeWidth * .03),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${AppLocalizations.of(context)!.tranjectionId}:",
-                          style: TextStyle(
-                              fontSize: sizeHeight * 0.015,
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF032040)
-                                  : AppColors.white),
-                        ),
-                        Text(
-                          booking.transactionId.toString(),
-                          style: TextStyle(
-                              fontSize: sizeHeight * 0.015,
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF25A163)
-                                  : AppColors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.slot,
-                    style: TextStyle(
-                        fontSize: sizeHeight * 0.017,
-                        color: MyAppState.mode == ThemeMode.light
-                            ? Colors.black
-                            : AppColors.white),
-                  ),
-                  SizedBox(
-                    width: sizeWidth,
-                    height: booking.bookedSession!.length == 1
-                        ? sizeHeight * 0.048
-                        : sizeHeight * 0.11,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: bookedSessions.length,
-                      itemBuilder: (context, blockindex) {
-                        return booking.bookedSession!
-                                .contains(bookedSessions[blockindex].id)
-                            ? Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizeWidth * .03),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                            AppLocalizations.of(context)!
-                                                        .locale ==
-                                                    'en'
-                                                ? "${bookedSessions[blockindex].name} (${bookedSessions[blockindex].slotDuration} mins)"
-                                                : "${bookedSessions[blockindex].nameArabic} (${bookedSessions[blockindex].slotDuration} mins)",
-                                            style: TextStyle(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.black
-                                                    : AppColors.white,
-                                                fontSize: sizeHeight * 0.015)),
-                                        Text(
-                                            "${bookedSessions[blockindex].startTime} ${AppLocalizations.of(context)!.to} ${bookedSessions[blockindex].endTime}",
-                                            // '(${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
-                                            style: TextStyle(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.grey
-                                                    : Colors.grey,
-                                                fontSize: sizeHeight * 0.014)),
-                                      ],
-                                    ),
-                                    completed == false
-                                        ? SizedBox.shrink()
-                                        : InkWell(
-                                            onTap: () async {
-                                              final selectDate =
-                                                  await slecteDtateTime(
-                                                      context);
-                                              String dateTime = apiFormatter
-                                                  .format(selectDate!);
-                                              print(dateTime);
-
-                                              ///dialog Box For reBook
-                                              // ignore: use_build_context_synchronously
-                                              showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (context) => AlertDialog(
-                                                            elevation: 2,
-                                                            backgroundColor: MyAppState
-                                                                        .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                ? AppColors
-                                                                    .grey200
-                                                                : AppColors
-                                                                    .darkTheme,
-                                                            shape: OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12)),
-                                                            title: Text(
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .areYouSure,
-                                                              style: TextStyle(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? AppColors
-                                                                          .black
-                                                                      : AppColors
-                                                                          .white),
-                                                            ),
-                                                            content: Text(
-                                                              '${AppLocalizations.of(context)!.rebookThis} $dateTime',
-                                                              style: const TextStyle(
-                                                                  color: AppColors
-                                                                      .appThemeColor),
-                                                            ),
-                                                            actions: [
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .pop(
-                                                                          false);
-                                                                },
-                                                                child: Center(
-                                                                  child:
-                                                                      Container(
-                                                                    height: 50,
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width *
-                                                                        0.8,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20),
-                                                                      color: AppColors
-                                                                          .appThemeColor,
-                                                                    ),
-                                                                    child:
-                                                                        Center(
-                                                                      child:
-                                                                          Text(
-                                                                        AppLocalizations.of(context)!
-                                                                            .no,
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                AppColors.white),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              const SizedBox(
-                                                                height: 10,
-                                                              ),
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .pop(
-                                                                          true);
-                                                                  navigateToPayment(
-                                                                      index,
-                                                                      dateTime);
-                                                                },
-                                                                child: Center(
-                                                                  child:
-                                                                      Container(
-                                                                    height: 50,
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width *
-                                                                        0.8,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20),
-                                                                      color: AppColors
-                                                                          .appThemeColor,
-                                                                      border: Border.all(
-                                                                          width:
-                                                                              1,
-                                                                          color:
-                                                                              AppColors.transparent),
-                                                                    ),
-                                                                    child:
-                                                                        Center(
-                                                                      child:
-                                                                          Text(
-                                                                        AppLocalizations.of(context)!
-                                                                            .yes,
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                AppColors.white),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ));
-                                            },
-                                            child: Container(
-                                              height: sizeHeight * 0.04,
-                                              width: sizeWidth * 0.25,
-                                              decoration: BoxDecoration(
-                                                  color:
-                                                      AppColors.appThemeColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              child: Center(
-                                                child: Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .bookAgain,
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize:
-                                                          sizeHeight * 0.015,
-                                                    )),
-                                              ),
-                                            ),
-                                          )
-                                  ],
-                                ),
-                              )
-                            : Container();
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizeHeight * 0.01,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: const Color(0XFFD8D8D8),
-                        borderRadius: BorderRadius.circular(10)),
-                    alignment: Alignment.center,
-                    height: sizeHeight * .06,
-                    width: sizeWidth * 0.91,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        right: 10,
+                        ],
                       ),
+                    ),
+                    SizedBox(
+                      height: sizeHeight * 0.008,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text(
-                            AppLocalizations.of(context)!.paidTotal,
+                            "${AppLocalizations.of(context)!.status}:",
                             style: TextStyle(
-                                fontFamily: 'Poppins',
-                                color: Color(0XFF25A163),
-                                fontWeight: FontWeight.w500,
-                                fontSize: sizeHeight * 0.015),
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
                           ),
-                          flaxibleGap(1),
+                          Text(AppLocalizations.of(context)!.booked,
+                              style: TextStyle(
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF25A163)
+                                    : Colors.grey,
+                                fontFamily: "Poppins",
+                                fontSize: sizeHeight * 0.015,
+                              ))
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text(
-                            booking.price.toString(),
+                            "${AppLocalizations.of(context)!.playerCount}:",
                             style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Color(0XFF25A163),
-                              fontWeight: FontWeight.w500,
-                              fontSize: sizeHeight * 0.015,
-                            ),
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
                           ),
                           Text(
-                            booking.currency.toString(),
+                            "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
                             style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Color(0XFF25A163),
-                              fontWeight: FontWeight.w500,
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? const Color(0XFF25A163)
+                                  : AppColors.grey,
                               fontSize: sizeHeight * 0.015,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  )
-                ],
+                    Text(
+                      AppLocalizations.of(context)!.slot,
+                      style: TextStyle(
+                          fontSize: sizeHeight * 0.017,
+                          color: MyAppState.mode == ThemeMode.light
+                              ? Colors.black
+                              : AppColors.white),
+                    ),
+                    SizedBox(
+                      width: sizeWidth,
+                      height: booking.bookedSession!.length == 1
+                          ? sizeHeight * 0.048
+                          : sizeHeight * 0.11,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: bookedSessions.length,
+                        itemBuilder: (context, blockindex) {
+                          return booking.bookedSession!
+                                  .contains(bookedSessions[blockindex].id)
+                              ? Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: sizeWidth * .03),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              AppLocalizations.of(context)!
+                                                          .locale ==
+                                                      'en'
+                                                  ? "${bookedSessions[blockindex].name} (${bookedSessions[blockindex].slotDuration} mins)"
+                                                  : "${bookedSessions[blockindex].nameArabic} (${bookedSessions[blockindex].slotDuration} mins)",
+                                              style: TextStyle(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.black
+                                                      : AppColors.white,
+                                                  fontSize:
+                                                      sizeHeight * 0.015)),
+                                          Text(
+                                              "${bookedSessions[blockindex].startTime} ${AppLocalizations.of(context)!.to} ${bookedSessions[blockindex].endTime}",
+                                              // '(${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
+                                              style: TextStyle(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.grey
+                                                      : Colors.grey,
+                                                  fontSize:
+                                                      sizeHeight * 0.014)),
+                                        ],
+                                      ),
+                                      completed == false
+                                          ? SizedBox.shrink()
+                                          : InkWell(
+                                              onTap: () async {
+                                                final selectDate =
+                                                    await slecteDtateTime(
+                                                        context);
+                                                String dateTime = apiFormatter
+                                                    .format(selectDate!);
+                                                print(dateTime);
+
+                                                ///dialog Box For reBook
+                                                // ignore: use_build_context_synchronously
+                                                showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (context) =>
+                                                            AlertDialog(
+                                                              elevation: 2,
+                                                              backgroundColor: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? AppColors
+                                                                      .grey200
+                                                                  : AppColors
+                                                                      .darkTheme,
+                                                              shape: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12)),
+                                                              title: Text(
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .areYouSure,
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyLarge!
+                                                                    .copyWith(
+                                                                        color: MyAppState.mode ==
+                                                                                ThemeMode.light
+                                                                            ? AppColors.black
+                                                                            : AppColors.white),
+                                                              ),
+                                                              contentPadding:
+                                                                  EdgeInsets.symmetric(
+                                                                      horizontal:
+                                                                          sizeWidth *
+                                                                              0.065),
+                                                              content: Text(
+                                                                '${AppLocalizations.of(context)!.rebookThis} $dateTime',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                        color: AppColors
+                                                                            .appThemeColor),
+                                                              ),
+                                                              actions: [
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceEvenly,
+                                                                  children: [
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        Navigator.of(context)
+                                                                            .pop(false);
+                                                                      },
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Container(
+                                                                          height:
+                                                                              35,
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width * 0.3,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(20),
+                                                                            color:
+                                                                                AppColors.appThemeColor,
+                                                                          ),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              AppLocalizations.of(context)!.no,
+                                                                              style: TextStyle(color: AppColors.white),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        Navigator.of(context)
+                                                                            .pop(true);
+                                                                        navigateToPayment(
+                                                                            index,
+                                                                            dateTime);
+                                                                      },
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Container(
+                                                                          height:
+                                                                              35,
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width * 0.3,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(20),
+                                                                            color:
+                                                                                AppColors.red,
+                                                                            border:
+                                                                                Border.all(width: 1, color: AppColors.transparent),
+                                                                          ),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              AppLocalizations.of(context)!.yes,
+                                                                              style: TextStyle(color: AppColors.white),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                const SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                              ],
+                                                            ));
+                                              },
+                                              child: Container(
+                                                height: sizeHeight * 0.04,
+                                                width: sizeWidth * 0.25,
+                                                decoration: BoxDecoration(
+                                                    color:
+                                                        AppColors.appThemeColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: Center(
+                                                  child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .bookAgain,
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize:
+                                                            sizeHeight * 0.015,
+                                                      )),
+                                                ),
+                                              ),
+                                            )
+                                    ],
+                                  ),
+                                )
+                              : Container();
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: sizeHeight * 0.01,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: const Color(0XFFD8D8D8),
+                          borderRadius: BorderRadius.circular(10)),
+                      alignment: Alignment.center,
+                      height: sizeHeight * .06,
+                      width: sizeWidth * 0.91,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              AppLocalizations.of(context)!.paidTotal,
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0XFF25A163),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: sizeHeight * 0.015),
+                            ),
+                            flaxibleGap(1),
+                            Text(
+                              booking.price.toString(),
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Color(0XFF25A163),
+                                fontWeight: FontWeight.w500,
+                                fontSize: sizeHeight * 0.015,
+                              ),
+                            ),
+                            Text(
+                              booking.currency.toString(),
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Color(0XFF25A163),
+                                fontWeight: FontWeight.w500,
+                                fontSize: sizeHeight * 0.015,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],

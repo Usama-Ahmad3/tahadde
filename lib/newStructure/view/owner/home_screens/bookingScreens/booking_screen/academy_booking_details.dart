@@ -74,6 +74,210 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
     );
   }
 
+  showDialogBox({required sizeWidth, required sizeHeight, required booking}) {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              elevation: 2,
+              backgroundColor: MyAppState.mode == ThemeMode.light
+                  ? AppColors.grey200
+                  : AppColors.darkTheme,
+              shape:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+              title: Text(
+                AppLocalizations.of(context)!.bookingDetails,
+                style: TextStyle(
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.black
+                        : AppColors.white),
+              ),
+              contentPadding: EdgeInsets.zero,
+              content: SizedBox(
+                height: sizeHeight * 0.23,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              AppLocalizations.of(context)!.locale == 'en'
+                                  ? specificAcademy!.academyNameEnglish
+                                      .toString()
+                                  : specificAcademy!.academyNameArabic
+                                      .toString(),
+                              style: TextStyle(
+                                  fontSize: sizeHeight * 0.015,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? const Color(0XFF25A163)
+                                      : AppColors.grey),
+                            ),
+                          ),
+                          SizedBox(
+                            height: sizeHeight * 0.01,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: sizeWidth * .5,
+                                child: Text(
+                                  specificAcademy!.academyLocation.toString(),
+                                  style: TextStyle(
+                                      fontSize: sizeHeight * 0.013,
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? const Color(0XFF9B9B9B)
+                                          : Colors.grey),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: sizeHeight * 0.01,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.status}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(AppLocalizations.of(context)!.booked,
+                              style: TextStyle(
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF25A163)
+                                    : Colors.grey,
+                                fontFamily: "Poppins",
+                                fontSize: sizeHeight * 0.015,
+                              ))
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.bookedFor}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(
+                            widget.bookindDetail.bookedDate.toString(),
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF25A163)
+                                    : Colors.grey,
+                                decoration: TextDecoration.none,
+                                fontSize: sizeHeight * 0.015),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.playerCount}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(
+                            "${widget.bookindDetail.playerCount} ${widget.bookindDetail.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                            style: TextStyle(
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? const Color(0XFF25A163)
+                                  : AppColors.grey,
+                              fontSize: sizeHeight * 0.015,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: sizeWidth * .03),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)!.tranjectionId}:",
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF032040)
+                                    : AppColors.white),
+                          ),
+                          Text(
+                            widget.bookindDetail.transactionId.toString(),
+                            style: TextStyle(
+                                fontSize: sizeHeight * 0.015,
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? const Color(0XFF25A163)
+                                    : AppColors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Center(
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.appThemeColor,
+                        border:
+                            Border.all(width: 1, color: AppColors.transparent),
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.ok,
+                          style: TextStyle(color: AppColors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ));
+  }
+
   @override
   void initState() {
     loadSpecificSession();
@@ -133,8 +337,8 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                             EdgeInsets.symmetric(horizontal: sizeWidth * .07),
                         child: SizedBox(
                           height: bookedSessions.length == 1
-                              ? sizeHeight * 0.51
-                              : sizeHeight * .57,
+                              ? sizeHeight * 0.42
+                              : sizeHeight * .48,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -149,153 +353,204 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                               SizedBox(
                                 height: sizeHeight * 0.005,
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10.0)),
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.grey200
-                                        : AppColors.containerColorW12,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: AppColors.containerColorB,
-                                          spreadRadius: 3,
-                                          blurRadius: 2,
-                                          offset: const Offset(1, 1),
-                                          blurStyle: BlurStyle.outer)
-                                    ]),
-                                height: bookedSessions.length == 1
-                                    ? sizeHeight * 0.47
-                                    : sizeHeight * .53,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: sizeHeight * 0.02,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .03),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                              height: sizeHeight * .08,
-                                              width: sizeHeight * .08,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Color(0XFF4F5C6A),
-                                              ),
-                                              child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          sizeHeight * .1),
-                                                  child: cachedNetworkImage(
-                                                      height: sizeHeight * .08,
-                                                      cuisineImageUrl: widget
-                                                              .bookindDetail
-                                                              .playerPicture ??
-                                                          '',
-                                                      placeholder:
-                                                          'assets/images/profile.png'))),
-                                          flaxibleGap(2),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                widget.bookindDetail.playerName
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    fontSize: sizeHeight * 0.017,
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? const Color(
-                                                            0XFF032040)
-                                                        : AppColors.white),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: <Widget>[
-                                                  Icon(
-                                                    Icons.call,
-                                                    color: Colors.green,
-                                                    size: sizeHeight * .025,
-                                                  ),
-                                                  Text(
-                                                    " ${widget.bookindDetail.playerPhoneno.toString()}",
-                                                    style: TextStyle(
-                                                        fontSize: sizeHeight * 0.012,
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? const Color(
-                                                                0XFFADADAD)
-                                                            : AppColors.white),
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: <Widget>[
-                                                  Icon(
-                                                    Icons.mail,
-                                                    color: Colors.green,
-                                                    size: sizeHeight * .025,
-                                                  ),
-                                                  Text(
-                                                    "  ${widget.bookindDetail.playerEmail}" ??
-                                                        "",
-                                                    style: TextStyle(
-                                                        fontSize: sizeHeight * 0.012,
-                                                        color: MyAppState
-                                                                    .mode ==
-                                                                ThemeMode.light
-                                                            ? const Color(
-                                                                0XFFADADAD)
-                                                            : Colors.white),
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                          flaxibleGap(10),
-                                        ],
+                              InkWell(
+                                onTap: () {
+                                  showDialogBox(
+                                      sizeWidth: sizeWidth,
+                                      sizeHeight: sizeHeight,
+                                      booking: widget.bookindDetail);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                      color: MyAppState.mode == ThemeMode.light
+                                          ? AppColors.grey200
+                                          : AppColors.containerColorW12,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: AppColors.containerColorB,
+                                            spreadRadius: 3,
+                                            blurRadius: 2,
+                                            offset: const Offset(1, 1),
+                                            blurStyle: BlurStyle.outer)
+                                      ]),
+                                  height: bookedSessions.length == 1
+                                      ? sizeHeight * 0.38
+                                      : sizeHeight * .44,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: sizeHeight * 0.02,
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: sizeHeight * 0.02,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .03),
-                                      child: Text(
-                                        AppLocalizations.of(context)!
-                                            .bookingDetails,
-                                        style: TextStyle(
-                                            fontSize: sizeHeight * 0.017,
-                                            color: MyAppState.mode ==
-                                                    ThemeMode.light
-                                                ? Colors.black
-                                                : AppColors.white),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: sizeWidth * .03),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                height: sizeHeight * .08,
+                                                width: sizeHeight * .08,
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Color(0XFF4F5C6A),
+                                                ),
+                                                child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            sizeHeight * .1),
+                                                    child: cachedNetworkImage(
+                                                        height:
+                                                            sizeHeight * .08,
+                                                        cuisineImageUrl: widget
+                                                                .bookindDetail
+                                                                .playerPicture ??
+                                                            '',
+                                                        placeholder:
+                                                            'assets/images/profile.png'))),
+                                            flaxibleGap(2),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  width: sizeWidth * 0.62,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        widget.bookindDetail
+                                                            .playerName
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            fontSize:
+                                                                sizeHeight *
+                                                                    0.017,
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0XFF032040)
+                                                                : AppColors
+                                                                    .white),
+                                                      ),
+                                                      Text(
+                                                        widget.bookindDetail
+                                                            .bookedDate
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0XFF25A163)
+                                                                : Colors.grey,
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .none,
+                                                            fontSize:
+                                                                sizeHeight *
+                                                                    0.015),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.call,
+                                                      color: Colors.green,
+                                                      size: sizeHeight * .025,
+                                                    ),
+                                                    Text(
+                                                      " ${widget.bookindDetail.playerPhoneno.toString()}",
+                                                      style: TextStyle(
+                                                          fontSize: sizeHeight *
+                                                              0.012,
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? const Color(
+                                                                  0XFFADADAD)
+                                                              : AppColors
+                                                                  .white),
+                                                    )
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.mail,
+                                                      color: Colors.green,
+                                                      size: sizeHeight * .025,
+                                                    ),
+                                                    Text(
+                                                      "  ${widget.bookindDetail.playerEmail}" ??
+                                                          "",
+                                                      style: TextStyle(
+                                                          fontSize: sizeHeight *
+                                                              0.012,
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? const Color(
+                                                                  0XFFADADAD)
+                                                              : Colors.white),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            flaxibleGap(10),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: sizeHeight * 0.01,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .03),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
+                                      SizedBox(
+                                        height: sizeHeight * 0.02,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: sizeWidth * .03),
+                                        child: Text(
+                                          AppLocalizations.of(context)!
+                                              .bookingDetails,
+                                          style: TextStyle(
+                                              fontSize: sizeHeight * 0.017,
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? Colors.black
+                                                  : AppColors.white),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: sizeHeight * 0.01,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: sizeWidth * .03),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Text(
                                                 AppLocalizations.of(context)!
                                                             .locale ==
                                                         'en'
@@ -306,294 +561,218 @@ class _AcademyBookingDetailsState extends State<AcademyBookingDetails> {
                                                         .academyNameArabic
                                                         .toString(),
                                                 style: TextStyle(
-                                                    fontSize: sizeHeight * 0.015,
+                                                    fontSize:
+                                                        sizeHeight * 0.015,
                                                     color: MyAppState.mode ==
                                                             ThemeMode.light
                                                         ? const Color(
                                                             0XFF25A163)
                                                         : AppColors.grey),
                                               ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: sizeWidth * .78,
-                                                child: Text(
-                                                  specificAcademy!
-                                                      .academyLocation
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                      fontSize: sizeHeight * 0.013,
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF9B9B9B)
-                                                          : Colors.grey),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                          // Container(
-                                          //   width: 2,
-                                          //   height: sizeHeight * .05,
-                                          //   color: const Color(0XFF979797),
-                                          // ),
-                                          // flaxibleGap(1),
-                                        ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: sizeHeight * 0.01,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .03),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${AppLocalizations.of(context)!.status}:",
-                                            style: TextStyle(
-                                                fontSize: sizeHeight * 0.015,
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFF032040)
-                                                    : AppColors.white),
-                                          ),
-                                          Text(
-                                              AppLocalizations.of(context)!
-                                                  .booked,
+                                      SizedBox(
+                                        height: sizeHeight * 0.008,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: sizeWidth * .03),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "${AppLocalizations.of(context)!.status}:",
                                               style: TextStyle(
+                                                  fontSize: sizeHeight * 0.015,
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF032040)
+                                                      : AppColors.white),
+                                            ),
+                                            Text(
+                                                AppLocalizations.of(context)!
+                                                    .booked,
+                                                style: TextStyle(
                                                   color: MyAppState.mode ==
                                                           ThemeMode.light
                                                       ? const Color(0XFF25A163)
                                                       : Colors.grey,
                                                   fontFamily: "Poppins",
-                                                  fontSize: sizeHeight * 0.015,))
-                                        ],
+                                                  fontSize: sizeHeight * 0.015,
+                                                ))
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .03),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${AppLocalizations.of(context)!.playerCount}:",
-                                            style: TextStyle(
-                                                fontSize: sizeHeight * 0.015,
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFF032040)
-                                                    : AppColors.white),
-                                          ),
-                                          Text(
-                                            "${widget.bookindDetail.playerCount} ${widget.bookindDetail.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                                            style: TextStyle(
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: sizeWidth * .03),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "${AppLocalizations.of(context)!.playerCount}:",
+                                              style: TextStyle(
+                                                  fontSize: sizeHeight * 0.015,
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? const Color(0XFF032040)
+                                                      : AppColors.white),
+                                            ),
+                                            Text(
+                                              "${widget.bookindDetail.playerCount} ${widget.bookindDetail.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                                              style: TextStyle(
                                                 color: MyAppState.mode ==
                                                         ThemeMode.light
                                                     ? const Color(0XFF25A163)
                                                     : AppColors.grey,
-                                                fontSize: sizeHeight * 0.015,),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .03),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${AppLocalizations.of(context)!.bookingDate}:",
-                                            style: TextStyle(
                                                 fontSize: sizeHeight * 0.015,
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFF032040)
-                                                    : AppColors.white),
-                                          ),
-                                          Text(
-                                            widget.bookindDetail.bookedDate
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFF25A163)
-                                                    : Colors.grey,
-                                                decoration: TextDecoration.none,
-                                                fontSize: sizeHeight * 0.015),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sizeWidth * .03),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${AppLocalizations.of(context)!.tranjectionId}:",
-                                            style: TextStyle(
-                                                fontSize: sizeHeight * 0.015,
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFF032040)
-                                                    : AppColors.white),
-                                          ),
-                                          Text(
-                                            widget.bookindDetail.transactionId
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: sizeHeight * 0.013,
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? const Color(0XFF25A163)
-                                                    : AppColors.grey),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!.slot,
-                                      style: TextStyle(
-                                          fontSize: sizeHeight * 0.017,
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? Colors.black
-                                                  : AppColors.white),
-                                    ),
-                                    bookedSessions.isNotEmpty
-                                        ? SizedBox(
-                                            width: sizeWidth,
-                                            height: bookedSessions.length == 1
-                                                ? sizeHeight * 0.048
-                                                : sizeHeight * 0.11,
-                                            child: ListView.builder(
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
-                                              itemCount: bookedSessions.length,
-                                              itemBuilder:
-                                                  (context, blockindex) {
-                                                return Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal:
-                                                          sizeWidth * .03),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                              AppLocalizations.of(
-                                                                              context)!
-                                                                          .locale ==
-                                                                      'en'
-                                                                  ? "${bookedSessions[blockindex].name} (${bookedSessions[blockindex].slotDuration} mins)"
-                                                                  : "${bookedSessions[blockindex].nameArabic} (${bookedSessions[blockindex].slotDuration} mins)",
-                                                              style: TextStyle(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? AppColors
-                                                                          .black
-                                                                      : AppColors
-                                                                          .white,
-                                                                  fontSize:
-                                                                  sizeHeight * 0.015)),
-                                                          Text(
-                                                              "${bookedSessions[blockindex].startTime} ${AppLocalizations.of(context)!.to} ${bookedSessions[blockindex].endTime}",
-                                                              // '(${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
-                                                              style: TextStyle(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? AppColors
-                                                                          .grey
-                                                                      : Colors
-                                                                          .grey,
-                                                                  fontSize:
-                                                                  sizeHeight * 0.014)),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          )
-                                        : SizedBox(
-                                            height: sizeHeight * 0.01,
-                                          ),
-                                    SizedBox(
-                                      height: sizeHeight * 0.01,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: const Color(0XFFD8D8D8),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      alignment: Alignment.center,
-                                      height: sizeHeight * .06,
-                                      width: sizeWidth * 0.9,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 10,
-                                          right: 10,
-                                        ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .paidTotal,
-                                              style:  TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  color: Color(0XFF25A163),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: sizeHeight * 0.015),
-                                            ),
-                                            flaxibleGap(1),
-                                            Text(
-                                              widget.bookindDetail.price
-                                                  .toString(),
-                                              style:  TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  color: Color(0XFF25A163),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: sizeHeight * 0.015,),
-                                            ),
-                                            Text(
-                                              widget.bookindDetail.currency
-                                                  .toString(),
-                                              style:  TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  color: Color(0XFF25A163),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: sizeHeight * 0.015),
+                                              ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      Text(
+                                        AppLocalizations.of(context)!.slot,
+                                        style: TextStyle(
+                                            fontSize: sizeHeight * 0.017,
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? Colors.black
+                                                : AppColors.white),
+                                      ),
+                                      bookedSessions.isNotEmpty
+                                          ? SizedBox(
+                                              width: sizeWidth,
+                                              height: bookedSessions.length == 1
+                                                  ? sizeHeight * 0.048
+                                                  : sizeHeight * 0.11,
+                                              child: ListView.builder(
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount:
+                                                    bookedSessions.length,
+                                                itemBuilder:
+                                                    (context, blockindex) {
+                                                  return Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal:
+                                                                sizeWidth *
+                                                                    .03),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                AppLocalizations.of(
+                                                                                context)!
+                                                                            .locale ==
+                                                                        'en'
+                                                                    ? "${bookedSessions[blockindex].name} (${bookedSessions[blockindex].slotDuration} mins)"
+                                                                    : "${bookedSessions[blockindex].nameArabic} (${bookedSessions[blockindex].slotDuration} mins)",
+                                                                style: TextStyle(
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? AppColors
+                                                                            .black
+                                                                        : AppColors
+                                                                            .white,
+                                                                    fontSize:
+                                                                        sizeHeight *
+                                                                            0.015)),
+                                                            Text(
+                                                                "${bookedSessions[blockindex].startTime} ${AppLocalizations.of(context)!.to} ${bookedSessions[blockindex].endTime}",
+                                                                // '(${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.startTime!.substring(0, 2)))} - ${timing(x: int.parse(widget.bookindDetail.slots!.booked_slots![blockindex]!.endTime!.substring(0, 2)))}),',
+                                                                style: TextStyle(
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? AppColors
+                                                                            .grey
+                                                                        : Colors
+                                                                            .grey,
+                                                                    fontSize:
+                                                                        sizeHeight *
+                                                                            0.014)),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            )
+                                          : SizedBox(
+                                              height: sizeHeight * 0.01,
+                                            ),
+                                      SizedBox(
+                                        height: sizeHeight * 0.01,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: const Color(0XFFD8D8D8),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        alignment: Alignment.center,
+                                        height: sizeHeight * .06,
+                                        width: sizeWidth * 0.9,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 10,
+                                            right: 10,
+                                          ),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text(
+                                                AppLocalizations.of(context)!
+                                                    .paidTotal,
+                                                style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0XFF25A163),
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize:
+                                                        sizeHeight * 0.015),
+                                              ),
+                                              flaxibleGap(1),
+                                              Text(
+                                                widget.bookindDetail.price
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  fontFamily: 'Poppins',
+                                                  color: Color(0XFF25A163),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: sizeHeight * 0.015,
+                                                ),
+                                              ),
+                                              Text(
+                                                widget.bookindDetail.currency
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0XFF25A163),
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize:
+                                                        sizeHeight * 0.015),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

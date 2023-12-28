@@ -166,8 +166,7 @@ class _InnovativeListState extends State<InnovativeList> {
                           children: [
                             Center(
                               child: Text(
-                                'no events available',
-                                // AppLocalizations.of(context)!.noAcademy,
+                                AppLocalizations.of(context)!.noEvents,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -212,7 +211,10 @@ class _InnovativeListState extends State<InnovativeList> {
                           };
                           navigateToGroundDetail(detail);
                         } else {
-                          onWillPop();
+                          // onWillPop();
+                          showMessage(
+                              AppLocalizations.of(context)!.loginRequired);
+                          navigateToLogin();
                         }
                       },
                       child: Padding(
@@ -340,6 +342,5 @@ class _InnovativeListState extends State<InnovativeList> {
   void navigateToLogin() {
     Navigator.push(context,
         MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
-    // Navigator.pushNamed(context, RouteNames.login);
   }
 }

@@ -44,7 +44,7 @@ class BookingShimmer {
                     ),
                     Text(
                       AppLocalizations.of(context)!.bookingGround,
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
                     )
                   ],
                 ),
@@ -147,61 +147,11 @@ class BookingShimmer {
                       //           ),
                       //         )),
 
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width * .04, vertical: height * 0.01),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppLocalizations.of(context)!.selectnumber,
-                              style: TextStyle(
-                                  color: appThemeColor,
-                                  fontSize: height * 0.017),
-                            ),
-                            SizedBox(
-                              width: width * .4,
-                              child: CustomDropdown(
-                                  leadingIcon: false,
-                                  icon: Image.asset(
-                                    "assets/images/drop_down.png",
-                                    height: 6,
-                                    color: appThemeColor,
-                                  ),
-                                  dropdownButtonStyle: DropdownButtonStyle(
-                                    width: width * 0.03,
-                                    height: height * 0.05,
-                                    elevation: 1,
-                                    backgroundColor: Colors.white,
-                                  ),
-                                  dropdownStyle: DropdownStyle(
-                                    borderRadius: BorderRadius.circular(4),
-                                    elevation: 6,
-                                    padding: const EdgeInsets.all(5),
-                                  ),
-                                  items: const [],
-                                  onChange: (e, int) {},
-                                  child: const Text('',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(color: appThemeColor))),
-                            ),
-                          ],
-                        ),
-                      ),
-
                       Column(
                         children: [
                           ...List.generate(1, (index) {
                             return Column(
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: height * 0.02),
-                                  child: Text(
-                                    "Select mins Slot )",
-                                    style: TextStyle(fontSize: height * 0.02),
-                                  ),
-                                ),
                                 Wrap(
                                   children: [
                                     ...List.generate(5, (slotIndex) {
@@ -268,29 +218,46 @@ class BookingShimmer {
                       SizedBox(
                         height: height * 0.05,
                       ),
-
-                      ///Book Button
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-                        child: Container(
-                            height: height * 0.07,
-                            width: width * 0.9,
-                            decoration: BoxDecoration(
-                                color: Colors.yellow,
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Center(
-                              child: Text(
-                                AppLocalizations.of(context)!.bookNowS,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                        AppLocalizations.of(context)!.locale ==
-                                                "en"
-                                            ? 18
-                                            : 22,
-                                    color: Colors.black),
-                              ),
-                            )),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * .04, vertical: height * 0.01),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.selectnumber,
+                              style: TextStyle(
+                                  color: appThemeColor,
+                                  fontSize: height * 0.017),
+                            ),
+                            SizedBox(
+                              width: width * .4,
+                              child: CustomDropdown(
+                                  leadingIcon: false,
+                                  icon: Image.asset(
+                                    "assets/images/drop_down.png",
+                                    height: 6,
+                                    color: appThemeColor,
+                                  ),
+                                  dropdownButtonStyle: DropdownButtonStyle(
+                                    width: width * 0.03,
+                                    height: height * 0.05,
+                                    elevation: 1,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  dropdownStyle: DropdownStyle(
+                                    borderRadius: BorderRadius.circular(4),
+                                    elevation: 6,
+                                    padding: const EdgeInsets.all(5),
+                                  ),
+                                  items: const [],
+                                  onChange: (e, int) {},
+                                  child: const Text('',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color: appThemeColor))),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

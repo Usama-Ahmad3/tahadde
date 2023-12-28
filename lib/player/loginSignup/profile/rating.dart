@@ -824,7 +824,7 @@ class _RateState extends State<Rate> {
                                             ),
                                             count != 0
                                                 ? ButtonWidget(
-                                                    onTaped: () {
+                                                    onTaped: () async {
                                                       if (_formKey.currentState!
                                                           .validate()) {
                                                         _formKey.currentState!
@@ -836,25 +836,43 @@ class _RateState extends State<Rate> {
                                                           "academy_id": id
                                                         };
                                                         print(detail);
-                                                        _networkCalls
-                                                            .ratingSendForAcademy(
-                                                          detail: detail,
-                                                          onSuccess: (msg) {
-                                                            setState(() {
-                                                              rateValue = false;
-                                                              loading = true;
-                                                              loadBookings();
-                                                            });
-                                                          },
-                                                          onFailure: (msg) {
-                                                            showMessage(msg);
-                                                          },
-                                                          tokenExpire: () {
-                                                            if (mounted) {
-                                                              on401(context);
-                                                            }
-                                                          },
-                                                        );
+                                                        bool? ratingCheck =
+                                                            await _networkCalls
+                                                                .getPreference(
+                                                                    'rating');
+                                                        if (ratingCheck ==
+                                                                false ||
+                                                            ratingCheck ==
+                                                                null) {
+                                                          _networkCalls
+                                                              .ratingSendForAcademy(
+                                                            detail: detail,
+                                                            onSuccess: (msg) {
+                                                              setState(() {
+                                                                rateValue =
+                                                                    false;
+                                                                loading = true;
+                                                                loadBookings();
+                                                              });
+                                                            },
+                                                            onFailure: (msg) {
+                                                              showMessage(msg);
+                                                            },
+                                                            tokenExpire: () {
+                                                              if (mounted) {
+                                                                on401(context);
+                                                              }
+                                                            },
+                                                          );
+                                                        } else {
+                                                          showMessage(
+                                                              // ignore: use_build_context_synchronously
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .reviewAdded);
+                                                          rateValue = false;
+                                                          setState(() {});
+                                                        }
                                                       }
                                                     },
                                                     title: Center(

@@ -34,70 +34,73 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             title: Text(
               AppLocalizations.of(context)!.areYouSure,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: MyAppState.mode == ThemeMode.light
                       ? AppColors.black
                       : AppColors.white),
             ),
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.065),
             content: Text(
               AppLocalizations.of(context)!.youGoingExit,
               style: Theme.of(context)
                   .textTheme
-                  .bodySmall!
+                  .bodyMedium!
                   .copyWith(color: AppColors.appThemeColor),
             ),
             actions: [
-              InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop(false);
-                  },
-                  child: Center(
-                    child: Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.appThemeColor,
-                      ),
-                      child: Center(
-                        child: Text(
-                          AppLocalizations.of(context)!.no,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(color: AppColors.white),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop(false);
+                    },
+                    child: Center(
+                      child: Container(
+                        height: 35,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.appThemeColor,
+                          border: Border.all(width: 1, color: AppColors.white),
+                        ),
+                        child: Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.yes,
+                            style: TextStyle(color: AppColors.white),
+                          ),
                         ),
                       ),
                     ),
-                  )),
-              const SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  // Navigator.of(context).pop(true);
-                  exit(0);
-                },
-                child: Center(
-                  child: Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.appThemeColor,
-                      border: Border.all(width: 1, color: AppColors.white),
-                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // Navigator.of(context).pop(true);
+                      exit(0);
+                    },
                     child: Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.yes,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(color: AppColors.white),
+                      child: Container(
+                        height: 35,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.red,
+                          border: Border.all(width: 1, color: AppColors.white),
+                        ),
+                        child: Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.yes,
+                            style: TextStyle(color: AppColors.white),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
               ),
             ],
           );

@@ -9,6 +9,7 @@ import 'package:flutter_tahaddi/modelClass/cart_model.dart';
 import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
 import '../widgets/app_bar.dart';
 
@@ -24,9 +25,11 @@ class _CartScreenState extends State<CartScreen> {
   bool loading = true;
   final NetworkCalls _networkCalls = NetworkCalls();
   List<CartModel> cartModel = [];
+  List<CartModel> cartListSelected = [];
   List<BookedSessions> bookedSessions = [];
   List sessions = [];
   List<AcademyModel> _specificAcademy = [];
+  List<AcademyModel> _specificAcademyListSelected = [];
 
   getCartAcademies() async {
     await _networkCalls.getCartAcademy(
@@ -38,8 +41,9 @@ class _CartScreenState extends State<CartScreen> {
         },
         onFailure: (onFailure) {
           if (mounted) {
-            on401(context);
+            // on401(context);
             showMessage(AppLocalizations.of(context)!.loginRequired);
+            navigateToLogin();
           }
         },
         tokenExpire: () {});
@@ -88,9 +92,8 @@ class _CartScreenState extends State<CartScreen> {
           }
           _specificAcademy.addAll(bookAcademy);
           Future.delayed(const Duration(seconds: 2), () {
-            setState(() {
-              loading = false;
-            });
+            loading = false;
+            setState(() {});
           });
         },
         onFailure: (msg) {
@@ -146,33 +149,39 @@ class _CartScreenState extends State<CartScreen> {
               ? AppColors.appThemeColor
               : AppColors.appThemeColor,
           onPress: () {
-            int index = 0;
-            List<Map> cartDetails = [];
-            cartModel.forEach((item) {
-              List IdList = [];
-              item.session!.forEach((element) {
-                IdList.add(element);
+            if (cartListSelected.isNotEmpty) {
+              int index = 0;
+              List<Map> cartDetails = [];
+              cartListSelected.forEach((item) {
+                List IdList = [];
+                item.session!.forEach((element) {
+                  IdList.add(element);
+                });
+                Map details = {
+                  'cart_id': item.id,
+                  'academyNameEnglish': _specificAcademyListSelected[index]
+                      .academyNameEnglish
+                      .toString(),
+                  'academyNameArabic': _specificAcademyListSelected[index]
+                      .academyNameArabic
+                      .toString(),
+                  "academy": item.academy,
+                  "session": IdList,
+                  "Sub_Academy": item.subAcademy,
+                  "price": item.price,
+                  "location": item.location,
+                  "booked_date": item.bookedDate,
+                  "player_count": item.playerCount,
+                  'price_per_player': item.pricePerPlayer
+                };
+                index = index + 1;
+                cartDetails.add(details);
               });
-              Map details = {
-                'cart_id': item.id,
-                'academyNameEnglish':
-                    _specificAcademy[index].academyNameEnglish.toString(),
-                'academyNameArabic':
-                    _specificAcademy[index].academyNameArabic.toString(),
-                "academy": item.academy,
-                "session": IdList,
-                "Sub_Academy": item.subAcademy,
-                "price": item.price,
-                "location": item.location,
-                "booked_date": item.bookedDate,
-                "player_count": item.playerCount,
-                'price_per_player': item.pricePerPlayer
-              };
-              index = index + 1;
-              cartDetails.add(details);
-            });
-            print(cartDetails);
-            navigateToEditAcademyDetail(cartDetails);
+              print(cartDetails);
+              navigateToEditAcademyDetail(cartDetails);
+            } else {
+              showMessage(AppLocalizations.of(context)!.selectCart);
+            }
           },
         ),
       ),
@@ -239,730 +248,752 @@ class _CartScreenState extends State<CartScreen> {
                                         bookedSessionFiltered
                                             .add(bookedSessions[id]);
                                       }
-                                      print('aaaaasddd');
-                                      print(bookedSessionFiltered);
-                                      return Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: height * 0.01),
-                                        child: Dismissible(
-                                          key: UniqueKey(),
-                                          direction:
-                                              DismissDirection.endToStart,
-                                          onDismissed: (direction) {
-                                            setState(() {
-                                              loading = true;
-                                              _networkCalls.deleteCart(
-                                                id: item.id.toString(),
-                                                onSuccess: (value) {
-                                                  showMessage('Deleted');
-                                                  getCartAcademies();
-                                                },
-                                                onFailure: (msg) {
-                                                  print('failed $msg');
-                                                  showMessage(msg);
-                                                },
-                                                tokenExpire: () {
-                                                  if (mounted) on401(context);
-                                                },
-                                              );
-                                            });
-                                          },
-                                          background: Container(
-                                            height: height * 0.24,
-                                            decoration: BoxDecoration(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.grey200
-                                                    : AppColors.containerColorB,
-                                                borderRadius:
-                                                    BorderRadius.circular(13)),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                flaxibleGap(
-                                                  10,
-                                                ),
-                                                Image.asset(
-                                                  "assets/images/delete_icon.png",
-                                                  color: AppColors.red,
-                                                  height: 20,
-                                                  width: 20,
-                                                ),
-                                                flaxibleGap(
-                                                  1,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          child: Container(
-                                            height: height * 0.24,
-                                            width: width,
-                                            decoration: BoxDecoration(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.grey200
-                                                    : AppColors
-                                                        .containerColorW12,
-                                                borderRadius:
-                                                    BorderRadius.circular(13)),
-                                            child: SingleChildScrollView(
-                                              child: Column(
+                                      // print('aaaaasddd');
+                                      // print(bookedSessionFiltered);
+                                      return InkWell(
+                                        onTap: () {
+                                          if (cartListSelected.contains(item)) {
+                                            cartListSelected.remove(item);
+                                            _specificAcademyListSelected
+                                                .remove(reversedAcademy[index]);
+                                            print('removed');
+                                            print(cartListSelected);
+                                            print(_specificAcademyListSelected);
+                                          } else {
+                                            cartListSelected.add(item);
+                                            _specificAcademyListSelected
+                                                .add(reversedAcademy[index]);
+                                            print('added');
+                                            print(cartListSelected);
+                                            print(_specificAcademyListSelected);
+                                          }
+                                          setState(() {});
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: height * 0.01),
+                                          child: Dismissible(
+                                            key: UniqueKey(),
+                                            direction:
+                                                DismissDirection.endToStart,
+                                            onDismissed: (direction) {
+                                              setState(() {
+                                                loading = true;
+                                                _networkCalls.deleteCart(
+                                                  id: item.id.toString(),
+                                                  onSuccess: (value) {
+                                                    showMessage('Deleted');
+                                                    cartListSelected
+                                                        .remove(item);
+                                                    _specificAcademyListSelected
+                                                        .remove(reversedAcademy[
+                                                            index]);
+                                                    getCartAcademies();
+                                                  },
+                                                  onFailure: (msg) {
+                                                    print('failed $msg');
+                                                    showMessage(msg);
+                                                  },
+                                                  tokenExpire: () {
+                                                    if (mounted) on401(context);
+                                                  },
+                                                );
+                                              });
+                                            },
+                                            background: Container(
+                                              height: height * 0.24,
+                                              decoration: BoxDecoration(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.grey200
+                                                      : AppColors
+                                                          .containerColorB,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          13)),
+                                              child: Row(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.center,
                                                 children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal:
-                                                                width * .03),
-                                                    child: Column(
-                                                      children: [
-                                                        SizedBox(
-                                                          height: height * 0.01,
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            // Text(
-                                                            //   "${AppLocalizations.of(context)!.academyName}:",
-                                                            //   style: TextStyle(
-                                                            //       fontSize: 14,
-                                                            //       color: MyAppState
-                                                            //                   .mode ==
-                                                            //               ThemeMode
-                                                            //                   .light
-                                                            //           ? const Color(
-                                                            //               0XFF032040)
-                                                            //           : AppColors
-                                                            //               .white),
-                                                            // ),
-                                                            Text(
-                                                              AppLocalizations.of(
-                                                                              context)!
-                                                                          .locale ==
-                                                                      'en'
-                                                                  ? reversedAcademy[
-                                                                          index]
-                                                                      .academyNameEnglish
-                                                                      .toString()
-                                                                  : reversedAcademy[
-                                                                          index]
-                                                                      .academyNameArabic
-                                                                      .toString(),
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF25A163)
-                                                                      : AppColors
-                                                                          .grey),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            SizedBox(
-                                                              width:
-                                                                  width * .78,
-                                                              child: Text(
-                                                                reversedAcademy[
-                                                                        index]
-                                                                    .academyLocation
-                                                                    .toString(),
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        12,
-                                                                    color: MyAppState.mode ==
-                                                                            ThemeMode
-                                                                                .light
-                                                                        ? const Color(
-                                                                            0XFF9B9B9B)
-                                                                        : Colors
-                                                                            .grey),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
+                                                  flaxibleGap(
+                                                    10,
                                                   ),
-                                                  SizedBox(
-                                                    height: height * 0.004,
+                                                  Image.asset(
+                                                    "assets/images/delete_icon.png",
+                                                    color: AppColors.red,
+                                                    height: 20,
+                                                    width: 20,
                                                   ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: width *
-                                                                    0.025),
-                                                        child: Container(
-                                                            height:
-                                                                height * .14,
-                                                            width:
-                                                                height * .108,
-                                                            decoration: BoxDecoration(
-                                                                color: const Color(
-                                                                    0XFF4F5C6A),
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
-                                                                        height *
-                                                                            0.005)),
-                                                            child: ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
-                                                                        height *
-                                                                            0.005),
-                                                                child: cachedNetworkImage(
-                                                                    height:
-                                                                        height *
-                                                                            .1,
-                                                                    imageFit:
-                                                                        BoxFit.fill,
-                                                                    cuisineImageUrl: reversedAcademy[index].academyImage![0],
-                                                                    placeholder: 'assets/images/profile.png'))),
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    width *
-                                                                        .03),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              "${AppLocalizations.of(context)!.bookedFor}:",
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF032040)
-                                                                      : AppColors
-                                                                          .white),
-                                                            ),
-                                                            Text(
-                                                              "${AppLocalizations.of(context)!.playerCount}:",
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF032040)
-                                                                      : AppColors
-                                                                          .white),
-                                                            ),
-                                                            Text(
-                                                              "${AppLocalizations.of(context)!.price}:",
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF032040)
-                                                                      : AppColors
-                                                                          .white),
-                                                            ),
-                                                            Text(
-                                                              "${AppLocalizations.of(context)!.startTime}:",
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF032040)
-                                                                      : AppColors
-                                                                          .white),
-                                                            ),
-                                                            // Container(
-                                                            //   height:
-                                                            //       height * 0.035,
-                                                            //   width: width * 0.23,
-                                                            //   decoration: BoxDecoration(
-                                                            //       color: MyAppState
-                                                            //                   .mode ==
-                                                            //               ThemeMode
-                                                            //                   .light
-                                                            //           ? AppColors
-                                                            //               .grey
-                                                            //               .withOpacity(
-                                                            //                   0.4)
-                                                            //           : AppColors
-                                                            //               .containerColorW12,
-                                                            //       borderRadius:
-                                                            //           BorderRadius.circular(
-                                                            //               4),
-                                                            //       border: Border.fromBorderSide(MyAppState
-                                                            //                   .mode ==
-                                                            //               ThemeMode
-                                                            //                   .light
-                                                            //           ? BorderSide
-                                                            //               .none
-                                                            //           : BorderSide(
-                                                            //               color: AppColors.white,
-                                                            //               width: 1))),
-                                                            //   child: Row(
-                                                            //     mainAxisAlignment:
-                                                            //         MainAxisAlignment
-                                                            //             .spaceEvenly,
-                                                            //     children: [
-                                                            //       InkWell(
-                                                            //         onTap: () {
-                                                            //           setState(() {
-                                                            //             if (item.playerCount!
-                                                            //                     .toInt() !=
-                                                            //                 1) {
-                                                            //               item.playerCount =
-                                                            //                   item.playerCount!.toInt() -
-                                                            //                       1;
-                                                            //               var it = double.parse(item
-                                                            //                       .pricePerPlayer
-                                                            //                       .toString()) *
-                                                            //                   item.playerCount!
-                                                            //                       .toDouble();
-                                                            //               item.price =
-                                                            //                   it;
-                                                            //               print(it);
-                                                            //               print(item
-                                                            //                   .price);
-                                                            //             }
-                                                            //           });
-                                                            //         },
-                                                            //         child:
-                                                            //             const Icon(
-                                                            //           FontAwesomeIcons
-                                                            //               .minus,
-                                                            //           color: AppColors
-                                                            //               .appThemeColor,
-                                                            //         ),
-                                                            //       ),
-                                                            //       SizedBox(
-                                                            //         width: width *
-                                                            //             0.01,
-                                                            //       ),
-                                                            //       Text(
-                                                            //         item.playerCount
-                                                            //             .toString(),
-                                                            //         style: Theme.of(
-                                                            //                 context)
-                                                            //             .textTheme
-                                                            //             .bodyMedium,
-                                                            //       ),
-                                                            //       SizedBox(
-                                                            //         width: width *
-                                                            //             0.01,
-                                                            //       ),
-                                                            //       InkWell(
-                                                            //         onTap: () {
-                                                            //           item.playerCount! <
-                                                            //                   22
-                                                            //               ? item.playerCount =
-                                                            //                   cartModel[index].playerCount! +
-                                                            //                       1
-                                                            //               : null;
-                                                            //           var it = double.parse(item
-                                                            //                   .pricePerPlayer
-                                                            //                   .toString()) *
-                                                            //               item.playerCount!
-                                                            //                   .toDouble();
-                                                            //           item.price =
-                                                            //               it;
-                                                            //           print(item
-                                                            //               .price);
-                                                            //           setState(
-                                                            //               () {});
-                                                            //         },
-                                                            //         child: Icon(
-                                                            //           Icons.add,
-                                                            //           color: AppColors
-                                                            //               .appThemeColor,
-                                                            //           size: height *
-                                                            //               0.035,
-                                                            //         ),
-                                                            //       )
-                                                            //     ],
-                                                            //   ),
-                                                            // ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    width *
-                                                                        .02),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              item.bookedDate
-                                                                  .toString(),
-                                                              // "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                                                              style: TextStyle(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF25A163)
-                                                                      : AppColors
-                                                                          .grey,
-                                                                  fontSize: 14),
-                                                            ),
-                                                            Text(
-                                                              "${item.playerCount} ${item.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                                                              style: TextStyle(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF25A163)
-                                                                      : AppColors
-                                                                          .grey,
-                                                                  fontSize: 14),
-                                                            ),
-                                                            // Text(
-                                                            //   "${item.session!.length} ${AppLocalizations.of(context)!.selected}",
-                                                            //   style: TextStyle(
-                                                            //       color: MyAppState
-                                                            //                   .mode ==
-                                                            //               ThemeMode
-                                                            //                   .light
-                                                            //           ? const Color(
-                                                            //               0XFF25A163)
-                                                            //           : AppColors
-                                                            //               .grey,
-                                                            //       fontSize: 14),
-                                                            // ),
-                                                            Text(
-                                                              item.price
-                                                                  .toString(),
-                                                              style: TextStyle(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFF25A163)
-                                                                      : AppColors
-                                                                          .grey,
-                                                                  fontSize: 14),
-                                                            ),
-                                                            ...List.generate(
-                                                                bookedSessionFiltered
-                                                                    .length,
-                                                                (indexSession) {
-                                                              return Text(
-                                                                "${bookedSessionFiltered[indexSession].startTime}",
-                                                                style: TextStyle(
-                                                                    color: MyAppState.mode ==
-                                                                            ThemeMode
-                                                                                .light
-                                                                        ? const Color(
-                                                                            0XFF25A163)
-                                                                        : AppColors
-                                                                            .grey,
-                                                                    fontSize:
-                                                                        14),
-                                                              );
-                                                            }),
-                                                            // InkWell(
-                                                            //   onTap: () {
-                                                            //     List IdList = [];
-                                                            //     item.session!
-                                                            //         .forEach(
-                                                            //             (element) {
-                                                            //       IdList.add(
-                                                            //           element);
-                                                            //     });
-                                                            //     Map details = {
-                                                            //       'cart_id':
-                                                            //           item.id,
-                                                            //       'academyNameEnglish':
-                                                            //           reversedAcademy[
-                                                            //                   index]
-                                                            //               .academyNameEnglish
-                                                            //               .toString(),
-                                                            //       'academyNameArabic':
-                                                            //           reversedAcademy[
-                                                            //                   index]
-                                                            //               .academyNameArabic
-                                                            //               .toString(),
-                                                            //       "academy":
-                                                            //           item.academy,
-                                                            //       "session": IdList,
-                                                            //       "Sub_Academy": item
-                                                            //           .subAcademy,
-                                                            //       "price":
-                                                            //           item.price,
-                                                            //       "location":
-                                                            //           item.location,
-                                                            //       "booked_date": item
-                                                            //           .bookedDate,
-                                                            //       "player_count": item
-                                                            //           .playerCount,
-                                                            //       'price_per_player':
-                                                            //           item.pricePerPlayer
-                                                            //     };
-                                                            //     print(details);
-                                                            //     navigateToEditAcademyDetail(
-                                                            //         details);
-                                                            //   },
-                                                            //   child: Container(
-                                                            //     height:
-                                                            //         height * 0.035,
-                                                            //     width: width * 0.22,
-                                                            //     decoration: BoxDecoration(
-                                                            //         color: MyAppState
-                                                            //                     .mode ==
-                                                            //                 ThemeMode
-                                                            //                     .light
-                                                            //             ? AppColors
-                                                            //                 .appThemeColor
-                                                            //             : AppColors
-                                                            //                 .appThemeColor,
-                                                            //         borderRadius:
-                                                            //             BorderRadius
-                                                            //                 .circular(
-                                                            //                     4),
-                                                            //         border: Border.fromBorderSide(MyAppState
-                                                            //                     .mode ==
-                                                            //                 ThemeMode
-                                                            //                     .light
-                                                            //             ? BorderSide
-                                                            //                 .none
-                                                            //             : BorderSide(
-                                                            //                 color: AppColors
-                                                            //                     .white,
-                                                            //                 width:
-                                                            //                     1))),
-                                                            //     child: Center(
-                                                            //       child: Text(
-                                                            //         AppLocalizations.of(
-                                                            //                 context)!
-                                                            //             .checkout
-                                                            //             .toString(),
-                                                            //         style: TextStyle(
-                                                            //             color: AppColors
-                                                            //                 .white),
-                                                            //       ),
-                                                            //     ),
-                                                            //   ),
-                                                            // )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      // Padding(
-                                                      //   padding: EdgeInsets
-                                                      //       .symmetric(
-                                                      //           horizontal:
-                                                      //               width *
-                                                      //                   .03),
-                                                      //   child: Row(
-                                                      //     mainAxisAlignment:
-                                                      //         MainAxisAlignment
-                                                      //             .start,
-                                                      //     children: [
-                                                      //       Text(
-                                                      //         "${AppLocalizations.of(context)!.bookedFor}:",
-                                                      //         style: TextStyle(
-                                                      //             fontSize: 14,
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF032040)
-                                                      //                 : AppColors
-                                                      //                     .white),
-                                                      //       ),
-                                                      //       SizedBox(
-                                                      //         width:
-                                                      //             width * 0.083,
-                                                      //       ),
-                                                      //       Text(
-                                                      //         item.bookedDate
-                                                      //             .toString(),
-                                                      //         // "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                                                      //         style: TextStyle(
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF25A163)
-                                                      //                 : AppColors
-                                                      //                     .grey,
-                                                      //             fontSize: 14),
-                                                      //       ),
-                                                      //     ],
-                                                      //   ),
-                                                      // ),
-                                                      // Padding(
-                                                      //   padding: EdgeInsets
-                                                      //       .symmetric(
-                                                      //           horizontal:
-                                                      //               width *
-                                                      //                   .03),
-                                                      //   child: Row(
-                                                      //     mainAxisAlignment:
-                                                      //         MainAxisAlignment
-                                                      //             .spaceBetween,
-                                                      //     children: [
-                                                      //       Text(
-                                                      //         "${AppLocalizations.of(context)!.playerCount}:",
-                                                      //         style: TextStyle(
-                                                      //             fontSize: 14,
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF032040)
-                                                      //                 : AppColors
-                                                      //                     .white),
-                                                      //       ),
-                                                      //       SizedBox(
-                                                      //         width:
-                                                      //             width * 0.083,
-                                                      //       ),
-                                                      //       Text(
-                                                      //         "${item.playerCount} ${item.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
-                                                      //         style: TextStyle(
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF25A163)
-                                                      //                 : AppColors
-                                                      //                     .grey,
-                                                      //             fontSize: 14),
-                                                      //       ),
-                                                      //     ],
-                                                      //   ),
-                                                      // ),
-                                                      // Padding(
-                                                      //   padding: EdgeInsets
-                                                      //       .symmetric(
-                                                      //           horizontal:
-                                                      //               width *
-                                                      //                   .03),
-                                                      //   child: Row(
-                                                      //     mainAxisAlignment:
-                                                      //         MainAxisAlignment
-                                                      //             .spaceAround,
-                                                      //     children: [
-                                                      //       Text(
-                                                      //         "${AppLocalizations.of(context)!.slot}:",
-                                                      //         style: TextStyle(
-                                                      //             fontSize: 14,
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF032040)
-                                                      //                 : AppColors
-                                                      //                     .white),
-                                                      //       ),
-                                                      //       SizedBox(
-                                                      //         width:
-                                                      //             width * 0.2,
-                                                      //       ),
-                                                      //       Text(
-                                                      //         "${item.session!.length} ${AppLocalizations.of(context)!.selected}",
-                                                      //         style: TextStyle(
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF25A163)
-                                                      //                 : AppColors
-                                                      //                     .grey,
-                                                      //             fontSize: 14),
-                                                      //       ),
-                                                      //     ],
-                                                      //   ),
-                                                      // ),
-                                                      // Padding(
-                                                      //   padding: EdgeInsets
-                                                      //       .symmetric(
-                                                      //           horizontal:
-                                                      //               width *
-                                                      //                   .03),
-                                                      //   child: Row(
-                                                      //     mainAxisAlignment:
-                                                      //         MainAxisAlignment
-                                                      //             .spaceAround,
-                                                      //     children: [
-                                                      //       Text(
-                                                      //         "${AppLocalizations.of(context)!.price}:",
-                                                      //         style: TextStyle(
-                                                      //             fontSize: 14,
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF032040)
-                                                      //                 : AppColors
-                                                      //                     .white),
-                                                      //       ),
-                                                      //       SizedBox(
-                                                      //         width:
-                                                      //             width * 0.2,
-                                                      //       ),
-                                                      //       Text(
-                                                      //         item.price
-                                                      //             .toString(),
-                                                      //         style: TextStyle(
-                                                      //             color: MyAppState
-                                                      //                         .mode ==
-                                                      //                     ThemeMode
-                                                      //                         .light
-                                                      //                 ? const Color(
-                                                      //                     0XFF25A163)
-                                                      //                 : AppColors
-                                                      //                     .grey,
-                                                      //             fontSize: 14),
-                                                      //       ),
-                                                      //     ],
-                                                      //   ),
-                                                      // ),
-                                                      SizedBox(
-                                                        height: height * 0.0055,
-                                                      )
-                                                    ],
+                                                  flaxibleGap(
+                                                    1,
                                                   ),
                                                 ],
+                                              ),
+                                            ),
+                                            child: Container(
+                                              height: height * 0.24,
+                                              width: width,
+                                              decoration: BoxDecoration(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? cartListSelected
+                                                              .contains(item)
+                                                          ? AppColors
+                                                              .appThemeColor
+                                                          : AppColors.grey200
+                                                      : cartListSelected
+                                                              .contains(item)
+                                                          ? AppColors
+                                                              .appThemeColor
+                                                          : AppColors
+                                                              .containerColorW12,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          13)),
+                                              child: SingleChildScrollView(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  width * .03),
+                                                      child: Column(
+                                                        children: [
+                                                          SizedBox(
+                                                            height:
+                                                                height * 0.01,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              // Text(
+                                                              //   "${AppLocalizations.of(context)!.academyName}:",
+                                                              //   style: TextStyle(
+                                                              //       fontSize: 14,
+                                                              //       color: MyAppState
+                                                              //                   .mode ==
+                                                              //               ThemeMode
+                                                              //                   .light
+                                                              //           ? const Color(
+                                                              //               0XFF032040)
+                                                              //           : AppColors
+                                                              //               .white),
+                                                              // ),
+                                                              Text(
+                                                                AppLocalizations.of(context)!
+                                                                            .locale ==
+                                                                        'en'
+                                                                    ? reversedAcademy[
+                                                                            index]
+                                                                        .academyNameEnglish
+                                                                        .toString()
+                                                                    : reversedAcademy[
+                                                                            index]
+                                                                        .academyNameArabic
+                                                                        .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize: 14,
+                                                                    color: MyAppState.mode == ThemeMode.light
+                                                                        ? cartListSelected.contains(item)
+                                                                            ? AppColors.white
+                                                                            : const Color(0XFF25A163)
+                                                                        : AppColors.white),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              SizedBox(
+                                                                width:
+                                                                    width * .78,
+                                                                child: Text(
+                                                                  reversedAcademy[
+                                                                          index]
+                                                                      .academyLocation
+                                                                      .toString(),
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? const Color(
+                                                                              0XFF9B9B9B)
+                                                                          : Colors
+                                                                              .grey),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: height * 0.004,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: width *
+                                                                      0.025),
+                                                          child: Container(
+                                                              height:
+                                                                  height * .14,
+                                                              width:
+                                                                  height * .108,
+                                                              decoration: BoxDecoration(
+                                                                  color: const Color(
+                                                                      0XFF4F5C6A),
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(height *
+                                                                          0.005)),
+                                                              child: ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(height *
+                                                                          0.005),
+                                                                  child: cachedNetworkImage(
+                                                                      height:
+                                                                          height *
+                                                                              .1,
+                                                                      imageFit: BoxFit
+                                                                          .fill,
+                                                                      cuisineImageUrl:
+                                                                          reversedAcademy[index].academyImage![0],
+                                                                      placeholder: 'assets/images/profile.png'))),
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      width *
+                                                                          .03),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "${AppLocalizations.of(context)!.bookedFor}:",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? const Color(
+                                                                            0XFF032040)
+                                                                        : AppColors
+                                                                            .white),
+                                                              ),
+                                                              Text(
+                                                                "${AppLocalizations.of(context)!.playerCount}:",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? const Color(
+                                                                            0XFF032040)
+                                                                        : AppColors
+                                                                            .white),
+                                                              ),
+                                                              Text(
+                                                                "${AppLocalizations.of(context)!.price}:",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? const Color(
+                                                                            0XFF032040)
+                                                                        : AppColors
+                                                                            .white),
+                                                              ),
+                                                              Text(
+                                                                "${AppLocalizations.of(context)!.startTime}:",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: MyAppState.mode ==
+                                                                            ThemeMode
+                                                                                .light
+                                                                        ? const Color(
+                                                                            0XFF032040)
+                                                                        : AppColors
+                                                                            .white),
+                                                              ),
+                                                              // Container(
+                                                              //   height:
+                                                              //       height * 0.035,
+                                                              //   width: width * 0.23,
+                                                              //   decoration: BoxDecoration(
+                                                              //       color: MyAppState
+                                                              //                   .mode ==
+                                                              //               ThemeMode
+                                                              //                   .light
+                                                              //           ? AppColors
+                                                              //               .grey
+                                                              //               .withOpacity(
+                                                              //                   0.4)
+                                                              //           : AppColors
+                                                              //               .containerColorW12,
+                                                              //       borderRadius:
+                                                              //           BorderRadius.circular(
+                                                              //               4),
+                                                              //       border: Border.fromBorderSide(MyAppState
+                                                              //                   .mode ==
+                                                              //               ThemeMode
+                                                              //                   .light
+                                                              //           ? BorderSide
+                                                              //               .none
+                                                              //           : BorderSide(
+                                                              //               color: AppColors.white,
+                                                              //               width: 1))),
+                                                              //   child: Row(
+                                                              //     mainAxisAlignment:
+                                                              //         MainAxisAlignment
+                                                              //             .spaceEvenly,
+                                                              //     children: [
+                                                              //       InkWell(
+                                                              //         onTap: () {
+                                                              //           setState(() {
+                                                              //             if (item.playerCount!
+                                                              //                     .toInt() !=
+                                                              //                 1) {
+                                                              //               item.playerCount =
+                                                              //                   item.playerCount!.toInt() -
+                                                              //                       1;
+                                                              //               var it = double.parse(item
+                                                              //                       .pricePerPlayer
+                                                              //                       .toString()) *
+                                                              //                   item.playerCount!
+                                                              //                       .toDouble();
+                                                              //               item.price =
+                                                              //                   it;
+                                                              //               print(it);
+                                                              //               print(item
+                                                              //                   .price);
+                                                              //             }
+                                                              //           });
+                                                              //         },
+                                                              //         child:
+                                                              //             const Icon(
+                                                              //           FontAwesomeIcons
+                                                              //               .minus,
+                                                              //           color: AppColors
+                                                              //               .appThemeColor,
+                                                              //         ),
+                                                              //       ),
+                                                              //       SizedBox(
+                                                              //         width: width *
+                                                              //             0.01,
+                                                              //       ),
+                                                              //       Text(
+                                                              //         item.playerCount
+                                                              //             .toString(),
+                                                              //         style: Theme.of(
+                                                              //                 context)
+                                                              //             .textTheme
+                                                              //             .bodyMedium,
+                                                              //       ),
+                                                              //       SizedBox(
+                                                              //         width: width *
+                                                              //             0.01,
+                                                              //       ),
+                                                              //       InkWell(
+                                                              //         onTap: () {
+                                                              //           item.playerCount! <
+                                                              //                   22
+                                                              //               ? item.playerCount =
+                                                              //                   cartModel[index].playerCount! +
+                                                              //                       1
+                                                              //               : null;
+                                                              //           var it = double.parse(item
+                                                              //                   .pricePerPlayer
+                                                              //                   .toString()) *
+                                                              //               item.playerCount!
+                                                              //                   .toDouble();
+                                                              //           item.price =
+                                                              //               it;
+                                                              //           print(item
+                                                              //               .price);
+                                                              //           setState(
+                                                              //               () {});
+                                                              //         },
+                                                              //         child: Icon(
+                                                              //           Icons.add,
+                                                              //           color: AppColors
+                                                              //               .appThemeColor,
+                                                              //           size: height *
+                                                              //               0.035,
+                                                              //         ),
+                                                              //       )
+                                                              //     ],
+                                                              //   ),
+                                                              // ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      width *
+                                                                          .02),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                item.bookedDate
+                                                                    .toString(),
+                                                                // "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                                                                style: TextStyle(
+                                                                    color: MyAppState.mode == ThemeMode.light
+                                                                        ? cartListSelected.contains(item)
+                                                                            ? AppColors.white
+                                                                            : const Color(0XFF25A163)
+                                                                        : AppColors.grey,
+                                                                    fontSize: 14),
+                                                              ),
+                                                              Text(
+                                                                "${item.playerCount} ${item.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                                                                style: TextStyle(
+                                                                    color: MyAppState.mode == ThemeMode.light
+                                                                        ? cartListSelected.contains(item)
+                                                                            ? AppColors.white
+                                                                            : const Color(0XFF25A163)
+                                                                        : AppColors.grey,
+                                                                    fontSize: 14),
+                                                              ),
+                                                              // Text(
+                                                              //   "${item.session!.length} ${AppLocalizations.of(context)!.selected}",
+                                                              //   style: TextStyle(
+                                                              //       color: MyAppState
+                                                              //                   .mode ==
+                                                              //               ThemeMode
+                                                              //                   .light
+                                                              //           ? const Color(
+                                                              //               0XFF25A163)
+                                                              //           : AppColors
+                                                              //               .grey,
+                                                              //       fontSize: 14),
+                                                              // ),
+                                                              Text(
+                                                                item.price
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    color: MyAppState.mode == ThemeMode.light
+                                                                        ? cartListSelected.contains(item)
+                                                                            ? AppColors.white
+                                                                            : const Color(0XFF25A163)
+                                                                        : AppColors.grey,
+                                                                    fontSize: 14),
+                                                              ),
+                                                              ...List.generate(
+                                                                  bookedSessionFiltered
+                                                                      .length,
+                                                                  (indexSession) {
+                                                                return Text(
+                                                                  "${bookedSessionFiltered[indexSession].startTime}",
+                                                                  style: TextStyle(
+                                                                      color: MyAppState.mode == ThemeMode.light
+                                                                          ? cartListSelected.contains(item)
+                                                                              ? AppColors.white
+                                                                              : const Color(0XFF25A163)
+                                                                          : AppColors.grey,
+                                                                      fontSize: 14),
+                                                                );
+                                                              }),
+                                                              // InkWell(
+                                                              //   onTap: () {
+                                                              //     List IdList = [];
+                                                              //     item.session!
+                                                              //         .forEach(
+                                                              //             (element) {
+                                                              //       IdList.add(
+                                                              //           element);
+                                                              //     });
+                                                              //     Map details = {
+                                                              //       'cart_id':
+                                                              //           item.id,
+                                                              //       'academyNameEnglish':
+                                                              //           reversedAcademy[
+                                                              //                   index]
+                                                              //               .academyNameEnglish
+                                                              //               .toString(),
+                                                              //       'academyNameArabic':
+                                                              //           reversedAcademy[
+                                                              //                   index]
+                                                              //               .academyNameArabic
+                                                              //               .toString(),
+                                                              //       "academy":
+                                                              //           item.academy,
+                                                              //       "session": IdList,
+                                                              //       "Sub_Academy": item
+                                                              //           .subAcademy,
+                                                              //       "price":
+                                                              //           item.price,
+                                                              //       "location":
+                                                              //           item.location,
+                                                              //       "booked_date": item
+                                                              //           .bookedDate,
+                                                              //       "player_count": item
+                                                              //           .playerCount,
+                                                              //       'price_per_player':
+                                                              //           item.pricePerPlayer
+                                                              //     };
+                                                              //     print(details);
+                                                              //     navigateToEditAcademyDetail(
+                                                              //         details);
+                                                              //   },
+                                                              //   child: Container(
+                                                              //     height:
+                                                              //         height * 0.035,
+                                                              //     width: width * 0.22,
+                                                              //     decoration: BoxDecoration(
+                                                              //         color: MyAppState
+                                                              //                     .mode ==
+                                                              //                 ThemeMode
+                                                              //                     .light
+                                                              //             ? AppColors
+                                                              //                 .appThemeColor
+                                                              //             : AppColors
+                                                              //                 .appThemeColor,
+                                                              //         borderRadius:
+                                                              //             BorderRadius
+                                                              //                 .circular(
+                                                              //                     4),
+                                                              //         border: Border.fromBorderSide(MyAppState
+                                                              //                     .mode ==
+                                                              //                 ThemeMode
+                                                              //                     .light
+                                                              //             ? BorderSide
+                                                              //                 .none
+                                                              //             : BorderSide(
+                                                              //                 color: AppColors
+                                                              //                     .white,
+                                                              //                 width:
+                                                              //                     1))),
+                                                              //     child: Center(
+                                                              //       child: Text(
+                                                              //         AppLocalizations.of(
+                                                              //                 context)!
+                                                              //             .checkout
+                                                              //             .toString(),
+                                                              //         style: TextStyle(
+                                                              //             color: AppColors
+                                                              //                 .white),
+                                                              //       ),
+                                                              //     ),
+                                                              //   ),
+                                                              // )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        // Padding(
+                                                        //   padding: EdgeInsets
+                                                        //       .symmetric(
+                                                        //           horizontal:
+                                                        //               width *
+                                                        //                   .03),
+                                                        //   child: Row(
+                                                        //     mainAxisAlignment:
+                                                        //         MainAxisAlignment
+                                                        //             .start,
+                                                        //     children: [
+                                                        //       Text(
+                                                        //         "${AppLocalizations.of(context)!.bookedFor}:",
+                                                        //         style: TextStyle(
+                                                        //             fontSize: 14,
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF032040)
+                                                        //                 : AppColors
+                                                        //                     .white),
+                                                        //       ),
+                                                        //       SizedBox(
+                                                        //         width:
+                                                        //             width * 0.083,
+                                                        //       ),
+                                                        //       Text(
+                                                        //         item.bookedDate
+                                                        //             .toString(),
+                                                        //         // "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                                                        //         style: TextStyle(
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF25A163)
+                                                        //                 : AppColors
+                                                        //                     .grey,
+                                                        //             fontSize: 14),
+                                                        //       ),
+                                                        //     ],
+                                                        //   ),
+                                                        // ),
+                                                        // Padding(
+                                                        //   padding: EdgeInsets
+                                                        //       .symmetric(
+                                                        //           horizontal:
+                                                        //               width *
+                                                        //                   .03),
+                                                        //   child: Row(
+                                                        //     mainAxisAlignment:
+                                                        //         MainAxisAlignment
+                                                        //             .spaceBetween,
+                                                        //     children: [
+                                                        //       Text(
+                                                        //         "${AppLocalizations.of(context)!.playerCount}:",
+                                                        //         style: TextStyle(
+                                                        //             fontSize: 14,
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF032040)
+                                                        //                 : AppColors
+                                                        //                     .white),
+                                                        //       ),
+                                                        //       SizedBox(
+                                                        //         width:
+                                                        //             width * 0.083,
+                                                        //       ),
+                                                        //       Text(
+                                                        //         "${item.playerCount} ${item.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
+                                                        //         style: TextStyle(
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF25A163)
+                                                        //                 : AppColors
+                                                        //                     .grey,
+                                                        //             fontSize: 14),
+                                                        //       ),
+                                                        //     ],
+                                                        //   ),
+                                                        // ),
+                                                        // Padding(
+                                                        //   padding: EdgeInsets
+                                                        //       .symmetric(
+                                                        //           horizontal:
+                                                        //               width *
+                                                        //                   .03),
+                                                        //   child: Row(
+                                                        //     mainAxisAlignment:
+                                                        //         MainAxisAlignment
+                                                        //             .spaceAround,
+                                                        //     children: [
+                                                        //       Text(
+                                                        //         "${AppLocalizations.of(context)!.slot}:",
+                                                        //         style: TextStyle(
+                                                        //             fontSize: 14,
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF032040)
+                                                        //                 : AppColors
+                                                        //                     .white),
+                                                        //       ),
+                                                        //       SizedBox(
+                                                        //         width:
+                                                        //             width * 0.2,
+                                                        //       ),
+                                                        //       Text(
+                                                        //         "${item.session!.length} ${AppLocalizations.of(context)!.selected}",
+                                                        //         style: TextStyle(
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF25A163)
+                                                        //                 : AppColors
+                                                        //                     .grey,
+                                                        //             fontSize: 14),
+                                                        //       ),
+                                                        //     ],
+                                                        //   ),
+                                                        // ),
+                                                        // Padding(
+                                                        //   padding: EdgeInsets
+                                                        //       .symmetric(
+                                                        //           horizontal:
+                                                        //               width *
+                                                        //                   .03),
+                                                        //   child: Row(
+                                                        //     mainAxisAlignment:
+                                                        //         MainAxisAlignment
+                                                        //             .spaceAround,
+                                                        //     children: [
+                                                        //       Text(
+                                                        //         "${AppLocalizations.of(context)!.price}:",
+                                                        //         style: TextStyle(
+                                                        //             fontSize: 14,
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF032040)
+                                                        //                 : AppColors
+                                                        //                     .white),
+                                                        //       ),
+                                                        //       SizedBox(
+                                                        //         width:
+                                                        //             width * 0.2,
+                                                        //       ),
+                                                        //       Text(
+                                                        //         item.price
+                                                        //             .toString(),
+                                                        //         style: TextStyle(
+                                                        //             color: MyAppState
+                                                        //                         .mode ==
+                                                        //                     ThemeMode
+                                                        //                         .light
+                                                        //                 ? const Color(
+                                                        //                     0XFF25A163)
+                                                        //                 : AppColors
+                                                        //                     .grey,
+                                                        //             fontSize: 14),
+                                                        //       ),
+                                                        //     ],
+                                                        //   ),
+                                                        // ),
+                                                        SizedBox(
+                                                          height:
+                                                              height * 0.0055,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -1043,5 +1074,10 @@ class _CartScreenState extends State<CartScreen> {
         MaterialPageRoute(
           builder: (context) => EnterDetailAcademyScreen(detail: detail),
         ));
+  }
+
+  void navigateToLogin() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
   }
 }

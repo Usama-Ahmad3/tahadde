@@ -90,7 +90,6 @@ class _AcademyListState extends State<AcademyList> {
               ? 720 * fem
               : null
           : null,
-      // margin: EdgeInsets.only(top: 24 * fem),
       padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 15 * fem),
       decoration: BoxDecoration(
         color: mode == ThemeMode.light
@@ -225,7 +224,10 @@ class _AcademyListState extends State<AcademyList> {
                           };
                           navigateToGroundDetail(detail);
                         } else {
-                          onWillPop();
+                          // onWillPop();
+                          showMessage(
+                              AppLocalizations.of(context)!.loginRequired);
+                          navigateToLogin();
                         }
                       },
                       child: Padding(
@@ -259,6 +261,10 @@ class _AcademyListState extends State<AcademyList> {
                                     topRight: Radius.circular(15 * fem),
                                   ),
                                   child: Carousel(
+                                    rating: true,
+                                    academy_id: widget.academyDetail[index]
+                                            ['academy_id']
+                                        .toString(),
                                     image: widget.academyDetail[index]
                                         ['academy_image'],
                                     storyView: false,

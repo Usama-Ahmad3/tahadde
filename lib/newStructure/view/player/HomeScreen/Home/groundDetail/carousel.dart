@@ -3,16 +3,24 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/modelClass/player_rating.dart';
+import 'package:flutter_tahaddi/network/network_calls.dart';
 
 import '../../../../../../common_widgets/story_view.dart';
 import '../../../../../../homeFile/utility.dart';
 import '../../../../../app_colors/app_colors.dart';
-import 'groundDetail.dart';
 
 class Carousel extends StatefulWidget {
   List? image;
   bool storyView;
-  Carousel({super.key, this.image, this.storyView = true});
+  bool rating;
+  String? academy_id;
+  Carousel(
+      {super.key,
+      this.image,
+      this.storyView = true,
+      this.rating = false,
+      this.academy_id});
 
   @override
   State<Carousel> createState() => _CarouselState();
@@ -23,11 +31,31 @@ class _CarouselState extends State<Carousel> {
   double _currentIndexPage = 0;
   late ScrollController _controller;
   late ScrollController _scrollController;
+  List<PlayerRating> rating = [];
   double _boxHeight = 0;
   static const _kBasePadding = 16.0;
   static const kExpandedHeight = 250.0;
   final ValueNotifier<double> _titlePaddingNotifier =
       ValueNotifier(_kBasePadding);
+  loadingRating() async {
+    await NetworkCalls().ratingGetForPlayer(
+      id: widget.academy_id.toString(),
+      onSuccess: (msg) {
+        setState(() {
+          for (int i = 0; i < msg.length; i++) {
+            rating.add(PlayerRating.fromJson(msg[i]));
+          }
+          print("rating$rating");
+        });
+      },
+      onFailure: (msg) {
+        setState(() {});
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
 
   double get _horizontalTitlePadding {
     const kCollapsedPadding = 60.0;
@@ -46,6 +74,7 @@ class _CarouselState extends State<Carousel> {
   @override
   void initState() {
     super.initState();
+    widget.rating ? loadingRating() : null;
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       bool isTop = _scrollController.position.pixels == 250;
@@ -65,6 +94,7 @@ class _CarouselState extends State<Carousel> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     _scrollController.addListener(() {
       _titlePaddingNotifier.value = _horizontalTitlePadding;
     });
@@ -123,6 +153,34 @@ class _CarouselState extends State<Carousel> {
             ),
           ),
         ),
+        widget.rating
+            ? rating.isNotEmpty
+                ? Positioned(
+                    right: width * 0.02,
+                    top: height * 0.012,
+                    child: Container(
+                      height: height * 0.04,
+                      width: width * 0.2,
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(height * 0.01)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                          ),
+                          Text(
+                            '(${rating[0].rating})',
+                            style: TextStyle(color: AppColors.appThemeColor),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : SizedBox.shrink()
+            : SizedBox.shrink()
       ],
     );
   }

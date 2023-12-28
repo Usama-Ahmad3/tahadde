@@ -41,8 +41,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
   bool _isLoading = true;
   List<String> history = [];
   List<String>? showHistory = [];
+  List academyIds = [];
+  bool? favoriteState;
   int isSelected = -1;
   var _academyModel;
+  var _academyModelF;
   var academyModel;
   var innovativeModel;
 
@@ -477,32 +480,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
     setState(() {});
   }
 
-  // loadVenues() async {
-  //   await _networkCalls.bookpitch(
-  //     urldetail: '',
-  //     onSuccess: (pitchInfo) {
-  //       if (mounted) {
-  //         setState(() {
-  //           _isLoading = false;
-  //           _bookPitchData = pitchInfo;
-  //         });
-  //       }
-  //     },
-  //     onFailure: (msg) {
-  //       if (mounted) {
-  //         setState(() {
-  //           _isLoading = false;
-  //         });
-  //       }
-  //     },
-  //     tokenExpire: () {
-  //       if (mounted) {
-  //         print('loadVenues');
-  //         on401(context);
-  //       }
-  //     },
-  //   );
-  // }
   loadAcademies() async {
     await _networkCalls.loadVerifiedAcademies(
       sport: '',
@@ -515,6 +492,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
             print('ok');
             print(_academyModel);
             print('kok');
+            getFavorites();
           });
         }
       },
@@ -583,6 +561,54 @@ class HomeScreenViewState extends State<HomeScreenView> {
         }
       },
     );
+  }
+
+  favorite(bool favoriteState, String academy_id) async {
+    await _networkCalls.favorite(
+      favorite: favoriteState,
+      id: academy_id.toString(),
+      onSuccess: (msg) {
+        // venueDetail();
+        showMessage('operation successful');
+        print(msg);
+      },
+      onFailure: (msg) {
+        // venueDetail();
+        showMessage(msg);
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
+  getFavorites() {
+    _networkCalls.getFavorites(
+      onSuccess: (msg) {
+        setState(() {
+          _academyModelF = msg;
+          ids();
+        });
+      },
+      onFailure: (msg) {
+        setState(() {});
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
+  ids() {
+    academyIds.clear();
+    if (_academyModel.isEmpty) {
+      setState(() {});
+    } else {
+      for (int i = 0; i < _academyModel.length; i++) {
+        academyIds.add(_academyModel[i]['academy_id']);
+      }
+    }
+    print(academyIds);
   }
 
   @override
@@ -1029,22 +1055,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                     ...List.generate(
                                                       _sportsList.length,
                                                       (index) => InkWell(
-                                                        // onTap: () {
-                                                        //   widget.isSelected = index;
-                                                        //   Map detail = {
-                                                        //     "slug": widget.sportsList[index].slug,
-                                                        //     "bannerImage": widget.sportsList[index].bannerImage,
-                                                        //     "sportName": AppLocalizations.of(context)!.locale == "en"
-                                                        //         ? widget.sportsList[index].name
-                                                        //         : widget.sportsList[index].nameArabic
-                                                        //   };
-                                                        //   Navigator.push(
-                                                        //       context,
-                                                        //       MaterialPageRoute(
-                                                        //           builder: (context) =>
-                                                        //               SpecificSportsListScreen(detail: detail)));
-                                                        //   setState(() {});
-                                                        // },
                                                         onTap: () {
                                                           if (isSelected ==
                                                               index) {

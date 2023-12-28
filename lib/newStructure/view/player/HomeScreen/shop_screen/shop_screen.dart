@@ -22,7 +22,7 @@ class _ShopScreenState extends State<ShopScreen> {
           sizeWidth: width,
           sizeHeight: height,
           context: context,
-          title: AppLocalizations.of(context)!.shop,
+          title: AppLocalizations.of(context)!.tahaddiShop,
           back: false),
       body: Container(
           color: Colors.black,
@@ -63,7 +63,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                   'assets/images/icon.png',
                                 )),
                             flaxibleGap(4),
-                            Text(AppLocalizations.of(context)!.shopEmpty,
+                            Text(AppLocalizations.of(context)!.coming,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

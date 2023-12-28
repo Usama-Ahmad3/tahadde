@@ -47,6 +47,9 @@ class EmailContactDOB extends StatelessWidget {
                                   ? AppColors.black
                                   : AppColors.white),
                         ),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.sizeOf(context).width * 0.065),
                         content: SizedBox(
                           height: height * 0.12,
                           child: Column(
@@ -54,13 +57,17 @@ class EmailContactDOB extends StatelessWidget {
                             children: [
                               Text(
                                 AppLocalizations.of(context)!.pricePerPlayer,
-                                style: TextStyle(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.themeColor
-                                        : AppColors.white),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        color:
+                                            MyAppState.mode == ThemeMode.light
+                                                ? AppColors.themeColor
+                                                : AppColors.white),
                               ),
                               SizedBox(
-                                height: height * 0.01,
+                                height: height * 0.007,
                               ),
                               TextFieldWidget(
                                   controller: price!,
@@ -98,56 +105,62 @@ class EmailContactDOB extends StatelessWidget {
                           ),
                         ),
                         actions: [
-                          InkWell(
-                              onTap: () {
-                                Navigator.of(context).pop(false);
-                              },
-                              child: Center(
-                                child: Container(
-                                  height: 50,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.8,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: AppColors.appThemeColor,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      AppLocalizations.of(context)!.no,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!
-                                          .copyWith(color: AppColors.white),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pop(false);
+                                },
+                                child: Center(
+                                  child: Container(
+                                    height: 35,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: AppColors.appThemeColor,
+                                      border: Border.all(
+                                          width: 1, color: AppColors.white),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        AppLocalizations.of(context)!.no,
+                                        style:
+                                            TextStyle(color: AppColors.white),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              )),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          InkWell(
-                            onTap: onTap,
-                            child: Center(
-                              child: Container(
-                                height: 50,
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: AppColors.appThemeColor,
-                                  border: Border.all(
-                                      width: 1, color: AppColors.white),
-                                ),
+                              ),
+                              InkWell(
+                                onTap: onTap,
                                 child: Center(
-                                  child: Text(
-                                    AppLocalizations.of(context)!.saveChanges,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall!
-                                        .copyWith(color: AppColors.white),
+                                  child: Container(
+                                    height: 35,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: AppColors.red,
+                                      border: Border.all(
+                                          width: 1, color: AppColors.white),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        AppLocalizations.of(context)!
+                                            .saveChanges,
+                                        style:
+                                            TextStyle(color: AppColors.white),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
                           ),
                         ],
                       ),

@@ -270,7 +270,7 @@ class _BookingSummary extends State<BookingSummary> {
                                                                       .grey
                                                                       .shade50)),
                                                           child: Text(
-                                                            '${sessions[index].startTime.toString()} - ${sessions[index].endTime.toString()}' ??
+                                                            '${int.parse(sessions[index].startTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessions[index].startTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessions[index].startTime.toString().substring(0, 2)) - 12}${sessions[index].startTime.toString().substring(2, 5)}' : int.parse(sessions[index].startTime.toString().substring(0, 2)) - 12}' : sessions[index].startTime.toString().substring(0, 5)}${int.parse(sessions[index].startTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'} - ${int.parse(sessions[index].endTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessions[index].endTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessions[index].endTime.toString().substring(0, 2)) - 12}${sessions[index].endTime.toString().substring(2, 5)}' : int.parse(sessions[index].endTime.toString().substring(0, 2)) - 12}' : sessions[index].endTime.toString().substring(0, 5)}${int.parse(sessions[index].endTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'}' ??
                                                                 "",
                                                             style: Theme.of(
                                                                     context)
