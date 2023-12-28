@@ -13,13 +13,13 @@ import '../../../../../app_colors/app_colors.dart';
 class Carousel extends StatefulWidget {
   List? image;
   bool storyView;
-  bool rating;
   String? academy_id;
+  bool auth;
   Carousel(
       {super.key,
       this.image,
+        this.auth = false,
       this.storyView = true,
-      this.rating = false,
       this.academy_id});
 
   @override
@@ -74,7 +74,8 @@ class _CarouselState extends State<Carousel> {
   @override
   void initState() {
     super.initState();
-    widget.rating ? loadingRating() : null;
+    print(widget.auth);
+    widget.auth?loadingRating() : null;
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       bool isTop = _scrollController.position.pixels == 250;
@@ -153,7 +154,7 @@ class _CarouselState extends State<Carousel> {
             ),
           ),
         ),
-        widget.rating
+        widget.auth
             ? rating.isNotEmpty
                 ? Positioned(
                     right: width * 0.02,

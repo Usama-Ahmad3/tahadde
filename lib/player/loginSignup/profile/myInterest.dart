@@ -171,6 +171,7 @@ class _MyInterestState extends State<MyInterest> {
                               // ),
                               _academyModel != null
                                   ? AcademyList(
+                                auth: true,
                                       text:
                                           AppLocalizations.of(context)!.academy,
                                       academyDetail: _academyModel,

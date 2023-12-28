@@ -241,7 +241,8 @@ class _LanguageSaveState extends State<LanguageSave> {
     _controller.setVolume(5.0);
     Timer(const Duration(milliseconds: 3000), () {
       setState(() {});
-      _isSplace = false;
+      ///
+      _isSplace = true;
     });
     // setState(() {});
     super.initState();

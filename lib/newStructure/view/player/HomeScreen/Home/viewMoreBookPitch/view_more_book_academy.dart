@@ -14,8 +14,9 @@ import '../../../../../utils/utils.dart';
 
 class ViewMoreBookAcademyScreen extends StatefulWidget {
   Map pitchType;
+  bool auth;
 
-  ViewMoreBookAcademyScreen({super.key, required this.pitchType});
+  ViewMoreBookAcademyScreen({super.key, required this.pitchType,required this.auth});
 
   @override
   _ViewMoreBookAcademyScreenState createState() =>
@@ -96,11 +97,13 @@ class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
                     back: true),
                 body: _academyModel != null
                     ? AcademyList(
+                  auth: widget.auth,
                         text: AppLocalizations.of(context)!.academy,
                         academyDetail: _academyModel,
                         tagForView: false,
                       )
                     : AcademyList(
+                  auth: widget.auth,
                         text: AppLocalizations.of(context)!.academy,
                         academyDetail: _academyModel,
                         tagForView: false,

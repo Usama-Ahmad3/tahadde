@@ -105,7 +105,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                         ),
                         child: Center(
                           child: Text(
-                            AppLocalizations.of(context)!.yes,
+                            AppLocalizations.of(context)!.no,
                             style: TextStyle(color: AppColors.white),
                           ),
                         ),

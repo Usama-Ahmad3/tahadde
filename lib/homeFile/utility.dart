@@ -175,9 +175,9 @@ showSucess(String message, scaffoldKey, {Duration? duration}) {
       fontSize: 14.0);
 }
 
-Future<bool?> checkAuthorizaton() async {
+Future<bool> checkAuthorizaton() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool? auth = (prefs.get("auth") ?? false) as bool?;
+  bool auth = (prefs.get("auth") ?? false) as bool;
   return auth;
 }
 

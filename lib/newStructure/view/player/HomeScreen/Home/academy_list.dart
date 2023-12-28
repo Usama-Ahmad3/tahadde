@@ -16,11 +16,13 @@ class AcademyList extends StatefulWidget {
   bool tagForView;
   bool empty;
   bool? searchflag;
+  bool auth;
   String text;
   bool? myInterest;
 
   AcademyList(
       {super.key,
+        required this.auth,
       this.searchflag = false,
       required this.text,
       this.myInterest = false,
@@ -33,11 +35,6 @@ class AcademyList extends StatefulWidget {
 }
 
 class _AcademyListState extends State<AcademyList> {
-  bool _auth = false;
-  checkAuth() async {
-    _auth = (await checkAuthorizaton())!;
-  }
-
   onWillPop() {
     return showDialog(
         context: context,
@@ -73,7 +70,6 @@ class _AcademyListState extends State<AcademyList> {
 
   @override
   void initState() {
-    checkAuth();
     super.initState();
   }
 
@@ -198,7 +194,7 @@ class _AcademyListState extends State<AcademyList> {
                       ))
                   : InkWell(
                       onTap: () {
-                        if (_auth) {
+                        if (widget.auth) {
                           dynamic detail = {
                             "academy_id":
                                 widget.academyDetail[index]["academy_id"] ?? 0,
@@ -261,7 +257,7 @@ class _AcademyListState extends State<AcademyList> {
                                     topRight: Radius.circular(15 * fem),
                                   ),
                                   child: Carousel(
-                                    rating: true,
+                                    auth: widget.auth,
                                     academy_id: widget.academyDetail[index]
                                             ['academy_id']
                                         .toString(),
@@ -355,7 +351,7 @@ class _AcademyListState extends State<AcademyList> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => ViewMoreBookAcademyScreen(pitchType: detail)));
+            builder: (_) => ViewMoreBookAcademyScreen(pitchType: detail,auth: widget.auth,)));
   }
 
   void navigateToLogin() {

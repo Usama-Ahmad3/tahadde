@@ -16,11 +16,13 @@ class InnovativeList extends StatefulWidget {
   List<InnovativeHub> innovativeDetail;
   String text;
   bool empty;
+  bool auth;
 
   InnovativeList(
       {super.key,
       required this.innovativeDetail,
       required this.text,
+        required this.auth,
       required this.empty});
 
   @override
@@ -28,10 +30,6 @@ class InnovativeList extends StatefulWidget {
 }
 
 class _InnovativeListState extends State<InnovativeList> {
-  bool _auth = false;
-  checkAuth() async {
-    _auth = (await checkAuthorizaton())!;
-  }
 
   onWillPop() {
     return showDialog(
@@ -68,7 +66,6 @@ class _InnovativeListState extends State<InnovativeList> {
 
   @override
   void initState() {
-    checkAuth();
     super.initState();
   }
 
@@ -185,7 +182,7 @@ class _InnovativeListState extends State<InnovativeList> {
                       ))
                   : InkWell(
                       onTap: () {
-                        if (_auth) {
+                        if (widget.auth) {
                           dynamic detail = {
                             "academy_id": widget
                                     .innovativeDetail[index].innovativehubId ??
@@ -336,7 +333,7 @@ class _InnovativeListState extends State<InnovativeList> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => ViewMoreBookAcademyScreen(pitchType: detail)));
+            builder: (_) => ViewMoreBookAcademyScreen(pitchType: detail,auth: widget.auth,)));
   }
 
   void navigateToLogin() {
