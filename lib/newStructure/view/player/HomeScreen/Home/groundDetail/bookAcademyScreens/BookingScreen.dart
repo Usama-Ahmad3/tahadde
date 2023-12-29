@@ -64,6 +64,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   List<SlotDetail> slotD = [];
   bool internet = true;
   bool isStateLoading = true;
+  List<SessionDetail> sessionsEve = [];
+  List<SessionDetail> sessionMor = [];
   int date = 0;
   List<AcademyModel> _specificAcademy = [];
   late Map profileDetail;
@@ -79,6 +81,39 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         if (mounted) on401(context);
       },
     );
+  }
+  morningSessions(){
+    ///morning session differentiate
+    for(int i = 0;i<_sessionMap[_weakList[
+    _weekIndex]
+        .name]!.length;i++ ){
+      sessionMor = _sessionMap[_weakList[
+      _weekIndex]
+          .name]!.where((element) {
+        TimeOfDay currentTime = TimeOfDay.now();
+        DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(element.endTime.toString());
+        TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
+        return givenTime.hour < 14;
+      }).toList();
+      print(sessionMor);
+    }
+  }
+  eveningSessions(){
+    ///evening sessions differentiate
+    for(int i = 0;i<_sessionMap[_weakList[
+    _weekIndex]
+        .name]!.length;i++ ){
+      sessionsEve = _sessionMap[_weakList[
+      _weekIndex]
+          .name]!.where((element) {
+        TimeOfDay currentTime = TimeOfDay.now();
+        DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(element.endTime.toString());
+        TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
+        return givenTime.hour > 14;
+      }).toList();
+      print('ggggggggggggggglllllllll');
+      print(sessionsEve);
+    }
   }
 
   onWillPop() {
@@ -138,14 +173,20 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                           .toLocal())));
             });
             _sessionMap[element.weekday!] = sessionList;
-            // print(_sessionMap[element.weekday]);
           });
-          // print('kkkk');
-          // print("SessionId${_sessionMap[_weakList[0].name]![0].id}");
-          // print("SessionId${_sessionMap[_weakList[0].name]![0].endTime}");
         }
-        isStateLoading = false;
-        setState(() {});
+        sessionMor.clear();
+        sessionsEve.clear();
+        setState(() {
+          ///functions to differentiate morning and evening
+          _sessionMap[_weakList[
+          _weekIndex]
+              .name] != null?morningSessions():null;
+          _sessionMap[_weakList[
+          _weekIndex]
+              .name] != null?eveningSessions():null;
+          isStateLoading = false;
+        });
       },
       onFailure: (msg) {
         if (mounted) {
@@ -195,8 +236,16 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
             _sessionMap[element.weekday!] = sessionList;
           });
         }
-        isStateLoading = false;
-        setState(() {});
+        setState(() {
+          ///functions to differentiate morning and evening
+          _sessionMap[_weakList[
+          _weekIndex]
+              .name] != null?morningSessions():null;
+          _sessionMap[_weakList[
+          _weekIndex]
+              .name] != null?eveningSessions():null;
+          isStateLoading = false;
+        });
       },
       onFailure: (msg) {
         if (mounted) {
@@ -261,7 +310,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   }
 
   checkAuth() async {
-    _auth = (await checkAuthorizaton())!;
+    _auth = (await checkAuthorizaton());
   }
 
   weekdays() async {
@@ -490,7 +539,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                               : Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() == "saturday"
                                                                   ? 5
                                                                   : 6;
-                                          print(_weekIndex);
                                           _slotTime.clear();
                                           indexItem = 1;
                                           playerController.clear();
@@ -505,12 +553,14 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                           dataTime = apiFormatter.format(
                                               DateTime.now()
                                                   .add(Duration(days: index)));
-                                          print(dataTime);
-                                          // slotDetail();
-                                          // _slotPrice = SlotPrice(
-                                          //     pricePerVenue: [],
-                                          //     pricePerPlayer: []);
                                         }
+                                        ///functions to differentiate morning and evening
+                                        _sessionMap[_weakList[
+                                        _weekIndex]
+                                            .name] != null?morningSessions():null;
+                                        _sessionMap[_weakList[
+                                        _weekIndex]
+                                            .name] != null?eveningSessions():null;
                                       });
                                     },
                                     child: Padding(
@@ -606,7 +656,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                             ? AppColors.black
                                             : AppColors.white)),
                                 _weakList.isNotEmpty?
-                                _sessionMap[_weakList[_weekIndex].name] != null
+                                sessionMor.isNotEmpty && sessionMor != null
                                     ? SingleChildScrollView(
                                   child: SizedBox(
                                     height: list.isEmpty?height * 0.24:height * 0.2,
@@ -615,48 +665,32 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                       children: [
                                         Wrap(children: [
                                           ...List.generate(
-                                              _sessionMap[_weakList[
-                                              _weekIndex]
-                                                  .name]!
-                                                  .length ??
+                                              sessionMor.length ??
                                                   0, (i) {
                                             final sessionToAddOrRemove =
                                             SessionDetail(
-                                              id: _sessionMap[
-                                              _weakList[_weekIndex]
-                                                  .name]![i]
+                                              id: sessionMor[i]
                                                   .id,
-                                              sessionNameAr: _sessionMap[
-                                              _weakList[_weekIndex]
-                                                  .name]![i]
+                                              sessionNameAr: sessionMor[i]
                                                   .sessionNameAr,
-                                              sessionName: _sessionMap[
-                                              _weakList[_weekIndex]
-                                                  .name]![i]
+                                              sessionName:sessionMor[i]
                                                   .sessionName,
-                                              graceTime: _sessionMap[
-                                              _weakList[_weekIndex]
-                                                  .name]![i]
+                                              graceTime: sessionMor[i]
                                                   .graceTime,
-                                              endTime: _sessionMap[
-                                              _weakList[_weekIndex]
-                                                  .name]![i]
+                                              endTime:sessionMor[i]
                                                   .endTime,
-                                              startTime: _sessionMap[
-                                              _weakList[_weekIndex]
-                                                  .name]![i]
+                                              startTime: sessionMor[i]
                                                   .startTime,
-                                              slotDuration: _sessionMap[
-                                              _weakList[_weekIndex]
-                                                  .name]![i]
+                                              slotDuration: sessionMor[i]
                                                   .slotDuration,
                                             );
                                             bool isSessionInList = false;
                                             TimeOfDay currentTime = TimeOfDay.now();
-                                            DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(_sessionMap[_weakList[_weekIndex].name]![i].endTime.toString());
+                                            DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(sessionMor[i].endTime.toString());
                                             TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
+                                            /*check if current day time is passed then can't select that sessions*/
                                             if(date == 0 ?givenTime.hour > currentTime.hour:true){
-                                              return givenTime.hour < 14 ? Padding(
+                                              return Padding(
                                                 padding: EdgeInsets.symmetric(vertical: height * 0.005),
                                                 child: InkWell(
                                                   onTap: () {
@@ -670,15 +704,11 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           .locale ==
                                                           'en'
                                                           ? academyId.add(
-                                                          _sessionMap[_weakList[
-                                                          _weekIndex]
-                                                              .name]![i]
+                                                          sessionMor[i]
                                                               .sessionName
                                                               .toString())
                                                           : academyId.add(
-                                                          (_sessionMap[_weakList[
-                                                          _weekIndex]
-                                                              .name]![i]
+                                                          (sessionMor[i]
                                                               .sessionNameAr
                                                               .toString()));
                                                       _slotPrice.pricePerPlayer
@@ -722,14 +752,10 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                             .locale ==
                                                             'en'
                                                             ? academyId.remove(
-                                                            _sessionMap[_weakList[
-                                                            _weekIndex]
-                                                                .name]![i]
+                                                            sessionMor[i]
                                                                 .sessionName)
                                                             : academyId.remove(
-                                                            _sessionMap[_weakList[
-                                                            _weekIndex]
-                                                                .name]![i]
+                                                            sessionMor[i]
                                                                 .sessionNameAr);
                                                         list.removeWhere((item) {
                                                           return item.id ==
@@ -767,15 +793,11 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                             .locale ==
                                                             'en'
                                                             ? academyId.add(
-                                                            _sessionMap[_weakList[
-                                                            _weekIndex]
-                                                                .name]![i]
+                                                            sessionMor[i]
                                                                 .sessionName
                                                                 .toString())
                                                             : academyId.add(
-                                                            (_sessionMap[_weakList[
-                                                            _weekIndex]
-                                                                .name]![i]
+                                                            (sessionMor[i]
                                                                 .sessionNameAr
                                                                 .toString()));
                                                         list.add(
@@ -798,7 +820,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           .start,
                                                       children: [
                                                         Text(
-                                                          "${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.length > 9?'${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.substring(0,8)}..':_sessionMap[_weakList[_weekIndex].name]![i].sessionName}(${_sessionMap[_weakList[_weekIndex].name]![i].slotDuration} mins)",
+                                                          "${sessionMor[i].sessionName!.length > 9?'${sessionMor[i].sessionName!.substring(0,8)}..':sessionMor[i].sessionName}(${sessionMor[i].slotDuration} mins)",
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyMedium!
@@ -830,7 +852,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                             decoration: BoxDecoration(
                                                                 color:
                                                                 academyId.contains(
-                                                                    _sessionMap[_weakList[_weekIndex].name]![
+                                                                    sessionMor[
                                                                     i]
                                                                         .sessionName)
                                                                     ? AppColors
@@ -849,14 +871,14 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                       left: width *
                                                                           0.015),
                                                                   child: Text(
-                                                                    '${_sessionMap[_weakList[_weekIndex].name]![i].startTime.toString().substring(11, 16)} - ${_sessionMap[_weakList[_weekIndex].name]![i].endTime!.toString().substring(11, 16)}',
+                                                                    '${sessionMor[i].startTime.toString().substring(11, 16)} - ${sessionMor[i].endTime!.toString().substring(11, 16)}',
                                                                     style: Theme.of(
                                                                         context)
                                                                         .textTheme
                                                                         .bodyMedium!
                                                                         .copyWith(
                                                                         color:
-                                                                        academyId.contains(_sessionMap[_weakList[_weekIndex].name]![i].sessionName)
+                                                                        academyId.contains(sessionMor[i].sessionName)
                                                                             ? MyAppState.mode == ThemeMode.light
                                                                             ? AppColors.white
                                                                             : AppColors.grey :
@@ -872,7 +894,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                       0.01,
                                                                   backgroundColor:
                                                                   academyId.contains(
-                                                                      _sessionMap[_weakList[_weekIndex].name]![i]
+                                                                      sessionMor[i]
                                                                           .sessionName)
                                                                       ? AppColors
                                                                       .red :
@@ -887,9 +909,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                     ),
                                                   ),
                                                 ),
-                                              ):const SizedBox.shrink();
+                                              );
                                             }else{
-                                              return givenTime.hour < 14?Padding(
+                                              return Padding(
                                                 padding: EdgeInsets.symmetric(vertical: height * 0.005),
                                                 child: SizedBox(
                                                   width: width * 0.45,
@@ -899,7 +921,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                         .start,
                                                     children: [
                                                       Text(
-                                                        "${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.length > 9?'${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.substring(0,8)}..':_sessionMap[_weakList[_weekIndex].name]![i].sessionName}(${_sessionMap[_weakList[_weekIndex].name]![i].slotDuration} mins)",
+                                                        "${sessionMor[i].sessionName!.length > 9?'${sessionMor[i].sessionName!.substring(0,8)}..':sessionMor[i].sessionName}(${sessionMor[i].slotDuration} mins)",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyMedium!
@@ -931,7 +953,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           decoration: BoxDecoration(
                                                               color:
                                                               academyId.contains(
-                                                                  _sessionMap[_weakList[_weekIndex].name]![
+                                                                  sessionMor[
                                                                   i]
                                                                       .sessionName)
                                                                   ? AppColors
@@ -950,14 +972,14 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                     left: width *
                                                                         0.015),
                                                                 child: Text(
-                                                                  '${_sessionMap[_weakList[_weekIndex].name]![i].startTime.toString().substring(11, 16)} - ${_sessionMap[_weakList[_weekIndex].name]![i].endTime!.toString().substring(11, 16)}',
+                                                                  '${sessionMor[i].startTime.toString().substring(11, 16)} - ${sessionMor[i].endTime!.toString().substring(11, 16)}',
                                                                   style: Theme.of(
                                                                       context)
                                                                       .textTheme
                                                                       .bodyMedium!
                                                                       .copyWith(
                                                                       color:
-                                                                      academyId.contains(_sessionMap[_weakList[_weekIndex].name]![i].sessionName)
+                                                                      academyId.contains(sessionMor[i].sessionName)
                                                                           ? MyAppState.mode == ThemeMode.light
                                                                           ? AppColors.white
                                                                           : AppColors.grey :
@@ -973,7 +995,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                     0.01,
                                                                 backgroundColor:
                                                                 academyId.contains(
-                                                                    _sessionMap[_weakList[_weekIndex].name]![i]
+                                                                    sessionMor[i]
                                                                         .sessionName)
                                                                     ? AppColors
                                                                     .red :
@@ -987,7 +1009,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                     ],
                                                   ),
                                                 ),
-                                              ):const SizedBox.shrink();
+                                              );
                                             }
                                           })
                                         ]),
@@ -1025,7 +1047,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                             ? AppColors.black
                                             : AppColors.white)),
                                 _weakList.isNotEmpty?
-                               _sessionMap[_weakList[_weekIndex].name] != null
+                                sessionsEve.isNotEmpty && sessionsEve != null
                                     ? SingleChildScrollView(
                                       child: SizedBox(
                                         height: list.isEmpty?height * 0.24:height * 0.2,
@@ -1034,49 +1056,34 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                           children: [
                                             Wrap(children: [
                                               ...List.generate(
-                                                  _sessionMap[_weakList[
-                                                                  _weekIndex]
-                                                              .name]!
+                                                  sessionsEve
                                                           .length ??
                                                       0, (i) {
                                                 final sessionToAddOrRemove =
                                                     SessionDetail(
-                                                  id: _sessionMap[
-                                                          _weakList[_weekIndex]
-                                                              .name]![i]
+                                                  id: sessionsEve[i]
                                                       .id,
-                                                  sessionNameAr: _sessionMap[
-                                                          _weakList[_weekIndex]
-                                                              .name]![i]
+                                                  sessionNameAr: sessionsEve[i]
                                                       .sessionNameAr,
-                                                  sessionName: _sessionMap[
-                                                          _weakList[_weekIndex]
-                                                              .name]![i]
+                                                  sessionName: sessionsEve[i]
                                                       .sessionName,
-                                                  graceTime: _sessionMap[
-                                                          _weakList[_weekIndex]
-                                                              .name]![i]
+                                                  graceTime: sessionsEve[i]
                                                       .graceTime,
-                                                  endTime: _sessionMap[
-                                                          _weakList[_weekIndex]
-                                                              .name]![i]
+                                                  endTime: sessionsEve[i]
                                                       .endTime,
-                                                  startTime: _sessionMap[
-                                                          _weakList[_weekIndex]
-                                                              .name]![i]
+                                                  startTime:sessionsEve[i]
                                                       .startTime,
-                                                  slotDuration: _sessionMap[
-                                                          _weakList[_weekIndex]
-                                                              .name]![i]
+                                                  slotDuration: sessionsEve[i]
                                                       .slotDuration,
                                                 );
                                                 bool isSessionInList = false;
                                                 TimeOfDay currentTime = TimeOfDay.now();
-                                                DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(_sessionMap[_weakList[_weekIndex].name]![i].endTime.toString());
+                                                DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(sessionsEve[i].endTime.toString());
 
                                                 TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
+                                                /*check if current day time is passed then can't select that sessions*/
                                                 if(date == 0 ? givenTime.hour > currentTime.hour:true){
-                                                    return givenTime.hour > 14?Padding(
+                                                    return Padding(
                                                       padding: EdgeInsets.symmetric(vertical: height * 0.005),
                                                       child: InkWell(
                                                         onTap: () {
@@ -1090,15 +1097,11 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                 .locale ==
                                                                 'en'
                                                                 ? academyId.add(
-                                                                _sessionMap[_weakList[
-                                                                _weekIndex]
-                                                                    .name]![i]
+                                                                sessionsEve[i]
                                                                     .sessionName
                                                                     .toString())
                                                                 : academyId.add(
-                                                                (_sessionMap[_weakList[
-                                                                _weekIndex]
-                                                                    .name]![i]
+                                                                (sessionsEve[i]
                                                                     .sessionNameAr
                                                                     .toString()));
                                                             _slotPrice.pricePerPlayer
@@ -1142,14 +1145,10 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                   .locale ==
                                                                   'en'
                                                                   ? academyId.remove(
-                                                                  _sessionMap[_weakList[
-                                                                  _weekIndex]
-                                                                      .name]![i]
+                                                                  sessionsEve[i]
                                                                       .sessionName)
                                                                   : academyId.remove(
-                                                                  _sessionMap[_weakList[
-                                                                  _weekIndex]
-                                                                      .name]![i]
+                                                                  sessionsEve[i]
                                                                       .sessionNameAr);
                                                               list.removeWhere((item) {
                                                                 return item.id ==
@@ -1185,15 +1184,11 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                   .locale ==
                                                                   'en'
                                                                   ? academyId.add(
-                                                                  _sessionMap[_weakList[
-                                                                  _weekIndex]
-                                                                      .name]![i]
+                                                                  sessionsEve[i]
                                                                       .sessionName
                                                                       .toString())
                                                                   : academyId.add(
-                                                                  (_sessionMap[_weakList[
-                                                                  _weekIndex]
-                                                                      .name]![i]
+                                                                  (sessionsEve[i]
                                                                       .sessionNameAr
                                                                       .toString()));
                                                               list.add(
@@ -1216,7 +1211,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                 .start,
                                                             children: [
                                                               Text(
-                                                                "${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.length > 9?'${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.substring(0,8)}..':_sessionMap[_weakList[_weekIndex].name]![i].sessionName}(${_sessionMap[_weakList[_weekIndex].name]![i].slotDuration} mins)",
+                                                                "${sessionsEve[i].sessionName!.length > 9?'${sessionsEve[i].sessionName!.substring(0,8)}..':sessionsEve[i].sessionName}(${sessionsEve[i].slotDuration} mins)",
                                                                 style: Theme.of(context)
                                                                     .textTheme
                                                                     .bodyMedium!
@@ -1248,7 +1243,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                   decoration: BoxDecoration(
                                                                       color:
                                                                       academyId.contains(
-                                                                          _sessionMap[_weakList[_weekIndex].name]![
+                                                                          sessionsEve[
                                                                           i]
                                                                               .sessionName)
                                                                           ? AppColors
@@ -1267,14 +1262,14 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                             left: width *
                                                                                 0.015),
                                                                         child: Text(
-                                                                          '${_sessionMap[_weakList[_weekIndex].name]![i].startTime.toString().substring(11, 16)} - ${_sessionMap[_weakList[_weekIndex].name]![i].endTime!.toString().substring(11, 16)}',
+                                                                          '${sessionsEve[i].startTime.toString().substring(11, 16)} - ${sessionsEve[i].endTime!.toString().substring(11, 16)}',
                                                                           style: Theme.of(
                                                                               context)
                                                                               .textTheme
                                                                               .bodyMedium!
                                                                               .copyWith(
                                                                               color:
-                                                                              academyId.contains(_sessionMap[_weakList[_weekIndex].name]![i].sessionName)
+                                                                              academyId.contains(sessionsEve[i].sessionName)
                                                                                   ? MyAppState.mode == ThemeMode.light
                                                                                   ? AppColors.white
                                                                                   : AppColors.grey :
@@ -1290,7 +1285,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                             0.01,
                                                                         backgroundColor:
                                                                         academyId.contains(
-                                                                            _sessionMap[_weakList[_weekIndex].name]![i]
+                                                                            sessionsEve[i]
                                                                                 .sessionName)
                                                                             ? AppColors
                                                                             .red :
@@ -1305,9 +1300,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           ),
                                                         ),
                                                       ),
-                                                    ):const SizedBox.shrink();
+                                                    );
                                                 }else{
-                                                  return givenTime.hour > 14?Padding(
+                                                  return Padding(
                                                     padding: EdgeInsets.symmetric(vertical: height * 0.005),
                                                     child: SizedBox(
                                                       width: width * 0.45,
@@ -1317,7 +1312,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                             .start,
                                                         children: [
                                                           Text(
-                                                            "${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.length > 9?'${_sessionMap[_weakList[_weekIndex].name]![i].sessionName!.substring(0,8)}..':_sessionMap[_weakList[_weekIndex].name]![i].sessionName}(${_sessionMap[_weakList[_weekIndex].name]![i].slotDuration} mins)",
+                                                            "${sessionsEve[i].sessionName!.length > 9?'${sessionsEve[i].sessionName!.substring(0,8)}..':sessionsEve[i].sessionName}(${sessionsEve[i].slotDuration} mins)",
                                                             style: Theme.of(context)
                                                                 .textTheme
                                                                 .bodyMedium!
@@ -1361,14 +1356,14 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                         left: width *
                                                                             0.015),
                                                                     child: Text(
-                                                                      '${_sessionMap[_weakList[_weekIndex].name]![i].startTime.toString().substring(11, 16)} - ${_sessionMap[_weakList[_weekIndex].name]![i].endTime!.toString().substring(11, 16)}',
+                                                                      '${sessionsEve[i].startTime.toString().substring(11, 16)} - ${sessionsEve[i].endTime!.toString().substring(11, 16)}',
                                                                       style: Theme.of(
                                                                           context)
                                                                           .textTheme
                                                                           .bodyMedium!
                                                                           .copyWith(
                                                                           color:
-                                                                          academyId.contains(_sessionMap[_weakList[_weekIndex].name]![i].sessionName)
+                                                                          academyId.contains(sessionsEve[i].sessionName)
                                                                               ? MyAppState.mode == ThemeMode.light
                                                                               ? AppColors.white
                                                                               : AppColors.grey :
@@ -1384,7 +1379,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                         0.01,
                                                                     backgroundColor:
                                                                     academyId.contains(
-                                                                        _sessionMap[_weakList[_weekIndex].name]![i]
+                                                                        sessionsEve[i]
                                                                             .sessionName)
                                                                         ? AppColors
                                                                         .red :
@@ -1398,7 +1393,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                         ],
                                                       ),
                                                     ),
-                                                  ):SizedBox.shrink();
+                                                  );
                                                 }
                                               })
                                             ]),
@@ -1407,8 +1402,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    )
+                                      ))
                                     : SizedBox(
                                         height: list.isEmpty?height * 0.24:height * 0.2,
                                         child: Center(
