@@ -836,43 +836,29 @@ class _RateState extends State<Rate> {
                                                           "academy_id": id
                                                         };
                                                         print(detail);
-                                                        bool? ratingCheck =
-                                                            await _networkCalls
-                                                                .getPreference(
-                                                                    'rating');
-                                                        if (ratingCheck ==
-                                                                false ||
-                                                            ratingCheck ==
-                                                                null) {
-                                                          _networkCalls
-                                                              .ratingSendForAcademy(
-                                                            detail: detail,
-                                                            onSuccess: (msg) {
+                                                        _networkCalls
+                                                            .ratingSendForAcademy(
+                                                          detail: detail,
+                                                          onSuccess: (msg) {
+                                                            setState(() {
+                                                              rateValue =
+                                                              false;
+                                                              loading = true;
+                                                              loadBookings();
                                                               setState(() {
-                                                                rateValue =
-                                                                    false;
-                                                                loading = true;
-                                                                loadBookings();
+
                                                               });
-                                                            },
-                                                            onFailure: (msg) {
-                                                              showMessage(msg);
-                                                            },
-                                                            tokenExpire: () {
-                                                              if (mounted) {
-                                                                on401(context);
-                                                              }
-                                                            },
-                                                          );
-                                                        } else {
-                                                          showMessage(
-                                                              // ignore: use_build_context_synchronously
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .reviewAdded);
-                                                          rateValue = false;
-                                                          setState(() {});
-                                                        }
+                                                            });
+                                                          },
+                                                          onFailure: (msg) {
+                                                            showMessage(msg);
+                                                          },
+                                                          tokenExpire: () {
+                                                            if (mounted) {
+                                                              on401(context);
+                                                            }
+                                                          },
+                                                        );
                                                       }
                                                     },
                                                     title: Center(

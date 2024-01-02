@@ -1,0 +1,14 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/developer/Downloads/tahadde/build/ios/Debug-iphoneos/myfatoorah_flutter/myfatoorah_flutter.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/myfatoorah_flutter.build/unextended-module.modulemap",
+    }]
+  }]
+}

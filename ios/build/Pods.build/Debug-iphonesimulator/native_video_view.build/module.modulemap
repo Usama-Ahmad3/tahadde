@@ -1,0 +1,11 @@
+framework module native_video_view {
+  umbrella header "native_video_view-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module native_video_view.Swift {
+  header "native_video_view-Swift.h"
+  requires objc
+}
