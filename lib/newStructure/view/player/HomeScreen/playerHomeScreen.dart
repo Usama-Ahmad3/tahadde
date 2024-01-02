@@ -24,11 +24,12 @@ class PlayerHomeScreen extends StatefulWidget {
 
   @override
   // ignore: no_logic_in_create_state
-  _PlayerHomeScreenState createState() => _PlayerHomeScreenState();
+  PlayerHomeScreenState createState() => PlayerHomeScreenState();
 }
 
-class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
+class PlayerHomeScreenState extends State<PlayerHomeScreen> {
   List<CartModel> cartModel = [];
+  static int cartLength = 0;
   initDynamicLinks() async {
     bool auth = await checkAuthorizaton() as bool;
     PendingDynamicLinkData? data =
@@ -71,6 +72,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
         },
         onFailure: (onFailure) {},
         tokenExpire: () {});
+    cartLength = cartModel.length;
   }
 
   onWillPop() {
@@ -253,7 +255,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                             alignment: Alignment.topRight,
                             textColor: AppColors.red,
                             label: Text(
-                              cartModel.length.toString(),
+                              cartLength.toString(),
                               style: TextStyle(color: AppColors.white),
                             ),
                             child: const SizedBox(
@@ -278,7 +280,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                             alignment: Alignment.topRight,
                             textColor: AppColors.red,
                             label: Text(
-                              cartModel.length.toString(),
+                              cartLength.toString(),
                               style: TextStyle(color: AppColors.white),
                             ),
                             child: const SizedBox(

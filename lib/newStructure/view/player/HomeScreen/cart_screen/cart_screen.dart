@@ -9,6 +9,7 @@ import 'package:flutter_tahaddi/modelClass/cart_model.dart';
 import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
 import '../widgets/app_bar.dart';
@@ -60,7 +61,9 @@ class _CartScreenState extends State<CartScreen> {
               bookedSessions.add(session);
               loadVerifiedSpecific();
               if (mounted) {
-                setState(() {});
+                setState(() {
+                  PlayerHomeScreenState.cartLength = cartModel.length;
+                });
               }
             },
             onFailure: (msg) {
@@ -288,7 +291,6 @@ class _CartScreenState extends State<CartScreen> {
                                                     _specificAcademyListSelected
                                                         .remove(reversedAcademy[
                                                             index]);
-                                                    getCartAcademies();
                                                   },
                                                   onFailure: (msg) {
                                                     print('failed $msg');
@@ -298,6 +300,15 @@ class _CartScreenState extends State<CartScreen> {
                                                     if (mounted) on401(context);
                                                   },
                                                 );
+                                                Future.delayed(
+                                                    Duration(seconds: 2), () {
+                                                  print(
+                                                      'sssssssssssssssssssss');
+                                                  cartModel.clear();
+                                                  bookedSessions.clear();
+                                                  _specificAcademy.clear();
+                                                  getCartAcademies();
+                                                });
                                               });
                                             },
                                             background: Container(

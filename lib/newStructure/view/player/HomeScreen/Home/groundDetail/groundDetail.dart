@@ -238,27 +238,6 @@ class GroundDetailState extends State<GroundDetail>
   setStateFun() {
     setState(() {});
   }
-  // venueDetail() async {
-  //   await _networkCalls.venueDetail(
-  //       id: widget.detail["pitchId"].toString(),
-  //       subPitchId: widget.detail["subPitchId"]["id"].toString(),
-  //       onSuccess: (detail) {
-  //         setState(() {
-  //           privateVenueDetail = detail;
-  //           allMarkers.add(Marker(
-  //               position: LatLng(privateVenueDetail.latitude!,
-  //                   privateVenueDetail.longitude!),
-  //               markerId: const MarkerId("0")));
-  //           isStateLoading = false;
-  //         });
-  //       },
-  //       onFailure: (msg) {
-  //         showMessage(msg);
-  //       },
-  //       tokenExpire: () {
-  //         if (mounted) on401(context);
-  //       });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -295,59 +274,65 @@ class GroundDetailState extends State<GroundDetail>
                     });
                   },
                   children: [
-                    _auth
-                        ? SpeedDialChild(
-                            visible: true,
-                            backgroundColor: AppColors.appThemeColor,
-                            child: Icon(
-                                academyIds.contains(widget.detail['academy_id'])
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color: AppColors.white),
-                            onTap: () {
-                              _networkCalls.checkInternetConnectivity(
-                                  onSuccess: (msg) {
-                                if (msg) {
-                                  if (academyIds
-                                      .contains(widget.detail['academy_id'])) {
-                                    privateVenueDetail.isFavourite = true;
-                                    favorite(true);
-                                    setState(() {
-                                      isDialOpen.value = !isDialOpen.value;
-                                      getFavorites();
-                                    });
-                                  } else {
-                                    favorite(false);
-                                    setState(() {
-                                      isDialOpen.value = !isDialOpen.value;
-                                      getFavorites();
-                                    });
-                                  }
-                                } else {
-                                  showMessage(AppLocalizations.of(context)!
-                                      .noInternetConnection);
-                                  setState(() {
-                                    isDialOpen.value = !isDialOpen.value;
+                    widget.navigateFromInovative
+                        ? SpeedDialChild()
+                        : _auth
+                            ? SpeedDialChild(
+                                visible: true,
+                                backgroundColor: AppColors.appThemeColor,
+                                child: Icon(
+                                    academyIds.contains(
+                                            widget.detail['academy_id'])
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: AppColors.white),
+                                onTap: () {
+                                  _networkCalls.checkInternetConnectivity(
+                                      onSuccess: (msg) {
+                                    if (msg) {
+                                      if (academyIds.contains(
+                                          widget.detail['academy_id'])) {
+                                        privateVenueDetail.isFavourite = true;
+                                        favorite(true);
+                                        setState(() {
+                                          isDialOpen.value = !isDialOpen.value;
+                                          getFavorites();
+                                        });
+                                      } else {
+                                        favorite(false);
+                                        setState(() {
+                                          isDialOpen.value = !isDialOpen.value;
+                                          getFavorites();
+                                        });
+                                      }
+                                    } else {
+                                      showMessage(AppLocalizations.of(context)!
+                                          .noInternetConnection);
+                                      setState(() {
+                                        isDialOpen.value = !isDialOpen.value;
+                                      });
+                                    }
                                   });
-                                }
-                              });
-                            })
-                        : SpeedDialChild(),
-                    SpeedDialChild(
-                        visible: true,
-                        backgroundColor: AppColors.appThemeColor,
-                        child: Icon(
-                          Icons.share,
-                          color: AppColors.white,
-                        ),
-                        onTap: () {
-                          Share.share(
-                            "pitchDetail.link",
-                          );
-                          setState(() {
-                            isDialOpen.value = !isDialOpen.value;
-                          });
-                        }),
+                                })
+                            : SpeedDialChild(),
+
+                    ///TODO Later
+                    ///share Button
+                    // SpeedDialChild(
+                    //     visible: true,
+                    //     backgroundColor: AppColors.appThemeColor,
+                    //     child: Icon(
+                    //       Icons.share,
+                    //       color: AppColors.white,
+                    //     ),
+                    //     onTap: () {
+                    //       Share.share(
+                    //         "pitchDetail.link",
+                    //       );
+                    //       setState(() {
+                    //         isDialOpen.value = !isDialOpen.value;
+                    //       });
+                    //     }),
                     SpeedDialChild(
                         visible: true,
                         backgroundColor: AppColors.appThemeColor,
