@@ -1,0 +1,33 @@
+dependencies: \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageManager.m \
+  /Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/SDWebImage.build/module.modulemap \
+  /Users/developer/Downloads/tahadde/ios/Pods/Target\ Support\ Files/SDWebImage/SDWebImage-prefix.pch \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageManager.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageCompat.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageOperation.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCacheDefine.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageDefine.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCoder.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/NSData+ImageContentType.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDImageFrame.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDImageLoader.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDImageTransformer.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/UIImage+Transform.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageCacheKeyFilter.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageCacheSerializer.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageOptionsProcessor.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCache.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCacheConfig.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDMemoryCache.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDDiskCache.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageDownloader.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageDownloaderConfig.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageDownloaderRequestModifier.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageDownloaderResponseModifier.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageDownloaderDecryptor.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/UIImage+Metadata.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Private/SDAssociatedObject.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageError.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Private/SDInternalMacros.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Private/SDmetamacros.h \
+  /Users/developer/Downloads/tahadde/ios/Pods/SDWebImage/SDWebImage/Core/SDCallbackQueue.h

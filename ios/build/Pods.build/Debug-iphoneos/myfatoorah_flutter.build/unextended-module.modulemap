@@ -1,0 +1,10 @@
+framework module myfatoorah_flutter {
+  umbrella header "myfatoorah_flutter-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module myfatoorah_flutter.__Swift {
+  exclude header "myfatoorah_flutter-Swift.h"
+}

@@ -1,0 +1,41 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "7a5f9fd29e46e0c4a83ecbaa8db58df640e87b8293c27083302a6d251d3c1df2"
+build_start_time: [1704182671, 660001993]
+build_end_time: [1704182671, 739533901]
+inputs:
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageBaseManager.swift": !private [1704179308, 385024547]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageDataManager.swift": !private [1704179308, 382468700]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageGroupDataManager.swift": !private [1704179308, 384004116]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Export.swift": !private [1704179308, 386860370]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Fetch.swift": !private [1704179308, 388621330]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset.swift": !private [1704179308, 389283418]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAssetGroup.swift": !private [1704179308, 387589693]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImageAssetExporter.swift": !private [1704179308, 392202377]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImageExtensionController.swift"
+  : !private [1704179308, 391342163]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerController.swift"
+  : !private [1704179308, 393114566]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerControllerBaseUIDelegate.swift"
+  : !private [1704179308, 394428730]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKPopoverViewController.swift"
+  : !private [1704179308, 395514726]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/Resource/DKImagePickerControllerResource.swift"
+  : !private [1704179308, 476827621]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupCellItemProtocol.swift"
+  : !private [1704179308, 402415752]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailBaseCell.swift"
+  : !private [1704179308, 403030872]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailCameraCell.swift"
+  : !private [1704179308, 399806976]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailImageCell.swift"
+  : !private [1704179308, 403926849]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailVideoCell.swift"
+  : !private [1704179308, 401702880]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupDetailVC.swift"
+  : !private [1704179308, 398712158]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupGridLayout.swift"
+  : !private [1704179308, 397616863]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupListVC.swift"
+  : !private [1704179308, 404908895]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKPermissionView.swift": !private [1704179308, 396764755]
+  "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/Extensions/DKImageExtensionGallery.swift": !private [1704179308, 378944873]
