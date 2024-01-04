@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/modelClass/campaign.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/campaign_corousel_fro_home_screens.dart';
 
 import '../../../../../../common_widgets/internet_loss.dart';
 import '../../../../../../homeFile/routingConstant.dart';
@@ -30,6 +32,11 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
   List<AcademyModel> _academyDetail = [];
   List<InnovativeHub> _innovativeDetail = [];
   List<AcademyModel> _academyModel = [];
+  List<Campaign> campaign = [];
+  List campaignImage = [];
+  List campaignDescription = [];
+  List campaignLinks = [];
+  List campaignEndDate = [];
   bool _internet = true;
   int initial = 0;
   int clicked = 1;
@@ -106,36 +113,27 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
     );
   }
 
-  // loadVerifiedAcademies() async {
-  //   await _networkCalls.loadVerifiedAcademies(
-  //     sport: '',
-  //     onSuccess: (academies) {
-  //       if (mounted) {
-  //         setState(() {
-  //           _isLoading = false;
-  //           print('hi');
-  //           _academyModel = academies;
-  //           print('ok');
-  //           print(_academyModel);
-  //           print('kok');
-  //         });
-  //       }
-  //     },
-  //     onFailure: (msg) {
-  //       if (mounted) {
-  //         setState(() {
-  //           _isLoading = false;
-  //         });
-  //       }
-  //     },
-  //     tokenExpire: () {
-  //       if (mounted) {
-  //         print('loadVenues');
-  //         on401(context);
-  //       }
-  //     },
-  //   );
-  // }
+  loadCampaigns() async {
+    await _networkCalls.getCampaign(
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            campaign = event;
+          });
+        }
+        if (campaign.isNotEmpty) {
+          campaign.forEach((element) {
+            campaignDescription.add(element.description);
+            campaignImage.add(element.bannerImage);
+            campaignLinks.add(element.link);
+            campaignEndDate.add(element.validityEnd);
+          });
+        }
+      },
+      onFailure: (msg) {},
+      tokenExpire: () {},
+    );
+  }
 
   @override
   void initState() {
@@ -145,6 +143,7 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
       if (_internet == true) {
         _isLoading = false;
         loadMyPitch();
+        loadCampaigns();
         loadAllAcademies();
         loadAllInnovative();
         // loadVerifiedAcademies();
@@ -198,35 +197,6 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                     ),
                   ],
                 ),
-                // bottom: TabBar(
-                //   indicatorSize: TabBarIndicatorSize.tab,
-                //   unselectedLabelColor: AppColors.grey,
-                //   dividerColor: AppColors.red,
-                //   isScrollable: true,
-                //   physics: AlwaysScrollableScrollPhysics(),
-                //   // indicator: BoxDecoration(
-                //   //   color: Color(0xff1d7e55),
-                //   //   borderRadius: BorderRadius.circular(8),
-                //   // ),
-                //   padding:
-                //       EdgeInsets.symmetric(vertical: sizeHeight * 0.003),
-                //   tabs: [
-                //     Center(
-                //         child: Padding(
-                //       padding: EdgeInsets.all(sizeHeight * 0.012),
-                //       child: Text(
-                //         AppLocalizations.of(context)!.academyOnly,
-                //       ),
-                //     )),
-                //     Center(
-                //         child: Padding(
-                //       padding: EdgeInsets.all(sizeHeight * 0.012),
-                //       child: Text(
-                //         AppLocalizations.of(context)!.innovative,
-                //       ),
-                //     )),
-                //   ],
-                // ),
               ),
               floatingActionButton: SpeedDial(
                 elevation: 3,
@@ -278,14 +248,17 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              SizedBox(
-                                height: sizeHeight * 0.21,
-                                width: sizeWidth,
-                                child: Carousel(image: const [
-                                  'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
-                                  'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
-                                ]),
-                              ),
+                              campaign.isNotEmpty
+                                  ? SizedBox(
+                                      height: sizeHeight * 0.21,
+                                      width: sizeWidth,
+                                      child: CampaignCorousel(
+                                        description: campaignDescription,
+                                        image: campaignImage,
+                                        links: campaignLinks,
+                                        endDate: campaignEndDate,
+                                      ))
+                                  : const CircularProgressIndicator(),
                               SizedBox(
                                 height: sizeHeight * 0.01,
                               ),

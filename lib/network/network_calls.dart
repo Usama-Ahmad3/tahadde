@@ -7,6 +7,7 @@ import 'package:flutter_tahaddi/homeFile/utility.dart';
 import 'package:flutter_tahaddi/modelClass/Facilities.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/booked_model.dart';
+import 'package:flutter_tahaddi/modelClass/campaign.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_bookings_model.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
@@ -313,7 +314,6 @@ class NetworkCalls {
     print(auth);
     await prefs.setBool("auth", auth);
   }
-
 
   void saveToken(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -3499,10 +3499,10 @@ class NetworkCalls {
         onFailure(resp["detail"]);
       } else if (response.statusCode == tokenExpireStatus) {
         tokenExpire();
-      } else if(response.statusCode == 400){
+      } else if (response.statusCode == 400) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         showMessage(resp["error"]);
-      }else{
+      } else {
         onFailure(throw Exception('Failed to send rating'));
       }
     } on SocketException catch (_) {
@@ -4268,6 +4268,37 @@ class NetworkCalls {
           bookPitch.add(InnovativeHub.fromJson(resp[i]));
         }
         onSuccess(bookPitch);
+      } else if (response.statusCode == 404) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else {
+        onFailure(throw Exception('Failed to load league'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong");
+    }
+  }
+
+  getCampaign(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(
+          Uri.parse("$baseUrl/api/v1/compaign/campaign_list/"),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print(response.body);
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        List<Campaign> campaign = [];
+        for (int i = 0; i < resp.length; i++) {
+          campaign.add(Campaign.fromJson(resp[i]));
+        }
+        onSuccess(campaign);
       } else if (response.statusCode == 404) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onFailure(resp["error"]);

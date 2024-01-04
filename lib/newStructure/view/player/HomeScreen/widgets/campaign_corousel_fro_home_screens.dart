@@ -3,59 +3,38 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/modelClass/player_rating.dart';
-import 'package:flutter_tahaddi/network/network_calls.dart';
+import 'package:flutter_tahaddi/modelClass/campaign.dart';
+import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:intl/intl.dart';
 
-import '../../../../../../common_widgets/story_view.dart';
 import '../../../../../../homeFile/utility.dart';
-import '../../../../../app_colors/app_colors.dart';
 
-class Carousel extends StatefulWidget {
-  List? image;
-  bool storyView;
-  String? academy_id;
-  bool auth;
-  Carousel(
+class CampaignCorousel extends StatefulWidget {
+  List description;
+  List image;
+  List links;
+  List endDate;
+  CampaignCorousel(
       {super.key,
-      this.image,
-      this.auth = false,
-      this.storyView = true,
-      this.academy_id});
+      required this.description,
+      required this.image,
+      required this.links,
+      required this.endDate});
 
   @override
-  State<Carousel> createState() => _CarouselState();
+  State<CampaignCorousel> createState() => _CampaignCorouselState();
 }
 
-class _CarouselState extends State<Carousel> {
+class _CampaignCorouselState extends State<CampaignCorousel> {
   final nextPageController = CarouselController();
   double _currentIndexPage = 0;
   late ScrollController _controller;
   late ScrollController _scrollController;
-  List<PlayerRating> rating = [];
   double _boxHeight = 0;
   static const _kBasePadding = 16.0;
   static const kExpandedHeight = 250.0;
   final ValueNotifier<double> _titlePaddingNotifier =
       ValueNotifier(_kBasePadding);
-  loadingRating() async {
-    await NetworkCalls().ratingGetForPlayer(
-      id: widget.academy_id.toString(),
-      onSuccess: (msg) {
-        setState(() {
-          for (int i = 0; i < msg.length; i++) {
-            rating.add(PlayerRating.fromJson(msg[i]));
-          }
-          print("rating$rating");
-        });
-      },
-      onFailure: (msg) {
-        setState(() {});
-      },
-      tokenExpire: () {
-        if (mounted) on401(context);
-      },
-    );
-  }
 
   double get _horizontalTitlePadding {
     const kCollapsedPadding = 60.0;
@@ -74,8 +53,18 @@ class _CarouselState extends State<Carousel> {
   @override
   void initState() {
     super.initState();
-    print(widget.auth);
-    widget.auth ? loadingRating() : null;
+    for (int i = 0; i < widget.image.length; i++) {
+      String currentDay = DateTime.now().day.toString();
+      DateTime givenDateTime =
+          DateFormat("yyyy-MM-dd").parse(widget.endDate[i]);
+      String givenDay = givenDateTime.day.toString();
+      if (currentDay == givenDay) {
+        widget.links.removeAt(i);
+        widget.image.removeAt(i);
+        widget.endDate.removeAt(i);
+        widget.description.removeAt(i);
+      }
+    }
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       bool isTop = _scrollController.position.pixels == 250;
@@ -103,24 +92,18 @@ class _CarouselState extends State<Carousel> {
       children: [
         CarouselSlider.builder(
             carouselController: nextPageController,
-            itemCount: widget.image == null ? 5 : widget.image!.length,
+            itemCount: widget.image.length,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) {
               return InkWell(
                 onTap: () {
-                  widget.storyView
-                      ? Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => StoryPage(
-                                files: widget.image ?? [],
-                              )))
-                      : null;
+                  launchInBrowser(widget.links[itemIndex]);
                 },
                 child: cachedNetworkImage(
                   height: height * 0.3,
                   imageFit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
-                  cuisineImageUrl:
-                      widget.image == null ? '' : widget.image![itemIndex],
+                  cuisineImageUrl: widget.image[itemIndex],
                 ),
               );
             },
@@ -143,7 +126,7 @@ class _CarouselState extends State<Carousel> {
           right: 0.0,
           bottom: 0.0,
           child: DotsIndicator(
-            dotsCount: widget.image == null ? 5 : widget.image!.length,
+            dotsCount: widget.image.length,
             position: _currentIndexPage.toInt(),
             decorator: DotsDecorator(
               activeSize: const Size(20.0, 10.0),
@@ -154,34 +137,16 @@ class _CarouselState extends State<Carousel> {
             ),
           ),
         ),
-        widget.auth
-            ? rating.isNotEmpty
-                ? Positioned(
-                    right: width * 0.02,
-                    top: height * 0.012,
-                    child: Container(
-                      height: height * 0.04,
-                      width: width * 0.2,
-                      decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(height * 0.01)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                          ),
-                          Text(
-                            '(${rating[0].rating})',
-                            style: TextStyle(color: AppColors.appThemeColor),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                : SizedBox.shrink()
-            : SizedBox.shrink(),
+        Positioned(
+          left: width * 0.02,
+          bottom: height * 0.022,
+          right: 0,
+          child: Text(
+            widget.description[_currentIndexPage.toInt()].toString(),
+            style: TextStyle(
+                backgroundColor: Colors.white, color: AppColors.black),
+          ),
+        )
       ],
     );
   }

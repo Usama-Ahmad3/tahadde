@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/localizations.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/modelClass/campaign.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/modelClass/territory_model_class.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundD
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/innovative_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/campaign_corousel_fro_home_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,6 +44,11 @@ class HomeScreenViewState extends State<HomeScreenView> {
   List<String> history = [];
   List<String>? showHistory = [];
   List academyIds = [];
+  List<Campaign> campaign = [];
+  List campaignImage = [];
+  List campaignDescription = [];
+  List campaignLinks = [];
+  List campaignEndDate = [];
   bool? favoriteState;
   int isSelected = -1;
   var _academyModel;
@@ -541,6 +548,28 @@ class HomeScreenViewState extends State<HomeScreenView> {
     );
   }
 
+  loadCampaigns() async {
+    await _networkCalls.getCampaign(
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            campaign = event;
+          });
+        }
+        if (campaign.isNotEmpty) {
+          campaign.forEach((element) {
+            campaignDescription.add(element.description);
+            campaignImage.add(element.bannerImage);
+            campaignLinks.add(element.link);
+            campaignEndDate.add(element.validityEnd);
+          });
+        }
+      },
+      onFailure: (msg) {},
+      tokenExpire: () {},
+    );
+  }
+
   loadAcademiesSpecific() async {
     await _networkCalls.loadVerifiedAcademies(
       sport: sportName,
@@ -626,6 +655,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
         getAddress();
         loadTerritories();
         getSports();
+        loadCampaigns();
         loadAcademies();
         loadAllInnovative();
         // loadVenues();
@@ -1151,14 +1181,20 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         height: height * 0.005,
                                       ),
                                       SizedBox(
-                                        height: height * 0.2,
-                                        width: width,
-                                        child: Carousel(image: const [
-                                          'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
-                                          'https://tse1.mm.bing.net/th?id=OIP.ptX0bcAkl4cTcMWe9JvyhgHaEK&pid=Api&P=0&h=220',
-                                          'https://sp.yimg.com/ib/th?id=OIP.ioIpvjaAIPNY7QduhbyCnAHaE8&pid=Api&w=148&h=148&c=7&rs=1'
-                                        ]),
-                                      ),
+                                          height: height * 0.2,
+                                          width: width,
+                                          child: CampaignCorousel(
+                                            description: campaignDescription,
+                                            image: campaignImage,
+                                            links: campaignLinks,
+                                            endDate: campaignEndDate,
+                                          )
+                                          // Carousel(image: const [
+                                          //   'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
+                                          //   'https://tse1.mm.bing.net/th?id=OIP.ptX0bcAkl4cTcMWe9JvyhgHaEK&pid=Api&P=0&h=220',
+                                          //   'https://sp.yimg.com/ib/th?id=OIP.ioIpvjaAIPNY7QduhbyCnAHaE8&pid=Api&w=148&h=148&c=7&rs=1'
+                                          // ]),
+                                          ),
                                       Material(
                                           color: AppColors.transparent,
                                           child: ConstrainedBox(
