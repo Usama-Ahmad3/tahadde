@@ -1,6 +1,6 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
 options: "56b435f0ad2fd8f33ef9134c299bb6d6a592b118e123253e1a7df2876a557792"
-build_start_time: [1704182538, 729756832]
-build_end_time: [1704182538, 781306982]
+build_start_time: [1704198982, 553505897]
+build_end_time: [1704198982, 628239154]
 inputs:
   "/Users/developer/.pub-cache/hosted/pub.dev/myfatoorah_flutter-2.1.20/ios/Classes/SwiftMyfatoorahFlutterPlugin.swift": !private [1703926105, 671381235]

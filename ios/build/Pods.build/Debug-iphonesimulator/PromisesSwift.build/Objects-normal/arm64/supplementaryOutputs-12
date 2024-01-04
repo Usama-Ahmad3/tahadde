@@ -1,0 +1,20 @@
+"/Users/developer/Downloads/tahadde/ios/Pods/PromisesSwift/Sources/Promises/Promise+Timeout.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Timeout.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Timeout.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Timeout.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Timeout.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/PromisesSwift/Sources/Promises/PromiseError.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/PromiseError.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/PromiseError.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/PromiseError.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/PromiseError.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/PromisesSwift/Sources/Promises/Promise+Wrap.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Wrap.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Wrap.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Wrap.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Wrap.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/PromisesSwift/Sources/Promises/Promise+Validate.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Validate.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Validate.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Validate.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/PromisesSwift.build/Objects-normal/arm64/Promise+Validate.dia"

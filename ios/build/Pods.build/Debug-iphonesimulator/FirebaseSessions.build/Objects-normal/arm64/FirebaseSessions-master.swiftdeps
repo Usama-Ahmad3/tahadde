@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
 options: "c3fd13633a3c7da5223470734225569c7c42b1057d4eca2dbd7d5b9c745ce670"
-build_start_time: [1704182632, 322437047]
-build_end_time: [1704182671, 463917970]
+build_start_time: [1704199131, 226345062]
+build_end_time: [1704199183, 77868938]
 inputs:
   "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/ApplicationInfo.swift": [1704179312, 865831613]
   "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Development/DevEventConsoleLogger.swift": [1704179312, 869773387]

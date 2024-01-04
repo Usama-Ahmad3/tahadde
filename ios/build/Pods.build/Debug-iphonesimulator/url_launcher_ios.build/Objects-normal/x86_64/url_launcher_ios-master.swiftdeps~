@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
 options: "fe2b0c9584d04d040e6a4881fe285e58a7f35e9f7e1d6e2961468e5276bdd560"
-build_start_time: [1704182526, 528465032]
-build_end_time: [1704182526, 581485986]
+build_start_time: [1704198957, 820002079]
+build_end_time: [1704198957, 972618103]
 inputs:
   "/Users/developer/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/Launcher.swift": !private [1703926055, 146571159]
   "/Users/developer/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/URLLaunchSession.swift": !private [1703926055, 146866321]

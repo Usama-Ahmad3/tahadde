@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
 options: "d82c433f3ed70cc4b3c70ae3a097ec82cc718c6e8f83c7145800745702dcd905"
-build_start_time: [1704182614, 443397045]
-build_end_time: [1704182653, 850260972]
+build_start_time: [1704199103, 806096076]
+build_end_time: [1704199130, 728498935]
 inputs:
   "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift": [1704179311, 243115425]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatController.swift"
