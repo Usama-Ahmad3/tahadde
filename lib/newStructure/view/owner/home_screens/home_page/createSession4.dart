@@ -45,6 +45,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
   bool firstTimeTag = true;
   var focusNode = FocusNode();
   List<String> _copyDays = [];
+  List<String> _copySessions = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final scaffoldKeyBottomShit = GlobalKey<ScaffoldState>();
   final NetworkCalls _networkCalls = NetworkCalls();
@@ -278,105 +279,129 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                 _nameController.clear();
                 _nameControllerArabic.clear();
                 firstTime == 1
-                    ? showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              elevation: 2,
-                              backgroundColor:
-                                  MyAppState.mode == ThemeMode.light
-                                      ? AppColors.grey200
-                                      : AppColors.darkTheme,
-                              shape: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              title: Text(AppLocalizations.of(context)!.copy,
-                                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      color: MyAppState.mode == ThemeMode.light
-                                          ? AppColors.black
-                                          : AppColors.white)),
-                              contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.065),
-                              content: Text(
-                                AppLocalizations.of(context)!.copySession,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(color: AppColors.red),
-                              ),
-                              actions: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Center(
-                                        child: Container(
-                                          height: 35,
-                                          width: MediaQuery.of(context).size.width *
-                                              0.3,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(20),
-                                            color: AppColors.appThemeColor,
-                                            border: Border.all(
-                                                width: 1, color: AppColors.white),
-                                          ),
+                    ? _sessionMap[_weakList[0].slug] != null
+                        ? showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  elevation: 2,
+                                  backgroundColor:
+                                      MyAppState.mode == ThemeMode.light
+                                          ? AppColors.grey200
+                                          : AppColors.darkTheme,
+                                  shape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12)),
+                                  title: Text(
+                                      AppLocalizations.of(context)!.copy,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              color: MyAppState.mode ==
+                                                      ThemeMode.light
+                                                  ? AppColors.black
+                                                  : AppColors.white)),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.065),
+                                  content: Text(
+                                    AppLocalizations.of(context)!.copySession,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(color: AppColors.red),
+                                  ),
+                                  actions: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
                                           child: Center(
-                                            child: Text(
-                                              AppLocalizations.of(context)!.no,
-                                              style:
-                                              TextStyle(color: AppColors.white),
+                                            child: Container(
+                                              height: 35,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.3,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: AppColors.appThemeColor,
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: AppColors.white),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .no,
+                                                  style: TextStyle(
+                                                      color: AppColors.white),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        for (int i = _weakIndex; i < 7; i++) {
-                                          if (_sessionMap[_weakList[i].slug] ==
-                                              null) {
-                                            _sessionMap[_weakList[i].slug] =
-                                                List.generate(
+                                        InkWell(
+                                          onTap: () {
+                                            for (int i = _weakIndex;
+                                                i < 7;
+                                                i++) {
+                                              if (_sessionMap[
+                                                      _weakList[i].slug] ==
+                                                  null) {
+                                                _sessionMap[
+                                                    _weakList[i]
+                                                        .slug] = List.generate(
                                                     _sessionMap[_copyDays[
-                                                    _weakIndex - 1]]!
+                                                            _weakIndex - 1]]!
                                                         .length,
-                                                        (index2) => _sessionMap[
-                                                    _copyDays[_weakIndex -
-                                                        1]]![index2]
+                                                    (index2) => _sessionMap[
+                                                            _copyDays[
+                                                                _weakIndex -
+                                                                    1]]![index2]
                                                         .clone());
-                                          }
-                                        }
-                                        Navigator.pop(context);
-                                        setState(() {});
-                                      },
-                                      child: Center(
-                                        child: Container(
-                                          height: 35,
-                                          width: MediaQuery.of(context).size.width *
-                                              0.3,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(20),
-                                            color: AppColors.appThemeColor,
-                                            border: Border.all(
-                                                width: 1, color: AppColors.white),
-                                          ),
+                                              }
+                                            }
+                                            Navigator.pop(context);
+                                            setState(() {});
+                                          },
                                           child: Center(
-                                            child: Text(
-                                              AppLocalizations.of(context)!.yes,
-                                              style:
-                                              TextStyle(color: AppColors.white),
+                                            child: Container(
+                                              height: 35,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.3,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: AppColors.appThemeColor,
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: AppColors.white),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .yes,
+                                                  style: TextStyle(
+                                                      color: AppColors.white),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
                                     ),
                                   ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ))
+                                ))
+                        : null
                     : null;
                 bottomSheet(onTap: () {
                   setState(() {});
@@ -570,89 +595,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                           height: size.height * 0.02,
                         ),
 
-                        ///Center Add Session Button
-                        // _sessionMap.containsKey(_weakList[_weakIndex].slug) &&
-                        //         !_sessionMap[_weakList[_weakIndex].slug]![0]
-                        //             .isHoliday! &&
-                        //         _sessionMap[_weakList[_weakIndex].slug]!
-                        //             .isNotEmpty
-                        //     ? const SizedBox.shrink()
-                        //     : Expanded(
-                        //         child: Container(
-                        //           color: Colors.white,
-                        //           width: size.width,
-                        //           child: Column(
-                        //             mainAxisAlignment: MainAxisAlignment.center,
-                        //             children: [
-                        //               Padding(
-                        //                 padding:
-                        //                     const EdgeInsets.only(bottom: 20.0),
-                        //                 child: Text(
-                        //                   AppLocalizations.of(context)!
-                        //                       .addSession,
-                        //                   style: const TextStyle(
-                        //                       fontSize: 18,
-                        //                       fontWeight: FontWeight.w500,
-                        //                       color: Color(0xffA3A3A3)),
-                        //                 ),
-                        //               ),
-                        //               GestureDetector(
-                        //                   onTap: () {
-                        //                     _holiday = false;
-                        //                     bottomSheet(onTap: () {
-                        //                       setState(() {});
-                        //                     });
-                        //                   },
-                        //                   child: Image.asset(
-                        //                       "assets/images/add_venue.png")),
-                        //             ],
-                        //           ),
-                        //         ),
-                        //       ),
-
-                        ///Line Add Session
-                        //     _sessionMap
-                        //         .containsKey(_weakList[_weakIndex].slug) &&
-                        //     !_sessionMap[_weakList[_weakIndex].slug]![0]
-                        //         .isHoliday! &&
-                        //     _sessionMap[_weakList[_weakIndex].slug]!
-                        //         .isNotEmpty
-                        // ? Padding(
-                        //     padding:
-                        //         const EdgeInsets.symmetric(vertical: 20.0),
-                        //     child: Container(
-                        //       height: size.height * .1,
-                        //       width: size.width,
-                        //       color: Colors.white,
-                        //       child: Padding(
-                        //         padding: const EdgeInsets.all(15.0),
-                        //         child: Row(
-                        //           mainAxisAlignment:
-                        //               MainAxisAlignment.spaceBetween,
-                        //           children: [
-                        //             Text(
-                        //               AppLocalizations.of(context)!
-                        //                   .addSession,
-                        //               style: const TextStyle(
-                        //                   fontSize: 14,
-                        //                   fontWeight: FontWeight.w500,
-                        //                   color: Color(0xffA3A3A3)),
-                        //             ),
-                        //             GestureDetector(
-                        //                 onTap: () {
-                        //                   _holiday = false;
-                        //                   bottomSheet(onTap: () {
-                        //                     setState(() {});
-                        //                   });
-                        //                 },
-                        //                 child: Image.asset(
-                        //                     "assets/images/add_venue.png")),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   )
-                        // : const SizedBox.shrink(),
                         _sessionMap.containsKey(_weakList[_weakIndex].slug) &&
                                 !_sessionMap[_weakList[_weakIndex].slug]![0]
                                     .isHoliday! &&
@@ -922,15 +864,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         ///button for navigation and creating
                         Align(
                           alignment: Alignment.bottomCenter,
-                          child:
-                              // _isSession ? ButtonWidget(
-                              //         onTaped: () {},
-                              //         title: CircularProgressIndicator(
-                              //           color: AppColors.white,
-                              //         ),
-                              //         isLoading: _isLoading,
-                              // ) :
-                              ButtonWidget(
+                          child: ButtonWidget(
                             onTaped: widget.createdTag
                                 ?
 
@@ -941,6 +875,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     //     "Please create session for ${(7 - _sessionMap.length).toString()} more days",
                                     //   );
                                     // } else {
+                                    print('already created');
                                     setState(() {
                                       _isSession = true;
                                     });
@@ -1010,38 +945,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     editAcademy(sessionUpdate,
                                         specificAcademy!.academyId.toString());
                                     Navigator.pop(context);
-                                    // Navigator.pop(context);
-                                    // _networkCalls.editSession(
-                                    //     onSuccess: (onSuccess) {
-                                    //       _isSession = false;
-                                    //       if (mounted) {
-                                    //         Map detail = {
-                                    //           "id": widget.academyData["id"],
-                                    //           "name":
-                                    //               AppLocalizations.of(context)!
-                                    //                           .locale ==
-                                    //                       "en"
-                                    //                   ? specificPitchScreen
-                                    //                       .venueDetails!.name
-                                    //                   : specificPitchScreen
-                                    //                       .venueDetails!
-                                    //                       .nameArabic
-                                    //         };
-                                    //         navigateToEditVenues(detail);
-                                    //       }
-                                    //     },
-                                    //     venueDetail: detail,
-                                    //     id: id,
-                                    //     venueType: venueType,
-                                    //     onFailure: (onFailure) {
-                                    //       showMessage(
-                                    //           "Please create session properly ");
-                                    //       setState(() {
-                                    //         _isSession = false;
-                                    //       });
-                                    //     },
-                                    //     tokenExpire: () {});
-                                    // // }
                                   }
                                 : () {
                                     if (_sessionMap.length < 1) {
@@ -1156,12 +1059,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                       };
                                       print(sessionsPay);
                                       widget.academyData.addAll(sessionsPay);
-                                      // // Map detail = {
-                                      // //   widget.pitchData,
-                                      // // };
-                                      // print(widget.pitchData);
-                                      // print(widget.academyData);
-                                      //
+
                                       ///create session Api
                                       _networkCalls.createSession(
                                           detail: widget.academyData,
@@ -1228,9 +1126,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     DateTime selectedDate = DateTime.now();
     String zero = '0';
     var size = MediaQuery.of(context).size;
-    _copyDays = _sessionMap.keys.toList();
     SessionDetail sessionDetail = SessionDetail();
     copyDaysIndex = 0;
+    _copyDays = _sessionMap.keys.toList();
+    print(_copyDays);
     copySessionIndex.clear();
     return showModalBottomSheet(
         backgroundColor: AppColors.transparent,
@@ -1504,127 +1403,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                         ),
                                       ),
                                     ),
-
-                                    ///if no session created then add sizedBox
-                                    // _sessionMap.isNotEmpty &&
-                                    //         (!_sessionMap.containsKey(
-                                    //                 _weakList[_weakIndex]
-                                    //                     .slug) ||
-                                    //             _sessionMap[
-                                    //                     _weakList[_weakIndex]
-                                    //                         .slug]![0]
-                                    //                 .isHoliday!)
-                                    //     ? SizedBox(height: size.height * 0.02)
-                                    //     : SizedBox.shrink(),
-
-                                    ///if no session created then add copy from section
-                                    // _sessionMap.isNotEmpty &&
-                                    //         (!_sessionMap.containsKey(
-                                    //                 _weakList[_weakIndex]
-                                    //                     .slug) ||
-                                    //             _sessionMap[
-                                    //                     _weakList[_weakIndex]
-                                    //                         .slug]![0]
-                                    //                 .isHoliday!)
-                                    //     ? SizedBox(
-                                    //         width: size.width,
-                                    //         height: size.height * .08,
-                                    //         child: CustomDropdown(
-                                    //           leadingIcon: false,
-                                    //           icon: Image.asset(
-                                    //             "assets/images/drop_down.png",
-                                    //             height: 8,
-                                    //           ),
-                                    //           onChange:
-                                    //               (int value, int index) =>
-                                    //                   setState(() {
-                                    //             copyDaysIndex = index;
-                                    //             _sessionMap[
-                                    //                 _weakList[_weakIndex]
-                                    //                     .slug] = List.generate(
-                                    //                 _sessionMap[
-                                    //                         _copyDays[index]]!
-                                    //                     .length,
-                                    //                 (index2) => _sessionMap[
-                                    //                         _copyDays[
-                                    //                             index]]![index2]
-                                    //                     .clone());
-                                    //             Navigator.of(context).pop();
-                                    //             onTap();
-                                    //           }),
-                                    //           dropdownButtonStyle:
-                                    //               DropdownButtonStyle(
-                                    //             width: 170,
-                                    //             height: 45,
-                                    //             elevation: 1,
-                                    //             backgroundColor:
-                                    //                 MyAppState.mode ==
-                                    //                         ThemeMode.light
-                                    //                     ? AppColors.grey200
-                                    //                     : AppColors
-                                    //                         .containerColorW12,
-                                    //             primaryColor: MyAppState.mode ==
-                                    //                     ThemeMode.light
-                                    //                 ? AppColors.black
-                                    //                 : AppColors.white,
-                                    //           ),
-                                    //           dropdownStyle: DropdownStyle(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(12),
-                                    //             elevation: 6,
-                                    //             padding:
-                                    //                 const EdgeInsets.all(5),
-                                    //             color: MyAppState.mode ==
-                                    //                     ThemeMode.light
-                                    //                 ? AppColors.grey200
-                                    //                 : AppColors.containerColorB,
-                                    //           ),
-                                    //           items: _copyDays
-                                    //               .asMap()
-                                    //               .entries
-                                    //               .map(
-                                    //                 (item) => DropdownItem(
-                                    //                   value: item.key + 1,
-                                    //                   child: Padding(
-                                    //                     padding:
-                                    //                         const EdgeInsets
-                                    //                             .only(top: 8.0),
-                                    //                     child: Column(
-                                    //                       mainAxisAlignment:
-                                    //                           MainAxisAlignment
-                                    //                               .end,
-                                    //                       children: [
-                                    //                         _weakList[_weakIndex]
-                                    //                                     .slug !=
-                                    //                                 item.value
-                                    //                             ? Text(
-                                    //                                 "Copy from ${item.value}",
-                                    //                                 style: TextStyle(
-                                    //                                     color: MyAppState.mode ==
-                                    //                                             ThemeMode.light
-                                    //                                         ? AppColors.black
-                                    //                                         : AppColors.white),
-                                    //                               )
-                                    //                             : const SizedBox
-                                    //                                 .shrink(),
-                                    //                         _weakList[_weakIndex]
-                                    //                                     .slug !=
-                                    //                                 item.value
-                                    //                             ? const Divider()
-                                    //                             : const SizedBox
-                                    //                                 .shrink()
-                                    //                       ],
-                                    //                     ),
-                                    //                   ),
-                                    //                 ),
-                                    //               )
-                                    //               .toList(),
-                                    //           child: Text(
-                                    //             "Copy from ${_copyDays[copyDaysIndex]}",
-                                    //           ),
-                                    //         ),
-                                    //       )
-                                    //     : const SizedBox.shrink(),
                                     SizedBox(
                                       height: size.height * 0.02,
                                     ),
@@ -2294,7 +2072,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             var maxEndDate;
                                             var minStartDate;
 
-                                            ///if there is already a session then if statement, for second or third session if statement not run on first session
+                                            /// (1) if there is already a session then if statement, for second or third session if statement not run on first session
                                             if (_sessionMap.containsKey(
                                                     _weakList[_weakIndex]
                                                         .slug) &&
@@ -2304,6 +2082,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     .isHoliday!) {
                                               print('1');
                                               if (!sessionDetail.isHoliday!) {
+                                                print('holiday');
                                                 sessionDetail.isHoliday = false;
                                                 sessionDetail.graceTime ??= 20;
                                                 sessionDetail.slotDuration ??=
@@ -2317,6 +2096,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 if (_sessionMap.containsKey(
                                                     _weakList[_weakIndex]
                                                         .slug)) {
+                                                  print('2');
                                                   if (_sessionMap[
                                                           _weakList[_weakIndex]
                                                               .slug] !=
@@ -2344,6 +2124,32 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                     b.endTime!)
                                                             ? a
                                                             : b);
+                                                    _copySessions.clear();
+                                                    copySessionIndex
+                                                        .forEach((element) {
+                                                      _copySessions.add(
+                                                          _weakList[element]
+                                                              .slug);
+                                                    });
+                                                    _copySessions
+                                                        .forEach((element) {
+                                                      _sessionMap[element]!
+                                                          .add(SessionDetail(
+                                                        slotDuration:
+                                                            sessionDetail
+                                                                .slotDuration,
+                                                        endTime: sessionDetail
+                                                            .endTime,
+                                                        startTime: sessionDetail
+                                                            .startTime,
+                                                        sessionNameAr:
+                                                            sessionDetail
+                                                                .sessionNameAr,
+                                                        sessionName:
+                                                            sessionDetail
+                                                                .sessionName,
+                                                      ));
+                                                    });
                                                   }
                                                   if ((sessionDetail.startTime!
                                                               .isBefore(minStartDate
@@ -2357,19 +2163,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           sessionDetail.endTime!
                                                               .isAfter(maxEndDate
                                                                   .endTime))) {
-                                                    print('hhh');
-                                                    print(_sessionMap[_weakList[
-                                                                _weakIndex]
-                                                            .slug]!
-                                                        .length);
                                                     List<SessionDetail>
                                                         sessionList = [];
-                                                    print(
-                                                        'copyDaysIndex$copySessionIndex');
-                                                    print(_weakList[_weakIndex]
-                                                        .slug);
-                                                    print(
-                                                        'sessionList$sessionList');
                                                     sessionList
                                                         .add(sessionDetail);
 
@@ -2378,32 +2173,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                 _weakIndex]
                                                             .slug]!
                                                         .add(sessionDetail);
-                                                    print(_sessionMap[
-                                                        _weakList[_weakIndex]
-                                                            .slug]![0]);
-                                                    print(
-                                                        'sessionDetail${sessionDetail}');
-                                                    print(_sessionMap[_weakList[
+                                                    _sessionMap[_weakList[
                                                                 _weakIndex]
                                                             .slug]!
-                                                        .length);
-                                                    if (copySessionIndex
-                                                        .isNotEmpty) {
-                                                      print('11CopySsessionss');
-                                                      print(
-                                                          'sessionDetailllll$sessionDetail');
-                                                      print(_sessionMap[
-                                                          _weakList[_weakIndex]
-                                                              .slug]);
-                                                      copySessionIndex
-                                                          .forEach((element) {
-                                                        _sessionMap[_weakList[
-                                                                    element]
-                                                                .slug] =
-                                                            sessionList;
-                                                      });
-                                                      copySessionIndex.clear();
-                                                    }
+                                                        .forEach((element) {
+                                                      print(element);
+                                                    });
                                                   } else {
                                                     showMessage(
                                                         "Your time is not proper as compare to previous sessions");
@@ -2417,21 +2192,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   _sessionMap[
                                                       _weakList[_weakIndex]
                                                           .slug] = sessionList;
-                                                  if (copySessionIndex
-                                                      .isNotEmpty) {
-                                                    print('2222Copy');
-                                                    copySessionIndex
-                                                        .forEach((element) {
-                                                      _sessionMap[
-                                                              _weakList[element]
-                                                                  .slug] =
-                                                          sessionList;
-                                                    });
-                                                  }
                                                 }
                                               }
 
-                                              ///Holiday
+                                              //Holiday
                                               else {
                                                 print('sgshgbbs');
                                                 List<SessionDetail>
@@ -2440,22 +2204,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 _sessionMap[
                                                     _weakList[_weakIndex]
                                                         .slug] = sessionList;
-                                                if (copySessionIndex
-                                                    .isNotEmpty) {
-                                                  print('22444422Copy');
-                                                  copySessionIndex
-                                                      .forEach((element) {
-                                                    _sessionMap[
-                                                            _weakList[element]
-                                                                .slug] =
-                                                        sessionList;
-                                                  });
-                                                  copySessionIndex.clear();
-                                                }
                                               }
                                             }
 
-                                            /// adding first session if there is no session created before
+                                            /// (1) adding first session if there is no session created before
                                             else {
                                               print('2sessions');
                                               sessionDetail.graceTime ??= 20;
@@ -2469,6 +2221,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               List<SessionDetail> sessionList =
                                                   [];
                                               sessionList.add(sessionDetail);
+
+                                              ///(A)
                                               if (_sessionMap[
                                                           _weakList[_weakIndex]
                                                               .slug] ==
@@ -2478,48 +2232,43 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               .slug]![0]
                                                       .isHoliday!) {
                                                 print('shsgdygdb8');
-                                                // for (int i = _weakIndex;
-                                                //     i < 7;
-                                                //     i++) {
-                                                //   if (_sessionMap[
-                                                //           _weakList[i].slug] ==
-                                                //       null) {
-                                                //     _sessionMap[_weakList[i]
-                                                //         .slug] = sessionList;
-                                                //   }
-                                                // }
                                                 _sessionMap[
                                                     _weakList[_weakIndex]
                                                         .slug] = sessionList;
+                                                _copySessions.clear();
+                                                copySessionIndex
+                                                    .forEach((element) {
+                                                  _copySessions.add(
+                                                      _weakList[element].slug);
+                                                });
+                                                print(_copySessions);
+                                                _copySessions
+                                                    .forEach((element) {
+                                                  _sessionMap[element] = [];
+                                                  _sessionMap[element]!
+                                                      .add(SessionDetail(
+                                                    slotDuration: sessionDetail
+                                                        .slotDuration,
+                                                    endTime:
+                                                        sessionDetail.endTime,
+                                                    startTime:
+                                                        sessionDetail.startTime,
+                                                    sessionNameAr: sessionDetail
+                                                        .sessionNameAr,
+                                                    sessionName: sessionDetail
+                                                        .sessionName,
+                                                  ));
+                                                });
+                                                print('dhdhd');
                                                 print(sessionList);
                                                 print(sessionDetail);
                                                 print(_sessionMap[
                                                     _weakList[_weakIndex]
                                                         .slug]);
-                                                if (copySessionIndex
-                                                    .isNotEmpty) {
-                                                  print('shhsss7 ');
-                                                  copySessionIndex
-                                                      .forEach((element) {
-                                                    print("my data " +
-                                                        _sessionMap[_weakList[
-                                                                    element]
-                                                                .slug]
-                                                            .toString());
-                                                    print(
-                                                        "myelement::::$element");
+                                              }
 
-                                                    _sessionMap[
-                                                            _weakList[element]
-                                                                .slug] =
-                                                        sessionList;
-                                                    print(_sessionMap[
-                                                        _weakList[element]
-                                                            .slug]);
-                                                  });
-                                                  copySessionIndex.clear();
-                                                }
-                                              } else {
+                                              ///(A)
+                                              else {
                                                 if (_sessionMap[
                                                         _weakList[_weakIndex]
                                                             .slug] !=
@@ -2542,6 +2291,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               ? a
                                                               : b);
                                                 }
+
+                                                ///(S)
                                                 if ((sessionDetail.startTime!
                                                             .isBefore(minStartDate
                                                                 .startTime) &&
@@ -2559,19 +2310,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           _weakList[_weakIndex]
                                                               .slug]!
                                                       .add(sessionDetail);
-                                                  if (copySessionIndex
-                                                      .isNotEmpty) {
-                                                    print('sjjss4');
-                                                    copySessionIndex
-                                                        .forEach((element) {
-                                                      _sessionMap[
-                                                              _weakList[element]
-                                                                  .slug] =
-                                                          sessionList;
-                                                    });
-                                                  }
-                                                  print('conflict');
-                                                } else {
+                                                }
+
+                                                ///(S)
+                                                else {
                                                   showMessage(
                                                       AppLocalizations.of(
                                                               context)!

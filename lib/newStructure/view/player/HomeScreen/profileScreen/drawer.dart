@@ -12,7 +12,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
 import '../../../../app_colors/app_colors.dart';
-import '../../../owner/home_screens/HomePitchOwnerScreen.dart';
+import '../../../owner/home_screens/HomeAcademyOwnerScreen.dart';
 import '../playerHomeScreen.dart';
 import 'settings/setting_params.dart';
 import 'settings/settings.dart';

@@ -687,7 +687,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                       width: 40 * fem,
                       child: Image.asset(
                         'assets/images/T.png',
-                        color: AppColors.white,
+                        color: AppColors.green,
                       )),
                   SizedBox(
                     width: width * 0.001,
@@ -1235,7 +1235,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               ? academyModel != null &&
                                                       academyModel.isNotEmpty
                                                   ? AcademyList(
-                                              auth: _auth,
+                                                      auth: _auth,
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
@@ -1243,7 +1243,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           academyModel,
                                                       searchflag: searchFlag)
                                                   : AcademyList(
-                                            auth: _auth,
+                                                      auth: _auth,
                                                       text:
                                                           AppLocalizations
                                                                   .of(context)!
@@ -1254,7 +1254,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       searchflag: searchFlag)
                                               : _academyModel != null
                                                   ? AcademyList(
-                                              auth: _auth,
+                                                      auth: _auth,
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
@@ -1302,7 +1302,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   text: AppLocalizations.of(
                                                           context)!
                                                       .innovative,
-                                            auth: _auth,
+                                                  auth: _auth,
                                                   empty: false,
                                                   innovativeDetail:
                                                       _innovativeDetail,
@@ -1314,7 +1314,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           context)!
                                                       .innovative,
                                                   empty: true,
-                                            auth: _auth,
+                                                  auth: _auth,
                                                   innovativeDetail:
                                                       _innovativeDetail,
                                                 )

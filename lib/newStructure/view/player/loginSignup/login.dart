@@ -6,7 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart' as fMessaging;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tahaddi/main.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/HomeAcademyOwnerScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';

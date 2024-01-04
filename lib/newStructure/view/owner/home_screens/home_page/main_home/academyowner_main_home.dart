@@ -180,7 +180,7 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                         width: 40 * fem,
                         child: Image.asset(
                           'assets/images/T.png',
-                          color: AppColors.white,
+                          color: AppColors.green,
                         )),
                     SizedBox(
                       width: sizeWidth * 0.001,

@@ -186,11 +186,15 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       ),
                       title: Text(
                         AppLocalizations.of(context)!.notification,
-                        style: TextStyle(color: AppColors.white),
+                        style: TextStyle(
+                            color: AppColors.white,
+                            fontSize:
+                                MediaQuery.sizeOf(context).height * 0.0153),
                       ),
                       activeIcon: Icon(
                         Icons.notifications_sharp,
                         color: AppColors.white,
+                        size: MediaQuery.sizeOf(context).height * 0.023,
                       ),
                       selectedColor: AppColors.appThemeColor,
                       unselectedColor: AppColors.grey,

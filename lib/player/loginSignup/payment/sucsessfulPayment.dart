@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
-import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/HomeAcademyOwnerScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:lottie/lottie.dart';

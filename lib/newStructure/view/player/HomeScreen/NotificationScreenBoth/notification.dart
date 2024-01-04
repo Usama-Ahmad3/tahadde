@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 
@@ -83,6 +84,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return RefreshIndicator(
         displacement: 200,
         onRefresh: () async {
@@ -111,7 +113,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
           );
         },
         child: Scaffold(
-          backgroundColor: AppColors.black,
+          backgroundColor: Colors.black,
+          appBar: appBarWidget(
+            sizeWidth: width,
+            sizeHeight: height,
+            context: context,
+            title: AppLocalizations.of(context)!.notification,
+            back: true,
+          ),
           body: _isLoading
               ? Padding(
                   padding: EdgeInsets.only(top: 120.0 * fem),
@@ -124,103 +133,40 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                 )
               : _internet!
-                  ? Stack(
-                      children: [
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    widget.player ? 13.0 : height * 0.078,
-                                vertical: 55),
-                            child: Row(
-                              children: [
-                                widget.player
-                                    ? InkWell(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: SizedBox(
-                                            height: height * 0.06,
-                                            child: Image.asset(
-                                              'assets/images/back.png',
-                                              color: AppColors.white,
-                                            )),
-                                      )
-                                    : const SizedBox.shrink(),
-                                SizedBox(
-                                  width: height * 0.09,
-                                ),
-                                Text(
-                                  AppLocalizations.of(context)!.notificationC,
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .copyWith(
-                                        color: const Color(0xffffffff),
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        detail!.isEmpty
-                            ? Positioned(
-                                top: 180 * fem,
-                                left: 0,
-                                right: 0,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 18.0),
-                                  child: SingleChildScrollView(
-                                    physics: const BouncingScrollPhysics(
-                                        parent:
-                                            AlwaysScrollableScrollPhysics()),
-                                    child: Container(
-                                      height: 400 * fem,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                          color: AppColors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(30)),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          flaxibleGap(3),
-                                          SizedBox(
-                                            height: 100,
-                                            child: Lottie.asset(
-                                              'assets/lottiefiles/notification.json',
-                                            ),
-                                          ),
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .notificationDec,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color:
-                                                        const Color(0XFFB7B7B7),
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                          ),
-                                          flaxibleGap(5),
-                                        ],
+                  ? SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          detail!.isEmpty
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: height * 0.2,
+                                    ),
+                                    SizedBox(
+                                      height: width * .4,
+                                      width: height * .4,
+                                      child: Lottie.asset(
+                                        'assets/lottiefiles/notification.json',
                                       ),
                                     ),
-                                  ),
-                                ),
-                              )
-                            : Positioned(
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                child: Container(
+                                    SizedBox(
+                                      height: height * 0.02,
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .notificationDec,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              color: const Color(0XFFB7B7B7),
+                                              fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                )
+                              : Container(
                                   height: widget.player ? 700 * fem : 650 * fem,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
@@ -347,31 +293,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                 width:
                                                                     .05 * fem,
                                                               )),
-                                                          // : cachedNetworkImage(
-                                                          //     height: .06 *
-                                                          //         fem,
-                                                          //     width: .06 *
-                                                          //         fem,
-                                                          //     cuisineImageUrl:
-                                                          //         detail![0]["previousNotfication"][index == 0 ? 0 : index - current]["image"]["filePath"] ?? '')),
-                                                          // : current == 0 || index >= current
-                                                          //     ? Image.asset(
-                                                          //         "assets/images/profile.png",
-                                                          //         fit: BoxFit
-                                                          //             .fill,
-                                                          //         height:
-                                                          //             .06 * fem,
-                                                          //         width:
-                                                          //             .06 * fem,
-                                                          //       )
-                                                          //     : detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] == null
-                                                          //         ? Image.asset(
-                                                          //             "assets/images/profile.png",
-                                                          //             fit: BoxFit.fill,
-                                                          //             height: .06 * fem,
-                                                          //             width: .06 * fem,
-                                                          //           )
-                                                          //         : cachedNetworkImage(height: .06 * fem, width: .06 * fem, cuisineImageUrl: detail![0]["previousNotfication"][index == 0 ? 0:index - current]["image"][0]["filePath"] ?? '')),
                                                         ),
                                                         Container(
                                                           margin:
@@ -408,7 +329,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                                       ? ""
                                                                       : detail![0]
                                                                               [
-                                                                              "previousNotfication"][index < 0 || index == 0
+                                                                              "previousNotfication"][index < 0 ||
+                                                                                  index == 0
                                                                               ? 0
                                                                               : index - current]["notificationMessage"]["message"] ??
                                                                           "",
@@ -435,20 +357,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                         Text(
                                                           detail![0]["previousNotfication"][index < 0 || index == 0
                                                                           ? 0
-                                                                          : index -
-                                                                              current]
+                                                                          : index - current]
                                                                       [
                                                                       "createdDatetime"] ==
                                                                   null
                                                               ? ""
 
                                                               ///6
-                                                              : detail![0]["previousNotfication"]
-                                                                      [
-                                                          index < 0 || index == 0
-                                                                          ? 0
-                                                                          : index -
-                                                                              current]["createdDatetime"]
+                                                              : detail![0]
+                                                                      ["previousNotfication"][index < 0 ||
+                                                                          index ==
+                                                                              0
+                                                                      ? 0
+                                                                      : index -
+                                                                          current]["createdDatetime"]
                                                                   .toString()
                                                                   .substring(0, 10),
                                                           textAlign:
@@ -525,9 +447,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                       ),
                                     ),
                                   ),
-                                ),
-                              )
-                      ],
+                                )
+                        ],
+                      ),
                     )
                   : SingleChildScrollView(
                       child: Column(

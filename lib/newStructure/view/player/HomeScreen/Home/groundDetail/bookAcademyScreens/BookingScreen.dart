@@ -41,6 +41,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   InnovativeHub? _specificInnovative;
   List<Map> academyDetail = [];
   bool _auth = false;
+  bool loading = false;
   List sessionIdList = [];
   List<String> academyId = [];
   List<int> listMaxPlayer = [];
@@ -422,10 +423,18 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         });
   }
   addToCart(details) async {
+    loading = true;
+    setState(() {
+
+    });
     await _networkCalls.addToCard(
       detail: details,
         onSuccess: (detail) {
+          weekdays();
+          widget.navigateFromInnovative?loadSpecificInnovative():loadVerifiedSpecific();
           doYouWantProceedNow(detail['id']);
+          loading = false;
+          setState(() {});
         },
         onFailure: (onFailure) {},
         tokenExpire: () {});
@@ -554,6 +563,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                               DateTime.now()
                                                   .add(Duration(days: index)));
                                         }
+                                        weekdays();
+                                        widget.navigateFromInnovative?loadSpecificInnovative():loadVerifiedSpecific();
                                         ///functions to differentiate morning and evening
                                         _sessionMap[_weakList[
                                         _weekIndex]
@@ -780,34 +791,36 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                   sessionToAddOrRemove
                                                                       .slotDuration;
                                                         });
-                                                        list.isEmpty?slots = 22:null;
+                                                        // list.isEmpty?slots = slots:null;
                                                         list.isEmpty?indexItem = 1:indexItem = indexItem - 1;
                                                         _slotPrice.pricePerPlayer
                                                             .removeLast();
                                                       } else {
-                                                        slots != 0 ?slots = slots - 1 : null;
-                                                        playerController.text =
-                                                            indexItem.toString();
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .locale ==
-                                                            'en'
-                                                            ? academyId.add(
-                                                            sessionMor[i]
-                                                                .sessionName
-                                                                .toString())
-                                                            : academyId.add(
-                                                            (sessionMor[i]
-                                                                .sessionNameAr
-                                                                .toString()));
-                                                        list.add(
-                                                            sessionToAddOrRemove);
-                                                        _slotPrice.pricePerPlayer
-                                                            .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
-                                                        0]
-                                                            .prices![0]
-                                                            .price!
-                                                            .toDouble());
+                                                        ///show Message That proceed first then select other session
+                                                        showMessage('please proceed with seesion then select another session');
+                                                      //   slots != 0 ?slots = slots - 1 : null;
+                                                      //   playerController.text =
+                                                      //       indexItem.toString();
+                                                      //   AppLocalizations.of(
+                                                      //       context)!
+                                                      //       .locale ==
+                                                      //       'en'
+                                                      //       ? academyId.add(
+                                                      //       sessionMor[i]
+                                                      //           .sessionName
+                                                      //           .toString())
+                                                      //       : academyId.add(
+                                                      //       (sessionMor[i]
+                                                      //           .sessionNameAr
+                                                      //           .toString()));
+                                                      //   list.add(
+                                                      //       sessionToAddOrRemove);
+                                                      //   _slotPrice.pricePerPlayer
+                                                      //       .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
+                                                      //   0]
+                                                      //       .prices![0]
+                                                      //       .price!
+                                                      //       .toDouble());
                                                       }
                                                     }
                                                     setState(() {});
@@ -1176,29 +1189,31 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                               _slotPrice.pricePerPlayer
                                                                   .removeLast();
                                                             } else {
-                                                              slots != 0 ?slots = slots - 1 : null;
-                                                              playerController.text =
-                                                                  indexItem.toString();
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .locale ==
-                                                                  'en'
-                                                                  ? academyId.add(
-                                                                  sessionsEve[i]
-                                                                      .sessionName
-                                                                      .toString())
-                                                                  : academyId.add(
-                                                                  (sessionsEve[i]
-                                                                      .sessionNameAr
-                                                                      .toString()));
-                                                              list.add(
-                                                                  sessionToAddOrRemove);
-                                                              _slotPrice.pricePerPlayer
-                                                                  .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
-                                                              0]
-                                                                  .prices![0]
-                                                                  .price!
-                                                                  .toDouble());
+                                                              ///show message that proceed first selected session then select other
+                                                              showMessage('please proceed with seesion then select another session');
+                                                              // slots != 0 ?slots = slots - 1 : null;
+                                                              // playerController.text =
+                                                              //     indexItem.toString();
+                                                              // AppLocalizations.of(
+                                                              //     context)!
+                                                              //     .locale ==
+                                                              //     'en'
+                                                              //     ? academyId.add(
+                                                              //     sessionsEve[i]
+                                                              //         .sessionName
+                                                              //         .toString())
+                                                              //     : academyId.add(
+                                                              //     (sessionsEve[i]
+                                                              //         .sessionNameAr
+                                                              //         .toString()));
+                                                              // list.add(
+                                                              //     sessionToAddOrRemove);
+                                                              // _slotPrice.pricePerPlayer
+                                                              //     .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
+                                                              // 0]
+                                                              //     .prices![0]
+                                                              //     .price!
+                                                              //     .toDouble());
                                                             }
                                                           }
                                                           setState(() {});
@@ -1519,67 +1534,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                           ],
                                         ),
                                       ),
-                                      // TextFieldWidget(
-                                      //     enableBorder: OutlineInputBorder(
-                                      //         borderSide: MyAppState
-                                      //                     .mode ==
-                                      //                 ThemeMode
-                                      //                     .light
-                                      //             ? BorderSide
-                                      //                 .none
-                                      //             : BorderSide(
-                                      //                 color: AppColors
-                                      //                     .white,
-                                      //                 width: 1)),
-                                      //     border: OutlineInputBorder(
-                                      //         borderSide: MyAppState
-                                      //                     .mode ==
-                                      //                 ThemeMode
-                                      //                     .light
-                                      //             ? BorderSide
-                                      //                 .none
-                                      //             : BorderSide(
-                                      //                 color: AppColors
-                                      //                     .white,
-                                      //                 width: 1)),
-                                      //     focusBorder: OutlineInputBorder(
-                                      //         borderSide: MyAppState
-                                      //                     .mode ==
-                                      //                 ThemeMode
-                                      //                     .light
-                                      //             ? BorderSide.none
-                                      //             : BorderSide(color: AppColors.white, width: 1)),
-                                      //     prefix: null,
-                                      //     suffixIcon: Icons.add,
-                                      //     enable: false,
-                                      //     onTap: () {
-                                      //       indexItem =
-                                      //           indexItem + 1;
-                                      //       playerController
-                                      //               .text =
-                                      //           indexItem
-                                      //               .toString();
-                                      //       setState(() {
-                                      //
-                                      //       });
-                                      //     },
-                                      //     type: TextInputType.number,
-                                      //     onChanged: (value) {
-                                      //       if (value != null) {
-                                      //         if (value !=
-                                      //             indexItem - 1) {
-                                      //           setState(() {
-                                      //             indexItem =
-                                      //                 int.parse(
-                                      //                     value);
-                                      //           });
-                                      //           print(indexItem);
-                                      //         }
-                                      //       }
-                                      //       return null;
-                                      //     },
-                                      //     controller: playerController,
-                                      //     hintText: '00'),
                                     ],
                                   ),
                                 ),
@@ -1587,7 +1541,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: ButtonWidget(
-                                      isLoading: false,
+                                      isLoading: loading,
                                       onTaped: () async {
                                         if (_auth) {
                                           if (_slotPrice
@@ -1595,30 +1549,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                             showMessage(
                                                 "Please select your slot first");
                                           } else {
-                                            // Map apiDetail = {
-                                            //   "date": dataTime,
-                                            //   "id":
-                                            //       _specificAcademy[0].academyId
-                                            // };
-                                            // var detail = {
-                                            //   "price": slotPriceCalculation(
-                                            //           _slotPrice
-                                            //               .pricePerPlayer) *
-                                            //       indexItem,
-                                            //   'academy_id':
-                                            //       _specificAcademy[0].academyId,
-                                            //   "apiDetail": apiDetail,
-                                            //   "slotDetail": list,
-                                            //   "academyName": _specificAcademy[0]
-                                            //       .academyNameEnglish,
-                                            //   "subPitch": _specificAcademy[0]
-                                            //       .prices![0]
-                                            //       .subAcademy,
-                                            //   'location': _specificAcademy[0]
-                                            //       .academyLocation,
-                                            //   "player_count": indexItem,
-                                            //   "slug": "price-per-player"
-                                            // };
                                             sessionIdList.clear();
                                             list.forEach((element) {
                                               sessionIdList.add(element.id);
@@ -1677,7 +1607,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                               .bodyMedium!
                                               .copyWith(color: AppColors.white),
                                         ),
-                                      )),
+                                      ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -1716,7 +1647,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     return null;
   }
 
-  List ground = ['Main Academy', 'Futsal Academy', 'tennis Academy'];
 
   void navigateToLogin() {
     Navigator.push(context,

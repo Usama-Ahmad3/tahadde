@@ -1566,7 +1566,7 @@ class AppLocalizations {
   }
 
   String get booked {
-    return Intl.message('booked', name: 'booked');
+    return Intl.message('booked', name: 'Booked');
   }
 
   String get bookYourSlot {

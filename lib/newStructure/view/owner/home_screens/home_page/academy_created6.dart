@@ -7,7 +7,7 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../app_colors/app_colors.dart';
-import '../HomePitchOwnerScreen.dart';
+import '../HomeAcademyOwnerScreen.dart';
 
 class AcademyCreatedScreen extends StatefulWidget {
   const AcademyCreatedScreen({Key? key}) : super(key: key);

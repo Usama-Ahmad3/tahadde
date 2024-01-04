@@ -204,7 +204,7 @@ class GroundDetailState extends State<GroundDetail>
   }
 
   checkAuth() async {
-    _auth = (await checkAuthorizaton())!;
+    _auth = (await checkAuthorizaton());
   }
 
   facilityDiff() {
@@ -216,7 +216,6 @@ class GroundDetailState extends State<GroundDetail>
 
   @override
   void initState() {
-    print(widget.detail);
     widget.navigateFromInovative ? null : facilityDiff();
     super.initState();
     checkAuth();
@@ -522,117 +521,12 @@ class GroundDetailState extends State<GroundDetail>
                                         height: height * 0.025,
                                       ),
 
-                                      ///GroundList
-                                      // Text(
-                                      //     AppLocalizations.of(context)!
-                                      //         .academyList,
-                                      //     style: Theme.of(context)
-                                      //         .textTheme
-                                      //         .titleMedium!
-                                      //         .copyWith(
-                                      //             color: MyAppState.mode ==
-                                      //                     ThemeMode.light
-                                      //                 ? AppColors.black
-                                      //                 : AppColors.white)),
-                                      // ...List.generate(
-                                      //     3,
-                                      //     (index) => Padding(
-                                      //           padding: EdgeInsets.symmetric(
-                                      //               vertical: height * 0.01),
-                                      //           child: Container(
-                                      //             height: height * 0.08,
-                                      //             decoration: BoxDecoration(
-                                      //               color: Colors.white,
-                                      //               borderRadius:
-                                      //                   BorderRadius.circular(
-                                      //                       10),
-                                      //               boxShadow: [
-                                      //                 BoxShadow(
-                                      //                     color: Colors.black38
-                                      //                         .withOpacity(
-                                      //                             0.17),
-                                      //                     blurStyle:
-                                      //                         BlurStyle.normal,
-                                      //                     offset: const Offset(
-                                      //                         1, 1),
-                                      //                     blurRadius: 12,
-                                      //                     spreadRadius: 2)
-                                      //               ],
-                                      //             ),
-                                      //             child: Row(
-                                      //               crossAxisAlignment:
-                                      //                   CrossAxisAlignment
-                                      //                       .center,
-                                      //               mainAxisAlignment:
-                                      //                   MainAxisAlignment
-                                      //                       .spaceBetween,
-                                      //               children: [
-                                      //                 SizedBox(
-                                      //                   width: width * 0.01,
-                                      //                 ),
-                                      //                 Container(
-                                      //                   height: height * 0.06,
-                                      //                   width: width * 0.13,
-                                      //                   decoration: BoxDecoration(
-                                      //                       borderRadius:
-                                      //                           BorderRadius
-                                      //                               .circular(
-                                      //                                   10),
-                                      //                       image: const DecorationImage(
-                                      //                           fit:
-                                      //                               BoxFit.fill,
-                                      //                           image: NetworkImage(
-                                      //                               'https://tse1.mm.bing.net/th?id=OIP.Pi1ySxKBf7DyNStcLdOASwHaEo&pid=Api&rs=1&c=1&qlt=95&w=168&h=105'))),
-                                      //                 ),
-                                      //                 SizedBox(
-                                      //                   width: width * 0.03,
-                                      //                 ),
-                                      //                 Text(
-                                      //                   ground[index],
-                                      //                   style: Theme.of(context)
-                                      //                       .textTheme
-                                      //                       .bodyMedium!
-                                      //                       .copyWith(
-                                      //                         color: MyAppState
-                                      //                                     .mode ==
-                                      //                                 ThemeMode
-                                      //                                     .light
-                                      //                             ? AppColors
-                                      //                                 .black
-                                      //                             : AppColors
-                                      //                                 .white,
-                                      //                       ),
-                                      //                 ),
-                                      //                 SizedBox(
-                                      //                   width: width * 0.2,
-                                      //                 ),
-                                      //                 Checkbox(
-                                      //                     shape:
-                                      //                         const CircleBorder(),
-                                      //                     activeColor: AppColors
-                                      //                         .appThemeColor,
-                                      //                     value:
-                                      //                         selectedIndex ==
-                                      //                                 index
-                                      //                             ? true
-                                      //                             : false,
-                                      //                     onChanged:
-                                      //                         (onChanged) {
-                                      //                       selectedIndex =
-                                      //                           index;
-                                      //                       setState(() {});
-                                      //                     }),
-                                      //               ],
-                                      //             ),
-                                      //           ),
-                                      //         )),
-
                                       ///facilities
                                       SizedBox(
                                         height: height * 0.015,
                                       ),
-                                      widget.navigateFromInovative!
-                                          ? SizedBox.shrink()
+                                      widget.navigateFromInovative
+                                          ? const SizedBox.shrink()
                                           : FacilitiesList(facility: indexList),
                                       SizedBox(
                                         height: height * 0.02,
@@ -785,8 +679,6 @@ class GroundDetailState extends State<GroundDetail>
                                                     myLocationButtonEnabled:
                                                         true,
                                                     onTap: (value) {
-                                                      // openMapsSheet(context);
-                                                      //makeMap(_getLaunchUrl().toString());
                                                       setState(() {});
                                                     },
                                                     indoorViewEnabled: true,
@@ -811,97 +703,6 @@ class GroundDetailState extends State<GroundDetail>
                                                   ),
                                                 ),
                                               ),
-                                              // Material(
-                                              //   elevation: 1,
-                                              //   color: AppColors.white,
-                                              //   borderRadius: const BorderRadius
-                                              //       .only(
-                                              //       bottomRight:
-                                              //           Radius.circular(20.0),
-                                              //       bottomLeft:
-                                              //           Radius.circular(20.0)),
-                                              //   child: SizedBox(
-                                              //     width: MediaQuery.of(context)
-                                              //         .size
-                                              //         .width,
-                                              //     child: Padding(
-                                              //       padding:
-                                              //           const EdgeInsets.only(
-                                              //               right: 7,
-                                              //               left: 7,
-                                              //               top: 10),
-                                              //       child: Row(
-                                              //         mainAxisAlignment:
-                                              //             MainAxisAlignment
-                                              //                 .spaceBetween,
-                                              //         children: [
-                                              //           Column(
-                                              //             crossAxisAlignment:
-                                              //                 CrossAxisAlignment
-                                              //                     .start,
-                                              //             children: [
-                                              //               Row(
-                                              //                 children: [
-                                              //                   const Icon(
-                                              //                     Icons
-                                              //                         .location_on,
-                                              //                     size: 20,
-                                              //                   ),
-                                              //                   SizedBox(
-                                              //                     width: width *
-                                              //                         0.002,
-                                              //                   ),
-                                              //                   SizedBox(
-                                              //                     width: width *
-                                              //                         .6,
-                                              //                     child: Text(
-                                              //                       AppLocalizations.of(
-                                              //                               context)!
-                                              //                           .location,
-                                              //                       overflow:
-                                              //                           TextOverflow
-                                              //                               .ellipsis,
-                                              //                       maxLines: 5,
-                                              //                       style: Theme.of(
-                                              //                               context)
-                                              //                           .textTheme
-                                              //                           .bodyMedium!
-                                              //                           .copyWith(
-                                              //                             color:
-                                              //                                 AppColors.black,
-                                              //                           ),
-                                              //                     ),
-                                              //                   ),
-                                              //                 ],
-                                              //               ),
-                                              //               SizedBox(
-                                              //                 width:
-                                              //                     width * .75,
-                                              //                 child: Text(
-                                              //                   widget.detail[
-                                              //                           'Academy_Location'] ??
-                                              //                       "",
-                                              //                   overflow:
-                                              //                       TextOverflow
-                                              //                           .ellipsis,
-                                              //                   maxLines: 2,
-                                              //                   style: Theme.of(
-                                              //                           context)
-                                              //                       .textTheme
-                                              //                       .titleSmall!
-                                              //                       .copyWith(
-                                              //                         color: const Color(
-                                              //                             0XFF8B8B8B),
-                                              //                       ),
-                                              //                 ),
-                                              //               ),
-                                              //             ],
-                                              //           ),
-                                              //         ],
-                                              //       ),
-                                              //     ),
-                                              //   ),
-                                              // ),
                                             ],
                                           ),
                                         ),
@@ -924,83 +725,6 @@ class GroundDetailState extends State<GroundDetail>
                                                 .copyWith(
                                                     color: AppColors.white),
                                           )),
-
-                                      ///popularFeature
-                                      // Padding(
-                                      //   padding: EdgeInsets.symmetric(
-                                      //       vertical: height * 0.013),
-                                      //   child: Text(
-                                      //     AppLocalizations.of(context)!.popular,
-                                      //     style: TextStyle(
-                                      //       fontSize: height * 0.03,
-                                      //       color: MyAppState.mode ==
-                                      //               ThemeMode.light
-                                      //           ? AppColors.black
-                                      //           : AppColors.white,
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // Wrap(
-                                      //   crossAxisAlignment:
-                                      //       WrapCrossAlignment.center,
-                                      //   children: [
-                                      //     ...List.generate(
-                                      //         5,
-                                      //         (index) => Padding(
-                                      //               padding:
-                                      //                   EdgeInsets.symmetric(
-                                      //                       vertical:
-                                      //                           height * .008,
-                                      //                       horizontal:
-                                      //                           width * 0.008),
-                                      //               child: Wrap(
-                                      //                 crossAxisAlignment:
-                                      //                     WrapCrossAlignment
-                                      //                         .center,
-                                      //                 children: [
-                                      //                   CircleAvatar(
-                                      //                     radius:
-                                      //                         height * 0.0065,
-                                      //                     backgroundColor:
-                                      //                     AppColors.grey,
-                                      //                   ),
-                                      //                   Padding(
-                                      //                     padding: EdgeInsets
-                                      //                         .symmetric(
-                                      //                             horizontal:
-                                      //                                 width *
-                                      //                                     0.02),
-                                      //                     child: Text(
-                                      //                       popular[index],
-                                      //                       style: TextStyle(
-                                      //                           color: MyAppState
-                                      //                                       .mode ==
-                                      //                                   ThemeMode
-                                      //                                       .light
-                                      //                               ? AppColors
-                                      //                                   .black
-                                      //                               : AppColors
-                                      //                                   .white,
-                                      //                           overflow:
-                                      //                               TextOverflow
-                                      //                                   .ellipsis,
-                                      //                           fontSize:
-                                      //                               height *
-                                      //                                   0.02),
-                                      //                       overflow:
-                                      //                           TextOverflow
-                                      //                               .ellipsis,
-                                      //                       softWrap: true,
-                                      //                       textWidthBasis:
-                                      //                           TextWidthBasis
-                                      //                               .parent,
-                                      //                     ),
-                                      //                   ),
-                                      //                 ],
-                                      //               ),
-                                      //             ))
-                                      //   ],
-                                      // ),
                                     ],
                                   ),
                                 ),
@@ -1029,15 +753,6 @@ class GroundDetailState extends State<GroundDetail>
               );
   }
 
-  List popular = [
-    'Hiring Partners',
-    'Miniature Field',
-    'Grass Pitch',
-    'Outdoor/Indoor',
-    'Nature Grass Pitch'
-  ];
-  List ground = ['Main Academy', 'Futsal Academy', 'tennis Academy'];
-
   void navigateToBookingScreen(Map detail, bool innovativeNavigation) {
     Navigator.push(
         context,
@@ -1045,7 +760,6 @@ class GroundDetailState extends State<GroundDetail>
           builder: (context) => PlayerBookingScreenView(
               detail: detail, navigateFromInnovative: innovativeNavigation),
         ));
-    // Navigator.pushNamed(context, RouteNames.bookingScreen, arguments: detail);
   }
 
   void navigateToDetail1() {
@@ -1053,7 +767,6 @@ class GroundDetailState extends State<GroundDetail>
   }
 
   void navigateToReviews(String id) {
-    // Navigator.pushNamed(context, RouteNames.rate);
     Navigator.push(
         context,
         MaterialPageRoute(

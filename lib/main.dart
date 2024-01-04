@@ -24,7 +24,7 @@ import 'homeFile/notificationEmpty.dart';
 import 'homeFile/routingConstant.dart';
 import 'homeFile/utility.dart';
 import 'localizations.dart';
-import 'newStructure/view/owner/home_screens/HomePitchOwnerScreen.dart';
+import 'newStructure/view/owner/home_screens/HomeAcademyOwnerScreen.dart';
 import 'newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'player/loginSignup/profile/profile.dart';
 import 'walkThrough/walkThrough.dart';
