@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
+import 'package:flutter_tahaddi/newStructure/utils/models.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,7 +11,6 @@ import '../../../../../../localizations.dart';
 import '../../../../../../main.dart';
 import '../../../../../../modelClass/facilities.dart';
 import '../../../../../../network/network_calls.dart';
-import '../../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/widgets/buttonWidget.dart';
 import '../../../../player/HomeScreen/widgets/textFormField.dart';

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/utils/models.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../common_widgets/internet_loss.dart';
@@ -9,7 +10,6 @@ import '../localizations.dart';
 import '../modelClass/pramotion_model_class.dart';
 import '../modelClass/teamModelClass.dart';
 import '../network/network_calls.dart';
-import '../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import 'routingConstant.dart';
 import 'utility.dart';
 

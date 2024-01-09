@@ -49,9 +49,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     var sizewidth = MediaQuery.of(context).size.width;
     return _internet
         ? Scaffold(
-            // backgroundColor: MyAppState.mode == ThemeMode.light
-            //     ? const Color(0XFFF0F0F0)
-            //     : Colors.grey.shade300,
             appBar: appBarWidget(
                 sizeWidth: sizewidth,
                 sizeHeight: sizeheight,

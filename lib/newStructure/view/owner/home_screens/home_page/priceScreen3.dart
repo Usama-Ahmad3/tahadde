@@ -13,7 +13,6 @@ import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../network/network_calls.dart';
-import '../../../../../player/loginSignup/signup.dart';
 import '../../../player/HomeScreen/widgets/textFormField.dart';
 
 // ignore: must_be_immutable
@@ -59,27 +58,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
     "9",
     '10'
   ];
-  late OverlayEntry? overlayEntry;
-  showOverlay(BuildContext context) {
-    if (overlayEntry != null) return;
-    OverlayState overlayState = Overlay.of(context);
-    overlayEntry = OverlayEntry(builder: (context) {
-      return Positioned(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-        right: 0,
-        left: 0,
-        child: const DoneButton(),
-      );
-    });
-    overlayState.insert(overlayEntry!);
-  }
 
-  removeOverlay() {
-    if (overlayEntry != null) {
-      overlayEntry!.remove();
-      overlayEntry = null;
-    }
-  }
 
   privacyPolicy(String text) async {
     _networkCalls.privacyPolicy(
@@ -99,36 +78,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
   void initState() {
     super.initState();
     print(widget.detail.pitchDetailModel!.pitchImageId);
-    if (Platform.isIOS) {
-      focusNode.addListener(() {
-        bool hasFocus = focusNode.hasFocus;
-        if (hasFocus) {
-          showOverlay(context);
-        } else {
-          removeOverlay();
-        }
-      });
-    }
 
-    // TODO: Later initState
-    // _networkCalls.availablePitchType(
-    //     sportTypeSlug: widget.detail.sportsType!,
-    //     onSuccess: (detail) {
-    //       for (int i = 0; i < detail.length; i++) {
-    //         _pitchType.add(
-    //             AreaSlug(name: detail[i]["name"], slug: detail[i]["slug"]));
-    //       }
-    //       setState(() {
-    //         _isLoading = false;
-    //       });
-    //     },
-    //     onFailure: (onFailure) {},
-    //     tokenExpire: () {
-    //       if (mounted) {
-    //         print('error');
-    //         on401(context);
-    //       }
-    //     });
     _isLoading = false;
   }
 

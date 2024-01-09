@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/academy_created6.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/home_page/createSession4.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/emailContactsFields.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar_for_creating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -13,7 +14,6 @@ import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../../modelClass/slot_model_class.dart';
 import '../../../../../network/network_calls.dart';
-import '../../../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../../../player/HomeScreen/widgets/textFormField.dart';
 
@@ -563,19 +563,6 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                 ? "Marked as holiday for ${_weakList[_weakIndex].name} "
                                 : AppLocalizations.of(context)!.markAsHoliday),
                           )),
-                // : Expanded(
-                //     child: Center(
-                //     child: Text(
-                //       "Marked as holiday for ${_weakList[_weakIndex].name} ",
-                //       style: Theme.of(context)
-                //           .textTheme
-                //           .bodyMedium!
-                //           .copyWith(
-                //               color: MyAppState.mode == ThemeMode.light
-                //                   ? Colors.black
-                //                   : Colors.white),
-                //     ),
-                //   )),
                 ButtonWidget(
                     onTaped: () {
                       widget.backTag

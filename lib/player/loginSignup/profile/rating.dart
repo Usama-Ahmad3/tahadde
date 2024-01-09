@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
-import 'package:flutter_tahaddi/modelClass/player_rating.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
@@ -841,13 +840,10 @@ class _RateState extends State<Rate> {
                                                           detail: detail,
                                                           onSuccess: (msg) {
                                                             setState(() {
-                                                              rateValue =
-                                                              false;
+                                                              rateValue = false;
                                                               loading = true;
                                                               loadBookings();
-                                                              setState(() {
-
-                                                              });
+                                                              setState(() {});
                                                             });
                                                           },
                                                           onFailure: (msg) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tahaddi/newStructure/utils/models.dart';
 import 'package:flutter_tahaddi/walkThrough/walkThrough.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -6,7 +7,6 @@ import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
-import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});

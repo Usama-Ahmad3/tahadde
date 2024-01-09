@@ -119,7 +119,7 @@ class _AcademyCreatedScreenState extends State<AcademyCreatedScreen> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (_) => HomePitchOwnerScreen(
+            builder: (_) => HomeAcademyOwnerScreen(
                   index: 0,
                 )));
     // Navigator.of(context).pushNamedAndRemoveUntil(

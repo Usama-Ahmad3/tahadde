@@ -14,14 +14,14 @@ import 'bookingScreens/bookingScreen.dart';
 import 'home_page/main_home/academyowner_main_home.dart';
 
 // ignore: must_be_immutable
-class HomePitchOwnerScreen extends StatefulWidget {
+class HomeAcademyOwnerScreen extends StatefulWidget {
   int index;
-  HomePitchOwnerScreen({super.key, required this.index});
+  HomeAcademyOwnerScreen({super.key, required this.index});
   @override
-  State<HomePitchOwnerScreen> createState() => _HomePitchOwnerScreenState();
+  State<HomeAcademyOwnerScreen> createState() => _HomeAcademyOwnerScreenState();
 }
 
-class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
+class _HomeAcademyOwnerScreenState extends State<HomeAcademyOwnerScreen> {
   onWillPop() {
     return showDialog(
         context: context,

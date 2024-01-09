@@ -230,7 +230,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                           MaterialPageRoute(
                               builder: (_) => widget.playerTag
                                   ? PlayerHomeScreen(index: 3)
-                                  : HomePitchOwnerScreen(
+                                  : HomeAcademyOwnerScreen(
                                       index: 3,
                                     )));
                     },

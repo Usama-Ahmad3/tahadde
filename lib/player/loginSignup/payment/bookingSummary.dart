@@ -13,7 +13,6 @@ import '../../../homeFile/routingConstant.dart';
 import '../../../homeFile/utility.dart';
 import '../../../localizations.dart';
 import '../../../network/network_calls.dart';
-import '../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
 
 class BookingSummary extends StatefulWidget {
   List<Map> price;

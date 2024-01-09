@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/utils/models.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 
 import '../../constant.dart';
@@ -7,7 +8,6 @@ import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
-import '../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 
 class PreferredSports extends StatefulWidget {
   const PreferredSports({Key? key}) : super(key: key);

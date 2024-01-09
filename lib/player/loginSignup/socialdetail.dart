@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
+import 'package:flutter_tahaddi/newStructure/utils/models.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/textFormField.dart';
@@ -16,7 +17,6 @@ import '../../homeFile/routingConstant.dart';
 import '../../homeFile/utility.dart';
 import '../../localizations.dart';
 import '../../network/network_calls.dart';
-import 'signup.dart';
 
 class SocialDetail extends StatefulWidget {
   var detail;
@@ -78,27 +78,6 @@ class _SocialDetailState extends State<SocialDetail> {
     });
   }
 
-  showOverlay(BuildContext context) {
-    if (overlayEntry != null) return;
-    OverlayState overlayState = Overlay.of(context);
-    overlayEntry = OverlayEntry(builder: (context) {
-      return Positioned(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-        right: 0,
-        left: 0,
-        child: const DoneButton(),
-      );
-    });
-    overlayState.insert(overlayEntry!);
-  }
-
-  removeOverlay() {
-    if (overlayEntry != null) {
-      overlayEntry!.remove();
-      overlayEntry = null;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -119,40 +98,12 @@ class _SocialDetailState extends State<SocialDetail> {
       }
     });
     firebaseCloudMessaging_Listeners();
-    if (Platform.isIOS) {
-      focuss.addListener(() {
-        bool hasFocus = focuss.hasFocus;
-        if (hasFocus) {
-          showOverlay(context);
-        } else {
-          removeOverlay();
-        }
-      });
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     var sizeheight = MediaQuery.of(context).size.height;
     var sizewidth = MediaQuery.of(context).size.width;
-    // Future<DateTime> slecteDtateTime(BuildContext context) => showDatePicker(
-    //       context: context,
-    //       initialDate: DateTime.now().add(Duration(seconds: 1)),
-    //       firstDate: DateTime(1950),
-    //       lastDate: DateTime.now(),
-    //       locale: Locale(AppLocalizations.of(context).locale),
-    //       builder: (BuildContext context, Widget child) {
-    //         return Theme(
-    //           data: ThemeData.light().copyWith(
-    //             colorScheme:
-    //                 ColorScheme.light(primary: const Color(0XFF032040)),
-    //             buttonTheme:
-    //                 ButtonThemeData(textTheme: ButtonTextTheme.primary),
-    //           ),
-    //           child: child,
-    //         );
-    //       },
-    //     );
     return internet
         ? Scaffold(
             backgroundColor: MyAppState.mode == ThemeMode.light
@@ -164,32 +115,6 @@ class _SocialDetailState extends State<SocialDetail> {
                 context: context,
                 title: AppLocalizations.of(context)!.socialTitle,
                 back: true),
-            // appBar: AppBar(
-            //   leading: IconButton(
-            //     onPressed: () {
-            //       Navigator.of(context).pop();
-            //     },
-            //     icon: const Icon(
-            //       Icons.arrow_back_ios,
-            //       color: Color(0XFFFFFFFF),
-            //     ),
-            //   ),
-            //   centerTitle: true,
-            //   automaticallyImplyLeading: false,
-            //   title: Text(
-            //     AppLocalizations.of(context)!.socialTitle,
-            //     style: TextStyle(
-            //         fontSize: appHeaderFont,
-            //         color: const Color(0XFFFFFFFF),
-            //         fontFamily: AppLocalizations.of(context)!.locale == "en"
-            //             ? "Poppins"
-            //             : "VIP",
-            //         fontWeight: AppLocalizations.of(context)!.locale == "en"
-            //             ? FontWeight.bold
-            //             : FontWeight.normal),
-            //   ),
-            //   backgroundColor: const Color(0XFF032040),
-            // ),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30),
@@ -207,7 +132,6 @@ class _SocialDetailState extends State<SocialDetail> {
                         flaxibleGap(
                           1,
                         ),
-
                         Text(
                           AppLocalizations.of(context)!.email,
                           style: TextStyle(
@@ -375,133 +299,6 @@ class _SocialDetailState extends State<SocialDetail> {
                                 : Container(),
                           ],
                         ),
-                        // Padding(
-                        //   padding: EdgeInsets.only(
-                        //       top: sizeheight * .015, bottom: sizeheight * .01),
-                        //   child: GestureDetector(
-                        //     onTap: () async {
-                        //       final selectDate = await slecteDtateTime(context);
-                        //       if (selectDate != null) {
-                        //         setState(() {
-                        //           lastBookingDateApi =
-                        //               formatter.format((selectDate)).toString();
-                        //         });
-                        //       }
-                        //       print(selectDate);
-                        //     },
-                        //     child: Row(
-                        //       children: [
-                        //         Text(
-                        //           lastBookingDateApi ??
-                        //               AppLocalizations.of(context)
-                        //                   .choosedateofbirth,
-                        //           style: TextStyle(
-                        //               fontFamily: 'Poppins',
-                        //               decoration: TextDecoration.none,
-                        //               color: lastBookingDateApi == null
-                        //                   ? Color(0XFF9F9F9F)
-                        //                   : Color(0XFF032040),
-                        //               fontWeight: lastBookingDateApi == null
-                        //                   ? FontWeight.w500
-                        //                   : FontWeight.w600,
-                        //               fontSize: 16),
-                        //         ),
-                        //         flaxibleGap(
-                        //           1,
-                        //         ),
-                        //         Icon(Icons.calendar_today)
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
-                        // Container(
-                        //   height: 1,
-                        //   width: sizewidth,
-                        //   color: Colors.grey,
-                        // ),
-                        // AppLocalizations.of(context).locale == "en"
-                        //     ? Container(
-                        //         height: sizeheight * .07,
-                        //         width: sizewidth,
-                        //         child: Center(
-                        //           child: DropdownButton<String>(
-                        //             underline: Container(
-                        //               height: 1,
-                        //               color: Color(0XFF9F9F9F),
-                        //             ),
-                        //             iconEnabledColor: Color(0XFF9B9B9B),
-                        //             focusColor: Color(0XFF9B9B9B),
-                        //             isExpanded: true,
-                        //             value: _gender,
-                        //             hint: Text(
-                        //               AppLocalizations.of(context).gender,
-                        //               style: TextStyle(
-                        //                   color: Color(0XFFADADAD),
-                        //                   fontWeight: FontWeight.w500),
-                        //             ),
-                        //             items: genderEn
-                        //                 .map((value) => DropdownMenuItem(
-                        //                       child: Text(
-                        //                         value,
-                        //                         style: TextStyle(
-                        //                             color: Color(0XFF032040),
-                        //                             fontWeight:
-                        //                                 FontWeight.w600),
-                        //                       ),
-                        //                       value: value,
-                        //                     ))
-                        //                 .toList(),
-                        //             onChanged: (String value) {
-                        //               setState(() {
-                        //                 _gender = value;
-                        //                 _detail.gender = _gender;
-                        //                 print(_detail.gender);
-                        //               });
-                        //             },
-                        //           ),
-                        //         ),
-                        //       )
-                        //     : Container(
-                        //         height: sizeheight * .07,
-                        //         width: sizewidth,
-                        //         child: Center(
-                        //           child: DropdownButton<String>(
-                        //             underline: Container(
-                        //               height: 1,
-                        //               color: Color(0XFF9F9F9F),
-                        //             ),
-                        //             iconEnabledColor: Color(0XFF9B9B9B),
-                        //             focusColor: Color(0XFF9B9B9B),
-                        //             isExpanded: true,
-                        //             value: _gender,
-                        //             hint: Text(
-                        //               AppLocalizations.of(context).gender,
-                        //               style: TextStyle(
-                        //                   color: Color(0XFFADADAD),
-                        //                   fontWeight: FontWeight.w500),
-                        //             ),
-                        //             items: genderAr
-                        //                 .map((value) => DropdownMenuItem(
-                        //                       child: Text(
-                        //                         value,
-                        //                         style: TextStyle(
-                        //                             color: Color(0XFF032040),
-                        //                             fontWeight:
-                        //                                 FontWeight.w600),
-                        //                       ),
-                        //                       value: value,
-                        //                     ))
-                        //                 .toList(),
-                        //             onChanged: (String value) {
-                        //               setState(() {
-                        //                 _gender = value;
-                        //                 _detail.gender = _gender;
-                        //                 print(_detail.gender);
-                        //               });
-                        //             },
-                        //           ),
-                        //         ),
-                        //       ),
                         flaxibleGap(
                           3,
                         ),
@@ -656,318 +453,6 @@ class _SocialDetailState extends State<SocialDetail> {
                                 child: Text(
                                     AppLocalizations.of(context)!.continu)),
                             isLoading: !loading),
-                        // AppButton(
-                        //   isLoading: !loading,
-                        //   child: Text(
-                        //     AppLocalizations.of(context)!.continueS,
-                        //     style: const TextStyle(
-                        //       fontSize: 20,
-                        //       color: Colors.white,
-                        //     ),
-                        //     textAlign: TextAlign.right,
-                        //   ),
-                        //   onPressed: () {
-                        //     if (_formKey.currentState!.validate()) {
-                        //       _formKey.currentState!.save();
-                        //       FocusScope.of(context).unfocus();
-                        //       _detail.password =
-                        //           base64.encode(utf8.encode("None"));
-                        //       _detail.firstName =
-                        //           widget.detail["detail"]["first_name"];
-                        //       _detail.lastName =
-                        //           widget.detail["detail"]["last_name"];
-                        //       _detail.dob = lastBookingDateApi;
-                        //       if (widget.detail["detail"]["email"] != null &&
-                        //           widget.detail["detail"]["email"].length >
-                        //               100) {
-                        //         _detail.email = widget.detail["detail"]["email"]
-                        //                 .substring(widget
-                        //                         .detail["detail"]["email"]
-                        //                         .length -
-                        //                     25) ??
-                        //             "";
-                        //       } else {
-                        //         _detail.email =
-                        //             widget.detail["detail"]["email"];
-                        //       }
-                        //
-                        //       // if (_detail.dob != null) {
-                        //       if (_detail.gender != null) {
-                        //         _networkCalls.checkInternetConnectivity(
-                        //             onSuccess: (msg) {
-                        //           if (msg == true) {
-                        //             setState(() {
-                        //               loading = false;
-                        //             });
-                        //             _networkCalls.checkAvailabilityOfEmail(
-                        //                 email: _detail.email.toString(),
-                        //                 onSuccess: (msg) {
-                        //                   _networkCalls
-                        //                       .checkAvailabilityOfPhoneNumber(
-                        //                           phone: _detail.phoneNumber
-                        //                               .toString(),
-                        //                           onSuccess: (msg) {
-                        //                             Map<String, dynamic>
-                        //                                 details = {
-                        //                               "first_name":
-                        //                                   _detail.firstName,
-                        //                               "last_name":
-                        //                                   _detail.lastName,
-                        //                               "email": _detail.email,
-                        //                               "contact_number":
-                        //                                   _detail.phoneNumber,
-                        //                               "countryCode":
-                        //                                   _detail.countryCode,
-                        //                               "password":
-                        //                                   _detail.password,
-                        //                               "deviceType":
-                        //                                   _detail.deviceType,
-                        //                               "deviceToken":
-                        //                                   _detail.fcmToken,
-                        //                               "role": "player",
-                        //                               "gender": _detail.gender
-                        //                             };
-                        //                             if (widget
-                        //                                     .detail["google"] ==
-                        //                                 true) {
-                        //                               details["is_google_user"] =
-                        //                                   true;
-                        //                             } else if (widget
-                        //                                     .detail["apple"] ==
-                        //                                 true) {
-                        //                               details["is_apple_user"] =
-                        //                                   true;
-                        //                               details["appleId"] =
-                        //                                   widget.detail['user'];
-                        //                             } else if (widget.detail[
-                        //                                     "facebook"] ==
-                        //                                 true) {
-                        //                               details["is_facebook_user"] =
-                        //                                   true;
-                        //                               details["appleId"] =
-                        //                                   widget.detail[
-                        //                                       "appleId"];
-                        //                             }
-                        //                             _networkCalls.signUp(
-                        //                                 signupDetail: details,
-                        //                                 onSuccess: (msg) {
-                        //                                   navigateToDetail();
-                        //                                 },
-                        //                                 onFailure: (msg) {
-                        //                                   if (mounted) {
-                        //                                     setState(() {
-                        //                                       loading = true;
-                        //                                     });
-                        //                                   }
-                        //                                   showMessage(msg);
-                        //                                 });
-                        //                           },
-                        //                           onFailure: (msg) {
-                        //                             if (mounted) {
-                        //                               setState(() {
-                        //                                 loading = true;
-                        //                               });
-                        //                             }
-                        //                             showMessage(msg);
-                        //                           },
-                        //                           tokenExpire: () {
-                        //                             if (mounted) {
-                        //                               on401(context);
-                        //                             }
-                        //                           });
-                        //                 },
-                        //                 onFailure: (msg) {
-                        //                   if (mounted) {
-                        //                     setState(() {
-                        //                       loading = true;
-                        //                     });
-                        //                   }
-                        //                   showMessage(msg);
-                        //                 },
-                        //                 tokenExpire: () {
-                        //                   if (mounted) on401(context);
-                        //                 });
-                        //           } else {
-                        //             if (mounted) {
-                        //               showMessage(AppLocalizations.of(context)!
-                        //                   .noInternetConnection);
-                        //             }
-                        //           }
-                        //         });
-                        //       } else {
-                        //         if (mounted) {
-                        //           showMessage(AppLocalizations.of(context)!
-                        //               .pleaseselectgender);
-                        //         }
-                        //       }
-                        //       // } else {
-                        //       //   if (mounted)
-                        //       //     showMessage(
-                        //       //         AppLocalizations.of(context)
-                        //       //             .pleaseselectDateofBirth,
-                        //       //         scaffoldkey);
-                        //       // }
-                        //     }
-                        //   },
-                        // ),
-                        // TextButton(
-                        //   style: TextButton.styleFrom(
-                        //     primary: Colors.black,
-                        //     backgroundColor: Color(0XFF25A163)
-                        //   ),
-                        //
-                        //   onPressed: () {
-                        //     if (_formKey.currentState.validate()) {
-                        //       _formKey.currentState.save();
-                        //       FocusScope.of(context).unfocus();
-                        //       _detail.password = base64.encode(utf8.encode("None"));
-                        //       _detail.firstName =
-                        //           widget.detail["detail"]["first_name"];
-                        //       _detail.lastName =
-                        //           widget.detail["detail"]["last_name"];
-                        //       _detail.dob = lastBookingDateApi;
-                        //       if (widget.detail["apple"] == null) {
-                        //         if (widget.detail["detail"]["email"] !=
-                        //             null) {
-                        //           _detail.email =
-                        //               widget.detail["detail"]["email"];
-                        //         }
-                        //       }
-                        //       if (_detail.playerPosition != null) {
-                        //         if (_detail.dob != null) {
-                        //           if (_detail.gender != null) {
-                        //             _networkCalls
-                        //                 .checkInternetConnectivity(
-                        //                     onSuccess: (msg) {
-                        //               if (msg == true) {
-                        //                 setState(() {
-                        //                   loading = false;
-                        //                 });
-                        //                 _networkCalls
-                        //                     .checkAvailabilityOfEmail(
-                        //                         email: _detail.email,
-                        //                         onSuccess: (msg) {
-                        //                           _networkCalls
-                        //                               .checkAvailabilityOfPhoneNumber(
-                        //                                   phone: _detail
-                        //                                       .phoneNumber,
-                        //                                   onSuccess:
-                        //                                       (msg) {
-                        //                                     var details =
-                        //                                         {
-                        //                                       "first_name": _detail.firstName,
-                        //                                       "last_name": _detail.lastName,
-                        //                                       "email": _detail.email,
-                        //                                       "contact_number": _detail.phoneNumber,
-                        //                                       "countryCode": _detail.countryCode,
-                        //                                       "playerpositionSlug": _detail.playerPosition,
-                        //                                       "password": _detail.password,
-                        //                                       "deviceType": _detail.deviceType,
-                        //                                       "dob": lastBookingDateApi,
-                        //                                       "deviceToken": _detail.fcmToken,
-                        //                                       "role": "player",
-                        //                                       "gender": _detail.gender
-                        //                                     };
-                        //                                     if (widget.detail[
-                        //                                             "google"] == true) {
-                        //                                       details["is_google_user"] = true;
-                        //                                     } else if (widget.detail["apple"] == true) {
-                        //                                       details["is_apple_user"] = true;
-                        //                                       details["appleId"] = widget.detail['user'];
-                        //                                     } else if (widget.detail["facebook"] == true) {
-                        //                                       details["is_facebook_user"] = true;
-                        //                                       details["appleId"] = widget.detail["appleId"];
-                        //                                     }
-                        //                                     _networkCalls
-                        //                                         .signUp(
-                        //                                             signupDetail:
-                        //                                                 details,
-                        //                                             onSuccess:
-                        //                                                 (msg) {
-                        //                                               navigateToDetail();
-                        //                                             },
-                        //                                             onFailure:
-                        //                                                 (msg) {
-                        //                                               if (mounted)
-                        //                                                 setState(() {
-                        //                                                   loading = true;
-                        //                                                 });
-                        //                                               showMessage(msg,
-                        //                                                   scaffoldkey);
-                        //                                             });
-                        //                                   },
-                        //                                   onFailure:
-                        //                                       (msg) {
-                        //                                     if (mounted)
-                        //                                       setState(
-                        //                                           () {
-                        //                                         loading =
-                        //                                             true;
-                        //                                       });
-                        //                                     showMessage(
-                        //                                         msg,
-                        //                                         scaffoldkey);
-                        //                                   },
-                        //                                   tokenExpire:
-                        //                                       () {
-                        //                                     if (mounted)
-                        //                                       on401(
-                        //                                           context);
-                        //                                   });
-                        //                         },
-                        //                         onFailure: (msg) {
-                        //                           if (mounted)
-                        //                             setState(() {
-                        //                               loading = true;
-                        //                             });
-                        //                           showMessage(
-                        //                               msg, scaffoldkey);
-                        //                         },
-                        //                         tokenExpire: () {
-                        //                           if (mounted)
-                        //                             on401(context);
-                        //                         });
-                        //               } else {
-                        //                 if(mounted){
-                        //                   showMessage(
-                        //                       AppLocalizations.of(context).noInternetConnection,
-                        //                       scaffoldkey);
-                        //                  }
-                        //               }
-                        //             });
-                        //           } else {
-                        //             if (mounted)
-                        //               showMessage(
-                        //                   AppLocalizations.of(context)
-                        //                       .pleaseselectgender,
-                        //                   scaffoldkey);
-                        //           }
-                        //         } else {
-                        //           if (mounted)
-                        //             showMessage(
-                        //                 AppLocalizations.of(context)
-                        //                     .pleaseselectDateofBirth,
-                        //                 scaffoldkey);
-                        //         }
-                        //       } else {
-                        //         if (mounted)
-                        //           showMessage(
-                        //               AppLocalizations.of(context)
-                        //                   .selectPlayerPosition,
-                        //               scaffoldkey);
-                        //       }
-                        //     }
-                        //   },
-                        //   child: Center(
-                        //     child: Text(
-                        //       AppLocalizations.of(context).continueS,
-                        //       style: TextStyle(
-                        //         fontSize: 20,
-                        //         color: Colors.white,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                         flaxibleGap(
                           1,
                         ),

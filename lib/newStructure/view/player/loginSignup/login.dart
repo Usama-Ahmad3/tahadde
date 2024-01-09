@@ -18,7 +18,6 @@ import '../../../../homeFile/utility.dart';
 import '../../../../localizations.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import '../../../../network/network_calls.dart';
-import '../../../../player/loginSignup/signup.dart';
 import '../../../app_colors/app_colors.dart';
 import 'loginWidget.dart';
 import 'signUpWidget.dart';
@@ -184,64 +183,6 @@ class LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  //////////
-  // _loginFacebook() async {
-  //   FacebookAuth.getInstance();
-  //   facebookSignIn.isWebSdkInitialized;
-  //   try {
-  //     final result = await facebookSignIn.login();
-  //     switch (result.status) {
-  //       case LoginStatus.success:
-  //         final AccessToken? accessToken = result.accessToken;
-  //         var details = {
-  //           "fbUserToken": accessToken!.token,
-  //           "deviceType": logDetail.deviceType,
-  //           "deviceToken": logDetail.fcmToken
-  //         };
-  //         _networkCalls.loginFacebook(
-  //             loginDetail: details,
-  //             onSuccess: (msg) {
-  //               if (msg["token"] != null) {
-  //                 _networkCalls.saveToken(msg["token"]);
-  //                 _networkCalls.saveRole(msg["role"]);
-  //                 _networkCalls.authorizationSave(true);
-  //                 navigateToDetail();
-  //               } else {
-  //                 var detail = {"detail": msg, "facebook": true};
-  //                 navigateToSocialDetail(detail);
-  //               }
-  //             },
-  //             onFailure: (msg) {
-  //               showMessage(msg);
-  //             });
-  //
-  //         break;
-  //       case LoginStatus.cancelled:
-  //         // ignore: use_build_context_synchronously
-  //         showMessage(AppLocalizations.of(context)!.logincancelledbytheuser);
-  //         break;
-  //       case LoginStatus.failed:
-  //         showMessage('Something went wrong with the login process.\n'
-  //             'Here\'s the error Facebook gave us: ${result.message}');
-  //         print("jiiii${result.message}");
-  //         break;
-  //       default:
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-  //
-  // Future _logOut() async {
-  //   FacebookAuth.getInstance();
-  //   facebookSignIn.isWebSdkInitialized;
-  //   try {
-  //     await facebookSignIn.logOut();
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   Future _loginGoogle() async {
     try {
       await _googleSignIn.signIn().then((result) {
@@ -283,27 +224,6 @@ class LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  showOverlay(BuildContext context) {
-    if (overlayEntry != null) return;
-    OverlayState overlayState = Overlay.of(context);
-    overlayEntry = OverlayEntry(builder: (context) {
-      return Positioned(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-        right: 0,
-        left: 0,
-        child: const DoneButton(),
-      );
-    });
-    overlayState.insert(overlayEntry!);
-  }
-
-  removeOverlay() {
-    if (overlayEntry != null) {
-      overlayEntry!.remove();
-      overlayEntry = null;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -312,16 +232,6 @@ class LoginScreenState extends State<LoginScreen> {
     // _logOut();
     _getAppleSigninAvailability();
     firebaseCloudMessaging_Listeners();
-    if (Platform.isIOS) {
-      SignUpWidgetState.phoneFocus.addListener(() {
-        bool hasFocus = SignUpWidgetState.phoneFocus.hasFocus;
-        if (hasFocus) {
-          showOverlay(context);
-        } else {
-          removeOverlay();
-        }
-      });
-    }
     // ignore: avoid_types_as_parameter_names
     WidgetsBinding.instance.addPostFrameCallback((Duration) {
       if (widget.message == 'email has been sent') {
@@ -794,7 +704,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   void navigateToOwnerHome() {
     Navigator.push(context,
-        MaterialPageRoute(builder: (_) => HomePitchOwnerScreen(index: 0)));
+        MaterialPageRoute(builder: (_) => HomeAcademyOwnerScreen(index: 0)));
     // Navigator.pushNamedAndRemoveUntil(
     //     context, RouteNames.homePitchOwner, (r) => false);
   }

@@ -278,7 +278,7 @@ class _PaymentSuccess extends State<PaymentSuccess> {
           : Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePitchOwnerScreen(index: 0),
+                builder: (context) => HomeAcademyOwnerScreen(index: 0),
               ));
     } else {
       Navigator.pushNamed(context, RouteNames.bookingSummary,

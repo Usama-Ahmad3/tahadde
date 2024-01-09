@@ -8,7 +8,6 @@ import '../../../../../homeFile/routingConstant.dart';
 import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../network/network_calls.dart';
-import '../../../../../player/loginSignup/signup.dart';
 import '../../../../app_colors/app_colors.dart';
 
 class BankDetailScreen extends StatefulWidget {
@@ -31,43 +30,10 @@ class _BankDetailScreenState extends State<BankDetailScreen> {
   late String holderName;
   late String accountNumber;
   late String ibanNambe;
-  late OverlayEntry? overlayEntry;
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  showOverlay(BuildContext context) {
-    if (overlayEntry != null) return;
-    OverlayState overlayState = Overlay.of(context);
-    overlayEntry = OverlayEntry(builder: (context) {
-      return Positioned(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-        right: 0,
-        left: 0,
-        child: const DoneButton(),
-      );
-    });
-    overlayState.insert(overlayEntry!);
-  }
-
-  removeOverlay() {
-    if (overlayEntry != null) {
-      overlayEntry!.remove();
-      overlayEntry = null;
-    }
-  }
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    if (Platform.isIOS) {
-      focuss.addListener(() {
-        bool hasFocus = focuss.hasFocus;
-        if (hasFocus) {
-          showOverlay(context);
-        } else {
-          removeOverlay();
-        }
-      });
-    }
   }
 
   @override

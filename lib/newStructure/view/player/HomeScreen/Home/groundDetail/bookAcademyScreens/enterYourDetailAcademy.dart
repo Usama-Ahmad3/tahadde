@@ -10,10 +10,8 @@ import 'package:flutter_tahaddi/network/network_calls.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
-import 'package:flutter_tahaddi/player/loginSignup/payment/payment.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../../../../pitchOwner/loginSignupPitchOwner/createSession.dart';
 
 class EnterDetailAcademyScreen extends StatefulWidget {
   final List<Map> detail;
