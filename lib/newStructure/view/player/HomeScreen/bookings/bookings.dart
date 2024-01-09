@@ -455,12 +455,6 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                     final item =
                                                         reversedItemAfter[
                                                             index];
-                                                    // String zero = '0';
-                                                    // print(item.bookedDate);
-                                                    // DateTime date = Intl.withLocale(
-                                                    //     'en',
-                                                    //     () => DateTime.parse(
-                                                    //         '${item.bookedDate ?? '2023-11-29'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
                                                     return bookingsList(
                                                         sizeWidth,
                                                         sizeHeight,
@@ -486,12 +480,6 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                                     final item =
                                                         reversedItemAfterInnovative[
                                                             index];
-                                                    // String zero = '0';
-                                                    // print(item.bookedDate);
-                                                    // DateTime date = Intl.withLocale(
-                                                    //     'en',
-                                                    //     () => DateTime.parse(
-                                                    //         '${item.bookedDate ?? '2023-11-29'} ${TimeOfDay.now().hour < 10 ? zero + TimeOfDay.now().hour.toString() : TimeOfDay.now().hour}:${TimeOfDay.now().minute < 10 ? zero + TimeOfDay.now().minute.toString() : TimeOfDay.now().minute}'));
                                                     return bookingsList(
                                                         sizeWidth,
                                                         sizeHeight,
@@ -661,8 +649,13 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
   }
 
   void navigateToLogin() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => LoginScreen(
+                  message: 'message',
+                  backHome: true,
+                )));
   }
 
   showDialogBox(

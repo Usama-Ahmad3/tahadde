@@ -258,7 +258,11 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                         links: campaignLinks,
                                         endDate: campaignEndDate,
                                       ))
-                                  : const CircularProgressIndicator(),
+                                  : SizedBox(
+                                      height: sizeHeight * 0.2,
+                                      width: sizeWidth,
+                                      child: const Center(
+                                          child: CircularProgressIndicator())),
                               SizedBox(
                                 height: sizeHeight * 0.01,
                               ),
@@ -500,6 +504,8 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                                                               sizeHeight * 0.193,
                                                                           child:
                                                                               Carousel(
+                                                                            rating:
+                                                                                false,
                                                                             image:
                                                                                 _academyDetail[index].academyImage,
                                                                           ),
@@ -725,7 +731,7 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                                         )
                                                       :
 
-                                                      ///list of academies
+                                                      ///list of innovatives
                                                       Column(
                                                           children: [
                                                             ...List.generate(

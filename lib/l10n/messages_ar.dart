@@ -457,6 +457,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "numberplayerscompleteteam":
             MessageLookupByLibrary.simpleMessage("عدد اللاعبين لإكمال الفريق"),
         "ofCompany": MessageLookupByLibrary.simpleMessage("للشركة"),
+        "totalProfit": MessageLookupByLibrary.simpleMessage("اجمالي الربح"),
+        "commission": MessageLookupByLibrary.simpleMessage("عمولة"),
+        "tax": MessageLookupByLibrary.simpleMessage("ضريبة"),
+        "mostBooked":
+            MessageLookupByLibrary.simpleMessage("الجلسة الأكثر حجزًا"),
+        "report": MessageLookupByLibrary.simpleMessage("تقرير"),
+        "slotDuration": MessageLookupByLibrary.simpleMessage("مدة الفتحة"),
+        "youHaveNotAcademy": MessageLookupByLibrary.simpleMessage(
+            "لم تقم بإنشاء أي أكاديمية حتى الآن"),
         "oftheTeam": MessageLookupByLibrary.simpleMessage("من الفريق "),
         "ok": MessageLookupByLibrary.simpleMessage("اوك"),
         "onlineBooking": MessageLookupByLibrary.simpleMessage("الحجز أونلاين"),

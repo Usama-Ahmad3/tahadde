@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/bookingScreens/bookingWidget.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/profile/booking_reports.dart';
 import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/profile/innovative_bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/bookings/bookings.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/bottomSheet.dart';
@@ -242,15 +243,6 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                             : AppColors.white,
                       ),
                     ),
-                    // child: CircleAvatar(
-                    //   backgroundColor: AppColors.grey200,
-                    //   backgroundImage: NetworkImage(
-                    //       'https://icon-library.com/images/ios-back-icon/ios-back-icon-17.jpg'),
-                    //   // child: Icon(
-                    //   //   Icons.close,
-                    //   //   color: AppColors.black,
-                    //   // )
-                    // ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.039),
@@ -329,7 +321,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                           height: height * 0.02,
                         ),
                         ...List.generate(
-                            widget.playerTag ? 5 : 4,
+                            widget.playerTag ? 5 : 5,
                             (index) => widget.playerTag
                                 ? Padding(
                                     padding: EdgeInsets.symmetric(
@@ -461,29 +453,28 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                 }
                                               : index == 2
                                                   ? () {
-                                                      navigateToInnovativeBookings();
+                                                      navigateToReportsScreen();
                                                     }
-                                                  : () {
-                                                      Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (_) =>
-                                                                  SettingsScreen(
-                                                                    settingParams: SettingParams(
-                                                                        name: widget
-                                                                            .name,
-                                                                        playerTag:
-                                                                            widget
-                                                                                .playerTag,
-                                                                        position:
-                                                                            widget
-                                                                                .position,
-                                                                        profileImage:
-                                                                            widget.profileImage),
-                                                                    bookingTag:
-                                                                        true,
-                                                                  )));
-                                                    },
+                                                  : index == 3
+                                                      ? () {
+                                                          navigateToInnovativeBookings();
+                                                        }
+                                                      : () {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (_) =>
+                                                                      SettingsScreen(
+                                                                        settingParams: SettingParams(
+                                                                            name:
+                                                                                widget.name,
+                                                                            playerTag: widget.playerTag,
+                                                                            position: widget.position,
+                                                                            profileImage: widget.profileImage),
+                                                                        bookingTag:
+                                                                            true,
+                                                                      )));
+                                                        },
                                       titleAlignment:
                                           ListTileTitleAlignment.center,
                                       tileColor:
@@ -519,19 +510,6 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                                                     : AppColors.white,
                                                 fontSize: 14),
                                       ),
-                                      // subtitle: Text(
-                                      //   ownerSubtitle[index].length > 24
-                                      //       ? "${ownerSubtitle[index].toString().substring(0, 25)}..."
-                                      //       : ownerSubtitle[index],
-                                      //   style: Theme.of(context)
-                                      //       .textTheme
-                                      //       .titleSmall!
-                                      //       .copyWith(
-                                      //           color: MyAppState.mode ==
-                                      //                   ThemeMode.light
-                                      //               ? AppColors.black
-                                      //               : AppColors.white),
-                                      // ),
                                       trailing: Icon(
                                         AppLocalizations.of(context)!.locale ==
                                                 'en'
@@ -749,6 +727,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   List ownerIcon = [
     Icons.person,
     Icons.library_books_outlined,
+    Icons.report_rounded,
     Icons.admin_panel_settings_outlined,
     Icons.settings
   ];
@@ -762,6 +741,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   List ownerTitle = [
     AppLocalizations().editProfile,
     AppLocalizations().myBooking,
+    AppLocalizations().report,
     AppLocalizations().innovativeBookings,
     AppLocalizations().setting
   ];
@@ -793,5 +773,10 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
         MaterialPageRoute(
           builder: (context) => const InnovativeBookings(),
         ));
+  }
+
+  navigateToReportsScreen() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const BookingReport()));
   }
 }

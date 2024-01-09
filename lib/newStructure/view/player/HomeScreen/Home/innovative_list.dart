@@ -5,8 +5,6 @@ import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundD
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/viewMoreBookPitch/view_more_book_academy.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 
-import '../../../../../homeFile/routingConstant.dart';
-import '../../../../../homeFile/utility.dart';
 import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../utils/utils.dart';
@@ -16,13 +14,13 @@ class InnovativeList extends StatefulWidget {
   List<InnovativeHub> innovativeDetail;
   String text;
   bool empty;
-  bool auth;
+  bool tagForView;
 
   InnovativeList(
       {super.key,
+      this.tagForView = true,
       required this.innovativeDetail,
       required this.text,
-        required this.auth,
       required this.empty});
 
   @override
@@ -30,7 +28,6 @@ class InnovativeList extends StatefulWidget {
 }
 
 class _InnovativeListState extends State<InnovativeList> {
-
   onWillPop() {
     return showDialog(
         context: context,
@@ -95,47 +92,55 @@ class _InnovativeListState extends State<InnovativeList> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 16 * fem),
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      var details = {"bool": false};
-                      navigateToViewMoreAcademy(details);
-                    },
-                    child: Text(
-                      widget.text,
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          height: 1.25 * ffem / fem,
-                          letterSpacing: -0.2 * fem,
-                          color: mode == ThemeMode.light
-                              ? const Color(0xff050505)
-                              : const Color(0xffffffff)),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      var details = {"bool": false};
-                      navigateToViewMoreAcademy(details);
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.viewAll,
-                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                            fontWeight: FontWeight.w400,
-                            height: 1.3846153846 * ffem / fem,
-                            color: mode == ThemeMode.light
-                                ? AppColors.darkTheme
-                                : Colors.white70,
+            widget.tagForView
+                ? Container(
+                    margin: EdgeInsets.only(bottom: 16 * fem),
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            bool details = false;
+                            navigateToViewMoreAcademy(details);
+                          },
+                          child: Text(
+                            widget.text,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.25 * ffem / fem,
+                                    letterSpacing: -0.2 * fem,
+                                    color: mode == ThemeMode.light
+                                        ? const Color(0xff050505)
+                                        : const Color(0xffffffff)),
                           ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            bool academy = false;
+                            navigateToViewMoreAcademy(academy);
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.viewAll,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.3846153846 * ffem / fem,
+                                  color: mode == ThemeMode.light
+                                      ? AppColors.darkTheme
+                                      : Colors.white70,
+                                ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  )
+                : const SizedBox.shrink(),
             ...List.generate(
               widget.empty == false ? widget.innovativeDetail.length : 1,
               (index) => widget.empty
@@ -182,37 +187,29 @@ class _InnovativeListState extends State<InnovativeList> {
                       ))
                   : InkWell(
                       onTap: () {
-                        if (widget.auth) {
-                          dynamic detail = {
-                            "academy_id": widget
-                                    .innovativeDetail[index].innovativehubId ??
-                                0,
-                            "Academy_NameEnglish":
-                                widget.innovativeDetail[index].nameEnglish,
-                            "Academy_NameArabic":
-                                widget.innovativeDetail[index].nameArabic,
-                            "descriptionEnglish": widget
-                                .innovativeDetail[index].descriptionEnglish,
-                            "descriptionArabic": widget
-                                .innovativeDetail[index].descriptionArabic,
-                            "gameplaySlug":
-                                widget.innovativeDetail[index].sportSlug,
-                            "academy_image": [
-                              widget.innovativeDetail[index].image
-                            ],
-                            'latitude': widget.innovativeDetail[index].latitude,
-                            'longitude':
-                                widget.innovativeDetail[index].longitude,
-                            'Academy_Location':
-                                widget.innovativeDetail[index].location,
-                          };
-                          navigateToGroundDetail(detail);
-                        } else {
-                          // onWillPop();
-                          showMessage(
-                              AppLocalizations.of(context)!.loginRequired);
-                          navigateToLogin();
-                        }
+                        dynamic detail = {
+                          "academy_id":
+                              widget.innovativeDetail[index].innovativehubId ??
+                                  0,
+                          "Academy_NameEnglish":
+                              widget.innovativeDetail[index].nameEnglish,
+                          "Academy_NameArabic":
+                              widget.innovativeDetail[index].nameArabic,
+                          "descriptionEnglish":
+                              widget.innovativeDetail[index].descriptionEnglish,
+                          "descriptionArabic":
+                              widget.innovativeDetail[index].descriptionArabic,
+                          "gameplaySlug":
+                              widget.innovativeDetail[index].sportSlug,
+                          "academy_image": [
+                            widget.innovativeDetail[index].image
+                          ],
+                          'latitude': widget.innovativeDetail[index].latitude,
+                          'longitude': widget.innovativeDetail[index].longitude,
+                          'Academy_Location':
+                              widget.innovativeDetail[index].location,
+                        };
+                        navigateToGroundDetail(detail);
                       },
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 16 * fem),
@@ -245,6 +242,7 @@ class _InnovativeListState extends State<InnovativeList> {
                                     topRight: Radius.circular(15 * fem),
                                   ),
                                   child: Carousel(
+                                    rating: false,
                                     image: [
                                       widget.innovativeDetail[index].image
                                     ],
@@ -329,11 +327,13 @@ class _InnovativeListState extends State<InnovativeList> {
     // Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
   }
 
-  void navigateToViewMoreAcademy(Map detail) {
+  void navigateToViewMoreAcademy(bool detail) {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => ViewMoreBookAcademyScreen(pitchType: detail,auth: widget.auth,)));
+            builder: (_) => ViewMoreBookAcademyInnovativeScreen(
+                  academyInnovative: detail,
+                )));
   }
 
   void navigateToLogin() {

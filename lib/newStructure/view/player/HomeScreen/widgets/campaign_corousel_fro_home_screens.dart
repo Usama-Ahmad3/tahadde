@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/modelClass/campaign.dart';
 import 'package:flutter_tahaddi/newStructure/app_colors/app_colors.dart';
 import 'package:intl/intl.dart';
 
@@ -92,7 +91,7 @@ class _CampaignCorouselState extends State<CampaignCorousel> {
       children: [
         CarouselSlider.builder(
             carouselController: nextPageController,
-            itemCount: widget.image.length,
+            itemCount: widget.image.length ?? 1,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) {
               return InkWell(
@@ -103,7 +102,7 @@ class _CampaignCorouselState extends State<CampaignCorousel> {
                   height: height * 0.3,
                   imageFit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
-                  cuisineImageUrl: widget.image[itemIndex],
+                  cuisineImageUrl: widget.image[itemIndex] ?? '',
                 ),
               );
             },
@@ -126,7 +125,7 @@ class _CampaignCorouselState extends State<CampaignCorousel> {
           right: 0.0,
           bottom: 0.0,
           child: DotsIndicator(
-            dotsCount: widget.image.length,
+            dotsCount: widget.image.length ?? 1,
             position: _currentIndexPage.toInt(),
             decorator: DotsDecorator(
               activeSize: const Size(20.0, 10.0),

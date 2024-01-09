@@ -8,10 +8,10 @@ import 'package:flutter_tahaddi/modelClass/player_rating.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetailShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/profileScreen/view_your_review.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_launcher/map_launcher.dart' hide MapType;
 import 'package:readmore/readmore.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -46,13 +46,18 @@ class GroundDetail extends StatefulWidget {
 class GroundDetailState extends State<GroundDetail>
     with TickerProviderStateMixin {
   bool internet = true;
+  bool _auth = false;
+  checkAuth() async {
+    _auth = await checkAuthorizaton();
+    setState(() {});
+  }
+
   static SpecificVenueModelClass privateVenueDetail = SpecificVenueModelClass();
   final NetworkCalls _networkCalls = NetworkCalls();
   late SharedPreferences pref;
   bool isStateLoading = true;
   List<PlayerRating> rating = [];
   var isDialOpen = ValueNotifier<bool>(false);
-  bool _auth = false;
   List<int> listMaxPlayer = [];
   int? selectedIndex;
   List facilitySlugD = [];
@@ -201,10 +206,6 @@ class GroundDetailState extends State<GroundDetail>
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
         .buffer
         .asUint8List();
-  }
-
-  checkAuth() async {
-    _auth = (await checkAuthorizaton());
   }
 
   facilityDiff() {
@@ -368,7 +369,7 @@ class GroundDetailState extends State<GroundDetail>
                               widget.myInterest!
                                   ? Navigator.pushReplacementNamed(
                                       context, RouteNames.myInterest)
-                                  : Navigator.pop(context);
+                                  : Navigator.pop(context, true);
                             },
                             child: Container(
                                 height: height * 0.045,
@@ -397,6 +398,7 @@ class GroundDetailState extends State<GroundDetail>
                           titlePadding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 0),
                           background: Carousel(
+                            rating: false,
                             image: widget.detail['academy_image'],
                           )),
                     ),
@@ -408,12 +410,13 @@ class GroundDetailState extends State<GroundDetail>
                               color: AppColors.black,
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: MyAppState.mode == ThemeMode.light
-                                        ? AppColors.white
-                                        : AppColors.darkTheme,
-                                    borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(20),
-                                        topLeft: Radius.circular(20))),
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? AppColors.white
+                                      : AppColors.darkTheme,
+                                  // borderRadius: const BorderRadius.only(
+                                  //     topRight: Radius.circular(20),
+                                  //     topLeft: Radius.circular(20))
+                                ),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: height * 0.033,
@@ -712,9 +715,16 @@ class GroundDetailState extends State<GroundDetail>
                                       ButtonWidget(
                                           isLoading: false,
                                           onTaped: () {
-                                            navigateToBookingScreen(
-                                                widget.detail,
-                                                widget.navigateFromInovative);
+                                            if (_auth) {
+                                              navigateToBookingScreen(
+                                                  widget.detail,
+                                                  widget.navigateFromInovative);
+                                            } else {
+                                              showMessage(
+                                                  AppLocalizations.of(context)!
+                                                      .loginRequired);
+                                              navigateToLogin();
+                                            }
                                           },
                                           title: Text(
                                             AppLocalizations.of(context)!
@@ -772,5 +782,11 @@ class GroundDetailState extends State<GroundDetail>
         MaterialPageRoute(
           builder: (context) => YourReviews(academyId: id),
         ));
+  }
+
+  void navigateToLogin() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
+    // Navigator.pushNamed(context, RouteNames.login);
   }
 }

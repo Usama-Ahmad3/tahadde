@@ -525,6 +525,7 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                     },
                                     onChanged: (value) {
                                       playerPrice = value;
+                                      setState(() {});
                                       return '';
                                     },
                                     onValidate: (value) {
@@ -611,21 +612,8 @@ class _PriceScreenViewState extends State<PriceScreenView> {
                                     ),
                                   ],
                                 ),
-                                monVal
-                                    ?
-                                    // _isVenueLoading
-                                    //         ? ButtonWidget(
-                                    //             color: AppColors.grey,
-                                    //             onTaped: () {},
-                                    //             title: Text(
-                                    //               AppLocalizations.of(context)!
-                                    //                   .continu,
-                                    //               style: Theme.of(context)
-                                    //                   .textTheme
-                                    //                   .bodyMedium,
-                                    //             ),
-                                    //             isLoading: true) :
-                                    ButtonWidget(
+                                monVal && _pricePerPlayer.text.isNotEmpty
+                                    ? ButtonWidget(
                                         onTaped: () {
                                           if (_formKey.currentState!
                                               .validate()) {

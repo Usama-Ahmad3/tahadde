@@ -10,19 +10,18 @@ import '../../../../../localizations.dart';
 import '../../../../../main.dart';
 import '../../../../utils/utils.dart';
 import 'groundDetail/carousel.dart';
+import 'home-screen.dart';
 
 class AcademyList extends StatefulWidget {
   var academyDetail;
   bool tagForView;
   bool empty;
   bool? searchflag;
-  bool auth;
   String text;
   bool? myInterest;
 
   AcademyList(
       {super.key,
-        required this.auth,
       this.searchflag = false,
       required this.text,
       this.myInterest = false,
@@ -82,11 +81,11 @@ class _AcademyListState extends State<AcademyList> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: widget.academyDetail != null
-          ? widget.academyDetail.length <= 2
+          ? widget.academyDetail.length == 1
               ? 720 * fem
-              : null
+              : 800 * fem
           : null,
-      padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 15 * fem),
+      padding: EdgeInsets.fromLTRB(24 * fem, 24 * fem, 24 * fem, 0),
       decoration: BoxDecoration(
         color: mode == ThemeMode.light
             ? const Color(0xffffffff)
@@ -107,8 +106,7 @@ class _AcademyListState extends State<AcademyList> {
                       children: [
                         InkWell(
                           onTap: () {
-                            var details = {"bool": false};
-                            navigateToViewMoreAcademy(details);
+                            navigateToViewMoreAcademy();
                           },
                           child: Text(
                             widget.text,
@@ -126,8 +124,7 @@ class _AcademyListState extends State<AcademyList> {
                         ),
                         InkWell(
                           onTap: () {
-                            var details = {"bool": false};
-                            navigateToViewMoreAcademy(details);
+                            navigateToViewMoreAcademy();
                           },
                           child: Text(
                             AppLocalizations.of(context)!.viewAll,
@@ -194,37 +191,29 @@ class _AcademyListState extends State<AcademyList> {
                       ))
                   : InkWell(
                       onTap: () {
-                        if (widget.auth) {
-                          dynamic detail = {
-                            "academy_id":
-                                widget.academyDetail[index]["academy_id"] ?? 0,
-                            "Academy_NameEnglish": widget.academyDetail[index]
-                                ["Academy_NameEnglish"],
-                            "Academy_NameArabic": widget.academyDetail[index]
-                                ["Academy_NameArabic"],
-                            "descriptionEnglish": widget.academyDetail[index]
-                                ["descriptionEnglish"],
-                            "descriptionArabic": widget.academyDetail[index]
-                                ["descriptionArabic"],
-                            "facilitySlug": widget.academyDetail[index]
-                                ["facilitySlug"],
-                            "gameplaySlug": widget.academyDetail[index]
-                                ["gameplaySlug"],
-                            "academy_image": widget.academyDetail[index]
-                                ["academy_image"],
-                            'latitude': widget.academyDetail[index]['latitude'],
-                            'longitude': widget.academyDetail[index]
-                                ['longitude'],
-                            'Academy_Location': widget.academyDetail[index]
-                                ['Academy_Location'],
-                          };
-                          navigateToGroundDetail(detail);
-                        } else {
-                          // onWillPop();
-                          showMessage(
-                              AppLocalizations.of(context)!.loginRequired);
-                          navigateToLogin();
-                        }
+                        dynamic detail = {
+                          "academy_id":
+                              widget.academyDetail[index]["academy_id"] ?? 0,
+                          "Academy_NameEnglish": widget.academyDetail[index]
+                              ["Academy_NameEnglish"],
+                          "Academy_NameArabic": widget.academyDetail[index]
+                              ["Academy_NameArabic"],
+                          "descriptionEnglish": widget.academyDetail[index]
+                              ["descriptionEnglish"],
+                          "descriptionArabic": widget.academyDetail[index]
+                              ["descriptionArabic"],
+                          "facilitySlug": widget.academyDetail[index]
+                              ["facilitySlug"],
+                          "gameplaySlug": widget.academyDetail[index]
+                              ["gameplaySlug"],
+                          "academy_image": widget.academyDetail[index]
+                              ["academy_image"],
+                          'latitude': widget.academyDetail[index]['latitude'],
+                          'longitude': widget.academyDetail[index]['longitude'],
+                          'Academy_Location': widget.academyDetail[index]
+                              ['Academy_Location'],
+                        };
+                        navigateToGroundDetail(detail);
                       },
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 16 * fem),
@@ -257,7 +246,7 @@ class _AcademyListState extends State<AcademyList> {
                                     topRight: Radius.circular(15 * fem),
                                   ),
                                   child: Carousel(
-                                    auth: widget.auth,
+                                    rating: true,
                                     academy_id: widget.academyDetail[index]
                                             ['academy_id']
                                         .toString(),
@@ -321,9 +310,9 @@ class _AcademyListState extends State<AcademyList> {
                       ),
                     ),
             ),
-            SizedBox(
-              height: 10 * fem,
-            )
+            // SizedBox(
+            //   height: widget.tagForView ? 200 * fem : 10 * fem,
+            // )
           ],
         ),
       ),
@@ -347,11 +336,13 @@ class _AcademyListState extends State<AcademyList> {
     // Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
   }
 
-  void navigateToViewMoreAcademy(Map detail) {
+  void navigateToViewMoreAcademy() {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => ViewMoreBookAcademyScreen(pitchType: detail,auth: widget.auth,)));
+            builder: (_) => ViewMoreBookAcademyInnovativeScreen(
+                  academyInnovative: true,
+                )));
   }
 
   void navigateToLogin() {

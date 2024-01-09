@@ -140,6 +140,7 @@ class ViewMoreAcademyScreen extends StatelessWidget {
                                                       height:
                                                           sizeHeight * 0.193,
                                                       child: Carousel(
+                                                        rating: false,
                                                         image: academy[index]
                                                             .academyImage,
                                                       ),
@@ -321,6 +322,7 @@ class ViewMoreAcademyScreen extends StatelessWidget {
                                                       height:
                                                           sizeHeight * 0.193,
                                                       child: Carousel(
+                                                        rating: false,
                                                         image: academy[index]
                                                             .academyImage,
                                                       ),

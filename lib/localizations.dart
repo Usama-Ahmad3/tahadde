@@ -58,8 +58,32 @@ class AppLocalizations {
     return Intl.message('No Events Available', name: 'noEvents');
   }
 
+  String get slotDuration {
+    return Intl.message('Slot Duration', name: 'slotDuration');
+  }
+
   String get academyList {
     return Intl.message('Academy List', name: 'academyList');
+  }
+
+  String get totalBookings {
+    return Intl.message('Total Bookings', name: 'totalBookings');
+  }
+
+  String get totalProfit {
+    return Intl.message('Total Profit', name: 'totalProfit');
+  }
+
+  String get commission {
+    return Intl.message('Commission', name: 'commission');
+  }
+
+  String get mostBooked {
+    return Intl.message('Most Booked Session', name: 'mostBooked');
+  }
+
+  String get tax {
+    return Intl.message('Tax', name: 'tax');
   }
 
   String get addReview {
@@ -126,6 +150,11 @@ class AppLocalizations {
 
   String get bookedFor {
     return Intl.message('Booked for', name: 'bookedFor');
+  }
+
+  String get youHaveNotAcademy {
+    return Intl.message('You Have Not Created Any Academy Yet',
+        name: 'youHaveNotAcademy');
   }
 
   String get minuteSlot {
@@ -666,6 +695,10 @@ class AppLocalizations {
 
   String get morningSession {
     return Intl.message('Morning Sessions', name: 'morningSession');
+  }
+
+  String get report {
+    return Intl.message('Report', name: 'report');
   }
 
   String get eveningSession {

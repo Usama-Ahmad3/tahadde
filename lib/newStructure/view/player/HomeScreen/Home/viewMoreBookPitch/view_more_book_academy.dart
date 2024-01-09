@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/academy_list.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/innovative_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -12,18 +13,19 @@ import '../../../../../../network/network_calls.dart';
 import '../../../../../app_colors/app_colors.dart';
 import '../../../../../utils/utils.dart';
 
-class ViewMoreBookAcademyScreen extends StatefulWidget {
-  Map pitchType;
-  bool auth;
+class ViewMoreBookAcademyInnovativeScreen extends StatefulWidget {
+  bool academyInnovative;
 
-  ViewMoreBookAcademyScreen({super.key, required this.pitchType,required this.auth});
+  ViewMoreBookAcademyInnovativeScreen(
+      {super.key, required this.academyInnovative,});
 
   @override
-  _ViewMoreBookAcademyScreenState createState() =>
-      _ViewMoreBookAcademyScreenState();
+  _ViewMoreBookAcademyInnovativeScreenState createState() =>
+      _ViewMoreBookAcademyInnovativeScreenState();
 }
 
-class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
+class _ViewMoreBookAcademyInnovativeScreenState
+    extends State<ViewMoreBookAcademyInnovativeScreen> {
   final NetworkCalls _networkCalls = NetworkCalls();
   var bookPitchData;
   bool _isLoading = true;
@@ -61,6 +63,30 @@ class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
     );
   }
 
+  loadAllInnovative() async {
+    await _networkCalls.allInnovative(
+      onSuccess: (event) {
+        if (mounted) {
+          setState(() {
+            // _isLoading = false;
+            _academyModel = event;
+            _isLoading = false;
+          });
+        }
+      },
+      onFailure: (msg) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      },
+      tokenExpire: () {
+        if (mounted) on401(context);
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -68,7 +94,7 @@ class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
       _internet = msg;
       if (msg == true) {
         if (mounted) {
-          loadAcademies();
+          widget.academyInnovative ? loadAcademies() : loadAllInnovative();
         }
       } else {
         if (mounted) {
@@ -93,22 +119,40 @@ class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
                     sizeWidth: sizeWidth,
                     sizeHeight: sizeHeight,
                     context: context,
-                    title: AppLocalizations.of(context)!.academy,
+                    title: widget.academyInnovative
+                        ? AppLocalizations.of(context)!.academy
+                        : AppLocalizations.of(context)!.innovative,
                     back: true),
                 body: _academyModel != null
-                    ? AcademyList(
-                  auth: widget.auth,
-                        text: AppLocalizations.of(context)!.academy,
-                        academyDetail: _academyModel,
-                        tagForView: false,
-                      )
-                    : AcademyList(
-                  auth: widget.auth,
-                        text: AppLocalizations.of(context)!.academy,
-                        academyDetail: _academyModel,
-                        tagForView: false,
-                        empty: true,
-                      ))
+                    ? widget.academyInnovative
+                        ? AcademyList(
+                            text: AppLocalizations.of(context)!.academy,
+                            academyDetail: _academyModel,
+                            tagForView: false,
+                          )
+                        : InnovativeList(
+                            ///Just Remove To Proceed
+                            // empty: true,
+                            text: AppLocalizations.of(context)!.innovative,
+                            tagForView: false,
+                            empty: false,
+                            innovativeDetail: _academyModel,
+                          )
+                    : widget.academyInnovative
+                        ? AcademyList(
+                            text: AppLocalizations.of(context)!.academy,
+                            academyDetail: _academyModel,
+                            tagForView: false,
+                            empty: true,
+                          )
+                        : InnovativeList(
+                            ///Just Remove To Proceed
+                            // empty: true,
+                            text: AppLocalizations.of(context)!.innovative,
+                            empty: true,
+                            tagForView: false,
+                            innovativeDetail: _academyModel,
+                          ))
             : InternetLoss(
                 onChange: () {
                   _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
@@ -135,7 +179,9 @@ class _ViewMoreBookAcademyScreenState extends State<ViewMoreBookAcademyScreen> {
           preferredSize: Size(sizeWidth, sizeHeight * 0.105),
           child: AppBar(
               title: Text(
-                AppLocalizations.of(context)!.academy,
+                widget.academyInnovative
+                    ? AppLocalizations.of(context)!.academy
+                    : AppLocalizations.of(context)!.innovative,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!

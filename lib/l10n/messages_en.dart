@@ -642,9 +642,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "responsibilitiesDes": MessageLookupByLibrary.simpleMessage(
             "It is the duty of the venue owners and the players who are willing to take the services from the application has to act with proper diligence, commit appropriate time as well as effort for fulfilling the duties. It is important to maintain practical and technological knowledge in respect to the services. The person taking the services has to maintain proper communication related tothe services."),
         "review": MessageLookupByLibrary.simpleMessage("review"),
+        "slotDuration": MessageLookupByLibrary.simpleMessage("Slot Duration"),
+        "report": MessageLookupByLibrary.simpleMessage("Report"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("SAVE"),
+        "totalBookings": MessageLookupByLibrary.simpleMessage("Total Bookings"),
+        "totalProfit": MessageLookupByLibrary.simpleMessage("Total Profit"),
+        "commission": MessageLookupByLibrary.simpleMessage("Commission"),
+        "tax": MessageLookupByLibrary.simpleMessage("Tax"),
+        "mostBooked":
+            MessageLookupByLibrary.simpleMessage("Most Booked Session"),
+        "youHaveNotAcademy": MessageLookupByLibrary.simpleMessage(
+            "You Have Not Created Any Academy Yet"),
         "saveCards": MessageLookupByLibrary.simpleMessage("Save Cards"),
         "tahaddiShop": MessageLookupByLibrary.simpleMessage("Tahaddi Shop"),
         "morningSession":

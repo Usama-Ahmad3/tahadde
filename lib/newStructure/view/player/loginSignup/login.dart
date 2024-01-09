@@ -26,8 +26,13 @@ import 'signUpWidget.dart';
 class LoginScreen extends StatefulWidget {
   String message;
   int? clicked;
+  bool backHome;
 
-  LoginScreen({super.key, required this.message, this.clicked = 1});
+  LoginScreen(
+      {super.key,
+      required this.message,
+      this.clicked = 1,
+      this.backHome = false});
 
   @override
   State<LoginScreen> createState() => LoginScreenState();
@@ -361,7 +366,13 @@ class LoginScreenState extends State<LoginScreen> {
                 automaticallyImplyLeading: false,
                 leading: InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    widget.backHome
+                        ? Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlayerHomeScreen(index: 0),
+                            ))
+                        : Navigator.pop(context);
                   },
                   child: SizedBox(
                       height: height * 0.03,

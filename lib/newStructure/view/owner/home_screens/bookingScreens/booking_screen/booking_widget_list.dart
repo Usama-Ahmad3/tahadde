@@ -18,9 +18,7 @@ class BookingWidgetList extends StatelessWidget {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap:
-          // academyDetail[index].isDecline! ?
-          () {
+      onTap: () {
         Map detail = {
           "id": academyDetail.academyId,
         };
@@ -28,10 +26,7 @@ class BookingWidgetList extends StatelessWidget {
           detail,
           context,
         );
-        // navigateToManageSlotsDetail(pitchDetail[index]);
       },
-      // : () => showMessage(
-      //   "Sorry, you can not edit verified and in-review Academy"),
       child: Padding(
         padding: EdgeInsets.only(
             left: sizeWidth * .059,

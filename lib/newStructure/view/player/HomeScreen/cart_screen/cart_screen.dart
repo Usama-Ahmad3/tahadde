@@ -18,10 +18,10 @@ class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
-  State<CartScreen> createState() => _CartScreenState();
+  State<CartScreen> createState() => CartScreenState();
 }
 
-class _CartScreenState extends State<CartScreen> {
+class CartScreenState extends State<CartScreen> {
   int indexItem = 1;
   bool loading = true;
   final NetworkCalls _networkCalls = NetworkCalls();
@@ -31,6 +31,7 @@ class _CartScreenState extends State<CartScreen> {
   List sessions = [];
   List<AcademyModel> _specificAcademy = [];
   List<AcademyModel> _specificAcademyListSelected = [];
+  static int? cartLength;
 
   getCartAcademies() async {
     await _networkCalls.getCartAcademy(
@@ -52,6 +53,7 @@ class _CartScreenState extends State<CartScreen> {
 
   loadSpecificSession() {
     if (cartModel.isNotEmpty) {
+      cartLength = cartModel.length;
       cartModel.forEach((element) async {
         element.session!.forEach((sessionsId) async {
           await _networkCalls.specificSession(
@@ -61,9 +63,7 @@ class _CartScreenState extends State<CartScreen> {
               bookedSessions.add(session);
               loadVerifiedSpecific();
               if (mounted) {
-                setState(() {
-                  PlayerHomeScreenState.cartLength = cartModel.length;
-                });
+                setState(() {});
               }
             },
             onFailure: (msg) {
@@ -301,13 +301,13 @@ class _CartScreenState extends State<CartScreen> {
                                                   },
                                                 );
                                                 Future.delayed(
-                                                    Duration(seconds: 2), () {
+                                                    Duration(seconds: 1), () {
                                                   print(
                                                       'sssssssssssssssssssss');
                                                   cartModel.clear();
                                                   bookedSessions.clear();
                                                   _specificAcademy.clear();
-                                                  getCartAcademies();
+                                                  navigateToCartScreen();
                                                 });
                                               });
                                             },
@@ -382,19 +382,6 @@ class _CartScreenState extends State<CartScreen> {
                                                                 MainAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              // Text(
-                                                              //   "${AppLocalizations.of(context)!.academyName}:",
-                                                              //   style: TextStyle(
-                                                              //       fontSize: 14,
-                                                              //       color: MyAppState
-                                                              //                   .mode ==
-                                                              //               ThemeMode
-                                                              //                   .light
-                                                              //           ? const Color(
-                                                              //               0XFF032040)
-                                                              //           : AppColors
-                                                              //               .white),
-                                                              // ),
                                                               Text(
                                                                 AppLocalizations.of(context)!
                                                                             .locale ==
@@ -1088,7 +1075,20 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void navigateToLogin() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => LoginScreen(
+                  message: 'message',
+                  backHome: true,
+                )));
+  }
+
+  navigateToCartScreen() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlayerHomeScreen(index: 2),
+        ));
   }
 }

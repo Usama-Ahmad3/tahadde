@@ -14,13 +14,13 @@ class Carousel extends StatefulWidget {
   List? image;
   bool storyView;
   String? academy_id;
-  bool auth;
+  bool rating;
   Carousel(
       {super.key,
       this.image,
-      this.auth = false,
       this.storyView = true,
-      this.academy_id});
+      this.academy_id,required this.rating
+      });
 
   @override
   State<Carousel> createState() => _CarouselState();
@@ -74,8 +74,7 @@ class _CarouselState extends State<Carousel> {
   @override
   void initState() {
     super.initState();
-    print(widget.auth);
-    widget.auth ? loadingRating() : null;
+    widget.rating?loadingRating():null;
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       bool isTop = _scrollController.position.pixels == 250;
@@ -154,7 +153,7 @@ class _CarouselState extends State<Carousel> {
             ),
           ),
         ),
-        widget.auth
+        widget.rating
             ? rating.isNotEmpty
                 ? Positioned(
                     right: width * 0.02,

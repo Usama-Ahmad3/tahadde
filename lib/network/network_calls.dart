@@ -6,12 +6,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter_tahaddi/homeFile/utility.dart';
 import 'package:flutter_tahaddi/modelClass/Facilities.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/modelClass/academy_report.dart';
 import 'package:flutter_tahaddi/modelClass/booked_model.dart';
 import 'package:flutter_tahaddi/modelClass/campaign.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_bookings_model.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/modelClass/player_bookings.dart';
 import 'package:flutter_tahaddi/modelClass/specific_academy.dart';
+import 'package:flutter_tahaddi/newStructure/view/owner/home_screens/profile/booking_reports.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -2516,6 +2518,38 @@ class NetworkCalls {
       onFailure(internetStatus);
     } catch (e) {
       onFailure("Something went wrong");
+    }
+  }
+
+  bookingReport(
+      {required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      response = await http.get(
+          Uri.parse('https://ahmad223.pythonanywhere.com/api/v1/user/report/'),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print(response.body);
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        List<AcademyReport> book = [];
+        for (int i = 0; i < resp.length; i++) {
+          book.add(AcademyReport.fromJson(resp[i]));
+        }
+        onSuccess(book);
+      } else if (response.statusCode == 404) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onFailure(resp["error"]);
+      } else {
+        onFailure(throw Exception('Failed to load league'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong");
+      print('somthing        $e');
     }
   }
 

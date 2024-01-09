@@ -67,7 +67,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                         ),
                         child: Center(
                           child: Text(
-                            AppLocalizations.of(context)!.yes,
+                            AppLocalizations.of(context)!.no,
                             style: TextStyle(color: AppColors.white),
                           ),
                         ),

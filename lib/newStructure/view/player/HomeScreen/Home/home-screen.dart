@@ -55,11 +55,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
   var _academyModelF;
   var academyModel;
   var innovativeModel;
-  bool _auth = false;
-  checkAuth() async {
-    _auth = await checkAuthorizaton();
-    setState(() {});
-  }
 
   // ignore: prefer_typing_uninitialized_variables
   var _bookPitchData;
@@ -651,7 +646,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       _internet = msg;
       if (msg == true) {
-        checkAuth();
         getAddress();
         loadTerritories();
         getSports();
@@ -694,7 +688,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                   _isLoading = true;
                 });
               }
-              // loadVenues();
               getAddress();
               getSports();
               loadAcademies();
@@ -767,7 +760,10 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         }
                                         setState(() {});
                                       },
-                                      child: const Icon(FontAwesomeIcons.close),
+                                      child: Icon(
+                                        FontAwesomeIcons.close,
+                                        color: AppColors.grey,
+                                      ),
                                     ),
                                     suffixIconColor:
                                         MyAppState.mode == ThemeMode.light
@@ -925,8 +921,45 @@ class HomeScreenViewState extends State<HomeScreenView> {
                               looping: true,
                               useMagnifier: true,
                               magnification: 1,
-                              onSelectedItemChanged: (e) {
-                                showMessage('Tap To Select');
+                              onSelectedItemChanged: (index) async {
+                                await _networkCalls.saveKeys(
+                                    "country",
+                                    territoryData!
+                                        .countries![0].cities![index].name
+                                        .toString());
+                                await _networkCalls.saveKeys(
+                                    "arabicCountry",
+                                    territoryData!
+                                        .countries![0].cities![index].arabicName
+                                        .toString());
+                                await _networkCalls.saveKeys(
+                                    "city",
+                                    territoryData!
+                                        .countries![0].cities![index].name
+                                        .toString());
+                                await _networkCalls.saveKeys(
+                                    "arabicCity",
+                                    territoryData!
+                                        .countries![0].cities![index].arabicName
+                                        .toString());
+                                await _networkCalls.saveKeys(
+                                    "cityId",
+                                    territoryData!
+                                        .countries![0].cities![index].id
+                                        .toString());
+                                await _networkCalls.saveKeys(
+                                    "lat",
+                                    territoryData!
+                                        .countries![0].cities![index].latitude
+                                        .toString());
+                                await _networkCalls.saveKeys(
+                                    "long",
+                                    territoryData!
+                                        .countries![0].cities![index].longitude
+                                        .toString());
+                                await getAddress();
+                                showMessage(
+                                    '${territoryData!.countries![0].cities![index].name.toString()} Selected');
                               },
                               children: List.generate(
                                   territoryData!.countries![0].cities!.length,
@@ -934,64 +967,21 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                 return territoryData!.countries![0]
                                         .cities![index].isDisabled as bool
                                     ? const SizedBox.shrink()
-                                    : InkWell(
-                                        onTap: () async {
-                                          await _networkCalls.saveKeys(
-                                              "country",
-                                              territoryData!.countries![0]
+                                    : Center(
+                                        child: Text(
+                                          AppLocalizations.of(context)!
+                                                      .locale ==
+                                                  "en"
+                                              ? territoryData!.countries![0]
                                                   .cities![index].name
-                                                  .toString());
-                                          await _networkCalls.saveKeys(
-                                              "arabicCountry",
-                                              territoryData!.countries![0]
+                                                  .toString()
+                                              : territoryData!.countries![0]
                                                   .cities![index].arabicName
-                                                  .toString());
-                                          await _networkCalls.saveKeys(
-                                              "city",
-                                              territoryData!.countries![0]
-                                                  .cities![index].name
-                                                  .toString());
-                                          await _networkCalls.saveKeys(
-                                              "arabicCity",
-                                              territoryData!.countries![0]
-                                                  .cities![index].arabicName
-                                                  .toString());
-                                          await _networkCalls.saveKeys(
-                                              "cityId",
-                                              territoryData!.countries![0]
-                                                  .cities![index].id
-                                                  .toString());
-                                          await _networkCalls.saveKeys(
-                                              "lat",
-                                              territoryData!.countries![0]
-                                                  .cities![index].latitude
-                                                  .toString());
-                                          await _networkCalls.saveKeys(
-                                              "long",
-                                              territoryData!.countries![0]
-                                                  .cities![index].longitude
-                                                  .toString());
-                                          await getAddress();
-                                          showMessage(
-                                              '${territoryData!.countries![0].cities![index].name.toString()} Selected');
-                                        },
-                                        child: Center(
-                                          child: Text(
-                                            AppLocalizations.of(context)!
-                                                        .locale ==
-                                                    "en"
-                                                ? territoryData!.countries![0]
-                                                    .cities![index].name
-                                                    .toString()
-                                                : territoryData!.countries![0]
-                                                    .cities![index].arabicName
-                                                    .toString(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: AppColors.white),
-                                          ),
+                                                  .toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(color: AppColors.white),
                                         ),
                                       );
                               }))
@@ -1180,21 +1170,29 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                       SizedBox(
                                         height: height * 0.005,
                                       ),
-                                      SizedBox(
-                                          height: height * 0.2,
-                                          width: width,
-                                          child: CampaignCorousel(
-                                            description: campaignDescription,
-                                            image: campaignImage,
-                                            links: campaignLinks,
-                                            endDate: campaignEndDate,
-                                          )
-                                          // Carousel(image: const [
-                                          //   'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
-                                          //   'https://tse1.mm.bing.net/th?id=OIP.ptX0bcAkl4cTcMWe9JvyhgHaEK&pid=Api&P=0&h=220',
-                                          //   'https://sp.yimg.com/ib/th?id=OIP.ioIpvjaAIPNY7QduhbyCnAHaE8&pid=Api&w=148&h=148&c=7&rs=1'
-                                          // ]),
-                                          ),
+                                      campaignImage.isNotEmpty
+                                          ? SizedBox(
+                                              height: height * 0.2,
+                                              width: width,
+                                              child: CampaignCorousel(
+                                                description:
+                                                    campaignDescription,
+                                                image: campaignImage,
+                                                links: campaignLinks,
+                                                endDate: campaignEndDate,
+                                              )
+                                              // Carousel(image: const [
+                                              //   'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
+                                              //   'https://tse1.mm.bing.net/th?id=OIP.ptX0bcAkl4cTcMWe9JvyhgHaEK&pid=Api&P=0&h=220',
+                                              //   'https://sp.yimg.com/ib/th?id=OIP.ioIpvjaAIPNY7QduhbyCnAHaE8&pid=Api&w=148&h=148&c=7&rs=1'
+                                              // ]),
+                                              )
+                                          : SizedBox(
+                                              height: height * 0.2,
+                                              width: width,
+                                              child: const Center(
+                                                  child:
+                                                      CircularProgressIndicator())),
                                       Material(
                                           color: AppColors.transparent,
                                           child: ConstrainedBox(
@@ -1271,7 +1269,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               ? academyModel != null &&
                                                       academyModel.isNotEmpty
                                                   ? AcademyList(
-                                                      auth: _auth,
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
@@ -1279,7 +1276,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           academyModel,
                                                       searchflag: searchFlag)
                                                   : AcademyList(
-                                                      auth: _auth,
                                                       text:
                                                           AppLocalizations
                                                                   .of(context)!
@@ -1290,7 +1286,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       searchflag: searchFlag)
                                               : _academyModel != null
                                                   ? AcademyList(
-                                                      auth: _auth,
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
@@ -1338,7 +1333,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   text: AppLocalizations.of(
                                                           context)!
                                                       .innovative,
-                                                  auth: _auth,
                                                   empty: false,
                                                   innovativeDetail:
                                                       _innovativeDetail,
@@ -1350,7 +1344,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                           context)!
                                                       .innovative,
                                                   empty: true,
-                                                  auth: _auth,
                                                   innovativeDetail:
                                                       _innovativeDetail,
                                                 )

@@ -416,41 +416,6 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                             SizedBox(
                               height: sizeHeight * 0.02,
                             ),
-                            // Text(
-                            //   AppLocalizations.of(context)!.code,
-                            //   style: TextStyle(
-                            //       color: MyAppState.mode == ThemeMode.light
-                            //           ? const Color(0XFF032040)
-                            //           : Colors.white),
-                            // ),
-                            // SizedBox(
-                            //   height: sizeHeight * 0.01,
-                            // ),
-                            // textFieldWidget(
-                            //     controller: _codeController,
-                            //     hintText: AppLocalizations.of(context)!.code,
-                            //     focus: codeFocus,
-                            //     onSubmitted: (value) {
-                            //       FocusScope.of(context)
-                            //           .requestFocus(descriptionFocus);
-                            //       return null;
-                            //     },
-                            //     onChanged: (value) {
-                            //       widget.detail.pitchDetailModel!.code = value!;
-                            //       return '';
-                            //     },
-                            //     border: OutlineInputBorder(
-                            //         borderSide: const BorderSide(color: Colors.grey),
-                            //         borderRadius: BorderRadius.circular(12)),
-                            //     enableBorder: OutlineInputBorder(
-                            //         borderSide: const BorderSide(color: Colors.grey),
-                            //         borderRadius: BorderRadius.circular(12)),
-                            //     focusBorder: OutlineInputBorder(
-                            //         borderSide: const BorderSide(color: Colors.grey),
-                            //         borderRadius: BorderRadius.circular(12))),
-                            // SizedBox(
-                            //   height: sizeHeight * 0.02,
-                            // ),
                             Text(
                               AppLocalizations.of(context)!.description,
                               style: TextStyle(
