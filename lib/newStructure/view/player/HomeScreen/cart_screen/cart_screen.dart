@@ -263,9 +263,32 @@ class CartScreenState extends State<CartScreen> {
                                             print(cartListSelected);
                                             print(_specificAcademyListSelected);
                                           } else {
-                                            cartListSelected.add(item);
-                                            _specificAcademyListSelected
-                                                .add(reversedAcademy[index]);
+                                            List<String> dateParts =
+                                                item.bookedDate!.split("-");
+                                            int year = int.parse(dateParts[0]);
+                                            int month = int.parse(dateParts[1]);
+                                            int day = int.parse(dateParts[2]);
+                                            DateTime givenDateTime =
+                                                DateTime(year, month, day);
+                                            DateTime currentDateTime =
+                                                DateTime.now();
+                                            currentDateTime = DateTime(
+                                                currentDateTime.year,
+                                                currentDateTime.month,
+                                                currentDateTime.day);
+                                            print(givenDateTime);
+                                            print(currentDateTime);
+                                            if (givenDateTime
+                                                    .isAfter(currentDateTime) ||
+                                                givenDateTime.isAtSameMomentAs(
+                                                    currentDateTime)) {
+                                              cartListSelected.add(item);
+                                              _specificAcademyListSelected
+                                                  .add(reversedAcademy[index]);
+                                            } else {
+                                              showMessage(
+                                                  "You can't select previous day session");
+                                            }
                                             print('added');
                                             print(cartListSelected);
                                             print(_specificAcademyListSelected);

@@ -5,7 +5,6 @@ import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/modelClass/campaign.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/modelClass/territory_model_class.dart';
-import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/carousel.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/groundDetail.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/innovative_list.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/specific_sport_list_screen.dart';
@@ -21,7 +20,7 @@ import '../../../../../network/network_calls.dart';
 import '../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../../app_colors/app_colors.dart';
 import '../widgets/textFormField.dart';
-import 'shimmerWidgets.dart';
+import 'viewMoreBookPitch/view_more_book_academy.dart';
 
 class HomeScreenView extends StatefulWidget {
   const HomeScreenView({super.key});
@@ -640,6 +639,13 @@ class HomeScreenViewState extends State<HomeScreenView> {
     print(academyIds);
   }
 
+  void rebuildParent() {
+    setState(() {
+      searchFlag = false;
+      print('jjjjjjjjjjjjhi');
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -1180,19 +1186,19 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                 image: campaignImage,
                                                 links: campaignLinks,
                                                 endDate: campaignEndDate,
-                                              )
-                                              // Carousel(image: const [
-                                              //   'https://tse1.mm.bing.net/th?id=OIP.PVOhIhZ2cfFJVWI3U9WG6AHaE7&pid=Api&P=0&h=220',
-                                              //   'https://tse1.mm.bing.net/th?id=OIP.ptX0bcAkl4cTcMWe9JvyhgHaEK&pid=Api&P=0&h=220',
-                                              //   'https://sp.yimg.com/ib/th?id=OIP.ioIpvjaAIPNY7QduhbyCnAHaE8&pid=Api&w=148&h=148&c=7&rs=1'
-                                              // ]),
-                                              )
+                                              ))
                                           : SizedBox(
                                               height: height * 0.2,
                                               width: width,
-                                              child: const Center(
-                                                  child:
-                                                      CircularProgressIndicator())),
+                                              child: cachedNetworkImage(
+                                                height: height * 0.3,
+                                                imageFit: BoxFit.fill,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                cuisineImageUrl: '',
+                                              ),
+                                            ),
                                       Material(
                                           color: AppColors.transparent,
                                           child: ConstrainedBox(
@@ -1211,12 +1217,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                               physics:
                                                   const AlwaysScrollableScrollPhysics(),
                                               tabAlignment: TabAlignment.center,
-                                              // indicator: BoxDecoration(
-                                              //   color: Color(0xff1d7e55),
-                                              //   borderRadius: BorderRadius.circular(8),
-                                              // ),
-                                              // padding: EdgeInsets.symmetric(
-                                              //     vertical: height * 0.004),
                                               tabs: [
                                                 SizedBox(
                                                   width: width * 0.4,
@@ -1272,23 +1272,33 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
+                                                      rebuildParent: () {
+                                                        rebuildParent();
+                                                        // setState(() {});
+                                                      },
                                                       academyDetail:
                                                           academyModel,
                                                       searchflag: searchFlag)
                                                   : AcademyList(
-                                                      text:
-                                                          AppLocalizations
-                                                                  .of(context)!
-                                                              .academy,
+                                                      text: AppLocalizations.of(
+                                                              context)!
+                                                          .academy,
                                                       academyDetail:
                                                           academyModel,
                                                       empty: true,
+                                                      rebuildParent: () {
+                                                        rebuildParent();
+                                                      },
                                                       searchflag: searchFlag)
                                               : _academyModel != null
                                                   ? AcademyList(
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
+                                                      rebuildParent: () {
+                                                        rebuildParent();
+                                                        navigateToViewMoreAcademy();
+                                                      },
                                                       academyDetail:
                                                           _academyModel,
                                                       searchflag: searchFlag)
@@ -1401,5 +1411,14 @@ class HomeScreenViewState extends State<HomeScreenView> {
   // ignore: non_constant_identifier_names
   void NavigateToNotification() {
     Navigator.pushNamed(context, RouteNames.notificationScreen);
+  }
+
+  void navigateToViewMoreAcademy() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => ViewMoreBookAcademyInnovativeScreen(
+                  academyInnovative: true,
+                )));
   }
 }

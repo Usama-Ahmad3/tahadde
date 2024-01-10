@@ -61,9 +61,9 @@ class PlayerHomeScreenState extends State<PlayerHomeScreen> {
   }
 
   getCartAcademies() async {
-    cartModel.clear();
     await NetworkCalls().getCartAcademy(
         onSuccess: (detail) {
+          cartModel.clear();
           for (int i = 0; i < detail.length; i++) {
             cartModel.add(CartModel.fromJson(detail[i]));
           }

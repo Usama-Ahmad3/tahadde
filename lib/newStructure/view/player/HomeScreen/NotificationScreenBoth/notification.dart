@@ -123,7 +123,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           ),
           body: _isLoading
               ? Padding(
-                  padding: EdgeInsets.only(top: 120.0 * fem),
+                  padding: EdgeInsets.only(top: 20.0 * fem),
                   child: ListView.builder(
                     itemBuilder: (_, __) => Padding(
                       padding: const EdgeInsets.only(bottom: 8.0, top: 5),
@@ -137,35 +137,54 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       child: Column(
                         children: [
                           detail!.isEmpty
-                              ? Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: height * 0.2,
-                                    ),
-                                    SizedBox(
-                                      height: width * .4,
-                                      width: height * .4,
-                                      child: Lottie.asset(
-                                        'assets/lottiefiles/notification.json',
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.02,
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!
-                                          .notificationDec,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: const Color(0XFFB7B7B7),
-                                              fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                )
+                              ? Container(
+                                  color: Colors.black,
+                                  child: Container(
+                                      height: height * 0.9,
+                                      width: width,
+                                      decoration: BoxDecoration(
+                                          color:
+                                              MyAppState.mode == ThemeMode.light
+                                                  ? AppColors.white
+                                                  : AppColors.darkTheme,
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20))),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: width * 0.059,
+                                            vertical: height * 0.02),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(
+                                              height: width * .35,
+                                              width: height * .4,
+                                              child: Lottie.asset(
+                                                'assets/lottiefiles/notification.json',
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.02,
+                                            ),
+                                            Text(
+                                              AppLocalizations.of(context)!
+                                                  .notificationDec,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          0XFFB7B7B7),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                            ),
+                                          ],
+                                        ),
+                                      )))
                               : Container(
                                   height: widget.player ? 700 * fem : 650 * fem,
                                   decoration: BoxDecoration(

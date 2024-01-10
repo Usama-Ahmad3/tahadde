@@ -74,6 +74,10 @@ class AppLocalizations {
     return Intl.message('Total Profit', name: 'totalProfit');
   }
 
+  String get addMore {
+    return Intl.message('Add More', name: 'addMore');
+  }
+
   String get commission {
     return Intl.message('Commission', name: 'commission');
   }
@@ -132,7 +136,7 @@ class AppLocalizations {
   }
 
   String get doYouWantProceed {
-    return Intl.message('Do You Want To Proceed', name: 'doYouWantProceed');
+    return Intl.message('Do You Want To Proceed?', name: 'doYouWantProceed');
   }
 
   String get loginRequiredCart {
@@ -142,6 +146,16 @@ class AppLocalizations {
 
   String get noItemsInCart {
     return Intl.message('Nothing In The Cart', name: 'noItemsInCart');
+  }
+
+  String get cantSelect {
+    return Intl.message("You can't select previous day session",
+        name: 'cantSelect');
+  }
+
+  String get cantReview {
+    return Intl.message("You can't edit in review academies",
+        name: 'cantReview');
   }
 
   String get add {

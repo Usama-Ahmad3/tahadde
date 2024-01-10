@@ -119,18 +119,18 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                       itemCount: academyDetail.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap:
-                              // academyDetail[index].isDecline! ?
-                              () {
-                            Map detail = {
-                              "id": academyDetail[index].academyId,
-                              "name": academyDetail[index].academyNameEnglish
-                            };
-                            navigateToEditVenues(detail);
-                            // navigateToManageSlotsDetail(pitchDetail[index]);
+                          onTap: () {
+                            if (academyDetail[index].status != 'In Review') {
+                              Map detail = {
+                                "id": academyDetail[index].academyId,
+                                "name": academyDetail[index].academyNameEnglish
+                              };
+                              navigateToEditAcademies(detail);
+                            } else {
+                              showMessage(
+                                  AppLocalizations.of(context)!.cantReview);
+                            }
                           },
-                          // : () => showMessage(
-                          //   "Sorry, you can not edit verified and in-review Academy"),
                           child: Padding(
                             padding: EdgeInsets.only(
                                 left: sizeWidth * .059,
@@ -179,23 +179,56 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       flaxibleGap(1),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                                      .locale ==
-                                                  'en'
-                                              ? "${academyDetail[index].academyNameEnglish}"
-                                              : "${academyDetail[index].academyNameArabic}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                color: MyAppState.mode ==
-                                                        ThemeMode.light
-                                                    ? AppColors.themeColor
-                                                    : AppColors.white,
-                                                fontWeight: FontWeight.w700,
-                                                fontFamily: "Poppins",
-                                              )),
+                                      SizedBox(
+                                        width: sizeWidth * 0.65,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                                AppLocalizations.of(context)!
+                                                            .locale ==
+                                                        'en'
+                                                    ? "${academyDetail[index].academyNameEnglish!.length > 15 ? academyDetail[index].academyNameEnglish!.substring(0, 15) : academyDetail[index].academyNameEnglish}"
+                                                    : "${academyDetail[index].academyNameArabic!.length > 15 ? academyDetail[index].academyNameArabic!.substring(0, 15) : academyDetail[index].academyNameArabic}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? AppColors.themeColor
+                                                          : AppColors.white,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "Poppins",
+                                                    )),
+                                            academyDetail[index].status ==
+                                                    "Verified"
+                                                ? const Icon(
+                                                    Icons.gpp_good_outlined,
+                                                    color:
+                                                        AppColors.appThemeColor,
+                                                  )
+                                                : Text(
+                                                    academyDetail[index]
+                                                        .status
+                                                        .toString(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors.red
+                                                              : AppColors.red,
+                                                          fontFamily: "Poppins",
+                                                        )),
+                                          ],
+                                        ),
+                                      ),
                                       SizedBox(
                                         width: sizeWidth * .7,
                                         child: Text(
@@ -333,7 +366,7 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
         arguments: detail);
   }
 
-  void navigateToEditVenues(Map detail) {
+  void navigateToEditAcademies(Map detail) {
     print(detail);
     Navigator.push(context,
         MaterialPageRoute(builder: (_) => EditAcademyScreen(detail: detail)));

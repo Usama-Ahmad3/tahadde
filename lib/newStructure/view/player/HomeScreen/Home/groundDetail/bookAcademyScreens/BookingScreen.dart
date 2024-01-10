@@ -346,15 +346,22 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                       ? AppColors.black
                       : AppColors.white),
             ),
-            content: Text(
-              AppLocalizations.of(context)!.bookNow,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.appThemeColor),
-            ),
             actions: [
               InkWell(
                 onTap: () {
+                  _slotTime.clear();
+                  indexItem = 1;
+                  playerController.clear();
+                  _slotPrice.pricePerPlayer.clear();
+                  slotInformation = {};
+                  list.clear();
+                  academyId.clear();
+                  sessionIdList.clear();
+                  academyDetail.clear();
+                  setState(() {
+
+                  });
                   Navigator.pop(context);
-                  navigateToHomeScreen();
                 },
                 child: Center(
                   child: Container(
@@ -366,7 +373,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                     ),
                     child: Center(
                       child: Text(
-                        AppLocalizations.of(context)!.gotoHomepage,
+                        AppLocalizations.of(context)!.addMore,
                         style: TextStyle(color: AppColors.white),
                       ),
                     ),

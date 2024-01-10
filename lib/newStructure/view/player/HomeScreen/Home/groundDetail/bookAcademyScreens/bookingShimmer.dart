@@ -100,53 +100,6 @@ class BookingShimmer {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ///ground List
-                      // Text('Ground List',
-                      //     style: TextStyle(fontSize: height * 0.03)),
-                      // ...List.generate(
-                      //     3,
-                      //     (index) => Padding(
-                      //           padding: EdgeInsets.symmetric(
-                      //               horizontal: width * 0.01,
-                      //               vertical: height * 0.01),
-                      //           child: Container(
-                      //             decoration: BoxDecoration(
-                      //                 color: Colors.white70,
-                      //                 borderRadius: BorderRadius.circular(10),
-                      //                 boxShadow: const [
-                      //                   BoxShadow(
-                      //                     color: Colors.black12,
-                      //                     spreadRadius: 1,
-                      //                     offset: Offset(0, 1),
-                      //                     blurStyle: BlurStyle.outer,
-                      //                   )
-                      //                 ]),
-                      //             child: Row(
-                      //               crossAxisAlignment:
-                      //                   CrossAxisAlignment.center,
-                      //               mainAxisAlignment:
-                      //                   MainAxisAlignment.spaceBetween,
-                      //               children: [
-                      //                 SizedBox(
-                      //                   width: width * 0.01,
-                      //                 ),
-                      //                 SizedBox(
-                      //                   width: width * 0.03,
-                      //                 ),
-                      //                 const Text(''),
-                      //                 SizedBox(
-                      //                   width: width * 0.3,
-                      //                 ),
-                      //                 Checkbox(
-                      //                     shape: const CircleBorder(),
-                      //                     activeColor: Colors.greenAccent,
-                      //                     value: true,
-                      //                     onChanged: (onChanged) {}),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         )),
-
                       Column(
                         children: [
                           ...List.generate(1, (index) {
@@ -229,32 +182,6 @@ class BookingShimmer {
                               style: TextStyle(
                                   color: appThemeColor,
                                   fontSize: height * 0.017),
-                            ),
-                            SizedBox(
-                              width: width * .4,
-                              child: CustomDropdown(
-                                  leadingIcon: false,
-                                  icon: Image.asset(
-                                    "assets/images/drop_down.png",
-                                    height: 6,
-                                    color: appThemeColor,
-                                  ),
-                                  dropdownButtonStyle: DropdownButtonStyle(
-                                    width: width * 0.03,
-                                    height: height * 0.05,
-                                    elevation: 1,
-                                    backgroundColor: Colors.white,
-                                  ),
-                                  dropdownStyle: DropdownStyle(
-                                    borderRadius: BorderRadius.circular(4),
-                                    elevation: 6,
-                                    padding: const EdgeInsets.all(5),
-                                  ),
-                                  items: const [],
-                                  onChange: (e, int) {},
-                                  child: const Text('',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(color: appThemeColor))),
                             ),
                           ],
                         ),

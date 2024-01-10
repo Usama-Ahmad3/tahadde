@@ -46,10 +46,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPitchImage":
             MessageLookupByLibrary.simpleMessage("إضافة صورة الأكاديمية"),
         "addPlayerC": MessageLookupByLibrary.simpleMessage("إضافة لاعب"),
+        "cantReview": MessageLookupByLibrary.simpleMessage(
+            "لا يمكنك التعديل في أكاديميات المراجعة"),
+        "cantSelect": MessageLookupByLibrary.simpleMessage(
+            "لا يمكنك تحديد جلسة اليوم السابق"),
         "addPlayers": MessageLookupByLibrary.simpleMessage("أضف لاعبين"),
         "addSession": MessageLookupByLibrary.simpleMessage("أضف الجلسة"),
         "doYouWantProceed":
-            MessageLookupByLibrary.simpleMessage("هل تريد المتابعة"),
+            MessageLookupByLibrary.simpleMessage("هل تريد المتابعة؟"),
         "addanotherdocument":
             MessageLookupByLibrary.simpleMessage("أضف مستندًا آخر"),
         "addnewpitchdetails":
@@ -198,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardHolderNumber":
             MessageLookupByLibrary.simpleMessage("اسم صاحب البطاقة"),
         "cardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
+        "addMore": MessageLookupByLibrary.simpleMessage("أضف المزيد"),
         "cardNumberC": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
         "challengeTeam": MessageLookupByLibrary.simpleMessage("تحدى فريق"),
         "changeImage": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),

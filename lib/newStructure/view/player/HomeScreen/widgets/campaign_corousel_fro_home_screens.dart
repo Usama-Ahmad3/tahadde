@@ -53,11 +53,11 @@ class _CampaignCorouselState extends State<CampaignCorousel> {
   void initState() {
     super.initState();
     for (int i = 0; i < widget.image.length; i++) {
-      String currentDay = DateTime.now().day.toString();
+      int currentDay = DateTime.now().day;
       DateTime givenDateTime =
           DateFormat("yyyy-MM-dd").parse(widget.endDate[i]);
-      String givenDay = givenDateTime.day.toString();
-      if (currentDay == givenDay) {
+      int givenDay = givenDateTime.day;
+      if (currentDay == givenDay || givenDay < currentDay) {
         widget.links.removeAt(i);
         widget.image.removeAt(i);
         widget.endDate.removeAt(i);

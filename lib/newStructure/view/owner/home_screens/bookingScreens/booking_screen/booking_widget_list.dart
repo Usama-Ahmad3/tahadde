@@ -66,17 +66,35 @@ class BookingWidgetList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   flaxibleGap(1),
-                  Text(
-                      AppLocalizations.of(context)!.locale == 'en'
-                          ? "${academyDetail.academyNameEnglish}"
-                          : "${academyDetail.academyNameArabic}",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: MyAppState.mode == ThemeMode.light
-                                ? AppColors.themeColor
-                                : AppColors.white,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins",
-                          )),
+                  SizedBox(
+                    width: sizeWidth * 0.66,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            AppLocalizations.of(context)!.locale == 'en'
+                                ? academyDetail.academyNameEnglish!.length > 15
+                                    ? academyDetail.academyNameEnglish!
+                                        .substring(0, 15)
+                                    : academyDetail.academyNameEnglish!
+                                : "${academyDetail.academyNameArabic!.length > 15 ? academyDetail.academyNameArabic!.substring(0, 15) : academyDetail.academyNameArabic}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? AppColors.themeColor
+                                      : AppColors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "Poppins",
+                                )),
+                        const Icon(
+                          Icons.gpp_good_outlined,
+                          color: AppColors.appThemeColor,
+                        )
+                      ],
+                    ),
+                  ),
                   SizedBox(
                     width: sizeWidth * .7,
                     child: Text("${academyDetail.academyLocation}",

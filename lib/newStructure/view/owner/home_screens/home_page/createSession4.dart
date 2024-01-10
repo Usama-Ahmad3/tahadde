@@ -259,11 +259,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniEndFloat,
           floatingActionButton: Align(
-            alignment: Alignment(size.width * 0.0027, size.height * 0.00109),
+            alignment: Alignment(size.width * 0.0027, 0.87),
             child: SpeedDial(
               elevation: 3,
               label: Text(
-                AppLocalizations.of(context)!.addSession,
+                AppLocalizations.of(context)!.add,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: MyAppState.mode == ThemeMode.light
                           ? AppColors.white
@@ -499,9 +499,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           : AppColors.grey200,
                                                 ),
                                                 child: Text(
-                                                  _weakList[index]
-                                                      .name
-                                                      .substring(0, 3),
+                                                  "${_weakList[index].name[0].toString().toUpperCase()}${_weakList[index].name.substring(1, 3)}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyMedium!
@@ -571,10 +569,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       : AppColors.grey200,
                                             ),
                                             child: Text(
-                                              _weakList[index]
-                                                  .name
-                                                  .toString()
-                                                  .substring(0, 3),
+                                              "${_weakList[index].name[0].toString().toUpperCase()}${_weakList[index].name.substring(1, 3)}",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium!
@@ -2032,7 +2027,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                                 size.width * 0.01,
                                                                           ),
                                                                           Text(
-                                                                            item.value.name.toString(),
+                                                                            "${item.value.name[0].toUpperCase()}${item.value.name.substring(1)}",
                                                                             style:
                                                                                 TextStyle(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
                                                                           )
@@ -2075,18 +2070,206 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           } else {
                                             var maxEndDate;
                                             var minStartDate;
+                                            final startMinutes = sessionDetail
+                                                        .startTime!.hour *
+                                                    60 +
+                                                sessionDetail.startTime!.minute;
+                                            final endMinutes = sessionDetail
+                                                        .endTime!.hour *
+                                                    60 +
+                                                sessionDetail.endTime!.minute;
+                                            final availableDurations =
+                                                sessionDetail.slotDuration;
 
-                                            /// (1) if there is already a session then if statement, for second or third session if statement not run on first session
-                                            if (_sessionMap.containsKey(
-                                                    _weakList[_weakIndex]
-                                                        .slug) &&
-                                                !_sessionMap[
-                                                        _weakList[_weakIndex]
-                                                            .slug]![0]
-                                                    .isHoliday!) {
-                                              print('1');
-                                              if (!sessionDetail.isHoliday!) {
-                                                sessionDetail.isHoliday = false;
+                                            ///(First)
+                                            if ((endMinutes - startMinutes) !=
+                                                availableDurations) {
+                                              showMessage(
+                                                  'Please select start and end time according to your selected slot duration!');
+                                            }
+
+                                            ///(First)
+                                            else {
+                                              /// (1) if there is already a session then if statement, for second or third session if statement not run on first session
+                                              if (_sessionMap.containsKey(
+                                                      _weakList[_weakIndex]
+                                                          .slug) &&
+                                                  !_sessionMap[
+                                                          _weakList[_weakIndex]
+                                                              .slug]![0]
+                                                      .isHoliday!) {
+                                                print('1');
+                                                if (!sessionDetail.isHoliday!) {
+                                                  sessionDetail.isHoliday =
+                                                      false;
+                                                  sessionDetail.graceTime ??=
+                                                      20;
+                                                  sessionDetail.slotDuration ??=
+                                                      20;
+                                                  sessionDetail.startTime ??=
+                                                      Intl.withLocale('en',
+                                                          () => DateTime.now());
+                                                  sessionDetail.endTime ??=
+                                                      Intl.withLocale('en',
+                                                          () => DateTime.now());
+                                                  int index = _sessionMap[
+                                                          _weakList[_weakIndex]
+                                                              .slug]!
+                                                      .length;
+
+                                                  ///adding sessions that want to copy
+                                                  if (_sessionMap[
+                                                          _weakList[_weakIndex]
+                                                              .slug] !=
+                                                      null) {
+                                                    minStartDate = _sessionMap[
+                                                            _weakList[
+                                                                    _weakIndex]
+                                                                .slug]!
+                                                        .reduce((previous,
+                                                                element) =>
+                                                            (previous.startTime)!
+                                                                    .isBefore(
+                                                                        element
+                                                                            .startTime!)
+                                                                ? previous
+                                                                : element);
+                                                    maxEndDate = _sessionMap[
+                                                            _weakList[
+                                                                    _weakIndex]
+                                                                .slug]!
+                                                        .reduce((previous,
+                                                                current) =>
+                                                            (previous.endTime)!
+                                                                    .isAfter(current
+                                                                        .endTime!)
+                                                                ? previous
+                                                                : current);
+                                                    _copySessions.clear();
+
+                                                    ///A
+                                                    if ((sessionDetail
+                                                                .startTime!
+                                                                .isBefore(
+                                                                    minStartDate
+                                                                        .startTime) &&
+                                                            sessionDetail
+                                                                .endTime!
+                                                                .isBefore(
+                                                                    minStartDate
+                                                                        .startTime)) ||
+                                                        (sessionDetail
+                                                                .startTime!
+                                                                .isAfter(maxEndDate
+                                                                    .endTime) &&
+                                                            sessionDetail
+                                                                .endTime!
+                                                                .isAfter(maxEndDate
+                                                                    .endTime))) {
+                                                      copySessionIndex
+                                                          .forEach((element) {
+                                                        _copySessions.add(
+                                                            _weakList[element]
+                                                                .slug);
+                                                      });
+                                                      _copySessions
+                                                          .forEach((element) {
+                                                        ///check if the copy day session is not conflict then add otherwise don't add on that day this session
+                                                        minStartDate = _sessionMap[
+                                                                element]!
+                                                            .reduce((previous,
+                                                                    current) =>
+                                                                (previous.startTime)!
+                                                                        .isBefore(
+                                                                            current.startTime!)
+                                                                    ? previous
+                                                                    : current);
+                                                        maxEndDate = _sessionMap[
+                                                                element]!
+                                                            .reduce((previous,
+                                                                    current) =>
+                                                                (previous.endTime)!
+                                                                        .isAfter(
+                                                                            current.endTime!)
+                                                                    ? previous
+                                                                    : current);
+
+                                                        ///(B) check that the other days are not conflicting with current session
+                                                        if ((sessionDetail
+                                                                    .startTime!
+                                                                    .isBefore(
+                                                                        minStartDate
+                                                                            .startTime) &&
+                                                                sessionDetail
+                                                                    .endTime!
+                                                                    .isBefore(
+                                                                        minStartDate
+                                                                            .startTime)) ||
+                                                            (sessionDetail
+                                                                    .startTime!
+                                                                    .isAfter(
+                                                                        maxEndDate
+                                                                            .endTime) &&
+                                                                sessionDetail
+                                                                    .endTime!
+                                                                    .isAfter(
+                                                                        maxEndDate
+                                                                            .endTime))) {
+                                                          _sessionMap[element]!
+                                                              .add(
+                                                                  SessionDetail(
+                                                            slotDuration:
+                                                                sessionDetail
+                                                                    .slotDuration,
+                                                            endTime:
+                                                                sessionDetail
+                                                                    .endTime,
+                                                            startTime:
+                                                                sessionDetail
+                                                                    .startTime,
+                                                            sessionNameAr:
+                                                                sessionDetail
+                                                                    .sessionNameAr,
+                                                            sessionName:
+                                                                sessionDetail
+                                                                    .sessionName,
+                                                          ));
+                                                        }
+
+                                                        ///(B) if conflict then don't add this sessions just show the message
+                                                        else {
+                                                          showMessage(
+                                                              "Your time is not proper as compare to previous sessions of $element");
+                                                        }
+                                                      });
+                                                      _sessionMap[_weakList[
+                                                                  _weakIndex]
+                                                              .slug]!
+                                                          .add(sessionDetail);
+                                                    } else {
+                                                      showMessage(
+                                                          "Your time is not proper as compare to previous sessions");
+                                                    }
+                                                  }
+                                                }
+
+                                                /// if Holiday
+                                                else {
+                                                  print('sgshgbbs');
+                                                  List<SessionDetail>
+                                                      sessionList = [];
+                                                  sessionList
+                                                      .add(sessionDetail);
+                                                  _sessionMap[
+                                                      _weakList[_weakIndex]
+                                                          .slug] = sessionList;
+                                                }
+                                                Navigator.pop(context);
+                                              }
+
+                                              /// (1) adding first session if there is no session created before
+                                              else {
+                                                print('2sessions');
                                                 sessionDetail.graceTime ??= 20;
                                                 sessionDetail.slotDuration ??=
                                                     20;
@@ -2096,29 +2279,36 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 sessionDetail.endTime ??=
                                                     Intl.withLocale('en',
                                                         () => DateTime.now());
-                                                int index = _sessionMap[
-                                                        _weakList[_weakIndex]
-                                                            .slug]!
-                                                    .length;
-
-                                                ///adding sessions that want to copy
-                                                if (_sessionMap[
-                                                        _weakList[_weakIndex]
-                                                            .slug] !=
-                                                    null) {
+                                                List<SessionDetail>
+                                                    sessionList = [];
+                                                sessionList.add(sessionDetail);
+                                                _sessionMap[
+                                                    _weakList[_weakIndex]
+                                                        .slug] = sessionList;
+                                                _copySessions.clear();
+                                                copySessionIndex
+                                                    .forEach((element) {
+                                                  _copySessions.add(
+                                                      _weakList[element].slug);
+                                                });
+                                                _copySessions
+                                                    .forEach((element) {
+                                                  ///initialize to empty list if there is no session otherwise just add
+                                                  if (_sessionMap[element] ==
+                                                      null) {
+                                                    _sessionMap[element] = [];
+                                                  }
                                                   minStartDate = _sessionMap[
-                                                          _weakList[_weakIndex]
-                                                              .slug]!
+                                                          element]!
                                                       .reduce((previous,
-                                                              element) =>
+                                                              current) =>
                                                           (previous.startTime)!
-                                                                  .isBefore(element
+                                                                  .isBefore(current
                                                                       .startTime!)
                                                               ? previous
-                                                              : element);
+                                                              : current);
                                                   maxEndDate = _sessionMap[
-                                                          _weakList[_weakIndex]
-                                                              .slug]!
+                                                          element]!
                                                       .reduce((previous,
                                                               current) =>
                                                           (previous.endTime)!
@@ -2126,9 +2316,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                       .endTime!)
                                                               ? previous
                                                               : current);
-                                                  _copySessions.clear();
 
-                                                  ///A
+                                                  ///(B) check that the other days are not conflicting with current session while copying
                                                   if ((sessionDetail.startTime!
                                                               .isBefore(minStartDate
                                                                   .startTime) &&
@@ -2141,99 +2330,32 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           sessionDetail.endTime!
                                                               .isAfter(maxEndDate
                                                                   .endTime))) {
-                                                    copySessionIndex
-                                                        .forEach((element) {
-                                                      _copySessions.add(
-                                                          _weakList[element]
-                                                              .slug);
-                                                    });
-                                                    _copySessions
-                                                        .forEach((element) {
-                                                      _sessionMap[element]!
-                                                          .add(SessionDetail(
-                                                        slotDuration:
-                                                            sessionDetail
-                                                                .slotDuration,
-                                                        endTime: sessionDetail
-                                                            .endTime,
-                                                        startTime: sessionDetail
-                                                            .startTime,
-                                                        sessionNameAr:
-                                                            sessionDetail
-                                                                .sessionNameAr,
-                                                        sessionName:
-                                                            sessionDetail
-                                                                .sessionName,
-                                                      ));
-                                                    });
-                                                    _sessionMap[_weakList[
-                                                                _weakIndex]
-                                                            .slug]!
-                                                        .add(sessionDetail);
-                                                  } else {
-                                                    showMessage(
-                                                        "Your time is not proper as compare to previous sessions");
+                                                    _sessionMap[element]!
+                                                        .add(SessionDetail(
+                                                      slotDuration:
+                                                          sessionDetail
+                                                              .slotDuration,
+                                                      endTime:
+                                                          sessionDetail.endTime,
+                                                      startTime: sessionDetail
+                                                          .startTime,
+                                                      sessionNameAr:
+                                                          sessionDetail
+                                                              .sessionNameAr,
+                                                      sessionName: sessionDetail
+                                                          .sessionName,
+                                                    ));
                                                   }
-                                                }
-                                              }
 
-                                              /// if Holiday
-                                              else {
-                                                print('sgshgbbs');
-                                                List<SessionDetail>
-                                                    sessionList = [];
-                                                sessionList.add(sessionDetail);
-                                                _sessionMap[
-                                                    _weakList[_weakIndex]
-                                                        .slug] = sessionList;
+                                                  ///(B)show message if conflicting with previous days sessions while copying
+                                                  else {
+                                                    showMessage(
+                                                        "Your time is not proper as compare to previous sessions of $element");
+                                                  }
+                                                });
+                                                Navigator.of(context).pop();
                                               }
                                             }
-
-                                            /// (1) adding first session if there is no session created before
-                                            else {
-                                              print('2sessions');
-                                              sessionDetail.graceTime ??= 20;
-                                              sessionDetail.slotDuration ??= 20;
-                                              sessionDetail.startTime ??=
-                                                  Intl.withLocale('en',
-                                                      () => DateTime.now());
-                                              sessionDetail.endTime ??=
-                                                  Intl.withLocale('en',
-                                                      () => DateTime.now());
-                                              List<SessionDetail> sessionList =
-                                                  [];
-                                              sessionList.add(sessionDetail);
-                                              _sessionMap[_weakList[_weakIndex]
-                                                  .slug] = sessionList;
-                                              _copySessions.clear();
-                                              copySessionIndex
-                                                  .forEach((element) {
-                                                _copySessions.add(
-                                                    _weakList[element].slug);
-                                              });
-                                              print(_copySessions);
-                                              _copySessions.forEach((element) {
-                                                _sessionMap[element] = [];
-                                                _sessionMap[element]!
-                                                    .add(SessionDetail(
-                                                  slotDuration: sessionDetail
-                                                      .slotDuration,
-                                                  endTime:
-                                                      sessionDetail.endTime,
-                                                  startTime:
-                                                      sessionDetail.startTime,
-                                                  sessionNameAr: sessionDetail
-                                                      .sessionNameAr,
-                                                  sessionName:
-                                                      sessionDetail.sessionName,
-                                                ));
-                                              });
-                                              print(sessionList);
-                                              print(sessionDetail);
-                                              print(_sessionMap[
-                                                  _weakList[_weakIndex].slug]);
-                                            }
-                                            Navigator.of(context).pop();
                                             onTap();
                                           }
                                         },
@@ -2250,7 +2372,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                               ),
                             ),
                           ),
-                        ))); //whatever you're returning, does not have to be a Container
+                        )));
           });
         });
   }

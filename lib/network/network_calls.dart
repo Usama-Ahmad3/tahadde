@@ -56,6 +56,7 @@ class NetworkCalls {
   Map<String, String> headerWithToken(
       SharedPreferences pref, String data, HttpMethod method) {
     Map<String, String> headers = header(pref, data, method);
+    print(pref.get('token'));
     if (pref.get('token') != null) {
       headers.addAll({
         "Authorization": "token ${pref.get('token')}",
@@ -2150,9 +2151,7 @@ class NetworkCalls {
     http.Response response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      response = await http.get(
-          Uri.parse(
-              "$baseUrl${RestApis.playerbookings}?language=${prefs.get("lang")}"),
+      response = await http.get(Uri.parse("$baseUrl${RestApis.playerbookings}"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       print('playerbookings${response.statusCode}');
       print('playerbookings${response.body}');
@@ -2189,7 +2188,7 @@ class NetworkCalls {
     try {
       response = await http.get(
           Uri.parse(
-              "https://ahmad223.pythonanywhere.com/api/v1/inovativehub/inovative/1/bookings/"),
+              "https://ahmad223.pythonanywhere.com/api/v1/inovativehub/inovative/bookings/"),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       print('playerbookingsInnovative${response.statusCode}');
       print('playerbookingsInnovative${response.body}');

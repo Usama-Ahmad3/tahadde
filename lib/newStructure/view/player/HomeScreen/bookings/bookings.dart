@@ -649,7 +649,7 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
   }
 
   void navigateToLogin() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (_) => LoginScreen(

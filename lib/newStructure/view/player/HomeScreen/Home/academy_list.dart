@@ -16,12 +16,14 @@ class AcademyList extends StatefulWidget {
   var academyDetail;
   bool tagForView;
   bool empty;
+  VoidCallback? rebuildParent;
   bool? searchflag;
   String text;
   bool? myInterest;
 
   AcademyList(
       {super.key,
+      this.rebuildParent,
       this.searchflag = false,
       required this.text,
       this.myInterest = false,
@@ -68,11 +70,6 @@ class _AcademyListState extends State<AcademyList> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     var mode = MyAppState.mode;
     double baseWidth = 375;
@@ -104,28 +101,21 @@ class _AcademyListState extends State<AcademyList> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            navigateToViewMoreAcademy();
-                          },
-                          child: Text(
-                            widget.text,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.25 * ffem / fem,
-                                    letterSpacing: -0.2 * fem,
-                                    color: mode == ThemeMode.light
-                                        ? const Color(0xff050505)
-                                        : const Color(0xffffffff)),
-                          ),
+                        Text(
+                          widget.text,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.25 * ffem / fem,
+                                  letterSpacing: -0.2 * fem,
+                                  color: mode == ThemeMode.light
+                                      ? const Color(0xff050505)
+                                      : const Color(0xffffffff)),
                         ),
                         InkWell(
-                          onTap: () {
-                            navigateToViewMoreAcademy();
-                          },
+                          onTap: widget.rebuildParent,
                           child: Text(
                             AppLocalizations.of(context)!.viewAll,
                             style: Theme.of(context)
@@ -171,8 +161,7 @@ class _AcademyListState extends State<AcademyList> {
                           children: [
                             Center(
                               child: Text(
-                                'no events available',
-                                // AppLocalizations.of(context)!.noAcademy,
+                                AppLocalizations.of(context)!.noAcademy,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -334,15 +323,6 @@ class _AcademyListState extends State<AcademyList> {
                   GroundDetail(detail: detail, myInterest: widget.myInterest),
             ));
     // Navigator.pushNamed(context, RouteNames.groundDetail, arguments: detail);
-  }
-
-  void navigateToViewMoreAcademy() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => ViewMoreBookAcademyInnovativeScreen(
-                  academyInnovative: true,
-                )));
   }
 
   void navigateToLogin() {

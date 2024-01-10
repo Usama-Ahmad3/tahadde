@@ -35,11 +35,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("Account holder Name"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account number"),
+        "cantSelect": MessageLookupByLibrary.simpleMessage("You can't select previous day session"),
+        "cantReview": MessageLookupByLibrary.simpleMessage("You can't edit in review academies"),
         "addAsideCamesPitch": MessageLookupByLibrary.simpleMessage(
             "Add the aside venue that cames under this venue"),
         "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
         "doYouWantProceed":
-            MessageLookupByLibrary.simpleMessage("Do You Want To Proceed"),
+            MessageLookupByLibrary.simpleMessage("Do You Want To Proceed?"),
         "addNewGroundPitch":
             MessageLookupByLibrary.simpleMessage("Add More Ground"),
         "addNewPitch": MessageLookupByLibrary.simpleMessage("Add New Venue"),
@@ -83,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourProfile": MessageLookupByLibrary.simpleMessage("Your profile"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "myAcademy": MessageLookupByLibrary.simpleMessage("My Academies"),
+        "addMore": MessageLookupByLibrary.simpleMessage("Add More"),
         "bookingAcademy":
             MessageLookupByLibrary.simpleMessage("booking, academy, leagues"),
         "language,theme": MessageLookupByLibrary.simpleMessage(

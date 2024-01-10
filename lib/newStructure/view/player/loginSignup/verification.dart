@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
+import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/playerHomeScreen.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/buttonWidget.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -146,7 +147,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
           showSucess(msg, scaffoldkey);
           widget.detail.player == 'Owner'
               ? navigateToSports()
-              : navigateToDetail();
+              : navigateToPlayerHomeScreen();
           setState(() {
             loading = false;
           });
@@ -477,9 +478,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
           );
   }
 
-  void navigateToDetail() {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteNames.preferredSports, (Route<dynamic> route) => false);
+  void navigateToPlayerHomeScreen() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlayerHomeScreen(index: 0),
+        ));
+    // Navigator.of(context).pushNamedAndRemoveUntil(
+    //     RouteNames.preferredSports, (Route<dynamic> route) => false);
   }
 
   void navigateToSports() {
