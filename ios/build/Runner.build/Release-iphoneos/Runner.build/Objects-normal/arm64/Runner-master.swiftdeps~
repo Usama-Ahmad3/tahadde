@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "ade3453d0842290025f466e9ae86914141eb42b3c4b4ff4f0bb7dafaed7394cc"
+build_start_time: [1704940903, 221060037]
+build_end_time: [1704940903, 280666828]
+inputs:
+  "/Users/developer/Downloads/tahadde/ios/Runner/AppDelegate.swift": !dirty [1701176912, 572531700]

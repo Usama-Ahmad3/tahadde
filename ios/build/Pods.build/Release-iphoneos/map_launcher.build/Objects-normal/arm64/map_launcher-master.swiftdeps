@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "cc7cc64d1d99af5763b4a9f933e9e6b42f2f4559af309884d67f0f8cf2a298d3"
+build_start_time: [1704940546, 192501068]
+build_end_time: [1704940561, 910542011]
+inputs:
+  "/Users/developer/.pub-cache/hosted/pub.dev/map_launcher-2.5.0+1/ios/Classes/SwiftMapLauncherPlugin.swift": [1703926197, 46997547]
