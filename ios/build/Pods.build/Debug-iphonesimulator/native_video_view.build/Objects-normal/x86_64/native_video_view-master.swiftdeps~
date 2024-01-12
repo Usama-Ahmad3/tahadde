@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "1542b7f1a9654ab61a13aa57780e8f146de5a0cd32b2b89c07681b903331b96b"
+build_start_time: [1705045850, 895287036]
+build_end_time: [1705045850, 955965995]
+inputs:
+  "/Users/developer/.pub-cache/hosted/pub.dev/native_video_view-1.0.5/ios/Classes/NativeVideoViewController.swift": !private [1703926365, 826176166]
+  "/Users/developer/.pub-cache/hosted/pub.dev/native_video_view-1.0.5/ios/Classes/NativeVideoViewFactory.swift": !private [1703926365, 825793027]
+  "/Users/developer/.pub-cache/hosted/pub.dev/native_video_view-1.0.5/ios/Classes/SwiftNativeVideoViewPlugin.swift": !private [1703926365, 824851512]
+  "/Users/developer/.pub-cache/hosted/pub.dev/native_video_view-1.0.5/ios/Classes/VideoView.swift": !private [1703926365, 824431419]

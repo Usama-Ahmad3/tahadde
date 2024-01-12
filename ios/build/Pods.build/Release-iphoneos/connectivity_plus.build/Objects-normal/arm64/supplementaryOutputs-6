@@ -1,8 +1,0 @@
-"/Users/developer/.pub-cache/hosted/pub.dev/connectivity_plus-4.0.2/ios/Classes/ConnectivityProvider.swift":
-  objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-Swift.h"
-  abi-baseline-json: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus.abi.json"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-master.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-master.d"
-  swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus.swiftmodule"
-  swiftsourceinfo: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus.swiftsourceinfo"
-  swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus.swiftdoc"
