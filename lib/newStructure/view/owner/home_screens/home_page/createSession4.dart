@@ -217,10 +217,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    print('kk');
+  weakList() {
     _networkCalls.weekList(
         onSuccess: (detail) {
           print("Session Week Detail $detail");
@@ -234,6 +231,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
         },
         onFailure: (onFailure) {},
         tokenExpire: () {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('kk');
+    weakList();
     widget.createdTag ? loadSpecificAcademy() : null;
   }
 
@@ -455,137 +459,154 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         SizedBox(
                           height: size.height * 0.02,
                         ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              ...List.generate(_weakList.length, (index) {
-                                return _weakIndex == index
-                                    ? Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 10),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            GestureDetector(
+                        _weakList.isNotEmpty
+                            ? SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    ...List.generate(_weakList.length ?? 0,
+                                        (index) {
+                                      return _weakIndex == index
+                                          ? Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        _weakIndex = index;
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      width: size.width * 0.2,
+                                                      height:
+                                                          size.height * 0.05,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                        color: _sessionMap
+                                                                .containsKey(
+                                                                    _weakList[
+                                                                            index]
+                                                                        .slug)
+                                                            ? _sessionMap[_weakList[
+                                                                                index]
+                                                                            .slug]![
+                                                                        0]
+                                                                    .isHoliday!
+                                                                ? Colors
+                                                                    .redAccent
+                                                                    .shade200
+                                                                : AppColors
+                                                                    .appThemeColor
+                                                            : widget.createdTag
+                                                                ? Colors
+                                                                    .redAccent
+                                                                    .shade200
+                                                                : AppColors
+                                                                    .grey200,
+                                                      ),
+                                                      child: Text(
+                                                        "${_weakList[index].name[0].toString().toUpperCase()}${_weakList[index].name.substring(1, 3)}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                color: MyAppState
+                                                                            .mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                    ? _sessionMap.containsKey(_weakList[index]
+                                                                            .slug)
+                                                                        ? AppColors
+                                                                            .white
+                                                                        : AppColors
+                                                                            .black
+                                                                    : AppColors
+                                                                        .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Image.asset(
+                                                    "assets/images/bar_icon.png",
+                                                    width: size.width * 0.22,
+                                                    height: size.height * 0.018,
+                                                    color: AppColors.grey,
+                                                  )
+                                                ],
+                                              ),
+                                            )
+                                          : GestureDetector(
                                               onTap: () {
                                                 setState(() {
                                                   _weakIndex = index;
+                                                  if (firstTime == 0) {
+                                                    firstTimeTag
+                                                        ? firstTime = 1
+                                                        : firstTime = 0;
+                                                    firstTimeTag = false;
+                                                  } else {
+                                                    firstTime = 0;
+                                                  }
                                                 });
                                               },
-                                              child: Container(
-                                                width: size.width * 0.2,
-                                                height: size.height * 0.05,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  color: _sessionMap
-                                                          .containsKey(
-                                                              _weakList[index]
-                                                                  .slug)
-                                                      ? _sessionMap[_weakList[
-                                                                      index]
-                                                                  .slug]![0]
-                                                              .isHoliday!
-                                                          ? Colors.redAccent
-                                                              .shade200
-                                                          : AppColors
-                                                              .appThemeColor
-                                                      : widget.createdTag
-                                                          ? Colors.redAccent
-                                                              .shade200
-                                                          : AppColors.grey200,
-                                                ),
-                                                child: Text(
-                                                  "${_weakList[index].name[0].toString().toUpperCase()}${_weakList[index].name.substring(1, 3)}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? _sessionMap.containsKey(
-                                                                      _weakList[
-                                                                              index]
-                                                                          .slug)
-                                                                  ? AppColors
-                                                                      .white
-                                                                  : AppColors
-                                                                      .black
-                                                              : AppColors.white,
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
+                                                child: Container(
+                                                  width: size.width * 0.2,
+                                                  height: size.height * 0.05,
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                    color: _sessionMap
+                                                            .containsKey(
+                                                                _weakList[index]
+                                                                    .slug)
+                                                        ? _sessionMap[_weakList[
+                                                                        index]
+                                                                    .slug]![0]
+                                                                .isHoliday!
+                                                            ? Colors.redAccent
+                                                                .shade200
+                                                            : AppColors
+                                                                .appThemeColor
+                                                        : widget.createdTag
+                                                            ? Colors.redAccent
+                                                                .shade200
+                                                            : AppColors.grey200,
+                                                  ),
+                                                  child: Text(
+                                                    "${_weakList[index].name[0].toString().toUpperCase()}${_weakList[index].name.substring(1, 3)}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                            color: const Color(
+                                                                0XFFA3A3A3),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Image.asset(
-                                              "assets/images/bar_icon.png",
-                                              width: size.width * 0.22,
-                                              height: size.height * 0.018,
-                                              color: AppColors.grey,
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    : GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            _weakIndex = index;
-                                            if (firstTime == 0) {
-                                              firstTimeTag
-                                                  ? firstTime = 1
-                                                  : firstTime = 0;
-                                              firstTimeTag = false;
-                                            } else {
-                                              firstTime = 0;
-                                            }
-                                          });
-                                        },
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 10),
-                                          child: Container(
-                                            width: size.width * 0.2,
-                                            height: size.height * 0.05,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              color: _sessionMap.containsKey(
-                                                      _weakList[index].slug)
-                                                  ? _sessionMap[_weakList[index]
-                                                              .slug]![0]
-                                                          .isHoliday!
-                                                      ? Colors
-                                                          .redAccent.shade200
-                                                      : AppColors.appThemeColor
-                                                  : widget.createdTag
-                                                      ? Colors
-                                                          .redAccent.shade200
-                                                      : AppColors.grey200,
-                                            ),
-                                            child: Text(
-                                              "${_weakList[index].name[0].toString().toUpperCase()}${_weakList[index].name.substring(1, 3)}",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: const Color(
-                                                          0XFFA3A3A3),
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                              })
-                            ],
-                          ),
-                        ),
+                                            );
+                                    })
+                                  ],
+                                ),
+                              )
+                            : SizedBox.shrink(),
                         SizedBox(
                           height: size.height * 0.02,
                         ),
@@ -1949,108 +1970,108 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     SizedBox(
                                       height: size.height * 0.015,
                                     ),
-                                    Expanded(
-                                      child: ListView(
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.horizontal,
-                                        children: _weakList
-                                            .asMap()
-                                            .entries
-                                            .map(
-                                              (item) => DropdownItem(
-                                                value: item.key + 1,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 8.0),
-                                                  child: item.value.name ==
-                                                          _weakList[_weakIndex]
-                                                              .name
-                                                      ? null
-                                                      : Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            _weakList[_weakIndex]
-                                                                        .slug !=
-                                                                    item.value
-                                                                ? InkWell(
-                                                                    onTap: () {
-                                                                      setState(
-                                                                          () {
-                                                                        if (copySessionIndex
-                                                                            .contains(item.key)) {
-                                                                          copySessionIndex
-                                                                              .remove(item.key);
-                                                                        } else {
-                                                                          copySessionIndex
-                                                                              .add(item.key);
-                                                                        }
-                                                                      });
-                                                                      print(
-                                                                          copySessionIndex);
-                                                                    },
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: const EdgeInsets
-                                                                          .all(
-                                                                          8.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        children: [
-                                                                          copySessionIndex.contains(item.key)
-                                                                              ? SizedBox(
-                                                                                  height: size.height * .04,
-                                                                                  width: size.width * .055,
-                                                                                  child: Container(
-                                                                                    width: size.width * 0.1,
-                                                                                    height: size.height * 0.045,
-                                                                                    decoration: BoxDecoration(color: AppColors.appThemeColor, borderRadius: BorderRadius.circular(size.height * 0.005)),
-                                                                                    child: Icon(
-                                                                                      FontAwesomeIcons.check,
-                                                                                      color: AppColors.white,
-                                                                                    ),
-                                                                                  ))
-                                                                              : SizedBox(
-                                                                                  height: size.height * .03,
-                                                                                  width: size.width * .055,
-                                                                                  child: Image.asset(
-                                                                                    "assets/images/uncheck.png",
-                                                                                    fit: BoxFit.fill,
-                                                                                  ),
-                                                                                ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                                size.width * 0.01,
-                                                                          ),
-                                                                          Text(
-                                                                            "${item.value.name[0].toUpperCase()}${item.value.name.substring(1)}",
-                                                                            style:
-                                                                                TextStyle(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                                : const SizedBox
-                                                                    .shrink(),
-                                                            _weakList[_weakIndex]
-                                                                        .slug !=
-                                                                    item.value
-                                                                ? const Divider()
-                                                                : const SizedBox
-                                                                    .shrink()
-                                                          ],
-                                                        ),
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
-                                    ),
+                                    // Expanded(
+                                    //   child: ListView(
+                                    //     shrinkWrap: true,
+                                    //     scrollDirection: Axis.horizontal,
+                                    //     children: _weakList
+                                    //         .asMap()
+                                    //         .entries
+                                    //         .map(
+                                    //           (item) => DropdownItem(
+                                    //             value: item.key + 1,
+                                    //             child: Padding(
+                                    //               padding:
+                                    //                   const EdgeInsets.only(
+                                    //                       top: 8.0),
+                                    //               child: item.value.name ==
+                                    //                       _weakList[_weakIndex]
+                                    //                           .name
+                                    //                   ? null
+                                    //                   : Row(
+                                    //                       mainAxisAlignment:
+                                    //                           MainAxisAlignment
+                                    //                               .center,
+                                    //                       children: [
+                                    //                         _weakList[_weakIndex]
+                                    //                                     .slug !=
+                                    //                                 item.value
+                                    //                             ? InkWell(
+                                    //                                 onTap: () {
+                                    //                                   setState(
+                                    //                                       () {
+                                    //                                     if (copySessionIndex
+                                    //                                         .contains(item.key)) {
+                                    //                                       copySessionIndex
+                                    //                                           .remove(item.key);
+                                    //                                     } else {
+                                    //                                       copySessionIndex
+                                    //                                           .add(item.key);
+                                    //                                     }
+                                    //                                   });
+                                    //                                   print(
+                                    //                                       copySessionIndex);
+                                    //                                 },
+                                    //                                 child:
+                                    //                                     Padding(
+                                    //                                   padding: const EdgeInsets
+                                    //                                       .all(
+                                    //                                       8.0),
+                                    //                                   child:
+                                    //                                       Row(
+                                    //                                     mainAxisAlignment:
+                                    //                                         MainAxisAlignment.center,
+                                    //                                     children: [
+                                    //                                       copySessionIndex.contains(item.key)
+                                    //                                           ? SizedBox(
+                                    //                                               height: size.height * .04,
+                                    //                                               width: size.width * .055,
+                                    //                                               child: Container(
+                                    //                                                 width: size.width * 0.1,
+                                    //                                                 height: size.height * 0.045,
+                                    //                                                 decoration: BoxDecoration(color: AppColors.appThemeColor, borderRadius: BorderRadius.circular(size.height * 0.005)),
+                                    //                                                 child: Icon(
+                                    //                                                   FontAwesomeIcons.check,
+                                    //                                                   color: AppColors.white,
+                                    //                                                 ),
+                                    //                                               ))
+                                    //                                           : SizedBox(
+                                    //                                               height: size.height * .03,
+                                    //                                               width: size.width * .055,
+                                    //                                               child: Image.asset(
+                                    //                                                 "assets/images/uncheck.png",
+                                    //                                                 fit: BoxFit.fill,
+                                    //                                               ),
+                                    //                                             ),
+                                    //                                       SizedBox(
+                                    //                                         width:
+                                    //                                             size.width * 0.01,
+                                    //                                       ),
+                                    //                                       Text(
+                                    //                                         item.value.name,
+                                    //                                         style:
+                                    //                                             TextStyle(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
+                                    //                                       )
+                                    //                                     ],
+                                    //                                   ),
+                                    //                                 ),
+                                    //                               )
+                                    //                             : const SizedBox
+                                    //                                 .shrink(),
+                                    //                         _weakList[_weakIndex]
+                                    //                                     .slug !=
+                                    //                                 item.value
+                                    //                             ? const Divider()
+                                    //                             : const SizedBox
+                                    //                                 .shrink()
+                                    //                       ],
+                                    //                     ),
+                                    //             ),
+                                    //           ),
+                                    //         )
+                                    //         .toList(),
+                                    //   ),
+                                    // ),
                                     SizedBox(
                                       height: size.height * 0.005,
                                     ),
@@ -2102,6 +2123,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                 if (!sessionDetail.isHoliday!) {
                                                   sessionDetail.isHoliday =
                                                       false;
+
                                                   sessionDetail.graceTime ??=
                                                       20;
                                                   sessionDetail.slotDuration ??=
@@ -2291,6 +2313,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   _copySessions.add(
                                                       _weakList[element].slug);
                                                 });
+                                                print(_copySessions);
                                                 _copySessions
                                                     .forEach((element) {
                                                   ///initialize to empty list if there is no session otherwise just add
