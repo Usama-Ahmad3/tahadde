@@ -1970,108 +1970,108 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     SizedBox(
                                       height: size.height * 0.015,
                                     ),
-                                    // Expanded(
-                                    //   child: ListView(
-                                    //     shrinkWrap: true,
-                                    //     scrollDirection: Axis.horizontal,
-                                    //     children: _weakList
-                                    //         .asMap()
-                                    //         .entries
-                                    //         .map(
-                                    //           (item) => DropdownItem(
-                                    //             value: item.key + 1,
-                                    //             child: Padding(
-                                    //               padding:
-                                    //                   const EdgeInsets.only(
-                                    //                       top: 8.0),
-                                    //               child: item.value.name ==
-                                    //                       _weakList[_weakIndex]
-                                    //                           .name
-                                    //                   ? null
-                                    //                   : Row(
-                                    //                       mainAxisAlignment:
-                                    //                           MainAxisAlignment
-                                    //                               .center,
-                                    //                       children: [
-                                    //                         _weakList[_weakIndex]
-                                    //                                     .slug !=
-                                    //                                 item.value
-                                    //                             ? InkWell(
-                                    //                                 onTap: () {
-                                    //                                   setState(
-                                    //                                       () {
-                                    //                                     if (copySessionIndex
-                                    //                                         .contains(item.key)) {
-                                    //                                       copySessionIndex
-                                    //                                           .remove(item.key);
-                                    //                                     } else {
-                                    //                                       copySessionIndex
-                                    //                                           .add(item.key);
-                                    //                                     }
-                                    //                                   });
-                                    //                                   print(
-                                    //                                       copySessionIndex);
-                                    //                                 },
-                                    //                                 child:
-                                    //                                     Padding(
-                                    //                                   padding: const EdgeInsets
-                                    //                                       .all(
-                                    //                                       8.0),
-                                    //                                   child:
-                                    //                                       Row(
-                                    //                                     mainAxisAlignment:
-                                    //                                         MainAxisAlignment.center,
-                                    //                                     children: [
-                                    //                                       copySessionIndex.contains(item.key)
-                                    //                                           ? SizedBox(
-                                    //                                               height: size.height * .04,
-                                    //                                               width: size.width * .055,
-                                    //                                               child: Container(
-                                    //                                                 width: size.width * 0.1,
-                                    //                                                 height: size.height * 0.045,
-                                    //                                                 decoration: BoxDecoration(color: AppColors.appThemeColor, borderRadius: BorderRadius.circular(size.height * 0.005)),
-                                    //                                                 child: Icon(
-                                    //                                                   FontAwesomeIcons.check,
-                                    //                                                   color: AppColors.white,
-                                    //                                                 ),
-                                    //                                               ))
-                                    //                                           : SizedBox(
-                                    //                                               height: size.height * .03,
-                                    //                                               width: size.width * .055,
-                                    //                                               child: Image.asset(
-                                    //                                                 "assets/images/uncheck.png",
-                                    //                                                 fit: BoxFit.fill,
-                                    //                                               ),
-                                    //                                             ),
-                                    //                                       SizedBox(
-                                    //                                         width:
-                                    //                                             size.width * 0.01,
-                                    //                                       ),
-                                    //                                       Text(
-                                    //                                         item.value.name,
-                                    //                                         style:
-                                    //                                             TextStyle(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
-                                    //                                       )
-                                    //                                     ],
-                                    //                                   ),
-                                    //                                 ),
-                                    //                               )
-                                    //                             : const SizedBox
-                                    //                                 .shrink(),
-                                    //                         _weakList[_weakIndex]
-                                    //                                     .slug !=
-                                    //                                 item.value
-                                    //                             ? const Divider()
-                                    //                             : const SizedBox
-                                    //                                 .shrink()
-                                    //                       ],
-                                    //                     ),
-                                    //             ),
-                                    //           ),
-                                    //         )
-                                    //         .toList(),
-                                    //   ),
-                                    // ),
+                                    Expanded(
+                                      child: ListView(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        children: _weakList
+                                            .asMap()
+                                            .entries
+                                            .map(
+                                              (item) => DropdownItem(
+                                                value: item.key + 1,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 8.0),
+                                                  child: item.value.name ==
+                                                          _weakList[_weakIndex]
+                                                              .name
+                                                      ? null
+                                                      : Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            _weakList[_weakIndex]
+                                                                        .slug !=
+                                                                    item.value
+                                                                ? InkWell(
+                                                                    onTap: () {
+                                                                      setState(
+                                                                          () {
+                                                                        if (copySessionIndex
+                                                                            .contains(item.key)) {
+                                                                          copySessionIndex
+                                                                              .remove(item.key);
+                                                                        } else {
+                                                                          copySessionIndex
+                                                                              .add(item.key);
+                                                                        }
+                                                                      });
+                                                                      print(
+                                                                          copySessionIndex);
+                                                                    },
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: const EdgeInsets
+                                                                          .all(
+                                                                          8.0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          copySessionIndex.contains(item.key)
+                                                                              ? SizedBox(
+                                                                                  height: size.height * .04,
+                                                                                  width: size.width * .055,
+                                                                                  child: Container(
+                                                                                    width: size.width * 0.1,
+                                                                                    height: size.height * 0.045,
+                                                                                    decoration: BoxDecoration(color: AppColors.appThemeColor, borderRadius: BorderRadius.circular(size.height * 0.005)),
+                                                                                    child: Icon(
+                                                                                      FontAwesomeIcons.check,
+                                                                                      color: AppColors.white,
+                                                                                    ),
+                                                                                  ))
+                                                                              : SizedBox(
+                                                                                  height: size.height * .03,
+                                                                                  width: size.width * .055,
+                                                                                  child: Image.asset(
+                                                                                    "assets/images/uncheck.png",
+                                                                                    fit: BoxFit.fill,
+                                                                                  ),
+                                                                                ),
+                                                                          SizedBox(
+                                                                            width:
+                                                                                size.width * 0.01,
+                                                                          ),
+                                                                          Text(
+                                                                            '${item.value.name[0].toUpperCase()}${item.value.name.substring(1)}',
+                                                                            style:
+                                                                                TextStyle(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                : const SizedBox
+                                                                    .shrink(),
+                                                            _weakList[_weakIndex]
+                                                                        .slug !=
+                                                                    item.value
+                                                                ? const Divider()
+                                                                : const SizedBox
+                                                                    .shrink()
+                                                          ],
+                                                        ),
+                                                ),
+                                              ),
+                                            )
+                                            .toList(),
+                                      ),
+                                    ),
                                     SizedBox(
                                       height: size.height * 0.005,
                                     ),
@@ -2313,46 +2313,18 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   _copySessions.add(
                                                       _weakList[element].slug);
                                                 });
+                                                print(copySessionIndex);
                                                 print(_copySessions);
+                                                print(
+                                                    'hhhhhhhhhhddddddddddddd');
+                                                print(minStartDate);
+                                                print(maxEndDate);
                                                 _copySessions
                                                     .forEach((element) {
                                                   ///initialize to empty list if there is no session otherwise just add
                                                   if (_sessionMap[element] ==
                                                       null) {
                                                     _sessionMap[element] = [];
-                                                  }
-                                                  minStartDate = _sessionMap[
-                                                          element]!
-                                                      .reduce((previous,
-                                                              current) =>
-                                                          (previous.startTime)!
-                                                                  .isBefore(current
-                                                                      .startTime!)
-                                                              ? previous
-                                                              : current);
-                                                  maxEndDate = _sessionMap[
-                                                          element]!
-                                                      .reduce((previous,
-                                                              current) =>
-                                                          (previous.endTime)!
-                                                                  .isAfter(current
-                                                                      .endTime!)
-                                                              ? previous
-                                                              : current);
-
-                                                  ///(B) check that the other days are not conflicting with current session while copying
-                                                  if ((sessionDetail.startTime!
-                                                              .isBefore(minStartDate
-                                                                  .startTime) &&
-                                                          sessionDetail.endTime!
-                                                              .isBefore(minStartDate
-                                                                  .startTime)) ||
-                                                      (sessionDetail.startTime!
-                                                              .isAfter(maxEndDate
-                                                                  .endTime) &&
-                                                          sessionDetail.endTime!
-                                                              .isAfter(maxEndDate
-                                                                  .endTime))) {
                                                     _sessionMap[element]!
                                                         .add(SessionDetail(
                                                       slotDuration:
@@ -2368,14 +2340,72 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                       sessionName: sessionDetail
                                                           .sessionName,
                                                     ));
-                                                  }
+                                                  } else {
+                                                    minStartDate = _sessionMap[
+                                                            element]!
+                                                        .reduce((previous,
+                                                                current) =>
+                                                            (previous.startTime)!
+                                                                    .isBefore(
+                                                                        current
+                                                                            .startTime!)
+                                                                ? previous
+                                                                : current);
+                                                    maxEndDate = _sessionMap[
+                                                            element]!
+                                                        .reduce((previous,
+                                                                current) =>
+                                                            (previous.endTime)!
+                                                                    .isAfter(current
+                                                                        .endTime!)
+                                                                ? previous
+                                                                : current);
+                                                    if ((sessionDetail
+                                                                .startTime!
+                                                                .isBefore(
+                                                                    minStartDate
+                                                                        .startTime) &&
+                                                            sessionDetail
+                                                                .endTime!
+                                                                .isBefore(
+                                                                    minStartDate
+                                                                        .startTime)) ||
+                                                        (sessionDetail
+                                                                .startTime!
+                                                                .isAfter(maxEndDate
+                                                                    .endTime) &&
+                                                            sessionDetail
+                                                                .endTime!
+                                                                .isAfter(maxEndDate
+                                                                    .endTime))) {
+                                                      _sessionMap[element]!
+                                                          .add(SessionDetail(
+                                                        slotDuration:
+                                                            sessionDetail
+                                                                .slotDuration,
+                                                        endTime: sessionDetail
+                                                            .endTime,
+                                                        startTime: sessionDetail
+                                                            .startTime,
+                                                        sessionNameAr:
+                                                            sessionDetail
+                                                                .sessionNameAr,
+                                                        sessionName:
+                                                            sessionDetail
+                                                                .sessionName,
+                                                      ));
+                                                    }
 
-                                                  ///(B)show message if conflicting with previous days sessions while copying
-                                                  else {
-                                                    showMessage(
-                                                        "Your time is not proper as compare to previous sessions of $element");
+                                                    ///(B)show message if conflicting with previous days sessions while copying
+                                                    else {
+                                                      showMessage(
+                                                          "Your time is not proper as compare to previous sessions of $element");
+                                                    }
                                                   }
                                                 });
+                                                print('hhhhhhhhhh');
+                                                print(minStartDate);
+                                                print(maxEndDate);
                                                 Navigator.of(context).pop();
                                               }
                                             }
