@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "cd9aae251cf0b66b0d80cbd75d636e95d4cec121b40ffc2ae760ad638ec54af8"
-build_start_time: [1705067398, 53797006]
-build_end_time: [1705067398, 104120016]
-inputs:
-  "/Users/developer/.pub-cache/hosted/pub.dev/flutter_facebook_auth-5.0.11/ios/Classes/FacebookAuth.swift": !dirty [1703926766, 990935325]
-  "/Users/developer/.pub-cache/hosted/pub.dev/flutter_facebook_auth-5.0.11/ios/Classes/SwiftFlutterFacebookAuthPlugin.swift": !dirty [1703926766, 992249250]
