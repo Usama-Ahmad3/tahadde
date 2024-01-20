@@ -642,7 +642,6 @@ class HomeScreenViewState extends State<HomeScreenView> {
   void rebuildParent() {
     setState(() {
       searchFlag = false;
-      print('jjjjjjjjjjjjhi');
     });
   }
 
@@ -964,8 +963,8 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                         .countries![0].cities![index].longitude
                                         .toString());
                                 await getAddress();
-                                showMessage(
-                                    '${territoryData!.countries![0].cities![index].name.toString()} Selected');
+                                // showMessage(
+                                //     '${territoryData!.countries![0].cities![index].name.toString()} Selected');
                               },
                               children: List.generate(
                                   territoryData!.countries![0].cities!.length,

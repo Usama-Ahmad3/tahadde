@@ -50,85 +50,30 @@ class _VerificationScreenState extends State<VerificationScreen> {
   }
 
   void _signInWithPhoneNumber() async {
-    try {
-      verificationCompleted(PhoneAuthCredential phoneAuthCredential) async {
-        await _auth.signInWithCredential(phoneAuthCredential);
-        print("SSS$errorMessage");
-        showMessage(AppLocalizations().verified);
-      }
-
-      verificationFailed(FirebaseAuthException authException) {
-        showMessage("EEE${authException.message}");
-      }
-
-      codeSent(String verificationId, [int? forceResendingToken]) {
-        setState(() {
-          _verificationId = verificationId;
-        });
-      }
-
-      codeAutoRetrievalTimeout(String verificationId) {
-        // showMessage("Time${verificationId.toString()}");
-      }
-
-      print('on');
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNo,
-        verificationCompleted: verificationCompleted,
-        verificationFailed: verificationFailed,
-        codeSent: codeSent,
-        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
-      );
-      print('off');
-    } catch (e) {
-      showMessage("$e");
-      print('of$e');
-    }
-  }
-
-  void _verifyPhoneNumberWithCode(String code) async {
-    try {
-      final AuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: _verificationId,
-        smsCode: controllerPin.text,
-      );
-
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      if (kDebugMode) {
-        print(userCredential.additionalUserInfo);
-      }
-      final User? currentUser = userCredential.user;
-      if (currentUser != null) {
-        // print('SignUp Calling');
+    setState(() async {
+      loading = true;
+      final credetials = PhoneAuthProvider.credential(
+          verificationId: widget.detail.verfication.toString(),
+          smsCode: controllerPin.text);
+      try {
+        await _auth.signInWithCredential(credetials);
         signup();
-        // print('SignUp Calling End');
+      } catch (e) {
         setState(() {
-          loading = true;
+          loading = false;
         });
       }
-    } catch (e) {
-      setState(() {
-        loading = false;
-        showMessage(AppLocalizations.of(context)!.invalidOTPCode);
-        if (kDebugMode) {
-          print("catch$e");
-        }
-      });
-      if (kDebugMode) {
-        print('fail');
-      }
-    }
+    });
   }
 
   signup() {
     details = {
-      'id': widget.detail.id,
+      // 'id': widget.detail.id,
       "first_name": widget.detail.firstName,
       "last_name": widget.detail.lastName,
       "email": widget.detail.email,
       "contact_number": widget.detail.phoneNumber,
-      "role": widget.detail.player == 'Owner' ? 'pitchowner' : 'player',
+      "role": widget.detail.player == 'Owner' ? 'owner' : 'player',
       "country": "UAE",
       "countryCode": widget.detail.countryCode,
       "password": base64.encode(utf8.encode(widget.detail.password.toString())),
@@ -162,15 +107,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   @override
   void initState() {
-    print(widget.detail.player);
-    phoneNo = "${widget.detail.countryCode}${widget.detail.phoneNumber}";
-    print(phoneNo);
     super.initState();
-    // signup();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) async {
       internet = msg;
       if (msg == true) {
-        _signInWithPhoneNumber();
         location();
       } else {
         setState(() {
@@ -364,7 +304,28 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                       onSuccess: (msg) async {
                                     internet = msg;
                                     if (msg == true) {
-                                      _signInWithPhoneNumber();
+                                      setState(() async {
+                                        loading = true;
+                                      });
+                                      _auth.verifyPhoneNumber(
+                                          phoneNumber:
+                                              '${widget.detail.countryCode}${widget.detail.phoneNumber}',
+                                          verificationCompleted: (_) {
+                                            setState(() {
+                                              loading = false;
+                                            });
+                                          },
+                                          verificationFailed: (e) {
+                                            showMessage(e.toString());
+                                          },
+                                          codeSent: (String verification,
+                                              int? token) {
+                                            widget.detail.verfication =
+                                                verification;
+                                          },
+                                          codeAutoRetrievalTimeout: (e) {
+                                            showMessage(e.toString());
+                                          });
                                     } else {
                                       if (mounted) {
                                         showMessage(
@@ -428,11 +389,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                                     ]);
                                               });
                                         } else {
-                                          setState(() {
-                                            loading = true;
-                                            _verifyPhoneNumberWithCode(
-                                                controllerPin.text);
-                                          });
+                                          _signInWithPhoneNumber();
                                         }
                                       } else {
                                         if (mounted) {

@@ -65,7 +65,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                   return null;
                 },
                 controller: widget.emailController,
-                hintText: 'tahadde@gmail.com',
+                // hintText: 'tahadde@gmail.com',
                 focusBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
@@ -108,7 +108,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                   return null;
                 },
                 controller: widget.passwordController,
-                hintText: 'tahadde123456',
+                // hintText: 'tahadde123456',
                 suffixIcon: Icons.visibility_off,
                 hideIcon: Icons.visibility,
                 suffixIconColor: AppColors.grey,

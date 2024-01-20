@@ -41,8 +41,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
   int copyDaysIndex = 0;
   bool _isLoading = true;
   bool _isSession = false;
-  int firstTime = 0;
-  bool firstTimeTag = true;
+  // int firstTime = 0;
+  // bool firstTimeTag = true;
   var focusNode = FocusNode();
   List<String> _copyDays = [];
   List<String> _copySessions = [];
@@ -282,131 +282,131 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                 _holiday = false;
                 _nameController.clear();
                 _nameControllerArabic.clear();
-                firstTime == 1
-                    ? _sessionMap[_weakList[0].slug] != null
-                        ? showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  elevation: 2,
-                                  backgroundColor:
-                                      MyAppState.mode == ThemeMode.light
-                                          ? AppColors.grey200
-                                          : AppColors.darkTheme,
-                                  shape: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12)),
-                                  title: Text(
-                                      AppLocalizations.of(context)!.copy,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: MyAppState.mode ==
-                                                      ThemeMode.light
-                                                  ? AppColors.black
-                                                  : AppColors.white)),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.065),
-                                  content: Text(
-                                    AppLocalizations.of(context)!.copySession,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(color: AppColors.red),
-                                  ),
-                                  actions: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Center(
-                                            child: Container(
-                                              height: 35,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.3,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                color: AppColors.appThemeColor,
-                                                border: Border.all(
-                                                    width: 1,
-                                                    color: AppColors.white),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .no,
-                                                  style: TextStyle(
-                                                      color: AppColors.white),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            for (int i = _weakIndex;
-                                                i < 7;
-                                                i++) {
-                                              if (_sessionMap[
-                                                      _weakList[i].slug] ==
-                                                  null) {
-                                                _sessionMap[
-                                                    _weakList[i]
-                                                        .slug] = List.generate(
-                                                    _sessionMap[_copyDays[
-                                                            _weakIndex - 1]]!
-                                                        .length,
-                                                    (index2) => _sessionMap[
-                                                            _copyDays[
-                                                                _weakIndex -
-                                                                    1]]![index2]
-                                                        .clone());
-                                              }
-                                            }
-                                            Navigator.pop(context);
-                                            setState(() {});
-                                          },
-                                          child: Center(
-                                            child: Container(
-                                              height: 35,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.3,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                color: AppColors.appThemeColor,
-                                                border: Border.all(
-                                                    width: 1,
-                                                    color: AppColors.white),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .yes,
-                                                  style: TextStyle(
-                                                      color: AppColors.white),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
-                                ))
-                        : null
-                    : null;
+                // firstTime == 1
+                //     ? _sessionMap[_weakList[0].slug] != null
+                //         ? showDialog(
+                //             context: context,
+                //             builder: (context) => AlertDialog(
+                //                   elevation: 2,
+                //                   backgroundColor:
+                //                       MyAppState.mode == ThemeMode.light
+                //                           ? AppColors.grey200
+                //                           : AppColors.darkTheme,
+                //                   shape: OutlineInputBorder(
+                //                       borderRadius: BorderRadius.circular(12)),
+                //                   title: Text(
+                //                       AppLocalizations.of(context)!.copy,
+                //                       style: Theme.of(context)
+                //                           .textTheme
+                //                           .bodyLarge!
+                //                           .copyWith(
+                //                               color: MyAppState.mode ==
+                //                                       ThemeMode.light
+                //                                   ? AppColors.black
+                //                                   : AppColors.white)),
+                //                   contentPadding: EdgeInsets.symmetric(
+                //                       horizontal: size.width * 0.065),
+                //                   content: Text(
+                //                     AppLocalizations.of(context)!.copySession,
+                //                     style: Theme.of(context)
+                //                         .textTheme
+                //                         .bodyMedium!
+                //                         .copyWith(color: AppColors.red),
+                //                   ),
+                //                   actions: [
+                //                     Row(
+                //                       mainAxisAlignment:
+                //                           MainAxisAlignment.spaceEvenly,
+                //                       children: [
+                //                         InkWell(
+                //                           onTap: () {
+                //                             Navigator.pop(context);
+                //                           },
+                //                           child: Center(
+                //                             child: Container(
+                //                               height: 35,
+                //                               width: MediaQuery.of(context)
+                //                                       .size
+                //                                       .width *
+                //                                   0.3,
+                //                               decoration: BoxDecoration(
+                //                                 borderRadius:
+                //                                     BorderRadius.circular(20),
+                //                                 color: AppColors.appThemeColor,
+                //                                 border: Border.all(
+                //                                     width: 1,
+                //                                     color: AppColors.white),
+                //                               ),
+                //                               child: Center(
+                //                                 child: Text(
+                //                                   AppLocalizations.of(context)!
+                //                                       .no,
+                //                                   style: TextStyle(
+                //                                       color: AppColors.white),
+                //                                 ),
+                //                               ),
+                //                             ),
+                //                           ),
+                //                         ),
+                //                         InkWell(
+                //                           onTap: () {
+                //                             for (int i = _weakIndex;
+                //                                 i < 7;
+                //                                 i++) {
+                //                               if (_sessionMap[
+                //                                       _weakList[i].slug] ==
+                //                                   null) {
+                //                                 _sessionMap[
+                //                                     _weakList[i]
+                //                                         .slug] = List.generate(
+                //                                     _sessionMap[_copyDays[
+                //                                             _weakIndex - 1]]!
+                //                                         .length,
+                //                                     (index2) => _sessionMap[
+                //                                             _copyDays[
+                //                                                 _weakIndex -
+                //                                                     1]]![index2]
+                //                                         .clone());
+                //                               }
+                //                             }
+                //                             Navigator.pop(context);
+                //                             setState(() {});
+                //                           },
+                //                           child: Center(
+                //                             child: Container(
+                //                               height: 35,
+                //                               width: MediaQuery.of(context)
+                //                                       .size
+                //                                       .width *
+                //                                   0.3,
+                //                               decoration: BoxDecoration(
+                //                                 borderRadius:
+                //                                     BorderRadius.circular(20),
+                //                                 color: AppColors.appThemeColor,
+                //                                 border: Border.all(
+                //                                     width: 1,
+                //                                     color: AppColors.white),
+                //                               ),
+                //                               child: Center(
+                //                                 child: Text(
+                //                                   AppLocalizations.of(context)!
+                //                                       .yes,
+                //                                   style: TextStyle(
+                //                                       color: AppColors.white),
+                //                                 ),
+                //                               ),
+                //                             ),
+                //                           ),
+                //                         ),
+                //                       ],
+                //                     ),
+                //                     const SizedBox(
+                //                       height: 10,
+                //                     ),
+                //                   ],
+                //                 ))
+                //         : null
+                //     : null;
                 bottomSheet(onTap: () {
                   setState(() {});
                 });
@@ -549,14 +549,14 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               onTap: () {
                                                 setState(() {
                                                   _weakIndex = index;
-                                                  if (firstTime == 0) {
-                                                    firstTimeTag
-                                                        ? firstTime = 1
-                                                        : firstTime = 0;
-                                                    firstTimeTag = false;
-                                                  } else {
-                                                    firstTime = 0;
-                                                  }
+                                                  // if (firstTime == 0) {
+                                                  //   firstTimeTag
+                                                  //       ? firstTime = 1
+                                                  //       : firstTime = 0;
+                                                  //   firstTimeTag = false;
+                                                  // } else {
+                                                  //   firstTime = 0;
+                                                  // }
                                                 });
                                               },
                                               child: Padding(
@@ -850,7 +850,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                       child: Center(
                                         child: Text(
                                             AppLocalizations.of(context)!
-                                                .markAsHoliday,
+                                                .holiday,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium),
@@ -863,7 +863,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             height: size.height * .4,
                                             child: Center(
                                                 child:
-                                                    Text(AppLocalizations.of(context)!.markAsHoliday,
+                                                    Text(AppLocalizations.of(context)!.holiday,
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyMedium))))
@@ -963,7 +963,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     Navigator.pop(context);
                                   }
                                 : () {
-                                    if (_sessionMap.length < 1) {
+                                    if (_sessionMap.isEmpty) {
                                       showMessage(AppLocalizations.of(context)!
                                           .atLeast);
                                     } else {
@@ -1068,8 +1068,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                           }
                                         });
                                       }
-                                      // print(sessionsPayload);
-                                      //
                                       Map sessionsPay = {
                                         "sessions": sessionsPayload
                                       };
@@ -1732,6 +1730,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                               sessionDetail
                                                                       .startTime =
                                                                   time;
+                                                              sessionDetail
+                                                                      .endTime =
+                                                                  time.add(Duration(
+                                                                      minutes: sessionDetail.slotDuration !=
+                                                                              null
+                                                                          ? sessionDetail
+                                                                              .slotDuration!
+                                                                          : 0));
+
                                                               Navigator.pop(
                                                                   context);
 
@@ -2105,8 +2112,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             ///(First)
                                             if ((endMinutes - startMinutes) !=
                                                 availableDurations) {
-                                              showMessage(
-                                                  'Please select start and end time according to your selected slot duration!');
+                                              showMessage('Time Mismatched');
                                             }
 
                                             ///(First)

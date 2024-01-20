@@ -490,6 +490,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen>
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                             builder: (context) => StoryPage(
+                                                  initialIndex: 0,
                                                   files: _venueDetail
                                                       .images!.files!,
                                                 )));

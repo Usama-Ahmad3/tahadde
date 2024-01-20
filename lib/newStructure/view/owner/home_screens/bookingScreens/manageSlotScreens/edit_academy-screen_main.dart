@@ -144,14 +144,20 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                       }
                     },
                     child: Text(AppLocalizations.of(context)!.choosefromlibrary,
-                        style: TextStyle(color: AppColors.black)),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? AppColors.black
+                                : AppColors.white)),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
-                        style: TextStyle(color: AppColors.black)),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? AppColors.black
+                                : AppColors.white)),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -561,7 +567,7 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
   List title = [
     AppLocalizations().documents,
     AppLocalizations().academyDetail,
-    AppLocalizations().slotPrice,
+    AppLocalizations().sessionFee,
     AppLocalizations().sessions
   ];
   List icon = [

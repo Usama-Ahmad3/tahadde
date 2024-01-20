@@ -158,6 +158,18 @@ class AppLocalizations {
         name: 'cantReview');
   }
 
+  String get addedFavorites {
+    return Intl.message("Added To Your Favorites", name: 'addedFavorites');
+  }
+
+  String get profileUpdate {
+    return Intl.message("Profile Details Updated", name: 'profileUpdate');
+  }
+
+  String get sessionFee {
+    return Intl.message("Session Fees", name: 'sessionFee');
+  }
+
   String get add {
     return Intl.message('Add', name: 'add');
   }
@@ -704,7 +716,7 @@ class AppLocalizations {
   }
 
   String get saveChanges {
-    return Intl.message('Save Changes', name: 'saveChanges');
+    return Intl.message('Save', name: 'saveChanges');
   }
 
   String get morningSession {

@@ -10,7 +10,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
-// import 'package:video_player/video_player.dart';
 
 import 'apis/apis.dart';
 import 'common_widgets/internetStatus.dart';

@@ -62,6 +62,7 @@ class LoginScreenState extends State<LoginScreen> {
   List<String> playerPostion = [];
   List<String> playerPostionSlug = [];
   late String playerSlug;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final fMessaging.FirebaseMessaging _firebaseMessaging =
       fMessaging.FirebaseMessaging.instance;
@@ -252,6 +253,7 @@ class LoginScreenState extends State<LoginScreen> {
             "deviceToken": logDetail.fcmToken
           };
           // print(googleKey.accessToken);
+          print(details);
           _networkCalls.loginGoogle(
               loginDetail: details,
               onSuccess: (msg) {
@@ -589,10 +591,37 @@ class LoginScreenState extends State<LoginScreen> {
                                                                 isLoading =
                                                                     false;
                                                               });
-                                                              print(logDetail
-                                                                  .phoneNumber);
-                                                              navigateToVerification(
-                                                                  logDetail);
+                                                              _auth
+                                                                  .verifyPhoneNumber(
+                                                                      phoneNumber:
+                                                                          '${logDetail.countryCode}${phoneController.text}',
+                                                                      verificationCompleted:
+                                                                          (_) {
+                                                                        setState(
+                                                                            () {
+                                                                          isLoading =
+                                                                              false;
+                                                                        });
+                                                                      },
+                                                                      verificationFailed:
+                                                                          (e) {
+                                                                        showMessage(
+                                                                            e.toString());
+                                                                      },
+                                                                      codeSent: (String
+                                                                              verification,
+                                                                          int?
+                                                                              token) {
+                                                                        logDetail.verfication =
+                                                                            verification;
+                                                                        navigateToVerification(
+                                                                            logDetail);
+                                                                      },
+                                                                      codeAutoRetrievalTimeout:
+                                                                          (e) {
+                                                                        showMessage(
+                                                                            e.toString());
+                                                                      });
                                                             },
                                                             onFailure: (msg) {
                                                               setState(() {
@@ -833,6 +862,7 @@ class SignUpSignInDetail {
   String? dob;
   String? player;
   String? id;
+  String? verfication;
 
   SignUpSignInDetail(
       {this.email,
@@ -842,6 +872,7 @@ class SignUpSignInDetail {
       this.phoneNumber,
       this.deviceType,
       this.fcmToken,
+      this.verfication,
       this.dob,
       this.id,
       this.player = 'player',

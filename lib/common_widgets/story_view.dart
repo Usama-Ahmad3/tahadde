@@ -5,8 +5,10 @@ import '../homeFile/utility.dart';
 
 class StoryPage extends StatelessWidget {
   final List<dynamic> files;
+  final int initialIndex;
 
-  const StoryPage({Key? key, required this.files}) : super(key: key);
+  const StoryPage({Key? key, required this.files, required this.initialIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,10 @@ class StoryPage extends StatelessWidget {
           Navigator.of(context).pop();
         },
         child: StoryPageView(
+          initialPage: initialIndex,
+          initialStoryIndex: (i) {
+            return initialIndex;
+          },
           itemBuilder: (context, pageIndex, storyIndex) {
             return Stack(
               children: [

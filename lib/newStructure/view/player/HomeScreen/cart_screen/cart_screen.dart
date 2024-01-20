@@ -183,7 +183,34 @@ class CartScreenState extends State<CartScreen> {
               print(cartDetails);
               navigateToEditAcademyDetail(cartDetails);
             } else {
-              showMessage(AppLocalizations.of(context)!.selectCart);
+              int index = 0;
+              List<Map> cartDetails = [];
+              cartModel.forEach((item) {
+                List IdList = [];
+                item.session!.forEach((element) {
+                  IdList.add(element);
+                });
+                Map details = {
+                  'cart_id': item.id,
+                  'academyNameEnglish':
+                      _specificAcademy[index].academyNameEnglish.toString(),
+                  'academyNameArabic':
+                      _specificAcademy[index].academyNameArabic.toString(),
+                  "academy": item.academy,
+                  "session": IdList,
+                  "Sub_Academy": item.subAcademy,
+                  "price": item.price,
+                  "location": item.location,
+                  "booked_date": item.bookedDate,
+                  "player_count": item.playerCount,
+                  'price_per_player': item.pricePerPlayer
+                };
+                index = index + 1;
+                cartDetails.add(details);
+              });
+              print(cartDetails);
+              navigateToEditAcademyDetail(cartDetails);
+              // showMessage(AppLocalizations.of(context)!.selectCart);
             }
           },
         ),

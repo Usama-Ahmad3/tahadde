@@ -46,6 +46,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPitchImage":
             MessageLookupByLibrary.simpleMessage("إضافة صورة الأكاديمية"),
         "addPlayerC": MessageLookupByLibrary.simpleMessage("إضافة لاعب"),
+        "sessionFee": MessageLookupByLibrary.simpleMessage("رسوم الجلسة"),
+        "profileUpdated": MessageLookupByLibrary.simpleMessage(
+            "تم تحديث تفاصيل الملف الشخصي"),
+        "addedFavorites": MessageLookupByLibrary.simpleMessage(
+            "تمت الإضافة إلى المفضلة لديك"),
         "cantReview": MessageLookupByLibrary.simpleMessage(
             "لا يمكنك التعديل في أكاديميات المراجعة"),
         "cantSelect": MessageLookupByLibrary.simpleMessage(
@@ -647,7 +652,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saturday": MessageLookupByLibrary.simpleMessage("السبت"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "saveCards": MessageLookupByLibrary.simpleMessage("البطاقات المحفوظة"),
-        "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+        "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ"),
         "savePaymentMethod":
             MessageLookupByLibrary.simpleMessage("حفظ طرق الدفع"),
         "savePaymentMethods":

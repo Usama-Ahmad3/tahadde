@@ -71,9 +71,10 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                   GestureDetector(
                     child: Text(
                       AppLocalizations.of(context)!.gallery,
-                      style: TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.normal),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? AppColors.black
+                              : AppColors.white),
                     ),
                     onTap: () async {
                       var status = await Permission.photos.status;
@@ -128,9 +129,10 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
-                        style: TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.normal)),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? AppColors.black
+                                : AppColors.white)),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -417,7 +419,7 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                               height: sizeHeight * 0.02,
                             ),
                             Text(
-                              AppLocalizations.of(context)!.description,
+                              AppLocalizations.of(context)!.descriptionS,
                               style: TextStyle(
                                   color: MyAppState.mode == ThemeMode.light
                                       ? AppColors.themeColor

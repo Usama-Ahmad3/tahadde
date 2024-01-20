@@ -128,9 +128,10 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 children: [
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.uploadPDF,
-                        style: TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.normal)),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? AppColors.black
+                                : AppColors.white)),
                     onTap: () async {
                       var status = await Permission.photos.status;
                       if (status.isGranted) {
@@ -177,9 +178,10 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.gallery,
-                        style: TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.normal)),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? AppColors.black
+                                : AppColors.white)),
                     onTap: () async {
                       var status = await Permission.photos.status;
                       if (status.isGranted) {
@@ -227,9 +229,10 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   GestureDetector(
                     child: Text(
                       AppLocalizations.of(context)!.takephoto,
-                      style: TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.normal),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? AppColors.black
+                              : AppColors.white),
                     ),
                     onTap: () async {
                       var status = await Permission.camera.status;

@@ -178,50 +178,53 @@ class _AcademyListState extends State<AcademyList> {
                           ],
                         ),
                       ))
-                  : InkWell(
-                      onTap: () {
-                        dynamic detail = {
-                          "academy_id":
-                              widget.academyDetail[index]["academy_id"] ?? 0,
-                          "Academy_NameEnglish": widget.academyDetail[index]
-                              ["Academy_NameEnglish"],
-                          "Academy_NameArabic": widget.academyDetail[index]
-                              ["Academy_NameArabic"],
-                          "descriptionEnglish": widget.academyDetail[index]
-                              ["descriptionEnglish"],
-                          "descriptionArabic": widget.academyDetail[index]
-                              ["descriptionArabic"],
-                          "facilitySlug": widget.academyDetail[index]
-                              ["facilitySlug"],
-                          "gameplaySlug": widget.academyDetail[index]
-                              ["gameplaySlug"],
-                          "academy_image": widget.academyDetail[index]
-                              ["academy_image"],
-                          'latitude': widget.academyDetail[index]['latitude'],
-                          'longitude': widget.academyDetail[index]['longitude'],
-                          'Academy_Location': widget.academyDetail[index]
-                              ['Academy_Location'],
-                        };
-                        navigateToGroundDetail(detail);
-                      },
-                      child: Padding(
+                  : Padding(
+                      padding: EdgeInsets.only(bottom: 16 * fem),
+                      child: Container(
                         padding: EdgeInsets.only(bottom: 16 * fem),
-                        child: Container(
-                          padding: EdgeInsets.only(bottom: 16 * fem),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: mode == ThemeMode.light
-                                ? const Color(0xffffffff)
-                                : AppColors.containerColorW12,
-                            borderRadius: BorderRadius.circular(15 * fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0x0f050818),
-                                offset: Offset(10 * fem, 40 * fem),
-                                blurRadius: 30 * fem,
-                              ),
-                            ],
-                          ),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: mode == ThemeMode.light
+                              ? const Color(0xffffffff)
+                              : AppColors.containerColorW12,
+                          borderRadius: BorderRadius.circular(15 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0x0f050818),
+                              offset: Offset(10 * fem, 40 * fem),
+                              blurRadius: 30 * fem,
+                            ),
+                          ],
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            dynamic detail = {
+                              "academy_id": widget.academyDetail[index]
+                                      ["academy_id"] ??
+                                  0,
+                              "Academy_NameEnglish": widget.academyDetail[index]
+                                  ["Academy_NameEnglish"],
+                              "Academy_NameArabic": widget.academyDetail[index]
+                                  ["Academy_NameArabic"],
+                              "descriptionEnglish": widget.academyDetail[index]
+                                  ["descriptionEnglish"],
+                              "descriptionArabic": widget.academyDetail[index]
+                                  ["descriptionArabic"],
+                              "facilitySlug": widget.academyDetail[index]
+                                  ["facilitySlug"],
+                              "gameplaySlug": widget.academyDetail[index]
+                                  ["gameplaySlug"],
+                              "academy_image": widget.academyDetail[index]
+                                  ["academy_image"],
+                              'latitude': widget.academyDetail[index]
+                                  ['latitude'],
+                              'longitude': widget.academyDetail[index]
+                                  ['longitude'],
+                              'Academy_Location': widget.academyDetail[index]
+                                  ['Academy_Location'],
+                            };
+                            navigateToGroundDetail(detail);
+                          },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -234,14 +237,16 @@ class _AcademyListState extends State<AcademyList> {
                                     topLeft: Radius.circular(15 * fem),
                                     topRight: Radius.circular(15 * fem),
                                   ),
-                                  child: Carousel(
-                                    rating: true,
-                                    academy_id: widget.academyDetail[index]
-                                            ['academy_id']
-                                        .toString(),
-                                    image: widget.academyDetail[index]
-                                        ['academy_image'],
-                                    storyView: false,
+                                  child: AbsorbPointer(
+                                    child: Carousel(
+                                      rating: true,
+                                      academy_id: widget.academyDetail[index]
+                                              ['academy_id']
+                                          .toString(),
+                                      image: widget.academyDetail[index]
+                                          ['academy_image'],
+                                      storyView: true,
+                                    ),
                                   ),
                                 ),
                               ),

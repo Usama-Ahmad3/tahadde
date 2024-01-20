@@ -196,40 +196,32 @@ class AcademyModel {
 class Prices {
   Prices({
     num? priceId,
-    String? subAcademy,
     num? price,
   }) {
     _priceId = priceId;
-    _subAcademy = subAcademy;
     _price = price;
   }
 
   Prices.fromJson(dynamic json) {
     _priceId = json['price_id'];
-    _subAcademy = json['Sub_Academy'];
     _price = json['Price'];
   }
   num? _priceId;
-  String? _subAcademy;
   num? _price;
   Prices copyWith({
     num? priceId,
-    String? subAcademy,
     num? price,
   }) =>
       Prices(
         priceId: priceId ?? _priceId,
-        subAcademy: subAcademy ?? _subAcademy,
         price: price ?? _price,
       );
   num? get priceId => _priceId;
-  String? get subAcademy => _subAcademy;
   num? get price => _price;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['price_id'] = _priceId;
-    map['Sub_Academy'] = _subAcademy;
     map['Price'] = _price;
     return map;
   }
@@ -255,7 +247,7 @@ class Documents {
     _documentName = json['Document_Name'];
     _licenseNumber = json['License_Number'];
     _expiryDate = json['Expiry_Date'];
-    _file = json['file'];
+    _file = json['file'] ?? '';
   }
   num? _documentId;
   String? _documentName;

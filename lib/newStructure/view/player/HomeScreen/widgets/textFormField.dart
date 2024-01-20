@@ -8,7 +8,7 @@ import '../../../../app_colors/app_colors.dart';
 
 class TextFieldWidget extends StatefulWidget {
   TextEditingController controller;
-  final String hintText;
+  String? hintText;
   final InputBorder? border;
   final Widget? suffix;
   final Widget? prefix;
@@ -36,7 +36,7 @@ class TextFieldWidget extends StatefulWidget {
   TextFieldWidget(
       {super.key,
       required this.controller,
-      required this.hintText,
+      this.hintText,
       this.onValidate,
       this.onTap,
       this.textDirection = TextDirection.ltr,

@@ -290,6 +290,7 @@ class NetworkCalls {
       } else if (response.statusCode == 400) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onFailure("ErrorNo${resp["error"]}");
+        print('kdddddddddd');
         print('${resp["error"]}');
       } else {
         onFailure("fail to sign up");
@@ -1442,14 +1443,9 @@ class NetworkCalls {
         : "$baseUrl${RestApis.verifiedAcademies}/$sport/";
     try {
       response = await http.get(Uri.parse(url),
-          headers:
-              // {
-              //   "Authorization": "token 484613c64499586646fee0bbf69886f08e741ba5",
-              //   'Content-Type': 'application/json',
-              // });
-              headerWithToken(prefs, "", HttpMethod.GET));
-      print(url);
-      print('Academy${response.body}');
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      // print(url);
+      // print('Academy${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -1479,12 +1475,7 @@ class NetworkCalls {
         "https://ahmad223.pythonanywhere.com/api/v1/inovativehub/InovativeDetail/$sport/";
     try {
       response = await http.get(Uri.parse(url),
-          headers:
-              // {
-              //   "Authorization": "token 484613c64499586646fee0bbf69886f08e741ba5",
-              //   'Content-Type': 'application/json',
-              // });
-              headerWithToken(prefs, "", HttpMethod.GET));
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
       print(url);
       print('Innovative${response.body}');
       if (response.statusCode == 200) {
@@ -1836,6 +1827,8 @@ class NetworkCalls {
           : response = await http.post(Uri.parse(url),
               headers: headerWithToken(prefs, '', HttpMethod.POST));
       print(url);
+      print('jjjjjjj');
+      print(favorite);
       print(response.statusCode);
       print(response.body);
       if (response.statusCode > 200 || response.statusCode < 300) {
@@ -3719,7 +3712,7 @@ class NetworkCalls {
       // print(url);
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
-      print('${response.body}');
+      // print('${response.body}');
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -3828,14 +3821,9 @@ class NetworkCalls {
     print("$baseUrl${RestApis.WEEK_LIST}");
     try {
       response = await http.get(Uri.parse("$baseUrl${RestApis.WEEK_LIST}"),
-          headers:
-              // {
-              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
-              //   'Content-Type': 'application/json',
-              // }
-              headerWithToken(prefs, "", HttpMethod.GET));
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
       if (response.statusCode == 200) {
-        print(response.body);
+        // print(response.body);
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
       } else if (response.statusCode == tokenExpireStatus) {
@@ -3903,20 +3891,9 @@ class NetworkCalls {
     print('body$body');
     try {
       response = await http.post(
-          Uri.parse('$baseUrl${RestApis.CREATE_ACADEMY}'
-              // "https://powerhouse.tahadde.ae${RestApis.CREATE_SESSION}$id/manage-slot/?language=${prefs.get("lang")}"
-              ),
+          Uri.parse('$baseUrl${RestApis.CREATE_ACADEMY}'),
           body: body,
-          headers:
-              // {
-              //   "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
-              //   'Content-Type': 'application/json',
-              // }
-              headerWithToken(prefs, body, HttpMethod.POST));
-      print('${prefs.get('token')}');
-      print('$baseUrl${RestApis.CREATE_ACADEMY}');
-      print(response.statusCode);
-      print(response.body);
+          headers: headerWithToken(prefs, body, HttpMethod.POST));
       if (response.statusCode == 200) {
         print('CeateSession${response.body}');
         var resp = json.decode(utf8.decode(response.bodyBytes));
@@ -4532,13 +4509,12 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url = "$baseUrl${RestApis.avalaibleSlotsCount}$id/";
     print(url);
-    print('ji');
     try {
       response = await http.get(Uri.parse(url),
           headers: headerWithToken(prefs, "", HttpMethod.GET));
       print(response.statusCode);
       if (response.statusCode == 200) {
-        print(response.body);
+        // print(response.body);
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
       } else if (response.statusCode == 400) {

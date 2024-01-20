@@ -19,8 +19,8 @@ class Carousel extends StatefulWidget {
       {super.key,
       this.image,
       this.storyView = true,
-      this.academy_id,required this.rating
-      });
+      this.academy_id,
+      required this.rating});
 
   @override
   State<Carousel> createState() => _CarouselState();
@@ -74,7 +74,7 @@ class _CarouselState extends State<Carousel> {
   @override
   void initState() {
     super.initState();
-    widget.rating?loadingRating():null;
+    widget.rating ? loadingRating() : null;
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       bool isTop = _scrollController.position.pixels == 250;
@@ -111,6 +111,7 @@ class _CarouselState extends State<Carousel> {
                       ? Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => StoryPage(
                                 files: widget.image ?? [],
+                                initialIndex: itemIndex,
                               )))
                       : null;
                 },

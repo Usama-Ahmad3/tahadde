@@ -154,7 +154,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
         appBar: appBarForCreatingAcademy(
           size,
           context,
-          AppLocalizations.of(context)!.slotChart,
+          AppLocalizations.of(context)!.sessionFee,
           true,
           AppColors.appThemeColor,
           AppColors.appThemeColor,
@@ -215,7 +215,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                               : AppColors.red,
                                         ),
                                         child: Text(
-                                          _weakList[index].name.substring(0, 3),
+                                          '${_weakList[index].name[0].toUpperCase()}${_weakList[index].name.substring(1, 3)}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -253,7 +253,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                       color: AppColors.grey200,
                                     ),
                                     child: Text(
-                                      _weakList[index].name.substring(0, 3),
+                                      '${_weakList[index].name[0].toUpperCase()}${_weakList[index].name.substring(1, 3)}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
@@ -313,14 +313,16 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                         ? EmailContactDOB(
                                                             onTap: () {
                                                               Map detail = {
-                                                                "id": slotVar!
-                                                                    .prices![0]
-                                                                    .priceId,
-                                                                "Sub_Academy":
+                                                                "price_id":
                                                                     slotVar!
                                                                         .prices![
                                                                             0]
-                                                                        .subAcademy,
+                                                                        .priceId,
+                                                                // "Sub_Academy":
+                                                                //     slotVar!
+                                                                //         .prices![
+                                                                //             0]
+                                                                //         .subAcademy,
                                                                 "Price":
                                                                     _playerPriceController
                                                                         .text
@@ -334,10 +336,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                               print(
                                                                   priceDetail);
 
-                                                              editAcademy(
-                                                                  priceDetail);
-                                                              Navigator.pop(
-                                                                  context);
+                                                              // editAcademy(
+                                                              //     priceDetail);
+                                                              // Navigator.pop(
+                                                              //     context);
                                                             },
                                                             price:
                                                                 _playerPriceController,
@@ -358,14 +360,14 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                             ? EmailContactDOB(
                                                                 onTap: () {
                                                                   Map detail = {
-                                                                    "id": slotVar!
+                                                                    "price_id": slotVar!
                                                                         .prices![
                                                                             0]
                                                                         .priceId,
-                                                                    "Sub_Academy": slotVar!
-                                                                        .prices![
-                                                                            0]
-                                                                        .subAcademy,
+                                                                    // "Sub_Academy": slotVar!
+                                                                    //     .prices![
+                                                                    //         0]
+                                                                    //     .subAcademy,
                                                                     "Price":
                                                                         _playerPriceController
                                                                             .text
@@ -404,12 +406,12 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                     onTap: () {
                                                                       Map detail =
                                                                           {
-                                                                        "id": slotVar!
+                                                                        "price_id": slotVar!
                                                                             .prices![0]
                                                                             .priceId,
-                                                                        "Sub_Academy": slotVar!
-                                                                            .prices![0]
-                                                                            .subAcademy,
+                                                                        // "Sub_Academy": slotVar!
+                                                                        //     .prices![0]
+                                                                        //     .subAcademy,
                                                                         "Price":
                                                                             _playerPriceController.text
                                                                       };
@@ -445,10 +447,10 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                         onTap: () {
                                                                           Map detail =
                                                                               {
-                                                                            "id":
+                                                                            "price_id":
                                                                                 slotVar!.prices![0].priceId,
-                                                                            "Sub_Academy":
-                                                                                slotVar!.prices![0].subAcademy,
+                                                                            // "Sub_Academy":
+                                                                            //     slotVar!.prices![0].subAcademy,
                                                                             "Price":
                                                                                 _playerPriceController.text
                                                                           };
@@ -478,8 +480,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                         ? EmailContactDOB(
                                                                             onTap: () {
                                                                               Map detail = {
-                                                                                "id": slotVar!.prices![0].priceId,
-                                                                                "Sub_Academy": slotVar!.prices![0].subAcademy,
+                                                                                "price_id": slotVar!.prices![0].priceId,
+                                                                                // "Sub_Academy": slotVar!.prices![0].subAcademy,
                                                                                 "Price": _playerPriceController.text
                                                                               };
                                                                               Map priceDetail = {
@@ -503,8 +505,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                             ? EmailContactDOB(
                                                                                 onTap: () {
                                                                                   Map detail = {
-                                                                                    "id": slotVar!.prices![0].priceId,
-                                                                                    "Sub_Academy": slotVar!.prices![0].subAcademy,
+                                                                                    "price_id": slotVar!.prices![0].priceId,
+                                                                                    // "Sub_Academy": slotVar!.prices![0].subAcademy,
                                                                                     "Price": _playerPriceController.text
                                                                                   };
                                                                                   Map priceDetail = {
@@ -527,8 +529,8 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                                                             ? EmailContactDOB(
                                                                                 onTap: () {
                                                                                   Map detail = {
-                                                                                    "id": slotVar!.prices![0].priceId,
-                                                                                    "Sub_Academy": slotVar!.prices![0].subAcademy,
+                                                                                    "price_id": slotVar!.prices![0].priceId,
+                                                                                    // "Sub_Academy": slotVar!.prices![0].subAcademy,
                                                                                     "Price": _playerPriceController.text
                                                                                   };
                                                                                   Map priceDetail = {

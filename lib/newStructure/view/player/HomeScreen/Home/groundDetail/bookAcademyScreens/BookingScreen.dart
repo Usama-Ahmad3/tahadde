@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tahaddi/homeFile/routingConstant.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/avalaible_slots.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
@@ -27,10 +26,12 @@ class PlayerBookingScreenView extends StatefulWidget {
   var detail;
   bool navigateFromInnovative;
 
-  PlayerBookingScreenView({super.key, required this.detail,this.navigateFromInnovative = false});
+  PlayerBookingScreenView(
+      {super.key, required this.detail, this.navigateFromInnovative = false});
 
   @override
-  State<PlayerBookingScreenView> createState() => _PlayerBookingScreenViewState();
+  State<PlayerBookingScreenView> createState() =>
+      _PlayerBookingScreenViewState();
 }
 
 class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
@@ -68,6 +69,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   List<SessionDetail> sessionsEve = [];
   List<SessionDetail> sessionMor = [];
   int date = 0;
+  bool sessionLoading = false;
   List<AcademyModel> _specificAcademy = [];
   late Map profileDetail;
   loadProfile() async {
@@ -83,38 +85,35 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
       },
     );
   }
-  morningSessions(){
+
+  morningSessions() {
     ///morning session differentiate
-    for(int i = 0;i<_sessionMap[_weakList[
-    _weekIndex]
-        .name]!.length;i++ ){
-      sessionMor = _sessionMap[_weakList[
-      _weekIndex]
-          .name]!.where((element) {
+    for (int i = 0; i < _sessionMap[_weakList[_weekIndex].name]!.length; i++) {
+      sessionMor = _sessionMap[_weakList[_weekIndex].name]!.where((element) {
         TimeOfDay currentTime = TimeOfDay.now();
-        DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(element.endTime.toString());
+        DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+            .parse(element.endTime.toString());
         TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
-        return givenTime.hour < 14;
+        return givenTime.hour < 14 || givenTime.hour == 14 && givenTime.minute == 0;
       }).toList();
-      print(sessionMor);
     }
+    print(sessionMor.length);
   }
-  eveningSessions(){
+
+  eveningSessions() {
     ///evening sessions differentiate
-    for(int i = 0;i<_sessionMap[_weakList[
-    _weekIndex]
-        .name]!.length;i++ ){
-      sessionsEve = _sessionMap[_weakList[
-      _weekIndex]
-          .name]!.where((element) {
+    for (int i = 0; i < _sessionMap[_weakList[_weekIndex].name]!.length; i++) {
+      sessionsEve = _sessionMap[_weakList[_weekIndex].name]!.where((element) {
         TimeOfDay currentTime = TimeOfDay.now();
-        DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(element.endTime.toString());
+        DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+            .parse(element.startTime.toString());
+        DateTime givenDateTimee = DateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+            .parse(element.endTime.toString());
         TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
-        return givenTime.hour > 14;
+        return givenTime.hour > 14 || givenTime.hour == 14 || givenDateTimee.hour > 14;
       }).toList();
-      print('ggggggggggggggglllllllll');
-      print(sessionsEve);
     }
+    print(sessionsEve.length);
   }
 
   onWillPop() {
@@ -147,6 +146,30 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
           );
         });
   }
+  weekIndex(int index) async {
+    print(index);
+     _weekIndex = await Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() == 'monday' ? 0
+         : Intl.withLocale('en', () => DateFormat('EEEE')
+        .format(DateTime.now()
+        .add(Duration(
+        days: index))))
+        .toLowerCase() ==
+        'tuesday'
+        ? 1
+        :Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() ==
+        "wednesday"
+        ? 2
+        : Intl.withLocale('en', () => DateFormat('EEEE')
+        .format(DateTime.now().add(Duration(days: index))))
+        .toLowerCase() ==
+        'thursday'
+        ? 3
+        :Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() == 'friday'
+        ? 4
+        : Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() == "saturday"
+        ? 5
+        : 6;
+  }
 
   loadSpecificInnovative() async {
     avalaibleSlotCounts();
@@ -155,9 +178,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
       onSuccess: (academyInfo) {
         _specificInnovative = InnovativeHub.fromJson(academyInfo);
         if (_specificInnovative!.session!.isNotEmpty) {
-          _specificInnovative!.session!.forEach((element) {
+          for (var element in _specificInnovative!.session!) {
             List<SessionDetail> sessionList = [];
-            element.sessions!.forEach((value) {
+            for (var value in element.sessions!) {
               sessionList.add(SessionDetail(
                   id: int.parse(value.id.toString()),
                   sessionName: value.name,
@@ -172,29 +195,28 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                       () => DateFormat("yyyy-MM-dd hh:mm:ss")
                           .parse('2022-10-31 ${value.endTime.toString()}')
                           .toLocal())));
-            });
+            }
             _sessionMap[element.weekday!] = sessionList;
-          });
+          }
         }
         sessionMor.clear();
         sessionsEve.clear();
         setState(() {
           ///functions to differentiate morning and evening
-          _sessionMap[_weakList[
-          _weekIndex]
-              .name] != null?morningSessions():null;
-          _sessionMap[_weakList[
-          _weekIndex]
-              .name] != null?eveningSessions():null;
-          isStateLoading = false;
+          _sessionMap[_weakList[_weekIndex].name] != null
+              ? morningSessions()
+              : sessionMor = [];
+          _sessionMap[_weakList[_weekIndex].name] != null
+              ? eveningSessions()
+              : sessionsEve = [];
         });
       },
       onFailure: (msg) {
-        if (mounted) {
-          setState(() {
-            isStateLoading = false;
-          });
-        }
+        // if (mounted) {
+        //   setState(() {
+        //     isStateLoading = false;
+        //   });
+        // }
       },
       tokenExpire: () {
         if (mounted) {
@@ -216,9 +238,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         }
         _specificAcademy = bookAcademy;
         if (_specificAcademy[0].session!.isNotEmpty) {
-          _specificAcademy[0].session!.forEach((element) {
+          for (var element in _specificAcademy[0].session!) {
             List<SessionDetail> sessionList = [];
-            element.sessions!.forEach((value) {
+            for (var value in element.sessions!) {
               sessionList.add(SessionDetail(
                   id: value.id,
                   sessionName: value.name,
@@ -233,27 +255,22 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                       () => DateFormat("yyyy-MM-dd hh:mm:ss")
                           .parse('2022-10-31 ${value.endTime.toString()}')
                           .toLocal())));
-            });
+            }
             _sessionMap[element.weekday!] = sessionList;
-          });
+          }
         }
         setState(() {
           ///functions to differentiate morning and evening
-          _sessionMap[_weakList[
-          _weekIndex]
-              .name] != null?morningSessions():null;
-          _sessionMap[_weakList[
-          _weekIndex]
-              .name] != null?eveningSessions():null;
-          isStateLoading = false;
+          _sessionMap[_weakList[_weekIndex].name] != null?morningSessions():sessionMor = [];
+          _sessionMap[_weakList[_weekIndex].name] != null?eveningSessions():sessionsEve = [];
         });
       },
       onFailure: (msg) {
-        if (mounted) {
-          setState(() {
-            isStateLoading = false;
-          });
-        }
+        // if (mounted) {
+        //   setState(() {
+        //     isStateLoading = false;
+        //   });
+        // }
       },
       tokenExpire: () {
         if (mounted) {
@@ -262,42 +279,19 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         }
       },
     );
+    setState(() {
+      isStateLoading = false;
+      sessionLoading = false;
+    });
   }
 
-  slotDetail() async {
-    await _networkCalls.slotDetail(
-        id: widget.detail["pitchId"].toString(),
-        subPitchId: widget.detail["subPitchId"]["id"].toString(),
-        date: dataTime,
-        dateTime: "&today_datetime=${DateTime.now().toString()}",
-        onSuccess: (detail) {
-          setState(() {
-            isStateLoading = false;
-            slotModelClass = detail;
-            if (slotModelClass.isNotEmpty &&
-                slotModelClass[0].slotDetail!.isNotEmpty) {
-              listMaxPlayer = List<int>.generate(
-                  slotModelClass[0].slotDetail![0]!.maximumPlayers!.toInt(),
-                  (i) => i + 1);
-            } else {
-              listMaxPlayer.clear();
-            }
-          });
-        },
-        onFailure: (msg) {
-          showMessage(msg);
-        },
-        tokenExpire: () {
-          if (mounted) on401(context);
-        });
-  }
 
   avalaibleSlotCounts() async {
     await _networkCalls.avalaibleSlotsCount(
         id: widget.detail['academy_id'].toString(),
         onSuccess: (detail) {
           setState(() {
-            print(detail);
+            // print(detail);
             avalaibleSlots = AvalaibleSlots.fromJson(detail);
             slots = avalaibleSlots.remainingSessions!.toInt();
           });
@@ -317,24 +311,26 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   weekdays() async {
     await _networkCalls.weekList(
         onSuccess: (detail) {
-          print("Session Week Detail $detail");
-          detail.forEach((element) {
-            setState(() {
-              _weakList
-                  .add(WeekDays(name: element["name"], slug: element["slug"]));
-            });
-          });
+          // print("Session Week Detail $detail");
+          for(var element in  detail){
+            _weakList.add(WeekDays(name: element['name'], slug: element['slug']));
+          }
+          widget.navigateFromInnovative
+              ? loadSpecificInnovative()
+              : loadVerifiedSpecific();
         },
         onFailure: (onFailure) {},
         tokenExpire: () {});
   }
-  doYouWantProceedNow(int cartId){
-   return showDialog(
+
+  doYouWantProceedNow(int cartId) {
+    return showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             elevation: 2,
-            contentPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.065),
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.065),
             backgroundColor: MyAppState.mode == ThemeMode.light
                 ? AppColors.grey200
                 : AppColors.darkTheme,
@@ -358,9 +354,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                   academyId.clear();
                   sessionIdList.clear();
                   academyDetail.clear();
-                  setState(() {
-
-                  });
+                  setState(() {});
                   Navigator.pop(context);
                 },
                 child: Center(
@@ -384,26 +378,24 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                 height: 10,
               ),
               InkWell(
-                onTap:() {
-                    Map detailForProceed = {
-                    'cart_id':
-                    cartId,
+                onTap: () {
+                  Map detailForProceed = {
+                    'cart_id': cartId,
                     'academyNameEnglish':
-                    _specificAcademy[0].academyNameEnglish,
-                    'academyNameArabic':_specificAcademy[0].academyNameArabic,
+                        _specificAcademy[0].academyNameEnglish,
+                    'academyNameArabic': _specificAcademy[0].academyNameArabic,
                     "academy": _specificAcademy[0].academyId,
                     "session": sessionIdList,
-                      "price": _specificAcademy[0].prices![0].price,
+                    "price": _specificAcademy[0].prices![0].price,
                     "location": _specificAcademy[0].academyLocation,
                     "booked_date": dataTime,
-                    "player_count":indexItem,
-                    'price_per_player':
-                    _specificAcademy[0].prices![0].price
-                    };
-                    academyDetail.add(detailForProceed);
-                    Navigator.pop(context);
-                    navigateToEditAcademyDetail(academyDetail);
-                    },
+                    "player_count": indexItem,
+                    'price_per_player': _specificAcademy[0].prices![0].price
+                  };
+                  academyDetail.add(detailForProceed);
+                  Navigator.pop(context);
+                  navigateToEditAcademyDetail(academyDetail);
+                },
                 child: Center(
                   child: Container(
                     height: 40,
@@ -429,16 +421,17 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
           );
         });
   }
+
   addToCart(details) async {
     loading = true;
-    setState(() {
-
-    });
+    setState(() {});
     await _networkCalls.addToCard(
-      detail: details,
+        detail: details,
         onSuccess: (detail) {
           weekdays();
-          widget.navigateFromInnovative?loadSpecificInnovative():loadVerifiedSpecific();
+          widget.navigateFromInnovative
+              ? loadSpecificInnovative()
+              : loadVerifiedSpecific();
           doYouWantProceedNow(detail['id']);
           loading = false;
           setState(() {});
@@ -450,14 +443,13 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   @override
   void initState() {
     super.initState();
+    weekIndex(0);
     dataTime = apiFormatter.format(DateTime.now());
     checkAuth();
     _networkCalls.checkInternetConnectivity(onSuccess: (msg) {
       internet = msg;
       if (msg == true) {
-        // slotDetail();
         weekdays();
-        widget.navigateFromInnovative?loadSpecificInnovative():loadVerifiedSpecific();
       } else {
         setState(() {
           isStateLoading = false;
@@ -530,31 +522,10 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                     onTap: () {
                                       setState(() {
                                         if (date != index) {
-                                          _weekIndex = Intl.withLocale(
-                                                          'en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index))))
-                                                      .toLowerCase() ==
-                                                  'monday'
-                                              ? 0
-                                              : Intl.withLocale('en', () => DateFormat('EEEE')
-                                                          .format(DateTime.now()
-                                                              .add(Duration(
-                                                                  days: index))))
-                                                          .toLowerCase() ==
-                                                      'tuesday'
-                                                  ? 1
-                                                  :Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() ==
-                                                          "wednesday"
-                                                      ? 2
-                                                      : Intl.withLocale('en', () => DateFormat('EEEE')
-                                                                  .format(DateTime.now().add(Duration(days: index))))
-                                                                  .toLowerCase() ==
-                                                              'thursday'
-                                                          ? 3
-                                                          :Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() == 'friday'
-                                                              ? 4
-                                                              : Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() == "saturday"
-                                                                  ? 5
-                                                                  : 6;
+                                          setState(() {
+                                            sessionLoading = true;
+                                          });
+                                          weekIndex(index);
                                           _slotTime.clear();
                                           indexItem = 1;
                                           playerController.clear();
@@ -571,14 +542,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                   .add(Duration(days: index)));
                                         }
                                         weekdays();
-                                        widget.navigateFromInnovative?loadSpecificInnovative():loadVerifiedSpecific();
                                         ///functions to differentiate morning and evening
-                                        _sessionMap[_weakList[
-                                        _weekIndex]
-                                            .name] != null?morningSessions():null;
-                                        _sessionMap[_weakList[
-                                        _weekIndex]
-                                            .name] != null?eveningSessions():null;
                                       });
                                     },
                                     child: Padding(
@@ -641,7 +605,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                         ),
 
                         ///down white Container
-                        Container(
+                        sessionLoading?BookingShimmer.sessionShimmer(width, height, context
+                        ):Container(
                           width: width,
                           height: height * 0.71,
                           decoration: BoxDecoration(
@@ -661,6 +626,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                 SizedBox(
                                   height: height * 0.01,
                                 ),
+
                                 ///morning Sessions
                                 Text(
                                     AppLocalizations.of(context)!
@@ -669,475 +635,118 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                         .textTheme
                                         .titleMedium!
                                         .copyWith(
-                                        color: MyAppState.mode ==
-                                            ThemeMode.light
-                                            ? AppColors.black
-                                            : AppColors.white)),
-                                _weakList.isNotEmpty?
-                                sessionMor.isNotEmpty && sessionMor != null
-                                    ? SingleChildScrollView(
-                                  child: SizedBox(
-                                    height: list.isEmpty?height * 0.24:height * 0.2,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Wrap(children: [
-                                          ...List.generate(
-                                              sessionMor.length ??
-                                                  0, (i) {
-                                            final sessionToAddOrRemove =
-                                            SessionDetail(
-                                              id: sessionMor[i]
-                                                  .id,
-                                              sessionNameAr: sessionMor[i]
-                                                  .sessionNameAr,
-                                              sessionName:sessionMor[i]
-                                                  .sessionName,
-                                              graceTime: sessionMor[i]
-                                                  .graceTime,
-                                              endTime:sessionMor[i]
-                                                  .endTime,
-                                              startTime: sessionMor[i]
-                                                  .startTime,
-                                              slotDuration: sessionMor[i]
-                                                  .slotDuration,
-                                            );
-                                            bool isSessionInList = false;
-                                            TimeOfDay currentTime = TimeOfDay.now();
-                                            DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(sessionMor[i].endTime.toString());
-                                            TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
-                                            /*check if current day time is passed then can't select that sessions*/
-                                            if(date == 0 ?givenTime.hour > currentTime.hour:true){
-                                              return Padding(
-                                                padding: EdgeInsets.symmetric(vertical: height * 0.005),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    setState(() {});
-                                                    if (list.isEmpty) {
-                                                      // If the list is empty, add the session
-                                                      list.add(
-                                                          sessionToAddOrRemove);
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .locale ==
-                                                          'en'
-                                                          ? academyId.add(
-                                                          sessionMor[i]
-                                                              .sessionName
-                                                              .toString())
-                                                          : academyId.add(
-                                                          (sessionMor[i]
-                                                              .sessionNameAr
-                                                              .toString()));
-                                                      _slotPrice.pricePerPlayer
-                                                          .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[0]
-                                                          .prices![0]
-                                                          .price!
-                                                          .toDouble());
-                                                      slots != 0 ?slots = slots -1:null;
-                                                      playerController.text =
-                                                          indexItem.toString();
-                                                    } else {
-                                                      isSessionInList =
-                                                          list.any((item) {
-                                                            return item.id ==
-                                                                sessionToAddOrRemove
-                                                                    .id &&
-                                                                item.sessionNameAr ==
-                                                                    sessionToAddOrRemove
-                                                                        .sessionNameAr &&
-                                                                item.sessionName ==
-                                                                    sessionToAddOrRemove
-                                                                        .sessionName &&
-                                                                item.graceTime ==
-                                                                    sessionToAddOrRemove
-                                                                        .graceTime &&
-                                                                item.endTime ==
-                                                                    sessionToAddOrRemove
-                                                                        .endTime &&
-                                                                item.startTime ==
-                                                                    sessionToAddOrRemove
-                                                                        .startTime &&
-                                                                item.slotDuration ==
-                                                                    sessionToAddOrRemove
-                                                                        .slotDuration;
-                                                          });
-                                                      if (isSessionInList) {
-                                                        slots < 22 ?slots = slots + 1 : null;
-                                                        playerController.text =
-                                                            indexItem.toString();
-                                                        AppLocalizations.of(context)!
-                                                            .locale ==
-                                                            'en'
-                                                            ? academyId.remove(
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? AppColors.black
+                                                : AppColors.white)),
+                                _weakList.isNotEmpty
+                                    ? sessionMor.isNotEmpty &&
+                                            sessionMor != null
+                                        ? SingleChildScrollView(
+                                            child: SizedBox(
+                                              height: list.isEmpty
+                                                  ? height * 0.24
+                                                  : height * 0.2,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Wrap(children: [
+                                                    ...List.generate(
+                                                        sessionMor.length ?? 0,
+                                                        (i) {
+                                                      final sessionToAddOrRemove =
+                                                          SessionDetail(
+                                                        id: sessionMor[i].id,
+                                                        sessionNameAr:
                                                             sessionMor[i]
-                                                                .sessionName)
-                                                            : academyId.remove(
+                                                                .sessionNameAr,
+                                                        sessionName:
                                                             sessionMor[i]
-                                                                .sessionNameAr);
-                                                        list.removeWhere((item) {
-                                                          return item.id ==
-                                                              sessionToAddOrRemove
-                                                                  .id &&
-                                                              item.sessionNameAr ==
-                                                                  sessionToAddOrRemove
-                                                                      .sessionNameAr &&
-                                                              item.sessionName ==
-                                                                  sessionToAddOrRemove
-                                                                      .sessionName &&
-                                                              item.graceTime ==
-                                                                  sessionToAddOrRemove
-                                                                      .graceTime &&
-                                                              item.endTime ==
-                                                                  sessionToAddOrRemove
-                                                                      .endTime &&
-                                                              item.startTime ==
-                                                                  sessionToAddOrRemove
-                                                                      .startTime &&
-                                                              item.slotDuration ==
-                                                                  sessionToAddOrRemove
-                                                                      .slotDuration;
-                                                        });
-                                                        // list.isEmpty?slots = slots:null;
-                                                        list.isEmpty?indexItem = 1:indexItem = indexItem - 1;
-                                                        _slotPrice.pricePerPlayer
-                                                            .removeLast();
-                                                      } else {
-                                                        ///show Message That proceed first then select other session
-                                                        showMessage('please proceed with seesion then select another session');
-                                                      //   slots != 0 ?slots = slots - 1 : null;
-                                                      //   playerController.text =
-                                                      //       indexItem.toString();
-                                                      //   AppLocalizations.of(
-                                                      //       context)!
-                                                      //       .locale ==
-                                                      //       'en'
-                                                      //       ? academyId.add(
-                                                      //       sessionMor[i]
-                                                      //           .sessionName
-                                                      //           .toString())
-                                                      //       : academyId.add(
-                                                      //       (sessionMor[i]
-                                                      //           .sessionNameAr
-                                                      //           .toString()));
-                                                      //   list.add(
-                                                      //       sessionToAddOrRemove);
-                                                      //   _slotPrice.pricePerPlayer
-                                                      //       .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
-                                                      //   0]
-                                                      //       .prices![0]
-                                                      //       .price!
-                                                      //       .toDouble());
-                                                      }
-                                                    }
-                                                    setState(() {});
-                                                  },
-                                                  child: SizedBox(
-                                                    width: width * 0.45,
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
-                                                      children: [
-                                                        Text(
-                                                          "${sessionMor[i].sessionName!.length > 9?'${sessionMor[i].sessionName!.substring(0,8)}..':sessionMor[i].sessionName}(${sessionMor[i].slotDuration} mins)",
-                                                          style: Theme.of(context)
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                              color: MyAppState
-                                                                  .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                                  ? AppColors
-                                                                  .black
-                                                                  : AppColors
-                                                                  .white),
-                                                        ),
-                                                        SizedBox(
-                                                          height: height * 0.01,
-                                                        ),
-                                                        Badge(
-                                                          backgroundColor:
-                                                          AppColors.grey,
-                                                          label: Text('$slots'),
-                                                          alignment:
-                                                          Alignment.topRight,
-                                                          textColor:
-                                                          AppColors.black,
-                                                          child: Container(
-                                                            height:
-                                                            height * 0.065,
-                                                            width: width * 0.4,
-                                                            decoration: BoxDecoration(
-                                                                color:
-                                                                academyId.contains(
-                                                                    sessionMor[
-                                                                    i]
-                                                                        .sessionName)
-                                                                    ? AppColors
-                                                                    .appThemeColor
-                                                                    :
-                                                                AppColors
-                                                                    .grey,
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    12)),
-                                                            child: Row(
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(
-                                                                      left: width *
-                                                                          0.015),
-                                                                  child: Text(
-                                                                    '${sessionMor[i].startTime.toString().substring(11, 16)} - ${sessionMor[i].endTime!.toString().substring(11, 16)}',
-                                                                    style: Theme.of(
-                                                                        context)
-                                                                        .textTheme
-                                                                        .bodyMedium!
-                                                                        .copyWith(
-                                                                        color:
-                                                                        academyId.contains(sessionMor[i].sessionName)
-                                                                            ? MyAppState.mode == ThemeMode.light
-                                                                            ? AppColors.white
-                                                                            : AppColors.grey :
-                                                                        AppColors.black),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  width: width *
-                                                                      0.05,
-                                                                ),
-                                                                CircleAvatar(
-                                                                  radius: height *
-                                                                      0.01,
-                                                                  backgroundColor:
-                                                                  academyId.contains(
-                                                                      sessionMor[i]
-                                                                          .sessionName)
-                                                                      ? AppColors
-                                                                      .red :
-                                                                  AppColors
-                                                                      .darkTheme,
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }else{
-                                              return Padding(
-                                                padding: EdgeInsets.symmetric(vertical: height * 0.005),
-                                                child: SizedBox(
-                                                  width: width * 0.45,
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .start,
-                                                    children: [
-                                                      Text(
-                                                        "${sessionMor[i].sessionName!.length > 9?'${sessionMor[i].sessionName!.substring(0,8)}..':sessionMor[i].sessionName}(${sessionMor[i].slotDuration} mins)",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                            color: MyAppState
-                                                                .mode ==
-                                                                ThemeMode
-                                                                    .light
-                                                                ? AppColors
-                                                                .black
-                                                                : AppColors
-                                                                .white),
-                                                      ),
-                                                      SizedBox(
-                                                        height: height * 0.01,
-                                                      ),
-                                                      Badge(
-                                                        backgroundColor:
-                                                        AppColors.grey,
-                                                        label: Text('$slots'),
-                                                        alignment:
-                                                        Alignment.topRight,
-                                                        textColor:
-                                                        AppColors.black,
-                                                        child: Container(
-                                                          height:
-                                                          height * 0.065,
-                                                          width: width * 0.4,
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                              academyId.contains(
-                                                                  sessionMor[
-                                                                  i]
-                                                                      .sessionName)
-                                                                  ? AppColors
-                                                                  .appThemeColor
-                                                                  :
-                                                              AppColors
-                                                                  .grey200,
-                                                              borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  12)),
-                                                          child: Row(
-                                                            children: [
-                                                              Padding(
-                                                                padding: EdgeInsets.only(
-                                                                    left: width *
-                                                                        0.015),
-                                                                child: Text(
-                                                                  '${sessionMor[i].startTime.toString().substring(11, 16)} - ${sessionMor[i].endTime!.toString().substring(11, 16)}',
-                                                                  style: Theme.of(
-                                                                      context)
-                                                                      .textTheme
-                                                                      .bodyMedium!
-                                                                      .copyWith(
-                                                                      color:
-                                                                      academyId.contains(sessionMor[i].sessionName)
-                                                                          ? MyAppState.mode == ThemeMode.light
-                                                                          ? AppColors.white
-                                                                          : AppColors.grey :
-                                                                      AppColors.black),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: width *
-                                                                    0.05,
-                                                              ),
-                                                              CircleAvatar(
-                                                                radius: height *
-                                                                    0.01,
-                                                                backgroundColor:
-                                                                academyId.contains(
-                                                                    sessionMor[i]
-                                                                        .sessionName)
-                                                                    ? AppColors
-                                                                    .red :
-                                                                AppColors
-                                                                    .darkTheme,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                          })
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                                    : SizedBox(
-                                  height: list.isEmpty?height * 0.24:height * 0.2,
-                                  child: Center(
-                                    child: Text(
-                                      AppLocalizations.of(context)!
-                                          .noSlotsAvailable,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                          color: MyAppState.mode ==
-                                              ThemeMode.light
-                                              ? AppColors.black
-                                              : AppColors.white),
-                                    ),
-                                  ),
-                                ):const SizedBox.shrink(),
-                                ///evening Sessions
-                                Text(
-                                    AppLocalizations.of(context)!
-                                        .eveningSession,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                        color: MyAppState.mode ==
-                                            ThemeMode.light
-                                            ? AppColors.black
-                                            : AppColors.white)),
-                                _weakList.isNotEmpty?
-                                sessionsEve.isNotEmpty && sessionsEve != null
-                                    ? SingleChildScrollView(
-                                      child: SizedBox(
-                                        height: list.isEmpty?height * 0.24:height * 0.2,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Wrap(children: [
-                                              ...List.generate(
-                                                  sessionsEve
-                                                          .length ??
-                                                      0, (i) {
-                                                final sessionToAddOrRemove =
-                                                    SessionDetail(
-                                                  id: sessionsEve[i]
-                                                      .id,
-                                                  sessionNameAr: sessionsEve[i]
-                                                      .sessionNameAr,
-                                                  sessionName: sessionsEve[i]
-                                                      .sessionName,
-                                                  graceTime: sessionsEve[i]
-                                                      .graceTime,
-                                                  endTime: sessionsEve[i]
-                                                      .endTime,
-                                                  startTime:sessionsEve[i]
-                                                      .startTime,
-                                                  slotDuration: sessionsEve[i]
-                                                      .slotDuration,
-                                                );
-                                                bool isSessionInList = false;
-                                                TimeOfDay currentTime = TimeOfDay.now();
-                                                DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(sessionsEve[i].endTime.toString());
-
-                                                TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
-                                                /*check if current day time is passed then can't select that sessions*/
-                                                if(date == 0 ? givenTime.hour > currentTime.hour:true){
-                                                    return Padding(
-                                                      padding: EdgeInsets.symmetric(vertical: height * 0.005),
-                                                      child: InkWell(
-                                                        onTap: () {
-                                                          setState(() {});
-                                                          if (list.isEmpty) {
-                                                            // If the list is empty, add the session
-                                                            list.add(
-                                                                sessionToAddOrRemove);
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .locale ==
-                                                                'en'
-                                                                ? academyId.add(
-                                                                sessionsEve[i]
-                                                                    .sessionName
-                                                                    .toString())
-                                                                : academyId.add(
-                                                                (sessionsEve[i]
-                                                                    .sessionNameAr
-                                                                    .toString()));
-                                                            _slotPrice.pricePerPlayer
-                                                                .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[0]
-                                                                .prices![0]
-                                                                .price!
-                                                                .toDouble());
-                                                            slots != 0 ?slots = slots -1:null;
-                                                            playerController.text =
-                                                                indexItem.toString();
-                                                          } else {
-                                                            isSessionInList =
-                                                                list.any((item) {
-                                                                  return item.id ==
-                                                                      sessionToAddOrRemove
-                                                                          .id &&
+                                                                .sessionName,
+                                                        graceTime: sessionMor[i]
+                                                            .graceTime,
+                                                        endTime: sessionMor[i]
+                                                            .endTime,
+                                                        startTime: sessionMor[i]
+                                                            .startTime,
+                                                        slotDuration:
+                                                            sessionMor[i]
+                                                                .slotDuration,
+                                                      );
+                                                      bool isSessionInList =
+                                                          false;
+                                                      TimeOfDay currentTime =
+                                                          TimeOfDay.now();
+                                                      DateTime givenDateTime =
+                                                          DateFormat(
+                                                                  "yyyy-MM-dd HH:mm:ss.SSS")
+                                                              .parse(sessionMor[
+                                                                      i]
+                                                                  .endTime
+                                                                  .toString());
+                                                      TimeOfDay givenTime =
+                                                          TimeOfDay.fromDateTime(
+                                                              givenDateTime);
+                                                      /*check if current day time is passed then can't select that sessions*/
+                                                      if (date == 0
+                                                          ? givenTime.hour >
+                                                              currentTime.hour
+                                                          : true) {
+                                                        return Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical:
+                                                                      height *
+                                                                          0.005),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {});
+                                                              if (list
+                                                                  .isEmpty) {
+                                                                // If the list is empty, add the session
+                                                                list.add(
+                                                                    sessionToAddOrRemove);
+                                                                AppLocalizations.of(context)!
+                                                                            .locale ==
+                                                                        'en'
+                                                                    ? academyId.add(sessionMor[
+                                                                            i]
+                                                                        .sessionName
+                                                                        .toString())
+                                                                    : academyId.add((sessionMor[
+                                                                            i]
+                                                                        .sessionNameAr
+                                                                        .toString()));
+                                                                _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
+                                                                    ? _specificInnovative!
+                                                                        .prices![
+                                                                            0]
+                                                                        .price!
+                                                                        .toDouble()
+                                                                    : _specificAcademy[
+                                                                            0]
+                                                                        .prices![
+                                                                            0]
+                                                                        .price!
+                                                                        .toDouble());
+                                                                slots != 0
+                                                                    ? slots =
+                                                                        slots -
+                                                                            1
+                                                                    : null;
+                                                                playerController
+                                                                        .text =
+                                                                    indexItem
+                                                                        .toString();
+                                                              } else {
+                                                                isSessionInList =
+                                                                    list.any(
+                                                                        (item) {
+                                                                  return item
+                                                                              .id ==
+                                                                          sessionToAddOrRemove
+                                                                              .id &&
                                                                       item.sessionNameAr ==
                                                                           sessionToAddOrRemove
                                                                               .sessionNameAr &&
@@ -1157,23 +766,419 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                           sessionToAddOrRemove
                                                                               .slotDuration;
                                                                 });
-                                                            if (isSessionInList) {
-                                                              slots < 22 ?slots = slots + 1 : null;
-                                                              playerController.text =
-                                                                  indexItem.toString();
-                                                              AppLocalizations.of(context)!
-                                                                  .locale ==
-                                                                  'en'
-                                                                  ? academyId.remove(
-                                                                  sessionsEve[i]
-                                                                      .sessionName)
-                                                                  : academyId.remove(
-                                                                  sessionsEve[i]
-                                                                      .sessionNameAr);
-                                                              list.removeWhere((item) {
-                                                                return item.id ==
-                                                                    sessionToAddOrRemove
-                                                                        .id &&
+                                                                if (isSessionInList) {
+                                                                  slots < 22
+                                                                      ? slots =
+                                                                          slots +
+                                                                              1
+                                                                      : null;
+                                                                  playerController
+                                                                          .text =
+                                                                      indexItem
+                                                                          .toString();
+                                                                  AppLocalizations.of(context)!
+                                                                              .locale ==
+                                                                          'en'
+                                                                      ? academyId
+                                                                          .remove(sessionMor[i]
+                                                                              .sessionName)
+                                                                      : academyId
+                                                                          .remove(
+                                                                              sessionMor[i].sessionNameAr);
+                                                                  list.removeWhere(
+                                                                      (item) {
+                                                                    return item
+                                                                                .id ==
+                                                                            sessionToAddOrRemove
+                                                                                .id &&
+                                                                        item.sessionNameAr ==
+                                                                            sessionToAddOrRemove
+                                                                                .sessionNameAr &&
+                                                                        item.sessionName ==
+                                                                            sessionToAddOrRemove
+                                                                                .sessionName &&
+                                                                        item.graceTime ==
+                                                                            sessionToAddOrRemove
+                                                                                .graceTime &&
+                                                                        item.endTime ==
+                                                                            sessionToAddOrRemove
+                                                                                .endTime &&
+                                                                        item.startTime ==
+                                                                            sessionToAddOrRemove
+                                                                                .startTime &&
+                                                                        item.slotDuration ==
+                                                                            sessionToAddOrRemove.slotDuration;
+                                                                  });
+                                                                  // list.isEmpty?slots = slots:null;
+                                                                  list.isEmpty
+                                                                      ? indexItem =
+                                                                          1
+                                                                      : indexItem =
+                                                                          indexItem -
+                                                                              1;
+                                                                  _slotPrice
+                                                                      .pricePerPlayer
+                                                                      .removeLast();
+                                                                } else {
+                                                                  ///show Message That proceed first then select other session
+                                                                  showMessage(
+                                                                      'please proceed with seesion then select another session');
+                                                                  //   slots != 0 ?slots = slots - 1 : null;
+                                                                  //   playerController.text =
+                                                                  //       indexItem.toString();
+                                                                  //   AppLocalizations.of(
+                                                                  //       context)!
+                                                                  //       .locale ==
+                                                                  //       'en'
+                                                                  //       ? academyId.add(
+                                                                  //       sessionMor[i]
+                                                                  //           .sessionName
+                                                                  //           .toString())
+                                                                  //       : academyId.add(
+                                                                  //       (sessionMor[i]
+                                                                  //           .sessionNameAr
+                                                                  //           .toString()));
+                                                                  //   list.add(
+                                                                  //       sessionToAddOrRemove);
+                                                                  //   _slotPrice.pricePerPlayer
+                                                                  //       .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
+                                                                  //   0]
+                                                                  //       .prices![0]
+                                                                  //       .price!
+                                                                  //       .toDouble());
+                                                                }
+                                                              }
+                                                              setState(() {});
+                                                            },
+                                                            child: SizedBox(
+                                                              width:
+                                                                  width * 0.45,
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    "${sessionMor[i].sessionName!.length > 9 ? '${sessionMor[i].sessionName!.substring(0, 8)}..' : sessionMor[i].sessionName}(${sessionMor[i].slotDuration} mins)",
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                            color: MyAppState.mode == ThemeMode.light
+                                                                                ? AppColors.black
+                                                                                : AppColors.white),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height:
+                                                                        height *
+                                                                            0.01,
+                                                                  ),
+                                                                  Badge(
+                                                                    backgroundColor:
+                                                                        AppColors
+                                                                            .grey,
+                                                                    label: Text(
+                                                                        '$slots'),
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .topRight,
+                                                                    textColor:
+                                                                        AppColors
+                                                                            .black,
+                                                                    child:
+                                                                        Container(
+                                                                      height: height *
+                                                                          0.065,
+                                                                      width:
+                                                                          width *
+                                                                              0.4,
+                                                                      decoration: BoxDecoration(
+                                                                          color: academyId.contains(sessionMor[i].sessionName)
+                                                                              ? AppColors.appThemeColor
+                                                                              : AppColors.grey,
+                                                                          borderRadius: BorderRadius.circular(12)),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding:
+                                                                                EdgeInsets.only(left: width * 0.015),
+                                                                            child:
+                                                                                Text(
+                                                                              '${sessionMor[i].startTime.toString().substring(11, 16)} - ${sessionMor[i].endTime!.toString().substring(11, 16)}',
+                                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                                  color: academyId.contains(sessionMor[i].sessionName)
+                                                                                      ? MyAppState.mode == ThemeMode.light
+                                                                                          ? AppColors.white
+                                                                                          : AppColors.grey
+                                                                                      : AppColors.black),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width:
+                                                                                width * 0.05,
+                                                                          ),
+                                                                          CircleAvatar(
+                                                                            radius:
+                                                                                height * 0.01,
+                                                                            backgroundColor: academyId.contains(sessionMor[i].sessionName)
+                                                                                ? AppColors.red
+                                                                                : AppColors.darkTheme,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      } else {
+                                                        return Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical:
+                                                                      height *
+                                                                          0.005),
+                                                          child: SizedBox(
+                                                            width: width * 0.45,
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  "${sessionMor[i].sessionName!.length > 9 ? '${sessionMor[i].sessionName!.substring(0, 8)}..' : sessionMor[i].sessionName}(${sessionMor[i].slotDuration} mins)",
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                          color: MyAppState.mode == ThemeMode.light
+                                                                              ? AppColors.black
+                                                                              : AppColors.white),
+                                                                ),
+                                                                SizedBox(
+                                                                  height:
+                                                                      height *
+                                                                          0.01,
+                                                                ),
+                                                                Badge(
+                                                                  backgroundColor:
+                                                                      AppColors
+                                                                          .grey,
+                                                                  label: Text(
+                                                                      '$slots'),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topRight,
+                                                                  textColor:
+                                                                      AppColors
+                                                                          .black,
+                                                                  child:
+                                                                      Container(
+                                                                    height:
+                                                                        height *
+                                                                            0.065,
+                                                                    width:
+                                                                        width *
+                                                                            0.4,
+                                                                    decoration: BoxDecoration(
+                                                                        color: academyId.contains(sessionMor[i].sessionName)
+                                                                            ? AppColors
+                                                                                .appThemeColor
+                                                                            : AppColors
+                                                                                .grey200,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(12)),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(left: width * 0.015),
+                                                                          child:
+                                                                              Text(
+                                                                            '${sessionMor[i].startTime.toString().substring(11, 16)} - ${sessionMor[i].endTime!.toString().substring(11, 16)}',
+                                                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                                color: academyId.contains(sessionMor[i].sessionName)
+                                                                                    ? MyAppState.mode == ThemeMode.light
+                                                                                        ? AppColors.white
+                                                                                        : AppColors.grey
+                                                                                    : AppColors.black),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              width * 0.05,
+                                                                        ),
+                                                                        CircleAvatar(
+                                                                          radius:
+                                                                              height * 0.01,
+                                                                          backgroundColor: academyId.contains(sessionMor[i].sessionName)
+                                                                              ? AppColors.red
+                                                                              : AppColors.darkTheme,
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                    })
+                                                  ]),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            height: list.isEmpty
+                                                ? height * 0.24
+                                                : height * 0.2,
+                                            child: Center(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .noSlotsAvailable,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? AppColors.black
+                                                            : AppColors.white),
+                                              ),
+                                            ),
+                                          )
+                                    : const SizedBox.shrink(),
+
+                                ///evening Sessions
+                                Text(
+                                    AppLocalizations.of(context)!
+                                        .eveningSession,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                            color: MyAppState.mode ==
+                                                    ThemeMode.light
+                                                ? AppColors.black
+                                                : AppColors.white)),
+                                _weakList.isNotEmpty
+                                    ? sessionsEve.isNotEmpty &&
+                                            sessionsEve != null
+                                        ? SingleChildScrollView(
+                                            child: SizedBox(
+                                            height: list.isEmpty
+                                                ? height * 0.24
+                                                : height * 0.2,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Wrap(children: [
+                                                  ...List.generate(
+                                                      sessionsEve.length ?? 0,
+                                                      (i) {
+                                                    final sessionToAddOrRemove =
+                                                        SessionDetail(
+                                                      id: sessionsEve[i].id,
+                                                      sessionNameAr:
+                                                          sessionsEve[i]
+                                                              .sessionNameAr,
+                                                      sessionName:
+                                                          sessionsEve[i]
+                                                              .sessionName,
+                                                      graceTime: sessionsEve[i]
+                                                          .graceTime,
+                                                      endTime: sessionsEve[i]
+                                                          .endTime,
+                                                      startTime: sessionsEve[i]
+                                                          .startTime,
+                                                      slotDuration:
+                                                          sessionsEve[i]
+                                                              .slotDuration,
+                                                    );
+                                                    bool isSessionInList =
+                                                        false;
+                                                    TimeOfDay currentTime =
+                                                        TimeOfDay.now();
+                                                    DateTime givenDateTime =
+                                                        DateFormat(
+                                                                "yyyy-MM-dd HH:mm:ss.SSS")
+                                                            .parse(sessionsEve[
+                                                                    i]
+                                                                .endTime
+                                                                .toString());
+
+                                                    TimeOfDay givenTime =
+                                                        TimeOfDay.fromDateTime(
+                                                            givenDateTime);
+                                                    /*check if current day time is passed then can't select that sessions*/
+                                                    if (date == 0
+                                                        ? givenTime.hour >
+                                                            currentTime.hour
+                                                        : true) {
+                                                      return Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical:
+                                                                    height *
+                                                                        0.005),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            setState(() {});
+                                                            if (list.isEmpty) {
+                                                              // If the list is empty, add the session
+                                                              list.add(
+                                                                  sessionToAddOrRemove);
+                                                              AppLocalizations.of(
+                                                                              context)!
+                                                                          .locale ==
+                                                                      'en'
+                                                                  ? academyId.add(
+                                                                      sessionsEve[
+                                                                              i]
+                                                                          .sessionName
+                                                                          .toString())
+                                                                  : academyId.add(
+                                                                      (sessionsEve[
+                                                                              i]
+                                                                          .sessionNameAr
+                                                                          .toString()));
+                                                              _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
+                                                                  ? _specificInnovative!
+                                                                      .prices![
+                                                                          0]
+                                                                      .price!
+                                                                      .toDouble()
+                                                                  : _specificAcademy[
+                                                                          0]
+                                                                      .prices![
+                                                                          0]
+                                                                      .price!
+                                                                      .toDouble());
+                                                              slots != 0
+                                                                  ? slots =
+                                                                      slots - 1
+                                                                  : null;
+                                                              playerController
+                                                                      .text =
+                                                                  indexItem
+                                                                      .toString();
+                                                            } else {
+                                                              isSessionInList =
+                                                                  list.any(
+                                                                      (item) {
+                                                                return item
+                                                                            .id ==
+                                                                        sessionToAddOrRemove
+                                                                            .id &&
                                                                     item.sessionNameAr ==
                                                                         sessionToAddOrRemove
                                                                             .sessionNameAr &&
@@ -1193,109 +1198,240 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                         sessionToAddOrRemove
                                                                             .slotDuration;
                                                               });
-                                                              _slotPrice.pricePerPlayer
-                                                                  .removeLast();
-                                                            } else {
-                                                              ///show message that proceed first selected session then select other
-                                                              showMessage('please proceed with seesion then select another session');
-                                                              // slots != 0 ?slots = slots - 1 : null;
-                                                              // playerController.text =
-                                                              //     indexItem.toString();
-                                                              // AppLocalizations.of(
-                                                              //     context)!
-                                                              //     .locale ==
-                                                              //     'en'
-                                                              //     ? academyId.add(
-                                                              //     sessionsEve[i]
-                                                              //         .sessionName
-                                                              //         .toString())
-                                                              //     : academyId.add(
-                                                              //     (sessionsEve[i]
-                                                              //         .sessionNameAr
-                                                              //         .toString()));
-                                                              // list.add(
-                                                              //     sessionToAddOrRemove);
-                                                              // _slotPrice.pricePerPlayer
-                                                              //     .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
-                                                              // 0]
-                                                              //     .prices![0]
-                                                              //     .price!
-                                                              //     .toDouble());
+                                                              if (isSessionInList) {
+                                                                slots < 22
+                                                                    ? slots =
+                                                                        slots +
+                                                                            1
+                                                                    : null;
+                                                                playerController
+                                                                        .text =
+                                                                    indexItem
+                                                                        .toString();
+                                                                AppLocalizations.of(context)!
+                                                                            .locale ==
+                                                                        'en'
+                                                                    ? academyId.remove(
+                                                                        sessionsEve[i]
+                                                                            .sessionName)
+                                                                    : academyId.remove(
+                                                                        sessionsEve[i]
+                                                                            .sessionNameAr);
+                                                                list.removeWhere(
+                                                                    (item) {
+                                                                  return item
+                                                                              .id ==
+                                                                          sessionToAddOrRemove
+                                                                              .id &&
+                                                                      item.sessionNameAr ==
+                                                                          sessionToAddOrRemove
+                                                                              .sessionNameAr &&
+                                                                      item.sessionName ==
+                                                                          sessionToAddOrRemove
+                                                                              .sessionName &&
+                                                                      item.graceTime ==
+                                                                          sessionToAddOrRemove
+                                                                              .graceTime &&
+                                                                      item.endTime ==
+                                                                          sessionToAddOrRemove
+                                                                              .endTime &&
+                                                                      item.startTime ==
+                                                                          sessionToAddOrRemove
+                                                                              .startTime &&
+                                                                      item.slotDuration ==
+                                                                          sessionToAddOrRemove
+                                                                              .slotDuration;
+                                                                });
+                                                                _slotPrice
+                                                                    .pricePerPlayer
+                                                                    .removeLast();
+                                                              } else {
+                                                                ///show message that proceed first selected session then select other
+                                                                showMessage(
+                                                                    'please proceed with seesion then select another session');
+                                                                // slots != 0 ?slots = slots - 1 : null;
+                                                                // playerController.text =
+                                                                //     indexItem.toString();
+                                                                // AppLocalizations.of(
+                                                                //     context)!
+                                                                //     .locale ==
+                                                                //     'en'
+                                                                //     ? academyId.add(
+                                                                //     sessionsEve[i]
+                                                                //         .sessionName
+                                                                //         .toString())
+                                                                //     : academyId.add(
+                                                                //     (sessionsEve[i]
+                                                                //         .sessionNameAr
+                                                                //         .toString()));
+                                                                // list.add(
+                                                                //     sessionToAddOrRemove);
+                                                                // _slotPrice.pricePerPlayer
+                                                                //     .add(widget.navigateFromInnovative?_specificInnovative!.prices![0].price!.toDouble():_specificAcademy[
+                                                                // 0]
+                                                                //     .prices![0]
+                                                                //     .price!
+                                                                //     .toDouble());
+                                                              }
                                                             }
-                                                          }
-                                                          setState(() {});
-                                                        },
+                                                            setState(() {});
+                                                          },
+                                                          child: SizedBox(
+                                                            width: width * 0.45,
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  "${sessionsEve[i].sessionName!.length > 9 ? '${sessionsEve[i].sessionName!.substring(0, 8)}..' : sessionsEve[i].sessionName}(${sessionsEve[i].slotDuration} mins)",
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                          color: MyAppState.mode == ThemeMode.light
+                                                                              ? AppColors.black
+                                                                              : AppColors.white),
+                                                                ),
+                                                                SizedBox(
+                                                                  height:
+                                                                      height *
+                                                                          0.01,
+                                                                ),
+                                                                Badge(
+                                                                  backgroundColor:
+                                                                      AppColors
+                                                                          .grey,
+                                                                  label: Text(
+                                                                      '$slots'),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topRight,
+                                                                  textColor:
+                                                                      AppColors
+                                                                          .black,
+                                                                  child:
+                                                                      Container(
+                                                                    height:
+                                                                        height *
+                                                                            0.065,
+                                                                    width:
+                                                                        width *
+                                                                            0.4,
+                                                                    decoration: BoxDecoration(
+                                                                        color: academyId.contains(sessionsEve[i].sessionName)
+                                                                            ? AppColors
+                                                                                .appThemeColor
+                                                                            : AppColors
+                                                                                .grey,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(12)),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(left: width * 0.015),
+                                                                          child:
+                                                                              Text(
+                                                                            '${sessionsEve[i].startTime.toString().substring(11, 16)} - ${sessionsEve[i].endTime!.toString().substring(11, 16)}',
+                                                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                                color: academyId.contains(sessionsEve[i].sessionName)
+                                                                                    ? MyAppState.mode == ThemeMode.light
+                                                                                        ? AppColors.white
+                                                                                        : AppColors.grey
+                                                                                    : AppColors.black),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              width * 0.05,
+                                                                        ),
+                                                                        CircleAvatar(
+                                                                          radius:
+                                                                              height * 0.01,
+                                                                          backgroundColor: academyId.contains(sessionsEve[i].sessionName)
+                                                                              ? AppColors.red
+                                                                              : AppColors.darkTheme,
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    } else {
+                                                      return Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical:
+                                                                    height *
+                                                                        0.005),
                                                         child: SizedBox(
                                                           width: width * 0.45,
                                                           child: Column(
                                                             crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Text(
-                                                                "${sessionsEve[i].sessionName!.length > 9?'${sessionsEve[i].sessionName!.substring(0,8)}..':sessionsEve[i].sessionName}(${sessionsEve[i].slotDuration} mins)",
-                                                                style: Theme.of(context)
+                                                                "${sessionsEve[i].sessionName!.length > 9 ? '${sessionsEve[i].sessionName!.substring(0, 8)}..' : sessionsEve[i].sessionName}(${sessionsEve[i].slotDuration} mins)",
+                                                                style: Theme.of(
+                                                                        context)
                                                                     .textTheme
                                                                     .bodyMedium!
                                                                     .copyWith(
-                                                                    color: MyAppState
-                                                                        .mode ==
-                                                                        ThemeMode
-                                                                            .light
-                                                                        ? AppColors
-                                                                        .black
-                                                                        : AppColors
-                                                                        .white),
+                                                                        color: MyAppState.mode ==
+                                                                                ThemeMode.light
+                                                                            ? AppColors.black
+                                                                            : AppColors.white),
                                                               ),
                                                               SizedBox(
-                                                                height: height * 0.01,
+                                                                height: height *
+                                                                    0.01,
                                                               ),
                                                               Badge(
                                                                 backgroundColor:
-                                                                AppColors.grey,
-                                                                label: Text('$slots'),
+                                                                    AppColors
+                                                                        .grey,
+                                                                label: Text(
+                                                                    '$slots'),
                                                                 alignment:
-                                                                Alignment.topRight,
+                                                                    Alignment
+                                                                        .topRight,
                                                                 textColor:
-                                                                AppColors.black,
-                                                                child: Container(
+                                                                    AppColors
+                                                                        .black,
+                                                                child:
+                                                                    Container(
                                                                   height:
-                                                                  height * 0.065,
-                                                                  width: width * 0.4,
+                                                                      height *
+                                                                          0.065,
+                                                                  width: width *
+                                                                      0.4,
                                                                   decoration: BoxDecoration(
-                                                                      color:
-                                                                      academyId.contains(
-                                                                          sessionsEve[
-                                                                          i]
-                                                                              .sessionName)
-                                                                          ? AppColors
-                                                                          .appThemeColor
-                                                                          :
-                                                                      AppColors
-                                                                          .grey,
+                                                                      color: AppColors
+                                                                          .grey200,
                                                                       borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                          12)),
+                                                                          BorderRadius.circular(
+                                                                              12)),
                                                                   child: Row(
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsets.only(
-                                                                            left: width *
-                                                                                0.015),
-                                                                        child: Text(
+                                                                        padding:
+                                                                            EdgeInsets.only(left: width * 0.015),
+                                                                        child:
+                                                                            Text(
                                                                           '${sessionsEve[i].startTime.toString().substring(11, 16)} - ${sessionsEve[i].endTime!.toString().substring(11, 16)}',
-                                                                          style: Theme.of(
-                                                                              context)
-                                                                              .textTheme
-                                                                              .bodyMedium!
-                                                                              .copyWith(
-                                                                              color:
-                                                                              academyId.contains(sessionsEve[i].sessionName)
+                                                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                              color: academyId.contains(sessionsEve[i].sessionName)
                                                                                   ? MyAppState.mode == ThemeMode.light
-                                                                                  ? AppColors.white
-                                                                                  : AppColors.grey :
-                                                                              AppColors.black),
+                                                                                      ? AppColors.white
+                                                                                      : AppColors.grey
+                                                                                  : AppColors.black),
                                                                         ),
                                                                       ),
                                                                       SizedBox(
@@ -1305,14 +1441,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                       CircleAvatar(
                                                                         radius: height *
                                                                             0.01,
-                                                                        backgroundColor:
-                                                                        academyId.contains(
-                                                                            sessionsEve[i]
-                                                                                .sessionName)
-                                                                            ? AppColors
-                                                                            .red :
-                                                                        AppColors
-                                                                            .darkTheme,
+                                                                        backgroundColor: academyId.contains(sessionsEve[i].sessionName)
+                                                                            ? AppColors.red
+                                                                            : AppColors.darkTheme,
                                                                       )
                                                                     ],
                                                                   ),
@@ -1321,300 +1452,246 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                             ],
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                }else{
-                                                  return Padding(
-                                                    padding: EdgeInsets.symmetric(vertical: height * 0.005),
-                                                    child: SizedBox(
-                                                      width: width * 0.45,
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                        children: [
-                                                          Text(
-                                                            "${sessionsEve[i].sessionName!.length > 9?'${sessionsEve[i].sessionName!.substring(0,8)}..':sessionsEve[i].sessionName}(${sessionsEve[i].slotDuration} mins)",
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .bodyMedium!
-                                                                .copyWith(
-                                                                color: MyAppState
-                                                                    .mode ==
-                                                                    ThemeMode
-                                                                        .light
-                                                                    ? AppColors
-                                                                    .black
-                                                                    : AppColors
-                                                                    .white),
-                                                          ),
-                                                          SizedBox(
-                                                            height: height * 0.01,
-                                                          ),
-                                                          Badge(
-                                                            backgroundColor:
-                                                            AppColors.grey,
-                                                            label: Text('$slots'),
-                                                            alignment:
-                                                            Alignment.topRight,
-                                                            textColor:
-                                                            AppColors.black,
-                                                            child: Container(
-                                                              height:
-                                                              height * 0.065,
-                                                              width: width * 0.4,
-                                                              decoration: BoxDecoration(
-                                                                  color:
-                                                                  AppColors
-                                                                      .grey200,
-                                                                  borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                      12)),
-                                                              child: Row(
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        left: width *
-                                                                            0.015),
-                                                                    child: Text(
-                                                                      '${sessionsEve[i].startTime.toString().substring(11, 16)} - ${sessionsEve[i].endTime!.toString().substring(11, 16)}',
-                                                                      style: Theme.of(
-                                                                          context)
-                                                                          .textTheme
-                                                                          .bodyMedium!
-                                                                          .copyWith(
-                                                                          color:
-                                                                          academyId.contains(sessionsEve[i].sessionName)
-                                                                              ? MyAppState.mode == ThemeMode.light
-                                                                              ? AppColors.white
-                                                                              : AppColors.grey :
-                                                                          AppColors.black),
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: width *
-                                                                        0.05,
-                                                                  ),
-                                                                  CircleAvatar(
-                                                                    radius: height *
-                                                                        0.01,
-                                                                    backgroundColor:
-                                                                    academyId.contains(
-                                                                        sessionsEve[i]
-                                                                            .sessionName)
-                                                                        ? AppColors
-                                                                        .red :
-                                                                    AppColors
-                                                                        .darkTheme,
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                              })
-                                            ]),
-                                            SizedBox(
-                                              height: height * 0.02,
+                                                      );
+                                                    }
+                                                  })
+                                                ]),
+                                                SizedBox(
+                                                  height: height * 0.02,
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ))
-                                    : SizedBox(
-                                        height: list.isEmpty?height * 0.24:height * 0.2,
-                                        child: Center(
-                                          child: Text(
-                                            AppLocalizations.of(context)!
-                                                .noSlotsAvailable,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? AppColors.black
-                                                        : AppColors.white),
-                                          ),
-                                        ),
-                                      ):const SizedBox.shrink(),
+                                          ))
+                                        : SizedBox(
+                                            height: list.isEmpty
+                                                ? height * 0.24
+                                                : height * 0.2,
+                                            child: Center(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .noSlotsAvailable,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? AppColors.black
+                                                            : AppColors.white),
+                                              ),
+                                            ),
+                                          )
+                                    : const SizedBox.shrink(),
                                 SizedBox(
                                   height: height * 0.02,
                                 ),
                                 SizedBox(
                                   height: height * 0.02,
                                 ),
-                                list.isEmpty?const SizedBox.shrink():Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: height * 0.01),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!
-                                            .selectnumber,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                          color: MyAppState.mode ==
-                                              ThemeMode.light
-                                              ? AppColors.themeColor
-                                              : AppColors.white,
-                                        ),
-                                      ),
-                                      Container(
-                                        height: height * 0.055,
-                                        width: width * 0.45,
-                                        decoration: BoxDecoration(
-                                            color: MyAppState.mode == ThemeMode.light?AppColors.grey.withOpacity(0.4):AppColors.containerColorW12,
-                                            borderRadius:
-                                            BorderRadius.circular(12),
-                                            border: Border.fromBorderSide(
-                                                MyAppState.mode ==
-                                                    ThemeMode.light
-                                                    ? BorderSide.none
-                                                    : BorderSide(
-                                                    color: AppColors.white,
-                                                    width: 1))),
+                                list.isEmpty
+                                    ? const SizedBox.shrink()
+                                    : Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: height * 0.01),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            InkWell(
-                                              onTap: () {
-                                                if (indexItem != 1) {
-                                                  indexItem = indexItem - 1;
-                                                  slots < 22 ?slots = slots + list.length:null;
-                                                }
-                                                playerController.text =
-                                                    indexItem.toString();
-                                                setState(() {});
-                                              },
-                                              child: const Icon(
-                                                FontAwesomeIcons.minus,
-                                                color: AppColors.appThemeColor,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: width * 0.01,
-                                            ),
                                             Text(
-                                              indexItem.toString(),
+                                              AppLocalizations.of(context)!
+                                                  .selectnumber,
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyMedium,
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? AppColors.themeColor
+                                                        : AppColors.white,
+                                                  ),
                                             ),
-                                            SizedBox(
-                                              width: width * 0.01,
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                if (list.isEmpty) {
-                                                  showMessage(
-                                                      'please select your slot first');
-                                                } else {
-                                                  if(slots > 0){
-                                                    indexItem < 22?indexItem = indexItem + 1:null;
-                                                    slots != 0 && slots > 0 ?slots = slots - list.length:null;
-                                                    if(slots < 0){
-                                                      slots = slots + list.length;
-                                                      indexItem = indexItem - 1;
-                                                    }
-                                                  }
-                                                  playerController.text =
-                                                      indexItem.toString();
-                                                  setState(() {});
-                                                }
-                                              },
-                                              child: Icon(
-                                                Icons.add,
-                                                color: AppColors.appThemeColor,
-                                                size: height * 0.04,
+                                            Container(
+                                              height: height * 0.055,
+                                              width: width * 0.45,
+                                              decoration: BoxDecoration(
+                                                  color: MyAppState.mode ==
+                                                          ThemeMode.light
+                                                      ? AppColors.grey
+                                                          .withOpacity(0.4)
+                                                      : AppColors
+                                                          .containerColorW12,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  border: Border.fromBorderSide(
+                                                      MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? BorderSide.none
+                                                          : BorderSide(
+                                                              color: AppColors
+                                                                  .white,
+                                                              width: 1))),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      if (indexItem != 1) {
+                                                        indexItem =
+                                                            indexItem - 1;
+                                                        slots < 22
+                                                            ? slots = slots +
+                                                                list.length
+                                                            : null;
+                                                      }
+                                                      playerController.text =
+                                                          indexItem.toString();
+                                                      setState(() {});
+                                                    },
+                                                    child: const Icon(
+                                                      FontAwesomeIcons.minus,
+                                                      color: AppColors
+                                                          .appThemeColor,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: width * 0.01,
+                                                  ),
+                                                  Text(
+                                                    indexItem.toString(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium,
+                                                  ),
+                                                  SizedBox(
+                                                    width: width * 0.01,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      if (list.isEmpty) {
+                                                        showMessage(
+                                                            'please select your slot first');
+                                                      } else {
+                                                        if (slots > 0) {
+                                                          indexItem < 22
+                                                              ? indexItem =
+                                                                  indexItem + 1
+                                                              : null;
+                                                          slots != 0 &&
+                                                                  slots > 0
+                                                              ? slots = slots -
+                                                                  list.length
+                                                              : null;
+                                                          if (slots < 0) {
+                                                            slots = slots +
+                                                                list.length;
+                                                            indexItem =
+                                                                indexItem - 1;
+                                                          }
+                                                        }
+                                                        playerController.text =
+                                                            indexItem
+                                                                .toString();
+                                                        setState(() {});
+                                                      }
+                                                    },
+                                                    child: Icon(
+                                                      Icons.add,
+                                                      color: AppColors
+                                                          .appThemeColor,
+                                                      size: height * 0.04,
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
+
                                 ///Book Button
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: ButtonWidget(
-                                      isLoading: loading,
-                                      onTaped: () async {
-                                        if (_auth) {
-                                          if (_slotPrice
-                                              .pricePerPlayer.isEmpty) {
-                                            showMessage(
-                                                "Please select your slot first");
-                                          } else {
-                                            sessionIdList.clear();
-                                            list.forEach((element) {
-                                              sessionIdList.add(element.id);
-                                            });
-                                            if(widget.navigateFromInnovative){
-                                              await loadProfile();
-                                              var detial = {
-                                                'cart_id': null,
-                                                'totalPrice': (slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round(),
-                                                "price": _specificInnovative!.prices![0].price,
-                                                "name": _specificInnovative!.nameEnglish,
-                                                'academy_id': _specificInnovative!.innovativehubId,
-                                                // "detail": bookedSessions,
-                                                "apidetail": dataTime,
-                                                "id": profileDetail['id'],
-                                                'sessionId': sessionIdList,
-                                                'location': _specificInnovative!.location,
-                                                "player_count": indexItem,
-                                              };
-                                              academyDetail.add(detial);
-                                              print(academyDetail);
-                                              navigateToPayment(academyDetail,widget.navigateFromInnovative);
-                                            }else{
-                                             Map details  = {
-                                                "academy": _specificAcademy[0].academyId,
-                                                "session": sessionIdList,
-                                                "Sub_Academy": _specificAcademy[0]
-                                                    .prices![0]
-                                                    .subAcademy,
-                                                "price": slotPriceCalculation(
-                                                    _slotPrice
-                                                        .pricePerPlayer) *
-                                                    indexItem,
-                                                "location": _specificAcademy[0]
-                                                    .academyLocation,
-                                                "booked_date": dataTime,
-                                                "player_count":indexItem,
-                                                'price_per_player': _specificAcademy[0].prices![0].price
-                                              };
-                                             print('AcademyDetail$details');
-                                             addToCart(details);
-                                            }
-                                          }
+                                    isLoading: loading,
+                                    onTaped: () async {
+                                      if (_auth) {
+                                        if (_slotPrice.pricePerPlayer.isEmpty) {
+                                          showMessage(
+                                              "Please select your slot first");
                                         } else {
-                                          onWillPop();
+                                          sessionIdList.clear();
+                                          list.forEach((element) {
+                                            sessionIdList.add(element.id);
+                                          });
+                                          if (widget.navigateFromInnovative) {
+                                            await loadProfile();
+                                            var detial = {
+                                              'cart_id': null,
+                                              'totalPrice': (slotPriceCalculation(
+                                                          _slotPrice
+                                                              .pricePerPlayer) *
+                                                      indexItem)
+                                                  .round(),
+                                              "price": _specificInnovative!
+                                                  .prices![0].price,
+                                              "name": _specificInnovative!
+                                                  .nameEnglish,
+                                              'academy_id': _specificInnovative!
+                                                  .innovativehubId,
+                                              // "detail": bookedSessions,
+                                              "apidetail": dataTime,
+                                              "id": profileDetail['id'],
+                                              'sessionId': sessionIdList,
+                                              'location':
+                                                  _specificInnovative!.location,
+                                              "player_count": indexItem,
+                                            };
+                                            academyDetail.add(detial);
+                                            print(academyDetail);
+                                            navigateToPayment(academyDetail,
+                                                widget.navigateFromInnovative);
+                                          } else {
+                                            Map details = {
+                                              "academy":
+                                                  _specificAcademy[0].academyId,
+                                              "session": sessionIdList,
+                                              "Sub_Academy": '',
+                                              "price": slotPriceCalculation(
+                                                      _slotPrice
+                                                          .pricePerPlayer) *
+                                                  indexItem,
+                                              "location": _specificAcademy[0]
+                                                  .academyLocation,
+                                              "booked_date": dataTime,
+                                              "player_count": indexItem,
+                                              'price_per_player':
+                                                  _specificAcademy[0]
+                                                      .prices![0]
+                                                      .price
+                                            };
+                                            print('AcademyDetail$details');
+                                            addToCart(details);
+                                          }
                                         }
-                                      },
-                                      title: Center(
-                                        child: Text(
-                                          _slotPrice.pricePerPlayer.isEmpty
-                                              ? AppLocalizations.of(context)!
-                                                  .bookNowS
-                                              : "${widget.navigateFromInnovative?AppLocalizations.of(context)!.bookNowS:AppLocalizations.of(context)!.addToCart}: ${(slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round().toString()} AED",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(color: AppColors.white),
-                                        ),
+                                      } else {
+                                        onWillPop();
+                                      }
+                                    },
+                                    title: Center(
+                                      child: Text(
+                                        _slotPrice.pricePerPlayer.isEmpty
+                                            ? AppLocalizations.of(context)!
+                                                .bookNowS
+                                            : "${widget.navigateFromInnovative ? AppLocalizations.of(context)!.bookNowS : AppLocalizations.of(context)!.addToCart}: ${(slotPriceCalculation(_slotPrice.pricePerPlayer) * indexItem).round().toString()} AED",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(color: AppColors.white),
                                       ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -1654,7 +1731,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     return null;
   }
 
-
   void navigateToLogin() {
     Navigator.push(context,
         MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
@@ -1672,8 +1748,13 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   void navigateToHomeScreen() {
     // Navigator.pushNamed(context, RouteNames.enterDetailAcademy,
     //     arguments: detail);
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PlayerHomeScreen(index: 0),));
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlayerHomeScreen(index: 0),
+        ));
   }
+
   navigateToEditAcademyDetail(detail) {
     Navigator.push(
         context,
@@ -1681,7 +1762,13 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
           builder: (context) => EnterDetailAcademyScreen(detail: detail),
         ));
   }
-  navigateToPayment(detail,navigateFromInnovative){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Payment(detail: detail,navigateFromInnovative: navigateFromInnovative),));
-}
+
+  navigateToPayment(detail, navigateFromInnovative) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Payment(
+              detail: detail, navigateFromInnovative: navigateFromInnovative),
+        ));
+  }
 }

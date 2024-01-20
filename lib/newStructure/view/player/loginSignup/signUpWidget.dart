@@ -111,7 +111,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                   }
                   return null;
                 },
-                hintText: 'tahadde',
+                // hintText: 'tahadde',
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
@@ -157,7 +157,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 },
                 focus: lastnameFocus,
                 controller: widget.lastnameController,
-                hintText: 'MobileApp',
+                // hintText: 'MobileApp',
                 focusBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
@@ -204,7 +204,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                   }
                   return msg;
                 },
-                hintText: 'tahadde@gmail.com',
+                // hintText: 'tahadde@gmail.com',
                 enableBorder: OutlineInputBorder(
                     borderSide: MyAppState.mode == ThemeMode.light
                         ? BorderSide.none
@@ -244,7 +244,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 },
                 focus: passwordFocus,
                 controller: widget.passwordController,
-                hintText: 'tahadde123456',
+                // hintText: 'tahadde123456',
                 obscure: true,
                 suffixIcon: Icons.visibility_off,
                 hideIcon: Icons.visibility,
@@ -299,7 +299,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                 focus: confirmFocus,
                 obscure: true,
                 controller: widget.confirmController,
-                hintText: 'tahadde123456',
+                // hintText: 'tahadde123456',
                 suffixIcon: Icons.visibility_off,
                 hideIcon: Icons.visibility,
                 suffixIconColor: AppColors.grey,
@@ -384,7 +384,8 @@ class SignUpWidgetState extends State<SignUpWidget> {
                                 borderRadius: BorderRadius.circular(12),
                                 borderSide:
                                     const BorderSide(color: Colors.grey)),
-                            prefixIcon: Icon(Icons.search, color: Colors.grey)),
+                            prefixIcon:
+                                const Icon(Icons.search, color: Colors.grey)),
                         showCountryOnly: false,
                         showOnlyCountryWhenClosed: false,
                         alignLeft: false,
@@ -491,7 +492,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           ),
                           dropdownColor: MyAppState.mode == ThemeMode.light
                               ? AppColors.white
-                              : AppColors.containerColorW12,
+                              : AppColors.grey,
                           iconEnabledColor: const Color(0XFF9B9B9B),
                           focusColor: const Color(0XFF9B9B9B),
                           autofocus: true,
@@ -545,7 +546,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                               EdgeInsets.symmetric(horizontal: width * 0.03),
                           dropdownColor: MyAppState.mode == ThemeMode.light
                               ? AppColors.white
-                              : AppColors.darkTheme,
+                              : AppColors.grey,
                           value: player,
                           hint: Text(
                             AppLocalizations.of(context)!.chooseAccount,

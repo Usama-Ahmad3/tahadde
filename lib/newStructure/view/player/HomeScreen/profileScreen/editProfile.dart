@@ -61,9 +61,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   GestureDetector(
                     child: Text(
                       AppLocalizations.of(context)!.gallery,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyAppState.mode == ThemeMode.light
+                              ? AppColors.black
+                              : AppColors.white),
                     ),
                     onTap: () async {
                       var status = await Permission.photos.status;
@@ -114,9 +115,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   GestureDetector(
                     child: Text(AppLocalizations.of(context)!.takephoto,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.normal,
-                        )),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? AppColors.black
+                                : AppColors.white)),
                     onTap: () async {
                       var status = await Permission.camera.status;
                       if (status.isGranted) {
@@ -717,7 +719,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               setState(() {
                                                 isLoading = false;
                                               });
-                                              showMessage(msg);
+                                              showMessage(
+                                                  AppLocalizations.of(context)!
+                                                      .profileUpdate);
                                               Navigator.pop(context);
                                               // navigateToProfile();
                                             },

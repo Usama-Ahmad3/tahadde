@@ -105,7 +105,7 @@ class GroundDetailState extends State<GroundDetail>
       id: widget.detail["academy_id"].toString(),
       onSuccess: (msg) {
         // venueDetail();
-        showMessage('operation successful');
+        showMessage(AppLocalizations.of(context)!.addedFavorites);
         print(msg);
       },
       onFailure: (msg) {
@@ -180,7 +180,16 @@ class GroundDetailState extends State<GroundDetail>
                         coords: coords,
                         title: title,
                       ),
-                      title: Text(map.mapName),
+                      title: Text(
+                        map.mapName,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(
+                                color: MyAppState.mode == ThemeMode.light
+                                    ? AppColors.black
+                                    : AppColors.white),
+                      ),
                       leading: SvgPicture.asset(
                         map.icon,
                         height: 30.0,
@@ -655,59 +664,52 @@ class GroundDetailState extends State<GroundDetail>
                                                       : AppColors.white),
                                         ),
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          openMapsSheet(context);
-                                          // makeMap(_getLaunchUrl().toString());
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 5),
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                width: width,
-                                                height: height * .3,
-                                                decoration: const BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20)),
-                                                ),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(15)),
-                                                  child: GoogleMap(
-                                                    zoomControlsEnabled: true,
-                                                    myLocationButtonEnabled:
-                                                        true,
-                                                    onTap: (value) {
-                                                      setState(() {});
-                                                    },
-                                                    indoorViewEnabled: true,
-                                                    compassEnabled: true,
-                                                    mapToolbarEnabled: true,
-                                                    buildingsEnabled: true,
-                                                    mapType: MapType.hybrid,
-                                                    rotateGesturesEnabled: true,
-                                                    liteModeEnabled: false,
-                                                    initialCameraPosition:
-                                                        CameraPosition(
-                                                            target: LatLng(
-                                                                widget.detail[
-                                                                    'latitude'],
-                                                                widget.detail[
-                                                                    'longitude']),
-                                                            zoom: 14.0),
-                                                    // markers: Set.identity(),
-                                                    markers:
-                                                        Set.from(allMarkers),
-                                                    zoomGesturesEnabled: true,
-                                                  ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 5),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: width,
+                                              height: height * .3,
+                                              decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(15)),
+                                                child: GoogleMap(
+                                                  zoomControlsEnabled: true,
+                                                  myLocationButtonEnabled: true,
+                                                  onTap: (value) {
+                                                    setState(() {
+                                                      openMapsSheet(context);
+                                                    });
+                                                  },
+                                                  indoorViewEnabled: true,
+                                                  compassEnabled: true,
+                                                  mapToolbarEnabled: true,
+                                                  buildingsEnabled: true,
+                                                  mapType: MapType.hybrid,
+                                                  rotateGesturesEnabled: true,
+                                                  liteModeEnabled: false,
+                                                  initialCameraPosition:
+                                                      CameraPosition(
+                                                          target: LatLng(
+                                                              widget.detail[
+                                                                  'latitude'],
+                                                              widget.detail[
+                                                                  'longitude']),
+                                                          zoom: 14.0),
+                                                  // markers: Set.identity(),
+                                                  markers: Set.from(allMarkers),
+                                                  zoomGesturesEnabled: true,
                                                 ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
 

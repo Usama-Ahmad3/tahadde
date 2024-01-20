@@ -31,12 +31,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "Youneedtocreateyourownteam": MessageLookupByLibrary.simpleMessage(
             "You need to create your own team"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "profileUpdated":
+            MessageLookupByLibrary.simpleMessage("Profile Details Updated"),
         "account": MessageLookupByLibrary.simpleMessage("Account"),
+        "sessionFee": MessageLookupByLibrary.simpleMessage("Session Fees"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("Account holder Name"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account number"),
-        "cantSelect": MessageLookupByLibrary.simpleMessage("You can't select previous day session"),
-        "cantReview": MessageLookupByLibrary.simpleMessage("You can't edit in review academies"),
+        "cantSelect": MessageLookupByLibrary.simpleMessage(
+            "You can't select previous day session"),
+        "cantReview": MessageLookupByLibrary.simpleMessage(
+            "You can't edit in review academies"),
+        "addedFavorites":
+            MessageLookupByLibrary.simpleMessage("Added To Your Favorites"),
         "addAsideCamesPitch": MessageLookupByLibrary.simpleMessage(
             "Add the aside venue that cames under this venue"),
         "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
@@ -664,7 +671,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Morning Sessions"),
         "eveningSession":
             MessageLookupByLibrary.simpleMessage("Evening Sessions"),
-        "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
+        "saveChanges": MessageLookupByLibrary.simpleMessage("Save"),
         "savePaymentMethod": MessageLookupByLibrary.simpleMessage("My Wallets"),
         "savePaymentMethods":
             MessageLookupByLibrary.simpleMessage("Save Payment Methods"),
