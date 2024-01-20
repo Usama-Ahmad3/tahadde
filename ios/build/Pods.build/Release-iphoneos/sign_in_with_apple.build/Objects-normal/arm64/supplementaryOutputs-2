@@ -1,8 +1,0 @@
-"/Users/developer/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SignInWithAppleAvailablePlugin.swift":
-  objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-Swift.h"
-  abi-baseline-json: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple.abi.json"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master.d"
-  swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple.swiftdoc"
-  swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple.swiftmodule"
-  swiftsourceinfo: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple.swiftsourceinfo"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master.dia"
