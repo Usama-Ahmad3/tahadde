@@ -771,6 +771,7 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var body = json.encode(loginDetail);
     try {
+      print('apicalling');
       response = await http.post(Uri.parse("$baseUrl${RestApis.LOGINAPPLE}"),
           headers: header(prefs, body, HttpMethod.POST), body: body);
 
