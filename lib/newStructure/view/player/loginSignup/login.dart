@@ -96,6 +96,7 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> signInWithApple() async {
+    print('signing');
     final result = await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
@@ -108,6 +109,11 @@ class LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+    print("result${result.email}");
+    print("result${result.givenName}");
+    print("result${result.identityToken}");
+    print("result${result.authorizationCode}");
+    print("result${result.email}");
 
     final appleIdCredential = result;
     final oAuthProvider = OAuthProvider('apple.com');
@@ -124,12 +130,15 @@ class LoginScreenState extends State<LoginScreen> {
       "deviceToken": logDetail.fcmToken,
       "appleId": appleIdCredential.identityToken,
     };
+    print(detail);
     debugPrint(
       logDetail.fcmToken,
     );
+    print('hhh');
     _networkCalls.loginApple(
         loginDetail: detail,
         onSuccess: (msg) {
+          print('jjjj');
           if (msg["token"] != null) {
             _networkCalls.saveToken(msg["token"]);
             _networkCalls.saveRole(msg["role"]);
@@ -150,6 +159,7 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void _startSignIn() {
+    print('hhhhwwww');
     setState(() {
       error = null;
       signingIntoFirebase = false;
