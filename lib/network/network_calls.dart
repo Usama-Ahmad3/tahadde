@@ -4483,7 +4483,7 @@ class NetworkCalls {
       if (response.statusCode == 200) {
         print(response.body);
         // var resp = json.decode(utf8.decode(response.bodyBytes));
-        // onSuccess(SpecificModelClass.fromJson(resp));
+        onSuccess("event");
       } else if (response.statusCode == 400) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onFailure(resp);

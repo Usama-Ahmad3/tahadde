@@ -688,10 +688,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                               ),
                                               child: InkWell(
                                                 onTap: () {
-                                                  showMessage(
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .swipeDelete);
+                                                  // showMessage(
+                                                  //     AppLocalizations.of(
+                                                  //             context)!
+                                                  //         .swipeDelete);
                                                 },
                                                 child: Container(
                                                   height: size.height * 0.09,

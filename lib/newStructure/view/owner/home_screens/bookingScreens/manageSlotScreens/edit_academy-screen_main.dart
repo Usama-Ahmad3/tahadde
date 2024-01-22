@@ -256,227 +256,232 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20))),
-                  child: Column(
-                    children: [
-                      fixedGap(height: 10.0),
-                      SizedBox(
-                          height: 100,
-                          child: ListView.builder(
-                            itemCount: specificAcademy != null
-                                ? specificAcademy!.academyImage!.length + 1
-                                : 1,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: ((context, index) {
-                              return index == 0
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        _showChoiceDialog(context);
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: CircleAvatar(
-                                          backgroundColor:
-                                              const Color(0XFFD4D4D4),
-                                          radius: height * 0.053,
-                                          child: Center(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  height: height * 0.015,
-                                                ),
-                                                Image.asset(
-                                                  "assets/images/add_vanue.png",
-                                                  height: height * 0.03,
-                                                ),
-                                                SizedBox(
-                                                  height: height * 0.01,
-                                                ),
-                                                Text(
-                                                    AppLocalizations
-                                                            .of(context)!
-                                                        .addPitchImage,
-                                                    textAlign: TextAlign.center,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .copyWith(
-                                                            fontSize: 10,
-                                                            color: const Color(
-                                                                0XFFB3B3B3),
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontFamily:
-                                                                "Poppins")),
-                                              ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        fixedGap(height: 10.0),
+                        SizedBox(
+                            height: 100,
+                            child: ListView.builder(
+                              itemCount: specificAcademy != null
+                                  ? specificAcademy!.academyImage!.length + 1
+                                  : 1,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: ((context, index) {
+                                return index == 0
+                                    ? GestureDetector(
+                                        onTap: () {
+                                          _showChoiceDialog(context);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                const Color(0XFFD4D4D4),
+                                            radius: height * 0.053,
+                                            child: Center(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    height: height * 0.015,
+                                                  ),
+                                                  Image.asset(
+                                                    "assets/images/add_vanue.png",
+                                                    height: height * 0.03,
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.01,
+                                                  ),
+                                                  Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .addPitchImage,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodySmall!
+                                                          .copyWith(
+                                                              fontSize: 10,
+                                                              color: const Color(
+                                                                  0XFFB3B3B3),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontFamily:
+                                                                  "Poppins")),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                  : Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Stack(
-                                        alignment: Alignment.topRight,
-                                        children: [
-                                          Container(
-                                            height: height * 0.11,
-                                            width: width * 0.25,
-                                            decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                shape: BoxShape.circle),
-                                            child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(40),
-                                                child: cachedNetworkImage(
-                                                  imageFit: BoxFit.fill,
-                                                  cuisineImageUrl:
-                                                      specificAcademy!
-                                                                  .academyImage![
-                                                              index - 1] ??
-                                                          '',
-                                                )
-                                                // specificAcademy!
-                                                //     .images![index - 1]),
-                                                ),
-                                          ),
-                                          // _decideImageview(index-1),
-                                          specificAcademy!
-                                                      .academyImage!.length >
-                                                  1
-                                              ? Positioned(
-                                                  top: 0,
-                                                  right: 2,
-                                                  child: GestureDetector(
-                                                    onTap: () {
-                                                      specificAcademy!
-                                                          .academyImage!
-                                                          .removeAt(index - 1);
-                                                      Map detail = {
-                                                        "academy_image":
-                                                            specificAcademy!
-                                                                .academyImage
-                                                      };
-                                                      print("delete$detail");
-                                                      editAcademy(detail);
-                                                      setState(() {});
-                                                    },
-                                                    child: CircleAvatar(
-                                                      radius: height * 0.012,
-                                                      backgroundImage:
-                                                          const AssetImage(
-                                                        "assets/images/delete_image.png",
+                                      )
+                                    : Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Stack(
+                                          alignment: Alignment.topRight,
+                                          children: [
+                                            Container(
+                                              height: height * 0.11,
+                                              width: width * 0.25,
+                                              decoration: BoxDecoration(
+                                                  color: AppColors.white,
+                                                  shape: BoxShape.circle),
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(40),
+                                                  child: cachedNetworkImage(
+                                                    imageFit: BoxFit.fill,
+                                                    cuisineImageUrl:
+                                                        specificAcademy!
+                                                                    .academyImage![
+                                                                index - 1] ??
+                                                            '',
+                                                  )
+                                                  // specificAcademy!
+                                                  //     .images![index - 1]),
+                                                  ),
+                                            ),
+                                            // _decideImageview(index-1),
+                                            specificAcademy!
+                                                        .academyImage!.length >
+                                                    1
+                                                ? Positioned(
+                                                    top: 0,
+                                                    right: 2,
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        specificAcademy!
+                                                            .academyImage!
+                                                            .removeAt(
+                                                                index - 1);
+                                                        Map detail = {
+                                                          "academy_image":
+                                                              specificAcademy!
+                                                                  .academyImage
+                                                        };
+                                                        print("delete$detail");
+                                                        editAcademy(detail);
+                                                        setState(() {});
+                                                      },
+                                                      child: CircleAvatar(
+                                                        radius: height * 0.012,
+                                                        backgroundImage:
+                                                            const AssetImage(
+                                                          "assets/images/delete_image.png",
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                )
-                                              : SizedBox.shrink(),
-                                        ],
-                                      ),
-                                    );
-                            }),
-                          )),
-                      fixedGap(height: 10.0),
-                      SizedBox(
-                        height: height * 0.025,
-                      ),
-                      ...List.generate(
-                        4,
-                        (index) => Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: width * 0.025,
-                              vertical: height * 0.001),
-                          child: ListWidgetSettings(
-                              callback: index == 0
-                                  ? () {
-                                      navigateToDocuments(
-                                          detail: SportsModel(
-                                              isEdit: true,
-                                              id: widget.detail["id"],
-                                              venueType: venueType),
-                                          specificAcademyId: specificAcademy
-                                              ?.academyId!
-                                              .toInt());
-                                    }
-                                  : index == 1
-                                      ? () {
-                                          navigateToPitchDetail(
-                                              specificAcademy!);
-                                        }
-                                      : index == 2
-                                          ? () {
-                                              Map detail = {
-                                                "id": widget.detail["id"]
-                                                    .toString(),
-                                                "back": true
-                                              };
-                                              navigateToSlotScreen(detail);
-                                            }
-                                          : () {
-                                              navigateToEditSession();
-                                            },
-                              title: title[index],
-                              icon: icon[index]),
+                                                  )
+                                                : SizedBox.shrink(),
+                                          ],
+                                        ),
+                                      );
+                              }),
+                            )),
+                        fixedGap(height: 10.0),
+                        SizedBox(
+                          height: height * 0.025,
                         ),
-                      ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(5.0),
-                      //   child: Row(
-                      //     children: [
-                      //       card(
-                      //           image: "assets/images/document_image.png",
-                      //           text: AppLocalizations.of(context)!.documents,
-                      //           onTap: () {
-                      //             navigateToDocuments(SportsModel(
-                      //                 isEdit: true,
-                      //                 id: widget.detail["id"],
-                      //                 venueType: venueType));
-                      //           }),
-                      //       flaxibleGap(
-                      //         1,
-                      //       ),
-                      //       card(
-                      //           image: "assets/images/venue_detail_image.png",
-                      //           text:
-                      //               AppLocalizations.of(context)!.pitchDetails,
-                      //           onTap: () {
-                      //             navigateToPitchDetail(specificPitchScreen);
-                      //           }),
-                      //     ],
-                      //   ),
-                      // ),
-                      // fixedGap(height: 10.0),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(5.0),
-                      //   child: Row(
-                      //     children: [
-                      //       card(
-                      //           image: "assets/images/price_image.png",
-                      //           text: AppLocalizations.of(context)!.slotPrice,
-                      //           onTap: () {
-                      //             Map detail = {
-                      //               "id": specificPitchScreen.id.toString(),
-                      //               "subPitchId": specificPitchScreen
-                      //                   .venueDetails!.pitchType![0]!.id
-                      //                   .toString(),
-                      //               "back": true
-                      //             };
-                      //             navigateToSlotScreen(detail);
-                      //           }),
-                      //       flaxibleGap(
-                      //         1,
-                      //       ),
-                      //       card(
-                      //           image: "assets/images/session_image.png",
-                      //           text: AppLocalizations.of(context)!.sessions,
-                      //           onTap: () {
-                      //             navigateToEditSession();
-                      //           }),
-                      //     ],
-                      //   ),
-                      // )
-                    ],
+                        ...List.generate(
+                          4,
+                          (index) => Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: width * 0.025,
+                                vertical: height * 0.001),
+                            child: ListWidgetSettings(
+                                callback: index == 0
+                                    ? () {
+                                        navigateToDocuments(
+                                            detail: SportsModel(
+                                                isEdit: true,
+                                                id: widget.detail["id"],
+                                                venueType: venueType),
+                                            specificAcademyId: specificAcademy
+                                                ?.academyId!
+                                                .toInt());
+                                      }
+                                    : index == 1
+                                        ? () {
+                                            navigateToPitchDetail(
+                                                specificAcademy!);
+                                          }
+                                        : index == 2
+                                            ? () {
+                                                Map detail = {
+                                                  "id": widget.detail["id"]
+                                                      .toString(),
+                                                  "back": true
+                                                };
+                                                navigateToSlotScreen(detail);
+                                              }
+                                            : () {
+                                                navigateToEditSession();
+                                              },
+                                title: title[index],
+                                icon: icon[index]),
+                          ),
+                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(5.0),
+                        //   child: Row(
+                        //     children: [
+                        //       card(
+                        //           image: "assets/images/document_image.png",
+                        //           text: AppLocalizations.of(context)!.documents,
+                        //           onTap: () {
+                        //             navigateToDocuments(SportsModel(
+                        //                 isEdit: true,
+                        //                 id: widget.detail["id"],
+                        //                 venueType: venueType));
+                        //           }),
+                        //       flaxibleGap(
+                        //         1,
+                        //       ),
+                        //       card(
+                        //           image: "assets/images/venue_detail_image.png",
+                        //           text:
+                        //               AppLocalizations.of(context)!.pitchDetails,
+                        //           onTap: () {
+                        //             navigateToPitchDetail(specificPitchScreen);
+                        //           }),
+                        //     ],
+                        //   ),
+                        // ),
+                        // fixedGap(height: 10.0),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(5.0),
+                        //   child: Row(
+                        //     children: [
+                        //       card(
+                        //           image: "assets/images/price_image.png",
+                        //           text: AppLocalizations.of(context)!.slotPrice,
+                        //           onTap: () {
+                        //             Map detail = {
+                        //               "id": specificPitchScreen.id.toString(),
+                        //               "subPitchId": specificPitchScreen
+                        //                   .venueDetails!.pitchType![0]!.id
+                        //                   .toString(),
+                        //               "back": true
+                        //             };
+                        //             navigateToSlotScreen(detail);
+                        //           }),
+                        //       flaxibleGap(
+                        //         1,
+                        //       ),
+                        //       card(
+                        //           image: "assets/images/session_image.png",
+                        //           text: AppLocalizations.of(context)!.sessions,
+                        //           onTap: () {
+                        //             navigateToEditSession();
+                        //           }),
+                        //     ],
+                        //   ),
+                        // )
+                      ],
+                    ),
                   ),
                 )
               : InternetLoss(
