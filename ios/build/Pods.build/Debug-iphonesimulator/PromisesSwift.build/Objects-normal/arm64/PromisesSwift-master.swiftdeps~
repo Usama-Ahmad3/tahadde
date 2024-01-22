@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "1d91cd0fe0bd3a4140d91ff1f659a2015895b50b363a4b5fc7fbbd85bd470311"
-build_start_time: [1705744810, 181844949]
-build_end_time: [1705744810, 267662048]
+options: "4d32e8f0526919d25c02656a3defb806f229ba8e163001aef221a5b52456ea55"
+build_start_time: [1705918036, 402549982]
+build_end_time: [1705918036, 471536159]
 inputs:
   "/Users/developer/Downloads/tahadde/ios/Pods/PromisesSwift/Sources/Promises/Promise+All.swift": !private [1705132928, 278456687]
   "/Users/developer/Downloads/tahadde/ios/Pods/PromisesSwift/Sources/Promises/Promise+Always.swift": !private [1705132928, 275582075]

@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "2b0a2599a607014e1bae1f434b2b9ccb2b20dae8682c0eee2be87a3add64618e"
-build_start_time: [1705744784, 221436023]
-build_end_time: [1705744794, 798677921]
+options: "6f19297c43427495419788708bdd6501cbc15ee8711eb692efd311115c90938f"
+build_start_time: [1705918020, 195709943]
+build_end_time: [1705918025, 887199878]
 inputs:
   "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": [1705132928, 596091985]
   "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": [1705132928, 601079463]

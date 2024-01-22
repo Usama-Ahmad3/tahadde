@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Youneedtocreateyourownteam": MessageLookupByLibrary.simpleMessage(
             "You need to create your own team"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "removeedFavorites": MessageLookupByLibrary.simpleMessage("Removed From Your Favorites"),
         "profileUpdated":
             MessageLookupByLibrary.simpleMessage("Profile Details Updated"),
         "account": MessageLookupByLibrary.simpleMessage("Account"),

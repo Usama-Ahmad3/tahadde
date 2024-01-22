@@ -4,7 +4,7 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/sign_in_with_apple/sign_in_with_apple.framework/Modules"
+    'name': "/Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/sign_in_with_apple/sign_in_with_apple.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",

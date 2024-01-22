@@ -130,27 +130,6 @@ class _SocialDetailState extends State<SocialDetail> {
     });
   }
 
-  showOverlay(BuildContext context) {
-    if (overlayEntry != null) return;
-    OverlayState overlayState = Overlay.of(context);
-    overlayEntry = OverlayEntry(builder: (context) {
-      return Positioned(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-        right: 0,
-        left: 0,
-        child: const DoneButton(),
-      );
-    });
-    overlayState.insert(overlayEntry!);
-  }
-
-  removeOverlay() {
-    if (overlayEntry != null) {
-      overlayEntry!.remove();
-      overlayEntry = null;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -171,16 +150,6 @@ class _SocialDetailState extends State<SocialDetail> {
       }
     });
     firebaseCloudMessaging_Listeners();
-    if (Platform.isIOS) {
-      focuss.addListener(() {
-        bool hasFocus = focuss.hasFocus;
-        if (hasFocus) {
-          showOverlay(context);
-        } else {
-          removeOverlay();
-        }
-      });
-    }
   }
 
   @override
@@ -476,8 +445,7 @@ class _SocialDetailState extends State<SocialDetail> {
                                                                 Map<String,
                                                                         dynamic>
                                                                     details = {
-                                                                  "first_name":
-                                                                      _detail
+                                                                  "first_name": _detail
                                                                           .firstName,
                                                                   "last_name":
                                                                       _detail
@@ -539,13 +507,15 @@ class _SocialDetailState extends State<SocialDetail> {
                                                                             details,
                                                                         onSuccess:
                                                                             (msg) {
-                                                                          onWillPop(
-                                                                              '123456');
-                                                                          setState(
-                                                                              () {
-                                                                            loading =
-                                                                                false;
-                                                                          });
+                                                                              setState(
+                                                                                      () {
+                                                                                    loading =
+                                                                                    false;
+                                                                                  });
+                                                                              showMessage("Password: 123456");
+                                                                              navigateToDetail();
+                                                                          // onWillPop(
+                                                                          //     '123456');
                                                                         },
                                                                         onFailure:
                                                                             (msg) {

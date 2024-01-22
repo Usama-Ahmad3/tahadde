@@ -161,6 +161,11 @@ class AppLocalizations {
     return Intl.message("Added To Your Favorites", name: 'addedFavorites');
   }
 
+
+  String get removeedFavorites {
+    return Intl.message("Removed From Your Favorites", name: 'removeedFavorites');
+  }
+
   String get profileUpdate {
     return Intl.message("Profile Details Updated", name: 'profileUpdate');
   }

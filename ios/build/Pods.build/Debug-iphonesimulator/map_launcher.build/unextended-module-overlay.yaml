@@ -4,7 +4,7 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/map_launcher/map_launcher.framework/Modules"
+    'name': "/Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/map_launcher/map_launcher.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",

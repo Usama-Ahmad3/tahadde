@@ -4,7 +4,7 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/SwiftyGif/SwiftyGif.framework/Modules"
+    'name': "/Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/SwiftyGif/SwiftyGif.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",

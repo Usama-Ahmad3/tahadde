@@ -112,7 +112,7 @@ dependencies: \
   /Users/developer/Downloads/tahadde/ios/Pods/nanopb/pb_common.h \
   /Users/developer/Downloads/tahadde/ios/Pods/nanopb/pb.h \
   /Users/developer/Downloads/tahadde/ios/Pods/Target\ Support\ Files/nanopb/nanopb-umbrella.h \
-  /Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/FirebaseSessions/FirebaseSessions.framework/Headers/FirebaseSessions-Swift.h \
+  /Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/FirebaseSessions/FirebaseSessions.framework/Headers/FirebaseSessions-Swift.h \
   /Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/SourcesObjC/Protogen/nanopb/sessions.nanopb.h \
   /Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/SourcesObjC/NanoPB/FIRSESNanoPBHelpers.h \
   /Users/developer/Downloads/tahadde/ios/Pods/Target\ Support\ Files/FirebaseSessions/FirebaseSessions-umbrella.h

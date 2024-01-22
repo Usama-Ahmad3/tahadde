@@ -24,7 +24,7 @@ dependencies: \
   /Users/developer/.pub-cache/hosted/pub.dev/file_picker-5.5.0/ios/Classes/ImageUtils.h \
   /Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/module.modulemap \
   /Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/module.modulemap \
-  /Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/DKPhotoGallery/DKPhotoGallery.framework/Headers/DKPhotoGallery-Swift.h \
+  /Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/DKPhotoGallery/DKPhotoGallery.framework/Headers/DKPhotoGallery-Swift.h \
   /Users/developer/Downloads/tahadde/ios/Pods/Target\ Support\ Files/DKPhotoGallery/DKPhotoGallery-umbrella.h \
-  /Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/DKImagePickerController/DKImagePickerController.framework/Headers/DKImagePickerController-Swift.h \
+  /Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/DKImagePickerController/DKImagePickerController.framework/Headers/DKImagePickerController-Swift.h \
   /Users/developer/Downloads/tahadde/ios/Pods/Target\ Support\ Files/DKImagePickerController/DKImagePickerController-umbrella.h

@@ -774,7 +774,8 @@ class NetworkCalls {
       print('apicalling');
       response = await http.post(Uri.parse("$baseUrl${RestApis.LOGINAPPLE}"),
           headers: header(prefs, body, HttpMethod.POST), body: body);
-
+      print('kkkkkkk');
+      print(response.body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
         onSuccess(resp);
@@ -790,6 +791,7 @@ class NetworkCalls {
     } on SocketException catch (_) {
       onFailure(internetStatus);
     } catch (e) {
+      print('Apple login Error $e');
       onFailure("Please Check server");
     }
   }

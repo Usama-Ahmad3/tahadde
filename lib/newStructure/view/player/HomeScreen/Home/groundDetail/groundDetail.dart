@@ -105,7 +105,7 @@ class GroundDetailState extends State<GroundDetail>
       id: widget.detail["academy_id"].toString(),
       onSuccess: (msg) {
         // venueDetail();
-        showMessage(AppLocalizations.of(context)!.addedFavorites);
+        favoriteState?showMessage(AppLocalizations.of(context)!.removeedFavorites):showMessage(AppLocalizations.of(context)!.addedFavorites);
         print(msg);
       },
       onFailure: (msg) {

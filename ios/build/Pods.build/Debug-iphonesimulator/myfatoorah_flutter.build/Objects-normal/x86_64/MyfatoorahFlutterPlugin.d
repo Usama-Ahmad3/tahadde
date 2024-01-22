@@ -20,4 +20,4 @@ dependencies: \
   /Users/developer/Documents/Flutterdev/sdk/flutter/bin/cache/artifacts/engine/ios/Flutter.xcframework/ios-arm64_x86_64-simulator/Flutter.framework/Headers/FlutterMacros.h \
   /Users/developer/Documents/Flutterdev/sdk/flutter/bin/cache/artifacts/engine/ios/Flutter.xcframework/ios-arm64_x86_64-simulator/Flutter.framework/Headers/FlutterAppDelegate.h \
   /Users/developer/Documents/Flutterdev/sdk/flutter/bin/cache/artifacts/engine/ios/Flutter.xcframework/ios-arm64_x86_64-simulator/Flutter.framework/Headers/Flutter.h \
-  /Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/myfatoorah_flutter/myfatoorah_flutter.framework/Headers/myfatoorah_flutter-Swift.h
+  /Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/myfatoorah_flutter/myfatoorah_flutter.framework/Headers/myfatoorah_flutter-Swift.h

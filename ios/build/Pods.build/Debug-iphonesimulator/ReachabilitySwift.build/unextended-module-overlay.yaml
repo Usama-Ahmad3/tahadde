@@ -4,7 +4,7 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/ReachabilitySwift/Reachability.framework/Modules"
+    'name': "/Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/ReachabilitySwift/Reachability.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",

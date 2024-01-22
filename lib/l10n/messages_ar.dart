@@ -649,6 +649,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "من واجب مالكي الملعب واللاعبين الراغبين في الحصول على الخدمات من التطبيق أن يتصرفوا باجتهاد مناسب ، .وأن يلتزموا بالوقت المناسب بالإضافة إلى الجهد لأداء الواجبات من المهم الحفاظ على المعرفة العملية والتكنولوجية .فيما يتعلق بالخدمات يجب على الشخص الذي يتلقى الخدمات الحفاظ على الاتصالات المناسبة المتعلقة بالخدمات."),
         "review": MessageLookupByLibrary.simpleMessage("مراجعة"),
         "reviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
+        "removeedFavorites": MessageLookupByLibrary.simpleMessage("تمت إزالتها من المفضلة"),
         "saturday": MessageLookupByLibrary.simpleMessage("السبت"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "saveCards": MessageLookupByLibrary.simpleMessage("البطاقات المحفوظة"),

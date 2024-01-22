@@ -4,7 +4,7 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules"
+    'name': "/Users/developer/Downloads/tahadde/ios/build/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",

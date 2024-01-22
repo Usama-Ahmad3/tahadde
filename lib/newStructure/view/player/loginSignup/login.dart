@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -97,65 +98,68 @@ class LoginScreenState extends State<LoginScreen> {
 
   Future<void> signInWithApple() async {
     print('signing');
-    final result = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      webAuthenticationOptions: WebAuthenticationOptions(
-        clientId: 'com.shopez.root',
-        redirectUri: Uri.parse(
-          'https://peridot-spectacled-papyrus.glitch.me/callbacks/sign_in_with_apple',
+    try{
+      final result = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+          // AppleIDAuthorizationScopes.familyName,
+        ],
+        webAuthenticationOptions: WebAuthenticationOptions(
+          clientId: 'com.shopez.root',
+          redirectUri: Uri.parse(
+            'https://peridot-spectacled-papyrus.glitch.me/callbacks/sign_in_with_apple',
+          ),
         ),
-      ),
-    );
-    print("result${result.email}");
-    print("result${result.givenName}");
-    print("result${result.identityToken}");
-    print("result${result.authorizationCode}");
-    print("result${result.email}");
+      );
+      print("result${result.identityToken}");
+      print("result${result.authorizationCode}");
 
-    final appleIdCredential = result;
-    final oAuthProvider = OAuthProvider('apple.com');
-    final credential = oAuthProvider.credential(
-        idToken: String.fromCharCodes(
-            appleIdCredential.identityToken as Iterable<int>),
-        accessToken: String.fromCharCodes(
-            appleIdCredential.authorizationCode as Iterable<int>));
-    Map detail = {
-      "first_name": appleIdCredential.givenName,
-      "last_name": appleIdCredential.familyName,
-      "email": appleIdCredential.email,
-      "deviceType": logDetail.deviceType,
-      "deviceToken": logDetail.fcmToken,
-      "appleId": appleIdCredential.identityToken,
-    };
-    print(detail);
-    debugPrint(
-      logDetail.fcmToken,
-    );
-    print('hhh');
-    _networkCalls.loginApple(
-        loginDetail: detail,
-        onSuccess: (msg) {
-          print('jjjj');
-          if (msg["token"] != null) {
-            _networkCalls.saveToken(msg["token"]);
-            _networkCalls.saveRole(msg["role"]);
-            _networkCalls.authorizationSave(true);
-            navigateToDetail();
-          } else {
-            var detail1 = {
-              "detail": msg,
-              "apple": true,
-              "user": detail["appleId"]
-            };
-            navigateToSocialDetail(detail1);
-          }
-        },
-        onFailure: (msg) {
-          showMessage(msg);
-        });
+      final appleIdCredential = result;
+      final oAuthProvider = OAuthProvider('apple.com');
+      final credential = oAuthProvider.credential(
+          idToken:
+              appleIdCredential.identityToken,
+          accessToken:
+              appleIdCredential.authorizationCode);
+      Map detail = {
+        "first_name": appleIdCredential.givenName,
+        "last_name": appleIdCredential.familyName,
+        "email": appleIdCredential.email,
+        "deviceType": logDetail.deviceType,
+        "deviceToken": logDetail.fcmToken,
+        "appleId": appleIdCredential.identityToken,
+      };
+      print(detail);
+      debugPrint(
+        logDetail.fcmToken,
+      );
+      print('hhh');
+      _networkCalls.loginApple(
+          loginDetail: detail,
+          onSuccess: (msg) {
+            print('jjjj');
+            if (msg["token"] != null) {
+              _networkCalls.saveToken(msg["token"]);
+              _networkCalls.saveRole(msg["role"]);
+              _networkCalls.authorizationSave(true);
+              navigateToDetail();
+            } else {
+              var detail1 = {
+                "detail": msg,
+                "apple": true,
+                "user": detail["appleId"]
+              };
+              navigateToSocialDetail(detail1);
+            }
+          },
+          onFailure: (msg) {
+            showMessage(msg);
+          });
+    }catch(e){
+      log(e.toString());
+      print('HHHHH$e');
+    }
   }
 
   void _startSignIn() {
