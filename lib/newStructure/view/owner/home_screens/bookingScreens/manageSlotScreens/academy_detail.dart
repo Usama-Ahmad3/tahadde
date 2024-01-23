@@ -14,6 +14,7 @@ import '../../../../../../pitchOwner/loginSignupPitchOwner/select_sport.dart';
 import '../../../../../app_colors/app_colors.dart';
 import '../../../../player/HomeScreen/widgets/buttonWidget.dart';
 import '../../../../player/HomeScreen/widgets/textFormField.dart';
+import 'edit_academy-screen_main.dart';
 
 class EditAcademyDetailScreen extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -109,11 +110,7 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
       },
     );
   }
-
-  @override
-  void initState() {
-    super.initState();
-    getFacility();
+  getDetails(){
     _nameController.text = widget.detail.academyNameEnglish.toString();
     _nameControllerArabic.text = widget.detail.academyNameArabic.toString();
     _description.text = widget.detail.descriptionEnglish.toString();
@@ -128,13 +125,19 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
       outdoor = true;
     }
     List facilitySlugD =
-        widget.detail.facilitySlug!.split(',').map((e) => e.trim()).toList();
+    widget.detail.facilitySlug!.split(',').map((e) => e.trim()).toList();
     facilitySlugD
         .forEach((element) => indexList.add(int.parse(element.toString())));
+    setState(() {});
     print(facility);
     print(facilitySlugD);
-    // widget.detail["detail"].venueDetails.facility
-    //     .forEach((element) => indexList.add(element.slug));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getFacility();
+    getDetails();
   }
 
   @override
@@ -712,29 +715,13 @@ class _EditAcademyDetailScreenState extends State<EditAcademyDetailScreen> {
                                       },
                                     };
                                     // showMessage("Can't do it right now!");
+                                    print(academyDetail);
+                                    print(widget.detail.academyId.toString());
                                     editAcademy(academyDetail);
-                                    Navigator.pop(context);
-                                    // print(academyDetail);
-                                    // detailSportsModel?.gamePlay = gamePlayApi;
-                                    // Map detailApi = {
-                                    //   "nameEnglish":
-                                    //       detailSportsModel?.pitchName,
-                                    //   "nameArabic":
-                                    //       detailSportsModel?.pitchNameAr,
-                                    //   "descriptionArabic":
-                                    //       detailSportsModel?.descriptionAr,
-                                    //   "location": widget.detail["detail"]
-                                    //       .venueDetails.location,
-                                    //   "descriptionEnglish":
-                                    //       detailSportsModel?.description,
-                                    //   "code": detailSportsModel?.code,
-                                    //   "gameplay_slug":
-                                    //       detailSportsModel?.gamePlay,
-                                    //   "facilities_slug_list":
-                                    //       detailSportsModel?.facility,
-                                    // };
-                                    // print(detailApi);
-                                    // editVenue(detailApi);
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EditAcademyScreen(detail: {
+                                      "id": widget.detail.academyId.toString(),
+                                      "name": widget.detail.academyNameEnglish.toString()
+                                    }),));
                                   }
                                 },
                                 title: Text(

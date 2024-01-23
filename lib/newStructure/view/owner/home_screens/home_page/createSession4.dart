@@ -185,12 +185,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                       graceTime: value.extraSlot as int,
                       startTime: Intl.withLocale(
                           'en',
-                          () => DateFormat("yyyy-MM-dd hh:mm:ss")
-                              .parse("2022-10-32 ${value.startTime}")),
+                          () => DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+                              "2022-10-32 ${value.startTime ?? "13:00:00"}")),
                       endTime: Intl.withLocale(
                           'en',
-                          () => DateFormat("yyyy-MM-dd hh:mm:ss")
-                              .parse("2022-10-32 ${value.endTime}"))));
+                          () => DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+                              "2022-10-32 ${value.endTime ?? "13:40:00"}"))));
                 });
                 _sessionMap[element.weekday!] = sessionList;
               });
@@ -637,6 +637,33 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   DismissDirection.endToStart,
                                               onDismissed: (direction) {
                                                 setState(() {
+                                                  Map sessions = {
+                                                    "sessions": [
+                                                      {
+                                                        "weekday": _weakList[
+                                                                _weakIndex]
+                                                            .name,
+                                                        "sessions": [
+                                                          {
+                                                            "id": _sessionMap[_weakList[
+                                                                        _weakIndex]
+                                                                    .slug]![index]
+                                                                .id,
+                                                            "delete": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  };
+                                                  print('ssssssssssssss');
+                                                  print(_sessionMap[
+                                                          _weakList[_weakIndex]
+                                                              .slug]!
+                                                      .length);
+                                                  editAcademy(
+                                                      sessions,
+                                                      specificAcademy!.academyId
+                                                          .toString());
                                                   if (_sessionMap[_weakList[
                                                                   _weakIndex]
                                                               .slug]!
@@ -953,7 +980,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             .toList();
                                     Map sessionUpdate = {
                                       'new_sessions': sessionsPayloadNewData,
-                                      'sessions': sessionsPayload
+                                      'session': sessionsPayload
                                     };
                                     print(sessionUpdate);
 
@@ -2094,7 +2121,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   '${sessionDetail.endTime!.hour.toInt() < 10 ? zero + sessionDetail.endTime!.hour.toString() : sessionDetail.endTime!.hour}:${sessionDetail.endTime!.minute.toInt() < 10 ? zero + sessionDetail.endTime!.minute.toString() : sessionDetail.endTime!.minute}'));
                                           if (startTime.isAfter(endTime)) {
                                             showMessage(
-                                                'Please select valid start and end time');
+                                                'Please Select Valid Start And End Time');
                                           } else {
                                             var maxEndDate;
                                             var minStartDate;
@@ -2267,7 +2294,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                         ///(B) if conflict then don't add this sessions just show the message
                                                         else {
                                                           showMessage(
-                                                              "Your time is not proper as compare to previous sessions of $element");
+                                                              "Your Time Is Not Proper As Compare To Previous Sessions of $element");
                                                         }
                                                       });
                                                       _sessionMap[_weakList[
@@ -2276,14 +2303,13 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                           .add(sessionDetail);
                                                     } else {
                                                       showMessage(
-                                                          "Your time is not proper as compare to previous sessions");
+                                                          "Your Time Is Not Proper As Compare To Previous Sessions");
                                                     }
                                                   }
                                                 }
 
                                                 /// if Holiday
                                                 else {
-                                                  print('sgshgbbs');
                                                   List<SessionDetail>
                                                       sessionList = [];
                                                   sessionList
@@ -2319,12 +2345,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                   _copySessions.add(
                                                       _weakList[element].slug);
                                                 });
-                                                print(copySessionIndex);
-                                                print(_copySessions);
-                                                print(
-                                                    'hhhhhhhhhhddddddddddddd');
-                                                print(minStartDate);
-                                                print(maxEndDate);
                                                 _copySessions
                                                     .forEach((element) {
                                                   ///initialize to empty list if there is no session otherwise just add
@@ -2405,13 +2425,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                     ///(B)show message if conflicting with previous days sessions while copying
                                                     else {
                                                       showMessage(
-                                                          "Your time is not proper as compare to previous sessions of $element");
+                                                          "Your Time Is Not Proper As Compare To Previous Sessions Of $element");
                                                     }
                                                   }
                                                 });
-                                                print('hhhhhhhhhh');
-                                                print(minStartDate);
-                                                print(maxEndDate);
                                                 Navigator.of(context).pop();
                                               }
                                             }

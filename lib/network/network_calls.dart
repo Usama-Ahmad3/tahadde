@@ -4476,7 +4476,6 @@ class NetworkCalls {
     String url = "$baseUrl/api/v1/user/edit_academy/$id/";
     print(url);
     var body = json.encode(academyDetail);
-    print('ji');
     try {
       response = await http.post(Uri.parse(url),
           headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);

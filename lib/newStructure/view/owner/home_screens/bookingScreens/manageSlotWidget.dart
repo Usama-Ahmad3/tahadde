@@ -127,8 +127,8 @@ class _ManageSlotsWidgetState extends State<ManageSlotsWidget> {
                               };
                               navigateToEditAcademies(detail);
                             } else {
-                              showMessage(
-                                  AppLocalizations.of(context)!.cantReview);
+                              showMessage(AppLocalizations.of(context)!
+                                  .pendingApproval);
                             }
                           },
                           child: Padding(

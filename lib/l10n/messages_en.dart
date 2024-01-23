@@ -657,6 +657,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("SAVE"),
+        "pendingApproval":
+            MessageLookupByLibrary.simpleMessage("Pending Approval"),
         "totalBookings": MessageLookupByLibrary.simpleMessage("Total Bookings"),
         "totalProfit": MessageLookupByLibrary.simpleMessage("Total Profit"),
         "commission": MessageLookupByLibrary.simpleMessage("Commission"),

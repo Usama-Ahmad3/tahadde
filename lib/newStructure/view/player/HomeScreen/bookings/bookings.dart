@@ -187,7 +187,6 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
       );
 
   loadSpecificSession() {
-    print('jjj');
     if (bookings.bookings!.isNotEmpty) {
       bookings.bookings!.forEach((element) async {
         element.bookedSession!.forEach((sessionsId) async {
@@ -217,7 +216,6 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
   }
 
   loadSpecificSessionInnovative() {
-    print('hi');
     if (innovativeDetail.isNotEmpty) {
       innovativeDetail.forEach((element) async {
         element.bookedSession!.forEach((sessionsId) async {

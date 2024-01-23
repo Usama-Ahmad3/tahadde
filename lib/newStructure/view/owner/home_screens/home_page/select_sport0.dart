@@ -22,7 +22,6 @@ class SelectSportScreen extends StatefulWidget {
 class _SelectSportScreenState extends State<SelectSportScreen> {
   bool _isLoading = true;
   int? indexItem;
-  // List<String> _sportsImage=["images/sports/chess.png","images/sports/table_tennis.png","images/sports/batminton.png","images/sports/cricket.png","images/sports/football.png","images/sports/squash.png","images/sports/paddle.png","images/sports/swimming.png","images/sports/baseball.png"];
   final List<SportsList> _sportsList = [];
   final NetworkCalls _networkCalls = NetworkCalls();
   int selected = -1;

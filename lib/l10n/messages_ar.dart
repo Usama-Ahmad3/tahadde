@@ -653,6 +653,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "saveCards": MessageLookupByLibrary.simpleMessage("البطاقات المحفوظة"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ"),
+        "pendingApproval":
+            MessageLookupByLibrary.simpleMessage("ما زال يحتاج بتصدير"),
         "savePaymentMethod":
             MessageLookupByLibrary.simpleMessage("حفظ طرق الدفع"),
         "savePaymentMethods":

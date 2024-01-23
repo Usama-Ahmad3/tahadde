@@ -86,18 +86,14 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                     sessionNameAr: value.nameArabic,
                     slotDuration: value.slotDuration.toString(),
                     // graceTime: DateTime.now(),
-                    startTime: value.startTime != null
-                        ? Intl.withLocale(
-                            'en',
-                            () => DateFormat("yyyy-MM-dd hh:mm:ss")
-                                .parse("2022-10-32 ${value.startTime}"))
-                        : null,
-                    endTime: value.endTime != null
-                        ? Intl.withLocale(
-                            'en',
-                            () => DateFormat("yyyy-MM-dd hh:mm:ss")
-                                .parse("2022-10-32 ${value.endTime}"))
-                        : null));
+                    startTime: Intl.withLocale(
+                        'en',
+                        () => DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+                            "2022-10-32 ${value.startTime ?? "13:00:00"}")),
+                    endTime: Intl.withLocale(
+                        'en',
+                        () => DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+                            "2022-10-32 ${value.endTime ?? "13:40:00"}"))));
               });
               _sessionMap[element.weekday!] = sessionList;
             });
@@ -564,19 +560,6 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                                 ? "Marked as holiday for ${_weakList[_weakIndex].name} "
                                 : AppLocalizations.of(context)!.markAsHoliday),
                           )),
-                // : Expanded(
-                //     child: Center(
-                //     child: Text(
-                //       "Marked as holiday for ${_weakList[_weakIndex].name} ",
-                //       style: Theme.of(context)
-                //           .textTheme
-                //           .bodyMedium!
-                //           .copyWith(
-                //               color: MyAppState.mode == ThemeMode.light
-                //                   ? Colors.black
-                //                   : Colors.white),
-                //     ),
-                //   )),
                 ButtonWidget(
                     onTaped: () {
                       widget.backTag
@@ -854,32 +837,3 @@ class SessionDetail {
       this.endTime,
       this.isHoliday = false});
 }
-// onTap: () {
-//   _venuePriceController.text =
-//       slotList[index]
-//           .slotDetail![ind]!
-//           .venuePrice!
-//           .round()
-//           .toString();
-//   _playerPriceController.text =
-//       slotList[index]
-//           .slotDetail![ind]!
-//           .pricePerPlayer!
-//           .round()
-//           .toString();
-//   bottomSheet(
-//       onTap: () {
-//         setState(() {
-//           _isLoading = true;
-//           loadSlotList();
-//         });
-//       },
-//       id: slotList[index]
-//           .slotDetail![ind]!
-//           .id!
-//           .toInt(),
-//       slotTime: slotList[index]
-//           .slotDetail![ind]!
-//           .startTime!
-//           .substring(0, 5));
-// },

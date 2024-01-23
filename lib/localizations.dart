@@ -153,9 +153,8 @@ class AppLocalizations {
         name: 'cantSelect');
   }
 
-  String get cantReview {
-    return Intl.message("You can't edit in review academies",
-        name: 'cantReview');
+  String get pendingApproval {
+    return Intl.message("Pending Approval", name: 'pendingApproval');
   }
 
   String get addedFavorites {

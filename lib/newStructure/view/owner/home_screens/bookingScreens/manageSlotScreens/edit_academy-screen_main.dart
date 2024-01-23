@@ -358,9 +358,11 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                                                             .removeAt(
                                                                 index - 1);
                                                         Map detail = {
-                                                          "academy_image":
-                                                              specificAcademy!
-                                                                  .academyImage
+                                                          "academydetail": {
+                                                            "academy_image":
+                                                                specificAcademy!
+                                                                    .academyImage
+                                                          },
                                                         };
                                                         print("delete$detail");
                                                         editAcademy(detail);
@@ -424,62 +426,6 @@ class _EditAcademyScreenState extends State<EditAcademyScreen> {
                                 icon: icon[index]),
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(5.0),
-                        //   child: Row(
-                        //     children: [
-                        //       card(
-                        //           image: "assets/images/document_image.png",
-                        //           text: AppLocalizations.of(context)!.documents,
-                        //           onTap: () {
-                        //             navigateToDocuments(SportsModel(
-                        //                 isEdit: true,
-                        //                 id: widget.detail["id"],
-                        //                 venueType: venueType));
-                        //           }),
-                        //       flaxibleGap(
-                        //         1,
-                        //       ),
-                        //       card(
-                        //           image: "assets/images/venue_detail_image.png",
-                        //           text:
-                        //               AppLocalizations.of(context)!.pitchDetails,
-                        //           onTap: () {
-                        //             navigateToPitchDetail(specificPitchScreen);
-                        //           }),
-                        //     ],
-                        //   ),
-                        // ),
-                        // fixedGap(height: 10.0),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(5.0),
-                        //   child: Row(
-                        //     children: [
-                        //       card(
-                        //           image: "assets/images/price_image.png",
-                        //           text: AppLocalizations.of(context)!.slotPrice,
-                        //           onTap: () {
-                        //             Map detail = {
-                        //               "id": specificPitchScreen.id.toString(),
-                        //               "subPitchId": specificPitchScreen
-                        //                   .venueDetails!.pitchType![0]!.id
-                        //                   .toString(),
-                        //               "back": true
-                        //             };
-                        //             navigateToSlotScreen(detail);
-                        //           }),
-                        //       flaxibleGap(
-                        //         1,
-                        //       ),
-                        //       card(
-                        //           image: "assets/images/session_image.png",
-                        //           text: AppLocalizations.of(context)!.sessions,
-                        //           onTap: () {
-                        //             navigateToEditSession();
-                        //           }),
-                        //     ],
-                        //   ),
-                        // )
                       ],
                     ),
                   ),
