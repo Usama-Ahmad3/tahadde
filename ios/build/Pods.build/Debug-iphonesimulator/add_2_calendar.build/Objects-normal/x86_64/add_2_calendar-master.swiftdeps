@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "f9ec2819eee2b35d8a534709d900b821bef2a1a47e32330836c60e5aed2f2c28"
-build_start_time: [1705918017, 636457920]
-build_end_time: [1705918020, 925486087]
-inputs:
-  "/Users/developer/.pub-cache/hosted/pub.dev/add_2_calendar-2.2.5/ios/Classes/SwiftAdd2CalendarPlugin.swift": [1703926649, 328109741]
