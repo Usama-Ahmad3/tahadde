@@ -1360,7 +1360,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                         ? AppColors.black
                                                         : AppColors.white,
                                                   ),
-                                            ),.
+                                            ),
                                             trailing: GestureDetector(
                                               child: _holiday
                                                   ? SizedBox(
