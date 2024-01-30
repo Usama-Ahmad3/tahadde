@@ -663,7 +663,7 @@ class AppLocalizations {
   }
 
   String get changepassword {
-    return Intl.message('changepassword', name: 'changepassword');
+    return Intl.message('Change Password', name: 'changepassword');
   }
 
   String get sendEmail {
@@ -1624,7 +1624,7 @@ class AppLocalizations {
   }
 
   String get booked {
-    return Intl.message('booked', name: 'Booked');
+    return Intl.message('Booked', name: 'Booked');
   }
 
   String get bookYourSlot {

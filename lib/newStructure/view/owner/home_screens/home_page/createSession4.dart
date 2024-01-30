@@ -87,56 +87,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
   List indexes = [];
   late SpecificModelClass specificPitchScreen;
   late String venueType;
-  loadSpecific() async {
-    await _networkCalls.specificVenue(
-      id: widget.academyData["id"],
-      subPitch: "&subpitch_id=${widget.academyData["subPitchId"]}",
-      onSuccess: (event) {
-        if (mounted) {
-          setState(() {
-            specificPitchScreen = event;
-            if (specificPitchScreen.isDeclined!) {
-              venueType = "declined";
-            } else if (specificPitchScreen.isVerified!) {
-              venueType = "verified";
-            } else {
-              venueType = "inreview";
-            }
-            _isLoading = false;
-          });
-        }
-        if (specificPitchScreen.sessions.isNotEmpty) {
-          specificPitchScreen.sessions.forEach((element) {
-            List<SessionDetail> sessionList = [];
-            element["sessions_data"].forEach((value) {
-              sessionList.add(SessionDetail(
-                  sessionName: value["session_name"],
-                  sessionNameAr: value["session_arabic_name"],
-                  slotDuration: value["session_slot_time"],
-                  graceTime: value["grace_time"],
-                  startTime: Intl.withLocale(
-                      'en',
-                      () => DateFormat("yyyy-MM-dd hh:mm:ss")
-                          .parse("2022-10-32 ${value["startTime"]}")),
-                  endTime: Intl.withLocale(
-                      'en',
-                      () => DateFormat("yyyy-MM-dd hh:mm:ss")
-                          .parse("2022-10-32 ${value["endTime"]}"))));
-            });
-            _sessionMap[element["day"]] = sessionList;
-          });
-        }
-      },
-      onFailure: (msg) {
-        if (mounted) {
-          showMessage(msg);
-        }
-      },
-      tokenExpire: () {
-        if (mounted) on401(context);
-      },
-    );
-  }
 
   editAcademy(Map detail, String academyId) async {
     print('reaches');
@@ -611,298 +561,293 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                           height: size.height * 0.02,
                         ),
 
-                        _sessionMap.containsKey(_weakList[_weakIndex].slug) &&
-                                !_sessionMap[_weakList[_weakIndex].slug]![0]
-                                    .isHoliday! &&
-                                _sessionMap[_weakList[_weakIndex].slug]!
-                                    .isNotEmpty
+                        _weakList.isNotEmpty
+                            ? _sessionMap.containsKey(_weakList[_weakIndex].slug) &&
+                                    !_sessionMap[_weakList[_weakIndex].slug]![0]
+                                        .isHoliday! &&
+                                    _sessionMap[_weakList[_weakIndex].slug]!
+                                        .isNotEmpty
 
-                            ///list of sessions that was created
-                            ? Expanded(
-                                child: SizedBox(
-                                    height: size.height * .4,
-                                    child: ListView.builder(
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: _sessionMap[
-                                                _weakList[_weakIndex].slug]!
-                                            .length,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: size.height * .01,
-                                                horizontal: size.width * 0.02),
-                                            child: Dismissible(
-                                              key: UniqueKey(),
-                                              direction:
-                                                  DismissDirection.endToStart,
-                                              onDismissed: (direction) {
-                                                setState(() {
-                                                  Map sessions = {
-                                                    "sessions": [
-                                                      {
-                                                        "weekday": _weakList[
-                                                                _weakIndex]
-                                                            .name,
+                                ///list of sessions that was created
+                                ? Expanded(
+                                    child: SizedBox(
+                                        height: size.height * .4,
+                                        child: ListView.builder(
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: _sessionMap[
+                                                    _weakList[_weakIndex].slug]!
+                                                .length,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: size.height * .01,
+                                                    horizontal:
+                                                        size.width * 0.02),
+                                                child: Dismissible(
+                                                  key: UniqueKey(),
+                                                  direction: DismissDirection
+                                                      .endToStart,
+                                                  onDismissed: (direction) {
+                                                    setState(() {
+                                                      Map sessions = {
                                                         "sessions": [
                                                           {
-                                                            "id": _sessionMap[_weakList[
-                                                                        _weakIndex]
-                                                                    .slug]![index]
-                                                                .id,
-                                                            "delete": true
+                                                            "weekday": _weakList[
+                                                                    _weakIndex]
+                                                                .name,
+                                                            "sessions": [
+                                                              {
+                                                                "id": _sessionMap[
+                                                                        _weakList[_weakIndex]
+                                                                            .slug]![index]
+                                                                    .id,
+                                                                "delete": true
+                                                              }
+                                                            ]
                                                           }
                                                         ]
-                                                      }
-                                                    ]
-                                                  };
-                                                  print('ssssssssssssss');
-                                                  print(_sessionMap[
-                                                          _weakList[_weakIndex]
-                                                              .slug]!
-                                                      .length);
-                                                  editAcademy(
-                                                      sessions,
-                                                      specificAcademy!.academyId
-                                                          .toString());
-                                                  if (_sessionMap[_weakList[
-                                                                  _weakIndex]
-                                                              .slug]!
-                                                          .length ==
-                                                      1) {
-                                                    _sessionMap.removeWhere(
-                                                        (key, value) =>
-                                                            key ==
-                                                            _weakList[
+                                                      };
+                                                      print('ssssssssssssss');
+                                                      print(_sessionMap[
+                                                              _weakList[
+                                                                      _weakIndex]
+                                                                  .slug]!
+                                                          .length);
+                                                      editAcademy(
+                                                          sessions,
+                                                          specificAcademy!
+                                                              .academyId
+                                                              .toString());
+                                                      if (_sessionMap[_weakList[
+                                                                      _weakIndex]
+                                                                  .slug]!
+                                                              .length ==
+                                                          1) {
+                                                        _sessionMap.removeWhere(
+                                                            (key, value) =>
+                                                                key ==
+                                                                _weakList[
+                                                                        _weakIndex]
+                                                                    .slug);
+                                                      } else {
+                                                        _sessionMap[_weakList[
                                                                     _weakIndex]
-                                                                .slug);
-                                                  } else {
-                                                    _sessionMap[_weakList[
-                                                                _weakIndex]
-                                                            .slug]!
-                                                        .removeAt(index);
-                                                  }
-                                                });
-                                              },
-                                              background: Container(
-                                                height: size.height * 0.09,
-                                                decoration: BoxDecoration(
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? AppColors.grey200
-                                                        : AppColors
-                                                            .containerColorB,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            13)),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    flaxibleGap(
-                                                      10,
-                                                    ),
-                                                    Image.asset(
-                                                      "assets/images/delete_icon.png",
-                                                      color: AppColors.red,
-                                                      height: 20,
-                                                      width: 20,
-                                                    ),
-                                                    flaxibleGap(
-                                                      1,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              child: InkWell(
-                                                onTap: () {
-                                                  // showMessage(
-                                                  //     AppLocalizations.of(
-                                                  //             context)!
-                                                  //         .swipeDelete);
-                                                },
-                                                child: Container(
-                                                  height: size.height * 0.09,
-                                                  decoration: BoxDecoration(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? AppColors.grey200
-                                                          : AppColors
-                                                              .containerColorW12,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              13)),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Row(
-                                                          children: [
-                                                            Text(
-                                                              "${AppLocalizations.of(context)!.locale == 'en' ? _sessionMap[_weakList[_weakIndex].slug]![index].sessionName : _sessionMap[_weakList[_weakIndex].slug]![index].sessionNameAr} ${AppLocalizations.of(context)!.sessions}",
-                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFFA3A3A3)
-                                                                      : AppColors
-                                                                          .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontFamily:
-                                                                      "Poppins"),
-                                                            ),
-                                                            Text(
-                                                              "( ${_sessionMap[_weakList[_weakIndex].slug]![index].slotDuration.toString()} ${AppLocalizations.of(context)!.minuteSlot} )",
-                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? const Color(
-                                                                          0XFFA3A3A3)
-                                                                      : AppColors
-                                                                          .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontFamily:
-                                                                      "Poppins"),
-                                                            ),
-                                                          ],
+                                                                .slug]!
+                                                            .removeAt(index);
+                                                      }
+                                                    });
+                                                  },
+                                                  background: Container(
+                                                    height: size.height * 0.09,
+                                                    decoration: BoxDecoration(
+                                                        color: MyAppState
+                                                                    .mode ==
+                                                                ThemeMode.light
+                                                            ? AppColors.grey200
+                                                            : AppColors
+                                                                .containerColorB,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(13)),
+                                                    child: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        flaxibleGap(
+                                                          10,
                                                         ),
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    size.height *
-                                                                        0.01),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                                DateFormat.Hm(
-                                                                        'en_US')
-                                                                    .format(_sessionMap[
-                                                                                _weakList[_weakIndex].slug]![
-                                                                            index]
-                                                                        .startTime!),
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyMedium!
-                                                                    .copyWith(
+                                                        Image.asset(
+                                                          "assets/images/delete_icon.png",
+                                                          color: AppColors.red,
+                                                          height: 20,
+                                                          width: 20,
+                                                        ),
+                                                        flaxibleGap(
+                                                          1,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      // showMessage(
+                                                      //     AppLocalizations.of(
+                                                      //             context)!
+                                                      //         .swipeDelete);
+                                                    },
+                                                    child: Container(
+                                                      height:
+                                                          size.height * 0.09,
+                                                      decoration: BoxDecoration(
+                                                          color: MyAppState
+                                                                      .mode ==
+                                                                  ThemeMode
+                                                                      .light
+                                                              ? AppColors
+                                                                  .grey200
+                                                              : AppColors
+                                                                  .containerColorW12,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      13)),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "${AppLocalizations.of(context)!.locale == 'en' ? _sessionMap[_weakList[_weakIndex].slug]![index].sessionName : _sessionMap[_weakList[_weakIndex].slug]![index].sessionNameAr} ${AppLocalizations.of(context)!.sessions}",
+                                                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? const Color(
+                                                                              0XFFA3A3A3)
+                                                                          : AppColors
+                                                                              .white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontFamily:
+                                                                          "Poppins"),
+                                                                ),
+                                                                Text(
+                                                                  "( ${_sessionMap[_weakList[_weakIndex].slug]![index].slotDuration.toString()} ${AppLocalizations.of(context)!.minuteSlot} )",
+                                                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? const Color(
+                                                                              0XFFA3A3A3)
+                                                                          : AppColors
+                                                                              .white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontFamily:
+                                                                          "Poppins"),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        size.height *
+                                                                            0.01),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                    DateFormat.Hm(
+                                                                            'en_US')
+                                                                        .format(_sessionMap[_weakList[_weakIndex].slug]![index]
+                                                                            .startTime!),
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                            color: MyAppState.mode == ThemeMode.light
+                                                                                ? AppColors.appThemeColor
+                                                                                : AppColors.grey,
+                                                                            fontWeight: FontWeight.w600,
+                                                                            fontFamily: "Poppins")),
+                                                                Text(" - ",
+                                                                    style: TextStyle(
                                                                         color: MyAppState.mode == ThemeMode.light
                                                                             ? AppColors
                                                                                 .appThemeColor
                                                                             : AppColors
                                                                                 .grey,
+                                                                        fontSize:
+                                                                            16,
                                                                         fontWeight:
                                                                             FontWeight
                                                                                 .w600,
                                                                         fontFamily:
                                                                             "Poppins")),
-                                                            Text(" - ",
-                                                                style: TextStyle(
-                                                                    color: MyAppState.mode ==
-                                                                            ThemeMode
-                                                                                .light
-                                                                        ? AppColors
-                                                                            .appThemeColor
-                                                                        : AppColors
-                                                                            .grey,
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        "Poppins")),
-                                                            Text(
-                                                              DateFormat.Hm(
-                                                                      'en_US')
-                                                                  .format(_sessionMap[
-                                                                          _weakList[_weakIndex]
-                                                                              .slug]![index]
-                                                                      .endTime!),
-                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                                  color: MyAppState
-                                                                              .mode ==
-                                                                          ThemeMode
-                                                                              .light
-                                                                      ? AppColors
-                                                                          .appThemeColor
-                                                                      : AppColors
-                                                                          .grey,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontFamily:
-                                                                      "Poppins"),
+                                                                Text(
+                                                                  DateFormat.Hm(
+                                                                          'en_US')
+                                                                      .format(_sessionMap[_weakList[_weakIndex].slug]![
+                                                                              index]
+                                                                          .endTime!),
+                                                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                                      color: MyAppState.mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? AppColors
+                                                                              .appThemeColor
+                                                                          : AppColors
+                                                                              .grey,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontFamily:
+                                                                          "Poppins"),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                          );
-                                        })),
-                              )
-                            : _sessionMap.containsKey(_weakList[_weakIndex].slug) &&
-                                    _sessionMap[_weakList[_weakIndex].slug]![0]
-                                        .isHoliday! &&
-                                    _sessionMap[_weakList[_weakIndex].slug]!
-                                        .isNotEmpty
-
-                                ///if the session is holiday
-                                ? Expanded(
-                                    child: SizedBox(
-                                      height: size.height * .4,
-                                      child: Center(
-                                        child: Text(
-                                            AppLocalizations.of(context)!
-                                                .holiday,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium),
-                                      ),
-                                    ),
+                                              );
+                                            })),
                                   )
-                                : widget.createdTag
+                                : _sessionMap.containsKey(_weakList[_weakIndex].slug) &&
+                                        _sessionMap[_weakList[_weakIndex].slug]![0]
+                                            .isHoliday! &&
+                                        _sessionMap[_weakList[_weakIndex].slug]!
+                                            .isNotEmpty
+
+                                    ///if the session is holiday
                                     ? Expanded(
                                         child: SizedBox(
-                                            height: size.height * .4,
-                                            child: Center(
-                                                child:
-                                                    Text(AppLocalizations.of(context)!.holiday,
+                                          height: size.height * .4,
+                                          child: Center(
+                                            child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .holiday,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium),
+                                          ),
+                                        ),
+                                      )
+                                    : widget.createdTag
+                                        ? Expanded(
+                                            child: SizedBox(
+                                                height: size.height * .4,
+                                                child: Center(
+                                                    child: Text(
+                                                        AppLocalizations.of(context)!
+                                                            .holiday,
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyMedium))))
-                                    : Expanded(
-                                        child: SizedBox(
-                                            height: size.height * .4,
-                                            child: Center(
-                                                child: Text(
-                                                    _sessionMap.isEmpty
-                                                        ? AppLocalizations.of(context)!.firstSession
-                                                        : AppLocalizations.of(context)!.noSession,
-                                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white))))),
+                                        : Expanded(
+                                            child: SizedBox(
+                                                height: size.height * .4,
+                                                child: Center(child: Text(_sessionMap.isEmpty ? AppLocalizations.of(context)!.firstSession : AppLocalizations.of(context)!.noSession, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white)))))
+                            : SizedBox.shrink(),
 
                         ///button for navigation and creating
                         Align(

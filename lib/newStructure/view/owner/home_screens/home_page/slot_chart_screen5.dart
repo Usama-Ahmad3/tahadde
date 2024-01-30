@@ -555,10 +555,7 @@ class _SlotChartScreenState extends State<SlotChartScreen> {
                           )
                         : Expanded(
                             child: Center(
-                            child: Text(AppLocalizations.of(context)!.locale ==
-                                    'en'
-                                ? "Marked as holiday for ${_weakList[_weakIndex].name} "
-                                : AppLocalizations.of(context)!.markAsHoliday),
+                            child: Text(AppLocalizations.of(context)!.holiday),
                           )),
                 ButtonWidget(
                     onTaped: () {

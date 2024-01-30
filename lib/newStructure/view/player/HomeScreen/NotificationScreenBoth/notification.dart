@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/main.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/widgets/app_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../common_widgets/internet_loss.dart';
@@ -32,8 +31,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
       onSuccess: (msg) async {
         if (mounted) {
           detail = await msg;
-          _isLoading = false;
-          setState(() {});
         }
       },
       onFailure: (msg) {
@@ -47,6 +44,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
         if (mounted) on401(context);
       },
     );
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override

@@ -286,7 +286,7 @@ class RouterPage {
         var detail = settings.arguments;
         return MaterialPageRoute(
             builder: (_) => BankDetail(detail: detail as Map));
-      case RouteNames.pitchDetail:
+      case RouteNames.academyDetail:
         var detail = settings.arguments;
         return MaterialPageRoute(
             builder: (_) => AcademyDetailScreen(detail: detail as SportsModel));

@@ -113,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Add your experience for the academies you have played upon."),
         "ago": MessageLookupByLibrary.simpleMessage("ago"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
-        "bookedFor": MessageLookupByLibrary.simpleMessage("booked for"),
+        "bookedFor": MessageLookupByLibrary.simpleMessage("Booked For"),
         "minuteSlot": MessageLookupByLibrary.simpleMessage("mins slot"),
         "bookAgain": MessageLookupByLibrary.simpleMessage("Book Again"),
         "rebookThis":
@@ -223,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeImage": MessageLookupByLibrary.simpleMessage("Change Image"),
         "changePhoto": MessageLookupByLibrary.simpleMessage("Change Photo"),
         "changepassword":
-            MessageLookupByLibrary.simpleMessage("CHANGE PASSWORD"),
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "changepasswordC":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "chooseAccount": MessageLookupByLibrary.simpleMessage("Who are you?"),

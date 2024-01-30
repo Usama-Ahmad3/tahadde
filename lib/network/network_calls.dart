@@ -1463,6 +1463,39 @@ class NetworkCalls {
     }
   }
 
+  loadSessionCount(
+      {required String id,
+      required OnSuccess onSuccess,
+      required OnFailure onFailure,
+      required TokenExpire tokenExpire}) async {
+    http.Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print('SessionCount');
+
+    ///
+    String url = "$baseUrl${RestApis.academySessionCount}$id/";
+    print("Session$url");
+    try {
+      response = await http.get(Uri.parse(url),
+          headers: headerWithToken(prefs, "", HttpMethod.GET));
+      print(url);
+      print('Academy${response.body}');
+      if (response.statusCode == 200) {
+        var resp = json.decode(utf8.decode(response.bodyBytes));
+        onSuccess(resp);
+      } else if (response.statusCode == tokenExpireStatus) {
+        tokenExpire();
+      } else {
+        onFailure(throw Exception('Failed to load Book Pitch'));
+      }
+    } on SocketException catch (_) {
+      onFailure(internetStatus);
+    } catch (e) {
+      onFailure("Something went wrong$e");
+      print('sadesdsds fd $e');
+    }
+  }
+
   loadSpecifiedInnovative(
       {required String sport,
       required OnSuccess onSuccess,
@@ -1984,6 +2017,7 @@ class NetworkCalls {
       final response = await http.post(Uri.parse(url),
           headers: headerWithToken(prefs, body, HttpMethod.POST), body: body);
       print("transaction${response.body}");
+      print("transaction${response.statusCode}");
       print(response.statusCode);
       if (response.statusCode > 200 && response.statusCode < 300) {
         print('kkkk');

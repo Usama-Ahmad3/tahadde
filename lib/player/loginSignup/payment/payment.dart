@@ -649,28 +649,6 @@ class _PaymentState extends State<Payment> {
                         detailPost['booking_date'],
                         detial,
                       );
-                      // Map detail = {
-                      //   "pitchtype_id": widget.detail["subPitchId"],
-                      //   "booked_for_date": widget.detail["apidetail"]["date"],
-                      //   "slot_ids_list": widget.detail["apidetail"]["id"],
-                      //   "player_count": widget.detail["player_count"]
-                      // };
-                      // _networkCalls.bookpitchSlotConferm(
-                      //   urlDetail: detail,
-                      //   slug: widget.detail["slug"],
-                      //   onSuccess: (value) {
-                      //     navigateToPaymentSuccess(
-                      //         tranjectionId["InvoiceTransactions"][0]
-                      //         ['TransactionStatus']);
-                      //   },
-                      //   onFailure: (msg) {
-                      //     print('maksj$msg');
-                      //     showMessage(msg);
-                      //   },
-                      //   tokenExpire: () {
-                      //     if (mounted) on401(context);
-                      //   },
-                      // );
                     },
                     onFailure: (msg) {
                       print('failed $msg');
@@ -777,6 +755,7 @@ class _PaymentState extends State<Payment> {
     };
     print('aaaaaaaaaaaa');
     academyDetail.add(detail);
+    print(academyDetail);
     _networkCalls.deleteCart(
       id: element['cart_id'].toString(),
       onSuccess: (value) {

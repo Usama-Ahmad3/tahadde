@@ -473,7 +473,7 @@ class _CreateEventSecondState extends State<CreateEventSecond> {
                             height: 100,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: RouteNames.pitchDetail.length,
+                              itemCount: RouteNames.academyDetail.length,
                               itemBuilder: (context, index) {
                                 return countPitch == index
                                     ? GestureDetector(

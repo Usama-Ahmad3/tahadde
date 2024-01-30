@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
+import 'package:flutter_tahaddi/modelClass/academy_session_count.dart';
 import 'package:flutter_tahaddi/modelClass/avalaible_slots.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/bookingShimmer.dart';
@@ -40,12 +41,17 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   final DateFormat apiFormatter = DateFormat('yyyy-MM-dd', 'en_US');
   bool? isSelected;
   InnovativeHub? _specificInnovative;
+  List<AcademyModel> _specificAcademy = [];
   List<Map> academyDetail = [];
   bool _auth = false;
   bool loading = false;
+  int id = 0;
   List sessionIdList = [];
   List<String> academyId = [];
   List<int> listMaxPlayer = [];
+  bool morning = true;
+  List<AcademySessionCount> morningCount = [];
+  List<AcademySessionCount> eveningCount = [];
   Map<String, List<String>> slotInformation = {};
   late SlotPrice _slotPrice =
       SlotPrice(isPlayer: false, pricePerPlayer: [], pricePerVenue: []);
@@ -56,7 +62,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   late String dataTime;
   var playerController = TextEditingController();
   bool isPerPlayer = true;
-  int slots = 0;
+  List<DateStats> slotsM = [];
+  List<DateStats> slotsE = [];
   AvalaibleSlots avalaibleSlots = AvalaibleSlots();
   final List<WeekDays> _weakList = [];
   int indexItemSubPitch = 1;
@@ -70,8 +77,78 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   List<SessionDetail> sessionMor = [];
   int date = 0;
   bool sessionLoading = false;
-  List<AcademyModel> _specificAcademy = [];
   late Map profileDetail;
+  loadMorningCount() async {
+    if(sessionMor.isNotEmpty){
+      morningCount.clear();
+      for(int i =0;i<sessionMor.length;i++){
+        print(sessionMor[i].id);
+        await _networkCalls.loadSessionCount(
+          id: sessionMor[i].id.toString(),
+          onSuccess: (sessionInfo) {
+            morningCount.add(AcademySessionCount.fromJson(sessionInfo));
+          },
+          onFailure: (msg) {
+          },
+          tokenExpire: () {
+            if (mounted) {
+              print('load Specific');
+              on401(context);
+            }
+          },
+        );
+      }
+    }
+    if(morningCount.isNotEmpty){
+      for(int i =0;i<morningCount.length;i++){
+        if(morningCount[i].dateStats!.isNotEmpty){
+          slotsM.add(morningCount[i].dateStats!.where((element) {
+            return element.date == dataTime;
+          }).toList().first);
+        }else{
+          slotsM.add(DateStats(bookedPlayers: 0,cartPlayers: 0,date: dataTime,remainingSlots: 22,yourBooking: 0));
+        }
+      }
+      print(slotsM.length);
+    }
+    setState(() {
+    });
+  }
+
+  loadEveningCount() async {
+    if(sessionsEve.isNotEmpty){
+      eveningCount.clear();
+      for(int i =0;i<sessionsEve.length;i++){
+        await _networkCalls.loadSessionCount(
+          id: sessionsEve[i].id.toString(),
+          onSuccess: (sessionInfo) {
+            eveningCount.add(AcademySessionCount.fromJson(sessionInfo));
+          },
+          onFailure: (msg) {},
+          tokenExpire: () {
+            if (mounted) {
+              print('load Specific');
+              on401(context);
+            }
+          },
+        );
+      }
+    }
+    if(eveningCount.isNotEmpty){
+      for(int i =0;i<eveningCount.length;i++){
+        if(eveningCount[i].dateStats!.isNotEmpty){
+          slotsE.add(eveningCount[i].dateStats!.where((element) {
+            return element.date == dataTime;
+          }).toList().first);
+        }else{
+          slotsE.add(DateStats(bookedPlayers: 0,cartPlayers: 0,date: dataTime,remainingSlots: 22,yourBooking: 0));
+        }
+      }
+      print(slotsE.length);
+    }
+    setState(() {
+    });
+  }
   loadProfile() async {
     await _networkCalls.getProfile(
       onSuccess: (msg) {
@@ -86,34 +163,33 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     );
   }
 
-  morningSessions() {
+  morningSessions() async {
     ///morning session differentiate
     for (int i = 0; i < _sessionMap[_weakList[_weekIndex].name]!.length; i++) {
       sessionMor = _sessionMap[_weakList[_weekIndex].name]!.where((element) {
-        TimeOfDay currentTime = TimeOfDay.now();
         DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS")
             .parse(element.endTime.toString());
         TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
         return givenTime.hour < 14 || givenTime.hour == 14 && givenTime.minute == 0;
       }).toList();
     }
-    print(sessionMor.length);
+    await loadMorningCount();
   }
 
-  eveningSessions() {
+  eveningSessions() async {
     ///evening sessions differentiate
     for (int i = 0; i < _sessionMap[_weakList[_weekIndex].name]!.length; i++) {
       sessionsEve = _sessionMap[_weakList[_weekIndex].name]!.where((element) {
-        TimeOfDay currentTime = TimeOfDay.now();
         DateTime givenDateTime = DateFormat("yyyy-MM-dd HH:mm:ss.SSS")
             .parse(element.startTime.toString());
         DateTime givenDateTimee = DateFormat("yyyy-MM-dd HH:mm:ss.SSS")
             .parse(element.endTime.toString());
         TimeOfDay givenTime = TimeOfDay.fromDateTime(givenDateTime);
-        return givenTime.hour > 14 || givenTime.hour == 14 || givenDateTimee.hour > 14;
+        TimeOfDay givenTimee = TimeOfDay.fromDateTime(givenDateTimee);
+        return givenTime.hour > 14 || givenTime.hour == 14 || givenTimee.hour > 14 || givenTimee.hour == 14;
       }).toList();
     }
-    print(sessionsEve.length);
+    await loadEveningCount();
   }
 
   onWillPop() {
@@ -172,7 +248,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   }
 
   loadSpecificInnovative() async {
-    avalaibleSlotCounts();
+    print('innovative');
     await _networkCalls.loadSpecifiedInnovative(
       sport: widget.detail['academy_id'].toString(),
       onSuccess: (academyInfo) {
@@ -182,41 +258,30 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
             List<SessionDetail> sessionList = [];
             for (var value in element.sessions!) {
               sessionList.add(SessionDetail(
-                  id: int.parse(value.id.toString()),
+                  id: value.id!.toInt(),
                   sessionName: value.name,
                   sessionNameAr: value.nameArabic,
                   slotDuration: value.slotDuration as int,
                   startTime: Intl.withLocale(
                       'en',
-                      () => DateFormat("yyyy-MM-dd HH:mm:ss")
+                          () => DateFormat("yyyy-MM-dd HH:mm:ss")
                           .parse('2022-11-31 ${value.startTime.toString()}')),
                   endTime: Intl.withLocale(
                       'en',
-                      () => DateFormat("yyyy-MM-dd hh:mm:ss")
+                          () => DateFormat("yyyy-MM-dd hh:mm:ss")
                           .parse('2022-10-31 ${value.endTime.toString()}')
                           .toLocal())));
             }
             _sessionMap[element.weekday!] = sessionList;
           }
         }
-        sessionMor.clear();
-        sessionsEve.clear();
         setState(() {
           ///functions to differentiate morning and evening
-          _sessionMap[_weakList[_weekIndex].name] != null
-              ? morningSessions()
-              : sessionMor = [];
-          _sessionMap[_weakList[_weekIndex].name] != null
-              ? eveningSessions()
-              : sessionsEve = [];
+          _sessionMap[_weakList[_weekIndex].name] != null?morningSessions():sessionMor = [];
+          _sessionMap[_weakList[_weekIndex].name] != null?eveningSessions():sessionsEve = [];
         });
       },
       onFailure: (msg) {
-        // if (mounted) {
-        //   setState(() {
-        //     isStateLoading = false;
-        //   });
-        // }
       },
       tokenExpire: () {
         if (mounted) {
@@ -225,10 +290,15 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         }
       },
     );
+    setState(() {
+      isStateLoading = false;
+      sessionLoading = false;
+    });
   }
 
   loadVerifiedSpecific() async {
-    avalaibleSlotCounts();
+    print('jjj');
+    print(widget.detail['academy_id'].toString());
     await _networkCalls.loadVerifiedAcademies(
       sport: widget.detail['academy_id'].toString(),
       onSuccess: (academyInfo) {
@@ -261,16 +331,11 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         }
         setState(() {
           ///functions to differentiate morning and evening
-          _sessionMap[_weakList[_weekIndex].name] != null?morningSessions():sessionMor = [];
-          _sessionMap[_weakList[_weekIndex].name] != null?eveningSessions():sessionsEve = [];
+          _sessionMap[_weakList[_weekIndex].name] != null? morningSessions():sessionMor = [];
+          _sessionMap[_weakList[_weekIndex].name] != null? eveningSessions():sessionsEve = [];
         });
       },
       onFailure: (msg) {
-        // if (mounted) {
-        //   setState(() {
-        //     isStateLoading = false;
-        //   });
-        // }
       },
       tokenExpire: () {
         if (mounted) {
@@ -286,23 +351,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   }
 
 
-  avalaibleSlotCounts() async {
-    await _networkCalls.avalaibleSlotsCount(
-        id: widget.detail['academy_id'].toString(),
-        onSuccess: (detail) {
-          setState(() {
-            // print(detail);
-            avalaibleSlots = AvalaibleSlots.fromJson(detail);
-            slots = avalaibleSlots.remainingSessions!.toInt();
-          });
-        },
-        onFailure: (msg) {
-          showMessage(msg);
-        },
-        tokenExpire: () {
-          if (mounted) on401(context);
-        });
-  }
 
   checkAuth() async {
     _auth = (await checkAuthorizaton());
@@ -525,6 +573,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                           setState(() {
                                             sessionLoading = true;
                                           });
+                                          slotsM.clear();
+                                          slotsE.clear();
                                           weekIndex(index);
                                           _slotTime.clear();
                                           indexItem = 1;
@@ -535,7 +585,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                           academyId.clear();
                                           sessionIdList.clear();
                                           academyDetail.clear();
-                                          slots = 22;
                                           date = index;
                                           dataTime = apiFormatter.format(
                                               DateTime.now()
@@ -567,9 +616,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                           children: [
                                             Text(
                                                 DateTime.now()
-                                                    .add(Duration(days: index))
-                                                    .day
-                                                    .toString(),
+                                                    .add(Duration(days: index)).day.toString(),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium!
@@ -605,11 +652,11 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                         ),
 
                         ///down white Container
-                        sessionLoading?BookingShimmer.sessionShimmer(width, height, context
-                        ):Container(
-                          width: width,
-                          height: height * 0.71,
-                          decoration: BoxDecoration(
+                        sessionLoading?BookingShimmer.sessionShimmer(width, height, context)
+                            :Container(
+                             width: width,
+                             height: height * 0.71,
+                             decoration: BoxDecoration(
                               color: MyAppState.mode == ThemeMode.light
                                   ? AppColors.white
                                   : AppColors.darkTheme,
@@ -702,43 +749,36 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           child: InkWell(
                                                             onTap: () {
                                                               setState(() {});
-                                                              if (list
-                                                                  .isEmpty) {
+                                                              if (list.isEmpty) {
+                                                                id = i;
+                                                                morning = true;
                                                                 // If the list is empty, add the session
                                                                 list.add(
                                                                     sessionToAddOrRemove);
                                                                 AppLocalizations.of(context)!
                                                                             .locale ==
                                                                         'en'
-                                                                    ? academyId.add(sessionMor[
-                                                                            i]
+                                                                    ? academyId.add(sessionMor[i]
                                                                         .sessionName
                                                                         .toString())
                                                                     : academyId.add((sessionMor[
                                                                             i]
                                                                         .sessionNameAr
                                                                         .toString()));
+                                                                slotsM[i].remainingSlots != 0
+                                                                    ? slotsM[i].setRemainingSlotsMinus(indexItem)
+                                                                    : null;
                                                                 _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
-                                                                    ? _specificInnovative!
-                                                                        .prices![
-                                                                            0]
-                                                                        .price!
-                                                                        .toDouble()
+                                                                    ? _specificInnovative!.prices![0].price!.toDouble()
                                                                     : _specificAcademy[
                                                                             0]
                                                                         .prices![
                                                                             0]
                                                                         .price!
                                                                         .toDouble());
-                                                                slots != 0
-                                                                    ? slots =
-                                                                        slots -
-                                                                            1
-                                                                    : null;
-                                                                playerController
-                                                                        .text =
-                                                                    indexItem
-                                                                        .toString();
+                                                                print(playerController.text);
+                                                                print(slotsM);
+                                                                playerController.text = indexItem.toString();
                                                               } else {
                                                                 isSessionInList =
                                                                     list.any(
@@ -767,10 +807,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                               .slotDuration;
                                                                 });
                                                                 if (isSessionInList) {
-                                                                  slots < 22
-                                                                      ? slots =
-                                                                          slots +
-                                                                              1
+                                                                  slotsM[i].remainingSlots != 0
+                                                                      ? slotsM[i].setRemainingSlots(indexItem)
                                                                       : null;
                                                                   playerController
                                                                           .text =
@@ -811,14 +849,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                   });
                                                                   // list.isEmpty?slots = slots:null;
                                                                   list.isEmpty
-                                                                      ? indexItem =
-                                                                          1
-                                                                      : indexItem =
-                                                                          indexItem -
-                                                                              1;
-                                                                  _slotPrice
-                                                                      .pricePerPlayer
-                                                                      .removeLast();
+                                                                      ? indexItem = 1
+                                                                      : indexItem = indexItem - 1;
+                                                                  _slotPrice.pricePerPlayer.removeLast();
                                                                 } else {
                                                                   ///show Message That proceed first then select other session
                                                                   showMessage(
@@ -879,7 +912,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                         AppColors
                                                                             .grey,
                                                                     label: Text(
-                                                                        '$slots'),
+                                                                        '${slotsM.isNotEmpty?slotsM[i].remainingSlots:0}'),
                                                                     alignment:
                                                                         Alignment
                                                                             .topRight,
@@ -936,6 +969,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           ),
                                                         );
                                                       } else {
+                                                        print('else');
                                                         return Padding(
                                                           padding: EdgeInsets
                                                               .symmetric(
@@ -970,7 +1004,8 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                       AppColors
                                                                           .grey,
                                                                   label: Text(
-                                                                      '$slots'),
+                                                                    '${slotsM.isNotEmpty? slotsM[i].remainingSlots:0}',),
+                                                                      // '${morningCount.isNotEmpty?morningCount[i].dateStats!.isNotEmpty?morningCount[i].dateStats![0].remainingSlots:22:0}'),
                                                                   alignment:
                                                                       Alignment
                                                                           .topRight,
@@ -1134,23 +1169,15 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           onTap: () {
                                                             setState(() {});
                                                             if (list.isEmpty) {
+                                                              id = i;
+                                                              morning = false;
                                                               // If the list is empty, add the session
                                                               list.add(
                                                                   sessionToAddOrRemove);
-                                                              AppLocalizations.of(
-                                                                              context)!
-                                                                          .locale ==
+                                                              AppLocalizations.of(context)!.locale ==
                                                                       'en'
-                                                                  ? academyId.add(
-                                                                      sessionsEve[
-                                                                              i]
-                                                                          .sessionName
-                                                                          .toString())
-                                                                  : academyId.add(
-                                                                      (sessionsEve[
-                                                                              i]
-                                                                          .sessionNameAr
-                                                                          .toString()));
+                                                                  ? academyId.add(sessionsEve[i].sessionName.toString())
+                                                                  : academyId.add((sessionsEve[i].sessionNameAr.toString()));
                                                               _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
                                                                   ? _specificInnovative!
                                                                       .prices![
@@ -1163,10 +1190,14 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                           0]
                                                                       .price!
                                                                       .toDouble());
-                                                              slots != 0
-                                                                  ? slots =
-                                                                      slots - 1
+
+                                                              slotsE[i].remainingSlots != 0
+                                                                  ? slotsE[i].setRemainingSlotsMinus(indexItem)
                                                                   : null;
+                                                              // slots != 0
+                                                              //     ? slots =
+                                                              //         slots - 1
+                                                              //     : null;
                                                               playerController
                                                                       .text =
                                                                   indexItem
@@ -1199,10 +1230,13 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                             .slotDuration;
                                                               });
                                                               if (isSessionInList) {
-                                                                slots < 22
-                                                                    ? slots =
-                                                                        slots +
-                                                                            1
+                                                                // slots < 22
+                                                                //     ? slots =
+                                                                //         slots +
+                                                                //             1
+                                                                //     : null;
+                                                                slotsE[i].remainingSlots != 0
+                                                                    ? slotsE[i].setRemainingSlots(indexItem)
                                                                     : null;
                                                                 playerController
                                                                         .text =
@@ -1304,7 +1338,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                       AppColors
                                                                           .grey,
                                                                   label: Text(
-                                                                      '$slots'),
+                                                                      '${slotsE.isNotEmpty?slotsE[i < slotsE.length? i : 0].remainingSlots??0:0}'),
                                                                   alignment:
                                                                       Alignment
                                                                           .topRight,
@@ -1398,7 +1432,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                     AppColors
                                                                         .grey,
                                                                 label: Text(
-                                                                    '$slots'),
+                                                                    '${slotsE.isNotEmpty?slotsE[i < slotsE.length? i : 0].remainingSlots??0:0}'),
                                                                 alignment:
                                                                     Alignment
                                                                         .topRight,
@@ -1539,12 +1573,12 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                   InkWell(
                                                     onTap: () {
                                                       if (indexItem != 1) {
-                                                        indexItem =
-                                                            indexItem - 1;
-                                                        slots < 22
-                                                            ? slots = slots +
-                                                                list.length
-                                                            : null;
+                                                        indexItem = indexItem - 1;
+                                                        if(morning){
+                                                          slotsM[id].setRemainingSlots(1);
+                                                        }else{
+                                                          slotsE[id].setRemainingSlots(1);
+                                                        }
                                                       }
                                                       playerController.text =
                                                           indexItem.toString();
@@ -1574,21 +1608,37 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                         showMessage(
                                                             'please select your slot first');
                                                       } else {
-                                                        if (slots > 0) {
-                                                          indexItem < 22
-                                                              ? indexItem =
-                                                                  indexItem + 1
-                                                              : null;
-                                                          slots != 0 &&
-                                                                  slots > 0
-                                                              ? slots = slots -
-                                                                  list.length
-                                                              : null;
-                                                          if (slots < 0) {
-                                                            slots = slots +
-                                                                list.length;
-                                                            indexItem =
-                                                                indexItem - 1;
+                                                        if(morning){
+                                                          if (slotsM[id].remainingSlots! > 0) {
+                                                            indexItem < 22
+                                                                ? indexItem =
+                                                                indexItem + 1
+                                                                : null;
+                                                            slotsM[id].remainingSlots != 0 &&
+                                                                slotsM[id].remainingSlots! > 0
+                                                                ? slotsM[id].setRemainingSlotsMinus(list.length)
+                                                                : null;
+                                                            if (slotsM[id].remainingSlots! < 0) {
+                                                              slotsM[id].setRemainingSlots(list.length);
+                                                              indexItem =
+                                                                  indexItem - 1;
+                                                            }
+                                                          }
+                                                        }else{
+                                                          if (slotsE[id].remainingSlots! > 0) {
+                                                            indexItem < 22
+                                                                ? indexItem =
+                                                                indexItem + 1
+                                                                : null;
+                                                            slotsE[id].remainingSlots != 0 &&
+                                                                slotsE[id].remainingSlots! > 0
+                                                                ? slotsE[id].setRemainingSlotsMinus(list.length)
+                                                                : null;
+                                                            if (slotsE[id].remainingSlots! < 0) {
+                                                              slotsE[id].setRemainingSlots(list.length);
+                                                              indexItem =
+                                                                  indexItem - 1;
+                                                            }
                                                           }
                                                         }
                                                         playerController.text =

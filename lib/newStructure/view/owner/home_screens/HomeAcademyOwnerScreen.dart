@@ -158,8 +158,8 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                     ),
                     SalomonBottomBarItem(
                       icon: SizedBox(
-                        height: 21,
-                        width: 21,
+                        height: 20,
+                        width: 20,
                         child: Image.asset(
                           'assets/images/booking2.png',
                           color: AppColors.grey,
@@ -170,8 +170,8 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                         style: TextStyle(color: AppColors.white),
                       ),
                       activeIcon: SizedBox(
-                        height: 21,
-                        width: 21,
+                        height: 20,
+                        width: 20,
                         child: Image.asset(
                           'assets/images/file.png',
                           color: AppColors.white,
@@ -210,6 +210,7 @@ class _HomePitchOwnerScreenState extends State<HomePitchOwnerScreen> {
                       activeIcon: Icon(
                         Icons.shopping_basket,
                         color: AppColors.white,
+                        size: MediaQuery.of(context).size.height * 0.024,
                       ),
                       selectedColor: AppColors.appThemeColor,
                       unselectedColor: AppColors.grey,

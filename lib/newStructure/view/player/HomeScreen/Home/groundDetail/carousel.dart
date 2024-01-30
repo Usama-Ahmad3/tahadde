@@ -168,20 +168,21 @@ class _CarouselState extends State<Carousel> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star,
                             color: Colors.yellow,
                           ),
                           Text(
                             '(${rating[0].rating})',
-                            style: TextStyle(color: AppColors.appThemeColor),
+                            style:
+                                const TextStyle(color: AppColors.appThemeColor),
                           )
                         ],
                       ),
                     ),
                   )
-                : SizedBox.shrink()
-            : SizedBox.shrink(),
+                : const SizedBox.shrink()
+            : const SizedBox.shrink(),
       ],
     );
   }

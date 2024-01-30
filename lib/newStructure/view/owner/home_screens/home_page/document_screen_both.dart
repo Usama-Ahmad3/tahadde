@@ -453,25 +453,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
         loading = false;
       });
     });
-    // _networkCalls.availableDoc(
-    //     onSuccess: (detail) {
-    //       detail.forEach((element) {
-    //         doc.add(DocumentResponse(
-    //           id: element["id"],
-    //           expiryDate: element["Expiry_Date"],
-    //           docImage: element["file"],
-    //           docName: element["Document_Name"],
-    //           licenceNumber: element["License_Number"],
-    //         ));
-    //       });
-    //       setState(() {
-    //         loading = false;
-    //       });
-    //     },
-    //     onFailure: (msg) {},
-    //     tokenExpire: () {
-    //       if (mounted) on401(context);
-    //     });
   }
 
   @override
@@ -665,38 +646,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
                               ),
                             ),
                           ),
-                          // flaxibleGap(1),
-                          // GestureDetector(
-                          //   onTap: () {
-                          //     _handlePressButton();
-                          //   },
-                          //   child: Container(
-                          //     height: 40,
-                          //     width: sizeWidth,
-                          //     decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(4),
-                          //       color: Colors.grey.shade300,
-                          //       //color: Color(color),
-                          //     ),
-                          //     child: const Padding(
-                          //       padding: EdgeInsets.all(8.0),
-                          //       child: Row(
-                          //         children: [
-                          //           Text(
-                          //             "Search Pitch",
-                          //             style: TextStyle(
-                          //                 fontFamily: "Poppins",
-                          //                 fontWeight: FontWeight.w500,
-                          //                 fontSize: 15,
-                          //                 color: Colors.grey),
-                          //           ),
-                          //           Spacer(),
-                          //           Icon(Icons.search, color: Colors.grey)
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                           flaxibleGap(1),
                         ],
                       ),
@@ -771,173 +720,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                         width: sizeWidth,
                                         child: image != null ||
                                                 documentFilePath != null
-                                            ?
-                                            // doc.isNotEmpty
-                                            //         ? ListView.builder(
-                                            //             itemCount: doc.length + 1,
-                                            //             scrollDirection:
-                                            //                 Axis.horizontal,
-                                            //             itemBuilder:
-                                            //                 (context, index) {
-                                            //               return Padding(
-                                            //                 padding:
-                                            //                     const EdgeInsets
-                                            //                         .all(5.0),
-                                            //                 child: index == 0
-                                            //                     ? widget.detail
-                                            //                             .isEdit!
-                                            //                         ? const SizedBox
-                                            //                             .shrink()
-                                            //                         : GestureDetector(
-                                            //                             onTap: () {
-                                            //                               setState(
-                                            //                                   () {
-                                            //                                 checkIndex =
-                                            //                                     -1;
-                                            //                                 _nameController.text =
-                                            //                                     "";
-                                            //                                 _licenceController.text =
-                                            //                                     "";
-                                            //                                 _expiryDate.text =
-                                            //                                     '';
-                                            //                                 _apiExpiryDate =
-                                            //                                     null;
-                                            //                                 _showChoiceDialog(
-                                            //                                     context);
-                                            //                               });
-                                            //                             },
-                                            //                             child:
-                                            //                                 Container(
-                                            //                               height:
-                                            //                                   sizeHeight *
-                                            //                                       .3,
-                                            //                               width:
-                                            //                                   150,
-                                            //                               decoration: BoxDecoration(
-                                            //                                   color: MyAppState.mode == ThemeMode.light
-                                            //                                       ? Colors.grey.shade200
-                                            //                                       : Colors.white,
-                                            //                                   borderRadius: BorderRadius.circular(10)),
-                                            //                               child:
-                                            //                                   Padding(
-                                            //                                 padding: const EdgeInsets
-                                            //                                     .all(
-                                            //                                     50.0),
-                                            //                                 child: Image
-                                            //                                     .asset(
-                                            //                                   "assets/images/add_doc.png",
-                                            //                                   height:
-                                            //                                       50,
-                                            //                                 ),
-                                            //                               ),
-                                            //                             ),
-                                            //                           )
-                                            //                     : GestureDetector(
-                                            //                         onTap: () {
-                                            //                           if (checkIndex ==
-                                            //                               index) {
-                                            //                             setState(
-                                            //                                 () {
-                                            //                               checkIndex =
-                                            //                                   -1;
-                                            //                               _nameController
-                                            //                                   .text = "";
-                                            //                               _licenceController
-                                            //                                   .text = "";
-                                            //                               _expiryDate
-                                            //                                   .text = '';
-                                            //                               _apiExpiryDate =
-                                            //                                   null;
-                                            //                               pitch_Id =
-                                            //                                   null;
-                                            //                             });
-                                            //                           } else {
-                                            //                             setState(
-                                            //                                 () {
-                                            //                               checkIndex =
-                                            //                                   index;
-                                            //                               _nameController
-                                            //                                       .text =
-                                            //                                   doc[checkIndex - 1].docName ??
-                                            //                                       "";
-                                            //                               _licenceController
-                                            //                                   .text = doc[checkIndex -
-                                            //                                       1]
-                                            //                                   .licenceNumber!;
-                                            //                               if (doc[checkIndex - 1]
-                                            //                                       .expiryDate !=
-                                            //                                   null) {
-                                            //                                 _expiryDate
-                                            //                                     .text = formatter.format(DateTime.parse(doc[checkIndex -
-                                            //                                         1]
-                                            //                                     .expiryDate!));
-                                            //                                 _apiExpiryDate =
-                                            //                                     apiFormatter.format(DateTime.parse(doc[checkIndex - 1].expiryDate!));
-                                            //                                 pitch_Id =
-                                            //                                     doc[checkIndex - 1].id;
-                                            //                               } else {
-                                            //                                 _expiryDate.text =
-                                            //                                     '';
-                                            //                                 _apiExpiryDate =
-                                            //                                     null;
-                                            //                                 pitch_Id =
-                                            //                                     null;
-                                            //                               }
-                                            //                             });
-                                            //                           }
-                                            //                         },
-                                            //                         child: Stack(
-                                            //                           children: [
-                                            //                             ClipRRect(
-                                            //                               borderRadius:
-                                            //                                   BorderRadius.circular(
-                                            //                                       10),
-                                            //                               child: cachedNetworkImage(
-                                            //                                   height: sizeHeight *
-                                            //                                       .2,
-                                            //                                   width: sizeWidth *
-                                            //                                       0.45,
-                                            //                                   cuisineImageUrl: doc[index - 1]
-                                            //                                       .docImage,
-                                            //                                   imageFit:
-                                            //                                       BoxFit.fill),
-                                            //                             ),
-                                            //                             checkIndex ==
-                                            //                                     index
-                                            //                                 ? Container(
-                                            //                                     height:
-                                            //                                         sizeHeight * .2,
-                                            //                                     width:
-                                            //                                         sizeWidth * 0.45,
-                                            //                                     decoration:
-                                            //                                         BoxDecoration(color: Colors.white.withOpacity(.2), borderRadius: BorderRadius.circular(10)),
-                                            //                                   )
-                                            //                                 : const SizedBox
-                                            //                                     .shrink(),
-                                            //                             checkIndex ==
-                                            //                                     index
-                                            //                                 ? SizedBox(
-                                            //                                     height:
-                                            //                                         sizeHeight * .2,
-                                            //                                     width:
-                                            //                                         sizeWidth * 0.45,
-                                            //                                     child:
-                                            //                                         Padding(
-                                            //                                       padding: const EdgeInsets.all(50.0),
-                                            //                                       child: Image.asset(
-                                            //                                         "assets/images/check.png",
-                                            //                                         height: 50,
-                                            //                                       ),
-                                            //                                     ),
-                                            //                                   )
-                                            //                                 : const SizedBox
-                                            //                                     .shrink(),
-                                            //                           ],
-                                            //                         ),
-                                            //                       ),
-                                            //               );
-                                            //             }) :
-                                            GestureDetector(
+                                            ? GestureDetector(
                                                 onTap: () {
                                                   _showChoiceDialog(context);
                                                 },
@@ -1255,70 +1038,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                             showMessage(
                                                 "You can't update your document");
                                             Navigator.pop(context);
-                                            // List<Sessions> mondaySessions =
-                                            //     _specificAcademy.sessions!
-                                            //         .where((session) =>
-                                            //             session.weekday ==
-                                            //             'monday')
-                                            //         .toList();
-                                            // List<Sessions> tuesdaySessions =
-                                            //     _specificAcademy.sessions!
-                                            //         .where((session) =>
-                                            //             session.weekday ==
-                                            //             'tuesday')
-                                            //         .toList();
-                                            // List<Sessions> wednesdaySessions =
-                                            //     _specificAcademy.sessions!
-                                            //         .where((session) =>
-                                            //             session.weekday ==
-                                            //             'wednesday')
-                                            //         .toList();
-                                            // List<Sessions> thursdaySessions =
-                                            //     _specificAcademy.sessions!
-                                            //         .where((session) =>
-                                            //             session.weekday ==
-                                            //             'thursday')
-                                            //         .toList();
-                                            // List<Sessions> fridaySessions =
-                                            //     _specificAcademy.sessions!
-                                            //         .where((session) =>
-                                            //             session.weekday ==
-                                            //             'friday')
-                                            //         .toList();
-                                            // List<Sessions> saturdaySessions =
-                                            //     _specificAcademy.sessions!
-                                            //         .where((session) =>
-                                            //             session.weekday ==
-                                            //             'saturday')
-                                            //         .toList();
-                                            // List<Sessions> sundaySessions =
-                                            //     _specificAcademy.sessions!
-                                            //         .where((session) =>
-                                            //             session.weekday ==
-                                            //             'sunday')
-                                            //         .toList();
-                                            // for (int i = 0;
-                                            //     i < mondaySessions.length;
-                                            //     i++) {
-                                            //   print(mondaySessions[i].name);
-                                            // }
-                                            // Map detailS = {
-                                            //   "weekday":
-                                            //       mondaySessions[0].weekday,
-                                            //   "sessions": mondaySessions
-                                            // };
-                                            // print(detailS);
-                                            // _specificAcademy.documents![0]
-                                            //     .file = documentImage;
-                                            // _specificAcademy.documents![0]
-                                            //         .expiryDate =
-                                            //     _expiryDate.text;
-                                            // Map documentDetail =
-                                            //     ModelToMapEditAcademy
-                                            //         .editAcademy(
-                                            //             _specificAcademy);
-                                            // print(documentDetail);
-                                            // editAcademy(documentDetail);
                                           } else {
                                             widget.detail.documentModel?.lat =
                                                 pitchLat;
@@ -1331,14 +1050,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
                                                 : widget.detail.documentModel
                                                         ?.address =
                                                     locationController.text;
-                                            // widget.detail.documentModel !=
-                                            //         null
-                                            //     ? widget.detail.documentModel!
-                                            //             .documentImageId =
-                                            //         pitch_Id
-                                            //     : widget.detail.documentModel
-                                            //             ?.documentImageId =
-                                            //         pitch_Id;
                                             widget.detail.documentModel != null
                                                 ? widget.detail.documentModel!
                                                     .expiryDate = _apiExpiryDate
@@ -1395,8 +1106,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
   }
 
   void navigateToDocuments(SportsModel detail) {
-    print("Details$detail");
-    Navigator.pushNamed(context, RouteNames.pitchDetail, arguments: detail);
+    Navigator.pushNamed(context, RouteNames.academyDetail, arguments: detail);
   }
 
   void backToEdit() {

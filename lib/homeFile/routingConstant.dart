@@ -42,7 +42,7 @@ class RouteNames {
   static const String bookPitchTahaddi = "bookPitchTahaddi";
   static const String chooseAccount = "chooseAccount";
   static const String signUpPitchOwner = "signUpPitchOwner";
-  static const String pitchDetail = "pitchDetail";
+  static const String academyDetail = "pitchDetail";
   static const String documents = "documents";
   static const String bankDetail = "bankDetail";
   static const String homePitchOwner = "homePitchOwner";

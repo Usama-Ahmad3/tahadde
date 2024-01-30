@@ -685,66 +685,6 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                         context: context,
                         title: AppLocalizations.of(context)!.bookingDetails,
                         back: true),
-                    // bottomNavigationBar: monVal
-                    //     ? Container(
-                    //         height: sizeheight * 0.1,
-                    //         padding: EdgeInsets.symmetric(
-                    //             horizontal: sizewidth * 0.03,
-                    //             vertical: sizeheight * 0.006),
-                    //         child: ButtonWidget(
-                    //             onTaped: () {},
-                    //             title: Row(
-                    //               mainAxisAlignment:
-                    //                   MainAxisAlignment.spaceAround,
-                    //               crossAxisAlignment: CrossAxisAlignment.center,
-                    //               children: [
-                    //                 Column(
-                    //                   mainAxisAlignment:
-                    //                       MainAxisAlignment.center,
-                    //                   crossAxisAlignment:
-                    //                       CrossAxisAlignment.start,
-                    //                   children: <Widget>[
-                    //                     Text(
-                    //                       '${AppLocalizations.of(context)!.currency} ${widget.detail["price"]}',
-                    //                       style: const TextStyle(
-                    //                           color: Color(0XFFFFFFFF),
-                    //                           fontSize: 16),
-                    //                     ),
-                    //                   ],
-                    //                 ),
-                    //                 GestureDetector(
-                    //                   onTap: () {
-                    //                     navigateToDetail();
-                    //                   },
-                    //                   child: Container(
-                    //                     decoration: const BoxDecoration(
-                    //                       color: Color(0XFFFFFFFF),
-                    //                       borderRadius: BorderRadius.all(
-                    //                         Radius.circular(5.0),
-                    //                       ),
-                    //                     ),
-                    //                     height: sizeheight * .05,
-                    //                     width: sizewidth * .3,
-                    //                     alignment: Alignment.center,
-                    //                     child: Text(
-                    //                       AppLocalizations.of(context)!.proceed,
-                    //                       style: TextStyle(
-                    //                         color: Colors.black,
-                    //                         fontSize:
-                    //                             AppLocalizations.of(context)!
-                    //                                         .locale ==
-                    //                                     "en"
-                    //                                 ? 17
-                    //                                 : 20,
-                    //                       ),
-                    //                     ),
-                    //                   ),
-                    //                 )
-                    //               ],
-                    //             ),
-                    //             isLoading: loading),
-                    //       )
-                    //     : const SizedBox.shrink(),
                     body: Container(
                       height: double.infinity,
                       decoration: BoxDecoration(

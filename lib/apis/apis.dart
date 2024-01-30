@@ -35,6 +35,7 @@ class RestApis {
   static String SPORTS_ECPERIENCE_LIST =
       "/api/v1/helpers/availablemodernsmobile/?language=";
   static String verifiedAcademies = '/api/v1/user/get_verified_academies/';
+  static String academySessionCount = '/api/v1/user/player_count/';
   static String AVAILABLE_PITCH_TYPE =
       "/api/v1/dashboard/sport_secific_pitch/?sport_slug=";
   static String WEEK_LIST = "/api/v1/helpers/available_weekdays/";

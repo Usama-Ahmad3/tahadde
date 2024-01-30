@@ -1076,7 +1076,7 @@ class _DocumentsState extends State<Documents> {
   }
 
   void navigateToDocuments(SportsModel detail) {
-    Navigator.pushNamed(context, RouteNames.pitchDetail, arguments: detail);
+    Navigator.pushNamed(context, RouteNames.academyDetail, arguments: detail);
   }
 
   void backToEdit() {

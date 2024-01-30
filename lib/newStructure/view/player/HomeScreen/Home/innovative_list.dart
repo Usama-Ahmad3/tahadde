@@ -241,12 +241,14 @@ class _InnovativeListState extends State<InnovativeList> {
                                     topLeft: Radius.circular(15 * fem),
                                     topRight: Radius.circular(15 * fem),
                                   ),
-                                  child: Carousel(
-                                    rating: false,
-                                    image: [
-                                      widget.innovativeDetail[index].image
-                                    ],
-                                    storyView: false,
+                                  child: AbsorbPointer(
+                                    child: Carousel(
+                                      rating: false,
+                                      image: [
+                                        widget.innovativeDetail[index].image
+                                      ],
+                                      storyView: false,
+                                    ),
                                   ),
                                 ),
                               ),

@@ -27,8 +27,8 @@ class CartScreenState extends State<CartScreen> {
   final NetworkCalls _networkCalls = NetworkCalls();
   List<CartModel> cartModel = [];
   List<CartModel> cartListSelected = [];
+  List<CartModel> cartListUnSelected = [];
   List<BookedSessions> bookedSessions = [];
-  List sessions = [];
   List<AcademyModel> _specificAcademy = [];
   List<AcademyModel> _specificAcademyListSelected = [];
   static int? cartLength;
@@ -183,34 +183,71 @@ class CartScreenState extends State<CartScreen> {
               print(cartDetails);
               navigateToEditAcademyDetail(cartDetails);
             } else {
+              cartListUnSelected = [];
+              for (int i = 0; i < cartModel.length; i++) {
+                List<BookedSessions> bookedSessionFiltered = [];
+                for (int j = 0; j < cartModel[i].session!.length; j++) {
+                  int id = bookedSessions.indexWhere(
+                      (element) => element.id == cartModel[j].session![j]);
+                  bookedSessionFiltered.add(bookedSessions[id]);
+                }
+                List datePart = cartModel[i].bookedDate!.split('-');
+                List timeParts = bookedSessionFiltered[0].endTime!.split(":");
+                int year = int.parse(datePart[0]);
+                int month = int.parse(datePart[1]);
+                int day = int.parse(datePart[2]);
+                int hour = int.parse(timeParts[0]);
+                int minute = int.parse(timeParts[1]);
+                DateTime givenDate = DateTime(year, month, day);
+                DateTime currentDate = DateTime.now();
+                TimeOfDay currentTime = TimeOfDay.now();
+                TimeOfDay givenTime = TimeOfDay(hour: hour, minute: minute);
+                currentDate = DateTime(
+                    currentDate.year, currentDate.month, currentDate.day);
+                if (givenDate.isAfter(currentDate) ||
+                    givenDate.isAtSameMomentAs(currentDate)) {
+                  if (givenDate.isAtSameMomentAs(currentDate)) {
+                    if (givenTime.hour > currentTime.hour) {
+                      cartListUnSelected.add(cartModel[i]);
+                    }
+                  } else {
+                    cartListUnSelected.add(cartModel[i]);
+                  }
+                } else {
+                  showMessage('Some Sessions Are Expired');
+                }
+              }
               int index = 0;
               List<Map> cartDetails = [];
-              cartModel.forEach((item) {
-                List IdList = [];
-                item.session!.forEach((element) {
-                  IdList.add(element);
+              if (cartListUnSelected.isNotEmpty) {
+                cartListUnSelected.forEach((item) {
+                  List IdList = [];
+                  item.session!.forEach((element) {
+                    IdList.add(element);
+                  });
+                  Map details = {
+                    'cart_id': item.id,
+                    'academyNameEnglish':
+                        _specificAcademy[index].academyNameEnglish.toString(),
+                    'academyNameArabic':
+                        _specificAcademy[index].academyNameArabic.toString(),
+                    "academy": item.academy,
+                    "session": IdList,
+                    "Sub_Academy": item.subAcademy,
+                    "price": item.price,
+                    "location": item.location,
+                    "booked_date": item.bookedDate,
+                    "player_count": item.playerCount,
+                    'price_per_player': item.pricePerPlayer
+                  };
+                  index = index + 1;
+                  cartDetails.add(details);
                 });
-                Map details = {
-                  'cart_id': item.id,
-                  'academyNameEnglish':
-                      _specificAcademy[index].academyNameEnglish.toString(),
-                  'academyNameArabic':
-                      _specificAcademy[index].academyNameArabic.toString(),
-                  "academy": item.academy,
-                  "session": IdList,
-                  "Sub_Academy": item.subAcademy,
-                  "price": item.price,
-                  "location": item.location,
-                  "booked_date": item.bookedDate,
-                  "player_count": item.playerCount,
-                  'price_per_player': item.pricePerPlayer
-                };
-                index = index + 1;
-                cartDetails.add(details);
-              });
+                navigateToEditAcademyDetail(cartDetails);
+              } else {
+                showMessage('All Sessions Are Expired');
+              }
               print(cartDetails);
-              navigateToEditAcademyDetail(cartDetails);
-              // showMessage(AppLocalizations.of(context)!.selectCart);
             }
           },
         ),
@@ -278,8 +315,6 @@ class CartScreenState extends State<CartScreen> {
                                         bookedSessionFiltered
                                             .add(bookedSessions[id]);
                                       }
-                                      // print('aaaaasddd');
-                                      // print(bookedSessionFiltered);
                                       return InkWell(
                                         onTap: () {
                                           if (cartListSelected.contains(item)) {
@@ -292,29 +327,55 @@ class CartScreenState extends State<CartScreen> {
                                           } else {
                                             List<String> dateParts =
                                                 item.bookedDate!.split("-");
+                                            List timeParts =
+                                                bookedSessionFiltered[0]
+                                                    .endTime!
+                                                    .split(":");
+                                            int hour = int.parse(timeParts[0]);
+                                            int minute =
+                                                int.parse(timeParts[1]);
                                             int year = int.parse(dateParts[0]);
                                             int month = int.parse(dateParts[1]);
                                             int day = int.parse(dateParts[2]);
-                                            DateTime givenDateTime =
+                                            DateTime givenDate =
                                                 DateTime(year, month, day);
-                                            DateTime currentDateTime =
+                                            DateTime currentDate =
                                                 DateTime.now();
-                                            currentDateTime = DateTime(
-                                                currentDateTime.year,
-                                                currentDateTime.month,
-                                                currentDateTime.day);
-                                            print(givenDateTime);
-                                            print(currentDateTime);
-                                            if (givenDateTime
-                                                    .isAfter(currentDateTime) ||
-                                                givenDateTime.isAtSameMomentAs(
-                                                    currentDateTime)) {
-                                              cartListSelected.add(item);
-                                              _specificAcademyListSelected
-                                                  .add(reversedAcademy[index]);
+                                            TimeOfDay givenTime = TimeOfDay(
+                                                hour: hour, minute: minute);
+                                            TimeOfDay currentTime =
+                                                TimeOfDay.now();
+                                            currentDate = DateTime(
+                                                currentDate.year,
+                                                currentDate.month,
+                                                currentDate.day);
+                                            print(givenTime.hour);
+                                            print(currentTime.hour);
+                                            if (givenDate
+                                                    .isAfter(currentDate) ||
+                                                givenDate.isAtSameMomentAs(
+                                                    currentDate)) {
+                                              if (givenDate.isAtSameMomentAs(
+                                                  currentDate)) {
+                                                if (givenTime.hour >
+                                                    currentTime.hour) {
+                                                  cartListSelected.add(item);
+                                                  _specificAcademyListSelected
+                                                      .add(reversedAcademy[
+                                                          index]);
+                                                } else {
+                                                  showMessage(
+                                                      "Session Time Expired");
+                                                }
+                                              } else {
+                                                cartListSelected.add(item);
+                                                _specificAcademyListSelected
+                                                    .add(
+                                                        reversedAcademy[index]);
+                                              }
                                             } else {
                                               showMessage(
-                                                  "You can't select previous day session");
+                                                  "You Can't Select Previous Day Session");
                                             }
                                             print('added');
                                             print(cartListSelected);

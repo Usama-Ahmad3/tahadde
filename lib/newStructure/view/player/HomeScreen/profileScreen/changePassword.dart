@@ -127,8 +127,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 height: height * 0.062,
                                 child: TextFieldWidget(
                                   controller: currentController,
-                                  hintText: AppLocalizations.of(context)!
-                                      .pleaseenterCurrentPassword,
+                                  // hintText: AppLocalizations.of(context)!
+                                  //     .pleaseenterCurrentPassword,
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
@@ -174,8 +174,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 child: TextFieldWidget(
                                   controller: newController,
                                   focus: newNode,
-                                  hintText: AppLocalizations.of(context)!
-                                      .pleaseEnterNewPassword,
+                                  // hintText: AppLocalizations.of(context)!
+                                  //     .pleaseEnterNewPassword,
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
@@ -221,8 +221,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 child: TextFieldWidget(
                                   controller: confirmController,
                                   focus: confirmNode,
-                                  hintText: AppLocalizations.of(context)!
-                                      .pleaseenterNewPassword,
+                                  // hintText: AppLocalizations.of(context)!
+                                  //     .pleaseenterNewPassword,
                                   suffixIcon: Icons.visibility_off,
                                   hideIcon: Icons.visibility,
                                   obscure: true,
