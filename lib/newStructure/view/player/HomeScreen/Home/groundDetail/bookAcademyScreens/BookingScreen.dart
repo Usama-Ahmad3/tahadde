@@ -855,7 +855,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                 } else {
                                                                   ///show Message That proceed first then select other session
                                                                   showMessage(
-                                                                      'please proceed with seesion then select another session');
+                                                                      'Please Proceed With Session Then Select Another Session');
                                                                   //   slots != 0 ?slots = slots - 1 : null;
                                                                   //   playerController.text =
                                                                   //       indexItem.toString();
@@ -1282,7 +1282,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                               } else {
                                                                 ///show message that proceed first selected session then select other
                                                                 showMessage(
-                                                                    'please proceed with seesion then select another session');
+                                                                    'Please Proceed With Session Then Select Another Session');
                                                                 // slots != 0 ?slots = slots - 1 : null;
                                                                 // playerController.text =
                                                                 //     indexItem.toString();
@@ -1606,7 +1606,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                     onTap: () {
                                                       if (list.isEmpty) {
                                                         showMessage(
-                                                            'please select your slot first');
+                                                            'Please Select Your Slot First');
                                                       } else {
                                                         if(morning){
                                                           if (slotsM[id].remainingSlots! > 0) {
@@ -1691,7 +1691,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                   .nameEnglish,
                                               'academy_id': _specificInnovative!
                                                   .innovativehubId,
-                                              // "detail": bookedSessions,
                                               "apidetail": dataTime,
                                               "id": profileDetail['id'],
                                               'sessionId': sessionIdList,
@@ -1784,7 +1783,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   void navigateToLogin() {
     Navigator.push(context,
         MaterialPageRoute(builder: (_) => LoginScreen(message: 'message')));
-    // Navigator.pushNamed(context, RouteNames.login);
   }
 
   double slotPriceCalculation(List<double> priceList) {
@@ -1796,8 +1794,6 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   }
 
   void navigateToHomeScreen() {
-    // Navigator.pushNamed(context, RouteNames.enterDetailAcademy,
-    //     arguments: detail);
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(

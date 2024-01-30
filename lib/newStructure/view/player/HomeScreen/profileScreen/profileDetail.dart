@@ -190,15 +190,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                             '${AppLocalizations.of(context)!.email} :',
                                         constantValue: profileDetail!['email'],
                                       ),
-                                      // widget.playerTag
-                                      //     ? EmailContactDOB(
-                                      //         constant:
-                                      //             '${AppLocalizations.of(context)!.dateofBirth} :',
-                                      //         constantValue: profileDetail![
-                                      //                 'dob'] ??
-                                      //             AppLocalizations.of(context)!
-                                      //                 .dateofBirth)
-                                      //     : const SizedBox.shrink(),
                                       EmailContactDOB(
                                         constant:
                                             '${AppLocalizations.of(context)!.contacts} :',
@@ -313,7 +304,12 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                                                       : profileDetail![
                                                           'profile_pic'],
                                               playerTag: widget.playerTag,
-                                            )));
+                                            ))).then((value) {
+                                  if (value == true) {
+                                    print('jjjjj');
+                                    setState(() {});
+                                  }
+                                });
                               },
                               child: const Icon(
                                 Icons.dehaze,

@@ -556,7 +556,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                   ],
                                 ),
                               )
-                            : SizedBox.shrink(),
+                            : const SizedBox.shrink(),
                         SizedBox(
                           height: size.height * 0.02,
                         ),
@@ -847,7 +847,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                             child: SizedBox(
                                                 height: size.height * .4,
                                                 child: Center(child: Text(_sessionMap.isEmpty ? AppLocalizations.of(context)!.firstSession : AppLocalizations.of(context)!.noSession, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: MyAppState.mode == ThemeMode.light ? AppColors.black : AppColors.white)))))
-                            : SizedBox.shrink(),
+                            : const SizedBox.shrink(),
 
                         ///button for navigation and creating
                         Align(
@@ -1045,6 +1045,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                       };
                                       print(sessionsPay);
                                       widget.academyData.addAll(sessionsPay);
+                                      print('Creating');
+                                      print(widget.academyData);
 
                                       ///create session Api
                                       _networkCalls.createSession(
@@ -2007,21 +2009,27 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                                                                   width: size.width * .055,
                                                                                   child: Container(
                                                                                     width: size.width * 0.1,
-                                                                                    height: size.height * 0.045,
-                                                                                    decoration: BoxDecoration(color: AppColors.appThemeColor, borderRadius: BorderRadius.circular(size.height * 0.005)),
+                                                                                    height: size.height * 0.055,
+                                                                                    decoration: const BoxDecoration(
+                                                                                      shape: BoxShape.circle,
+                                                                                      color: AppColors.appThemeColor,
+                                                                                    ),
                                                                                     child: Icon(
                                                                                       FontAwesomeIcons.check,
                                                                                       color: AppColors.white,
                                                                                     ),
                                                                                   ))
                                                                               : SizedBox(
-                                                                                  height: size.height * .03,
+                                                                                  height: size.height * .04,
                                                                                   width: size.width * .055,
-                                                                                  child: Image.asset(
-                                                                                    "assets/images/uncheck.png",
-                                                                                    fit: BoxFit.fill,
-                                                                                  ),
-                                                                                ),
+                                                                                  child: Container(
+                                                                                    width: size.width * 0.1,
+                                                                                    height: size.height * 0.055,
+                                                                                    decoration: BoxDecoration(
+                                                                                      shape: BoxShape.circle,
+                                                                                      border: Border.all(color: AppColors.grey, width: 2),
+                                                                                    ),
+                                                                                  )),
                                                                           SizedBox(
                                                                             width:
                                                                                 size.width * 0.01,

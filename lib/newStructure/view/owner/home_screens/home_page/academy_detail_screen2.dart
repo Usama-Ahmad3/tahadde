@@ -898,6 +898,14 @@ class _AcademyDetailScreenState extends State<AcademyDetailScreen> {
                                         );
                                         print(widget.detail.pitchDetailModel!
                                             .pitchNameAr);
+                                        widget.detail.pitchDetailModel!
+                                            .description = _description.text;
+                                        widget.detail.pitchDetailModel!
+                                                .descriptionAr =
+                                            _descriptionArabic.text;
+                                        widget.detail.pitchDetailModel!
+                                                .pitchNameAr =
+                                            _nameControllerArabic.text;
                                         navigateToPriceScreen(widget.detail);
                                         setState(() {
                                           loading = false;

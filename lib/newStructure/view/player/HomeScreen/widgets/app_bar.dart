@@ -8,8 +8,7 @@ PreferredSize appBarWidget(
     required sizeHeight,
     required context,
     required title,
-    required back,
-    VoidCallback? onTap}) {
+    required back}) {
   return PreferredSize(
       preferredSize: Size(sizeWidth, sizeHeight * 0.105),
       child: AppBar(
@@ -26,10 +25,9 @@ PreferredSize appBarWidget(
         leadingWidth: back ? sizeWidth * 0.13 : 0,
         leading: back
             ? InkWell(
-                onTap: onTap ??
-                    () {
-                      Navigator.pop(context);
-                    },
+                onTap: () {
+                  Navigator.pop(context, true);
+                },
                 child: SizedBox(
                     height: sizeHeight * 0.03,
                     child: Image.asset(
