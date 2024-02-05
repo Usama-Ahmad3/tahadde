@@ -80,6 +80,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   int date = 0;
   bool sessionLoading = false;
   late Map profileDetail;
+
   loadMorningCount() async {
     if(sessionMor.isNotEmpty){
       morningCount.clear();
@@ -151,6 +152,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     setState(() {
     });
   }
+
   loadProfile() async {
     await _networkCalls.getProfile(
       onSuccess: (msg) {
@@ -224,6 +226,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
           );
         });
   }
+
   weekIndex(int index) async {
     print(index);
      _weekIndex = await Intl.withLocale('en', () => DateFormat('EEEE').format(DateTime.now().add(Duration(days: index)))).toLowerCase() == 'monday' ? 0
