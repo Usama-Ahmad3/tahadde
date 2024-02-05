@@ -805,8 +805,7 @@ class CartScreenState extends State<CartScreen> {
                                                               //       fontSize: 14),
                                                               // ),
                                                               Text(
-                                                                item.price
-                                                                    .toString(),
+                                                                "${item.price.toString()} ${AppLocalizations.of(context)!.AED}",
                                                                 style: TextStyle(
                                                                     color: MyAppState.mode == ThemeMode.light
                                                                         ? cartListSelected.contains(item)

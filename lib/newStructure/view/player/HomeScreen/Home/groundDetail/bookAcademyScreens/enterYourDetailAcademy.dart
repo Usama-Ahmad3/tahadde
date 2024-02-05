@@ -677,85 +677,107 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                 ),
               )
             : internet
-                ? Scaffold(
-                    backgroundColor: Colors.black,
-                    appBar: appBarWidget(
-                        sizeWidth: sizewidth,
-                        sizeHeight: sizeheight,
-                        context: context,
-                        title: AppLocalizations.of(context)!.bookingDetails,
-                        back: true),
-                    body: Container(
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                          color: MyAppState.mode == ThemeMode.light
-                              ? Colors.white
-                              : AppColors.darkTheme,
-                          borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20))),
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: sizewidth * .059),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: sizeheight * .02,
-                              ),
-                              ...List.generate(
-                                  sessionsbookings.length,
-                                  (index) => Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: sizeheight * 0.01),
-                                        child: Material(
-                                          elevation: 5,
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? const Color(0XFFFFFFFF)
-                                                  : AppColors.containerColorW12,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20.0)),
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                left: sizewidth * .05,
-                                                right: sizewidth * .05),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Container(
-                                                  height: sizeheight * .01,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    // print(sessionsbookings);
-                                                    // print(bookedSessions);
-                                                  },
-                                                  child: Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .slotDetails,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .titleMedium!
-                                                        .copyWith(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? const Color(
-                                                                  0XFF032040)
-                                                              : AppColors.white,
-                                                        ),
+                ? WillPopScope(
+          onWillPop: ()async{
+            return true;
+          },
+                  child: Scaffold(
+                      backgroundColor: Colors.black,
+                      appBar: appBarWidget(
+                          sizeWidth: sizewidth,
+                          sizeHeight: sizeheight,
+                          context: context,
+                          title: AppLocalizations.of(context)!.bookingDetails,
+                          back: true),
+                      body: Container(
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                            color: MyAppState.mode == ThemeMode.light
+                                ? Colors.white
+                                : AppColors.darkTheme,
+                            borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20))),
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: sizewidth * .059),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: sizeheight * .02,
+                                ),
+                                ...List.generate(
+                                    sessionsbookings.length,
+                                    (index) => Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: sizeheight * 0.01),
+                                          child: Material(
+                                            elevation: 5,
+                                            color:
+                                                MyAppState.mode == ThemeMode.light
+                                                    ? const Color(0XFFFFFFFF)
+                                                    : AppColors.containerColorW12,
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(20.0)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: sizewidth * .05,
+                                                  right: sizewidth * .05),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Container(
+                                                    height: sizeheight * .01,
                                                   ),
-                                                ),
-                                                Container(
-                                                  height: sizeheight * .01,
-                                                ),
-                                                Text(
-                                                    "${AppLocalizations.of(context)!.academyOnly} (${AppLocalizations.of(context)!.locale == 'en' ? widget.detail[index]["academyNameEnglish"] : widget.detail[index]["academyNameArabic"]})",
+                                                  InkWell(
+                                                    onTap: () {
+                                                      // print(sessionsbookings);
+                                                      // print(bookedSessions);
+                                                    },
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .slotDetails,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium!
+                                                          .copyWith(
+                                                            color: MyAppState
+                                                                        .mode ==
+                                                                    ThemeMode
+                                                                        .light
+                                                                ? const Color(
+                                                                    0XFF032040)
+                                                                : AppColors.white,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: sizeheight * .01,
+                                                  ),
+                                                  Text(
+                                                      "${AppLocalizations.of(context)!.academyOnly} (${AppLocalizations.of(context)!.locale == 'en' ? widget.detail[index]["academyNameEnglish"] : widget.detail[index]["academyNameArabic"]})",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: MyAppState
+                                                                          .mode ==
+                                                                      ThemeMode
+                                                                          .light
+                                                                  ? const Color(
+                                                                      0XFF424242)
+                                                                  : AppColors
+                                                                      .white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600)),
+                                                  Text(
+                                                    widget.detail[index]
+                                                        ["booked_date"],
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyMedium!
@@ -764,511 +786,494 @@ class _EnterDetailPitchScreen extends State<EnterDetailAcademyScreen> {
                                                                         .mode ==
                                                                     ThemeMode
                                                                         .light
-                                                                ? const Color(
-                                                                    0XFF424242)
-                                                                : AppColors
-                                                                    .white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600)),
+                                                                ? AppColors
+                                                                    .appThemeColor
+                                                                : AppColors.white,
+                                                            fontFamily:
+                                                                "Poppins"),
+                                                  ),
+                                                  ListView.separated(
+                                                      separatorBuilder:
+                                                          (context, index) {
+                                                        return const Divider();
+                                                      },
+                                                      shrinkWrap: true,
+                                                      itemCount:
+                                                          sessionsbookings[index]
+                                                              .length,
+                                                      itemBuilder:
+                                                          (context, indexx) {
+                                                        return Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                              context)!
+                                                                          .locale ==
+                                                                      'en'
+                                                                  ? "${AppLocalizations.of(context)!.sessionName} ${sessionsbookings[index][indexx].name}"
+                                                                  : "${AppLocalizations.of(context)!.sessionName} ${sessionsbookings[index][indexx].nameArabic}",
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      color: MyAppState
+                                                                                  .mode ==
+                                                                              ThemeMode
+                                                                                  .light
+                                                                          ? AppColors
+                                                                              .appThemeColor
+                                                                          : AppColors
+                                                                              .white),
+                                                            ),
+                                                            SizedBox(
+                                                              height: sizeheight *
+                                                                  0.0054,
+                                                            ),
+                                                            SizedBox(
+                                                                height: 35,
+                                                                width: sizewidth *
+                                                                    0.5,
+                                                                child: Container(
+                                                                  height: 30,
+                                                                  width: 110,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  decoration: BoxDecoration(
+                                                                      color: AppColors
+                                                                          .appThemeColor,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                      border: Border.all(
+                                                                          color: Colors
+                                                                              .grey
+                                                                              .shade50)),
+                                                                  child: Text(
+                                                                    '${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12}${sessionsbookings[index][indexx].startTime.toString().substring(2, 5)}' : int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12}' : sessionsbookings[index][indexx].startTime.toString().substring(0, 5)}${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'} - ${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12}${sessionsbookings[index][indexx].endTime.toString().substring(2, 5)}' : int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12}' : sessionsbookings[index][indexx].endTime.toString().substring(0, 5)}${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'}' ??
+                                                                        "",
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                            fontWeight: FontWeight
+                                                                                .w600,
+                                                                            color:
+                                                                                Colors.white),
+                                                                  ),
+                                                                )),
+                                                          ],
+                                                        );
+                                                      }),
+                                                  Container(
+                                                    height: sizeheight * .01,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        )),
+                                Container(
+                                  height: sizeheight * .01,
+                                ),
+                                Material(
+                                  elevation: 5,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? const Color(0XFFFFFFFF)
+                                      : AppColors.containerColorW12,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20.0)),
+                                  child: SizedBox(
+                                    height: sizeheight * .2,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: sizewidth * .05,
+                                          right: sizewidth * .05),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Flexible(
+                                            flex: 3,
+                                            child: Container(),
+                                          ),
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .bookingUser,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(0XFF032040)
+                                                        : AppColors.white,
+                                                    fontWeight: FontWeight.w500),
+                                          ),
+                                          flaxibleGap(1),
+                                          Text(
+                                            profileDetail != null
+                                                ? '${profileDetail['first_name']} ${profileDetail['last_name']}'
+                                                : '',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(0XFF424242)
+                                                        : AppColors.white,
+                                                    fontWeight: FontWeight.w600),
+                                          ),
+                                          flaxibleGap(1),
+                                          Text(
+                                              profileDetail != null
+                                                  ? profileDetail['email']
+                                                  : '',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF898989)
+                                                          : AppColors.white)),
+                                          Text(
+                                              profileDetail != null
+                                                  ? profileDetail[
+                                                          'contact_number'] ??
+                                                      ""
+                                                  : '',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: MyAppState.mode ==
+                                                              ThemeMode.light
+                                                          ? const Color(
+                                                              0XFF898989)
+                                                          : AppColors.white)),
+                                          flaxibleGap(6),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: sizeheight * .01,
+                                ),
+                                Material(
+                                  elevation: 5,
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? const Color(0XFFFFFFFF)
+                                      : AppColors.containerColorW12,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20.0)),
+                                  child: SizedBox(
+                                    height: sizeheight * .16,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: sizewidth * .05,
+                                          right: sizewidth * .05),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          flaxibleGap(4),
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .paymentSummary,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(0XFF032040)
+                                                        : AppColors.white,
+                                                    fontWeight: FontWeight.w600),
+                                          ),
+                                          flaxibleGap(2),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                AppLocalizations.of(context)!
+                                                    .subTotal,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState.mode ==
+                                                                ThemeMode.light
+                                                            ? const Color(
+                                                                0XFF424242)
+                                                            : AppColors.white,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                              ),
+                                              flaxibleGap(18),
+                                              Text(
+                                                '${AppLocalizations.of(context)!.currency} $price ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState.mode ==
+                                                                ThemeMode.light
+                                                            ? const Color(
+                                                                0XFF7A7A7A)
+                                                            : AppColors.white),
+                                              ),
+                                              flaxibleGap(1),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                AppLocalizations.of(context)!.tex,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState.mode ==
+                                                                ThemeMode.light
+                                                            ? const Color(
+                                                                0XFF424242)
+                                                            : AppColors.white,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                              ),
+                                              flaxibleGap(18),
+                                              // widget.detail["detail"].tax != null
+                                              //     ? Text(
+                                              //         "${AppLocalizations.of(context).currency} ${widget.detail["count"] * widget.detail["detail"].tax.round()}",
+                                              //         style: TextStyle(
+                                              //             color: Color(0XFF7A7A7A)),
+                                              //       )
+                                              //     :
+                                              Text(
+                                                "${AppLocalizations.of(context)!.currency} 00 ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState.mode ==
+                                                                ThemeMode.light
+                                                            ? const Color(
+                                                                0XFF7A7A7A)
+                                                            : AppColors.white),
+                                              ),
+                                              flaxibleGap(1),
+                                            ],
+                                          ),
+                                          flaxibleGap(1),
+                                          Container(
+                                            height: 1,
+                                            color: const Color(0XFFD6D6D6),
+                                          ),
+                                          flaxibleGap(1),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                AppLocalizations.of(context)!
+                                                    .grandTotal,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: MyAppState.mode ==
+                                                                ThemeMode.light
+                                                            ? const Color(
+                                                                0XFF424242)
+                                                            : AppColors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                              flaxibleGap(18),
+                                              Text(
+                                                '${AppLocalizations.of(context)!.currency} $price',
+                                                style: TextStyle(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(0XFF424242)
+                                                        : AppColors.white),
+                                              ),
+                                              flaxibleGap(1),
+                                            ],
+                                          ),
+                                          flaxibleGap(3),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                fixedGap(
+                                  height: sizeheight * .02,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Checkbox(
+                                      focusNode: focus,
+                                      autofocus: true,
+                                      activeColor: AppColors.appThemeColor,
+                                      value: monVal,
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          monVal = value!;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: sizewidth * .7,
+                                      child: RichText(
+                                        key: _textKey,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .iAgree,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall!
+                                                  .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(0XFFADADAD)
+                                                        : Colors.white,
+                                                  ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  " ${AppLocalizations.of(context)!.term} ",
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () {
+                                                  privacyPolicy(
+                                                      "terms_and_conditions_url");
+                                                },
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    color:
+                                                        AppColors.appThemeColor,
+                                                    // decoration: TextDecoration.underline
+                                                  ),
+                                            ),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .ofCompany,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall!
+                                                  .copyWith(
+                                                    color: MyAppState.mode ==
+                                                            ThemeMode.light
+                                                        ? const Color(0XFFADADAD)
+                                                        : Colors.white,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                fixedGap(
+                                  height: sizeheight * .01,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    "Cancellations made within 24 hours will not receive a refund.",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(
+                                            color:
+                                                MyAppState.mode == ThemeMode.light
+                                                    ? const Color(0XFFADADAD)
+                                                    : Colors.white,
+                                            fontSize: 11),
+                                  ),
+                                ),
+                                fixedGap(
+                                  height: sizeheight * .01,
+                                ),
+                                monVal
+                                    ? ButtonWidget(
+                                        onTaped: () {},
+                                        title: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
                                                 Text(
-                                                  widget.detail[index]
-                                                      ["booked_date"],
+                                                  '${AppLocalizations.of(context)!.currency} $price',
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyMedium!
                                                       .copyWith(
-                                                          color: MyAppState
-                                                                      .mode ==
-                                                                  ThemeMode
-                                                                      .light
-                                                              ? AppColors
-                                                                  .appThemeColor
-                                                              : AppColors.white,
-                                                          fontFamily:
-                                                              "Poppins"),
-                                                ),
-                                                ListView.separated(
-                                                    separatorBuilder:
-                                                        (context, index) {
-                                                      return const Divider();
-                                                    },
-                                                    shrinkWrap: true,
-                                                    itemCount:
-                                                        sessionsbookings[index]
-                                                            .length,
-                                                    itemBuilder:
-                                                        (context, indexx) {
-                                                      return Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                            context)!
-                                                                        .locale ==
-                                                                    'en'
-                                                                ? "${AppLocalizations.of(context)!.sessionName} ${sessionsbookings[index][indexx].name}"
-                                                                : "${AppLocalizations.of(context)!.sessionName} ${sessionsbookings[index][indexx].nameArabic}",
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyMedium!
-                                                                .copyWith(
-                                                                    color: MyAppState
-                                                                                .mode ==
-                                                                            ThemeMode
-                                                                                .light
-                                                                        ? AppColors
-                                                                            .appThemeColor
-                                                                        : AppColors
-                                                                            .white),
-                                                          ),
-                                                          SizedBox(
-                                                            height: sizeheight *
-                                                                0.0054,
-                                                          ),
-                                                          SizedBox(
-                                                              height: 35,
-                                                              width: sizewidth *
-                                                                  0.5,
-                                                              child: Container(
-                                                                height: 30,
-                                                                width: 110,
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                decoration: BoxDecoration(
-                                                                    color: AppColors
-                                                                        .appThemeColor,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10),
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey
-                                                                            .shade50)),
-                                                                child: Text(
-                                                                  '${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12}${sessionsbookings[index][indexx].startTime.toString().substring(2, 5)}' : int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) - 12}' : sessionsbookings[index][indexx].startTime.toString().substring(0, 5)}${int.parse(sessionsbookings[index][indexx].startTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'} - ${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) > 12 ? '${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12 < 10 ? '0${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12}${sessionsbookings[index][indexx].endTime.toString().substring(2, 5)}' : int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) - 12}' : sessionsbookings[index][indexx].endTime.toString().substring(0, 5)}${int.parse(sessionsbookings[index][indexx].endTime.toString().substring(0, 2)) > 12 ? ' PM' : ' AM'}' ??
-                                                                      "",
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyMedium!
-                                                                      .copyWith(
-                                                                          fontWeight: FontWeight
-                                                                              .w600,
-                                                                          color:
-                                                                              Colors.white),
-                                                                ),
-                                                              )),
-                                                        ],
-                                                      );
-                                                    }),
-                                                Container(
-                                                  height: sizeheight * .01,
+                                                        color: const Color(
+                                                            0XFFFFFFFF),
+                                                      ),
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                        ),
-                                      )),
-                              Container(
-                                height: sizeheight * .01,
-                              ),
-                              Material(
-                                elevation: 5,
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? const Color(0XFFFFFFFF)
-                                    : AppColors.containerColorW12,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20.0)),
-                                child: SizedBox(
-                                  height: sizeheight * .2,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: sizewidth * .05,
-                                        right: sizewidth * .05),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Flexible(
-                                          flex: 3,
-                                          child: Container(),
-                                        ),
-                                        Text(
-                                          AppLocalizations.of(context)!
-                                              .bookingUser,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium!
-                                              .copyWith(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? const Color(0XFF032040)
-                                                      : AppColors.white,
-                                                  fontWeight: FontWeight.w500),
-                                        ),
-                                        flaxibleGap(1),
-                                        Text(
-                                          profileDetail != null
-                                              ? '${profileDetail['first_name']} ${profileDetail['last_name']}'
-                                              : '',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? const Color(0XFF424242)
-                                                      : AppColors.white,
-                                                  fontWeight: FontWeight.w600),
-                                        ),
-                                        flaxibleGap(1),
-                                        Text(
-                                            profileDetail != null
-                                                ? profileDetail['email']
-                                                : '',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? const Color(
-                                                            0XFF898989)
-                                                        : AppColors.white)),
-                                        Text(
-                                            profileDetail != null
-                                                ? profileDetail[
-                                                        'contact_number'] ??
-                                                    ""
-                                                : '',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: MyAppState.mode ==
-                                                            ThemeMode.light
-                                                        ? const Color(
-                                                            0XFF898989)
-                                                        : AppColors.white)),
-                                        flaxibleGap(6),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: sizeheight * .01,
-                              ),
-                              Material(
-                                elevation: 5,
-                                color: MyAppState.mode == ThemeMode.light
-                                    ? const Color(0XFFFFFFFF)
-                                    : AppColors.containerColorW12,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20.0)),
-                                child: SizedBox(
-                                  height: sizeheight * .16,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: sizewidth * .05,
-                                        right: sizewidth * .05),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        flaxibleGap(4),
-                                        Text(
-                                          AppLocalizations.of(context)!
-                                              .paymentSummary,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium!
-                                              .copyWith(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? const Color(0XFF032040)
-                                                      : AppColors.white,
-                                                  fontWeight: FontWeight.w600),
-                                        ),
-                                        flaxibleGap(2),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .subTotal,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF424242)
-                                                          : AppColors.white,
-                                                      fontWeight:
-                                                          FontWeight.w600),
+                                            SizedBox(
+                                              width: sizewidth * 0.03,
                                             ),
-                                            flaxibleGap(18),
-                                            Text(
-                                              '${AppLocalizations.of(context)!.currency} $price ',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF7A7A7A)
-                                                          : AppColors.white),
-                                            ),
-                                            flaxibleGap(1),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!.tex,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF424242)
-                                                          : AppColors.white,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                            ),
-                                            flaxibleGap(18),
-                                            // widget.detail["detail"].tax != null
-                                            //     ? Text(
-                                            //         "${AppLocalizations.of(context).currency} ${widget.detail["count"] * widget.detail["detail"].tax.round()}",
-                                            //         style: TextStyle(
-                                            //             color: Color(0XFF7A7A7A)),
-                                            //       )
-                                            //     :
-                                            Text(
-                                              "${AppLocalizations.of(context)!.currency} 00 ",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF7A7A7A)
-                                                          : AppColors.white),
-                                            ),
-                                            flaxibleGap(1),
-                                          ],
-                                        ),
-                                        flaxibleGap(1),
-                                        Container(
-                                          height: 1,
-                                          color: const Color(0XFFD6D6D6),
-                                        ),
-                                        flaxibleGap(1),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .grandTotal,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                      color: MyAppState.mode ==
-                                                              ThemeMode.light
-                                                          ? const Color(
-                                                              0XFF424242)
-                                                          : AppColors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                            ),
-                                            flaxibleGap(18),
-                                            Text(
-                                              '${AppLocalizations.of(context)!.currency} $price',
-                                              style: TextStyle(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? const Color(0XFF424242)
-                                                      : AppColors.white),
-                                            ),
-                                            flaxibleGap(1),
-                                          ],
-                                        ),
-                                        flaxibleGap(3),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              fixedGap(
-                                height: sizeheight * .02,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Checkbox(
-                                    focusNode: focus,
-                                    autofocus: true,
-                                    activeColor: AppColors.appThemeColor,
-                                    value: monVal,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        monVal = value!;
-                                      });
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: sizewidth * .7,
-                                    child: RichText(
-                                      key: _textKey,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .iAgree,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall!
-                                                .copyWith(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? const Color(0XFFADADAD)
-                                                      : Colors.white,
-                                                ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                " ${AppLocalizations.of(context)!.term} ",
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                privacyPolicy(
-                                                    "terms_and_conditions_url");
+                                            GestureDetector(
+                                              onTap: () {
+                                                navigateToDetail();
                                               },
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                  color:
-                                                      AppColors.appThemeColor,
-                                                  // decoration: TextDecoration.underline
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  color: Color(0XFFFFFFFF),
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(5.0),
+                                                  ),
                                                 ),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .ofCompany,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall!
-                                                .copyWith(
-                                                  color: MyAppState.mode ==
-                                                          ThemeMode.light
-                                                      ? const Color(0XFFADADAD)
-                                                      : Colors.white,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              fixedGap(
-                                height: sizeheight * .01,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                child: Text(
-                                  "Cancellations made within 24 hours will not receive a refund.",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
-                                      .copyWith(
-                                          color:
-                                              MyAppState.mode == ThemeMode.light
-                                                  ? const Color(0XFFADADAD)
-                                                  : Colors.white,
-                                          fontSize: 11),
-                                ),
-                              ),
-                              fixedGap(
-                                height: sizeheight * .01,
-                              ),
-                              monVal
-                                  ? ButtonWidget(
-                                      onTaped: () {},
-                                      title: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                '${AppLocalizations.of(context)!.currency} $price',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                      color: const Color(
-                                                          0XFFFFFFFF),
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            width: sizewidth * 0.03,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              navigateToDetail();
-                                            },
-                                            child: Container(
-                                              decoration: const BoxDecoration(
-                                                color: Color(0XFFFFFFFF),
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(5.0),
+                                                height: sizeheight * .04,
+                                                width: sizewidth * .32,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .proceed,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                      ),
                                                 ),
                                               ),
-                                              height: sizeheight * .04,
-                                              width: sizewidth * .32,
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .proceed,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                    ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      isLoading: loading)
-                                  : const SizedBox.shrink(),
-                            ],
+                                            )
+                                          ],
+                                        ),
+                                        isLoading: loading)
+                                    : const SizedBox.shrink(),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  )
+                )
                 : InternetLoss(
                     onChange: () {
                       _networkCalls.checkInternetConnectivity(onSuccess: (msg) {

@@ -34,6 +34,10 @@ class AppLocalizations {
     return Intl.message('tournament', name: 'tournament');
   }
 
+  String get AED {
+    return Intl.message('AED', name: 'AED');
+  }
+
   String get addToCart {
     return Intl.message('Add To Cart', name: 'addToCart');
   }
@@ -161,9 +165,9 @@ class AppLocalizations {
     return Intl.message("Added To Your Favorites", name: 'addedFavorites');
   }
 
-
   String get removeedFavorites {
-    return Intl.message("Removed From Your Favorites", name: 'removeedFavorites');
+    return Intl.message("Removed From Your Favorites",
+        name: 'removeedFavorites');
   }
 
   String get profileUpdate {

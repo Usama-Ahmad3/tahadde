@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tahaddi/modelClass/academy_model.dart';
 import 'package:flutter_tahaddi/modelClass/academy_session_count.dart';
 import 'package:flutter_tahaddi/modelClass/avalaible_slots.dart';
+import 'package:flutter_tahaddi/modelClass/cart_model.dart';
 import 'package:flutter_tahaddi/modelClass/innovative_hub.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/bookingShimmer.dart';
 import 'package:flutter_tahaddi/newStructure/view/player/HomeScreen/Home/groundDetail/bookAcademyScreens/enterYourDetailAcademy.dart';
@@ -68,6 +69,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   final List<WeekDays> _weakList = [];
   int indexItemSubPitch = 1;
   final List _slotTime = [];
+  List<CartModel> cartModelLength = [];
   int indexItem = 1;
   int _weekIndex = 0;
   List<SlotDetail> slotD = [];
@@ -350,6 +352,18 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     });
   }
 
+  getCartAcademies() async {
+    await NetworkCalls().getCartAcademy(
+        onSuccess: (detail) {
+          cartModelLength.clear();
+          for (int i = 0; i < detail.length; i++) {
+            cartModelLength.add(CartModel.fromJson(detail[i]));
+          }
+          setState(() {});
+        },
+        onFailure: (onFailure) {},
+        tokenExpire: () {});
+  }
 
 
   checkAuth() async {
@@ -366,6 +380,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
           widget.navigateFromInnovative
               ? loadSpecificInnovative()
               : loadVerifiedSpecific();
+          getCartAcademies();
         },
         onFailure: (onFailure) {},
         tokenExpire: () {});
@@ -551,6 +566,35 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                     .textTheme
                                     .titleMedium!
                                     .copyWith(color: AppColors.white),
+                              ),
+                              const Spacer(),
+                              cartModelLength.isNotEmpty?Badge(
+                                alignment: Alignment.topRight,
+                                textColor: AppColors.red,
+                                label: Text(
+                                  cartModelLength.length.toString(),
+                                  style: TextStyle(color: AppColors.white),
+                                ),
+                                child: InkWell(
+                                  onTap: (){
+                                    navigateToHomeScreen(2);
+                                  },
+                                  child: Icon(
+                                    Icons.shopping_basket,
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ): InkWell(
+                                onTap: (){
+                                  navigateToHomeScreen(2);
+                                },
+                                child: Icon(
+                                  Icons.shopping_basket,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.01,
                               )
                             ],
                           ),
@@ -750,35 +794,38 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                             onTap: () {
                                                               setState(() {});
                                                               if (list.isEmpty) {
-                                                                id = i;
-                                                                morning = true;
                                                                 // If the list is empty, add the session
-                                                                list.add(
-                                                                    sessionToAddOrRemove);
-                                                                AppLocalizations.of(context)!
-                                                                            .locale ==
-                                                                        'en'
-                                                                    ? academyId.add(sessionMor[i]
-                                                                        .sessionName
-                                                                        .toString())
-                                                                    : academyId.add((sessionMor[
-                                                                            i]
-                                                                        .sessionNameAr
-                                                                        .toString()));
-                                                                slotsM[i].remainingSlots != 0
-                                                                    ? slotsM[i].setRemainingSlotsMinus(indexItem)
-                                                                    : null;
-                                                                _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
-                                                                    ? _specificInnovative!.prices![0].price!.toDouble()
-                                                                    : _specificAcademy[
-                                                                            0]
-                                                                        .prices![
-                                                                            0]
-                                                                        .price!
-                                                                        .toDouble());
-                                                                print(playerController.text);
-                                                                print(slotsM);
-                                                                playerController.text = indexItem.toString();
+                                                               if(slotsM.isNotEmpty){
+                                                                 print(slotsM);
+                                                                 id = i;
+                                                                 morning = true;
+                                                                 list.add(
+                                                                     sessionToAddOrRemove);
+                                                                 AppLocalizations.of(context)!
+                                                                     .locale ==
+                                                                     'en'
+                                                                     ? academyId.add(sessionMor[i]
+                                                                     .sessionName
+                                                                     .toString())
+                                                                     : academyId.add((sessionMor[
+                                                                 i]
+                                                                     .sessionNameAr
+                                                                     .toString()));
+                                                                 slotsM[i].remainingSlots != 0
+                                                                     ? slotsM[i].setRemainingSlotsMinus(indexItem)
+                                                                     : null;
+                                                                 _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
+                                                                     ? _specificInnovative!.prices![0].price!.toDouble()
+                                                                     : _specificAcademy[
+                                                                 0]
+                                                                     .prices![
+                                                                 0]
+                                                                     .price!
+                                                                     .toDouble());
+                                                                 print(playerController.text);
+                                                                 print(slotsM);
+                                                                 playerController.text = indexItem.toString();
+                                                               }
                                                               } else {
                                                                 isSessionInList =
                                                                     list.any(
@@ -1169,39 +1216,41 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                           onTap: () {
                                                             setState(() {});
                                                             if (list.isEmpty) {
-                                                              id = i;
-                                                              morning = false;
                                                               // If the list is empty, add the session
-                                                              list.add(
-                                                                  sessionToAddOrRemove);
-                                                              AppLocalizations.of(context)!.locale ==
-                                                                      'en'
-                                                                  ? academyId.add(sessionsEve[i].sessionName.toString())
-                                                                  : academyId.add((sessionsEve[i].sessionNameAr.toString()));
-                                                              _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
-                                                                  ? _specificInnovative!
-                                                                      .prices![
-                                                                          0]
-                                                                      .price!
-                                                                      .toDouble()
-                                                                  : _specificAcademy[
-                                                                          0]
-                                                                      .prices![
-                                                                          0]
-                                                                      .price!
-                                                                      .toDouble());
+                                                              if(slotsE.isNotEmpty){
+                                                                id = i;
+                                                                morning = false;
+                                                                list.add(
+                                                                    sessionToAddOrRemove);
+                                                                AppLocalizations.of(context)!.locale ==
+                                                                    'en'
+                                                                    ? academyId.add(sessionsEve[i].sessionName.toString())
+                                                                    : academyId.add((sessionsEve[i].sessionNameAr.toString()));
+                                                                _slotPrice.pricePerPlayer.add(widget.navigateFromInnovative
+                                                                    ? _specificInnovative!
+                                                                    .prices![
+                                                                0]
+                                                                    .price!
+                                                                    .toDouble()
+                                                                    : _specificAcademy[
+                                                                0]
+                                                                    .prices![
+                                                                0]
+                                                                    .price!
+                                                                    .toDouble());
 
-                                                              slotsE[i].remainingSlots != 0
-                                                                  ? slotsE[i].setRemainingSlotsMinus(indexItem)
-                                                                  : null;
-                                                              // slots != 0
-                                                              //     ? slots =
-                                                              //         slots - 1
-                                                              //     : null;
-                                                              playerController
-                                                                      .text =
-                                                                  indexItem
-                                                                      .toString();
+                                                                slotsE[i].remainingSlots != 0
+                                                                    ? slotsE[i].setRemainingSlotsMinus(indexItem)
+                                                                    : null;
+                                                                // slots != 0
+                                                                //     ? slots =
+                                                                //         slots - 1
+                                                                //     : null;
+                                                                playerController
+                                                                    .text =
+                                                                    indexItem
+                                                                        .toString();
+                                                              }
                                                             } else {
                                                               isSessionInList =
                                                                   list.any(
@@ -1793,11 +1842,11 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     return slotPrice;
   }
 
-  void navigateToHomeScreen() {
+  void navigateToHomeScreen(int index) {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => PlayerHomeScreen(index: 0),
+          builder: (context) => PlayerHomeScreen(index: index),
         ));
   }
 
@@ -1806,7 +1855,20 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         context,
         MaterialPageRoute(
           builder: (context) => EnterDetailAcademyScreen(detail: detail),
-        ));
+        )).then((value) {
+          if(value == true){
+            _slotTime.clear();
+            indexItem = 1;
+            playerController.clear();
+            _slotPrice.pricePerPlayer.clear();
+            slotInformation = {};
+            list.clear();
+            academyId.clear();
+            sessionIdList.clear();
+            academyDetail.clear();
+            setState(() {});
+          }
+    });
   }
 
   navigateToPayment(detail, navigateFromInnovative) {

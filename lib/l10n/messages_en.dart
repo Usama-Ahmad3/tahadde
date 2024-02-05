@@ -31,7 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Youneedtocreateyourownteam": MessageLookupByLibrary.simpleMessage(
             "You need to create your own team"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
-        "removeedFavorites": MessageLookupByLibrary.simpleMessage("Removed From Your Favorites"),
+        "removeedFavorites":
+            MessageLookupByLibrary.simpleMessage("Removed From Your Favorites"),
         "profileUpdated":
             MessageLookupByLibrary.simpleMessage("Profile Details Updated"),
         "account": MessageLookupByLibrary.simpleMessage("Account"),
@@ -163,6 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookPitch": MessageLookupByLibrary.simpleMessage("Book Venue"),
         "bookYourSlot": MessageLookupByLibrary.simpleMessage("Book Slot"),
         "booked": MessageLookupByLibrary.simpleMessage("Booked"),
+        "AED": MessageLookupByLibrary.simpleMessage("AED"),
         "bookedSlots": MessageLookupByLibrary.simpleMessage("Booked Slots"),
         "booking": MessageLookupByLibrary.simpleMessage("Bookings"),
         "forr": MessageLookupByLibrary.simpleMessage("for"),
