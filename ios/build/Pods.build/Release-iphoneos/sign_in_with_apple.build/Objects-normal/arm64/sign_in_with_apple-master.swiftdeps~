@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "594ef47bafc4d5c376341d0ef57e9936e97cab0db938b7385dcd9944e37d1770"
+build_start_time: [1707920199, 897837162]
+build_end_time: [1707920199, 970422029]
+inputs:
+  "/Users/developer/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SignInWithAppleAvailablePlugin.swift": !dirty [1707834694, 344885826]
+  "/Users/developer/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SignInWithAppleError.swift": !dirty [1707834694, 343458414]
+  "/Users/developer/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SignInWithAppleUnavailablePlugin.swift": !dirty [1707834694, 342383384]
+  "/Users/developer/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SwiftSignInWithApplePlugin.swift": !dirty [1707834694, 345554351]
