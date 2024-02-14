@@ -366,7 +366,7 @@ class AppLocalizations {
   }
 
   String get signUp {
-    return Intl.message('signup', name: 'signUp');
+    return Intl.message('Sign Up', name: 'signUp');
   }
 
   String get tahaddi {

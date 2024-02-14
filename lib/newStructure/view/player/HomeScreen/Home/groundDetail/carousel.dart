@@ -105,24 +105,31 @@ class _CarouselState extends State<Carousel> {
             itemCount: widget.image == null ? 5 : widget.image!.length,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) {
-              return InkWell(
-                onTap: () {
-                  widget.storyView
-                      ? Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => StoryPage(
-                                files: widget.image ?? [],
-                                initialIndex: itemIndex,
-                              )))
-                      : null;
-                },
-                child: cachedNetworkImage(
-                  height: height * 0.3,
-                  imageFit: BoxFit.fill,
-                  width: MediaQuery.of(context).size.width,
-                  cuisineImageUrl:
-                      widget.image == null ? '' : widget.image![itemIndex],
-                ),
-              );
+              return widget.storyView
+                  ? InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => StoryPage(
+                                  files: widget.image ?? [],
+                                  initialIndex: itemIndex,
+                                )));
+                      },
+                      child: cachedNetworkImage(
+                        height: height * 0.3,
+                        imageFit: BoxFit.fill,
+                        width: MediaQuery.of(context).size.width,
+                        cuisineImageUrl: widget.image == null
+                            ? ''
+                            : widget.image![itemIndex],
+                      ),
+                    )
+                  : cachedNetworkImage(
+                      height: height * 0.3,
+                      imageFit: BoxFit.fill,
+                      width: MediaQuery.of(context).size.width,
+                      cuisineImageUrl:
+                          widget.image == null ? '' : widget.image![itemIndex],
+                    );
             },
             options: CarouselOptions(
                 height: height,

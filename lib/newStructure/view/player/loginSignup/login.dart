@@ -98,7 +98,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   Future<void> signInWithApple() async {
     print('signing');
-    try{
+    try {
       final result = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
@@ -118,10 +118,8 @@ class LoginScreenState extends State<LoginScreen> {
       final appleIdCredential = result;
       final oAuthProvider = OAuthProvider('apple.com');
       final credential = oAuthProvider.credential(
-          idToken:
-              appleIdCredential.identityToken,
-          accessToken:
-              appleIdCredential.authorizationCode);
+          idToken: appleIdCredential.identityToken,
+          accessToken: appleIdCredential.authorizationCode);
       Map detail = {
         "first_name": appleIdCredential.givenName,
         "last_name": appleIdCredential.familyName,
@@ -156,7 +154,7 @@ class LoginScreenState extends State<LoginScreen> {
           onFailure: (msg) {
             showMessage(msg);
           });
-    }catch(e){
+    } catch (e) {
       log(e.toString());
       print('HHHHH$e');
     }
@@ -413,12 +411,13 @@ class LoginScreenState extends State<LoginScreen> {
                 color: AppColors.black,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: MyAppState.mode == ThemeMode.light
-                          ? AppColors.white
-                          : AppColors.darkTheme,
-                      borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          topLeft: Radius.circular(20))),
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.white
+                        : AppColors.darkTheme,
+                    // borderRadius: const BorderRadius.only(
+                    //     topRight: Radius.circular(20),
+                    //     topLeft: Radius.circular(20))
+                  ),
                   child: Form(
                     key: _formKey,
                     child: Column(

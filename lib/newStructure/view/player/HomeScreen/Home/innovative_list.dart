@@ -14,11 +14,13 @@ class InnovativeList extends StatefulWidget {
   List<InnovativeHub> innovativeDetail;
   String text;
   bool empty;
+  bool storyForView;
   bool tagForView;
 
   InnovativeList(
       {super.key,
       this.tagForView = true,
+      this.storyForView = true,
       required this.innovativeDetail,
       required this.text,
       required this.empty});
@@ -241,14 +243,12 @@ class _InnovativeListState extends State<InnovativeList> {
                                     topLeft: Radius.circular(15 * fem),
                                     topRight: Radius.circular(15 * fem),
                                   ),
-                                  child: AbsorbPointer(
-                                    child: Carousel(
-                                      rating: false,
-                                      image: [
-                                        widget.innovativeDetail[index].image
-                                      ],
-                                      storyView: false,
-                                    ),
+                                  child: Carousel(
+                                    rating: false,
+                                    image: [
+                                      widget.innovativeDetail[index].image
+                                    ],
+                                    storyView: widget.storyForView,
                                   ),
                                 ),
                               ),

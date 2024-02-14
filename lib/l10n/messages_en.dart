@@ -732,7 +732,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "showDirections":
             MessageLookupByLibrary.simpleMessage("Show directions"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Signup"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "since": MessageLookupByLibrary.simpleMessage("Since"),
         "skip": MessageLookupByLibrary.simpleMessage("SKIP"),
         "slot": MessageLookupByLibrary.simpleMessage("Slots"),

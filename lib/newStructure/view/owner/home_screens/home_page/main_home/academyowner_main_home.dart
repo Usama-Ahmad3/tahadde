@@ -506,6 +506,8 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                                                               Carousel(
                                                                             rating:
                                                                                 false,
+                                                                            storyView:
+                                                                                false,
                                                                             image:
                                                                                 _academyDetail[index].academyImage,
                                                                           ),

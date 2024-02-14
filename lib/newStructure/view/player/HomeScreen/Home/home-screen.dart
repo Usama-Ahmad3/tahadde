@@ -1271,6 +1271,9 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
+                                                      storyView: false,
+
+                                                      ///TODO Later
                                                       rebuildParent: () {
                                                         rebuildParent();
                                                         // setState(() {});
@@ -1282,9 +1285,12 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
+                                                      storyView: false,
                                                       academyDetail:
                                                           academyModel,
                                                       empty: true,
+
+                                                      ///TODO Later
                                                       rebuildParent: () {
                                                         rebuildParent();
                                                       },
@@ -1294,6 +1300,9 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                       text: AppLocalizations.of(
                                                               context)!
                                                           .academy,
+
+                                                      ///TODO Later
+                                                      storyView: false,
                                                       rebuildParent: () {
                                                         rebuildParent();
                                                         navigateToViewMoreAcademy();
@@ -1342,6 +1351,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   text: AppLocalizations.of(
                                                           context)!
                                                       .innovative,
+                                                  storyForView: false,
                                                   empty: false,
                                                   innovativeDetail:
                                                       _innovativeDetail,
@@ -1352,6 +1362,7 @@ class HomeScreenViewState extends State<HomeScreenView> {
                                                   text: AppLocalizations.of(
                                                           context)!
                                                       .innovative,
+                                                  storyForView: false,
                                                   empty: true,
                                                   innovativeDetail:
                                                       _innovativeDetail,

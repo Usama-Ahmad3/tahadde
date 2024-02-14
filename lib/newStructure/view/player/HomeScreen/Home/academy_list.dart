@@ -16,6 +16,7 @@ class AcademyList extends StatefulWidget {
   var academyDetail;
   bool tagForView;
   bool empty;
+  bool storyView;
   VoidCallback? rebuildParent;
   bool? searchflag;
   String text;
@@ -25,6 +26,7 @@ class AcademyList extends StatefulWidget {
       {super.key,
       this.rebuildParent,
       this.searchflag = false,
+      this.storyView = true,
       required this.text,
       this.myInterest = false,
       required this.academyDetail,
@@ -237,16 +239,14 @@ class _AcademyListState extends State<AcademyList> {
                                     topLeft: Radius.circular(15 * fem),
                                     topRight: Radius.circular(15 * fem),
                                   ),
-                                  child: AbsorbPointer(
-                                    child: Carousel(
-                                      rating: true,
-                                      academy_id: widget.academyDetail[index]
-                                              ['academy_id']
-                                          .toString(),
-                                      image: widget.academyDetail[index]
-                                          ['academy_image'],
-                                      storyView: true,
-                                    ),
+                                  child: Carousel(
+                                    rating: true,
+                                    academy_id: widget.academyDetail[index]
+                                            ['academy_id']
+                                        .toString(),
+                                    image: widget.academyDetail[index]
+                                        ['academy_image'],
+                                    storyView: widget.storyView,
                                   ),
                                 ),
                               ),

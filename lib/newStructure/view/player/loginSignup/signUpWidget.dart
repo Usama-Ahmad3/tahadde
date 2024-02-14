@@ -588,48 +588,50 @@ class SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(
               height: height * 0.015,
             ),
-            SizedBox(
-                width: MediaQuery.of(context).size.width / 1.2,
-                child: RichText(
-                  text: TextSpan(
-                    text:
-                        '${AppLocalizations.of(context)!.bysigningupTahaddi} ',
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: MyAppState.mode == ThemeMode.light
-                            ? const Color(0XFF7A7A7A)
-                            : AppColors.white),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: AppLocalizations.of(context)!.termsofUse,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            privacyPolicy("terms_and_conditions_url");
-                          },
-                        style: const TextStyle(
-                          color: Color(0XFF25A163),
-                          fontWeight: FontWeight.bold,
-                        ),
+            player != null
+                ? SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    child: RichText(
+                      text: TextSpan(
+                        text:
+                            '${AppLocalizations.of(context)!.bysigningupTahaddi} ',
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: MyAppState.mode == ThemeMode.light
+                                ? const Color(0XFF7A7A7A)
+                                : AppColors.white),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.termsofUse,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                privacyPolicy("terms_and_conditions_url");
+                              },
+                            style: const TextStyle(
+                              color: Color(0XFF25A163),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' ${AppLocalizations.of(context)!.and} ',
+                              style: TextStyle(
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? const Color(0XFF7A7A7A)
+                                      : AppColors.white)),
+                          TextSpan(
+                              text: AppLocalizations.of(context)!.privacyPolicy,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  privacyPolicy("privacy_policy_url");
+                                },
+                              style: const TextStyle(
+                                color: Color(0XFF25A163),
+                                fontWeight: FontWeight.bold,
+                              )),
+                        ],
                       ),
-                      TextSpan(
-                          text: ' ${AppLocalizations.of(context)!.and} ',
-                          style: TextStyle(
-                              color: MyAppState.mode == ThemeMode.light
-                                  ? const Color(0XFF7A7A7A)
-                                  : AppColors.white)),
-                      TextSpan(
-                          text: AppLocalizations.of(context)!.privacyPolicy,
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              privacyPolicy("privacy_policy_url");
-                            },
-                          style: const TextStyle(
-                            color: Color(0XFF25A163),
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ],
-                  ),
-                )),
+                    ))
+                : const SizedBox.shrink(),
           ],
         ),
       ),
