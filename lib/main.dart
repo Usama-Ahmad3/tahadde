@@ -68,10 +68,10 @@ class SplaceVedio extends StatefulWidget {
   const SplaceVedio({super.key});
 
   @override
-  _SplaceVedioState createState() => _SplaceVedioState();
+  _SplaceVideoState createState() => _SplaceVideoState();
 }
 
-class _SplaceVedioState extends State<SplaceVedio> {
+class _SplaceVideoState extends State<SplaceVedio> {
   late SharedPreferences pref;
   late String _language;
   late String _role;
