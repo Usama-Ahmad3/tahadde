@@ -823,7 +823,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadpitchimages":
             MessageLookupByLibrary.simpleMessage("Upload venue images"),
         "uploadprofilepicture":
-            MessageLookupByLibrary.simpleMessage("Upload Profile Pic"),
+            MessageLookupByLibrary.simpleMessage("Upload Profile Picture"),
         "validity": MessageLookupByLibrary.simpleMessage("VALIDITY"),
         "venueCreated": MessageLookupByLibrary.simpleMessage("Venue Created"),
         "venueName": MessageLookupByLibrary.simpleMessage("Venue Name"),
@@ -895,6 +895,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your experience"),
         "yourteamhasbeensuccessfullycreated":
             MessageLookupByLibrary.simpleMessage(
-                "Your team has been successfully created")
+                "Your team has been successfully created"),
+    "ByJoiningPlayer":MessageLookupByLibrary.simpleMessage("By Joining Tahadde As An Player,"),
+    "YouAcknowledge":MessageLookupByLibrary.simpleMessage("You Acknowledge That You Have Read, Understood, And Agree To Abide By"),
+    "ByJoiningTahaddeOwner":MessageLookupByLibrary.simpleMessage("By Joining Tahadde As Owner"),
+    "Outlined":MessageLookupByLibrary.simpleMessage("Outlined In This Agreement"),
       };
 }

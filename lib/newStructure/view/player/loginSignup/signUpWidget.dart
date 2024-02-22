@@ -589,12 +589,13 @@ class SignUpWidgetState extends State<SignUpWidget> {
               height: height * 0.015,
             ),
             player != null
-                ? SizedBox(
+                ?
+            SizedBox(
                     width: MediaQuery.of(context).size.width / 1.2,
                     child: RichText(
                       text: TextSpan(
-                        text:
-                            '${AppLocalizations.of(context)!.bysigningupTahaddi} ',
+                        text:"",
+                            // '${AppLocalizations.of(context)!.bysigningupTahaddi} ',
                         style: TextStyle(
                             fontSize: 12,
                             color: MyAppState.mode == ThemeMode.light
@@ -602,31 +603,40 @@ class SignUpWidgetState extends State<SignUpWidget> {
                                 : AppColors.white),
                         children: <TextSpan>[
                           TextSpan(
-                            text: AppLocalizations.of(context)!.termsofUse,
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                privacyPolicy("terms_and_conditions_url");
-                              },
-                            style: const TextStyle(
-                              color: Color(0XFF25A163),
-                              fontWeight: FontWeight.bold,
+                            text: AppLocalizations.of(context)!.locale == 'en'?
+                      player == 'Player'?AppLocalizations.of(context)!.ByJoiningPlayer:AppLocalizations.of(context)!.ByJoiningTahaddeOwner
+                                :player == 'لاعب'?
+                            AppLocalizations.of(context)!.ByJoiningPlayer:AppLocalizations.of(context)!.ByJoiningTahaddeOwner,
+                            style:  TextStyle(
+                              color: MyAppState.mode == ThemeMode.light
+                                  ? const Color(0XFF7A7A7A)
+                                  : AppColors.white,
+
                             ),
                           ),
                           TextSpan(
-                              text: ' ${AppLocalizations.of(context)!.and} ',
+                              text: ' ${AppLocalizations.of(context)!.YouAcknowledge} ',
                               style: TextStyle(
                                   color: MyAppState.mode == ThemeMode.light
                                       ? const Color(0XFF7A7A7A)
                                       : AppColors.white)),
                           TextSpan(
-                              text: AppLocalizations.of(context)!.privacyPolicy,
+                              text: AppLocalizations.of(context)!.term,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  privacyPolicy("privacy_policy_url");
+                                  privacyPolicy("terms_and_conditions_url");
                                 },
                               style: const TextStyle(
                                 color: Color(0XFF25A163),
                                 fontWeight: FontWeight.bold,
+                              )),
+                          TextSpan(
+                              text: ' ${AppLocalizations.of(context)!.Outlined} ',
+                              style: TextStyle(
+                                  color: MyAppState.mode == ThemeMode.light
+                                      ? const Color(0XFF7A7A7A)
+                                      : AppColors.white,
+
                               )),
                         ],
                       ),

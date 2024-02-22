@@ -69,6 +69,7 @@ class GroundDetailState extends State<GroundDetail>
   List academyIds = [];
   var id = 0;
   int date = 0;
+
   getFavorites() {
     print(';hi');
     _networkCalls.getFavorites(
@@ -105,7 +106,9 @@ class GroundDetailState extends State<GroundDetail>
       id: widget.detail["academy_id"].toString(),
       onSuccess: (msg) {
         // venueDetail();
-        favoriteState?showMessage(AppLocalizations.of(context)!.removeedFavorites):showMessage(AppLocalizations.of(context)!.addedFavorites);
+        favoriteState
+            ? showMessage(AppLocalizations.of(context)!.removeedFavorites)
+            : showMessage(AppLocalizations.of(context)!.addedFavorites);
         print(msg);
       },
       onFailure: (msg) {
@@ -447,7 +450,7 @@ class GroundDetailState extends State<GroundDetail>
                                                       "",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: height * 0.026,
+                                                  fontSize: height * 0.025,
                                                   color: AppColors.white,
                                                   fontFamily: "Poppins",
                                                   decoration:
@@ -455,10 +458,9 @@ class GroundDetailState extends State<GroundDetail>
                                               gradient: MyAppState.mode ==
                                                       ThemeMode.light
                                                   ? LinearGradient(colors: [
-                                                      Colors.black38,
-                                                      Colors.black45,
-                                                      AppColors
-                                                          .containerColorB54
+                                                      Colors.black,
+                                                      Colors.black,
+                                                      AppColors.black
                                                     ])
                                                   : const LinearGradient(
                                                       colors: [
@@ -493,7 +495,7 @@ class GroundDetailState extends State<GroundDetail>
                                                       ? AppColors.black
                                                       : AppColors.white)),
                                       SizedBox(
-                                        height: height * 0.02,
+                                        height: height * 0.004,
                                       ),
                                       ReadMoreText(
                                         AppLocalizations.of(context)!.locale ==
@@ -541,7 +543,7 @@ class GroundDetailState extends State<GroundDetail>
                                           ? const SizedBox.shrink()
                                           : FacilitiesList(facility: indexList),
                                       SizedBox(
-                                        height: height * 0.02,
+                                        height: height * 0.04,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -588,7 +590,8 @@ class GroundDetailState extends State<GroundDetail>
                                         ],
                                       ),
                                       SizedBox(
-                                        height: height * 0.015,
+                                        height: height * 0.013,
+
                                       ),
                                       rating.isNotEmpty
                                           ? Row(
@@ -596,10 +599,10 @@ class GroundDetailState extends State<GroundDetail>
                                                 Icon(
                                                   Icons.star,
                                                   color: Colors.amberAccent,
-                                                  size: height * 0.04,
+                                                  size: height * 0.03,
                                                 ),
                                                 SizedBox(
-                                                  width: width * 0.01,
+                                                  width: width * 0.015,
                                                 ),
                                                 Text(
                                                     rating[0].rating.toString(),
@@ -607,6 +610,7 @@ class GroundDetailState extends State<GroundDetail>
                                                         .textTheme
                                                         .titleMedium!
                                                         .copyWith(
+                                                        fontSize: height*0.02 ,
                                                             color: MyAppState
                                                                         .mode ==
                                                                     ThemeMode
@@ -626,8 +630,7 @@ class GroundDetailState extends State<GroundDetail>
                                                                     ThemeMode
                                                                         .light
                                                                 ? AppColors.grey
-                                                                    .withOpacity(
-                                                                        0.5)
+
                                                                 : AppColors
                                                                     .white)),
                                               ],

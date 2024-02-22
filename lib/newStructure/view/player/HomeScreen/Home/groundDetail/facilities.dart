@@ -53,6 +53,7 @@ class _FacilitiesListState extends State<FacilitiesList> {
                 color: MyAppState.mode == ThemeMode.light
                     ? AppColors.black
                     : AppColors.white,
+            fontSize: height*0.025
               ),
         ),
         Wrap(
@@ -60,14 +61,14 @@ class _FacilitiesListState extends State<FacilitiesList> {
             ...List.generate(facilities.length, (index) {
               return widget.facility.contains(facilities[index].id)
                   ? Padding(
-                      padding: EdgeInsets.symmetric(vertical: height * .008),
+                      padding: EdgeInsets.symmetric(vertical: height * .009),
                       child: SizedBox(
                         width: width * 0.41,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             CircleAvatar(
-                              radius: height * 0.024,
+                              radius: height * 0.015,
                               backgroundColor: Colors.transparent,
                               child: cachedNetworkImage(
                                   height: height * .065,
@@ -99,6 +100,7 @@ class _FacilitiesListState extends State<FacilitiesList> {
                                     .bodyMedium!
                                     .copyWith(
                                         fontWeight: FontWeight.normal,
+                                        fontSize: height*0.015,
                                         color:
                                             MyAppState.mode == ThemeMode.light
                                                 ? AppColors.black
@@ -107,6 +109,7 @@ class _FacilitiesListState extends State<FacilitiesList> {
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: true,
                                 textWidthBasis: TextWidthBasis.parent,
+
                               ),
                             ),
                           ],

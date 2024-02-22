@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "675fb2633c386b270729e1e9ba95ed2516e140c48c26f3882d5375e3907cfb44"
+build_start_time: [1707996295, 735667943]
+build_end_time: [1707996295, 788820981]
+inputs:
+  "/Users/developer/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/darwin/Classes/SharedPreferencesPlugin.swift": !private [1707834732, 515811681]
+  "/Users/developer/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/darwin/Classes/messages.g.swift": !private [1707834732, 515465259]

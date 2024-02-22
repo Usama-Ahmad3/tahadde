@@ -159,7 +159,7 @@ showMessage(
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.TOP,
       //timeInSecForIosWeb: 1,
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.white,
       textColor: Colors.black,
       fontSize: 15.0);
 }

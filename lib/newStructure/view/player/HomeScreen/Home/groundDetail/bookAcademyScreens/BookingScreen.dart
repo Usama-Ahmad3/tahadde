@@ -105,9 +105,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     if(morningCount.isNotEmpty){
       for(int i =0;i<morningCount.length;i++){
         if(morningCount[i].dateStats!.isNotEmpty){
-          slotsM.add(morningCount[i].dateStats!.where((element) {
+          slotsM.add(morningCount[i].dateStats!.firstWhere((element) {
             return element.date == dataTime;
-          }).toList().first);
+          },orElse: () => DateStats(bookedPlayers: 0,cartPlayers: 0,date: dataTime,remainingSlots: 22,yourBooking: 0)));
         }else{
           slotsM.add(DateStats(bookedPlayers: 0,cartPlayers: 0,date: dataTime,remainingSlots: 22,yourBooking: 0));
         }
@@ -119,9 +119,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
   }
 
   loadEveningCount() async {
-    if(sessionsEve.isNotEmpty){
+    if(sessionsEve.isNotEmpty) {
       eveningCount.clear();
-      for(int i =0;i<sessionsEve.length;i++){
+      for (int i = 0; i < sessionsEve.length; i++) {
         await _networkCalls.loadSessionCount(
           id: sessionsEve[i].id.toString(),
           onSuccess: (sessionInfo) {
@@ -140,9 +140,9 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
     if(eveningCount.isNotEmpty){
       for(int i =0;i<eveningCount.length;i++){
         if(eveningCount[i].dateStats!.isNotEmpty){
-          slotsE.add(eveningCount[i].dateStats!.where((element) {
+          slotsE.add(eveningCount[i].dateStats!.firstWhere((element) {
             return element.date == dataTime;
-          }).toList().first);
+          },orElse: () => DateStats(bookedPlayers: 0,cartPlayers: 0,date: dataTime,remainingSlots: 22,yourBooking: 0)));
         }else{
           slotsE.add(DateStats(bookedPlayers: 0,cartPlayers: 0,date: dataTime,remainingSlots: 22,yourBooking: 0));
         }
@@ -251,7 +251,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
         ? 5
         : 6;
   }
-
+///copy that without sessions
   loadSpecificInnovative() async {
     print('innovative');
     await _networkCalls.loadSpecifiedInnovative(
@@ -401,12 +401,15 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                 ? AppColors.grey200
                 : AppColors.darkTheme,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            title: Text(
-              AppLocalizations.of(context)!.doYouWantProceed,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: MyAppState.mode == ThemeMode.light
-                      ? AppColors.black
-                      : AppColors.white),
+            title: Center(
+              child: Text(
+                AppLocalizations.of(context)!.doYouWantProceed,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontSize: MediaQuery.of(context).size.height*0.02,
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.black
+                        : AppColors.white),
+              ),
             ),
             actions: [
               InkWell(
@@ -452,7 +455,10 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                     'academyNameArabic': _specificAcademy[0].academyNameArabic,
                     "academy": _specificAcademy[0].academyId,
                     "session": sessionIdList,
-                    "price": _specificAcademy[0].prices![0].price,
+                    "price": slotPriceCalculation(
+                        _slotPrice
+                            .pricePerPlayer) *
+                        indexItem,
                     "location": _specificAcademy[0].academyLocation,
                     "booked_date": dataTime,
                     "player_count": indexItem,
@@ -795,6 +801,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                           0.005),
                                                           child: InkWell(
                                                             onTap: () {
+                                                              print(date);
                                                               setState(() {});
                                                               if (list.isEmpty) {
                                                                 // If the list is empty, add the session
@@ -859,7 +866,7 @@ class _PlayerBookingScreenViewState extends State<PlayerBookingScreenView> {
                                                                 if (isSessionInList) {
                                                                   slotsM[i].remainingSlots != 0
                                                                       ? slotsM[i].setRemainingSlots(indexItem)
-                                                                      : null;
+                                                                      : showMessage('All Slots Are Booked');
                                                                   playerController
                                                                           .text =
                                                                       indexItem

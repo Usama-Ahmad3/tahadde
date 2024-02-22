@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "6af14112a9c35b37e5dc6c8abc4f70ef4a30d6f4f119c09ba8dacee16d564675"
+build_start_time: [1708588993, 332828998]
+build_end_time: [1708589380, 595774173]
+inputs:
+  "/Users/developer/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.1.0/ios/Classes/FlutterSecureStorage.swift": [1707834745, 381336212]
+  "/Users/developer/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.1.0/ios/Classes/SwiftFlutterSecureStoragePlugin.swift": [1707834745, 380698680]

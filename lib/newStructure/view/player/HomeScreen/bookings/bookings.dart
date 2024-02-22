@@ -12,6 +12,10 @@ import 'package:flutter_tahaddi/newStructure/view/player/loginSignup/login.dart'
 import 'package:flutter_tahaddi/player/loginSignup/payment/payment.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../modelClass/academy_model.dart';
+import '../../../../../modelClass/innovative_hub.dart';
+import '../Home/groundDetail/bookAcademyScreens/BookingScreen.dart';
+
 class PlayerBookingScreen extends StatefulWidget {
   bool bookingTag;
   PlayerBookingScreen({super.key, this.bookingTag = false});
@@ -23,6 +27,8 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
   bool? internet;
   bool state = true;
   final bool _auth = false;
+  InnovativeHub? _specificInnovative;
+  List<AcademyModel> _specificAcademy = [];
   List<Map> academyDetail = [];
   String date = "name";
   bool navigated = false;
@@ -52,7 +58,43 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
       },
     );
   }
-
+  loadVerifiedSpecific(String id) async {
+    print('jjj');
+    await _networkCalls.loadVerifiedAcademies(
+      sport: id,
+      onSuccess: (academyInfo) {
+        List<AcademyModel> bookAcademy = [];
+        for (int i = 0; i < academyInfo.length; i++) {
+          bookAcademy.add(AcademyModel.fromJson(academyInfo[i]));
+        }
+        _specificAcademy = bookAcademy;
+      },
+      onFailure: (msg) {
+      },
+      tokenExpire: () {
+        if (mounted) {
+          print('load Specific');
+          on401(context);
+        }
+      },
+    );
+  }
+  loadInnovativeDetails(String id)async{
+    await _networkCalls.loadSpecifiedInnovative(
+      sport:id,
+      onSuccess: (academyInfo) {
+        _specificInnovative = InnovativeHub.fromJson(academyInfo);
+      },
+      onFailure: (msg) {
+      },
+      tokenExpire: () {
+        if (mounted) {
+          print('load Specific');
+          on401(context);
+        }
+      },
+    );
+  }
   loadBookingsInnovative() async {
     await _networkCalls.loadBookingsInnovative(
       onSuccess: (event) {
@@ -1183,150 +1225,188 @@ class _PlayerBookingScreenState extends State<PlayerBookingScreen> {
                                           ? SizedBox.shrink()
                                           : InkWell(
                                               onTap: () async {
-                                                final selectDate =
-                                                    await slecteDtateTime(
-                                                        context);
-                                                String dateTime = apiFormatter
-                                                    .format(selectDate!);
-                                                print(dateTime);
+                                                dynamic detail;
+                                                if(innovative){
+                                                  print('innovative');
+                                                  await loadInnovativeDetails(innovativeDetail[index].inovativehub.toString());
+                                                  detail = {
+                                                  "academy_id": _specificInnovative!.innovativehubId,
+                                                "Academy_NameEnglish":_specificInnovative!.nameEnglish,
+                                                "Academy_NameArabic":_specificInnovative!.nameArabic,
+                                                "descriptionEnglish":_specificInnovative!.descriptionEnglish,
+                                                "descriptionArabic":_specificInnovative!.descriptionArabic,
+                                                "gameplaySlug":_specificInnovative!.sportSlug,
+                                                "academy_image": [
+                                                _specificInnovative!.image
+                                                ],
+                                                'latitude': _specificInnovative!.latitude,
+                                                'longitude': _specificInnovative!.longitude,
+                                                'Academy_Location':_specificInnovative!.location,
+                                                };
+                                                      }else{
+                                                  await loadVerifiedSpecific(bookings.bookings![index].academy.toString());
+                                                detail = {
+                                                "academy_id": _specificAcademy[0].academyId,
+                                                "Academy_NameEnglish":_specificAcademy[0].academyNameEnglish,
+                                                "Academy_NameArabic":_specificAcademy[0].academyNameArabic,
+                                                "descriptionEnglish":_specificAcademy[0].descriptionEnglish,
+                                                "descriptionArabic":_specificAcademy[0].descriptionArabic,
+                                                "gameplaySlug":_specificAcademy[0].gameplaySlug,
+                                                "academy_image": [
+                                                _specificAcademy[0].academyImage
+                                                ],
+                                                'latitude': _specificAcademy[0].latitude,
+                                                'longitude': _specificAcademy[0].longitude,
+                                                'Academy_Location':_specificAcademy[0].academyLocation,
+                                                };
+                                                }
 
-                                                ///dialog Box For reBook
-                                                // ignore: use_build_context_synchronously
-                                                showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (context) =>
-                                                            AlertDialog(
-                                                              elevation: 2,
-                                                              backgroundColor: MyAppState
-                                                                          .mode ==
-                                                                      ThemeMode
-                                                                          .light
-                                                                  ? AppColors
-                                                                      .grey200
-                                                                  : AppColors
-                                                                      .darkTheme,
-                                                              shape: OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12)),
-                                                              title: Text(
-                                                                AppLocalizations.of(
-                                                                        context)!
-                                                                    .areYouSure,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyLarge!
-                                                                    .copyWith(
-                                                                        color: MyAppState.mode ==
-                                                                                ThemeMode.light
-                                                                            ? AppColors.black
-                                                                            : AppColors.white),
-                                                              ),
-                                                              contentPadding: EdgeInsets.symmetric(
-                                                                  horizontal: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.065),
-                                                              content: Text(
-                                                                '${AppLocalizations.of(context)!.rebookThis} $dateTime',
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyMedium!
-                                                                    .copyWith(
-                                                                        color: AppColors
-                                                                            .appThemeColor),
-                                                              ),
-                                                              actions: [
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceEvenly,
-                                                                  children: [
-                                                                    InkWell(
-                                                                      onTap:
-                                                                          () {
-                                                                        Navigator.of(context)
-                                                                            .pop(false);
-                                                                      },
-                                                                      child:
-                                                                          Center(
-                                                                        child:
-                                                                            Container(
-                                                                          height:
-                                                                              35,
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.3,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(20),
-                                                                            color:
-                                                                                AppColors.appThemeColor,
-                                                                            border:
-                                                                                Border.all(width: 1, color: AppColors.transparent),
-                                                                          ),
-                                                                          child:
-                                                                              Center(
-                                                                            child:
-                                                                                Text(
-                                                                              AppLocalizations.of(context)!.no,
-                                                                              style: TextStyle(color: AppColors.white),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    InkWell(
-                                                                      onTap:
-                                                                          () {
-                                                                        Navigator.of(context)
-                                                                            .pop(true);
-                                                                        navigateToPayment(
-                                                                            index,
-                                                                            dateTime,
-                                                                            bookedSessions[blockindex],
-                                                                            innovative);
-                                                                      },
-                                                                      child:
-                                                                          Center(
-                                                                        child:
-                                                                            Container(
-                                                                          height:
-                                                                              35,
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.3,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(20),
-                                                                            color:
-                                                                                AppColors.red,
-                                                                            border:
-                                                                                Border.all(width: 1, color: AppColors.transparent),
-                                                                          ),
-                                                                          child:
-                                                                              Center(
-                                                                            child:
-                                                                                Text(
-                                                                              AppLocalizations.of(context)!.yes,
-                                                                              style: TextStyle(color: AppColors.white),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                )
-                                                              ],
-                                                            ));
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=>PlayerBookingScreenView(detail: detail,navigateFromInnovative: innovative,)));
+                                                // final selectDate =
+                                                //     await slecteDtateTime(
+                                                //         context);
+                                                // String dateTime = apiFormatter
+                                                //     .format(selectDate!);
+                                                // print(dateTime);
+                                                //
+                                                // ///dialog Box For reBook
+                                                // // ignore: use_build_context_synchronously
+                                                // showDialog(
+                                                //     context: context,
+                                                //     builder:
+                                                //         (context) =>
+                                                //             AlertDialog(
+                                                //               elevation: 2,
+                                                //               backgroundColor: MyAppState
+                                                //                           .mode ==
+                                                //                       ThemeMode
+                                                //                           .light
+                                                //                   ? AppColors
+                                                //                       .grey200
+                                                //                   : AppColors
+                                                //                       .darkTheme,
+                                                //               shape: OutlineInputBorder(
+                                                //                   borderRadius:
+                                                //                       BorderRadius
+                                                //                           .circular(
+                                                //                               12)),
+                                                //               title: Text(
+                                                //                 AppLocalizations.of(
+                                                //                         context)!
+                                                //                     .areYouSure,
+                                                //                 style: Theme.of(
+                                                //                         context)
+                                                //                     .textTheme
+                                                //                     .bodyLarge!
+                                                //                     .copyWith(
+                                                //                         color: MyAppState.mode ==
+                                                //                                 ThemeMode.light
+                                                //                             ? AppColors.black
+                                                //                             : AppColors.white),
+                                                //               ),
+                                                //               contentPadding: EdgeInsets.symmetric(
+                                                //                   horizontal: MediaQuery.of(
+                                                //                               context)
+                                                //                           .size
+                                                //                           .width *
+                                                //                       0.065),
+                                                //               content: Text(
+                                                //                 '${AppLocalizations.of(context)!.rebookThis} $dateTime',
+                                                //                 style: Theme.of(
+                                                //                         context)
+                                                //                     .textTheme
+                                                //                     .bodyMedium!
+                                                //                     .copyWith(
+                                                //                         color: AppColors
+                                                //                             .appThemeColor),
+                                                //               ),
+                                                //               actions: [
+                                                //                 Row(
+                                                //                   mainAxisAlignment:
+                                                //                       MainAxisAlignment
+                                                //                           .spaceEvenly,
+                                                //                   children: [
+                                                //                     InkWell(
+                                                //                       onTap:
+                                                //                           () {
+                                                //                         Navigator.of(context)
+                                                //                             .pop(false);
+                                                //                       },
+                                                //                       child:
+                                                //                           Center(
+                                                //                         child:
+                                                //                             Container(
+                                                //                           height:
+                                                //                               35,
+                                                //                           width:
+                                                //                               MediaQuery.of(context).size.width * 0.3,
+                                                //                           decoration:
+                                                //                               BoxDecoration(
+                                                //                             borderRadius:
+                                                //                                 BorderRadius.circular(20),
+                                                //                             color:
+                                                //                                 AppColors.appThemeColor,
+                                                //                             border:
+                                                //                                 Border.all(width: 1, color: AppColors.transparent),
+                                                //                           ),
+                                                //                           child:
+                                                //                               Center(
+                                                //                             child:
+                                                //                                 Text(
+                                                //                               AppLocalizations.of(context)!.no,
+                                                //                               style: TextStyle(color: AppColors.white),
+                                                //                             ),
+                                                //                           ),
+                                                //                         ),
+                                                //                       ),
+                                                //                     ),
+                                                //                     InkWell(
+                                                //                       onTap:
+                                                //                           () {
+                                                //                         Navigator.of(context)
+                                                //                             .pop(true);
+                                                //                         navigateToPayment(
+                                                //                             index,
+                                                //                             dateTime,
+                                                //                             bookedSessions[blockindex],
+                                                //                             innovative);
+                                                //                       },
+                                                //                       child:
+                                                //                           Center(
+                                                //                         child:
+                                                //                             Container(
+                                                //                           height:
+                                                //                               35,
+                                                //                           width:
+                                                //                               MediaQuery.of(context).size.width * 0.3,
+                                                //                           decoration:
+                                                //                               BoxDecoration(
+                                                //                             borderRadius:
+                                                //                                 BorderRadius.circular(20),
+                                                //                             color:
+                                                //                                 AppColors.red,
+                                                //                             border:
+                                                //                                 Border.all(width: 1, color: AppColors.transparent),
+                                                //                           ),
+                                                //                           child:
+                                                //                               Center(
+                                                //                             child:
+                                                //                                 Text(
+                                                //                               AppLocalizations.of(context)!.yes,
+                                                //                               style: TextStyle(color: AppColors.white),
+                                                //                             ),
+                                                //                           ),
+                                                //                         ),
+                                                //                       ),
+                                                //                     ),
+                                                //                   ],
+                                                //                 ),
+                                                //                 const SizedBox(
+                                                //                   height: 10,
+                                                //                 )
+                                                //               ],
+                                                //             ));
+
                                               },
                                               child: Container(
                                                 height: sizeHeight * 0.04,

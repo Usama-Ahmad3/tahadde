@@ -684,6 +684,7 @@ class NetworkCalls {
           headers: header(prefs, body, HttpMethod.POST), body: body);
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));
+        print(resp);
         onSuccess(resp["role"]);
         saveToken(resp["key"]);
         saveRole(resp["role"]);
@@ -2487,11 +2488,8 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url = "https://panel.tahadde.ae${RestApis.CURRENTDATE}$date";
     try {
-      response = await http.get(Uri.parse(url), headers: {
-        "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
-        'Content-Type': 'application/json',
-      }
-          // headerWithToken(prefs, "", HttpMethod.GET)
+      response = await http.get(Uri.parse(url), headers:
+          headerWithToken(prefs, "", HttpMethod.GET)
           );
       print('Response${response.body}');
       if (response.statusCode == 200) {
@@ -2521,11 +2519,8 @@ class NetworkCalls {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String url = "https://panel.tahadde.ae${RestApis.BOOKING}$date";
     try {
-      response = await http.get(Uri.parse(url), headers: {
-        "Authorization": "token 5916de5550f5564f94533ec7171696ff53a7cd73",
-        'Content-Type': 'application/json',
-      }
-          // headerWithToken(prefs, "", HttpMethod.GET)
+      response = await http.get(Uri.parse(url), headers:
+          headerWithToken(prefs, "", HttpMethod.GET)
           );
       if (response.statusCode == 200) {
         var resp = json.decode(utf8.decode(response.bodyBytes));

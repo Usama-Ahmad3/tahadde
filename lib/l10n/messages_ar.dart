@@ -873,6 +873,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourTahaddi": MessageLookupByLibrary.simpleMessage("تحدياتك"),
         "yourexperience": MessageLookupByLibrary.simpleMessage("خبرتك"),
         "yourteamhasbeensuccessfullycreated":
-            MessageLookupByLibrary.simpleMessage("تم إنشاء فريقك بنجاح")
+            MessageLookupByLibrary.simpleMessage("تم إنشاء فريقك بنجاح"),
+        "ByJoiningPlayer":MessageLookupByLibrary.simpleMessage("بانضمامك إلى تحدي كلاعب،"),
+        "YouAcknowledge":MessageLookupByLibrary.simpleMessage("أنت تقر بأنك قرأت وفهمت ووافقت على الالتزام بها"),
+        "ByJoiningTahaddeOwner":MessageLookupByLibrary.simpleMessage("من خلال الانضمام إلى تحدي كمالك"),
+        "Outlined":MessageLookupByLibrary.simpleMessage("المبينة في هذه الاتفاقية"),
       };
 }

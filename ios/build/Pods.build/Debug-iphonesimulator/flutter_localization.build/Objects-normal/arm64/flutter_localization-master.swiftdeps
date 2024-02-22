@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "b02d4c4002fffcd937e9cb8f620bf1e240c84209dea9824cdd04428955de20e8"
+build_start_time: [1708588993, 846333026]
+build_end_time: [1708589380, 605070114]
+inputs:
+  "/Users/developer/.pub-cache/hosted/pub.dev/flutter_localization-0.2.0/ios/Classes/SwiftFlutterLocalizationPlugin.swift": [1707834697, 736358165]

@@ -60,7 +60,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
       },
     );
   }
-
+////
   Future onWillPop(String description, bool isLogout) {
     return showDialog(
         context: context,
@@ -71,14 +71,18 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                 ? AppColors.grey200
                 : AppColors.darkTheme,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            title: Text(
-              AppLocalizations.of(context)!.logout,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: MyAppState.mode == ThemeMode.light
-                      ? AppColors.black
-                      : AppColors.white),
+            title: Center(
+              child: Text(
+                AppLocalizations.of(context)!.logout,
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: MyAppState.mode == ThemeMode.light
+                        ? AppColors.black
+                        : AppColors.white),
+              ),
             ),
             contentPadding: EdgeInsets.symmetric(
+              vertical:MediaQuery.of(context).size.height * 0.02 ,
                 horizontal: MediaQuery.of(context).size.width * 0.065),
             content: Text(
               description,

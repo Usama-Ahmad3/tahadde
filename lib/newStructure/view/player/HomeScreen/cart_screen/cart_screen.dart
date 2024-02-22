@@ -26,11 +26,12 @@ class CartScreenState extends State<CartScreen> {
   bool loading = true;
   final NetworkCalls _networkCalls = NetworkCalls();
   List<CartModel> cartModel = [];
-  List<CartModel> cartListSelected = [];
-  List<CartModel> cartListUnSelected = [];
+  List<OptimizedCartModel> cartListSelected = [];
+  List<OptimizedCartModel> cartListUnSelected = [];
   List<BookedSessions> bookedSessions = [];
   List<AcademyModel> _specificAcademy = [];
   List<AcademyModel> _specificAcademyListSelected = [];
+  List<OptimizedCartModel> _optimizedCartModel = [];
   static int? cartLength;
 
   getCartAcademies() async {
@@ -54,6 +55,7 @@ class CartScreenState extends State<CartScreen> {
   loadSpecificSession() {
     if (cartModel.isNotEmpty) {
       cartLength = cartModel.length;
+      print('kkkk');
       cartModel.forEach((element) async {
         element.session!.forEach((sessionsId) async {
           await _networkCalls.specificSession(
@@ -61,6 +63,7 @@ class CartScreenState extends State<CartScreen> {
             onSuccess: (event) async {
               BookedSessions session = BookedSessions.fromJson(event);
               bookedSessions.add(session);
+              print(event);
               loadVerifiedSpecific();
               if (mounted) {
                 setState(() {});
@@ -83,7 +86,51 @@ class CartScreenState extends State<CartScreen> {
       });
     }
   }
-
+optimizedSessions(){
+    for(int i =0; i<cartModel.length;i++){
+        if(_optimizedCartModel.isEmpty){
+          _optimizedCartModel.add(OptimizedCartModel(
+            cart_id: cartModel[i].id!.toInt(),
+            academyId: _specificAcademy[i].academyId.toString(),
+            academyNameArabic: _specificAcademy[i].academyNameArabic,
+            academyNameEnglish: _specificAcademy[i].academyNameEnglish,
+            academyImage: _specificAcademy[i].academyImage,
+            booked_date: cartModel[i].bookedDate,
+            location: _specificAcademy[i].academyLocation,
+            playerCount: cartModel[i].playerCount!.toInt(),
+            price: cartModel[i].price!.toInt(),
+            price_per_player: cartModel[i].pricePerPlayer!.toInt(),
+            sessionCount: 1,
+            ///TODO Later
+            sessionList: _specificAcademy[i].session
+          ));
+        }else{
+          for(int j =0;j < _optimizedCartModel.length; j++){
+            if(_optimizedCartModel[j].cart_id == cartModel[i].id){
+              _optimizedCartModel[j].sessionCount = _optimizedCartModel[j].sessionCount! + 1;
+              _optimizedCartModel[j].price = _optimizedCartModel[j].price! + cartModel[i].price!.toInt();
+              _optimizedCartModel[j].playerCount = _optimizedCartModel[j].playerCount! + cartModel[i].playerCount!.toInt();
+            }else{
+              _optimizedCartModel.add(OptimizedCartModel(
+                  cart_id: cartModel[i].id!.toInt(),
+                  academyId: _specificAcademy[i].academyId.toString(),
+                  academyNameArabic: _specificAcademy[i].academyNameArabic,
+                  academyNameEnglish: _specificAcademy[i].academyNameEnglish,
+                  academyImage: _specificAcademy[i].academyImage,
+                  booked_date: cartModel[i].bookedDate,
+                  location: _specificAcademy[i].academyLocation,
+                  playerCount: cartModel[i].playerCount!.toInt(),
+                  price: cartModel[i].price!.toInt(),
+                  price_per_player: cartModel[i].pricePerPlayer!.toInt(),
+                  sessionCount: 1,
+                  ///TODO Later
+                  sessionList: _specificAcademy[i].session
+              ));
+            }
+          }
+      }
+    }
+}
   loadVerifiedSpecific() async {
     cartModel.forEach((element) async {
       await _networkCalls.loadVerifiedAcademies(
@@ -93,8 +140,9 @@ class CartScreenState extends State<CartScreen> {
           for (int i = 0; i < academyInfo.length; i++) {
             bookAcademy.add(AcademyModel.fromJson(academyInfo[i]));
           }
-          _specificAcademy.addAll(bookAcademy);
+          _specificAcademy.addAll(bookAcademy);optimizedSessions();
           Future.delayed(const Duration(seconds: 2), () {
+            optimizedSessions();
             loading = false;
             setState(() {});
           });
@@ -157,26 +205,25 @@ class CartScreenState extends State<CartScreen> {
               List<Map> cartDetails = [];
               cartListSelected.forEach((item) {
                 List IdList = [];
-                item.session!.forEach((element) {
+                item.sessionList!.forEach((element) {
                   IdList.add(element);
                 });
                 Map details = {
-                  'cart_id': item.id,
-                  'academyNameEnglish': _specificAcademyListSelected[index]
-                      .academyNameEnglish
-                      .toString(),
-                  'academyNameArabic': _specificAcademyListSelected[index]
+                  'cart_id': item.cart_id,
+                  'academyNameEnglish': item.academyNameEnglish,
+                  'academyNameArabic': item
                       .academyNameArabic
                       .toString(),
-                  "academy": item.academy,
+                  "academy": item.academyId,
                   "session": IdList,
-                  "Sub_Academy": item.subAcademy,
+                  "Sub_Academy": item.academyNameEnglish,
                   "price": item.price,
                   "location": item.location,
-                  "booked_date": item.bookedDate,
+                  "booked_date": item.booked_date,
                   "player_count": item.playerCount,
-                  'price_per_player': item.pricePerPlayer
+                  'price_per_player': item.price_per_player
                 };
+
                 index = index + 1;
                 cartDetails.add(details);
               });
@@ -184,14 +231,14 @@ class CartScreenState extends State<CartScreen> {
               navigateToEditAcademyDetail(cartDetails);
             } else {
               cartListUnSelected = [];
-              for (int i = 0; i < cartModel.length; i++) {
+              for (int i = 0; i < _optimizedCartModel.length; i++) {
                 List<BookedSessions> bookedSessionFiltered = [];
-                for (int j = 0; j < cartModel[i].session!.length; j++) {
+                for (int j = 0; j < _optimizedCartModel[i].sessionList!.length; j++) {
                   int id = bookedSessions.indexWhere(
-                      (element) => element.id == cartModel[j].session![j]);
+                      (element) => element.id == _optimizedCartModel[i].sessionList![j]);
                   bookedSessionFiltered.add(bookedSessions[id]);
                 }
-                List datePart = cartModel[i].bookedDate!.split('-');
+                List datePart = _optimizedCartModel[i].booked_date!.split('-');
                 List timeParts = bookedSessionFiltered[0].endTime!.split(":");
                 int year = int.parse(datePart[0]);
                 int month = int.parse(datePart[1]);
@@ -208,10 +255,10 @@ class CartScreenState extends State<CartScreen> {
                     givenDate.isAtSameMomentAs(currentDate)) {
                   if (givenDate.isAtSameMomentAs(currentDate)) {
                     if (givenTime.hour > currentTime.hour) {
-                      cartListUnSelected.add(cartModel[i]);
+                      cartListUnSelected.add(_optimizedCartModel[i]);
                     }
                   } else {
-                    cartListUnSelected.add(cartModel[i]);
+                    cartListUnSelected.add(_optimizedCartModel[i]);
                   }
                 } else {
                   showMessage('Some Sessions Are Expired');
@@ -222,23 +269,23 @@ class CartScreenState extends State<CartScreen> {
               if (cartListUnSelected.isNotEmpty) {
                 cartListUnSelected.forEach((item) {
                   List IdList = [];
-                  item.session!.forEach((element) {
+                  item.sessionList!.forEach((element) {
                     IdList.add(element);
                   });
                   Map details = {
-                    'cart_id': item.id,
+                    'cart_id': item.cart_id,
                     'academyNameEnglish':
-                        _specificAcademy[index].academyNameEnglish.toString(),
+                        item.academyNameEnglish.toString(),
                     'academyNameArabic':
-                        _specificAcademy[index].academyNameArabic.toString(),
-                    "academy": item.academy,
+                        item.academyNameArabic.toString(),
+                    "academy": item.academyId,
                     "session": IdList,
-                    "Sub_Academy": item.subAcademy,
+                    "Sub_Academy": item.academyNameEnglish,
                     "price": item.price,
                     "location": item.location,
-                    "booked_date": item.bookedDate,
+                    "booked_date": item.booked_date,
                     "player_count": item.playerCount,
-                    'price_per_player': item.pricePerPlayer
+                    'price_per_player': item.price_per_player
                   };
                   index = index + 1;
                   cartDetails.add(details);
@@ -290,28 +337,27 @@ class CartScreenState extends State<CartScreen> {
                         SizedBox(
                           height: height * 0.02,
                         ),
-                        cartModel.isNotEmpty
+                        _optimizedCartModel.isNotEmpty
                             ? Column(
                                 children: [
                                   ListView.builder(
-                                    itemCount: cartModel.length,
+
+                                    itemCount: _optimizedCartModel.length,
                                     shrinkWrap: true,
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       final reversed =
-                                          cartModel.reversed.toList();
-                                      final reversedAcademy =
-                                          _specificAcademy.reversed.toList();
+                                          _optimizedCartModel.reversed.toList();
                                       final item = reversed[index];
                                       List<BookedSessions>
                                           bookedSessionFiltered = [];
                                       for (int i = 0;
-                                          i < item.session!.length;
+                                          i < item.sessionList!.length;
                                           i++) {
                                         int id = bookedSessions.indexWhere(
-                                            (element) =>
-                                                element.id == item.session![i]);
+                                                (element) =>
+                                            element.id == item.sessionList![i]);
                                         bookedSessionFiltered
                                             .add(bookedSessions[id]);
                                       }
@@ -319,14 +365,12 @@ class CartScreenState extends State<CartScreen> {
                                         onTap: () {
                                           if (cartListSelected.contains(item)) {
                                             cartListSelected.remove(item);
-                                            _specificAcademyListSelected
-                                                .remove(reversedAcademy[index]);
                                             print('removed');
                                             print(cartListSelected);
                                             print(_specificAcademyListSelected);
                                           } else {
                                             List<String> dateParts =
-                                                item.bookedDate!.split("-");
+                                                item.booked_date!.split("-");
                                             List timeParts =
                                                 bookedSessionFiltered[0]
                                                     .endTime!
@@ -360,18 +404,12 @@ class CartScreenState extends State<CartScreen> {
                                                 if (givenTime.hour >
                                                     currentTime.hour) {
                                                   cartListSelected.add(item);
-                                                  _specificAcademyListSelected
-                                                      .add(reversedAcademy[
-                                                          index]);
                                                 } else {
                                                   showMessage(
                                                       "Session Time Expired");
                                                 }
                                               } else {
                                                 cartListSelected.add(item);
-                                                _specificAcademyListSelected
-                                                    .add(
-                                                        reversedAcademy[index]);
                                               }
                                             } else {
                                               showMessage(
@@ -394,14 +432,11 @@ class CartScreenState extends State<CartScreen> {
                                               setState(() {
                                                 loading = true;
                                                 _networkCalls.deleteCart(
-                                                  id: item.id.toString(),
+                                                  id: item.cart_id.toString(),
                                                   onSuccess: (value) {
                                                     showMessage('Deleted');
                                                     cartListSelected
                                                         .remove(item);
-                                                    _specificAcademyListSelected
-                                                        .remove(reversedAcademy[
-                                                            index]);
                                                   },
                                                   onFailure: (msg) {
                                                     print('failed $msg');
@@ -416,6 +451,7 @@ class CartScreenState extends State<CartScreen> {
                                                   print(
                                                       'sssssssssssssssssssss');
                                                   cartModel.clear();
+                                                  _optimizedCartModel.clear();
                                                   bookedSessions.clear();
                                                   _specificAcademy.clear();
                                                   navigateToCartScreen();
@@ -497,12 +533,10 @@ class CartScreenState extends State<CartScreen> {
                                                                 AppLocalizations.of(context)!
                                                                             .locale ==
                                                                         'en'
-                                                                    ? reversedAcademy[
-                                                                            index]
+                                                                    ? item
                                                                         .academyNameEnglish
                                                                         .toString()
-                                                                    : reversedAcademy[
-                                                                            index]
+                                                                    : item
                                                                         .academyNameArabic
                                                                         .toString(),
                                                                 style: TextStyle(
@@ -521,9 +555,8 @@ class CartScreenState extends State<CartScreen> {
                                                                 width:
                                                                     width * .78,
                                                                 child: Text(
-                                                                  reversedAcademy[
-                                                                          index]
-                                                                      .academyLocation
+                                                                  item
+                                                                      .location
                                                                       .toString(),
                                                                   style: TextStyle(
                                                                       fontSize:
@@ -580,7 +613,7 @@ class CartScreenState extends State<CartScreen> {
                                                                       imageFit: BoxFit
                                                                           .fill,
                                                                       cuisineImageUrl:
-                                                                          reversedAcademy[index].academyImage![0],
+                                                                          item.academyImage![0],
                                                                       placeholder: 'assets/images/profile.png'))),
                                                         ),
                                                         Padding(
@@ -619,6 +652,19 @@ class CartScreenState extends State<CartScreen> {
                                                                             0XFF032040)
                                                                         : AppColors
                                                                             .white),
+                                                              ),
+                                                              Text(
+                                                                "Total Sessions:",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    14,
+                                                                    color: MyAppState.mode ==
+                                                                        ThemeMode
+                                                                            .light
+                                                                        ? const Color(
+                                                                        0XFF032040)
+                                                                        : AppColors
+                                                                        .white),
                                                               ),
                                                               Text(
                                                                 "${AppLocalizations.of(context)!.price}:",
@@ -770,7 +816,7 @@ class CartScreenState extends State<CartScreen> {
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                item.bookedDate
+                                                                item.booked_date
                                                                     .toString(),
                                                                 // "${booking.playerCount} ${booking.playerCount!.toInt() == 1 ? AppLocalizations.of(context)!.player : AppLocalizations.of(context)!.players}",
                                                                 style: TextStyle(
@@ -790,6 +836,17 @@ class CartScreenState extends State<CartScreen> {
                                                                             : const Color(0XFF25A163)
                                                                         : AppColors.grey,
                                                                     fontSize: 14),
+                                                              ),
+                                                              Text(
+                                                                "${item.sessionCount}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    14,
+                                                                    color: MyAppState.mode == ThemeMode.light
+                                                                        ? cartListSelected.contains(item)
+                                                                        ? AppColors.white
+                                                                        : const Color(0XFF25A163)
+                                                                        : AppColors.grey),
                                                               ),
                                                               // Text(
                                                               //   "${item.session!.length} ${AppLocalizations.of(context)!.selected}",
@@ -814,21 +871,16 @@ class CartScreenState extends State<CartScreen> {
                                                                         : AppColors.grey,
                                                                     fontSize: 14),
                                                               ),
-                                                              ...List.generate(
-                                                                  bookedSessionFiltered
-                                                                      .length,
-                                                                  (indexSession) {
-                                                                return Text(
-                                                                  "${bookedSessionFiltered[indexSession].startTime}",
-                                                                  style: TextStyle(
-                                                                      color: MyAppState.mode == ThemeMode.light
-                                                                          ? cartListSelected.contains(item)
-                                                                              ? AppColors.white
-                                                                              : const Color(0XFF25A163)
-                                                                          : AppColors.grey,
-                                                                      fontSize: 14),
-                                                                );
-                                                              }),
+                                                              Text(
+                                                                "${item.startTime}",
+                                                                style: TextStyle(
+                                                                    color: MyAppState.mode == ThemeMode.light
+                                                                        ? cartListSelected.contains(item)
+                                                                        ? AppColors.white
+                                                                        : const Color(0XFF25A163)
+                                                                        : AppColors.grey,
+                                                                    fontSize: 14),
+                                                              )
                                                               // InkWell(
                                                               //   onTap: () {
                                                               //     List IdList = [];
@@ -1201,4 +1253,22 @@ class CartScreenState extends State<CartScreen> {
           builder: (context) => PlayerHomeScreen(index: 2),
         ));
   }
+}
+class OptimizedCartModel{
+  int? cart_id;
+  String? academyNameEnglish;
+  String? academyNameArabic;
+  String? academyId;
+  List? sessionList;
+  int? price;
+  String? location;
+  String? booked_date;
+  int? playerCount;
+  int? price_per_player;
+  int? sessionCount;
+  List? academyImage;
+  String? startTime;
+  OptimizedCartModel({this.startTime,this.cart_id, this.academyNameEnglish, this.academyNameArabic, this.academyId,this.academyImage,
+    this.sessionList, this.price, this.location, this.booked_date,this.playerCount,this.price_per_player,this.sessionCount
+  });
 }

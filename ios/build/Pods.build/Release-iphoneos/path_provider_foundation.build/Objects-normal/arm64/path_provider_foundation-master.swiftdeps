@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "bcae7749e210005f0147756b218c61dc4015ed729f5a6d3d8abff0776584b8be"
-build_start_time: [1707920210, 927845954]
-build_end_time: [1707920213, 720155954]
+options: "165d02b6b06d9c4ab90df9e112f4a80c82704c69d0f4cbb78d1f330a12c87628"
+build_start_time: [1707995895, 32424926]
+build_end_time: [1707995898, 37734031]
 inputs:
   "/Users/developer/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.1/darwin/Classes/PathProviderPlugin.swift": [1707834712, 819404840]
   "/Users/developer/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.1/darwin/Classes/messages.g.swift": [1707834712, 819004058]

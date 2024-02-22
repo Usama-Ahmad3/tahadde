@@ -931,6 +931,21 @@ class AppLocalizations {
   String get termsofUse {
     return Intl.message('termsofUse', name: 'termsofUse');
   }
+  String get ByJoiningPlayer{
+  return Intl.message('By Joining Tahadde As A Player,', name: 'ByJoiningPlayer');
+  }
+
+  String get YouAcknowledge{
+    return Intl.message('You Acknowledge That You Have Read, Understood, And Agree To Abide By', name: 'YouAcknowledge');
+  }
+
+  String get ByJoiningTahaddeOwner{
+    return Intl.message('By Joining Tahadde As An Owner,', name: 'ByJoiningTahaddeOwner');
+  }
+
+  String get Outlined {
+    return Intl.message(' Outlined In This Agreement',name: "Outlined");
+  }
 
   String get and {
     return Intl.message('and', name: 'and');
@@ -1577,7 +1592,7 @@ class AppLocalizations {
   }
 
   String get uploadprofilepicture {
-    return Intl.message('Upload Profile Pic', name: 'uploadprofilepicture');
+    return Intl.message('Upload Profile Picture', name: 'uploadprofilepicture');
   }
 
   String get makechoice {

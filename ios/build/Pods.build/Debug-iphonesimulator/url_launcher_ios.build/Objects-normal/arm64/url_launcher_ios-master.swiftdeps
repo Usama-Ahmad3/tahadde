@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "8194439a9ec090dce5660477c3568e3d8cde68697ec3f93eedbfedcc7e753b44"
+build_start_time: [1708588989, 233684062]
+build_end_time: [1708589380, 420961856]
+inputs:
+  "/Users/developer/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/Launcher.swift": [1707834717, 173976421]
+  "/Users/developer/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/URLLaunchSession.swift": [1707834717, 184909343]
+  "/Users/developer/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/URLLauncherPlugin.swift": [1707834717, 161425590]
+  "/Users/developer/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/messages.g.swift": [1707834717, 195868015]

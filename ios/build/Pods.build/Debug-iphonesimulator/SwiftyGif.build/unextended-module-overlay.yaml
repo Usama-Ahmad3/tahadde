@@ -1,0 +1,14 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/developer/Downloads/tahadde/build/ios/Debug-iphonesimulator/SwiftyGif/SwiftyGif.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/SwiftyGif.build/unextended-module.modulemap",
+    }]
+  }]
+}

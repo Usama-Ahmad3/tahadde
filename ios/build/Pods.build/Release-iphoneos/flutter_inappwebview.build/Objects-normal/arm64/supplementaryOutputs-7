@@ -1,0 +1,8 @@
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/CallAsyncJavaScriptBelowIOS14WrapperJS.swift":
+  objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/flutter_inappwebview-Swift.h"
+  abi-baseline-json: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/flutter_inappwebview.abi.json"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/flutter_inappwebview-master.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/flutter_inappwebview-master.dia"
+  swiftsourceinfo: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/flutter_inappwebview.swiftsourceinfo"
+  swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/flutter_inappwebview.swiftmodule"
+  swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/flutter_inappwebview.swiftdoc"
