@@ -1,0 +1,35 @@
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/RemoteSettings.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/RemoteSettings.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/RemoteSettings.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/RemoteSettings.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/RemoteSettings.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionCoordinator.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionCoordinator.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionCoordinator.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionCoordinator.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionCoordinator.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SDKDefaultSettings.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SDKDefaultSettings.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SDKDefaultSettings.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SDKDefaultSettings.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SDKDefaultSettings.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/LocalOverrideSettings.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Logger.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/NetworkInfo.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Development/NanoPB+CustomStringConvertible.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.o"

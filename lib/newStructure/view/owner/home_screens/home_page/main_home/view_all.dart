@@ -308,8 +308,11 @@ class ViewMoreAcademyScreen extends StatelessWidget {
                                                             .textTheme
                                                             .bodyMedium!
                                                             .copyWith(
-                                                                color: AppColors
-                                                                    .redAccent),
+                                                                color: academy[index].status ==
+                                                                    'Verified'?AppColors
+                                                                    .green: academy[index].status ==
+                                                                    'Decline'?AppColors.redAccent:Colors.yellow,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -326,7 +329,8 @@ class ViewMoreAcademyScreen extends StatelessWidget {
                                                         image: academy[index]
                                                             .academyImage,
                                                       ),
-                                                    )),
+                                                    ),
+                                                ),
                                                 SizedBox(
                                                   height: sizeHeight * 0.005,
                                                 ),

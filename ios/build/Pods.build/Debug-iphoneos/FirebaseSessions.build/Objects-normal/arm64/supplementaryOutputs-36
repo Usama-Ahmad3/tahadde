@@ -1,0 +1,35 @@
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/EventGDTLogger.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/EventGDTLogger.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/EventGDTLogger.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/EventGDTLogger.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/EventGDTLogger.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/ApplicationInfo.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/ApplicationInfo.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/ApplicationInfo.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/ApplicationInfo.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/ApplicationInfo.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Installations+InstallationsProtocol.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/GoogleDataTransport+GoogleDataTransportProtocol.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Development/DevEventConsoleLogger.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/DevEventConsoleLogger.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/DevEventConsoleLogger.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/DevEventConsoleLogger.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/DevEventConsoleLogger.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/FirebaseSessions.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/FirebaseSessionsError.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.dia"

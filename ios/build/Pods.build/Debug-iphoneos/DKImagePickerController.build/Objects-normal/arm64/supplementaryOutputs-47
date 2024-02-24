@@ -1,0 +1,25 @@
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerController.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKPermissionView.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPermissionView.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPermissionView.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPermissionView.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPermissionView.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKPopoverViewController.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPopoverViewController.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPopoverViewController.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPopoverViewController.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPopoverViewController.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerControllerBaseUIDelegate.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerBaseUIDelegate.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerBaseUIDelegate.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerBaseUIDelegate.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerBaseUIDelegate.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/Resource/DKImagePickerControllerResource.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerResource.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerResource.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerResource.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerResource.d"

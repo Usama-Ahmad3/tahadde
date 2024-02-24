@@ -1,0 +1,30 @@
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Export.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAssetGroup.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroup.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroup.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroup.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroup.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailBaseCell.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailBaseCell.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailBaseCell.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailBaseCell.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailBaseCell.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupCellItemProtocol.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupCellItemProtocol.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupCellItemProtocol.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupCellItemProtocol.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupCellItemProtocol.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Fetch.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.swiftdeps"

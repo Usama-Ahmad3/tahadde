@@ -1,8 +1,8 @@
 "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/ApplicationInfo.swift":
-  swiftsourceinfo: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.swiftsourceinfo"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions-master.d"
   objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions-Swift.h"
-  swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.swiftmodule"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions-master.dia"
   swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.swiftdoc"
+  swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.swiftmodule"
   abi-baseline-json: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.abi.json"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions-master.d"
+  swiftsourceinfo: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions.swiftsourceinfo"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessions-master.dia"

@@ -1,30 +1,30 @@
-"/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PDFPreview/DKPhotoPDFPreviewVC.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.o"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.swiftdeps"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.dia"
-"/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PlayerPreview/DKPhotoPlayerPreviewVC.swift":
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.swiftdeps"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.o"
-"/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageView.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.o"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.d"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.dia"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.swiftdeps"
 "/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImagePreviewVC.swift":
   dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.o"
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.swiftdeps"
   diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.dia"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageView.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.d"
 "/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageUtility.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.o"
   dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.d"
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.swiftdeps"
   diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PDFPreview/DKPhotoPDFPreviewVC.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PlayerPreview/DKPhotoPlayerPreviewVC.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.dia"
 "/Users/developer/Downloads/tahadde/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoIncrementalIndicator.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.o"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.d"
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.swiftdeps"
   diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.o"

@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "7a63461d5d3e51ac6be3ce1594b72b051ce344fc316410fd1c912a33a32a8582"
+build_start_time: [1708633502, 407502174]
+build_end_time: [1708633568, 301357984]
+inputs:
+  "/Users/developer/Downloads/tahadde/ios/Pods/OrderedSet/Sources/OrderedSet.swift": [1708613787, 998082637]

@@ -488,8 +488,7 @@ class _AcademyOwnerMainHomeState extends State<AcademyOwnerMainHome> {
                                                                                   : _academyDetail[index].status == 'Decline'
                                                                                       ? AppLocalizations.of(context)!.rejected
                                                                                       : AppLocalizations.of(context)!.inReview,
-                                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: _academyDetail[index].status == 'Verified' ? AppColors.appThemeColor : AppColors.redAccent),
-                                                                            ),
+                                                                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: _academyDetail[index].status == 'Verified' ? AppColors.appThemeColor : AppColors.redAccent),                                                                            ),
                                                                           ],
                                                                         ),
                                                                       ),

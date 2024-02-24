@@ -1,26 +1,26 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
 options: "010982b14aaf8ab97032d628990e72b8341c7f312a5ef4b4e821b6ed319c7f34"
-build_start_time: [1707995935, 309740066]
-build_end_time: [1707995952, 975725173]
+build_start_time: [1708613899, 342183113]
+build_end_time: [1708613921, 448709964]
 inputs:
-  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift": [1707995831, 878042221]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift": [1708613784, 334264755]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatController.swift"
-  : [1707995831, 880405902]
+  : [1708613784, 336290121]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatLoggingTestUtils.swift"
-  : [1707995831, 882032871]
+  : [1708613784, 337795019]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift"
-  : [1707995831, 882892131]
+  : [1708613784, 338441371]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsBundle.swift"
-  : [1707995831, 883748769]
+  : [1708613784, 339167118]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsPayload.swift"
-  : [1707995831, 885334968]
-  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/RingBuffer.swift": [1707995831, 878857612]
-  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift": [1707995831, 877398729]
+  : [1708613784, 340755462]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/RingBuffer.swift": [1708613784, 334990978]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift": [1708613784, 333642482]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/StorageFactory.swift"
-  : [1707995831, 886040687]
+  : [1708613784, 341499328]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/WeakContainer.swift"
-  : [1707995831, 884492158]
+  : [1708613784, 339836597]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatController.swift"
-  : [1707995831, 879500389]
+  : [1708613784, 335602283]
   ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatsPayload.swift"
-  : [1707995831, 881065845]
+  : [1708613784, 336855888]

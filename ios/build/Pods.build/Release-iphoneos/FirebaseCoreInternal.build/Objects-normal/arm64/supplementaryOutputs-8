@@ -1,8 +1,8 @@
 "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatController.swift":
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.dia"
+  swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal.swiftmodule"
+  swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal.swiftdoc"
+  objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-Swift.h"
   abi-baseline-json: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal.abi.json"
   swiftsourceinfo: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal.swiftsourceinfo"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.dia"
-  swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal.swiftdoc"
-  swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal.swiftmodule"
-  objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-Swift.h"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.d"

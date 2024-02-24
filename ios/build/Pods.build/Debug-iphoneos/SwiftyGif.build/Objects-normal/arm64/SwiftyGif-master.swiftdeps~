@@ -1,0 +1,11 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "5dcd8dee69d5c832904694c54c072a3289fe7f946ce010a0cf4fe1c219207206"
+build_start_time: [1708633499, 319190979]
+build_end_time: [1708633499, 396157979]
+inputs:
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": !private [1708613788, 479233264]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": !private [1708613788, 483078718]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/ObjcAssociatedWeakObject.swift": !private [1708613788, 479995250]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/SwiftyGifManager.swift": !private [1708613788, 482159614]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/UIImage+SwiftyGif.swift": !private [1708613788, 480699062]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/UIImageView+SwiftyGif.swift": !private [1708613788, 478404760]

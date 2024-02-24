@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart' as fMessaging;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,7 +49,7 @@ class LoginScreenState extends State<LoginScreen> {
   var signupEmailController = TextEditingController();
   var sigupPasswordController = TextEditingController();
   var confirmSignPasswordController = TextEditingController();
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"],);
   // FacebookAuth facebookSignIn = FacebookAuth.instance;
   var signingIntoFirebase = false;
   var error;

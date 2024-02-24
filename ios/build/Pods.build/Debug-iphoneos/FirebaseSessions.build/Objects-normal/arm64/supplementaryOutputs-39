@@ -1,0 +1,30 @@
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsProvider.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProvider.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProvider.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProvider.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProvider.swiftdeps"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionStartEvent.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionStartEvent.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionStartEvent.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionStartEvent.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionStartEvent.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsDownloadClient.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsDownloadClient.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsDownloadClient.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsDownloadClient.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsDownloadClient.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsCacheClient.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsCacheClient.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsCacheClient.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsCacheClient.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsCacheClient.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsProtocol.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProtocol.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProtocol.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProtocol.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SettingsProtocol.dia"
+"/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Time.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Time.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Time.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Time.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Time.d"

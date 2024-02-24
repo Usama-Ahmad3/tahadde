@@ -1,25 +1,25 @@
-"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKPopoverViewController.swift":
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.swiftdeps"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.o"
-"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/Resource/DKImagePickerControllerResource.swift":
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.swiftdeps"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.dia"
-"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerControllerBaseUIDelegate.swift":
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.dia"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.swiftdeps"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKPermissionView.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.o"
 "/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerController.swift":
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerController.d"
   object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerController.o"
   diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerController.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerController.d"
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerController.swiftdeps"
-"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKPermissionView.swift":
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.swiftdeps"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPermissionView.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerControllerBaseUIDelegate.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerBaseUIDelegate.d"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/Resource/DKImagePickerControllerResource.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKImagePickerControllerResource.o"
+"/Users/developer/Downloads/tahadde/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKPopoverViewController.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKPopoverViewController.dia"

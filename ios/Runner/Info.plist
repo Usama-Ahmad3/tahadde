@@ -43,23 +43,25 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb580331605961333</string>
-				<string></string>
-			</array>
-		</dict>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.518103660124-mq5gmashsdjhfkm0du44948pgvt8fns7</string>
+            </array>
+        </dict>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb580331605961333</string>
+            </array>
+        </dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>root.com.tahade</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.518103660124-5cbof777evebo4704ub6ap2hb26649g5</string>
-			</array>
+
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

@@ -1,105 +1,105 @@
 "/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/EnableViewportScaleJS.swift":
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/EnableViewportScaleJS.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/EnableViewportScaleJS.swiftdeps"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/EnableViewportScaleJS.dia"
   object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/EnableViewportScaleJS.o"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/HeadlessInAppWebView/HeadlessInAppWebView.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.o"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.d"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.dia"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.swiftdeps"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/ConsoleLogJS.swift":
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.dia"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.o"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.swiftdeps"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppBrowser/InAppBrowserDelegate.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.o"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.swiftdeps"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.d"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.dia"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppWebView/FlutterWebViewFactory.swift":
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.swiftdeps"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.o"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/Types/ClientCertChallenge.swift":
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.swiftdeps"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.o"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/FindElementsAtPointJS.swift":
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.swiftdeps"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.dia"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/CredentialDatabase.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.o"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.d"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.dia"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.swiftdeps"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/HttpAuthenticationChallenge.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.o"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.d"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.dia"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.swiftdeps"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/CallAsyncJavaScriptBelowIOS14WrapperJS.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.o"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.swiftdeps"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/EnableViewportScaleJS.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/EnableViewportScaleJS.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/EnableViewportScaleJS.dia"
 "/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/FindTextHighlightJS.swift":
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindTextHighlightJS.swiftdeps"
   dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindTextHighlightJS.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindTextHighlightJS.o"
   diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindTextHighlightJS.dia"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/ContextMenuOptions.swift":
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.swiftdeps"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.dia"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/Types/DownloadStartRequest.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.swiftdeps"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/CustomeSchemeHandler.swift":
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.swiftdeps"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.dia"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/SafariViewController/ChromeSafariBrowserManager.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.o"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.swiftdeps"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.d"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.dia"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/Types/HitTestResult.swift":
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.d"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.swiftdeps"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.dia"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.o"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppBrowser/InAppBrowserNavigationController.swift":
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.dia"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.d"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.o"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.swiftdeps"
-"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppBrowser/InAppBrowserManager.swift":
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.dia"
-  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.swiftdeps"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindTextHighlightJS.o"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/FindElementsAtPointJS.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FindElementsAtPointJS.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/CredentialDatabase.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CredentialDatabase.d"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppWebView/FlutterWebViewFactory.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewFactory.o"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/ConsoleLogJS.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ConsoleLogJS.swiftdeps"
 "/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppWebView/FlutterWebViewController.swift":
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewController.swiftdeps"
   object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewController.o"
   dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewController.d"
   diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterWebViewController.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppBrowser/InAppBrowserManager.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserManager.o"
 "/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/HeadlessInAppWebView/HeadlessInAppWebViewManager.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebViewManager.o"
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebViewManager.swiftdeps"
   dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebViewManager.d"
   diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebViewManager.dia"
-  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebViewManager.o"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/ContextMenuOptions.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ContextMenuOptions.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/Types/DownloadStartRequest.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.swiftdeps"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.dia"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/DownloadStartRequest.d"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppBrowser/InAppBrowserNavigationController.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserNavigationController.dia"
 "/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/FlutterMethodCallDelegate.swift":
   swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterMethodCallDelegate.swiftdeps"
   object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterMethodCallDelegate.o"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterMethodCallDelegate.dia"
   dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterMethodCallDelegate.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/FlutterMethodCallDelegate.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/SafariViewController/ChromeSafariBrowserManager.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ChromeSafariBrowserManager.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/PluginScriptsJS/CallAsyncJavaScriptBelowIOS14WrapperJS.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.d"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CallAsyncJavaScriptBelowIOS14WrapperJS.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/HttpAuthenticationChallenge.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HttpAuthenticationChallenge.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/Types/ClientCertChallenge.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.o"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/ClientCertChallenge.d"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/HeadlessInAppWebView/HeadlessInAppWebView.swift":
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.d"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.swiftdeps"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HeadlessInAppWebView.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/Types/HitTestResult.swift":
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/HitTestResult.dia"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/InAppBrowser/InAppBrowserDelegate.swift":
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.o"
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.dia"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.swiftdeps"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/InAppBrowserDelegate.d"
+"/Users/developer/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.8.0/ios/Classes/CustomeSchemeHandler.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.dia"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.d"
+  object: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.o"
+  swift-dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Debug-iphonesimulator/flutter_inappwebview.build/Objects-normal/x86_64/CustomeSchemeHandler.swiftdeps"

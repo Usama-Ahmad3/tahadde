@@ -1,0 +1,11 @@
+framework module map_launcher {
+  umbrella header "map_launcher-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module map_launcher.Swift {
+  header "map_launcher-Swift.h"
+  requires objc
+}

@@ -1,8 +1,8 @@
 "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift":
+  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-master.dia"
+  abi-baseline-json: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif.abi.json"
+  objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-Swift.h"
+  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-master.d"
+  swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif.swiftdoc"
   swiftmodule: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif.swiftmodule"
   swiftsourceinfo: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif.swiftsourceinfo"
-  objc-header: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-Swift.h"
-  abi-baseline-json: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif.abi.json"
-  swiftdoc: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif.swiftdoc"
-  dependencies: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-master.d"
-  diagnostics: "/Users/developer/Downloads/tahadde/ios/build/Pods.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-master.dia"

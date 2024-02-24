@@ -1,0 +1,33 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "47a3da6d0d104592ea3c76f869c1afc6e2e678ac5ddd9dba2b892be349dcf627"
+build_start_time: [1708633596, 523044109]
+build_end_time: [1708633596, 747920036]
+inputs:
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/ApplicationInfo.swift": !private [1708613785, 129040718]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Development/DevEventConsoleLogger.swift": !private [1708613785, 132561683]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Development/NanoPB+CustomStringConvertible.swift"
+  : !private [1708613785, 133350610]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/EventGDTLogger.swift": !private [1708613785, 131701469]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/FirebaseSessions.swift": !private [1708613785, 139946222]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/FirebaseSessionsError.swift": !private [1708613785, 141932964]
+  ? "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/GoogleDataTransport+GoogleDataTransportProtocol.swift"
+  : !private [1708613785, 131058216]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Installations+InstallationsProtocol.swift": !private [1708613785, 135823488]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Logger.swift": !private [1708613785, 134720325]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/NetworkInfo.swift": !private [1708613785, 130304336]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Public/SessionsDependencies.swift": !private [1708613785, 138313293]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Public/SessionsProvider.swift": !private [1708613785, 136949777]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Public/SessionsSubscriber.swift": !private [1708613785, 137713432]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionCoordinator.swift": !private [1708613785, 139058113]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionGenerator.swift": !private [1708613785, 135267734]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionInitiator.swift": !private [1708613785, 129667997]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionStartEvent.swift": !private [1708613785, 141268491]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/LocalOverrideSettings.swift": !private [1708613785, 127479553]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/RemoteSettings.swift": !private [1708613785, 123194694]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SDKDefaultSettings.swift": !private [1708613785, 125535964]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SessionsSettings.swift": !private [1708613785, 123932600]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsCacheClient.swift": !private [1708613785, 124637842]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsDownloadClient.swift": !private [1708613785, 126750230]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsProtocol.swift": !private [1708613785, 126151561]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/SettingsProvider.swift": !private [1708613785, 128268718]
+  "/Users/developer/Downloads/tahadde/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Time.swift": !private [1708613785, 134058713]

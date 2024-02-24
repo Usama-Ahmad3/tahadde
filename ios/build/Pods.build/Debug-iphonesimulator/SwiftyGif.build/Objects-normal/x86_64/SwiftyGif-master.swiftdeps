@@ -1,11 +1,11 @@
 version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
 options: "86104ee49a69aa4c1a3df93197c1f4a6466a6d12b1974bb3e0cc5c9d1a6dc19d"
-build_start_time: [1708588994, 775835037]
-build_end_time: [1708589085, 954967021]
+build_start_time: [1708635833, 375388145]
+build_end_time: [1708635849, 938526153]
 inputs:
-  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": [1708588891, 542509555]
-  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": [1708588891, 551781177]
-  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/ObjcAssociatedWeakObject.swift": [1708588891, 543388605]
-  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/SwiftyGifManager.swift": [1708588891, 550227403]
-  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/UIImage+SwiftyGif.swift": [1708588891, 544802665]
-  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/UIImageView+SwiftyGif.swift": [1708588891, 541614055]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": [1708613788, 479233264]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": [1708613788, 483078718]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/ObjcAssociatedWeakObject.swift": [1708613788, 479995250]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/SwiftyGifManager.swift": [1708613788, 482159614]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/UIImage+SwiftyGif.swift": [1708613788, 480699062]
+  "/Users/developer/Downloads/tahadde/ios/Pods/SwiftyGif/SwiftyGif/UIImageView+SwiftyGif.swift": [1708613788, 478404760]
